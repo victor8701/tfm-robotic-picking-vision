@@ -143,8 +143,6 @@ Los archivos de modelos (`.pt`) **no están incluidos** debido a su tamaño. Se 
 ## 👥 Autor
 
 Víctor Martín Parra
-Miguel Franco Martínez
-Daniel de Molina Aguado
 Máster en Robótica y Automática - Universidad Carlos III de Madrid (2024/2025)
 
 ---
