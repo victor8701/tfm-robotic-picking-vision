@@ -1,0 +1,12 @@
+{
+    "hsv_lower_h": 8,
+    "hsv_lower_s": 0,
+    "hsv_lower_v": 0,
+    "hsv_upper_h": 86,
+    "hsv_upper_s": 242,
+    "hsv_upper_v": 255,
+    "max_corners": 0,
+    "quality_level": 0.247,
+    "min_distance": 175,
+    "block_size": 3
+}

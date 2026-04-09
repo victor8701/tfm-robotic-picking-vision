@@ -71,7 +71,7 @@ CARPETA_IMAGENES = "02Dic"  # Subcarpeta dentro de images/ donde están las imá
 # ============================================================================
 
 # Importar los módulos de detección
-from deteccion_ropa import detectar_ropa
+import json
 from deteccion_esquinas import charge_image
 
 def sistema_completo(nombre_imagen=None):
@@ -106,42 +106,30 @@ def sistema_completo(nombre_imagen=None):
     print(f"\n📷 Procesando imagen: {nombre_imagen}.jpg")
     print(f"   Ruta: {ruta_imagen}")
     
-    # =========================================================================
-    # PASO 1: Detectar prendas con YOLO
-    # =========================================================================
-    print("\n" + "="*60)
-    print("PASO 1: DETECCIÓN DE PRENDAS CON YOLO")
-    print("="*60)
-    
-    prendas_detectadas = detectar_ropa(
-        ruta_imagen=ruta_imagen,
-        mostrar_ventana=MOSTRAR_VENTANA_YOLO,
-        guardar_archivos=GUARDAR_IMAGENES_YOLO,
-        confianza_minima=CONFIANZA_MINIMA,
-        iou_threshold=IOU_THRESHOLD
-    )
-    
-    if not prendas_detectadas or len(prendas_detectadas) == 0:
-        print("\n⚠️  No se detectaron prendas. Continuando con detección de esquinas...")
-    else:
-        print(f"\n✅ Detectadas {len(prendas_detectadas)} prendas:")
-        for item in prendas_detectadas:
-            # Desempaquetar según formato (4 o 8 elementos)
-            if len(item) == 8:
-                nombre, conf, cx, cy, x1, y1, x2, y2 = item
-            else:
-                nombre, conf, cx, cy = item
-            print(f"   - {nombre}: {conf:.2f} ({int(conf*100)}%) en ({cx}, {cy})")
+    prendas_detectadas = []
+    # (Detección de prendas desactivada temporalmente para enfocar en calibrar las esquinas)
     
     # =========================================================================
-    # PASO 2: Detectar esquinas y dibujar centros de prendas
+    # PASO 2: Detectar esquinas
     # =========================================================================
     print("\n" + "="*60)
     print("PASO 2: DETECCIÓN DE ESQUINAS Y VISUALIZACIÓN")
     print("="*60)
     
     print("\n🔍 Detectando esquinas de la caja...")
-    print("🎯 Dibujando centros de prendas en VERDE...")
+    
+    # Cargar parámetros configurados si existen
+    params = None
+    config_path = os.path.join(script_dir, "config_esquinas.json")
+    if os.path.exists(config_path):
+        try:
+            with open(config_path, "r") as f:
+                params = json.load(f)
+            print("⚙️  Parámetros cargados desde config_esquinas.json")
+        except Exception as e:
+            print(f"⚠️  No se pudo cargar config_esquinas.json: {e}")
+    else:
+        print("ℹ️  Usando parámetros por defecto (no se encontró config_esquinas.json)")
     
     imagen_resultado = charge_image(
         ruta_imagen=ruta_imagen,
@@ -149,9 +137,7 @@ def sistema_completo(nombre_imagen=None):
         mostrar_ventana=MOSTRAR_VENTANA_ESQUINAS,
         guardar_reporte=GUARDAR_REPORTE_COMPLETO,
         margen_exclusion=MARGEN_EXCLUSION_PRENDAS,
-        max_esquinas=MAX_ESQUINAS,
-        quality_level=QUALITY_LEVEL_ESQUINAS,
-        min_distance=MIN_DISTANCE_ESQUINAS
+        params=params
     )
     
     # =========================================================================

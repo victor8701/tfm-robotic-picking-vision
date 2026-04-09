@@ -5,6 +5,19 @@ import os
 
 BASE_PATH = "../images/02Dic/"
 
+DEFAULT_PARAMS = {
+    "hsv_lower_h": 10,
+    "hsv_lower_s": 65,
+    "hsv_lower_v": 60,
+    "hsv_upper_h": 30,
+    "hsv_upper_s": 255,
+    "hsv_upper_v": 255,
+    "max_corners": 20,
+    "quality_level": 0.05,
+    "min_distance": 70,
+    "block_size": 3
+}
+
 # Variables globales para mantener la estructura del C++
 # En Python no son estrictamente necesarias si pasamos argumentos, 
 # pero las dejo para imitar tu código original.
@@ -29,21 +42,21 @@ def border_sobel(gray_img):
     combined = cv2.addWeighted(abs_grad_x, 0.5, abs_grad_y, 0.5, 0)
     return combined
 
-def obtener_mascara_carton_filtrada(imagen_bgr):
+def obtener_mascara_carton_filtrada(imagen_bgr, params=None):
     """
     1. Detecta todo lo que sea color cartón (suelo + caja).
     2. Calcula dónde está la caja (contorno más grande) rellenando huecos.
     3. Devuelve la máscara de color ORIGINAL pero recortada solo a la zona de la caja.
     """
+    if params is None:
+        params = DEFAULT_PARAMS
+
     # Convertir a HSV
     hsv = cv2.cvtColor(imagen_bgr, cv2.COLOR_BGR2HSV)
     
-    # --- AJUSTE RESTRICTIVO ---
-    # Hue (10-30): Rango naranja/marrón específico.
-    # Sat (65-255): ALTA saturación mínima para evitar grises/metales.
-    # Val (60-255): Brillo medio-alto para evitar sombras oscuras.
-    lower_brown = np.array([10, 65, 60]) 
-    upper_brown = np.array([30, 255, 255])
+    # --- AJUSTE RESTRICTIVO CON PARÁMETROS DINÁMICOS ---
+    lower_brown = np.array([params.get("hsv_lower_h", 10), params.get("hsv_lower_s", 65), params.get("hsv_lower_v", 60)]) 
+    upper_brown = np.array([params.get("hsv_upper_h", 30), params.get("hsv_upper_s", 255), params.get("hsv_upper_v", 255)])
     
     # Esta máscara tiene: La caja, el suelo y HUECOS donde hay objetos (porque no son marrones)
     mask_color = cv2.inRange(hsv, lower_brown, upper_brown)
@@ -88,7 +101,7 @@ def obtener_mascara_carton_filtrada(imagen_bgr):
     
     return final_mask
 
-def detectar_esquinas_caja(sobel_img, original_img, mask_color, bounding_boxes=None, margen=20, max_corners=20, quality_level=0.05, min_distance=70):
+def detectar_esquinas_caja(sobel_img, original_img, mask_color, bounding_boxes=None, margen=20, max_corners=None, quality_level=None, min_distance=None, block_size=None, params=None):
     """
     Detecta esquinas y muestra solo la caja con puntos grandes.
     
@@ -98,11 +111,21 @@ def detectar_esquinas_caja(sobel_img, original_img, mask_color, bounding_boxes=N
         mask_color: Máscara de color del cartón
         bounding_boxes: Lista de bounding boxes de YOLO [(x1, y1, x2, y2), ...]
         margen: Margen en píxeles alrededor de prendas
-        max_corners: Número máximo de esquinas
-        quality_level: Calidad mínima de esquinas
-        min_distance: Distancia mínima entre esquinas
+        max_corners: Número máximo de esquinas (opcional si se pasa en params)
+        quality_level: Calidad mínima de esquinas (opcional)
+        min_distance: Distancia mínima entre esquinas (opcional)
+        block_size: Tamaño de bloque para esquinas (opcional)
+        params: Diccionario de configuración general
     """
     height, width = sobel_img.shape[:2]
+
+    if params is None:
+        params = DEFAULT_PARAMS
+
+    _max_corners = max_corners if max_corners is not None else params.get("max_corners", 20)
+    _quality_level = quality_level if quality_level is not None else params.get("quality_level", 0.05)
+    _min_distance = min_distance if min_distance is not None else params.get("min_distance", 70)
+    _block_size = block_size if block_size is not None else params.get("block_size", 3)
     
     # 1. Crear máscara de exclusión basada en bounding boxes de YOLO
     mascara_exclusion = np.ones_like(mask_color) * 255  # Empezar con todo blanco (permitido)
@@ -128,10 +151,10 @@ def detectar_esquinas_caja(sobel_img, original_img, mask_color, bounding_boxes=N
     # corners devuelve un array numpy de forma (N, 1, 2)
     corners = cv2.goodFeaturesToTrack(
         sobel_img, 
-        maxCorners=max_corners, 
-        qualityLevel=quality_level, 
-        minDistance=min_distance,
-        blockSize=3, 
+        maxCorners=_max_corners, 
+        qualityLevel=_quality_level, 
+        minDistance=_min_distance,
+        blockSize=_block_size, 
         useHarrisDetector=False, 
         k=0.04,
         mask=mask_color # AQUI usamos la máscara inteligente
@@ -169,8 +192,8 @@ def detectar_esquinas_caja(sobel_img, original_img, mask_color, bounding_boxes=N
         return output_img, esquinas_validas
 
 def charge_image(ruta_imagen=None, prendas_detectadas=None, mostrar_ventana=True, 
-                 guardar_reporte=True, margen_exclusion=20, max_esquinas=20, 
-                 quality_level=0.05, min_distance=70):
+                 guardar_reporte=True, margen_exclusion=20, max_esquinas=None, 
+                 quality_level=None, min_distance=None, params=None):
     """
     Detecta esquinas de la caja y opcionalmente dibuja centros de prendas.
     
@@ -180,9 +203,10 @@ def charge_image(ruta_imagen=None, prendas_detectadas=None, mostrar_ventana=True
         mostrar_ventana: True/False para mostrar ventana
         guardar_reporte: True/False para guardar reporte
         margen_exclusion: Margen en píxeles alrededor de prendas
-        max_esquinas: Número máximo de esquinas a detectar
-        quality_level: Calidad mínima de esquinas (0.0-1.0)
-        min_distance: Distancia mínima entre esquinas (píxeles)
+        max_esquinas: Número máximo de esquinas a detectar (si se omite usa params)
+        quality_level: Calidad mínima de esquinas (0.0-1.0) (si se omite usa params)
+        min_distance: Distancia mínima entre esquinas (píxeles) (si se omite usa params)
+        params: Diccionario de configuración de ajustes interactivos
     
     Returns:
         imagen_result: Imagen procesada con esquinas y centros de prendas
@@ -226,7 +250,7 @@ def charge_image(ruta_imagen=None, prendas_detectadas=None, mostrar_ventana=True
     imagen_sobel = border_sobel(imageGray)
 
     # 2. Máscara Inteligente (Color Cartón PERO limitado al área de la caja)
-    mascara_filtrada = obtener_mascara_carton_filtrada(imagen)
+    mascara_filtrada = obtener_mascara_carton_filtrada(imagen, params)
 
     # 3. Extraer bounding boxes de las prendas detectadas (si existen)
     bboxes_prendas = None
@@ -252,7 +276,7 @@ def charge_image(ruta_imagen=None, prendas_detectadas=None, mostrar_ventana=True
                 print(f"  {nombre}: bbox estimada ({x1}, {y1}) a ({x2}, {y2})")
 
     # 4. Detectar esquinas (ahora con exclusión de áreas de prendas)
-    image_result, esquinas_caja = detectar_esquinas_caja(imagen_sobel, imagen, mascara_filtrada, bboxes_prendas, margen_exclusion, max_esquinas, quality_level, min_distance)
+    image_result, esquinas_caja = detectar_esquinas_caja(imagen_sobel, imagen, mascara_filtrada, bboxes_prendas, margen_exclusion, max_esquinas, quality_level, min_distance, block_size=None, params=params)
 
     # 4. Dibujar centros de prendas si se proporcionaron
     if prendas_detectadas is not None and len(prendas_detectadas) > 0:
