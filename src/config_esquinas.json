@@ -1,12 +1,15 @@
 {
     "hsv_lower_h": 8,
     "hsv_lower_s": 0,
-    "hsv_lower_v": 0,
-    "hsv_upper_h": 86,
-    "hsv_upper_s": 242,
+    "hsv_lower_v": 28,
+    "hsv_upper_h": 65,
+    "hsv_upper_s": 255,
     "hsv_upper_v": 255,
-    "max_corners": 0,
-    "quality_level": 0.247,
+    "max_corners": 100,
+    "quality_level": 0.011,
     "min_distance": 175,
-    "block_size": 3
+    "block_size": 5,
+    "edge_only": 0,
+    "poly_epsilon": 1,
+    "edge_thickness": 14
 }

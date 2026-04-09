@@ -49,7 +49,8 @@ def main():
         params = {
             "hsv_lower_h": 10, "hsv_lower_s": 65, "hsv_lower_v": 60,
             "hsv_upper_h": 30, "hsv_upper_s": 255, "hsv_upper_v": 255,
-            "max_corners": 20, "quality_level": 0.05, "min_distance": 70, "block_size": 3
+            "max_corners": 20, "quality_level": 0.05, "min_distance": 70, "block_size": 3,
+            "edge_only": 1, "poly_epsilon": 20, "edge_thickness": 30
         }
     
     # Trackbars
@@ -60,10 +61,13 @@ def main():
     cv2.createTrackbar('S Max', 'Controles', params['hsv_upper_s'], 255, nothing)
     cv2.createTrackbar('V Max', 'Controles', params['hsv_upper_v'], 255, nothing)
     
-    cv2.createTrackbar('maxCorners', 'Controles', params['max_corners'], 100, nothing)
-    cv2.createTrackbar('qualLvlx1000', 'Controles', int(params['quality_level'] * 1000), 1000, nothing)
-    cv2.createTrackbar('minDist', 'Controles', params['min_distance'], 500, nothing)
-    cv2.createTrackbar('blockSize', 'Controles', params['block_size'], 15, nothing)
+    cv2.createTrackbar('maxCorners', 'Controles', params.get('max_corners', 20), 100, nothing)
+    cv2.createTrackbar('qualLvlx1000', 'Controles', int(params.get('quality_level', 0.05) * 1000), 1000, nothing)
+    cv2.createTrackbar('minDist', 'Controles', params.get('min_distance', 70), 500, nothing)
+    cv2.createTrackbar('blockSize', 'Controles', params.get('block_size', 3), 15, nothing)
+    cv2.createTrackbar('edgeOnly(0/1)', 'Controles', params.get('edge_only', 1), 1, nothing)
+    cv2.createTrackbar('polyEpsilon', 'Controles', params.get('poly_epsilon', 20), 100, nothing)
+    cv2.createTrackbar('edgeThick', 'Controles', params.get('edge_thickness', 30), 100, nothing)
 
     print("="*60)
     print("Herramienta Interactiva: Ajuste de Parámetros")
@@ -92,11 +96,15 @@ def main():
         b_size = cv2.getTrackbarPos('blockSize', 'Controles')
         if b_size % 2 == 0: b_size += 1 # must be odd and > 0
         if b_size < 3: b_size = 3
+        e_only = cv2.getTrackbarPos('edgeOnly(0/1)', 'Controles')
+        p_eps = cv2.getTrackbarPos('polyEpsilon', 'Controles')
+        e_thick = cv2.getTrackbarPos('edgeThick', 'Controles')
 
         current_params = {
             "hsv_lower_h": h_min, "hsv_lower_s": s_min, "hsv_lower_v": v_min,
             "hsv_upper_h": h_max, "hsv_upper_s": s_max, "hsv_upper_v": v_max,
-            "max_corners": m_corn, "quality_level": q_lvl, "min_distance": m_dist, "block_size": b_size
+            "max_corners": m_corn, "quality_level": q_lvl, "min_distance": m_dist, "block_size": b_size,
+            "edge_only": e_only, "poly_epsilon": p_eps, "edge_thickness": e_thick
         }
 
         # Aplicar pipeline

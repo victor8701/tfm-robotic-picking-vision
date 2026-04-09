@@ -15,7 +15,10 @@ DEFAULT_PARAMS = {
     "max_corners": 20,
     "quality_level": 0.05,
     "min_distance": 70,
-    "block_size": 3
+    "block_size": 3,
+    "edge_only": 1,
+    "poly_epsilon": 20,
+    "edge_thickness": 30
 }
 
 # Variables globales para mantener la estructura del C++
@@ -79,6 +82,7 @@ def obtener_mascara_carton_filtrada(imagen_bgr, params=None):
     
     # Máscara negra vacía que será nuestra "Zona Permitida"
     mask_roi = np.zeros_like(mask_color)
+    contour_edge_mask = np.zeros_like(mask_color)
     
     if contours:
         # Asumimos que la caja es el objeto marrón más grande de la imagen
@@ -86,16 +90,26 @@ def obtener_mascara_carton_filtrada(imagen_bgr, params=None):
         
         if cv2.contourArea(caja_contour) > 1000:
             # Dibujamos el contorno de la caja RELLENO en blanco.
-            # Esto crea un rectángulo blanco donde está la caja, ignorando lo que haya dentro.
             cv2.drawContours(mask_roi, [caja_contour], -1, 255, thickness=cv2.FILLED)
+            
+            # Aproximar el contorno a líneas rectas largas
+            epsilon_factor = params.get("poly_epsilon", 20) / 1000.0
+            if epsilon_factor <= 0: epsilon_factor = 0.001
+            epsilon = epsilon_factor * cv2.arcLength(caja_contour, True)
+            approx = cv2.approxPolyDP(caja_contour, epsilon, True)
+            
+            # Dibujar un margen (borde) alrededor del polígono aproximado
+            thickness = params.get("edge_thickness", 30)
+            # Dibujar solo las aristas del polígono para restringir la búsqueda a los bordes rectos
+            cv2.drawContours(contour_edge_mask, [approx], -1, 255, thickness=thickness)
     
-    # 3. COMBINACIÓN FINAL (INTERSECCIÓN)
-    # Queremos: Píxeles que sean marrones (mask_color) Y que estén dentro de la caja (mask_roi).
-    # - Si es suelo marrón: mask_color=1, mask_roi=0 -> Resultado 0 (Eliminado)
-    # - Si es objeto gris dentro: mask_color=0, mask_roi=1 -> Resultado 0 (Eliminado)
-    # - Si es cartón de la caja: mask_color=1, mask_roi=1 -> Resultado 1 (Conservado)
+    # 3. COMBINACIÓN FINAL
     final_mask = cv2.bitwise_and(mask_color, mask_roi)
     
+    # Filtramos para buscar SOLO en los bordes si edge_only está activo
+    if params.get("edge_only", 1) == 1:
+        final_mask = cv2.bitwise_and(final_mask, contour_edge_mask)
+        
     # Erosión final ligera para afinar bordes
     final_mask = cv2.erode(final_mask, kernel_small, iterations=2)
     
