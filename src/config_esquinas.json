@@ -1,15 +1,16 @@
 {
-    "hsv_lower_h": 8,
-    "hsv_lower_s": 47,
-    "hsv_lower_v": 128,
-    "hsv_upper_h": 76,
+    "hsv_lower_h": 9,
+    "hsv_lower_s": 41,
+    "hsv_lower_v": 121,
+    "hsv_upper_h": 54,
     "hsv_upper_s": 153,
-    "hsv_upper_v": 194,
-    "hough_threshold": 76,
+    "hsv_upper_v": 201,
+    "hough_threshold": 132,
     "hough_min_line": 292,
-    "hough_max_gap": 180,
-    "n_top_lines": 9,
-    "angle_tol": 67,
-    "cluster_dist": 62,
-    "corner_margin": 223
+    "hough_max_gap": 155,
+    "n_top_lines": 16,
+    "angle_tol": 61,
+    "cluster_dist": 82,
+    "corner_margin": 280,
+    "max_corners": 20
 }

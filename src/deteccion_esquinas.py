@@ -6,7 +6,7 @@ import os
 BASE_PATH = "../images/02Dic/"
 
 DEFAULT_PARAMS = {
-    # --- Máscara de color HSV ---
+    # --- Mascara de color HSV ---
     "hsv_lower_h": 10,
     "hsv_lower_s": 65,
     "hsv_lower_v": 60,
@@ -14,14 +14,15 @@ DEFAULT_PARAMS = {
     "hsv_upper_s": 255,
     "hsv_upper_v": 255,
     # --- HoughLinesP ---
-    "hough_threshold": 80,      # Votos mínimos para considerar una línea
-    "hough_min_line":  150,     # Longitud mínima del segmento detectado (px)
-    "hough_max_gap":   15,      # Hueco máximo entre puntos del mismo segmento (px)
-    # --- Selección y agrupación ---
-    "n_top_lines":     8,       # Nº de líneas más largas a usar
-    "angle_tol":       20,      # Tolerancia para considerar dos líneas paralelas (grados)
+    "hough_threshold": 40,      # Votos minimos (bajar si no encuentra lineas)
+    "hough_min_line":  60,      # Longitud minima del segmento detectado (px)
+    "hough_max_gap":   20,      # Hueco maximo entre puntos del mismo segmento (px)
+    # --- Seleccion y agrupacion ---
+    "n_top_lines":     8,       # N lineas a usar (se distribuyen entre direcciones)
+    "angle_tol":       20,      # Tolerancia para considerar dos lineas paralelas (grados)
     "cluster_dist":    80,      # Distancia para agrupar intersecciones en la misma esquina (px)
-    "corner_margin":   120,     # Margen exterior a la imagen donde aún se aceptan esquinas (px)
+    "corner_margin":   120,     # Margen exterior a la imagen donde se aceptan esquinas (px)
+    "max_corners":     4,       # N maximo de esquinas (caja cerrada=4, abierta con solapas=8-16)
 }
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -105,7 +106,7 @@ def _extender_linea(x1, y1, x2, y2, h, w):
     dx = x2 - x1
     dy = y2 - y1
 
-    # Línea vertical
+    # linea vertical
     if abs(dx) < 1e-6:
         return (x1, 0, x1, h - 1)
 
@@ -137,7 +138,7 @@ def _extender_linea(x1, y1, x2, y2, h, w):
 
 def _interseccion(l1, l2):
     """
-    Intersección de dos segmentos/líneas (formato x1,y1,x2,y2).
+    Intersección de dos segmentos/lineas (formato x1,y1,x2,y2).
     Retorna (x, y) o None si son paralelas.
     """
     x1, y1, x2, y2 = l1
@@ -182,63 +183,96 @@ def _agrupar_cercanos(pts, dist_min):
         grupos.append((cx, cy))
     return grupos
 
-def _seleccionar_4_esquinas(puntos, h, w):
+def _seleccionar_esquinas(puntos, h, w, max_corners=4):
     """
-    De todos los puntos candidatos selecciona los 4 que mejor
-    representan un cuadrilátero convexo (tl, tr, bl, br).
+    De todos los puntos candidatos selecciona hasta `max_corners` que mejor
+    representan un polígono convexo.
+
+    Estrategia:
+      - Calcula los 4 extremos geométricos del convex hull (tl, tr, br, bl).
+      - Si max_corners <= 4: devuelve los primeros max_corners de esos extremos.
+      - Si max_corners >  4: añade puntos adicionales del hull espaciados
+        uniformemente hasta completar max_corners.
+
+    Así el slider MaxCorners controla exactamente cuántas esquinas se devuelven,
+    entre 3 (una esquina tapada) y N (formas con más aristas visibles).
     """
-    if len(puntos) <= 4:
+    max_corners = max(3, int(max_corners))
+
+    if len(puntos) == 0:
+        return []
+
+    if len(puntos) <= max_corners:
         return puntos
 
     pts_arr = np.array(puntos, dtype=np.float32)
     hull = cv2.convexHull(pts_arr.reshape(-1, 1, 2))
     hull_pts = [tuple(p[0].astype(int)) for p in hull]
 
-    if len(hull_pts) < 4:
+    if len(hull_pts) <= max_corners:
         return hull_pts
 
-    # Tl = mín (x+y), Tr = mín (-x+y), Bl = mín (x-y), Br = máx (x+y)
-    tl = min(hull_pts, key=lambda p: p[0] + p[1])
-    tr = min(hull_pts, key=lambda p: -p[0] + p[1])
-    bl = max(hull_pts, key=lambda p: -p[0] + p[1])   # = mín(x-y) → mín(-x+y)^-1
-    br = max(hull_pts, key=lambda p: p[0] + p[1])
+    # --- Los 4 extremos geométricos (siempre útiles para cajas) --------------
+    tl = min(hull_pts, key=lambda p: p[0] + p[1])   # arriba-izquierda
+    tr = min(hull_pts, key=lambda p: -p[0] + p[1])  # arriba-derecha
+    br = max(hull_pts, key=lambda p: p[0] + p[1])   # abajo-derecha
+    bl = max(hull_pts, key=lambda p: -p[0] + p[1])  # abajo-izquierda
 
-    # Eliminar duplicados manteniendo orden
-    seen = set()
+    seen   = set()
     result = []
     for p in [tl, tr, br, bl]:
         if p not in seen:
             seen.add(p)
             result.append(p)
+
+    # Si el usuario pidió menos de 4, truncamos
+    if max_corners <= len(result):
+        return result[:max_corners]
+
+    # Si pidió más de 4, completamos con puntos del hull espaciados uniformemente
+    n = len(hull_pts)
+    extra_needed = max_corners - len(result)
+    step = max(1, n // (extra_needed + 1))
+    for i in range(1, n, step):
+        p = hull_pts[i]
+        if p not in seen:
+            seen.add(p)
+            result.append(p)
+        if len(result) >= max_corners:
+            break
+
     return result
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# DETECCIÓN PRINCIPAL POR LÍNEAS
+# DETECCIÓN PRINCIPAL POR lineaS
 # ─────────────────────────────────────────────────────────────────────────────
 
 def detectar_esquinas_por_lineas(mask_roi_solida, original_img, params=None, bounding_boxes=None, margen=20):
     """
-    Detecta las 4 esquinas de la caja como intersección de las líneas de borde más largas.
+    Detecta las esquinas de la caja como interseccion de las lineas de borde.
 
     Algoritmo:
-      1. Canny sobre la máscara sólida → bordes del contorno
-      2. HoughLinesP → segmentos de línea
-      3. Ordenar por longitud → elegir los N más largos
-      4. Extender cada segmento a línea completa
-      5. Calcular intersecciones de pares no paralelos
-      6. Filtrar dentro de la imagen, agrupar cercanas
-      7. Tomar las 4 esquinas del cuadrilátero convexo
+      1. Extrae el borde 1px de la mascara solida por morfologia (mas limpio que Canny en binario)
+      2. HoughLinesP -> segmentos de linea sobre el borde
+      3. Agrupa segmentos por direccion angular
+      4. Seleccion round-robin entre grupos: garantiza lineas en TODAS las direcciones
+         (FIX: el codigo anterior tomaba los N mas largos globalmente, por lo que todos
+          podian ser paralelos entre si -> 0 intersecciones -> 0 esquinas)
+      5. Extiende cada segmento a linea completa
+      6. Calcula intersecciones de pares no paralelos
+      7. Filtra por margen de imagen, agrupa cercanas
+      8. Devuelve las max_corners mejores esquinas del poligono convexo
 
     Args:
-        mask_roi_solida : máscara binaria sólida del área de la caja
-        original_img    : imagen BGR para visualización
-        params          : diccionario de parámetros
+        mask_roi_solida : mascara binaria solida del area de la caja
+        original_img    : imagen BGR para visualizacion
+        params          : diccionario de parametros
         bounding_boxes  : [(x1,y1,x2,y2), ...] zonas a excluir (prendas YOLO)
-        margen          : píxeles de margen alrededor de cada bounding box
+        margen          : pixeles de margen alrededor de cada bounding box
 
     Returns:
-        output_img : imagen con líneas (verde) y esquinas (rojo) dibujadas
+        output_img : imagen con lineas (azul/verde) y esquinas (rojo) dibujadas
         esquinas   : lista de (x, y)
     """
     if params is None:
@@ -247,13 +281,18 @@ def detectar_esquinas_por_lineas(mask_roi_solida, original_img, params=None, bou
     h, w = original_img.shape[:2]
     output_img = original_img.copy()
 
-    # ── 1. Bordes del contorno de la máscara ─────────────────────────────────
-    edges = cv2.Canny(mask_roi_solida, 50, 150)
+    # -- 1. Borde morfologico de la mascara -----------------------------------
+    # Para mascara binaria (0/255), la frontera exacta es: mascara - erosion.
+    # Es mas limpio que Canny porque no depende de gradientes suavizados.
+    kernel3 = np.ones((3, 3), np.uint8)
+    edges = mask_roi_solida - cv2.erode(mask_roi_solida, kernel3, iterations=1)
+    # Dilatar ligeramente para que Hough acumule mas votos por borde
+    edges = cv2.dilate(edges, kernel3, iterations=1)
 
-    # ── 2. HoughLinesP ───────────────────────────────────────────────────────
-    threshold  = max(10, params.get("hough_threshold", 80))
-    min_line   = max(10, params.get("hough_min_line",  150))
-    max_gap    = max(1,  params.get("hough_max_gap",    15))
+    # -- 2. HoughLinesP -------------------------------------------------------
+    threshold = max(5, params.get("hough_threshold", 40))
+    min_line  = max(5, params.get("hough_min_line",  60))
+    max_gap   = max(1, params.get("hough_max_gap",   20))
 
     lines = cv2.HoughLinesP(
         edges,
@@ -265,10 +304,10 @@ def detectar_esquinas_por_lineas(mask_roi_solida, original_img, params=None, bou
     )
 
     if lines is None:
-        print("⚠️  HoughLinesP no encontró líneas. Ajusta hough_threshold / hough_min_line.")
+        print("No se encontraron lineas. Baja HoughThresh o MinLineLen.")
         return output_img, []
 
-    # ── 3. Calcular longitud y ángulo, ordenar por longitud ──────────────────
+    # -- 3. Calcular longitud y angulo de cada segmento -----------------------
     lineas_info = []
     for seg in lines:
         x1, y1, x2, y2 = seg[0]
@@ -279,27 +318,63 @@ def detectar_esquinas_por_lineas(mask_roi_solida, original_img, params=None, bou
         })
     lineas_info.sort(key=lambda d: d["length"], reverse=True)
 
-    # ── 4. Seleccionar las N más largas ──────────────────────────────────────
-    n_top = max(2, params.get("n_top_lines", 8))
-    top   = lineas_info[:n_top]
+    # -- 4. Agrupar por direccion angular y seleccionar en round-robin --------
+    # PROBLEMA ANTERIOR: top = lineas_info[:n_top] toma los N mas largos
+    # globalmente. Si los N mas largos son todos horizontales (borde superior
+    # e inferior de la caja son los mas largos), no hay lineas verticales
+    # -> no hay intersecciones perpendiculares -> 0 esquinas detectadas.
+    #
+    # SOLUCION: agrupar por angulo, luego round-robin entre grupos para
+    # garantizar que se seleccionan lineas en todas las direcciones presentes.
+    n_top     = max(2, params.get("n_top_lines", 8))
+    angle_tol = max(1, params.get("angle_tol", 20))
 
-    # ── 5. Extender cada segmento a línea completa ───────────────────────────
+    grupos = []   # [{"ang": float, "lineas": [info, ...]}, ...]
+    for info in lineas_info:   # ya ordenados de mayor a menor longitud
+        ang = info["angle"]
+        asignado = False
+        for g in grupos:
+            diff = abs(ang - g["ang"]) % 180
+            if diff > 90:
+                diff = 180 - diff
+            if diff < angle_tol:
+                g["lineas"].append(info)
+                asignado = True
+                break
+        if not asignado:
+            grupos.append({"ang": ang, "lineas": [info]})
+
+    # Round-robin: tomar la siguiente mejor linea de cada grupo rotando
+    top = []
+    ptr = [0] * len(grupos)
+    while len(top) < n_top:
+        avance = False
+        for i, g in enumerate(grupos):
+            if ptr[i] < len(g["lineas"]):
+                top.append(g["lineas"][ptr[i]])
+                ptr[i] += 1
+                avance = True
+                if len(top) >= n_top:
+                    break
+        if not avance:
+            break
+
+    # -- 5. Extender cada segmento a linea completa ---------------------------
     lineas_ext = []
     for d in top:
         x1, y1, x2, y2 = d["seg"]
         le = _extender_linea(x1, y1, x2, y2, h, w)
         lineas_ext.append({"line": le, "angle": d["angle"], "length": d["length"]})
 
-    # ── 6. Dibujar segmentos originales (azul) y líneas extendidas (verde) ───
+    # -- 6. Dibujar segmentos (azul) y lineas extendidas (verde) --------------
     for d in top:
         x1, y1, x2, y2 = d["seg"]
-        cv2.line(output_img, (x1, y1), (x2, y2), (255, 100, 0), 3)   # segmento – azul
+        cv2.line(output_img, (x1, y1), (x2, y2), (255, 100, 0), 3)
     for d in lineas_ext:
         x1, y1, x2, y2 = d["line"]
-        cv2.line(output_img, (x1, y1), (x2, y2), (0, 220, 0), 1)     # extendida – verde tenue
+        cv2.line(output_img, (x1, y1), (x2, y2), (0, 220, 0), 1)
 
-    # ── 7. Calcular intersecciones de pares no paralelos ─────────────────────
-    angle_tol = params.get("angle_tol", 20)
+    # -- 7. Intersecciones de pares no paralelos ------------------------------
     intersecciones = []
     for i in range(len(lineas_ext)):
         for j in range(i + 1, len(lineas_ext)):
@@ -309,7 +384,7 @@ def detectar_esquinas_por_lineas(mask_roi_solida, original_img, params=None, bou
             if pt is not None:
                 intersecciones.append(pt)
 
-    # ── 8. Filtrar intersecciones dentro de la imagen (+ margen) ─────────────
+    # -- 8. Filtrar por margen de imagen --------------------------------------
     corner_margin = params.get("corner_margin", 120)
     intersecciones = [
         pt for pt in intersecciones
@@ -321,22 +396,22 @@ def detectar_esquinas_por_lineas(mask_roi_solida, original_img, params=None, bou
     if bounding_boxes:
         def _en_bbox(pt, bboxes, mg):
             for (bx1, by1, bx2, by2) in bboxes:
-                if (bx1 - mg <= pt[0] <= bx2 + mg and
-                        by1 - mg <= pt[1] <= by2 + mg):
+                if bx1 - mg <= pt[0] <= bx2 + mg and by1 - mg <= pt[1] <= by2 + mg:
                     return True
             return False
         intersecciones = [pt for pt in intersecciones
                           if not _en_bbox(pt, bounding_boxes, margen)]
 
-    # ── 9. Agrupar intersecciones cercanas ────────────────────────────────────
+    # -- 9. Agrupar intersecciones cercanas ------------------------------------
     cluster_dist = params.get("cluster_dist", 80)
     candidatas   = _agrupar_cercanos(intersecciones, cluster_dist)
 
-    # ── 10. Seleccionar las 4 mejores esquinas ────────────────────────────────
-    esquinas = _seleccionar_4_esquinas(candidatas, h, w)
+    # -- 10. Seleccionar las N mejores esquinas --------------------------------
+    max_corners = max(3, params.get("max_corners", 4))
+    esquinas    = _seleccionar_esquinas(candidatas, h, w, max_corners)
 
-    # ── 11. Dibujar esquinas ──────────────────────────────────────────────────
-    print(f"\n--- ESQUINAS POR LÍNEAS ({len(esquinas)} encontradas) ---")
+    # -- 11. Dibujar esquinas --------------------------------------------------
+    print(f"\n--- ESQUINAS ({len(esquinas)} encontradas | candidatas={len(candidatas)} | grupos_dir={len(grupos)}) ---")
     for i, (x, y) in enumerate(esquinas):
         cv2.circle(output_img, (x, y), 12, (0, 0, 255), -1)
         cv2.putText(output_img, str(i + 1), (x + 15, y - 15),
@@ -347,6 +422,7 @@ def detectar_esquinas_por_lineas(mask_roi_solida, original_img, params=None, bou
     return output_img, esquinas
 
 
+
 # ─────────────────────────────────────────────────────────────────────────────
 # FUNCIÓN PRINCIPAL (llamada desde main.py)
 # ─────────────────────────────────────────────────────────────────────────────
@@ -354,7 +430,7 @@ def detectar_esquinas_por_lineas(mask_roi_solida, original_img, params=None, bou
 def charge_image(ruta_imagen=None, prendas_detectadas=None, mostrar_ventana=True,
                  guardar_reporte=True, margen_exclusion=20, params=None):
     """
-    Pipeline completo: carga imagen → máscara → detección por líneas → visualización.
+    Pipeline completo: carga imagen → máscara → detección por lineas → visualización.
 
     Args:
         ruta_imagen        : ruta a la imagen (si None, la pide al usuario)
@@ -408,7 +484,7 @@ def charge_image(ruta_imagen=None, prendas_detectadas=None, mostrar_ventana=True
                 dxy = 75
                 bboxes_prendas.append((cx - dxy, cy - dxy, cx + dxy, cy + dxy))
 
-    # ── Detección de esquinas por líneas ─────────────────────────────────────
+    # ── Detección de esquinas por lineas ─────────────────────────────────────
     image_result, esquinas_caja = detectar_esquinas_por_lineas(
         mask_solida, imagen.copy(), params, bboxes_prendas, margen_exclusion
     )
@@ -434,7 +510,7 @@ def charge_image(ruta_imagen=None, prendas_detectadas=None, mostrar_ventana=True
         import datetime
         with open(archivo_rep, "w", encoding="utf-8") as f:
             f.write("=" * 80 + "\n")
-            f.write("REPORTE DE DETECCIÓN – MÉTODO LÍNEAS\n")
+            f.write("REPORTE DE DETECCIÓN – MÉTODO lineaS\n")
             f.write("=" * 80 + "\n\n")
             f.write(f"Imagen : {Path(path).name}\n")
             f.write(f"Fecha  : {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")

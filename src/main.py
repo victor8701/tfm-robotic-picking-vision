@@ -32,7 +32,7 @@ GUARDAR_REPORTE_COMPLETO = False  # True: Guarda reporte unificado en resultados
                                  # False: No guarda reporte
 
 # --- DETECCIÓN DE PRENDAS (YOLO) ---
-CONFIANZA_MINIMA = 0.5  # Umbral de confianza mínima (0.0 - 1.0)
+CONFIANZA_MINIMA = 0.5  # Umbral de confianza minima (0.0 - 1.0)
                         # Valores más altos = menos detecciones pero más precisas
                         # Valores más bajos = más detecciones pero con más errores
                         # Recomendado: 0.5 - 0.75
@@ -61,34 +61,28 @@ CARPETA_IMAGENES = "02Dic"  # Subcarpeta dentro de images/ donde están las imá
 import json
 from deteccion_esquinas import charge_image
 
-def sistema_completo(nombre_imagen=None):
-    """
-    Ejecuta el sistema completo de detección.
-    
-    Proceso:
-    1. Detecta prendas con YOLO y obtiene sus centros
-    2. Detecta esquinas de la caja y dibuja los centros de las prendas
-    
-    Args:
-        nombre_imagen: Nombre de la imagen (sin extensión) o None para pedir al usuario
-    """
-    print("="*60)
-    print("SISTEMA INTEGRADO DE DETECCIÓN")
-    print("="*60)
-    
-    # Construir ruta de imagen
-    if nombre_imagen is None:
-        print("\nIntroduce el nombre de la imagen (sin .jpg):")
-        nombre_imagen = input().strip()
-    
+def _resolver_ruta(nombre_imagen):
+    """Devuelve la ruta absoluta de la imagen o None si no existe."""
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    carpeta_imagenes = os.path.join(script_dir, "..", "images", CARPETA_IMAGENES)
-    carpeta_imagenes = os.path.abspath(carpeta_imagenes)
-    ruta_imagen = os.path.join(carpeta_imagenes, f"{nombre_imagen}.jpg")
-    
-    if not os.path.exists(ruta_imagen):
-        print(f"❌ ERROR: No existe la imagen {ruta_imagen}")
-        return
+    carpeta = os.path.abspath(os.path.join(script_dir, "..", "images", CARPETA_IMAGENES))
+    ruta = os.path.join(carpeta, f"{nombre_imagen}.jpg")
+    if not os.path.exists(ruta):
+        print(f"❌ ERROR: No existe la imagen {ruta}")
+        return None
+    return ruta
+
+
+def sistema_completo(nombre_imagen):
+    """
+    Ejecuta el pipeline completo para UNA imagen.
+
+    Args:
+        nombre_imagen: Nombre de la imagen (sin extensión)
+    Retorna True si se procesó correctamente, False si no se encontró la imagen.
+    """
+    ruta_imagen = _resolver_ruta(nombre_imagen)
+    if ruta_imagen is None:
+        return False
     
     print(f"\n📷 Procesando imagen: {nombre_imagen}.jpg")
     print(f"   Ruta: {ruta_imagen}")
@@ -107,7 +101,7 @@ def sistema_completo(nombre_imagen=None):
     
     # Cargar parámetros configurados si existen
     params = None
-    config_path = os.path.join(script_dir, "config_esquinas.json")
+    config_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "config_esquinas.json")
     if os.path.exists(config_path):
         try:
             with open(config_path, "r") as f:
@@ -134,16 +128,37 @@ def sistema_completo(nombre_imagen=None):
     print("✅ PROCESO COMPLETADO")
     print("="*60)
     print(f"📊 Prendas detectadas: {len(prendas_detectadas) if prendas_detectadas else 0}")
-    print(f"📁 Reporte guardado en: runs/detect/predictX/detecciones.txt")
-    print(f"🖼️  Imagen YOLO guardada en: runs/detect/predictX/{nombre_imagen}.jpg")
     print(f"👁️  Visualización: Imagen con esquinas (rojos) y centros de prendas (verdes)")
     print("="*60)
+    return True
+
 
 if __name__ == "__main__":
-    # Si se pasa un argumento, usarlo como nombre de imagen
-    if len(sys.argv) > 1:
-        nombre = sys.argv[1]
+    print("=" * 60)
+    print("SISTEMA INTEGRADO DE DETECCIÓN")
+    print("=" * 60)
+    print("  Escribe el nombre de la imagen (sin .jpg) y pulsa Enter.")
+    print("  Escribe 'q' o deja vacío para salir.")
+    print("=" * 60)
+
+    # Si se pasa argumento por línea de comandos, se procesa primero
+    primera = sys.argv[1] if len(sys.argv) > 1 else None
+
+    while True:
+        if primera is not None:
+            nombre = primera
+            primera = None
+        else:
+            print("\n📂 Imagen (o 'q' para salir): ", end="", flush=True)
+            try:
+                nombre = input().strip()
+            except (EOFError, KeyboardInterrupt):
+                print("\nSaliendo...")
+                break
+
+        if nombre.lower() in ("", "q", "quit", "exit", "salir"):
+            print("👋 Saliendo del sistema.")
+            break
+
         sistema_completo(nombre)
-    else:
-        # Modo interactivo
-        sistema_completo()
+
