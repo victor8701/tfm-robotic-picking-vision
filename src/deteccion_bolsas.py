@@ -97,7 +97,11 @@ def detectar_bolsas_cv(ruta_imagen=None, image_bgr=None, params=None, mask_caja=
 
     # ── Paso 3b: Aplicar mask_caja (si fue provista) ─────────────────────────
     if mask_caja is not None:
-        mask_close = cv2.bitwise_and(mask_close, mask_caja)
+        # Erosión de la máscara de la caja para evitar que los bordes del cartón
+        # se detecten como bordes de bolsa.
+        k_erosion = np.ones((25, 25), np.uint8)
+        mask_caja_erodida = cv2.erode(mask_caja, k_erosion, iterations=1)
+        mask_close = cv2.bitwise_and(mask_close, mask_caja_erodida)
 
     # ── Paso 4 & 5: Contornos + filtros ──────────────────────────────────────
     contours, _ = cv2.findContours(mask_close, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)

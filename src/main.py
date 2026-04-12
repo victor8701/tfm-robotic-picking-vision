@@ -26,7 +26,7 @@ CARPETA_IMAGENES   = "02Dic" # Subcarpeta dentro de images/  (vacío → raíz d
 # ============================================================================
 
 from deteccion_esquinas   import charge_image, obtener_mascara_roi_solida
-from deteccion_bolsas_cv  import detectar_bolsas_cv
+from deteccion_bolsas    import detectar_bolsas_cv
 
 
 def _resolver_ruta(nombre_imagen):

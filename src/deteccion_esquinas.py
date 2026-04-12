@@ -62,7 +62,10 @@ def obtener_mascara_roi_solida(imagen_bgr, params=None):
     if contours:
         contorno_caja = max(contours, key=cv2.contourArea)
         if cv2.contourArea(contorno_caja) > 1000:
-            cv2.drawContours(mask_solida, [contorno_caja], -1, 255, thickness=cv2.FILLED)
+            # Usar Convex Hull para asegurar que el interior de la caja
+            # se incluya aunque el color del cartón esté ocluido por las bolsas.
+            hull = cv2.convexHull(contorno_caja)
+            cv2.drawContours(mask_solida, [hull], -1, 255, thickness=cv2.FILLED)
 
     return mask_solida, contorno_caja
 
