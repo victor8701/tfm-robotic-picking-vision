@@ -49,19 +49,6 @@ MARGEN_EXCLUSION_PRENDAS = 20  # Margen en píxeles alrededor de cada prenda
                                # Valores más bajos = excluye menos área (más esquinas)
                                # Recomendado: 15 - 30
 
-MAX_ESQUINAS = 20  # Número máximo de esquinas a detectar
-                   # Aumentar si necesitas detectar más esquinas
-                   # Recomendado: 15 - 25
-
-QUALITY_LEVEL_ESQUINAS = 0.05  # Calidad mínima de las esquinas (0.0 - 1.0)
-                               # Valores más altos = solo esquinas muy definidas
-                               # Valores más bajos = detecta esquinas más débiles
-                               # Recomendado: 0.01 - 0.1
-
-MIN_DISTANCE_ESQUINAS = 70  # Distancia mínima entre esquinas (píxeles)
-                            # Aumentar para evitar esquinas muy juntas
-                            # Recomendado: 50 - 100
-
 # --- RUTAS ---
 CARPETA_IMAGENES = "02Dic"  # Subcarpeta dentro de images/ donde están las imágenes
                             # Cambiar según tu estructura de carpetas
@@ -137,7 +124,7 @@ def sistema_completo(nombre_imagen=None):
         mostrar_ventana=MOSTRAR_VENTANA_ESQUINAS,
         guardar_reporte=GUARDAR_REPORTE_COMPLETO,
         margen_exclusion=MARGEN_EXCLUSION_PRENDAS,
-        params=params
+        params=params,
     )
     
     # =========================================================================

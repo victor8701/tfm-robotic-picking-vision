@@ -1,15 +1,15 @@
 {
     "hsv_lower_h": 8,
-    "hsv_lower_s": 0,
-    "hsv_lower_v": 28,
-    "hsv_upper_h": 65,
-    "hsv_upper_s": 255,
-    "hsv_upper_v": 255,
-    "max_corners": 100,
-    "quality_level": 0.011,
-    "min_distance": 175,
-    "block_size": 5,
-    "edge_only": 0,
-    "poly_epsilon": 1,
-    "edge_thickness": 14
+    "hsv_lower_s": 47,
+    "hsv_lower_v": 128,
+    "hsv_upper_h": 76,
+    "hsv_upper_s": 153,
+    "hsv_upper_v": 194,
+    "hough_threshold": 76,
+    "hough_min_line": 292,
+    "hough_max_gap": 180,
+    "n_top_lines": 9,
+    "angle_tol": 67,
+    "cluster_dist": 62,
+    "corner_margin": 223
 }

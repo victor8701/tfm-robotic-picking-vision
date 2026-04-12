@@ -6,244 +6,378 @@ import os
 BASE_PATH = "../images/02Dic/"
 
 DEFAULT_PARAMS = {
+    # --- Máscara de color HSV ---
     "hsv_lower_h": 10,
     "hsv_lower_s": 65,
     "hsv_lower_v": 60,
     "hsv_upper_h": 30,
     "hsv_upper_s": 255,
     "hsv_upper_v": 255,
-    "max_corners": 20,
-    "quality_level": 0.05,
-    "min_distance": 70,
-    "block_size": 3,
-    "edge_only": 1,
-    "poly_epsilon": 20,
-    "edge_thickness": 30
+    # --- HoughLinesP ---
+    "hough_threshold": 80,      # Votos mínimos para considerar una línea
+    "hough_min_line":  150,     # Longitud mínima del segmento detectado (px)
+    "hough_max_gap":   15,      # Hueco máximo entre puntos del mismo segmento (px)
+    # --- Selección y agrupación ---
+    "n_top_lines":     8,       # Nº de líneas más largas a usar
+    "angle_tol":       20,      # Tolerancia para considerar dos líneas paralelas (grados)
+    "cluster_dist":    80,      # Distancia para agrupar intersecciones en la misma esquina (px)
+    "corner_margin":   120,     # Margen exterior a la imagen donde aún se aceptan esquinas (px)
 }
 
-# Variables globales para mantener la estructura del C++
-# En Python no son estrictamente necesarias si pasamos argumentos, 
-# pero las dejo para imitar tu código original.
-imagen = None       # Color
-imageGray = None    # Gris
+# ─────────────────────────────────────────────────────────────────────────────
+# MÁSCARA DE COLOR
+# ─────────────────────────────────────────────────────────────────────────────
 
-def border_sobel(gray_img):
+def obtener_mascara_roi_solida(imagen_bgr, params=None):
     """
-    Aplica el filtro Sobel en X e Y y los combina.
-    Retorna la imagen con los bordes detectados.
+    Genera la máscara SÓLIDA del área de la caja (sin huecos).
+    Sirve como base para detectar el contorno sobre el que se aplica Canny+Hough.
+    Devuelve: (mask_solida, contorno_caja)
     """
-    # Gradiente en X
-    # CV_16S para evitar desbordamiento con valores negativos
-    grad_x = cv2.Sobel(gray_img, cv2.CV_16S, 1, 0, ksize=3)
-    abs_grad_x = cv2.convertScaleAbs(grad_x)
-    
-    # Gradiente en Y
-    grad_y = cv2.Sobel(gray_img, cv2.CV_16S, 0, 1, ksize=3)
-    abs_grad_y = cv2.convertScaleAbs(grad_y)
-    
-    # Combinar ambos gradientes
-    combined = cv2.addWeighted(abs_grad_x, 0.5, abs_grad_y, 0.5, 0)
-    return combined
+    if params is None:
+        params = DEFAULT_PARAMS
+
+    hsv = cv2.cvtColor(imagen_bgr, cv2.COLOR_BGR2HSV)
+    lower = np.array([params.get("hsv_lower_h", 10),
+                      params.get("hsv_lower_s", 65),
+                      params.get("hsv_lower_v", 60)])
+    upper = np.array([params.get("hsv_upper_h", 30),
+                      params.get("hsv_upper_s", 255),
+                      params.get("hsv_upper_v", 255)])
+    mask_color = cv2.inRange(hsv, lower, upper)
+
+    # Limpieza de ruido
+    k5 = np.ones((5, 5), np.uint8)
+    mask_color = cv2.morphologyEx(mask_color, cv2.MORPH_OPEN, k5, iterations=1)
+
+    # Cerrar huecos grandes para obtener la "caja sólida"
+    k15 = np.ones((15, 15), np.uint8)
+    mask_cerrada = cv2.morphologyEx(mask_color, cv2.MORPH_CLOSE, k15, iterations=3)
+
+    contours, _ = cv2.findContours(mask_cerrada, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    mask_solida = np.zeros_like(mask_color)
+    contorno_caja = None
+    if contours:
+        contorno_caja = max(contours, key=cv2.contourArea)
+        if cv2.contourArea(contorno_caja) > 1000:
+            cv2.drawContours(mask_solida, [contorno_caja], -1, 255, thickness=cv2.FILLED)
+
+    return mask_solida, contorno_caja
+
 
 def obtener_mascara_carton_filtrada(imagen_bgr, params=None):
     """
-    1. Detecta todo lo que sea color cartón (suelo + caja).
-    2. Calcula dónde está la caja (contorno más grande) rellenando huecos.
-    3. Devuelve la máscara de color ORIGINAL pero recortada solo a la zona de la caja.
+    Máscara de color cartón recortada al ROI de la caja (sin huecos).
+    Se mantiene por compatibilidad con visualización.
     """
     if params is None:
         params = DEFAULT_PARAMS
 
-    # Convertir a HSV
+    mask_solida, _ = obtener_mascara_roi_solida(imagen_bgr, params)
     hsv = cv2.cvtColor(imagen_bgr, cv2.COLOR_BGR2HSV)
-    
-    # --- AJUSTE RESTRICTIVO CON PARÁMETROS DINÁMICOS ---
-    lower_brown = np.array([params.get("hsv_lower_h", 10), params.get("hsv_lower_s", 65), params.get("hsv_lower_v", 60)]) 
-    upper_brown = np.array([params.get("hsv_upper_h", 30), params.get("hsv_upper_s", 255), params.get("hsv_upper_v", 255)])
-    
-    # Esta máscara tiene: La caja, el suelo y HUECOS donde hay objetos (porque no son marrones)
-    mask_color = cv2.inRange(hsv, lower_brown, upper_brown)
-    
-    # Limpieza básica de ruido (puntos blancos sueltos)
-    kernel_small = np.ones((5, 5), np.uint8)
-    mask_color = cv2.morphologyEx(mask_color, cv2.MORPH_OPEN, kernel_small, iterations=1)
+    lower = np.array([params.get("hsv_lower_h", 10),
+                      params.get("hsv_lower_s", 65),
+                      params.get("hsv_lower_v", 60)])
+    upper = np.array([params.get("hsv_upper_h", 30),
+                      params.get("hsv_upper_s", 255),
+                      params.get("hsv_upper_v", 255)])
+    mask_color = cv2.inRange(hsv, lower, upper)
+    k5 = np.ones((5, 5), np.uint8)
+    mask_color = cv2.morphologyEx(mask_color, cv2.MORPH_OPEN, k5, iterations=1)
+    return cv2.bitwise_and(mask_color, mask_solida)
 
-    # 2. ENCONTRAR LA "ZONA DE LA CAJA" (ROI)
-    # Creamos una copia temporal para "cerrar" los objetos y ver la caja como un bloque sólido
-    mask_para_contornos = mask_color.copy()
-    
-    # Usamos un kernel grande o muchas iteraciones para cerrar los huecos de los objetos
-    # y conectar las paredes de la caja si están separadas por un objeto.
-    kernel_big = np.ones((15, 15), np.uint8)
-    mask_para_contornos = cv2.morphologyEx(mask_para_contornos, cv2.MORPH_CLOSE, kernel_big, iterations=3)
-    
-    # Buscamos contornos en esta máscara "sólida"
-    contours, _ = cv2.findContours(mask_para_contornos, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    
-    # Máscara negra vacía que será nuestra "Zona Permitida"
-    mask_roi = np.zeros_like(mask_color)
-    contour_edge_mask = np.zeros_like(mask_color)
-    
-    if contours:
-        # Asumimos que la caja es el objeto marrón más grande de la imagen
-        caja_contour = max(contours, key=cv2.contourArea)
-        
-        if cv2.contourArea(caja_contour) > 1000:
-            # Dibujamos el contorno de la caja RELLENO en blanco.
-            cv2.drawContours(mask_roi, [caja_contour], -1, 255, thickness=cv2.FILLED)
-            
-            # Aproximar el contorno a líneas rectas largas
-            epsilon_factor = params.get("poly_epsilon", 20) / 1000.0
-            if epsilon_factor <= 0: epsilon_factor = 0.001
-            epsilon = epsilon_factor * cv2.arcLength(caja_contour, True)
-            approx = cv2.approxPolyDP(caja_contour, epsilon, True)
-            
-            # Dibujar un margen (borde) alrededor del polígono aproximado
-            thickness = params.get("edge_thickness", 30)
-            # Dibujar solo las aristas del polígono para restringir la búsqueda a los bordes rectos
-            cv2.drawContours(contour_edge_mask, [approx], -1, 255, thickness=thickness)
-    
-    # 3. COMBINACIÓN FINAL
-    final_mask = cv2.bitwise_and(mask_color, mask_roi)
-    
-    # Filtramos para buscar SOLO en los bordes si edge_only está activo
-    if params.get("edge_only", 1) == 1:
-        final_mask = cv2.bitwise_and(final_mask, contour_edge_mask)
-        
-    # Erosión final ligera para afinar bordes
-    final_mask = cv2.erode(final_mask, kernel_small, iterations=2)
-    
-    return final_mask
 
-def detectar_esquinas_caja(sobel_img, original_img, mask_color, bounding_boxes=None, margen=20, max_corners=None, quality_level=None, min_distance=None, block_size=None, params=None):
+# ─────────────────────────────────────────────────────────────────────────────
+# UTILIDADES GEOMÉTRICAS
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _longitud(x1, y1, x2, y2):
+    return float(np.hypot(x2 - x1, y2 - y1))
+
+def _angulo(x1, y1, x2, y2):
+    """Ángulo en grados normalizado a [0°, 180°)."""
+    return float(np.degrees(np.arctan2(y2 - y1, x2 - x1)) % 180)
+
+def _extender_linea(x1, y1, x2, y2, h, w):
+    """Extiende un segmento hasta los bordes de la imagen."""
+    pts = []
+    dx = x2 - x1
+    dy = y2 - y1
+
+    # Línea vertical
+    if abs(dx) < 1e-6:
+        return (x1, 0, x1, h - 1)
+
+    m = dy / dx
+    b = y1 - m * x1
+
+    # Intersección con x = 0
+    yi = m * 0 + b
+    if 0 <= yi <= h - 1:
+        pts.append((0, int(round(yi))))
+    # Intersección con x = w-1
+    yi = m * (w - 1) + b
+    if 0 <= yi <= h - 1:
+        pts.append((w - 1, int(round(yi))))
+    # Intersección con y = 0
+    if abs(m) > 1e-6:
+        xi = (0 - b) / m
+        if 0 <= xi <= w - 1:
+            pts.append((int(round(xi)), 0))
+    # Intersección con y = h-1
+    if abs(m) > 1e-6:
+        xi = (h - 1 - b) / m
+        if 0 <= xi <= w - 1:
+            pts.append((int(round(xi)), h - 1))
+
+    if len(pts) >= 2:
+        return (pts[0][0], pts[0][1], pts[-1][0], pts[-1][1])
+    return (x1, y1, x2, y2)
+
+def _interseccion(l1, l2):
     """
-    Detecta esquinas y muestra solo la caja con puntos grandes.
-    
+    Intersección de dos segmentos/líneas (formato x1,y1,x2,y2).
+    Retorna (x, y) o None si son paralelas.
+    """
+    x1, y1, x2, y2 = l1
+    x3, y3, x4, y4 = l2
+    denom = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4)
+    if abs(denom) < 1e-6:
+        return None
+    t = ((x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4)) / denom
+    x = x1 + t * (x2 - x1)
+    y = y1 + t * (y2 - y1)
+    return (int(round(x)), int(round(y)))
+
+def _son_paralelas(a1, a2, tolerancia=20):
+    """True si los ángulos a1 y a2 son paralelos dentro de la tolerancia."""
+    diff = abs(a1 - a2) % 180
+    if diff > 90:
+        diff = 180 - diff
+    return diff < tolerancia
+
+def _agrupar_cercanos(pts, dist_min):
+    """
+    Agrupa puntos cuya distancia euclidea sea < dist_min.
+    Retorna el centroide de cada grupo.
+    """
+    if not pts:
+        return []
+    usados = [False] * len(pts)
+    grupos = []
+    for i, p in enumerate(pts):
+        if usados[i]:
+            continue
+        grupo = [p]
+        usados[i] = True
+        for j, q in enumerate(pts):
+            if usados[j]:
+                continue
+            if np.hypot(p[0] - q[0], p[1] - q[1]) < dist_min:
+                grupo.append(q)
+                usados[j] = True
+        cx = int(round(np.mean([g[0] for g in grupo])))
+        cy = int(round(np.mean([g[1] for g in grupo])))
+        grupos.append((cx, cy))
+    return grupos
+
+def _seleccionar_4_esquinas(puntos, h, w):
+    """
+    De todos los puntos candidatos selecciona los 4 que mejor
+    representan un cuadrilátero convexo (tl, tr, bl, br).
+    """
+    if len(puntos) <= 4:
+        return puntos
+
+    pts_arr = np.array(puntos, dtype=np.float32)
+    hull = cv2.convexHull(pts_arr.reshape(-1, 1, 2))
+    hull_pts = [tuple(p[0].astype(int)) for p in hull]
+
+    if len(hull_pts) < 4:
+        return hull_pts
+
+    # Tl = mín (x+y), Tr = mín (-x+y), Bl = mín (x-y), Br = máx (x+y)
+    tl = min(hull_pts, key=lambda p: p[0] + p[1])
+    tr = min(hull_pts, key=lambda p: -p[0] + p[1])
+    bl = max(hull_pts, key=lambda p: -p[0] + p[1])   # = mín(x-y) → mín(-x+y)^-1
+    br = max(hull_pts, key=lambda p: p[0] + p[1])
+
+    # Eliminar duplicados manteniendo orden
+    seen = set()
+    result = []
+    for p in [tl, tr, br, bl]:
+        if p not in seen:
+            seen.add(p)
+            result.append(p)
+    return result
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# DETECCIÓN PRINCIPAL POR LÍNEAS
+# ─────────────────────────────────────────────────────────────────────────────
+
+def detectar_esquinas_por_lineas(mask_roi_solida, original_img, params=None, bounding_boxes=None, margen=20):
+    """
+    Detecta las 4 esquinas de la caja como intersección de las líneas de borde más largas.
+
+    Algoritmo:
+      1. Canny sobre la máscara sólida → bordes del contorno
+      2. HoughLinesP → segmentos de línea
+      3. Ordenar por longitud → elegir los N más largos
+      4. Extender cada segmento a línea completa
+      5. Calcular intersecciones de pares no paralelos
+      6. Filtrar dentro de la imagen, agrupar cercanas
+      7. Tomar las 4 esquinas del cuadrilátero convexo
+
     Args:
-        sobel_img: Imagen procesada con Sobel
-        original_img: Imagen original
-        mask_color: Máscara de color del cartón
-        bounding_boxes: Lista de bounding boxes de YOLO [(x1, y1, x2, y2), ...]
-        margen: Margen en píxeles alrededor de prendas
-        max_corners: Número máximo de esquinas (opcional si se pasa en params)
-        quality_level: Calidad mínima de esquinas (opcional)
-        min_distance: Distancia mínima entre esquinas (opcional)
-        block_size: Tamaño de bloque para esquinas (opcional)
-        params: Diccionario de configuración general
-    """
-    height, width = sobel_img.shape[:2]
+        mask_roi_solida : máscara binaria sólida del área de la caja
+        original_img    : imagen BGR para visualización
+        params          : diccionario de parámetros
+        bounding_boxes  : [(x1,y1,x2,y2), ...] zonas a excluir (prendas YOLO)
+        margen          : píxeles de margen alrededor de cada bounding box
 
+    Returns:
+        output_img : imagen con líneas (verde) y esquinas (rojo) dibujadas
+        esquinas   : lista de (x, y)
+    """
     if params is None:
         params = DEFAULT_PARAMS
 
-    _max_corners = max_corners if max_corners is not None else params.get("max_corners", 20)
-    _quality_level = quality_level if quality_level is not None else params.get("quality_level", 0.05)
-    _min_distance = min_distance if min_distance is not None else params.get("min_distance", 70)
-    _block_size = block_size if block_size is not None else params.get("block_size", 3)
-    
-    # 1. Crear máscara de exclusión basada en bounding boxes de YOLO
-    mascara_exclusion = np.ones_like(mask_color) * 255  # Empezar con todo blanco (permitido)
-    
-    if bounding_boxes is not None and len(bounding_boxes) > 0:
-        print(f"\n--- CREANDO MÁSCARA DE EXCLUSIÓN PARA {len(bounding_boxes)} PRENDAS ---")
-        for i, (x1, y1, x2, y2) in enumerate(bounding_boxes):
-            # Expandir la bounding box para asegurar que cubrimos los bordes
-            x1_exp = max(0, int(x1) - margen)
-            y1_exp = max(0, int(y1) - margen)
-            x2_exp = min(width, int(x2) + margen)
-            y2_exp = min(height, int(y2) + margen)
-            
-            # Pintar de negro (0) el área de la prenda en la máscara
-            cv2.rectangle(mascara_exclusion, (x1_exp, y1_exp), (x2_exp, y2_exp), 0, -1)
-            print(f"  Prenda {i+1}: Excluyendo área ({x1_exp}, {y1_exp}) a ({x2_exp}, {y2_exp})")
-        
-        # Combinar con la máscara de color original
-        mask_color = cv2.bitwise_and(mask_color, mascara_exclusion)
-        print(f"  ✓ Máscara de exclusión aplicada")
-    
-    # 2. Detección sobre el resultado de Sobel
-    # corners devuelve un array numpy de forma (N, 1, 2)
-    corners = cv2.goodFeaturesToTrack(
-        sobel_img, 
-        maxCorners=_max_corners, 
-        qualityLevel=_quality_level, 
-        minDistance=_min_distance,
-        blockSize=_block_size, 
-        useHarrisDetector=False, 
-        k=0.04,
-        mask=mask_color # AQUI usamos la máscara inteligente
+    h, w = original_img.shape[:2]
+    output_img = original_img.copy()
+
+    # ── 1. Bordes del contorno de la máscara ─────────────────────────────────
+    edges = cv2.Canny(mask_roi_solida, 50, 150)
+
+    # ── 2. HoughLinesP ───────────────────────────────────────────────────────
+    threshold  = max(10, params.get("hough_threshold", 80))
+    min_line   = max(10, params.get("hough_min_line",  150))
+    max_gap    = max(1,  params.get("hough_max_gap",    15))
+
+    lines = cv2.HoughLinesP(
+        edges,
+        rho=1,
+        theta=np.radians(1.0),
+        threshold=threshold,
+        minLineLength=min_line,
+        maxLineGap=max_gap,
     )
 
-    # Visualización
-    output_img = cv2.bitwise_and(original_img, original_img, mask=mask_color)
-    
-    # Lista para almacenar coordenadas de esquinas válidas
-    esquinas_validas = []
+    if lines is None:
+        print("⚠️  HoughLinesP no encontró líneas. Ajusta hough_threshold / hough_min_line.")
+        return output_img, []
 
-    if corners is not None:
-        # Convertimos a lista para poder ordenar fácilmente
-        corners_list = list(corners)
-        # Ordenar desde abajo-izquierda
-        corners_list.sort(key=lambda c: (c[0][0]**2) + (height - c[0][1])**2)
+    # ── 3. Calcular longitud y ángulo, ordenar por longitud ──────────────────
+    lineas_info = []
+    for seg in lines:
+        x1, y1, x2, y2 = seg[0]
+        lineas_info.append({
+            "seg":    (x1, y1, x2, y2),
+            "length": _longitud(x1, y1, x2, y2),
+            "angle":  _angulo(x1, y1, x2, y2),
+        })
+    lineas_info.sort(key=lambda d: d["length"], reverse=True)
 
-        print("\n--- ESQUINAS ENCONTRADAS (Dentro de la caja) ---")
-        for i, corner in enumerate(corners_list):
-            x, y = corner.ravel()
-            x_int, y_int = int(x), int(y)
-            
-            # Almacenar coordenadas
-            esquinas_validas.append((x_int, y_int))
-            
-            # Dibujar en la imagen
-            cv2.circle(output_img, (x_int, y_int), 10, (0, 0, 255), -1)
-            cv2.putText(output_img, str(i + 1), (x_int + 15, y_int - 15),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 2)
-            print(f"  Esquina {i+1}: ({x_int}, {y_int})")
-        print("-" * 40)
-        return output_img, esquinas_validas
-    else:
-        print("No se encontraron esquinas.")
-        return output_img, esquinas_validas
+    # ── 4. Seleccionar las N más largas ──────────────────────────────────────
+    n_top = max(2, params.get("n_top_lines", 8))
+    top   = lineas_info[:n_top]
 
-def charge_image(ruta_imagen=None, prendas_detectadas=None, mostrar_ventana=True, 
-                 guardar_reporte=True, margen_exclusion=20, max_esquinas=None, 
-                 quality_level=None, min_distance=None, params=None):
+    # ── 5. Extender cada segmento a línea completa ───────────────────────────
+    lineas_ext = []
+    for d in top:
+        x1, y1, x2, y2 = d["seg"]
+        le = _extender_linea(x1, y1, x2, y2, h, w)
+        lineas_ext.append({"line": le, "angle": d["angle"], "length": d["length"]})
+
+    # ── 6. Dibujar segmentos originales (azul) y líneas extendidas (verde) ───
+    for d in top:
+        x1, y1, x2, y2 = d["seg"]
+        cv2.line(output_img, (x1, y1), (x2, y2), (255, 100, 0), 3)   # segmento – azul
+    for d in lineas_ext:
+        x1, y1, x2, y2 = d["line"]
+        cv2.line(output_img, (x1, y1), (x2, y2), (0, 220, 0), 1)     # extendida – verde tenue
+
+    # ── 7. Calcular intersecciones de pares no paralelos ─────────────────────
+    angle_tol = params.get("angle_tol", 20)
+    intersecciones = []
+    for i in range(len(lineas_ext)):
+        for j in range(i + 1, len(lineas_ext)):
+            if _son_paralelas(lineas_ext[i]["angle"], lineas_ext[j]["angle"], angle_tol):
+                continue
+            pt = _interseccion(lineas_ext[i]["line"], lineas_ext[j]["line"])
+            if pt is not None:
+                intersecciones.append(pt)
+
+    # ── 8. Filtrar intersecciones dentro de la imagen (+ margen) ─────────────
+    corner_margin = params.get("corner_margin", 120)
+    intersecciones = [
+        pt for pt in intersecciones
+        if (-corner_margin <= pt[0] <= w + corner_margin and
+            -corner_margin <= pt[1] <= h + corner_margin)
+    ]
+
+    # Excluir intersecciones dentro de bounding boxes de prendas
+    if bounding_boxes:
+        def _en_bbox(pt, bboxes, mg):
+            for (bx1, by1, bx2, by2) in bboxes:
+                if (bx1 - mg <= pt[0] <= bx2 + mg and
+                        by1 - mg <= pt[1] <= by2 + mg):
+                    return True
+            return False
+        intersecciones = [pt for pt in intersecciones
+                          if not _en_bbox(pt, bounding_boxes, margen)]
+
+    # ── 9. Agrupar intersecciones cercanas ────────────────────────────────────
+    cluster_dist = params.get("cluster_dist", 80)
+    candidatas   = _agrupar_cercanos(intersecciones, cluster_dist)
+
+    # ── 10. Seleccionar las 4 mejores esquinas ────────────────────────────────
+    esquinas = _seleccionar_4_esquinas(candidatas, h, w)
+
+    # ── 11. Dibujar esquinas ──────────────────────────────────────────────────
+    print(f"\n--- ESQUINAS POR LÍNEAS ({len(esquinas)} encontradas) ---")
+    for i, (x, y) in enumerate(esquinas):
+        cv2.circle(output_img, (x, y), 12, (0, 0, 255), -1)
+        cv2.putText(output_img, str(i + 1), (x + 15, y - 15),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 255), 2)
+        print(f"  Esquina {i + 1}: ({x}, {y})")
+    print("-" * 40)
+
+    return output_img, esquinas
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# FUNCIÓN PRINCIPAL (llamada desde main.py)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def charge_image(ruta_imagen=None, prendas_detectadas=None, mostrar_ventana=True,
+                 guardar_reporte=True, margen_exclusion=20, params=None):
     """
-    Detecta esquinas de la caja y opcionalmente dibuja centros de prendas.
-    
+    Pipeline completo: carga imagen → máscara → detección por líneas → visualización.
+
     Args:
-        ruta_imagen: Ruta a la imagen (si es None, pide al usuario)
-        prendas_detectadas: Lista de tuplas [(nombre, conf, centro_x, centro_y, x1, y1, x2, y2), ...]
-        mostrar_ventana: True/False para mostrar ventana
-        guardar_reporte: True/False para guardar reporte
-        margen_exclusion: Margen en píxeles alrededor de prendas
-        max_esquinas: Número máximo de esquinas a detectar (si se omite usa params)
-        quality_level: Calidad mínima de esquinas (0.0-1.0) (si se omite usa params)
-        min_distance: Distancia mínima entre esquinas (píxeles) (si se omite usa params)
-        params: Diccionario de configuración de ajustes interactivos
-    
+        ruta_imagen        : ruta a la imagen (si None, la pide al usuario)
+        prendas_detectadas : lista [(nombre, conf, cx, cy, x1, y1, x2, y2), ...]
+        mostrar_ventana    : mostrar ventana OpenCV
+        guardar_reporte    : guardar reporte txt
+        margen_exclusion   : margen alrededor de prendas YOLO
+        params             : diccionario de configuración (config_esquinas.json)
+
     Returns:
-        imagen_result: Imagen procesada con esquinas y centros de prendas
-        esquinas_caja: Lista de coordenadas de esquinas
-        prendas_detectadas: Lista de prendas detectadas
+        imagen_result, esquinas_caja, prendas_detectadas
     """
     global imagen, imageGray
 
+    if params is None:
+        params = DEFAULT_PARAMS
+
+    # ── Cargar imagen ─────────────────────────────────────────────────────────
     if ruta_imagen is None:
-        print("Enter image name (.jpg format)")
-        if sys.version_info[0] < 3:
-            image_name = raw_input()
-        else:
-            image_name = input()
-        
-        # Construcción de la ruta
-        # Si la carpeta es local, puedes quitar BASE_PATH y poner 'images/' + ...
+        print("Introduce el nombre de la imagen (sin .jpg):")
+        image_name = input().strip()
         path = os.path.join(BASE_PATH, image_name + ".jpg")
-        
-        # Intentar cargar imagen (la ruta debe ser correcta o fallará)
-        # Comprobamos si existe el archivo primero para evitar error de opencv
         if not os.path.isfile(path):
-            # Fallback por si acaso la ruta absoluta no funciona, probamos local
             path = f"images/{image_name}.jpg"
             if not os.path.isfile(path):
                 print(f"Error al cargar la imagen: {path}")
@@ -251,175 +385,86 @@ def charge_image(ruta_imagen=None, prendas_detectadas=None, mostrar_ventana=True
     else:
         path = ruta_imagen
 
-    # Cargar en escala de grises
     imageGray = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
-    # Cargar en color
-    imagen = cv2.imread(path, cv2.IMREAD_COLOR)
+    imagen    = cv2.imread(path, cv2.IMREAD_COLOR)
 
     if imagen is None:
-        print(f"Error al cargar la imagen (formato incorrecto o vacía): {path}")
+        print(f"Error al cargar la imagen: {path}")
         sys.exit(1)
 
-    # 1. Filtro Sobel (Detecta todos los bordes de la imagen)
-    imagen_sobel = border_sobel(imageGray)
+    # ── Máscara sólida del área de la caja ───────────────────────────────────
+    mask_solida, _ = obtener_mascara_roi_solida(imagen, params)
 
-    # 2. Máscara Inteligente (Color Cartón PERO limitado al área de la caja)
-    mascara_filtrada = obtener_mascara_carton_filtrada(imagen, params)
-
-    # 3. Extraer bounding boxes de las prendas detectadas (si existen)
+    # ── Extraer bounding boxes de prendas ────────────────────────────────────
     bboxes_prendas = None
-    if prendas_detectadas is not None and len(prendas_detectadas) > 0:
+    if prendas_detectadas:
         bboxes_prendas = []
-        print(f"\n--- EXTRAYENDO BOUNDING BOXES DE {len(prendas_detectadas)} PRENDAS ---")
         for item in prendas_detectadas:
-            # El formato puede ser (nombre, conf, cx, cy) o (nombre, conf, cx, cy, x1, y1, x2, y2)
             if len(item) == 8:
-                nombre, conf, centro_x, centro_y, x1, y1, x2, y2 = item
+                _, _, _, _, x1, y1, x2, y2 = item
                 bboxes_prendas.append((x1, y1, x2, y2))
-                print(f"  {nombre}: bbox real ({x1}, {y1}) a ({x2}, {y2})")
             else:
-                # Formato antiguo, estimar bbox
-                nombre, conf, centro_x, centro_y = item
-                ancho_estimado = 150
-                alto_estimado = 150
-                x1 = centro_x - ancho_estimado // 2
-                y1 = centro_y - alto_estimado // 2
-                x2 = centro_x + ancho_estimado // 2
-                y2 = centro_y + alto_estimado // 2
-                bboxes_prendas.append((x1, y1, x2, y2))
-                print(f"  {nombre}: bbox estimada ({x1}, {y1}) a ({x2}, {y2})")
+                _, _, cx, cy = item[:4]
+                dxy = 75
+                bboxes_prendas.append((cx - dxy, cy - dxy, cx + dxy, cy + dxy))
 
-    # 4. Detectar esquinas (ahora con exclusión de áreas de prendas)
-    image_result, esquinas_caja = detectar_esquinas_caja(imagen_sobel, imagen, mascara_filtrada, bboxes_prendas, margen_exclusion, max_esquinas, quality_level, min_distance, block_size=None, params=params)
+    # ── Detección de esquinas por líneas ─────────────────────────────────────
+    image_result, esquinas_caja = detectar_esquinas_por_lineas(
+        mask_solida, imagen.copy(), params, bboxes_prendas, margen_exclusion
+    )
 
-    # 4. Dibujar centros de prendas si se proporcionaron
-    if prendas_detectadas is not None and len(prendas_detectadas) > 0:
-        print(f"\n--- Dibujando {len(prendas_detectadas)} centros de prendas ---")
+    # ── Dibujar centros de prendas ────────────────────────────────────────────
+    if prendas_detectadas:
         for item in prendas_detectadas:
-            # Desempaquetar según formato
             if len(item) == 8:
-                nombre, conf, centro_x, centro_y, x1, y1, x2, y2 = item
+                nombre, conf, cx, cy, *_ = item
             else:
-                nombre, conf, centro_x, centro_y = item
-            # Dibujar punto verde (BGR) para el centro de la prenda
-            cv2.circle(image_result, (centro_x, centro_y), 8, (0, 255, 0), -1)
-            # Dibujar etiqueta con el nombre de la prenda
-            cv2.putText(image_result, nombre, (centro_x + 12, centro_y - 12),
-                       cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
-            print(f"  ✓ {nombre}: ({centro_x}, {centro_y})")
+                nombre, conf, cx, cy = item[:4]
+            cv2.circle(image_result, (cx, cy), 8, (0, 255, 0), -1)
+            cv2.putText(image_result, nombre, (cx + 12, cy - 12),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
-    # 5. Guardar coordenadas en archivo de texto (coordenadas primero, luego YOLO)
+    # ── Guardar reporte ───────────────────────────────────────────────────────
     if guardar_reporte and (prendas_detectadas or esquinas_caja):
-        # Crear directorio de salida si no existe
+        from pathlib import Path
         output_dir = "resultados_deteccion"
         os.makedirs(output_dir, exist_ok=True)
-        
-        # Generar nombre de archivo basado en la imagen
-        from pathlib import Path
-        import glob
-        nombre_imagen = Path(path).stem
-        archivo_reporte = os.path.join(output_dir, f"{nombre_imagen}_reporte.txt")
-        
-        with open(archivo_reporte, 'w', encoding='utf-8') as f:
+        nombre_img = Path(path).stem
+        archivo_rep = os.path.join(output_dir, f"{nombre_img}_reporte.txt")
+        import datetime
+        with open(archivo_rep, "w", encoding="utf-8") as f:
             f.write("=" * 80 + "\n")
-            f.write("REPORTE COMPLETO DE DETECCIÓN\n")
+            f.write("REPORTE DE DETECCIÓN – MÉTODO LÍNEAS\n")
             f.write("=" * 80 + "\n\n")
-            f.write(f"Imagen: {Path(path).name}\n")
-            f.write(f"Ruta: {path}\n")
-            f.write(f"Fecha: {__import__('datetime').datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
-            
-            # ============================================================
-            # PARTE 1: COORDENADAS PARA ROBÓTICA (PRIMERO)
-            # ============================================================
-            f.write("=" * 80 + "\n")
-            f.write("PARTE 1: COORDENADAS PARA ROBÓTICA\n")
-            f.write("=" * 80 + "\n\n")
-            
-            # Guardar esquinas de la caja
-            f.write("ESQUINAS DE LA CAJA (Coordenadas en píxeles)\n")
-            f.write("-" * 80 + "\n")
-            if esquinas_caja and len(esquinas_caja) > 0:
-                for i, (x, y) in enumerate(esquinas_caja):
-                    f.write(f"  Esquina {i+1}: x={x:4d}, y={y:4d}\n")
-                f.write(f"\nTotal esquinas detectadas: {len(esquinas_caja)}\n\n")
-            else:
-                f.write("  ⚠️ No se detectaron esquinas\n\n")
-            
-            # Guardar centros de prendas
-            f.write("CENTROS DE PRENDAS (Coordenadas en píxeles)\n")
-            f.write("-" * 80 + "\n")
-            if prendas_detectadas and len(prendas_detectadas) > 0:
-                for i, item in enumerate(prendas_detectadas, 1):
-                    # Desempaquetar según formato
-                    if len(item) == 8:
-                        nombre, conf, centro_x, centro_y, x1, y1, x2, y2 = item
-                    else:
-                        nombre, conf, centro_x, centro_y = item
-                    f.write(f"  Prenda {i}: {nombre:12s} | x={centro_x:4d}, y={centro_y:4d} | Confianza: {conf:.2f} ({int(conf*100)}%)\n")
-                f.write(f"\nTotal prendas detectadas: {len(prendas_detectadas)}\n")
-            else:
-                f.write("  ⚠️ No se detectaron prendas\n")
-            
-            # ============================================================
-            # PARTE 2: REPORTE DETALLADO YOLO (SEGUNDO)
-            # ============================================================
-            f.write("\n" + "=" * 80 + "\n")
-            f.write("PARTE 2: REPORTE DETALLADO DE YOLO\n")
-            f.write("=" * 80 + "\n\n")
-            
-            # Buscar el archivo detecciones.txt más reciente en runs/detect
-            archivo_yolo = None
-            try:
-                # Buscar en todos los directorios predict*
-                predict_dirs = glob.glob("runs/detect/predict*")
-                if predict_dirs:
-                    # Ordenar por tiempo de modificación (más reciente primero)
-                    predict_dirs.sort(key=lambda x: os.path.getmtime(x), reverse=True)
-                    # Buscar detecciones.txt en el directorio más reciente
-                    for predict_dir in predict_dirs:
-                        posible_archivo = os.path.join(predict_dir, "detecciones.txt")
-                        if os.path.exists(posible_archivo):
-                            archivo_yolo = posible_archivo
-                            break
-            except Exception as e:
-                print(f"  ⚠️ No se pudo buscar archivo YOLO: {e}")
-            
-            if archivo_yolo and os.path.exists(archivo_yolo):
-                try:
-                    with open(archivo_yolo, 'r', encoding='utf-8') as yolo_file:
-                        contenido_yolo = yolo_file.read()
-                        f.write(contenido_yolo)
-                        f.write("\n")
-                except Exception as e:
-                    f.write(f"⚠️ Error al leer archivo YOLO: {e}\n\n")
-            else:
-                f.write("⚠️ No se encontró archivo de detecciones YOLO\n\n")
-            
-            f.write("\n" + "=" * 80 + "\n")
-            f.write("FIN DEL REPORTE\n")
-            f.write("=" * 80 + "\n")
-        
-        print(f"\n📄 Reporte completo guardado en: {archivo_reporte}")
+            f.write(f"Imagen : {Path(path).name}\n")
+            f.write(f"Fecha  : {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+            f.write("ESQUINAS DE LA CAJA (x, y)\n")
+            f.write("-" * 40 + "\n")
+            for i, (x, y) in enumerate(esquinas_caja):
+                f.write(f"  Esquina {i+1}: x={x:4d}, y={y:4d}\n")
+            if not esquinas_caja:
+                f.write("  ⚠️  No se detectaron esquinas\n")
+        print(f"\n📄 Reporte guardado en: {archivo_rep}")
 
-    # Visualización final (opcional)
+    # ── Visualización ─────────────────────────────────────────────────────────
     if mostrar_ventana:
-        imagen_combinada = cv2.hconcat([imagen, image_result])
-        
-        # Redimensionar si la imagen es muy grande para la pantalla
-        max_height = 800  # Ajusta según tu resolución de pantalla
-        height, width = imagen_combinada.shape[:2]
-        if height > max_height:
-            aspect_ratio = width / height
-            new_height = max_height
-            new_width = int(new_height * aspect_ratio)
-            imagen_combinada = cv2.resize(imagen_combinada, (new_width, new_height))
-        
+        combinada = cv2.hconcat([imagen, image_result])
+        max_h = 800
+        hh, ww = combinada.shape[:2]
+        if hh > max_h:
+            combinada = cv2.resize(combinada, (int(ww * max_h / hh), max_h))
         cv2.namedWindow("Procesado", cv2.WINDOW_AUTOSIZE)
-        cv2.imshow("Procesado", imagen_combinada)
+        cv2.imshow("Procesado", combinada)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
-    
+
     return image_result, esquinas_caja, prendas_detectadas
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Variables globales (compatibilidad)
+imagen    = None
+imageGray = None
 
 if __name__ == "__main__":
     charge_image()
