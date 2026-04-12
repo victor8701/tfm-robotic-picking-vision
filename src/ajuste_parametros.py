@@ -264,6 +264,8 @@ def main():
                 nuevo = input().strip()
             except (EOFError, KeyboardInterrupt):
                 nuevo = ""
+            if nuevo.lower() in ("", "q", "quit", "exit", "salir"):
+                break
             if nuevo:
                 nueva_img, _ = _cargar_imagen(nuevo)
                 if nueva_img is not None:
