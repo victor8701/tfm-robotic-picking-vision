@@ -1,0 +1,10 @@
+{
+    "blur_kernel": 3,
+    "canny_low": 30,
+    "canny_high": 90,
+    "morph_close_kernel": 15,
+    "morph_iterations": 3,
+    "area_min": 5000,
+    "area_max": 500000,
+    "solidez_min": 50
+}
