@@ -1,148 +1,88 @@
-# 📦 DeteccionRopa - Sistema de Visión por Computador
+# tfm-robotic-picking-vision
 
-**Sistema de detección de prendas y esquinas de contenedores usando YOLO y procesamiento de imagen.**
-
-<div align="center">
-  <img src="assets/111.jpg" width="400" alt="Resultado Final">
-</div>
-
-Desarrollado como proyecto de la asignatura de Visión por Computador del Máster en Robótica y Automática (UC3M - 2025/2026).
+Este repositorio contiene el sistema de visión cenital para la detección de esquinas de caja y localización de bolsas de plástico transparentes para pick-and-place robótico en el TFM.
 
 ---
 
-## 🎯 Descripción
+## 🗺️ Mapa de Navegación Inicial para la IA
 
-Este sistema combina dos módulos de visión por computador:
+Cuando inicies una nueva sesión, debes abrir y leer los siguientes archivos en orden para comprender el estado del proyecto y las instrucciones activas:
 
-1. **Detección de Prendas (YOLO):** Identifica y localiza prendas de ropa dentro de una caja usando YOLO-World.
-2. **Detección de Esquinas:** Detecta las esquinas de la caja de cartón usando segmentación HSV, operaciones morfológicas y el detector Shi-Tomasi.
-
-### Aplicaciones
-- Sistemas robóticos de picking y manipulación
-- Automatización de almacenes
-- Clasificación automática de textiles
-
----
-
-## 📊 Resultados
-
-### Detección de Esquinas
-- **Precisión:** >90% en las 4 esquinas principales
-- **Algoritmo:** Shi-Tomasi con precisión subpíxel
-- **Robustez:** Funciona con diferentes iluminaciones gracias a HSV
-
-### Detección de Prendas (YOLO)
-- **Clases detectadas:** 14 tipos de prendas
-- **Confianza mínima:** 50% (configurable)
-- **Modelo:** YOLO-World (vocabulario abierto)
-
-
-### Métricas de Rendimiento
-Para validar el sistema, se realizaron entrenamientos exhaustivos monitorizando la precisión y las pérdidas del modelo.
-
-#### Evolución de Pérdidas
-<img src="assets/grafico_perdidas.png" width="700">
-
-#### Matriz de Precisión-Recall
-<img src="assets/Precision_Recall.png" width="700">
-
-#### Métricas Generales
-<img src="assets/grafico_metricas.png" width="700">
-
-#### Curvas de Aprendizaje
-<img src="assets/Perdidas_Arendizaje.png" width="700">
+1.  **[input.md](input.md)** (Raíz)
+    *   *Propósito:* Canal de instrucciones activo del usuario para la sesión y reglas de desarrollo permanentes. **Es tu punto de entrada principal para saber qué hacer.** Contiene el protocolo `"me voy"` de cierre y el handover entre IAs.
+2.  **[doc_2026-05-30/feedback.md](doc_2026-05-30/feedback.md)** (Carpeta Activa)
+    *   *Propósito:* Reporte de estado dinámico que registra el progreso actual, tareas y posibles bloqueos. Debes actualizarlo al final de cada turno.
+3.  **[doc_2026-05-30/implementation_plan.md](doc_2026-05-30/implementation_plan.md)** (Carpeta Activa)
+    *   *Propósito:* Plan técnico detallado a corto plazo para el sprint o hito de desarrollo actual.
+4.  **[doc_2026-05-30/plan_global.md](doc_2026-05-30/plan_global.md)** (Carpeta Activa)
+    *   *Propósito:* Hoja de ruta extendida del TFM a largo plazo, detallando el objetivo del picking, los retos del plástico arrugado y la estrategia de agarres pasivos.
+5.  **[solucion_deteccion_bolsas_plasticas.md](solucion_deteccion_bolsas_plasticas.md)** (Raíz)
+    *   *Propósito:* Documento técnico de diseño que detalla la propuesta e investigación para migrar de visión clásica a YOLO (Deep Learning) en la detección de bolsas. Incluye el catálogo y descripción detallada de todas las imágenes reales.
+6.  **[doc_2026-05-30/bitacora_desarrollo.md](doc_2026-05-30/bitacora_desarrollo.md)** (Carpeta Activa)
+    *   *Propósito:* Diario cronológico de cambios de código estructurado en una tabla compacta para ahorrar tokens. Debe modificarse ante cualquier cambio y revisarse al finalizar para marcar metas instantáneas.
 
 ---
 
-## 🚀 Uso Rápido
+## 📁 Estructura del Repositorio
+
+A continuación se detalla la estructura física del proyecto con enlaces directos para acceder a cada recurso:
+
+### Documentación Histórica (Snapshots)
+*   **[doc/](doc/)**: Directorio que almacena el snapshot maestro e inmutable de la documentación, actualizado únicamente por la IA al cerrar sesión.
+    *   [doc/implementation_plan.md](doc/implementation_plan.md)
+    *   [doc/plan_global.md](doc/plan_global.md)
+    *   [doc/feedback.md](doc/feedback.md)
+    *   [doc/bitacora_desarrollo.md](doc/bitacora_desarrollo.md)
+
+### Código Fuente del Pipeline (`src/`)
+*   **[src/main.py](src/main.py)**: Script principal orquestador del pipeline.
+*   **[src/deteccion_esquinas.py](src/deteccion_esquinas.py)**: Módulo de segmentación de caja HSV y detección de esquinas por HoughLinesP.
+*   **[src/deteccion_bolsas.py](src/deteccion_bolsas.py)**: Módulo de localización de bolsas plásticas por visión clásica (Canny, Close, Contornos).
+*   **[src/ajuste_parametros_esquinas.py](src/ajuste_parametros_esquinas.py)**: Interfaz OpenCV de calibración para la caja de cartón.
+*   **[src/ajuste_parametros_bolsas.py](src/ajuste_parametros_bolsas.py)**: Interfaz OpenCV de calibración para las bolsas.
+*   **[src/debug_detection.py](src/debug_detection.py)**: Pruebas rápidas de máscaras de depuración.
+*   **[src/config_esquinas.json](src/config_esquinas.json)**: Archivo de parámetros guardado de la caja.
+*   **[src/config_bolsas.json](src/config_bolsas.json)**: Archivo de parámetros guardado de las bolsas.
+
+### Datasets e Historial de Código
+*   **[images/02Dic/](images/02Dic/)**: Contiene las imágenes reales de prueba y dataset (`real1.jpg` a `real6.jpg`).
+*   **[proyecto_VC/deteccion_ropa.py](proyecto_VC/deteccion_ropa.py)**: Código de referencia del antiguo modelo YOLOv8 de ropa.
+
+---
+
+## 🚀 Cómo Ejecutar
+
+> Todos los comandos se ejecutan desde la carpeta **`src/`** salvo que se indique lo contrario.
+
+### Pipeline principal
+Procesa una imagen (o varias en bucle interactivo). Pasa el nombre sin extensión como argumento, o déjalo vacío para el modo interactivo.
 
 ```bash
 cd src
-python3 main.py
+python3 main.py          # modo interactivo: pide el nombre de imagen por teclado
+python3 main.py real1    # procesa images/02Dic/real1.jpg directamente
 ```
 
-Introduce el nombre de la imagen (sin extensión .jpg) cuando se solicite.
-
----
-
-## ⚙️ Configuración
-
-**Todos los parámetros están centralizados en `main.py` (líneas 16-68)**
-
-### Parámetros Principales
-
-| Parámetro                 | Valor por defecto     | Descripción                                   |
-|-----------------------    |-------------------    |-------------                                  |
-| `CONFIANZA_MINIMA`        | 0.5                   | Umbral YOLO (↑ más preciso, ↓ más detecciones)|
-| `MARGEN_EXCLUSION_PRENDAS`| 20                    | Margen en píxeles alrededor de prendas        |
-| `MAX_ESQUINAS`            | 20                    | Número máximo de esquinas a detectar          |
-| `QUALITY_LEVEL`           | 0.05                  | Calidad mínima para Shi-Tomasi                |
-| `MIN_DISTANCE`            | 70                    | Distancia mínima entre esquinas               |
----
-
-## 🔧 Estructura del Proyecto
-
-```
-DeteccionRopa/
-├── src/
-│   ├── main.py                 # Script principal (configuración centralizada)
-│   ├── deteccion_ropa.py       # Detección YOLO de prendas
-│   ├── deteccion_esquinas.py   # Detección de esquinas de caja
-│   └── *.md                    # Documentación técnica
-├── images/
-│   └── 02Dic/                  # Imágenes de prueba
-└── README.md
-```
-
----
-
-## 📦 Dependencias
+### Calibración de parámetros — caja de cartón
+Abre una ventana OpenCV con sliders para ajustar los parámetros HSV y Hough. Al cerrar, guarda `src/config_esquinas.json`.
 
 ```bash
-pip install ultralytics opencv-python numpy
+cd src
+python3 ajuste_parametros_esquinas.py real1
 ```
 
----
+### Calibración de parámetros — bolsas de plástico
+Igual que el anterior pero para los parámetros Canny/morfológicos. Guarda `src/config_bolsas.json`.
 
-## 📥 Modelos YOLO
+```bash
+cd src
+python3 ajuste_parametros_bolsas.py real1
+```
 
-Los archivos de modelos (`.pt`) **no están incluidos** debido a su tamaño. Se descargan automáticamente al ejecutar el código.
+### Debug de máscaras
+Ejecuta detección sobre `real1`, `real3` y `real4` y vuelca imágenes de depuración (`debug_<img>_mask_caja.jpg`, `debug_<img>_result.jpg`) en la raíz del proyecto. Necesita los `.json` de config ya generados.
 
----
-
-## 🎯 Clases de Prendas Detectadas
-
-| Categoría     | Clases                                        |
-|---------------|-----------------------------------------------|
-| Ropa superior | top, dress, outer, shirt                      |
-| Ropa inferior | pants, shorts, skirt                          |
-| Calzado       | footwear, boots                               |
-| Accesorios    | bag, belt, sunglasses, scarf, tie, headwear   |
-
----
-
-## 📖 Proceso de Detección de Esquinas
-
-1. **Filtro Sobel** - Detección de bordes
-2. **Segmentación HSV** - Máscara de color cartón
-3. **Operaciones Morfológicas** - Kernel 15×15 con MORPH_CLOSE
-4. **Máscara ROI** - Encontrar contorno de la caja
-5. **Intersección AND** - Eliminar suelo
-6. **Exclusión YOLO** - Margen alrededor de prendas
-7. **Shi-Tomasi** - Detectar esquinas
-
-| Proceso de Esquinas | Ejemplo de Detección |
-|:---:|:---:|
-| <img src="assets/paso4_comparacion.jpg" width="500"> | <img src="assets/111.jpg" width="500"> |
-
----
-
-
----
-
-## 👥 Autor
-
-Víctor Martín Parra
-Máster en Robótica y Automática - Universidad Carlos III de Madrid (2024/2025)
-
----
+```bash
+# Desde la raíz del proyecto (no desde src/)
+python3 src/debug_detection.py
+```
