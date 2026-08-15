@@ -1,9 +1,0 @@
-3 conjuntos, en total 33 fotos: 
-- Conjunto de Entrenamiento (25 fotos, 75.8%)
-- Conjunto de Validación(5 fotos, 15.2%)
-- Conjunto de Test(3 fotos, 9%)
-
-De 1 a 25       -> conjunto de entrenamiento
-De 50 a 54      -> imagenes que incluyen todas las prendas (conjunto de validación)
-De 100 a 102    -> imagenes de las 3 cajas empleadas vacias (conjunto de entrenamiento)
-De 110 a 112    -> Conjunto de test
