@@ -23,6 +23,7 @@
 11. [Métricas de evaluación](#11-métricas-de-evaluación)
 12. [Estado del arte y bibliografía clave](#12-estado-del-arte-y-bibliografía-clave)
 13. [Plan de trabajo](#13-plan-de-trabajo)
+14. [Limitaciones y trabajo futuro](#14-limitaciones-y-trabajo-futuro)
 
 ---
 
@@ -63,9 +64,10 @@ Esta hipótesis se valida mediante una arquitectura de cinco modos de operación
 ```
 ┌──────────────────────────────────────────────────────────────────┐
 │                        IT  (Negocio)                             │
-│  LLM (Claude Pro + web search)                                   │
-│  → Análisis de tendencias por mercado/segmento                   │
-│  → JSON de tendencias  →  Aprobación operario (HMI)             │
+│  Marketing: clasifica el catálogo (ERP)                          │
+│  LLM local (Qwen2.5) + Claude → tendencias reales                │
+│  (YouTube/TikTok/X · GitHub Actions, sin intervención)           │
+│  → JSON de tendencias  →  Aprobación operario (HMI)              │
 └───────────────────────────────┬──────────────────────────────────┘
                                 │ Trend DB (vectores CLIP)
 ┌───────────────────────────────▼──────────────────────────────────┐
@@ -86,7 +88,7 @@ Esta hipótesis se valida mediante una arquitectura de cinco modos de operación
 | Modo | Nombre | Tecnología núcleo | Aportación |
 |---|---|---|---|
 | 1 | Vaciado geométrico | YOLO-obb + PCL | Singulación de cajas, depaletizado |
-| 2 | Clasificación supervisada | YOLO (36 tipos) + Catalog matching | Identificación de tipo y SKU |
+| 2 | Clasificación supervisada | YOLO (29 tipos) + Catalog matching | Identificación de tipo y SKU |
 | 3 | Reposición geográfica | ERP JSON + filtrado por mercado | Picking orientado a demanda regional |
 | 4 | Tendencias de mercado | LLM + CLIP + cosine similarity | Picking orientado a tendencias sociales |
 | 5 | Gestión integral | Optimización multiobjetivo (M3+M4) | Cierre completo del bucle IT↔OT |
@@ -113,7 +115,8 @@ Esta hipótesis se valida mediante una arquitectura de cinco modos de operación
 | Catalog matching | CLIP (OpenAI, ViT-B/32 o ViT-L/14) |
 | Nube de puntos | PCL (Point Cloud Library) |
 | ERP simulado | JSON + Python/Node.js API |
-| Trend Intelligence | Claude API (Anthropic) con web search |
+| Trend Intelligence | Ollama (Qwen2.5, local) + Claude (`claude -p`, plan Pro/Max) — ver 6.1 |
+| Orquestación autónoma | GitHub Actions (cron programado, sin intervención) — ver 6.6 |
 | App etiquetado | HTML + JS + Node.js/Express |
 | Dashboard HMI | FlexPendant IRC5 (ABB) con pantallas custom via ScreenMaker SDK |
 
@@ -138,13 +141,13 @@ La taxonomía de prendas de este sistema debe satisfacer tres criterios simultá
 | DeepFashion | 2016 | 50 | 1.000+ | Clasificación + retrieval |
 | iMaterialist | 2019 | 228 | Múltiples | Segmentación fine-grained |
 | Fashionpedia | 2020 | 27 prendas + 294 atributos | Sí | Ontología completa |
-| **Este TFM** | 2026 | **36 tipos YOLO** (9+3+2+5+9+8) | **10 dimensiones ERP** | **Robótica + trend matching** |
+| **Este TFM** | 2026 | **29 tipos YOLO** (9+3+2+4+6+5) | **10 dimensiones ERP** | **Robótica + trend matching** |
 
 La diferencia clave respecto a taxonomías académicas: en este sistema la clasificación visual (YOLO) no necesita distinguir slim de baggy, chándal de traje, ni vestido de fiesta de vestido playero, porque esa información viene del ERP asociado al SKU. El robot no necesita "ver" el estilo de una prenda; necesita identificar el tipo genérico y el SKU exacto, y el ERP le dice el resto. Esta separación de responsabilidades se detalla en la sección 3.5.
 
 ### 3.3 Taxonomía principal — Tipos detectados por YOLO
 
-La clasificación opera en dos niveles: YOLO clasifica el **tipo genérico** (36 clases: 9 superior + 3 inferior + 2 cuerpo entero + 5 abrigo + 9 calzado + 8 accesorios), y el catalog matching (CLIP) refina al **SKU exacto** dentro de ese tipo. El SKU exacto trae consigo, ya predefinidos en el ERP, todos los atributos de estilo, material y largo — YOLO nunca necesita clasificarlos directamente.
+La clasificación opera en dos niveles: YOLO clasifica el **tipo genérico** (29 clases: 9 superior + 3 inferior + 2 cuerpo entero + 4 abrigo + 6 calzado + 5 accesorios), y el catalog matching (CLIP) refina al **SKU exacto** dentro de ese tipo. El SKU exacto trae consigo, ya predefinidos en el ERP, todos los atributos de estilo, material y largo — YOLO nunca necesita clasificarlos directamente.
 
 #### ROPA SUPERIOR (9 tipos)
 
@@ -190,9 +193,9 @@ La clasificación opera en dos niveles: YOLO clasifica el **tipo genérico** (36
 | 13 | Vestido | Prenda superior+inferior en una pieza, sin perneras separadas |
 | 14 | Mono | Prenda completa con perneras; tirantes o cremallera frontal visibles |
 
-> El vestido y el mono se distinguen por un rasgo estructural fiable incluso doblados: la presencia o ausencia de perneras separadas. **El largo del vestido (antes Vestido corto/midi/largo) deja de ser una clase YOLO**: por decisión de diseño, ya no se usa el largo como criterio de taxonomía de vestidos. En su lugar, el vestido se caracteriza por su **Grupo de estilo** (atributo ERP, ver 3.4), que distingue por ejemplo un vestido de fiesta/noche (tejido con brillo, pedrería, silueta ajustada o de gala) de un vestido casual/playero tipo "sundress" (algodón o lino ligero, estampado floral, silueta suelta — pensado para playa, picnic o el día a día). Esta distinción de estilo tiene señal visual al menos tan fiable como el largo (tejido, brillo y estampado son perfectamente detectables con la prenda doblada), pero se modela como atributo ERP y no como clase YOLO porque el SKU exacto ya la fija de forma inequívoca: el catalog matching (CLIP) identifica el SKU concreto, y ese SKU trae consigo su grupo de estilo predefinido por el operario. Ver el flujo completo en 3.5.
+> El vestido y el mono se distinguen por un rasgo estructural fiable incluso doblados: la presencia o ausencia de perneras separadas. **El largo del vestido (antes Vestido corto/midi/largo) deja de ser una clase YOLO**: por decisión de diseño, ya no se usa el largo como criterio de taxonomía de vestidos. En su lugar, el vestido se caracteriza por su **Grupo de estilo** (atributo ERP, ver 3.4), que distingue por ejemplo un vestido de fiesta/noche (tejido con brillo, pedrería, silueta ajustada o de gala) de un vestido casual/playero tipo "sundress" (algodón o lino ligero, estampado floral, silueta suelta — pensado para playa, picnic o el día a día). Esta distinción de estilo tiene señal visual al menos tan fiable como el largo (tejido, brillo y estampado son perfectamente detectables con la prenda doblada), pero se modela como atributo ERP y no como clase YOLO porque el SKU exacto ya la fija de forma inequívoca: el catalog matching (CLIP) identifica el SKU concreto, y ese SKU trae consigo su grupo de estilo predefinido por marketing. Ver el flujo completo en 3.5.
 
-#### ROPA DE ABRIGO (5 tipos)
+#### ROPA DE ABRIGO (4 tipos)
 
 | # | Tipo | Características visuales |
 |---|---|---|
@@ -200,42 +203,41 @@ La clasificación opera en dos niveles: YOLO clasifica el **tipo genérico** (36
 | 16 | Americana | Estructura rígida con solapas; tela de traje; botonadura visible |
 | 17 | Abrigo | Prenda larga (hasta rodilla o más); tejido grueso y pesado |
 | 18 | Plumas | Compartimentos acolchados (baffle lines) visibles; relleno evidente |
-| 19 | Chubasquero | Material impermeable (brillo característico); capucha frecuentemente visible |
+
+> **Chubasquero eliminado como tipo YOLO** (catálogo físico reducido a 29 tipos, ver nota de alcance en 4.2): es un nicho poco relevante para el storytelling de tendencias del TFM y encarece desproporcionadamente el sourcing de SKUs de abrigo. Si aparece uno en el flujo real, cae dentro de "Chaqueta" (material impermeable como atributo ERP).
 
 > La diferencia entre chaqueta vaquera, bomber y de cuero es de material y color, ambos detectables visualmente. El catalog matching los distingue sin necesidad de tipos YOLO separados; el material (y su Grupo de estilo asociado — p. ej. cuero → Streetwear, vaquera → Casual, cortavientos → Deportivo) es un atributo ERP, igual que en Pantalón. Ver mapeo completo en 3.4.
 
-#### CALZADO (9 tipos)
+#### CALZADO (6 tipos)
 
 | # | Tipo | Características visuales |
 |---|---|---|
-| 20 | Zapatillas deportivas | Suela gruesa con cámara de aire; perfil atletico |
-| 21 | Zapatillas casual / lifestyle | Suela más fina; silueta más limpia; sin tecnología deportiva visible |
-| 22 | Zapatos planos de vestir | Suela fina plana; punta cerrada; incluye bailarinas, mocasines, náuticos, oxford |
-| 23 | Zapatos de tacón | Tacón visible (aguja, bloque o kitten heel) |
-| 24 | Sandalias | Tira/correa; puntera o trasera abierta |
-| 25 | Chanclas / Slides | Banda única o doble; suela plana; sin cierre trasero |
-| 26 | Botines | Caña corta (hasta tobillo); cierre lateral o frontal |
-| 27 | Botas | Caña media o alta; incluye cowboy, plataforma, lluvia y montaña/trekking |
-| 28 | Plataformas / Cuñas | Suela muy gruesa y sólida; elevación uniforme |
+| 19 | Zapatillas deportivas | Suela gruesa con cámara de aire; perfil atletico |
+| 20 | Zapatillas casual / lifestyle | Suela más fina; silueta más limpia; sin tecnología deportiva visible |
+| 21 | Zapatos planos de vestir | Suela fina plana; punta cerrada; incluye bailarinas, mocasines, náuticos, oxford |
+| 22 | Zapatos de tacón | Tacón visible (aguja, bloque o kitten heel) |
+| 23 | Sandalias | Tira/correa; puntera o trasera abierta |
+| 24 | Botas | Caña corta, media o alta (fusiona el antiguo tipo "Botines"); incluye cowboy, plataforma, lluvia y montaña/trekking |
 
-#### ACCESORIOS (8 tipos)
+> **Reducido de 9 a 6 tipos**: Chanclas/Slides y Plataformas/Cuñas eliminados (redundancia visual con Sandalias y Botas respectivamente), y Botines se fusiona dentro de Botas — la caña (corta/media/alta) pasa a ser matiz de catalog matching, no una distinción YOLO.
+
+#### ACCESORIOS (5 tipos)
 
 | # | Tipo | Características visuales |
 |---|---|---|
-| 29 | Bolso | Cuerpo definido; asa/correa; varios tamaños y formas |
-| 30 | Mochila | Correas traseras; forma trapezoidal; mayor volumen |
-| 31 | Riñonera / Belt bag | Cuerpo pequeño; clip o hebilla frontal |
-| 32 | Cinturón | Tira plana y larga; hebilla en un extremo. Subtipos: cuero clásico · cuero ancho/corset · tela/lona · cadena · elástico · cuerda/trenzado |
-| 33 | Bufanda / Pañuelo | Pieza textil larga/cuadrada sin forma definida rígida |
-| 34 | Gorra / Gorro / Sombrero | Silueta de cubierta para la cabeza; visera o copa visible |
-| 35 | Gafas de sol | Montura con dos lentes; patillas laterales. Subtipos: aviador/piloto · cuadradas/oversized · redondas · cat-eye · rectangulares/finas · wrap/deportivas |
-| 36 | Joyería | Piezas pequeñas metálicas/decorativas. Subtipos: cadena chunky oro · cadena chunky plata · cadena fina/delicada · collar statement · gargantilla (choker) · pulsera cadena · pulsera fina · pendientes aro grandes · pendientes pequeños/studs |
+| 25 | Bolso | Cuerpo definido; asa/correa; varios tamaños y formas |
+| 26 | Riñonera / Belt bag | Cuerpo pequeño; clip o hebilla frontal |
+| 27 | Cinturón | Tira plana y larga; hebilla en un extremo. Subtipos: cuero clásico · cuero ancho/corset · tela/lona · cadena · elástico · cuerda/trenzado |
+| 28 | Bufanda / Pañuelo | Pieza textil larga/cuadrada sin forma definida rígida |
+| 29 | Gorra / Gorro / Sombrero | Silueta de cubierta para la cabeza; visera o copa visible |
 
-**Total: 36 tipos YOLO**
+> **Reducido de 8 a 5 tipos**: Mochila eliminada (redundante con Bolso), Gafas de sol y Joyería eliminadas — no son prendas textiles y su enorme subvariedad interna (ver versión anterior de esta tabla) suponía mucho esfuerzo de etiquetado con poco retorno visual para el objetivo del TFM.
+
+**Total: 29 tipos YOLO**
 
 ### 3.4 Atributos del ERP (dimensiones de metadato por SKU)
 
-Estos atributos no son detectados por YOLO sino que vienen del catálogo, introducidos por el operario vía la app web de etiquetado.
+Estos atributos no son detectados por YOLO sino que vienen del catálogo, introducidos por **marketing** vía la app web de etiquetado (ver nota de roles en 3.5).
 
 | Dimensión | Valores posibles |
 |---|---|
@@ -263,7 +265,7 @@ Las versiones anteriores del ERP separaban **Ocasión** (deportivo/casual/vestir
 | **Deportivo** | Práctica deportiva o su estética | Tejido técnico/neopreno · legging deportivo · zapatilla deportiva |
 | **Playa/Resort** | Playa, piscina, picnic, vacaciones | Lino · algodón ligero floral · vestido tipo "sundress" · sandalia/chancla |
 
-**Mapeo orientativo material/sub-tipo → Grupo de estilo** (el operario puede sobreescribirlo por SKU si el corte concreto no sigue el patrón general):
+**Mapeo orientativo material/sub-tipo → Grupo de estilo** (marketing puede sobreescribirlo por SKU si el corte concreto no sigue el patrón general):
 
 | Sub-tipo / Material | Grupo de estilo por defecto | Tipos YOLO donde aplica |
 |---|---|---|
@@ -278,19 +280,21 @@ Las versiones anteriores del ERP separaban **Ocasión** (deportivo/casual/vestir
 | Algodón ligero + estampado floral | Playa/Resort | Vestido |
 | Tejido técnico/neopreno | Deportivo | Legging, Chándal, Chubasquero deportivo |
 
-Esta tabla es la respuesta operativa a "chándal → streetwear, traje → de vestir, vaquero → casual": el mapeo vive en el ERP (introducido o confirmado por el operario al etiquetar cada SKU), **no** se implementa como clases YOLO adicionales. YOLO solo necesita saber que la prenda es "un pantalón" o "una chaqueta"; qué tan formal, urbano o playero es ese pantalón concreto lo dice el ERP.
+Esta tabla es la respuesta operativa a "chándal → streetwear, traje → de vestir, vaquero → casual": el mapeo vive en el ERP (introducido o confirmado por marketing al etiquetar cada SKU), **no** se implementa como clases YOLO adicionales. YOLO solo necesita saber que la prenda es "un pantalón" o "una chaqueta"; qué tan formal, urbano o playero es ese pantalón concreto lo dice el ERP.
 
 ### 3.5 Flujo completo: qué ve YOLO, qué sabe el ERP, qué compara el LLM
 
 Esta sección fija, sin ambigüedad, la responsabilidad de cada componente. Es la aclaración central de este apartado y responde directamente a la pregunta "¿cómo va a funcionar realmente el proceso del LLM y el YOLO?".
 
-**Principio de diseño**: YOLO nunca necesita entender de moda. Su único trabajo es reducir el espacio de búsqueda para el catalog matching (CLIP), indicando el tipo genérico de prenda (uno de los 36). Toda la semántica de estilo, largo, material y ocasión vive en el ERP, fijada por el operario al dar de alta cada SKU. El LLM, a su vez, nunca ve una foto del robot ni del catálogo: solo analiza redes sociales y devuelve texto, que se traduce a las mismas categorías que ya existen en el ERP para que ambos lados sean comparables.
+**Principio de diseño**: YOLO nunca necesita entender de moda. Su único trabajo es reducir el espacio de búsqueda para el catalog matching (CLIP), indicando el tipo genérico de prenda (uno de los 29). Toda la semántica de estilo, largo, material y ocasión vive en el ERP, fijada por marketing al dar de alta cada SKU. El LLM, a su vez, nunca ve una foto del robot ni del catálogo: solo analiza redes sociales y devuelve texto, que se traduce a las mismas categorías que ya existen en el ERP para que ambos lados sean comparables.
+
+**Nota de roles — quién es quién en el bucle IT↔OT**: este TFM gira en torno a la conexión entre marketing y fábrica (ver 1.1), y esa conexión se concreta en dos personas distintas, no una sola. **Marketing** (oficina, IT) clasifica el catálogo por adelantado — da de alta cada SKU con su estilo, temporada, material — sin tocar nunca la planta. **El operario** (planta, OT) trabaja desde la pantalla del HMI y es quien dispara la operación en tiempo real: pide, por ejemplo, "ropa de verano de tal característica", y el robot busca físicamente entre los SKUs que marketing ya dejó clasificados. Las versiones anteriores de este documento atribuían el etiquetado del catálogo al "operario" — es una imprecisión ya corregida: etiquetar el catálogo es tarea de marketing; disparar/aprobar acciones desde el HMI de planta es tarea del operario (ver también 6.1 y 6.5).
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
 │ 1. YOLO (visión, sobre la prenda física en la caja)                  │
 │    Entrada:  imagen overhead de la prenda doblada                    │
-│    Salida:   tipo genérico (1 de 36) + bounding box + confianza      │
+│    Salida:   tipo genérico (1 de 29) + bounding box + confianza      │
 │    NO sabe:  ni largo, ni material, ni estilo, ni ocasión            │
 │    Ejemplo:  "esto es un Pantalón" (no sabe si es vaquero o chándal) │
 └───────────────────────────────┬────────────────────────────────────┘
@@ -324,7 +328,7 @@ Esta sección fija, sin ambigüedad, la responsabilidad de cada componente. Es l
 ```
 
 **Por qué esta separación y no otra**:
-- YOLO con menos clases (36 en vez de intentar meter estilo/largo como clases) es más fácil de entrenar y más robusto: cada clase tiene una diferencia estructural clara (perneras sí/no, mangas sí/no, tacón sí/no), no una diferencia de "vibra" o corte que dependa del pliegue de la prenda en la caja.
+- YOLO con menos clases (29 en vez de intentar meter estilo/largo como clases) es más fácil de entrenar y más robusto: cada clase tiene una diferencia estructural clara (perneras sí/no, mangas sí/no, tacón sí/no), no una diferencia de "vibra" o corte que dependa del pliegue de la prenda en la caja.
 - El ERP es la única fuente de verdad para todo lo que es decisión de catálogo (qué SKU es de qué estilo). Esto también es más mantenible: si una prenda se re-etiqueta de temporada, no hay que re-entrenar YOLO, solo editar el JSON del SKU en la app de etiquetado.
 - El LLM y el ERP comparten vocabulario (el mismo listado de 6 grupos de estilo) precisamente para que el filtro categórico del paso 4a sea posible sin ambigüedad de sinónimos.
 
@@ -366,7 +370,7 @@ Publicación en ROS 2 → planificador de picking bimanual
 Cámara overhead (imagen RGB del interior de la caja abierta)
     │
     ▼
-YOLO v8/v11 (entrenado en 36 tipos genéricos) → tipo + bounding box + confianza
+YOLO v8/v11 (entrenado en 29 tipos genéricos) → tipo + bounding box + confianza
     │
     ▼
 Si confianza < umbral → señal al operario para confirmación manual
@@ -412,11 +416,13 @@ SKU ganador + todos sus atributos del ERP
 
 La principal dificultad del catalog matching es el *domain gap*: las fotos de catálogo (prenda sobre modelo o maniquí, iluminación de estudio) tienen una distribución visual muy distinta a las imágenes del robot (prenda doblada en caja, iluminación industrial, cámara overhead).
 
-CLIP, al haber sido entrenado con 400 millones de pares imagen-texto de Internet, tiene una representación semántica suficientemente rica para bridging este gap en modo zero-shot. La estrategia propuesta:
+CLIP, al haber sido entrenado con 400 millones de pares imagen-texto de Internet, tiene una representación semántica suficientemente rica para bridging este gap. La estrategia propuesta, en orden de coste creciente:
 
-1. **Fase zero-shot (baseline)**: usar directamente las fotos de catálogo sin ningún entrenamiento adicional. Medir Recall@1 y Recall@5.
-2. **Si Recall@5 < 80%**: añadir augmentation sobre las fotos de catálogo (simular pliegues, rotaciones, zooms, cambios de iluminación) y repetir.
-3. **Si sigue insuficiente**: fine-tuning de CLIP con pares (imagen_robot, imagen_catálogo) del mismo SKU. Se necesitarían ~50-100 pares por tipo de prenda (no por SKU), captados con la cámara del robot.
+1. **Baseline elegido — prototipo few-shot por SKU (Opción C)**: en vez de comparar contra una única foto de catálogo tipo estudio, cada SKU se representa por el **promedio de los embeddings CLIP de sus 3-5 fotos propias** (capturadas con la cámara del robot, condición real de caja — ver 5.6), incluyendo variaciones de augmentation. Es una búsqueda por similitud (nearest neighbor), no una clasificación de N clases, así que escala de forma natural al tamaño real del catálogo (87-145 SKUs, ver 5.6) sin sufrir el problema estadístico de un clasificador entrenado con solo 3-5 ejemplos reales por clase. Añadir o quitar un SKU es solo editar el índice vectorial, no reentrenar nada — coherente con el principio de 3.5 ("no hay que re-entrenar YOLO, solo editar el JSON del SKU").
+2. **Si Recall@5 < 80%**: entrenar una capa lineal ligera sobre los embeddings congelados de CLIP (no se reentrena CLIP entero, solo esta capa) usando las mismas fotos ya capturadas.
+3. **Si sigue insuficiente**: fine-tuning completo de CLIP con pares (imagen_robot, imagen_catálogo) del mismo SKU. Se necesitarían ~50-100 pares por tipo de prenda (no por SKU), captados con la cámara del robot. Se descarta como baseline por ser el escalón más caro y menos escalable de los tres — se reserva como último recurso.
+
+**Por qué no un clasificador dedicado por SKU (Opción B, descartada)**: con 87-145 SKUs y solo 3-5 fotos reales por SKU, entrenar un clasificador de 87-145 clases es un problema de *few-shot learning* frágil — con tan pocos ejemplos reales por clase (las copias aumentadas están correlacionadas entre sí, no son evidencia independiente), el riesgo de que el modelo memorice detalles incidentales de esas fotos concretas (pliegue exacto, luz del día de captura) en vez de la prenda es alto, y cada alta de SKU nuevo exigiría reentrenar el modelo completo. La búsqueda por similitud de la Opción C no tiene ninguna de las dos limitaciones.
 
 **Alternativa de emergencia**: si el catalog matching no alcanza precisión operativa, se puede añadir una etiqueta QR/física en la caja. En ese caso, la visión solo valida y el QR da el SKU. Esta opción elimina la contribución investigadora del matching, por lo que se usa solo como fallback.
 
@@ -426,7 +432,7 @@ CLIP, al haber sido entrenado con 400 millones de pares imagen-texto de Internet
 
 ### 5.1 Propósito y rol en el sistema
 
-La app web de etiquetado SKU es la herramienta con la que el operario (o el propio investigador durante la fase de desarrollo) **popula el ERP** con entradas de catálogo.
+La app web de etiquetado SKU es la herramienta con la que marketing (o el propio investigador durante la fase de desarrollo, asumiendo ese rol) **popula el ERP** con entradas de catálogo.
 
 Su función específica:
 - Asociar cada prenda del catálogo con su SKU + foto + atributos + embedding CLIP
@@ -434,18 +440,18 @@ Su función específica:
 
 **No está relacionada con el entrenamiento de YOLO**. YOLO se entrena por separado con datasets públicos + imágenes propias etiquetadas por tipo, no por SKU.
 
-### 5.2 Workflow del operario
+### 5.2 Workflow de marketing
 
 ```
 1. Cargar foto de la prenda (foto de catálogo o foto del robot)
-2. Seleccionar tipo YOLO (dropdown: los 36 tipos genéricos)
+2. Seleccionar tipo YOLO (dropdown: los 29 tipos genéricos)
 3. Introducir atributos:
    - Color primario (selector de color)
    - Estampado (dropdown)
    - Material (dropdown)
    - Fit (dropdown)
    - Largo (dropdown: largo · bermuda · short — solo visible si tipo = Pantalón)
-   - Grupo de estilo (dropdown: Casual · Streetwear · De vestir · Fiesta/Noche · Deportivo · Playa/Resort; preseleccionado según el mapeo de 3.4.1 a partir del Material, editable por el operario)
+   - Grupo de estilo (dropdown: Casual · Streetwear · De vestir · Fiesta/Noche · Deportivo · Playa/Resort; preseleccionado según el mapeo de 3.4.1 a partir del Material, editable por marketing)
    - Temporada (multiselect)
    - Género (radio: femenino / masculino / neutro)
    - Mercado destino: Europa (fijo por ahora)
@@ -515,18 +521,36 @@ erp/
 └── erp_global.json       ← Consolidado de todos los SKUs
 ```
 
+### 5.6 Estrategia de captura de catálogo
+
+Con 29 tipos YOLO y un objetivo de 3-5 SKUs reales por tipo (ver 3.3), el catálogo necesario está en el rango **87-145 SKUs**. Comprar y montar en caja rígida esa cantidad de prendas para cada ciclo de picking robótico no es necesario ni realista para un TFM, así que se separan dos catálogos con requisitos distintos:
+
+- **Catálogo fotografiado (87-145 SKUs)**: cubre todo el rango objetivo. De cada SKU solo se necesitan fotos — una en condición "catálogo" (fondo limpio) y 3-5 en condición "cámara del robot" (prenda doblada, luz industrial, vista cenital) — no hace falta que la prenda pase físicamente por el robot. Esto es lo que alimenta el catalog matching (Recall@K, sección 11.1) con volumen realista.
+- **Hero set físico (~15-25 SKUs)**: subconjunto que sí se compra en firme, se mete en cajas rígidas de verdad y se usa en la demo robótica en vivo / vídeo del TFM.
+- **Sourcing**: ropa de segunda mano "por kilo" (~10-12€/kg, bajo 1€/prenda de media) para abaratar el volumen del catálogo fotografiado; Vinted/Wallapop cuando se necesite cubrir un hueco concreto de la taxonomía; prendas prestadas (devueltas tras fotografiar) para tipos puntuales difíciles de encontrar de segunda mano (p. ej. Americana, Mono).
+- **Balance entre Grupos de estilo**: al margen de cubrir los 29 tipos, conviene asegurar representación mínima en los 6 Grupos de estilo de 3.4.1 — un catálogo con muchas prendas "Casual" y casi ninguna "Fiesta/Noche" deja a ciertas tendencias detectadas sin apenas candidatos reales entre los que elegir (ver limitación en 14.3).
+
 ---
 
 ## 6. Pipeline de tendencias de moda
 
 ### 6.1 Trend Intelligence Agent
 
-El agente de inteligencia de tendencias es un LLM (Claude Pro, cuenta del investigador, con web search habilitado) que analiza las redes sociales y genera descripciones en lenguaje natural de las tendencias de moda activas por mercado y segmento.
+El agente de inteligencia de tendencias es un pipeline híbrido, no un único LLM, diseñado para que el análisis sea automatizado y basado en fuentes reales — no simulado ni ejecutado a mano:
+
+| Pieza | Herramienta | Rol | Coste |
+|---|---|---|---|
+| Ingesta de contenido viral | Extensión propia de [`viral_clips`](https://github.com/victor8701/viral_clips) (ya desarrollada para YouTube, ampliada a TikTok y X/Twitter) | Descarga/recorta clips virales de moda desde las tres fuentes | $0 |
+| Transcripción | Whisper (OpenAI, MIT License, local) | Convierte el audio de los clips a texto | $0 |
+| Clasificación mecánica | Ollama + Qwen2.5 (Apache 2.0, local) | Tareas estructuradas: extraer *tags* de estilo, mapear a los 6 Grupos de estilo del ERP | $0 |
+| Síntesis final de tendencia | Claude, vía `claude -p` (Claude Code CLI, plan Pro/Max ya contratado por el investigador) | Redacta la descripción en lenguaje natural y el Trend JSON final (tarea que exige más matiz que un modelo de 3-7B) | $0 marginal (uso incluido en la suscripción ya pagada) |
+
+Se descartó Llama 3.1 como modelo local en favor de Qwen2.5 por licencia: Llama usa la [Community License de Meta](https://www.llama.com/llama3_1/license/) (uso comercial permitido pero con restricciones — no competir con productos de Meta, no usar sus salidas para entrenar otros modelos), mientras que Qwen2.5 es [Apache 2.0](https://huggingface.co/Qwen/Qwen2.5-7B/blob/main/LICENSE), sin restricciones, más acorde con el requisito de poder editar el pipeline libremente. Como alternativas de respaldo en la nube (gratuitas pero no locales, para picos de carga o si el hardware local no está disponible) se documentan Groq (free tier: 30 req/min, 6.000 tokens/min, 14.400 req/día, sin tarjeta) y Google AI Studio / Gemini (free tier: del orden de 1.000-1.500 req/día, sin tarjeta, con el matiz de que activar facturación en el proyecto elimina el nivel gratis).
 
 **Características clave**:
 - Corre **offline** (no en tiempo real durante el picking)
-- Disparado por el operario desde el HMI o por un timer periódico (diario/semanal)
-- Los resultados quedan en estado "pendiente" hasta que el operario los aprueba desde el HMI
+- Se ejecuta **de forma autónoma, sin intervención humana**, orquestado vía GitHub Actions — ver 6.6
+- Los resultados quedan en estado "pendiente" hasta que el operario los aprueba desde el HMI de planta (ver nota de roles en 3.5: aprobar/disparar desde el HMI es tarea del operario, no de marketing)
 - Solo tras la aprobación se actualizan los vectores de tendencia usados en picking
 
 ### 6.2 Parámetros de entrada (HMI)
@@ -538,7 +562,7 @@ El operario configura los siguientes parámetros antes de ejecutar el análisis:
 | Mercado geográfico | Europa (único mercado por ahora; ampliable a regiones en el futuro) |
 | Género objetivo | Femenino · Masculino · Todo |
 | Tipo de prenda | Ropa superior · Inferior · Calzado · Accesorios · Todo |
-| Fuentes | Instagram · TikTok · Pinterest · X/Twitter · Vogue/prensa · Todas |
+| Fuentes | YouTube · TikTok · X/Twitter (vía `viral_clips`, ver 6.1) · Todas |
 
 ### 6.3 Prompt generado dinámicamente
 
@@ -608,6 +632,16 @@ Operario lee la descripción y evalúa si es coherente con el negocio
             → índice vectorial de tendencias activas actualizado
             → picking comienza a usar el nuevo vector
 ```
+
+### 6.6 Ejecución autónoma (GitHub Actions)
+
+Un requisito explícito de diseño es que el pipeline de tendencias (6.1) corra **sin que el investigador tenga que dejar su portátil encendido ni intervenir manualmente** — de noche, en background, de forma repetible. La pieza que lo permite es un *workflow* de GitHub Actions programado con un trigger `cron`, en vez de depender de que el hardware local del investigador esté despierto:
+
+- El *workflow* corre en los servidores de GitHub, no en el portátil del investigador — el ordenador puede estar apagado.
+- El token de larga duración de Claude Code (`CLAUDE_CODE_OAUTH_TOKEN`, ya contemplado en el `README` de `viral_clips` para uso sin login repetido) se guarda como secreto cifrado del repositorio, permitiendo que `claude -p` se invoque de forma desatendida dentro del *workflow*.
+- El *runner* gratuito de GitHub Actions no tiene GPU, así que Ollama + Qwen2.5 corren en CPU — asumible porque el análisis es un batch offline de una vez al día/semana, no una inferencia en tiempo real.
+- Coste: minutos ilimitados en repositorios públicos; 2.000 minutos/mes gratis en repositorios privados — muy por encima de lo que consume una ejecución diaria corta.
+- **Dos límites a vigilar**: el trigger `cron` tiene un intervalo mínimo de 5 minutos (irrelevante para una ejecución diaria) y, en repositorios públicos, GitHub **desactiva el schedule en silencio tras 60 días sin ningún commit** en el repo — un riesgo real si hay temporadas del TFM sin tocar el código, que conviene vigilar en la pestaña Actions del repositorio.
 
 ---
 
@@ -696,7 +730,7 @@ El Modo 3 introduce inteligencia de mercado basada en datos de demanda geográfi
 
 ### 8.2 ERP como fuente de verdad geográfica
 
-Cada SKU tiene un campo `mercado_destino` que indica en qué mercados está aprobado para venta. Este campo es introducido por el operario en la app de etiquetado y puede reflejar:
+Cada SKU tiene un campo `mercado_destino` que indica en qué mercados está aprobado para venta. Este campo es introducido por marketing en la app de etiquetado y puede reflejar:
 - Regulaciones locales (tallas, etiquetado)
 - Adecuación cultural (estética, colores)
 - Acuerdos comerciales (exclusividades)
@@ -820,7 +854,7 @@ El picking bimanual permite procesar dos prendas en paralelo (un robot por brazo
 
 | Componente | Métrica | Descripción | Objetivo |
 |---|---|---|---|
-| YOLO clasificación | mAP@0.5 | Precisión media en los 36 tipos | > 0.85 |
+| YOLO clasificación | mAP@0.5 | Precisión media en los 29 tipos | > 0.85 |
 | YOLO clasificación | Accuracy por clase | Por tipo YOLO por separado | Identificar clases débiles |
 | Catalog matching | Recall@1 | SKU correcto es el top-1 | > 0.60 |
 | Catalog matching | Recall@5 | SKU correcto está en el top-5 | > 0.85 |
@@ -907,7 +941,7 @@ La predicción de tendencias de moda (fashion trend forecasting) es un área eme
 | Sep 2026 | 4 | Teórica | Teórica | Taxonomía definitiva · Diseño ERP JSON · Diseño app web |
 | Oct 2026 | 4 | ~32h | Infraestructura | ROS 2 setup · Bridge EGM · Conexión PLC Siemens |
 | Nov 2026 | 4 | ~32h | Modo 1 | YOLO-obb detección de cajas · PCL singulation funcional |
-| Dic 2026 | 4 | ~32h | Modo 2 + App | YOLO 36 tipos entrenado · App web etiquetado SKU v1 |
+| Dic 2026 | 4 | ~32h | Modo 2 + App | YOLO 29 tipos entrenado · App web etiquetado SKU v1 |
 | Ene 2027 | 4 | ~32h | Catalog matching | CLIP zero-shot baseline · Recall@K medido · Augmentation |
 | Feb 2027 | 4 | ~32h | Modo 3 | ERP JSON completo · Filtrado geográfico funcional |
 | Mar 2027 | 4 | ~32h | Trend pipeline | LLM agent · CLIP vectorización · HMI tendencias v1 |
@@ -950,8 +984,29 @@ Infraestructura (ROS 2 + EGM)
 | CLIP zero-shot no alcanza Recall@5 > 80% | Media | Alto | Fine-tuning con augmentation; fallback a QR como emergencia |
 | Integración EGM inestable | Baja | Alto | Comenzar con velocidades bajas; usar modo supervisor |
 | Dataset YOLO insuficiente para tipos raros | Media | Medio | Combinar DeepFashion + sintético + oversampling |
-| Acceso a web limitado en LLM | Baja | Medio | Alternativa: Perplexity API; o dataset estático de tendencias |
+| `viral_clips` no cubre suficiente volumen de contenido de moda al ampliarlo a TikTok/X | Media | Medio | Complementar con búsqueda web (Tavily/DuckDuckGo) como fuente adicional |
+| GitHub Actions desactiva el cron tras 60 días sin commits (repos públicos) | Baja | Medio | Vigilar la pestaña Actions; commit trivial periódico si hay temporada sin tocar el repo |
 | Tiempo insuficiente para Modo 5 | Media | Medio | Modo 5 como extensión del Modo 4; priorizar Modos 1-4 |
+
+---
+
+## 14. Limitaciones y trabajo futuro
+
+Esta sección documenta, de forma honesta, tres puntos débiles del diseño identificados durante la propia definición de la arquitectura — no son fallos descubiertos a posteriori, sino límites conscientemente aceptados por tratarse de un TFM, con su implicación si el sistema se llevase a un entorno de producción real.
+
+### 14.1 Vocabulario de estilo compartido: un acoplamiento frágil
+
+El filtro categórico del matching (7.2) depende de que el LLM Trend Agent devuelva **siempre** uno exacto de los 6 valores de Grupo de estilo del ERP (3.4.1). Si el modelo devuelve un valor fuera de esa lista — más probable con un modelo local pequeño (Qwen2.5, 3-7B) que con Claude — el boost categórico del paso 4a de 3.5 se desactiva en silencio para esa tendencia, sin lanzar ningún error: el sistema sigue funcionando solo con el score semántico, degradado sin aviso. Mitigación propuesta: validar la salida del LLM contra la lista cerrada de 6 valores antes de aceptar el Trend JSON, con reintento si no coincide exactamente.
+
+### 14.2 Etiquetado manual del catálogo: consistencia y escala
+
+El Grupo de estilo de cada SKU lo asigna una persona a mano (marketing, ver 3.5) al dar de alta el producto. Etiquetando en solitario 87-145 SKUs (5.6), existe riesgo real de deriva de criterio entre los primeros y los últimos SKU etiquetados. Mitigación para el TFM: fijar una guía de etiquetado por escrito antes de empezar a etiquetar, no sobre la marcha.
+
+**Trabajo futuro**: explorar etiquetado asistido por LLM — dado el SKU (o una foto de la prenda), el modelo busca el producto en internet y propone automáticamente Grupo de estilo, material y estampado, quedando marketing solo para confirmar/corregir. Se deja fuera del alcance de este TFM porque complicaría significativamente el proyecto (fiabilidad de la búsqueda, verificación de que el producto encontrado es el correcto, coste adicional de LLM por SKU) sin ser el foco de la contribución investigadora, que es el razonamiento semántico tendencia↔prenda, no la automatización del etiquetado en sí.
+
+### 14.3 Balance del catálogo entre Grupos de estilo
+
+El catálogo (grupo_estilo por SKU) es prácticamente estático una vez etiquetado, mientras que la tendencia detectada por el Modo 4 es dinámica. Si el catálogo queda desequilibrado entre los 6 Grupos de estilo de 3.4.1 (por ejemplo, mucha ropa "Casual" y poca "Fiesta/Noche", un riesgo real al comprar de segunda mano sin más criterio que el precio), una tendencia detectada en un grupo infrarrepresentado tendrá pocos candidatos reales entre los que el sistema pueda elegir. Para el alcance de este TFM se acepta esta limitación — el catálogo de 87-145 SKUs no pretende ser representativo de un inventario real de Inditex. En un despliegue de producción real, esto se resolvería con una estrategia activa de reposición de catálogo por Grupo de estilo (comprar/dar de alta deliberadamente donde el catálogo esté infrarrepresentado), que añadiría una capa de gestión de inventario fuera del alcance de este trabajo.
 
 ---
 
