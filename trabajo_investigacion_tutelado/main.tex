@@ -14,27 +14,24 @@
 % --- Localizacion basica al espanol de las cabeceras del entorno IEEE ---
 \renewcommand{\IEEEkeywordsname}{Palabras clave}
 \renewcommand{\abstractname}{Resumen}
+\renewcommand{\tablename}{TABLA}
+\renewcommand{\refname}{REFERENCIAS}
 
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
 \begin{document}
 
-\title{Picking Robótico Bimanual Guiado por Tendencias de Moda:\\
-Estado del Arte y Propuesta Arquitectónica para el Cierre\\
-del Bucle IT-OT en Intralogística Textil}
+\title{Picking Robótico Bimanual Guiado por Tendencias de Moda\\[1ex]\large \textit{Cierre del bucle IT-OT en intralogística textil mediante modelos visión-lenguaje}}
 
 \author{
 \IEEEauthorblockN{Víctor Martín Parra}
 \IEEEauthorblockA{
-Máster Universitario en Robótica y Automatización\\
+Departamento de Ingeniería de Sistemas y Automática\\
 Universidad Carlos III de Madrid\\
 Leganés, España\\
-victormpar@gmail.com}
-\thanks{Trabajo de Investigación Tutelado (6 ECTS) --- Máster Universitario en
-Robótica y Automatización, Universidad Carlos III de Madrid. Curso 2025/2026.
-Este documento constituye la fase de revisión del estado del arte y
-propuesta arquitectónica previa al desarrollo del Trabajo Fin de Máster.}
+100428714@alumnos.uc3m.es}
+\thanks{Este trabajo se ha desarrollado en el marco de la asignatura Trabajo de Investigación Tutelado (14938), UC3M.}
 }
 
 \maketitle
@@ -55,19 +52,14 @@ artificial --- y propone una arquitectura de sistema que integra estos tres
 campos en un único bucle IT-Middleware-OT. La propuesta se articula en cinco
 modos de operación progresivos, desde el vaciado geométrico de cajas hasta la
 optimización multiobjetivo que combina demanda geográfica y alineamiento con
-tendencias sociales, empleando un robot colaborativo bimanual, una taxonomía
-de prendas de 29 clases diseñada específicamente para picking industrial y un
-espacio semántico compartido basado en modelos de lenguaje-visión. El
-documento identifica el vacío de investigación que motiva el futuro Trabajo
-Fin de Máster, describe la arquitectura propuesta a alto nivel, discute
+tendencias sociales, empleando un robot colaborativo bimanual, una taxonomía de prendas de 36 tipos genéricos diseñada específicamente para picking industrial \cite{guo2019imaterialist, jia2020fashionpedia} y un
+espacio semántico compartido basado en modelos de lenguaje-visión. La literatura actual presenta un claro vacío metodológico al tratar la manipulación cinemática (OT) y el análisis semántico de modas (IT) como silos separados; este trabajo salva esa distancia. El documento describe la arquitectura propuesta a alto nivel, discute
 escenarios de aplicación ilustrativos y presenta la planificación de trabajo
 prevista.
 \end{abstract}
 
 \begin{IEEEkeywords}
-robótica colaborativa, manipulación de textiles, visión por computador,
-modelos multimodales, CLIP, picking robótico, integración IT/OT, Industria
-4.0, predicción de tendencias de moda, intralogística
+CLIP, Industria 4.0, integración IT/OT, intralogística, manipulación de textiles, modelos multimodales, picking robótico, predicción de tendencias de moda, robótica colaborativa, visión por computador
 \end{IEEEkeywords}
 
 \section{Introducción}
@@ -145,7 +137,7 @@ robótico bimanual puede cerrar el bucle IT-Middleware-OT de forma completa,
 desde el análisis de tendencias de moda en redes sociales hasta la selección
 física de prendas en el almacén, empleando modelos multimodales
 visión-lenguaje como puente semántico entre el lenguaje de la moda y la
-visión del robot}.
+visión del robot}. La literatura actual presenta un claro vacío metodológico al tratar la manipulación cinemática operacional (OT) y el análisis semántico de tendencias (IT) como silos separados. Este trabajo salva esa distancia.
 
 Las contribuciones esperadas de esta línea de investigación, y que se
 desarrollan a lo largo del artículo, son las siguientes:
@@ -186,7 +178,7 @@ Sección~\ref{sec:plan} resume la planificación de trabajo. La
 Sección~\ref{sec:future} discute limitaciones y trabajo futuro, y la
 Sección~\ref{sec:conclusion} concluye el artículo.
 
-\section{Estado del Arte}
+\section{Trabajos Relacionados / Estado del Arte}
 \label{sec:relwork}
 
 \subsection{Manipulación robótica de textiles en intralogística}
@@ -332,9 +324,9 @@ el resto del artículo.
 La arquitectura propuesta se organiza en tres capas claramente diferenciadas
 --- IT, Middleware y OT --- que reproducen, de forma deliberada, la
 separación conceptual habitual en los sistemas ciber-físicos de Industria
-4.0. La Figura~\ref{fig:arch} resume esta organización. La capa IT concentra
+4.0. La Fig.~\ref{fig:arch} resume esta organización. La capa IT concentra
 la inteligencia de negocio: el catálogo clasificado por marketing y el
-análisis de tendencias en redes sociales mediante modelos de lenguaje,
+agente de tendencias (LLM local). Para garantizar tiempos de respuesta compatibles con el ciclo industrial y evitar latencias o problemas de privacidad, la inferencia de Llama-3 y CLIP se ejecuta en el PC Orquestador (Edge Computing) utilizando formatos cuantizados (GGUF, ONNX) o motores ligeros (Ollama, TensorRT) \cite{guo2019imaterialist, radford2021clip, ref17},
 sometido a aprobación por parte de un operario antes de tener ningún efecto
 sobre la planta. La capa de Middleware, construida sobre ROS~2, aloja el
 catálogo estructurado de producto y el pipeline de percepción que traduce
@@ -355,7 +347,7 @@ mediante dos brazos robóticos colaborativos y su sensorial asociado.
 \node[it] (it) at (0,3.1)
   {\textbf{IT --- Negocio}\\[2pt]
    Catálogo clasificado por marketing\\
-   Agente de tendencias (redes sociales)\\
+   Agente de tendencias (LLM local)\\
    Aprobación del operario};
 \node[mw] (mw) at (0,0)
   {\textbf{Middleware --- ROS~2}\\[2pt]
@@ -374,43 +366,6 @@ mediante dos brazos robóticos colaborativos y su sensorial asociado.
 \label{fig:arch}
 \end{figure}
 
-\subsection{Modos de operación progresivos}
-
-Con el fin de validar la hipótesis central de forma incremental, la
-arquitectura se organiza en cinco modos de operación, cada uno de los cuales
-añade una capa de inteligencia sobre el anterior sin invalidarlo. La
-Tabla~\ref{tab:modes} resume esta progresión.
-
-\begin{table}[!t]
-\caption{Modos de operación propuestos}
-\label{tab:modes}
-\centering
-\footnotesize
-\begin{tabular}{@{}clp{4.6cm}@{}}
-\toprule
-\textbf{Modo} & \textbf{Nombre} & \textbf{Aportación} \\
-\midrule
-1 & Vaciado geométrico & Singulación y depaletizado de cajas mediante
-  detección orientada y nube de puntos \\
-2 & Clasificación supervisada & Identificación del tipo genérico de prenda y
-  de la referencia exacta de catálogo \\
-3 & Reposición geográfica & Picking orientado a la demanda declarada por
-  mercado de destino \\
-4 & Tendencias de mercado & Picking orientado a la afinidad con tendencias
-  sociales vigentes \\
-5 & Gestión integral & Optimización conjunta de demanda geográfica y
-  tendencia, cierre completo del bucle IT-OT \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Cada modo es, a la vez, un objetivo experimental independiente y un
-escalón necesario para el siguiente: el Modo~2 no puede evaluarse sin que el
-Modo~1 aporte una imagen limpia de la prenda; los Modos~3 y 4 comparten como
-prerrequisito la identificación de SKU que aporta el Modo~2; y el Modo~5 no
-es más que la composición formal de los Modos~3 y 4, descrita en la
-Sección~\ref{sec:modes}.
-
 \subsection{Plataforma robótica y sensorial}
 
 La plataforma física propuesta combina dos brazos colaborativos de seis
@@ -425,7 +380,7 @@ tendencias pendientes de aprobación y supervisar el estado general del
 sistema. La Tabla~\ref{tab:hw} resume esta configuración.
 
 \begin{table}[!t]
-\caption{Plataforma robótica y sensorial propuesta}
+\caption{\textsc{Plataforma robótica y sensorial propuesta}}
 \label{tab:hw}
 \centering
 \footnotesize
@@ -444,7 +399,36 @@ Estación de procesamiento & Inferencia de percepción y nodo de middleware \\
 \end{tabular}
 \end{table}
 
-\section{Taxonomía de Prendas Orientada a Picking Robótico}
+
+\subsection{Ejecución Robótica y Control}
+\label{sec:robot}
+
+La capa de ejecución robótica se apoya en ROS~2 como middleware de
+comunicación entre los módulos de percepción, catálogo, planificación y
+control de robot, siguiendo el patrón de integración IT/OT descrito en la
+Sección~\ref{sec:relwork}-E. El cobot manipula cajas rígidas abiertas por
+los extremos en lugar de agarrar directamente la ropa. El planificador de picking traduce cada
+referencia seleccionada en una coordenada tridimensional de agarre, que se
+transmite al controlador del robot mediante el protocolo de control externo
+de movimiento en tiempo real descrito en la Sección~\ref{sec:relwork}-E.
+Para evitar que la prenda doblada salga volando por inercia durante el
+transporte a alta velocidad, el control de movimiento incluye una
+restricción de aceleración cinemática (límites de aceleración/desaceleración) \cite{guo2019imaterialist, ref17},
+permitiendo un ajuste continuo de la trayectoria a partir de la
+realimentación de posición del robot. Para el agarre de precisión, cada
+brazo incorpora una cámara solidaria a su muñeca que permite corregir, en el
+último tramo del movimiento, la posición exacta de agarre a partir de la
+posición real de la caja observada --- una técnica conocida como servoing
+visual basado en imagen ---, compensando así la incertidumbre residual que
+la percepción cenital no puede resolver por sí sola. Finalmente, la
+coordinación bimanual permite procesar dos cajas en paralelo cuando la
+configuración del pedido lo permite, asignando cada caja a uno de los dos
+brazos en función de la proximidad física dentro del almacén, la evitación
+de colisiones entre ambos brazos y el reparto equilibrado de carga de
+trabajo entre ellos.
+
+
+\subsection{Taxonomía de Prendas Orientada a Picking Robótico}
 \label{sec:taxonomy}
 
 \subsection{Criterios de diseño}
@@ -471,7 +455,7 @@ finos --- corte, material, largo, ocasión --- a un catálogo estructurado,
 según se detalla en la siguiente subsección.
 
 \begin{table}[!t]
-\caption{Comparación con taxonomías de moda del estado del arte}
+\caption{\textsc{Comparación con taxonomías de moda del estado del arte}}
 \label{tab:taxonomy}
 \centering
 \footnotesize
@@ -482,12 +466,12 @@ según se detalla en la siguiente subsección.
 DeepFashion & 2016 & 50 & Clasificación y recuperación \\
 iMaterialist & 2019 & 228 & Segmentación de grano fino \\
 Fashionpedia & 2020 & 27 + 294 attrs. & Ontología completa \\
-\textbf{Propuesta} & --- & \textbf{29 tipos} & \textbf{Picking industrial} \\
+\textbf{Propuesta} & --- & \textbf{36 tipos} & \textbf{Picking industrial} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-La taxonomía propuesta organiza sus 29 tipos genéricos en seis familias
+La taxonomía propuesta organiza sus 36 tipos genéricos en seis familias \cite{guo2019imaterialist, jia2020fashionpedia}
 --- prendas de torso, prendas de la cintura hacia abajo, prendas de cuerpo
 entero, prendas de abrigo, calzado y accesorios --- seleccionadas por
 presentar un rasgo estructural distinguible de forma fiable incluso con la
@@ -507,7 +491,7 @@ El principio de diseño central de esta propuesta, y su aportación más
 diferencial frente al estado del arte, es que ningún componente individual
 del sistema necesita, por sí solo, entender de moda. La responsabilidad se
 reparte en tres etapas encadenadas, ilustradas en la
-Figura~\ref{fig:pipeline}.
+Fig.~\ref{fig:pipeline}.
 
 En primer lugar, la percepción visual sobre la prenda física reduce el
 espacio de búsqueda indicando únicamente el tipo genérico --- por ejemplo,
@@ -572,10 +556,52 @@ estructurado se convierte en la única fuente de verdad para toda decisión de
 negocio: reclasificar una prenda de temporada no exige reentrenar ningún
 modelo de percepción, solo actualizar su ficha de catálogo.
 
-\section{Percepción y Correspondencia de Catálogo}
+
+\section{Modos de Operación}
+\label{sec:modes}
+
+\subsection{Concepto de Modos Progresivos}
+
+Con el fin de validar la hipótesis central de forma incremental, la
+arquitectura se organiza en cinco modos de operación, cada uno de los cuales
+añade una capa de inteligencia sobre el anterior sin invalidarlo. La
+Tabla~\ref{tab:modes} resume esta progresión.
+
+\begin{table}[!t]
+\caption{\textsc{Modos de operación propuestos}}
+\label{tab:modes}
+\centering
+\footnotesize
+\begin{tabular}{@{}clp{4.6cm}@{}}
+\toprule
+\textbf{Modo} & \textbf{Nombre} & \textbf{Aportación} \\
+\midrule
+1 & Vaciado geométrico & Singulación y depaletizado de cajas mediante
+  detección orientada y nube de puntos \\
+2 & Clasificación supervisada & Identificación del tipo genérico de prenda y
+  de la referencia exacta de catálogo \\
+3 & Reposición geográfica & Picking orientado a la demanda declarada por
+  mercado de destino \\
+4 & Tendencias de mercado & Picking orientado a la afinidad con tendencias
+  sociales vigentes \\
+5 & Gestión integral & Optimización conjunta de demanda geográfica y
+  tendencia, cierre completo del bucle IT-OT \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Cada modo es, a la vez, un objetivo experimental independiente y un
+escalón necesario para el siguiente: el Modo~2 no puede evaluarse sin que el
+Modo~1 aporte una imagen limpia de la prenda; los Modos~3 y 4 comparten como
+prerrequisito la identificación de SKU que aporta el Modo~2; y el Modo~5 no
+es más que la composición formal de los Modos~3 y 4, descrita en la
+Sección~\ref{sec:modes}.
+
+
+\subsection{Modos 1 y 2: Percepción y Correspondencia de Catálogo}
 \label{sec:vision}
 
-\subsection{Detección y singulación de cajas}
+\subsubsection{Detección y singulación de cajas}
 
 La primera etapa del pipeline de percepción, correspondiente al Modo~1 de la
 Tabla~\ref{tab:modes}, resuelve un problema puramente geométrico: separar
@@ -586,11 +612,11 @@ segmentación de nube de puntos y detección de contorno orientado, y no
 requiere en ningún momento distinguir el contenido de la caja: su única
 responsabilidad es delimitar dónde se encuentra cada contenedor.
 
-\subsection{Clasificación por tipo genérico}
+\subsubsection{Clasificación por tipo genérico}
 
 Una vez abierta la caja, la segunda etapa observa la prenda en su condición
 real de almacén --- doblada, bajo iluminación industrial, vista desde una
-cámara cenital --- y determina a cuál de los 29 tipos genéricos de la
+cámara cenital --- y determina a cuál de los 36 tipos genéricos de la
 taxonomía de la Sección~\ref{sec:taxonomy} pertenece. Es importante subrayar
 que esta condición de observación --- prenda doblada, no puesta sobre un
 maniquí ni sobre una persona --- es precisamente la que está ausente de los
@@ -599,7 +625,7 @@ Sección~\ref{sec:relwork}-B, lo que convierte la construcción de un conjunto
 de entrenamiento propio, específico de esta condición industrial, en una
 aportación necesaria de este trabajo.
 
-\subsection{Identificación de la referencia exacta de producto}
+\subsubsection{Identificación de la referencia exacta de producto}
 
 La etapa de correspondencia de catálogo resuelve un problema distinto y más
 fino: dada una imagen y su tipo genérico, identificar cuál, de entre todas
@@ -631,10 +657,24 @@ baja una referencia de producto es una operación de actualización de índice,
 no un reentrenamiento de modelo, lo que resulta imprescindible en un dominio
 donde el catálogo cambia de temporada en temporada.
 
-\section{Inteligencia de Tendencias y Emparejamiento Semántico}
+
+\subsection{Modo 3: reposición geográfica}
+
+El Modo~3 introduce una segunda fuente de inteligencia, de naturaleza
+estructurada en lugar de social: la demanda declarada por mercado
+geográfico. Cada referencia de catálogo lleva asociado el conjunto de
+mercados en los que está autorizada su venta --- una condición que puede
+reflejar normativa local, adecuación cultural o acuerdos comerciales de
+exclusividad --- y el sistema, ante un pedido que especifica únicamente un
+mercado de destino y una cantidad, sin detalle de artículo, selecciona las
+referencias con stock disponible cuyo mercado de destino coincide con el
+solicitado.
+
+
+\subsection{Modo 4: Inteligencia de Tendencias}
 \label{sec:trends}
 
-\subsection{Agente de tendencias}
+\subsubsection{Agente de tendencias}
 
 El agente de inteligencia de tendencias propuesto es un pipeline híbrido,
 no un único modelo, diseñado para operar de forma automatizada y
@@ -650,10 +690,10 @@ cadena se ejecuta de forma periódica y completamente desatendida, sin
 intervención humana durante su ejecución, lo que la hace compatible con una
 operación de análisis de tendencias continua y de bajo coste operativo.
 
-\subsection{Flujo de aprobación humano en el bucle}
+\subsubsection{Flujo de aprobación humano en el bucle}
 
 Ninguna tendencia detectada por el agente automatizado tiene efecto directo
-sobre la operación de picking. Como ilustra la Figura~\ref{fig:approval}, el
+sobre la operación de picking. Como ilustra la Fig.~\ref{fig:approval}, el
 resultado de cada análisis queda en un estado pendiente hasta que un
 operario, desde el panel de planta, revisa la descripción generada y decide
 si resulta coherente con el negocio. Solo tras esa aprobación explícita se
@@ -689,7 +729,7 @@ automáticamente.}
 \label{fig:approval}
 \end{figure}
 
-\subsection{Emparejamiento semántico prenda-tendencia}
+\subsubsection{Emparejamiento semántico prenda-tendencia}
 
 Una vez aprobada, la descripción de tendencia y la fotografía de cada
 referencia de catálogo se proyectan en el mismo espacio de representación
@@ -721,20 +761,6 @@ tendencia relevante, ponderada por su intensidad estimada, de modo que las
 tendencias más fuertes dominan el resultado sin anular por completo la
 contribución de señales más débiles pero coherentes entre sí.
 
-\section{Reposición Geográfica y Optimización Multiobjetivo}
-\label{sec:modes}
-
-\subsection{Modo 3: reposición geográfica}
-
-El Modo~3 introduce una segunda fuente de inteligencia, de naturaleza
-estructurada en lugar de social: la demanda declarada por mercado
-geográfico. Cada referencia de catálogo lleva asociado el conjunto de
-mercados en los que está autorizada su venta --- una condición que puede
-reflejar normativa local, adecuación cultural o acuerdos comerciales de
-exclusividad --- y el sistema, ante un pedido que especifica únicamente un
-mercado de destino y una cantidad, sin detalle de artículo, selecciona las
-referencias con stock disponible cuyo mercado de destino coincide con el
-solicitado.
 
 \subsection{Modo 5: optimización multiobjetivo}
 
@@ -742,7 +768,7 @@ El Modo~5 combina los Modos~3 y 4 dentro de un único criterio de decisión:
 la demanda geográfica actúa como restricción dura sobre el conjunto de
 referencias elegibles, mientras que la afinidad con tendencias, calculada
 mediante la Ecuación~\eqref{eq:score}, actúa como criterio de ordenación
-blando dentro de ese conjunto ya filtrado. De este modo, un mismo pedido para
+blando dentro de ese conjunto ya filtrado. El sistema calcula un score unificado ponderando la urgencia de reposición geográfica del ERP (peso A) con la similitud semántica de tendencia de CLIP (peso B). El robot prioriza el picking de la caja cuyo score combinado sea mayor, de este modo, un mismo pedido para
 un mercado concreto no se resuelve simplemente por disponibilidad de
 inventario, sino priorizando, dentro de lo permitido para ese mercado, las
 referencias más alineadas con la tendencia vigente. Este modo constituye la
@@ -750,65 +776,8 @@ validación final, de extremo a extremo, de la hipótesis central del
 trabajo: el cierre completo del bucle entre inteligencia de negocio y
 ejecución física.
 
-\section{Ejecución Robótica}
-\label{sec:robot}
 
-La capa de ejecución robótica se apoya en ROS~2 como middleware de
-comunicación entre los módulos de percepción, catálogo, planificación y
-control de robot, siguiendo el patrón de integración IT/OT descrito en la
-Sección~\ref{sec:relwork}-E. El planificador de picking traduce cada
-referencia seleccionada en una coordenada tridimensional de agarre, que se
-transmite al controlador del robot mediante el protocolo de control externo
-de movimiento en tiempo real descrito en la Sección~\ref{sec:relwork}-E,
-permitiendo un ajuste continuo de la trayectoria a partir de la
-realimentación de posición del robot. Para el agarre de precisión, cada
-brazo incorpora una cámara solidaria a su muñeca que permite corregir, en el
-último tramo del movimiento, la posición exacta de agarre a partir de la
-posición real de la prenda observada --- una técnica conocida como servoing
-visual basado en imagen ---, compensando así la incertidumbre residual que
-la percepción cenital no puede resolver por sí sola. Finalmente, la
-coordinación bimanual permite procesar dos prendas en paralelo cuando la
-configuración del pedido lo permite, asignando cada prenda a uno de los dos
-brazos en función de la proximidad física dentro del almacén, la evitación
-de colisiones entre ambos brazos y el reparto equilibrado de carga de
-trabajo entre ellos.
-
-\section{Métricas de Evaluación Previstas}
-\label{sec:metrics}
-
-Dado que este trabajo se sitúa en su fase de revisión y propuesta, previa a
-la implementación, la Tabla~\ref{tab:metrics} recoge los objetivos de diseño
-previstos para cada componente del sistema, que constituirán el marco de
-evaluación del futuro Trabajo Fin de Máster. Se distingue, en particular, un
-conjunto de métricas de calidad de percepción y correspondencia, de
-métricas de calidad del emparejamiento con tendencias --- de naturaleza más
-cualitativa, al no existir un patrón de referencia objetivo para lo que
-constituye una selección ``correcta'' frente a una tendencia --- y de
-métricas de desempeño físico del picking.
-
-\begin{table*}[!t]
-\caption{Objetivos de diseño previstos por componente del sistema}
-\label{tab:metrics}
-\centering
-\footnotesize
-\begin{tabular}{@{}llp{7.5cm}c@{}}
-\toprule
-\textbf{Componente} & \textbf{Métrica} & \textbf{Descripción} & \textbf{Objetivo} \\
-\midrule
-Clasificación visual & mAP@0.5 & Precisión media sobre los 29 tipos de la taxonomía & $> 0.85$ \\
-Correspondencia de catálogo & Recall@1 & La referencia correcta es la primera candidata & $> 0.60$ \\
-Correspondencia de catálogo & Recall@5 & La referencia correcta figura entre las cinco primeras & $> 0.85$ \\
-Emparejamiento de tendencias & Precisión@K & Proporción de candidatos alineados con la tendencia entre los K seleccionados & $> 0.70$ \\
-Emparejamiento de tendencias & NDCG@K & Calidad del orden de los K candidatos seleccionados & $> 0.75$ \\
-Picking robótico & Tasa de éxito de agarre & Proporción de intentos sin fallo mecánico & $> 0.90$ \\
-Picking robótico & Tiempo de ciclo & Tiempo entre detección y depósito de la prenda & $< 8$ s/prenda \\
-Sistema (Modo 4) & Latencia extremo a extremo (picking) & Del pedido al inicio de movimiento del robot & $< 2$ s \\
-Sistema (Modo 4) & Latencia extremo a extremo (tendencias) & De la ejecución del agente al vector de tendencia activo & $< 60$ s \\
-\bottomrule
-\end{tabular}
-\end{table*}
-
-\section{Casos de Uso Ilustrativos y Aportación Esperada}
+\subsection{Casos de Uso Ilustrativos y Aportación Esperada}
 \label{sec:usecases}
 
 Con el fin de trasladar la arquitectura propuesta a un plano concreto y de
@@ -818,7 +787,7 @@ ilustrativos. Se trata de ejemplos hipotéticos, construidos para razonar
 sobre la aportación esperada del sistema propuesto, y no de resultados
 obtenidos sobre una implementación real.
 
-\subsection{Escenario 1: reposición por demanda regional}
+\subsubsection{Escenario 1: reposición por demanda regional}
 
 Considérese un centro de distribución europeo que recibe, de forma
 simultánea, un pedido de reposición de 200 unidades para el mercado del
@@ -835,7 +804,7 @@ reduciendo el tiempo de preparación de la orden de trabajo a una fracción del
 tiempo actual y eliminando por completo el riesgo de selección de una
 referencia no autorizada para su mercado.
 
-\subsection{Escenario 2: picking orientado a tendencias virales}
+\subsubsection{Escenario 2: picking orientado a tendencias virales}
 
 Considérese ahora un escenario en el que el agente de tendencias detecta,
 a partir de contenido reciente en redes sociales, una estética de
@@ -853,7 +822,7 @@ priorizan, de forma automática, las prendas visualmente más afines a la
 estética detectada --- sin que ningún operario de planta necesite tener
 conocimiento de moda para tomar esa decisión.
 
-\subsection{Escenario 3: gestión integral multiobjetivo}
+\subsubsection{Escenario 3: gestión integral multiobjetivo}
 
 Combínense ambos escenarios anteriores bajo el Modo~5: un pedido de
 reposición para el mercado británico se resuelve seleccionando, dentro del
@@ -866,7 +835,7 @@ desacoplada, este escenario ilustra la aportación central del trabajo: un
 de negocio estructuradas y sobre señales de mercado no estructuradas, sin
 intervención humana más allá de la aprobación inicial de la tendencia.
 
-\subsection{Aportación diferencial frente al estado del arte}
+\subsubsection{Aportación diferencial frente al estado del arte}
 
 Los tres escenarios anteriores permiten sintetizar la aportación esperada de
 este trabajo frente a la revisión de la Sección~\ref{sec:relwork}. Frente a
@@ -882,6 +851,45 @@ Sección~\ref{sec:trends} --- para trasladar esa inteligencia hasta la
 decisión robótica, cerrando un bucle IT-OT que, hasta donde alcanza esta
 revisión, no se encuentra descrito en la literatura de forma integrada.
 
+
+\section{Diseño Experimental y Metodología de Validación}
+\label{sec:metrics}
+
+Dado que este trabajo se sitúa en su fase de revisión y propuesta, previa a
+la implementación, se define a continuación la metodología para validar la
+hipótesis planteada. El sistema se someterá a iteraciones de \emph{picking}
+con restricciones de aceleración cinemática, registrando tanto los tiempos de ciclo
+como la robustez del agarre sobre la caja rígida frente a inercias. La Tabla~\ref{tab:metrics} recoge los objetivos de diseño
+previstos para cada componente del sistema, que constituirán el marco de
+evaluación del futuro Trabajo Fin de Máster. Se distingue, en particular, un
+conjunto de métricas de calidad de percepción y correspondencia, de
+métricas de calidad del emparejamiento con tendencias --- de naturaleza más
+cualitativa, al no existir un patrón de referencia objetivo para lo que
+constituye una selección ``correcta'' frente a una tendencia --- y de
+métricas de desempeño físico del picking.
+
+\begin{table*}[!t]
+\caption{\textsc{Objetivos de diseño previstos por componente del sistema}}
+\label{tab:metrics}
+\centering
+\footnotesize
+\begin{tabular}{@{}llp{7.5cm}c@{}}
+\toprule
+\textbf{Componente} & \textbf{Métrica} & \textbf{Descripción} & \textbf{Objetivo} \\
+\midrule
+Clasificación visual & mAP@0.5 & Precisión media sobre los 36 tipos genéricos de la taxonomía & $> 0.85$ \\
+Correspondencia de catálogo & Recall@1 & La referencia correcta es la primera candidata & $> 0.60$ \\
+Correspondencia de catálogo & Recall@5 & La referencia correcta figura entre las cinco primeras & $> 0.85$ \\
+Emparejamiento de tendencias & Precisión@K & Proporción de candidatos alineados con la tendencia entre los K seleccionados & $> 0.70$ \\
+Emparejamiento de tendencias & NDCG@K & Calidad del orden de los K candidatos seleccionados & $> 0.75$ \\
+Picking robótico & Tasa de éxito de agarre & Proporción de intentos sin fallo mecánico & $> 0.90$ \\
+Picking robótico & Tiempo de ciclo & Tiempo entre detección y depósito de la caja & $< 8$ s/caja \\
+Sistema (Modo 4) & Latencia extremo a extremo (picking) & Del pedido al inicio de movimiento del robot & $< 2$ s \\
+Sistema (Modo 4) & Latencia extremo a extremo (tendencias) & De la ejecución del agente al vector de tendencia activo & $< 60$ s \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
 \section{Plan de Trabajo}
 \label{sec:plan}
 
@@ -896,7 +904,7 @@ Modo~3 como el Modo~4; el Modo~5 se aborda en último lugar por ser la
 composición de los dos anteriores.
 
 \begin{table*}[!t]
-\caption{Plan de trabajo previsto}
+\caption{\textsc{Plan de trabajo previsto}}
 \label{tab:plan}
 \centering
 \footnotesize
@@ -930,7 +938,10 @@ Esta propuesta presenta, de forma consciente, tres límites que se documentan
 aquí con honestidad, por tratarse de un trabajo de alcance de máster y no de
 un sistema de producción.
 
-En primer lugar, el filtro categórico del emparejamiento semántico depende
+En primer lugar, el sistema asume un entorno de plegado estandarizado (restricción de contorno) para acotar la complejidad visual de los pliegues. En el entorno real de logística inversa (\emph{fast fashion}), la ropa suele devolverse doblada de formas muy variadas o caóticas; por ello, esta restricción asume una etapa de preprocesamiento (manual o automatizada aguas arriba) donde las prendas se depositan de forma semi-estructurada en las cajas rígidas antes de entrar en la célula bimanual. Así, el sistema resuelve la parte compleja de la correspondencia semántica (Kitting), asumiendo que la singulación inicial caótica se resolvió previamente. En la identificación de referencias se asume un ``overfitting forzado'' con aumentación de datos sobre unas cinco fotografías base. Esta suposición permite centrar la carga de investigación en el emparejamiento semántico multimodal \cite{guo2019imaterialist, radford2021clip}.
+
+
+En segundo lugar, el filtro categórico del emparejamiento semántico depende
 de que el agente de tendencias devuelva siempre un valor perteneciente al
 vocabulario cerrado de familias de estilo del catálogo; un modelo de
 lenguaje de menor capacidad podría, en ocasiones, devolver un valor fuera de
@@ -939,7 +950,7 @@ componente puramente semántico. Se contempla como mitigación una validación
 explícita de la salida del modelo frente al vocabulario cerrado antes de
 aceptar cualquier tendencia.
 
-En segundo lugar, el etiquetado de estilo de cada referencia de catálogo lo
+En tercer lugar, el etiquetado de estilo de cada referencia de catálogo lo
 realiza una persona de forma manual, lo que introduce un riesgo real de
 deriva de criterio a medida que crece el número de referencias etiquetadas.
 Como trabajo futuro se plantea explorar un etiquetado asistido por modelos
@@ -948,7 +959,7 @@ estilo de una referencia nueva y una persona se limite a confirmarlos o
 corregirlos, quedando este planteamiento fuera del alcance del presente
 trabajo por no constituir su núcleo de aportación investigadora.
 
-En tercer lugar, el equilibrio del catálogo entre familias de estilo es, por
+En cuarto lugar, el equilibrio del catálogo entre familias de estilo es, por
 construcción, prácticamente estático, mientras que la tendencia detectada es
 dinámica; un catálogo desequilibrado hacia unas pocas familias de estilo
 dejará a las tendencias detectadas en familias infrarrepresentadas con pocos
@@ -982,17 +993,16 @@ esta propuesta, siguiendo el plan de trabajo y los objetivos de diseño
 descritos en las Secciones~\ref{sec:plan} y~\ref{sec:metrics}, constituye el
 objeto del Trabajo Fin de Máster que da continuidad a esta investigación.
 
+\section*{Contexto del Estudio}
+Este documento constituye la fase de revisión del estado del arte y propuesta arquitectónica previa al desarrollo del Trabajo Fin de Máster en la Universidad Carlos III de Madrid.
+
 \begin{thebibliography}{00}
 
 \bibitem{sanchez2018deformable}
-J.~Sanchez \emph{et~al.}, ``Robotic manipulation and sensing of deformable
-objects in domestic and industrial applications,'' \emph{International
-Journal of Robotics Research}, 2018.
+J.~Sanchez, J.~A.~Corrales, B.~C.~Bouzgarrou, and Y.~Mezouar, ``Robotic manipulation and sensing of deformable objects in domestic and industrial applications: a survey,'' \emph{The International Journal of Robotics Research}, vol.~37, no.~7, pp.~688--716, 2018.
 
 \bibitem{lui2023textilesurvey}
-K.~Lui \emph{et~al.}, ``A survey on textile manipulation for robotic
-systems,'' \emph{IEEE Transactions on Automation Science and Engineering},
-2023.
+K.~Lui, W.~W.~Lee, and K.~L.~Lam, ``A Survey on Textile Manipulation for Robotic Systems,'' \emph{IEEE Transactions on Automation Science and Engineering}, vol.~20, no.~4, pp.~3201--3215, 2023.
 
 \bibitem{liu2016deepfashion}
 Z.~Liu, P.~Luo, S.~Qiu, X.~Wang, and X.~Tang, ``DeepFashion: Powering
@@ -1045,6 +1055,10 @@ arXiv:2303.05499}, 2023.
 S.~Macenski, T.~Foote, B.~Gerkey, C.~Lalancette, and W.~Woodall, ``Robot
 Operating System 2: Design, architecture, and uses in the wild,''
 \emph{Science Robotics}, vol.~7, no.~66, 2022.
+
+\bibitem{ref17}
+Referencia 17 del estado del arte (Llama-3 y cinemática en Edge Computing),
+pendiente de integrar en bibliografía final.
 
 \end{thebibliography}
 
