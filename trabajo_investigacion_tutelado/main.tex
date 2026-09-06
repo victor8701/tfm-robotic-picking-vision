@@ -10,6 +10,10 @@
 \usepackage{array}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta, positioning, shapes.geometric, fit, backgrounds, calc}
+\usepackage[section]{placeins}
+\usepackage{xcolor}
+
+\definecolor{azulUC3M}{RGB}{0,0,102}
 
 % --- Localizacion basica al espanol de las cabeceras del entorno IEEE ---
 \renewcommand{\IEEEkeywordsname}{Palabras clave}
@@ -21,6 +25,37 @@
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
 \begin{document}
+
+\begin{titlepage}
+	\begin{sffamily}
+	\color{azulUC3M}
+	\begin{center}
+		\makebox[\textwidth][c]{\includegraphics[width=16cm]{img/Portada_Logo.png}}\\[2.5cm]
+		\begin{Large}
+			Máster Universitario en Robótica y Automatización\\
+			2025--2026\\
+			\vspace{2cm}		
+			\textsl{Trabajo de Investigación Tutelado}
+			\bigskip
+			
+		\end{Large}
+		 	{\Huge Picking Robótico Bimanual Guiado por \\[0.1cm]Tendencias de Moda}\\[0.5cm]
+            {\Large \textit{Cierre del bucle IT-OT en intralogística textil mediante modelos visión-lenguaje}}\\
+		 	\vspace*{0.5cm}
+	 		\rule{10.5cm}{0.1mm}\\
+			\vspace*{0.9cm}
+			{\LARGE Víctor Martín Parra}\\
+			\vspace*{1cm}
+		\begin{Large}
+			Leganés, 2025\\
+		\end{Large}
+	\end{center}
+	\vfill
+	\color{black}
+	\includegraphics[width=4.2cm]{img/creativecommons.png}\\
+	Esta obra se encuentra sujeta a la licencia Creative Commons \textbf{Reconocimiento - No Comercial - Sin Obra Derivada}
+	\end{sffamily}
+\end{titlepage}
 
 \title{Picking Robótico Bimanual Guiado por Tendencias de Moda\\[1ex]\large \textit{Cierre del bucle IT-OT en intralogística textil mediante modelos visión-lenguaje}}
 
@@ -52,7 +87,7 @@ artificial --- y propone una arquitectura de sistema que integra estos tres
 campos en un único bucle IT-Middleware-OT. La propuesta se articula en cinco
 modos de operación progresivos, desde el vaciado geométrico de cajas hasta la
 optimización multiobjetivo que combina demanda geográfica y alineamiento con
-tendencias sociales, empleando un robot colaborativo bimanual, una taxonomía de prendas de 36 tipos genéricos diseñada específicamente para picking industrial \cite{guo2019imaterialist, jia2020fashionpedia} y un
+tendencias sociales, empleando un robot colaborativo bimanual, una taxonomía de prendas de 29 tipos genéricos diseñada específicamente para picking industrial \cite{guo2019imaterialist, jia2020fashionpedia} y un
 espacio semántico compartido basado en modelos de lenguaje-visión. La literatura actual presenta un claro vacío metodológico al tratar la manipulación cinemática (OT) y el análisis semántico de modas (IT) como silos separados; este trabajo salva esa distancia. El documento describe la arquitectura propuesta a alto nivel, discute
 escenarios de aplicación ilustrativos y presenta la planificación de trabajo
 prevista.
@@ -137,7 +172,10 @@ robótico bimanual puede cerrar el bucle IT-Middleware-OT de forma completa,
 desde el análisis de tendencias de moda en redes sociales hasta la selección
 física de prendas en el almacén, empleando modelos multimodales
 visión-lenguaje como puente semántico entre el lenguaje de la moda y la
-visión del robot}. La literatura actual presenta un claro vacío metodológico al tratar la manipulación cinemática operacional (OT) y el análisis semántico de tendencias (IT) como silos separados. Este trabajo salva esa distancia.
+visión del robot}. Como se argumenta en la Sección~\ref{sec:relwork}, la
+literatura actual trata la manipulación robótica operacional (OT) y el
+análisis semántico de tendencias (IT) como silos metodológicos separados;
+este trabajo propone salvar esa distancia.
 
 Las contribuciones esperadas de esta línea de investigación, y que se
 desarrollan a lo largo del artículo, son las siguientes:
@@ -298,6 +336,24 @@ de ABB (\emph{Externally Guided Motion}, EGM) complementa esta capa,
 permitiendo el envío de consignas de posición en tiempo real desde un nodo
 de procesamiento externo hacia el controlador del robot.
 
+El principio de posponer la diferenciación de un producto hasta disponer de
+una señal de demanda real --- el llamado \emph{postponement} --- cuenta con
+un precedente empresarial ampliamente documentado fuera de la robótica: el
+modelo de venta directa y fabricación bajo pedido (\emph{build-to-order})
+que popularizó Dell Computer Corporation a partir de los años noventa. Dell
+sustituyó la acumulación de inventario especulativo por una
+\emph{integración virtual} de su cadena de suministro basada en tecnologías
+de la información, de modo que la señal de demanda del cliente final se
+propagaba, con una distorsión mínima, hasta el ensamblaje y el
+aprovisionamiento de componentes \cite{magretta1998virtual}. Este trabajo
+traslada un principio análogo al dominio de la moda: los Modos~3 a~5 de la
+arquitectura propuesta (Secciones~\ref{sec:modes}) no resuelven qué prenda
+concreta prioriza el picking por anticipado, mediante previsión de
+catálogo, sino que retrasan esa decisión hasta disponer de una señal de
+demanda real --- geográfica en el Modo~3, de tendencia social en el
+Modo~4 --- de forma análoga a como la integración virtual de Dell retrasaba
+el ensamblaje hasta disponer de la orden del cliente.
+
 \subsection{Síntesis y posicionamiento}
 
 La revisión anterior permite identificar con precisión el vacío que este
@@ -326,9 +382,10 @@ La arquitectura propuesta se organiza en tres capas claramente diferenciadas
 separación conceptual habitual en los sistemas ciber-físicos de Industria
 4.0. La Fig.~\ref{fig:arch} resume esta organización. La capa IT concentra
 la inteligencia de negocio: el catálogo clasificado por marketing y el
-agente de tendencias (LLM local). Para garantizar tiempos de respuesta compatibles con el ciclo industrial y evitar latencias o problemas de privacidad, la inferencia de Llama-3 y CLIP se ejecuta en el PC Orquestador (Edge Computing) utilizando formatos cuantizados (GGUF, ONNX) o motores ligeros (Ollama, TensorRT) \cite{guo2019imaterialist, radford2021clip, ref17},
-sometido a aprobación por parte de un operario antes de tener ningún efecto
-sobre la planta. La capa de Middleware, construida sobre ROS~2, aloja el
+agente de tendencias (LLM local). Para garantizar tiempos de respuesta compatibles con el ciclo industrial y evitar latencias o problemas de privacidad, la inferencia de Llama-3 \cite{llama3} y CLIP \cite{radford2021clip} se ejecuta en el PC Orquestador (Edge Computing) utilizando formatos cuantizados (GGUF \cite{ggerganov2023llamacpp}, ONNX \cite{onnxruntime}) o motores ligeros (Ollama, TensorRT),
+sometido a aprobación por parte de un operario, desde el panel HMI de
+planta, antes de tener ningún efecto sobre el Middleware. La capa de
+Middleware, construida sobre ROS~2, aloja el
 catálogo estructurado de producto y el pipeline de percepción que traduce
 imagen en identidad de producto. La capa OT ejecuta físicamente el picking
 mediante dos brazos robóticos colaborativos y su sensorial asociado.
@@ -342,13 +399,14 @@ mediante dos brazos robóticos colaborativos y su sensorial asociado.
   it/.style={layer, fill=black!5},
   mw/.style={layer, fill=black!12},
   ot/.style={layer, fill=black!20},
+  gate/.style={rectangle, draw, rounded corners, minimum width=4.6cm,
+    minimum height=0.75cm, align=center, thick, fill=black!25, font=\scriptsize},
   arr/.style={-{Stealth[length=2mm]}, thick}
 ]
 \node[it] (it) at (0,3.1)
   {\textbf{IT --- Negocio}\\[2pt]
    Catálogo clasificado por marketing\\
-   Agente de tendencias (LLM local)\\
-   Aprobación del operario};
+   Agente de tendencias (LLM local)};
 \node[mw] (mw) at (0,0)
   {\textbf{Middleware --- ROS~2}\\[2pt]
    Catálogo estructurado de producto\\
@@ -358,11 +416,17 @@ mediante dos brazos robóticos colaborativos y su sensorial asociado.
   {\textbf{OT --- Robótica}\\[2pt]
    Robots colaborativos bimanuales\\
    Cámara cenital y cámaras en muñeca\\
-   Controlador de seguridad de planta};
-\draw[arr] (it.south) -- node[right, xshift=1mm]{tendencias aprobadas} (mw.north);
+   Controlador de seguridad de planta (PLC)};
+\node[gate] (gate) at (0,1.55)
+  {Aprobación del operario (panel HMI de planta)};
+\draw[arr] (it.south) -- (gate.north);
+\draw[arr] (gate.south) -- node[right, xshift=1mm]{tendencia activa} (mw.north);
 \draw[arr] (mw.south) -- node[right, xshift=1mm]{coordenadas de picking} (ot.north);
 \end{tikzpicture}
-\caption{Arquitectura propuesta en tres capas (IT-Middleware-OT).}
+\caption{Arquitectura propuesta en tres capas (IT-Middleware-OT). La
+aprobación del operario se ejecuta desde el panel HMI de planta (OT) y actúa
+como filtro obligatorio antes de que una tendencia propuesta por IT llegue a
+activarse en el Middleware.}
 \label{fig:arch}
 \end{figure}
 
@@ -370,14 +434,15 @@ mediante dos brazos robóticos colaborativos y su sensorial asociado.
 
 La plataforma física propuesta combina dos brazos colaborativos de seis
 grados de libertad --- que permiten tanto el reparto de carga entre ambos
-brazos como la asistencia mutua en el agarre de prendas voluminosas --- con
+brazos como la asistencia mutua en el agarre de cajas voluminosas --- con
 una cámara cenital de profundidad para la percepción global de la caja y una
 cámara adicional solidaria a cada muñeca de robot para el ajuste fino de la
-posición de agarre mediante servoing visual. Un autómata programable
-gestiona la máquina de estados de seguridad de la célula de trabajo, y un
-panel de operador permite seleccionar el modo de operación activo, revisar
-tendencias pendientes de aprobación y supervisar el estado general del
-sistema. La Tabla~\ref{tab:hw} resume esta configuración.
+posición de agarre de la caja mediante servoing visual. Un autómata
+programable (PLC) gestiona la máquina de estados de seguridad de la célula
+de trabajo, y un panel de operador (HMI) permite seleccionar el modo de
+operación activo, revisar tendencias pendientes de aprobación y supervisar
+el estado general del sistema. La Tabla~\ref{tab:hw} resume esta
+configuración.
 
 \begin{table}[!t]
 \caption{\textsc{Plataforma robótica y sensorial propuesta}}
@@ -388,12 +453,16 @@ sistema. La Tabla~\ref{tab:hw} resume esta configuración.
 \toprule
 \textbf{Componente} & \textbf{Rol} \\
 \midrule
-Brazo colaborativo (×2) & Picking izquierdo / derecho y asistencia bimanual \\
-Cámara cenital de profundidad & Detección de cajas y clasificación de
+Brazo colaborativo (×2) & Picking izquierdo / derecho y asistencia bimanual
+  sobre cajas \\
+Cámara cenital de profundidad & Detección de cajas y clasificación visual de
   prendas \\
-Cámara en muñeca (×2) & Ajuste fino de agarre mediante servoing visual \\
-Autómata de seguridad & Máquina de estados y supervisión de seguridad \\
-Panel de operador & Selección de modo, aprobación de tendencias, estado \\
+Cámara en muñeca (×2) & Ajuste fino de agarre de la caja mediante servoing
+  visual \\
+Autómata de seguridad (PLC) & Máquina de estados y supervisión de
+  seguridad \\
+Panel de operador (HMI) & Selección de modo, aprobación de tendencias,
+  estado \\
 Estación de procesamiento & Inferencia de percepción y nodo de middleware \\
 \bottomrule
 \end{tabular}
@@ -413,7 +482,7 @@ transmite al controlador del robot mediante el protocolo de control externo
 de movimiento en tiempo real descrito en la Sección~\ref{sec:relwork}-E.
 Para evitar que la prenda doblada salga volando por inercia durante el
 transporte a alta velocidad, el control de movimiento incluye una
-restricción de aceleración cinemática (límites de aceleración/desaceleración) \cite{guo2019imaterialist, ref17},
+restricción de aceleración cinemática (límites de aceleración/desaceleración) \cite{biagiotti2008trajectory},
 permitiendo un ajuste continuo de la trayectoria a partir de la
 realimentación de posición del robot. Para el agarre de precisión, cada
 brazo incorpora una cámara solidaria a su muñeca que permite corregir, en el
@@ -430,8 +499,6 @@ trabajo entre ellos.
 
 \subsection{Taxonomía de Prendas Orientada a Picking Robótico}
 \label{sec:taxonomy}
-
-\subsection{Criterios de diseño}
 
 Las taxonomías de moda del estado del arte descritas en la
 Sección~\ref{sec:relwork}-B están diseñadas para tareas de anotación
@@ -466,12 +533,12 @@ según se detalla en la siguiente subsección.
 DeepFashion & 2016 & 50 & Clasificación y recuperación \\
 iMaterialist & 2019 & 228 & Segmentación de grano fino \\
 Fashionpedia & 2020 & 27 + 294 attrs. & Ontología completa \\
-\textbf{Propuesta} & --- & \textbf{36 tipos} & \textbf{Picking industrial} \\
+\textbf{Propuesta} & --- & \textbf{29 tipos} & \textbf{Picking industrial} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-La taxonomía propuesta organiza sus 36 tipos genéricos en seis familias \cite{guo2019imaterialist, jia2020fashionpedia}
+La taxonomía propuesta organiza sus 29 tipos genéricos en seis familias \cite{guo2019imaterialist, jia2020fashionpedia}
 --- prendas de torso, prendas de la cintura hacia abajo, prendas de cuerpo
 entero, prendas de abrigo, calzado y accesorios --- seleccionadas por
 presentar un rasgo estructural distinguible de forma fiable incluso con la
@@ -614,9 +681,12 @@ responsabilidad es delimitar dónde se encuentra cada contenedor.
 
 \subsubsection{Clasificación por tipo genérico}
 
-Una vez abierta la caja, la segunda etapa observa la prenda en su condición
-real de almacén --- doblada, bajo iluminación industrial, vista desde una
-cámara cenital --- y determina a cuál de los 36 tipos genéricos de la
+Las cajas llegan ya abiertas por los extremos al puesto de percepción --- su
+apertura no es una acción que ejecute el sistema, sino una condición previa
+del proceso, ver Sección~\ref{sec:robot} ---, de modo que la segunda etapa
+observa directamente la prenda en su condición real de almacén: doblada,
+bajo iluminación industrial, vista desde una cámara cenital. A partir de esa
+imagen, la etapa determina a cuál de los 29 tipos genéricos de la
 taxonomía de la Sección~\ref{sec:taxonomy} pertenece. Es importante subrayar
 que esta condición de observación --- prenda doblada, no puesta sobre un
 maniquí ni sobre una persona --- es precisamente la que está ausente de los
@@ -877,7 +947,7 @@ métricas de desempeño físico del picking.
 \toprule
 \textbf{Componente} & \textbf{Métrica} & \textbf{Descripción} & \textbf{Objetivo} \\
 \midrule
-Clasificación visual & mAP@0.5 & Precisión media sobre los 36 tipos genéricos de la taxonomía & $> 0.85$ \\
+Clasificación visual & mAP@0.5 & Precisión media sobre los 29 tipos genéricos de la taxonomía & $> 0.85$ \\
 Correspondencia de catálogo & Recall@1 & La referencia correcta es la primera candidata & $> 0.60$ \\
 Correspondencia de catálogo & Recall@5 & La referencia correcta figura entre las cinco primeras & $> 0.85$ \\
 Emparejamiento de tendencias & Precisión@K & Proporción de candidatos alineados con la tendencia entre los K seleccionados & $> 0.70$ \\
@@ -1056,9 +1126,26 @@ S.~Macenski, T.~Foote, B.~Gerkey, C.~Lalancette, and W.~Woodall, ``Robot
 Operating System 2: Design, architecture, and uses in the wild,''
 \emph{Science Robotics}, vol.~7, no.~66, 2022.
 
-\bibitem{ref17}
-Referencia 17 del estado del arte (Llama-3 y cinemática en Edge Computing),
-pendiente de integrar en bibliografía final.
+\bibitem{llama3}
+AI@Meta, ``The Llama 3 Herd of Models,'' \emph{arXiv preprint
+arXiv:2407.21783}, 2024.
+
+\bibitem{ggerganov2023llamacpp}
+G.~Gerganov \emph{et~al.}, ``llama.cpp: LLM inference in C/C++,'' GitHub
+repository, 2023. [Online]. Available: https://github.com/ggerganov/llama.cpp
+
+\bibitem{onnxruntime}
+ONNX Runtime developers, ``ONNX Runtime,'' 2021. [Online]. Available:
+https://onnxruntime.ai
+
+\bibitem{biagiotti2008trajectory}
+L.~Biagiotti and C.~Melchiorri, \emph{Trajectory Planning for Automatic
+Machines and Robots}. Berlin, Germany: Springer, 2008.
+
+\bibitem{magretta1998virtual}
+J.~Magretta, ``The Power of Virtual Integration: An Interview with Dell
+Computer's Michael Dell,'' \emph{Harvard Business Review}, vol.~76, no.~2,
+pp.~72--84, 1998.
 
 \end{thebibliography}
 
