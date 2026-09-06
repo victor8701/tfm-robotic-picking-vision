@@ -47,7 +47,7 @@
 			{\LARGE Víctor Martín Parra}\\
 			\vspace*{1cm}
 		\begin{Large}
-			Leganés, 2025\\
+			Leganés, 2026\\
 		\end{Large}
 	\end{center}
 	\vfill
@@ -202,19 +202,17 @@ descripciones textuales de tendencias en decisiones de picking.
 
 El resto del artículo se organiza como sigue. La Sección~\ref{sec:relwork}
 presenta la revisión del estado del arte. La Sección~\ref{sec:arch} describe
-la arquitectura propuesta a alto nivel. La Sección~\ref{sec:taxonomy}
-presenta la taxonomía de prendas y el principio de separación de
-responsabilidades entre percepción, catálogo y lenguaje. Las
-Secciones~\ref{sec:vision} y \ref{sec:trends} detallan, respectivamente, el
-pipeline de percepción y correspondencia de catálogo y el pipeline de
-inteligencia de tendencias. La Sección~\ref{sec:modes} aborda los modos de
-reposición geográfica y optimización multiobjetivo. La
-Sección~\ref{sec:robot} describe la capa de ejecución robótica. La
-Sección~\ref{sec:metrics} enumera las métricas de evaluación previstas. La
-Sección~\ref{sec:usecases} presenta escenarios de aplicación ilustrativos. La
-Sección~\ref{sec:plan} resume la planificación de trabajo. La
-Sección~\ref{sec:future} discute limitaciones y trabajo futuro, y la
-Sección~\ref{sec:conclusion} concluye el artículo.
+la arquitectura propuesta en tres capas, la plataforma robótica y sensorial,
+la capa de ejecución robótica y control, y la taxonomía de prendas orientada
+a picking industrial, incluyendo el principio de separación de
+responsabilidades entre percepción, catálogo y lenguaje. La
+Sección~\ref{sec:modes} detalla los cinco modos de operación progresivos
+--- percepción y correspondencia de catálogo, reposición geográfica,
+inteligencia de tendencias y optimización multiobjetivo --- y presenta los
+escenarios de aplicación ilustrativos. La Sección~\ref{sec:metrics} enumera
+las métricas de evaluación previstas. La Sección~\ref{sec:plan} resume la
+planificación de trabajo. La Sección~\ref{sec:future} discute limitaciones y
+trabajo futuro, y la Sección~\ref{sec:conclusion} concluye el artículo.
 
 \section{Trabajos Relacionados / Estado del Arte}
 \label{sec:relwork}
@@ -347,7 +345,7 @@ de la información, de modo que la señal de demanda del cliente final se
 propagaba, con una distorsión mínima, hasta el ensamblaje y el
 aprovisionamiento de componentes \cite{magretta1998virtual}. Este trabajo
 traslada un principio análogo al dominio de la moda: los Modos~3 a~5 de la
-arquitectura propuesta (Secciones~\ref{sec:modes}) no resuelven qué prenda
+arquitectura propuesta (Sección~\ref{sec:modes}) no resuelven qué prenda
 concreta prioriza el picking por anticipado, mediante previsión de
 catálogo, sino que retrasan esa decisión hasta disponer de una señal de
 demanda real --- geográfica en el Modo~3, de tendencia social en el
@@ -496,6 +494,7 @@ brazos en función de la proximidad física dentro del almacén, la evitación
 de colisiones entre ambos brazos y el reparto equilibrado de carga de
 trabajo entre ellos.
 
+\FloatBarrier
 
 \subsection{Taxonomía de Prendas Orientada a Picking Robótico}
 \label{sec:taxonomy}
@@ -521,7 +520,7 @@ percepción visual de primer nivel, y traslada la resolución de atributos
 finos --- corte, material, largo, ocasión --- a un catálogo estructurado,
 según se detalla en la siguiente subsección.
 
-\begin{table}[!t]
+\begin{table}[!h]
 \caption{\textsc{Comparación con taxonomías de moda del estado del arte}}
 \label{tab:taxonomy}
 \centering
@@ -662,7 +661,7 @@ escalón necesario para el siguiente: el Modo~2 no puede evaluarse sin que el
 Modo~1 aporte una imagen limpia de la prenda; los Modos~3 y 4 comparten como
 prerrequisito la identificación de SKU que aporta el Modo~2; y el Modo~5 no
 es más que la composición formal de los Modos~3 y 4, descrita en la
-Sección~\ref{sec:modes}.
+Sección~\ref{sec:mode5}.
 
 
 \subsection{Modos 1 y 2: Percepción y Correspondencia de Catálogo}
@@ -833,6 +832,7 @@ contribución de señales más débiles pero coherentes entre sí.
 
 
 \subsection{Modo 5: optimización multiobjetivo}
+\label{sec:mode5}
 
 El Modo~5 combina los Modos~3 y 4 dentro de un único criterio de decisión:
 la demanda geográfica actúa como restricción dura sobre el conjunto de
@@ -967,7 +967,7 @@ La Tabla~\ref{tab:plan} resume la planificación prevista para el desarrollo
 del Trabajo Fin de Máster que dará continuidad a este trabajo de
 investigación tutelado, organizada en fases que respetan las dependencias
 técnicas entre modos de operación descritas en la
-Sección~\ref{sec:arch}-B: la infraestructura de middleware y control es
+Sección~\ref{sec:modes}-A: la infraestructura de middleware y control es
 condición previa para el Modo~1, que a su vez condiciona el Modo~2 y, a
 través de él, la correspondencia de catálogo de la que dependen tanto el
 Modo~3 como el Modo~4; el Modo~5 se aborda en último lugar por ser la
@@ -1059,8 +1059,8 @@ esta integración puede reducir de forma significativa el tiempo de
 preparación de pedidos orientados a mercado y habilitar, por primera vez, un
 picking robótico sensible a la tendencia de moda vigente sin intervención
 manual más allá de la aprobación de negocio. La validación experimental de
-esta propuesta, siguiendo el plan de trabajo y los objetivos de diseño
-descritos en las Secciones~\ref{sec:plan} y~\ref{sec:metrics}, constituye el
+esta propuesta, siguiendo los objetivos de diseño y el plan de trabajo
+descritos en las Secciones~\ref{sec:metrics} y~\ref{sec:plan}, constituye el
 objeto del Trabajo Fin de Máster que da continuidad a esta investigación.
 
 \section*{Contexto del Estudio}
