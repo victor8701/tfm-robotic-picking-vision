@@ -1,0 +1,13 @@
+# transformers pinned a 4.51.3 a proposito: Florence-2 usa codigo remoto
+# (trust_remote_code=True) que se rompe con transformers >= 4.52.1 y con
+# la serie 5.x (AttributeError: 'Florence2LanguageConfig' object has no
+# attribute 'forced_bos_token_id' -- incompatibilidad conocida y activa
+# en la comunidad, sin fix oficial de Microsoft a fecha de este commit).
+# Verificado en este entorno: con 4.51.3 carga sin problemas.
+transformers==4.51.3
+accelerate>=1.15.0
+peft>=0.21.0
+einops
+timm
+pillow>=12.0.0
+pyarrow

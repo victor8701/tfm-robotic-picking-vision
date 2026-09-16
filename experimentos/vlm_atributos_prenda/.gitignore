@@ -1,0 +1,7 @@
+# Regenerable desde el parquet cacheado (~/.cache/fashion-product-images-small/)
+# + preparar_dataset_florence2.py con la misma semilla -- no hace falta
+# subir varios cientos de imagenes binarias al repo.
+data/imagenes_cache/
+
+# Adapters intermedios/experimentales que no sean el final documentado.
+modelos/*/checkpoint-*/
