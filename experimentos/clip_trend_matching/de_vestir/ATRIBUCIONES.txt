@@ -1,0 +1,17 @@
+Dataset: Fashion Product Images (Small), Param Aggarwal (Kaggle)
+https://www.kaggle.com/datasets/paramaggarwal/fashion-product-images-small
+Mirror en Hugging Face: https://huggingface.co/datasets/ashraq/fashion-product-images-small
+Aviso: no es una licencia libre explicita (origen e-commerce Myntra via Kaggle) -- uso apropiado para prototipo de investigacion academica, revisar antes de cualquier otro uso.
+
+formal_shoes_1.jpg: Buckaroo Men Flores Black Formal Shoes (articleType=Formal Shoes, usage=Formal, gender=Men, color=Black, id_dataset=9036)
+formal_shoes_2.jpg: Clarks Men Hang Work Leather Black Formal Shoes (articleType=Formal Shoes, usage=Formal, gender=Men, color=Black, id_dataset=10268)
+formal_shoes_3.jpg: Arrow Men Black Formal Shoes (articleType=Formal Shoes, usage=Formal, gender=Men, color=Black, id_dataset=59435)
+trousers_1.jpg: John Miller Men Solid Type Black Trousers (articleType=Trousers, usage=Formal, gender=Men, color=Black, id_dataset=10257)
+trousers_2.jpg: John Miller Men Dark Grey Trousers (articleType=Trousers, usage=Formal, gender=Men, color=Grey, id_dataset=26163)
+trousers_3.jpg: John Miller Men Striped Grey Trousers (articleType=Trousers, usage=Formal, gender=Men, color=Grey, id_dataset=26164)
+ties_1.jpg: Turtle Men Stripes Burgundy Ties (articleType=Ties, usage=Formal, gender=Men, color=Burgundy, id_dataset=15948)
+ties_2.jpg: Park Avenue Blue Patterned Tie (articleType=Ties, usage=Formal, gender=Men, color=Blue, id_dataset=49696)
+ties_3.jpg: Park Avenue Men Brown Tie (articleType=Ties, usage=Formal, gender=Men, color=Brown, id_dataset=50314)
+shirts_1.jpg: Reid & Taylor Men Check Purple Shirts (articleType=Shirts, usage=Formal, gender=Men, color=Purple, id_dataset=12369)
+shirts_2.jpg: John Players Men Navy Blue Shirt (articleType=Shirts, usage=Formal, gender=Men, color=Navy Blue, id_dataset=37812)
+shirts_3.jpg: John Miller Men Stripes White Red Shirts (articleType=Shirts, usage=Formal, gender=Men, color=Red, id_dataset=9452)

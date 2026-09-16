@@ -1,0 +1,14 @@
+Dataset: Fashion Product Images (Small), Param Aggarwal (Kaggle)
+https://www.kaggle.com/datasets/paramaggarwal/fashion-product-images-small
+Mirror en Hugging Face: https://huggingface.co/datasets/ashraq/fashion-product-images-small
+Aviso: no es una licencia libre explicita (origen e-commerce Myntra via Kaggle) -- uso apropiado para prototipo de investigacion academica, revisar antes de cualquier otro uso.
+
+dresses_1.jpg: Arrow Woman Women Blue Dress (articleType=Dresses, usage=Casual, gender=Women, color=Blue, id_dataset=39716)
+dresses_2.jpg: Gini and Jony Girl's Vanya White Polka Dot Kidswear (articleType=Dresses, usage=Casual, gender=Women, color=White, id_dataset=4988)
+dresses_3.jpg: Gini and Jony Girls Black Dress (articleType=Dresses, usage=Casual, gender=Girls, color=Black, id_dataset=31127)
+heels_1.jpg: Rocia Women Black Flats (articleType=Heels, usage=Casual, gender=Women, color=Black, id_dataset=54118)
+heels_2.jpg: Catwalk Women Leather Flats (articleType=Heels, usage=Casual, gender=Women, color=Brown, id_dataset=2872)
+heels_3.jpg: Catwalk Women Gun Metal Grey Heels (articleType=Heels, usage=Casual, gender=Women, color=Grey, id_dataset=11518)
+clutches_1.jpg: Spice Art Women Ribbon Embroidery Red Clutch (articleType=Clutches, usage=Casual, gender=Women, color=Red, id_dataset=20851)
+clutches_2.jpg: Yelloe Off White Fur Zip Clutch (articleType=Clutches, usage=Casual, gender=Women, color=Off White, id_dataset=27045)
+clutches_3.jpg: Rocky S Women Red Clutch (articleType=Clutches, usage=Casual, gender=Women, color=Red, id_dataset=58170)

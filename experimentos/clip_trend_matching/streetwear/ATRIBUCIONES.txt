@@ -1,0 +1,17 @@
+Dataset: Fashion Product Images (Small), Param Aggarwal (Kaggle)
+https://www.kaggle.com/datasets/paramaggarwal/fashion-product-images-small
+Mirror en Hugging Face: https://huggingface.co/datasets/ashraq/fashion-product-images-small
+Aviso: no es una licencia libre explicita (origen e-commerce Myntra via Kaggle) -- uso apropiado para prototipo de investigacion academica, revisar antes de cualquier otro uso.
+
+sweatshirts_1.jpg: ADIDAS Men Lfc Auth Hood Grey Sweatshirts (articleType=Sweatshirts, usage=Sports, gender=Men, color=Grey, id_dataset=13089)
+sweatshirts_2.jpg: ADIDAS Men Blue Sweatshirt (articleType=Sweatshirts, usage=Casual, gender=Men, color=Blue, id_dataset=23876)
+sweatshirts_3.jpg: United Colors of Benetton Men Solid Blue Sweatshirt (articleType=Sweatshirts, usage=Casual, gender=Men, color=Blue, id_dataset=19547)
+caps_1.jpg: Manchester United Men Solid White Cap (articleType=Caps, usage=Casual, gender=Men, color=White, id_dataset=18208)
+caps_2.jpg: Puma Unisex White Cap (articleType=Caps, usage=Casual, gender=Unisex, color=White, id_dataset=58148)
+caps_3.jpg: ADIDAS Unisex Blue Cap (articleType=Caps, usage=Sports, gender=Unisex, color=Blue, id_dataset=25712)
+sports_shoes_1.jpg: Nike Men's Incinerate MSL White Blue Shoe (articleType=Sports Shoes, usage=Sports, gender=Men, color=White, id_dataset=3168)
+sports_shoes_2.jpg: ADIDAS Men's Lowell White Silver Shoe (articleType=Sports Shoes, usage=Sports, gender=Men, color=White, id_dataset=6628)
+sports_shoes_3.jpg: Puma Men Axis White & Grey Sports Shoes (articleType=Sports Shoes, usage=Sports, gender=Men, color=White, id_dataset=33822)
+jackets_1.jpg: Forever New Women Stone Cream Jacket (articleType=Jackets, usage=Casual, gender=Women, color=Cream, id_dataset=6889)
+jackets_2.jpg: Forever New Women Indigo Wash Blue Jacket (articleType=Jackets, usage=Casual, gender=Women, color=Blue, id_dataset=6887)
+jackets_3.jpg: ADIDAS Originals Men Solid Green Jacket (articleType=Jackets, usage=Casual, gender=Men, color=Green, id_dataset=19744)

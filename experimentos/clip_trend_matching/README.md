@@ -166,6 +166,72 @@ que de verdad sostiene el sistema, y el boost categórico es un refuerzo,
 no una muleta — tal y como ya lo planteaba tu propio §7.2 ("el score
 semántico sigue siendo la señal principal").
 
+## Carpetas de ejemplo con fotos reales (una prenda por imagen)
+
+Además de `muestras/` (los renders temáticos originales), el repo trae 6
+carpetas más, una por Grupo de estilo, con **fotos reales de producto**
+(una prenda por imagen, fondo limpio — la condición "catálogo" de
+§5.6): [`casual/`](casual/), [`streetwear/`](streetwear/),
+[`de_vestir/`](de_vestir/), [`fiesta_noche/`](fiesta_noche/),
+[`deportivo/`](deportivo/) y [`playa_resort/`](playa_resort/).
+
+```bash
+python3 clip_matching_poc.py --muestras casual
+python3 clip_matching_poc.py --muestras fiesta_noche
+# etc. -- una por una, cada carpeta es independiente
+```
+
+**De dónde salen**: en vez de buscar imágenes sueltas por internet (la
+búsqueda de texto de Wikimedia Commons mezclaba fotos de museo, gente
+llevando la prenda puesta, colecciones... ver
+`herramientas/descargar_muestras_wikimedia.py`, que se deja como
+referencia pero ya no se usa), estas 60 imágenes vienen de un dataset
+real de fotos de producto: *Fashion Product Images (Small)*
+([Kaggle](https://www.kaggle.com/datasets/paramaggarwal/fashion-product-images-small),
+mirror en [Hugging Face](https://huggingface.co/datasets/ashraq/fashion-product-images-small)).
+Cada carpeta tiene su `ATRIBUCIONES.txt` con la ficha de cada prenda
+(nombre, tipo, color, id). **Aviso de licencia**: es de las fuentes de
+datos de moda más usadas en investigación/docencia de ML, pero no tiene
+una licencia libre explícita como Wikimedia Commons (origen: catálogo
+de e-commerce) — adecuado para este prototipo académico, revísalo tú
+mismo antes de darle otro uso.
+
+El script que las generó,
+[`herramientas/poblar_muestras_dataset.py`](herramientas/poblar_muestras_dataset.py),
+mapea a mano cada Grupo de estilo a uno o varios `articleType` del
+dataset (p. ej. "Streetwear" → Sweatshirts + Caps + Sports Shoes +
+Jackets) porque el dataset no tiene esas 6 categorías como campo
+propio. Puedes pedirle más imágenes por carpeta sin tocar nada:
+
+```bash
+cd herramientas
+pip install pyarrow
+python3 poblar_muestras_dataset.py --por-filtro 5   # 5 en vez de las 2-3 que ya hay
+```
+
+(la primera vez descarga ~136 MB del dataset y los cachea en
+`~/.cache/fashion-product-images-small/`, fuera del repo).
+
+**Como pediste, hay muchas y de sobra — bórralas tú a mano** (o edita
+`CATEGORIAS` en el script y vuelve a correrlo) hasta quedarte solo con
+las que te convenzan. Dos cosas que vas a encontrar al revisarlas,
+ninguna es un bug:
+
+- El dataset tiene ruido de etiquetado propio: alguna imagen guardada
+  en `heels_N.jpg` (filtrada por `articleType == "Heels"`) tiene un
+  `productDisplayName` que dice "Flats" — es una inconsistencia del
+  dataset original, no de este script (mira el `ATRIBUCIONES.txt` de
+  la carpeta si quieres confirmarlo).
+- Al correr `clip_matching_poc.py --muestras fiesta_noche`, CLIP no
+  clasificó **ninguna** de las 9 imágenes como "Fiesta/Noche" (las
+  repartió entre "De vestir" y "Playa/Resort") — sin contexto de
+  escena (sin brillo, lentejuelas, luz de fiesta...) una foto de
+  producto sobre fondo blanco no siempre da pistas suficientes para
+  distinguir "elegante de oficina" de "elegante de fiesta". Es el
+  mismo tipo de límite que ya viste con `muestras/`, solo que más
+  marcado con fotos reales — dato honesto para la memoria, no algo que
+  arreglar en el script.
+
 ## Cómo experimentar por tu cuenta
 
 - **Prueba tendencias nuevas**: añade un objeto más en

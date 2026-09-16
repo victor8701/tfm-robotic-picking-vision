@@ -1,0 +1,14 @@
+Dataset: Fashion Product Images (Small), Param Aggarwal (Kaggle)
+https://www.kaggle.com/datasets/paramaggarwal/fashion-product-images-small
+Mirror en Hugging Face: https://huggingface.co/datasets/ashraq/fashion-product-images-small
+Aviso: no es una licencia libre explicita (origen e-commerce Myntra via Kaggle) -- uso apropiado para prototipo de investigacion academica, revisar antes de cualquier otro uso.
+
+flip_flops_1.jpg: Fila Men Cush Flex Black Slippers (articleType=Flip Flops, usage=Casual, gender=Men, color=Black, id_dataset=18653)
+flip_flops_2.jpg: Ben 10 Boys Navy Blue Slippers (articleType=Flip Flops, usage=Casual, gender=Boys, color=Navy Blue, id_dataset=46885)
+flip_flops_3.jpg: Lotto Men XL Water Man Silver Slippers (articleType=Flip Flops, usage=Casual, gender=Men, color=Silver, id_dataset=19123)
+sandals_1.jpg: ADIDAS Men Spry M Black Sandals (articleType=Sandals, usage=Casual, gender=Men, color=Black, id_dataset=12967)
+sandals_2.jpg: Crocs Dora Boots Pink Sandals (articleType=Sandals, usage=Casual, gender=Women, color=Pink, id_dataset=8574)
+sandals_3.jpg: Ganuchi Men Casual Black Sandals (articleType=Sandals, usage=Casual, gender=Men, color=Black, id_dataset=11940)
+sunglasses_1.jpg: Image Men Sunglasses (articleType=Sunglasses, usage=Casual, gender=Men, color=Black, id_dataset=16957)
+sunglasses_2.jpg: Ray-Ban Men Active Lifestyle Copper Sunglasses (articleType=Sunglasses, usage=Casual, gender=Men, color=Copper, id_dataset=28200)
+sunglasses_3.jpg: Louis Philippe Men Grey Sunglasses (articleType=Sunglasses, usage=Casual, gender=Men, color=Grey, id_dataset=51667)

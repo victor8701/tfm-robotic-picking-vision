@@ -1,0 +1,14 @@
+Dataset: Fashion Product Images (Small), Param Aggarwal (Kaggle)
+https://www.kaggle.com/datasets/paramaggarwal/fashion-product-images-small
+Mirror en Hugging Face: https://huggingface.co/datasets/ashraq/fashion-product-images-small
+Aviso: no es una licencia libre explicita (origen e-commerce Myntra via Kaggle) -- uso apropiado para prototipo de investigacion academica, revisar antes de cualquier otro uso.
+
+tshirts_1.jpg: Puma Men Grey T-shirt (articleType=Tshirts, usage=Casual, gender=Men, color=Grey, id_dataset=53759)
+tshirts_2.jpg: Inkfruit Mens Chain Reaction T-shirt (articleType=Tshirts, usage=Casual, gender=Men, color=Grey, id_dataset=1855)
+tshirts_3.jpg: Fila Men's Round Neck Navy Blue T-shirt (articleType=Tshirts, usage=Sports, gender=Men, color=Navy Blue, id_dataset=7990)
+jeans_1.jpg: Peter England Men Party Blue Jeans (articleType=Jeans, usage=Casual, gender=Men, color=Blue, id_dataset=39386)
+jeans_2.jpg: Jealous 21 Women Black Jeans (articleType=Jeans, usage=Casual, gender=Women, color=Black, id_dataset=26994)
+jeans_3.jpg: Jealous 21 Women Black Jegging (articleType=Jeans, usage=Casual, gender=Women, color=Black, id_dataset=7193)
+shirts_1.jpg: Turtle Check Men Navy Blue Shirt (articleType=Shirts, usage=Casual, gender=Men, color=Navy Blue, id_dataset=15970)
+shirts_2.jpg: Jealous 21 Women Purple Shirt (articleType=Shirts, usage=Casual, gender=Women, color=Purple, id_dataset=26960)
+shirts_3.jpg: John Players Men Brown Shirt (articleType=Shirts, usage=Casual, gender=Men, color=Brown, id_dataset=56825)

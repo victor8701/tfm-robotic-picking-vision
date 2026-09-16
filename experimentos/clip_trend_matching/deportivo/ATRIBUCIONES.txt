@@ -1,0 +1,14 @@
+Dataset: Fashion Product Images (Small), Param Aggarwal (Kaggle)
+https://www.kaggle.com/datasets/paramaggarwal/fashion-product-images-small
+Mirror en Hugging Face: https://huggingface.co/datasets/ashraq/fashion-product-images-small
+Aviso: no es una licencia libre explicita (origen e-commerce Myntra via Kaggle) -- uso apropiado para prototipo de investigacion academica, revisar antes de cualquier otro uso.
+
+track_pants_1.jpg: Manchester United Men Solid Black Track Pants (articleType=Track Pants, usage=Casual, gender=Men, color=Black, id_dataset=21379)
+track_pants_2.jpg: ADIDAS Men Solid Navy Blue Track Pant (articleType=Track Pants, usage=Sports, gender=Men, color=Navy Blue, id_dataset=17624)
+track_pants_3.jpg: Proline Men Navy Track Pants (articleType=Track Pants, usage=Casual, gender=Men, color=Navy Blue, id_dataset=34204)
+shorts_1.jpg: Puma Men Long Logo Black Bermuda (articleType=Shorts, usage=Sports, gender=Men, color=Black, id_dataset=18005)
+shorts_2.jpg: Nike Women Solid Pink Shorts (articleType=Shorts, usage=Sports, gender=Women, color=Pink, id_dataset=15341)
+shorts_3.jpg: Urban Yoga Women Pink Shorts (articleType=Shorts, usage=Sports, gender=Women, color=Pink, id_dataset=28460)
+sports_shoes_1.jpg: ADIDAS Men White Corona Sports Shoes (articleType=Sports Shoes, usage=Sports, gender=Men, color=White, id_dataset=42089)
+sports_shoes_2.jpg: Fila Men Destiny Grey Sports Shoes (articleType=Sports Shoes, usage=Sports, gender=Men, color=Grey, id_dataset=23882)
+sports_shoes_3.jpg: ADIDAS Men Blue Chill Sports Shoes (articleType=Sports Shoes, usage=Sports, gender=Men, color=Blue, id_dataset=34835)
