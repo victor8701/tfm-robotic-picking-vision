@@ -69,14 +69,51 @@ criterios que `poblar_muestras_dataset.py`), o no encajar en ningún filtro de `
 `grupo_estilo` sigue siendo la señal más desequilibrada (`casual` domina con 14357 filas frente
 a las 1651-2569 del resto) — esperable, es la misma clase que ya iba peor con CLIP.
 
-## Próximos pasos (según el plan)
+## Estado: Stage 2 y Stage 3 (código) también listos
 
-- **Stage 2** (`baseline_zero_shot.py`, local): Florence-2 sin afinar sobre `data/test.jsonl`,
-  para tener un número "antes" documentado, igual que ya se hizo con CLIP.
-- **Stage 3** (`entrenar_lora.py` + `notebook_colab_entrenamiento.ipynb`, en Google Colab):
-  fine-tuning LoRA real sobre las 4000 imágenes de entrenamiento.
-- **Stage 4** (`evaluar_modelo.py`, local): zero-shot vs afinado por campo, y comparación
-  directa de `grupo_estilo` contra el 32.8% de CLIP sobre las mismas 1207 imágenes.
+### Stage 2 — Baseline zero-shot
+
+```bash
+cd herramientas
+python3 baseline_zero_shot.py          # las 500 de test.jsonl, ~1h en CPU
+python3 baseline_zero_shot.py --limite 20   # prueba rápida
+```
+
+Pide a Florence-2 sin afinar una `<MORE_DETAILED_CAPTION>` (texto libre en inglés) y la
+parsea por palabras clave contra el vocabulario cerrado de cada campo — el resultado real de
+esta ejecución se documentará aquí en cuanto termine (es lento en CPU, ~7-8s/imagen).
+
+### Stage 3 — Fine-tuning LoRA (ejecutar en Colab)
+
+El entrenamiento real **no** se ejecuta en esta máquina (CPU sin CUDA funcional, sería
+cuestión de días) — se ejecuta en Colab con GPU T4 gratuita:
+
+1. Sube esta rama a GitHub (`git push -u origin <rama>`).
+2. Abre `herramientas/notebook_colab_entrenamiento.ipynb` en
+   [Google Colab](https://colab.research.google.com/) (subir el `.ipynb` o abrirlo desde
+   GitHub), activa GPU (`Entorno de ejecución > Cambiar tipo de entorno de ejecución > T4
+   GPU`), y ejecuta las celdas en orden.
+3. Descarga el `.zip` del adapter resultante y descomprímelo en
+   `modelos/florence2_base_lora_v1/`.
+
+`herramientas/entrenar_lora.py` es el script real (el notebook es solo un wrapper que lo
+instala y lo llama). **Ya probado localmente en modo "prueba de humo"** (8 imágenes, 1 época,
+CPU) para confirmar que el bucle completo —LoRA sobre las capas del decoder, forward,
+backward, generación, guardado de checkpoint— corre sin errores antes de gastar horas de GPU
+en el run real. LoRA aplicado: 1.9M parámetros entrenables de 233M totales (0.82%).
+
+### Stage 4 — Evaluación final
+
+```bash
+cd herramientas
+python3 evaluar_modelo.py
+```
+
+Compara zero-shot vs afinado por campo (accuracy + F1 por clase en `color_primario` y
+`grupo_estilo`, tasa de JSON válido, latencia), y termina re-evaluando `grupo_estilo` sobre
+las 1207 imágenes ya existentes en `clip_trend_matching/` para comparar directamente contra
+el 32.8% de CLIP zero-shot ya documentado. Si `modelos/florence2_base_lora_v1/` todavía no
+existe (no se ha bajado el adapter de Colab), solo corre la parte zero-shot.
 
 ## Qué NO es (mismo aviso honesto que en `clip_trend_matching/`)
 
