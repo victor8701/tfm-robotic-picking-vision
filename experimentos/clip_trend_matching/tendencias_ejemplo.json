@@ -1,0 +1,35 @@
+[
+  {
+    "mercado": "Europa",
+    "genero_objetivo": "todo",
+    "tipo_prenda": "Todo",
+    "fuentes": ["TikTok", "Instagram"],
+    "fecha_analisis": "2026-09-16",
+    "descripcion": "El streetwear urbano domina esta semana: sudaderas oversized, zapatillas deportivas llamativas y gafas de sol de estilo urbano. Estética desenfadada, cómoda y con mucha presencia en looks de calle grabados para redes sociales.",
+    "grupo_estilo_detectado": ["Streetwear"],
+    "intensidad": 0.8,
+    "estado": "pendiente"
+  },
+  {
+    "mercado": "Europa",
+    "genero_objetivo": "femenino",
+    "tipo_prenda": "Ropa superior",
+    "fuentes": ["Instagram"],
+    "fecha_analisis": "2026-09-16",
+    "descripcion": "La estética 'quiet luxury' sigue en auge: vestidos y camisas estructuradas en tonos neutros, tacones y calzado de piel, un estilo elegante y minimalista pensado para la oficina o eventos formales.",
+    "grupo_estilo_detectado": ["De vestir"],
+    "intensidad": 0.65,
+    "estado": "pendiente"
+  },
+  {
+    "mercado": "Europa",
+    "genero_objetivo": "femenino",
+    "tipo_prenda": "Todo",
+    "fuentes": ["TikTok", "X"],
+    "fecha_analisis": "2026-09-16",
+    "descripcion": "Con la llegada del buen tiempo arrasa la estética resort: faldas de colores pastel, tops ligeros, sombreros de ala ancha y pañuelos estampados. Un look colorido pensado para vacaciones, playa y eventos al aire libre.",
+    "grupo_estilo_detectado": ["Playa/Resort"],
+    "intensidad": 0.7,
+    "estado": "pendiente"
+  }
+]
