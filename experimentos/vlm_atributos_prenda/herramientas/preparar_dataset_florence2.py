@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """
-Convierte el dataset "Fashion Product Images (Small)" (mismo parquet ya
-cacheado por experimentos/clip_trend_matching/herramientas/poblar_muestras_dataset.py
-en ~/.cache/fashion-product-images-small/) en ejemplos de entrenamiento
-para el fine-tuning de Florence-2: pares (imagen, JSON de atributos).
+Convierte el dataset "Fashion Product Images (Small)" en ejemplos de
+entrenamiento para el fine-tuning de Florence-2: pares (imagen, JSON de
+atributos). Si el parquet no esta cacheado (p.ej. maquina nueva, sesion
+de Colab), se descarga solo -- mismos shards que usa
+experimentos/clip_trend_matching/herramientas/poblar_muestras_dataset.py,
+asi que si ya lo corriste antes en esta maquina no vuelve a bajar nada.
 
 El esquema de salida y las tablas de mapeo completas estan documentadas
 en ../esquema_atributos.md -- este script es la implementacion de esas
@@ -20,6 +22,7 @@ Uso:
 import argparse
 import json
 import random
+import urllib.request
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -28,6 +31,14 @@ import pyarrow.parquet as pq
 BASE_DIR = Path(__file__).parent.parent
 CACHE_DIR = Path.home() / ".cache" / "fashion-product-images-small"
 SEMILLA = 42
+
+SHARD_URLS = [
+    "https://huggingface.co/api/datasets/ashraq/fashion-product-images-small"
+    "/parquet/default/train/0.parquet",
+    "https://huggingface.co/api/datasets/ashraq/fashion-product-images-small"
+    "/parquet/default/train/1.parquet",
+]
+USER_AGENT = "TFM-RoboticPickingVision-CLIP-POC/1.0 (educational research prototype)"
 
 # ---------------------------------------------------------------------------
 # Mapeos -- ver esquema_atributos.md para la tabla completa y el porque
@@ -146,20 +157,26 @@ def mapear_fila(fila):
     }
 
 
+def descargar_shard_si_falta(nombre, url):
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    destino = CACHE_DIR / nombre
+    if destino.exists():
+        return destino
+    print(f"No esta cacheado {destino}, descargando (~136 MB)...")
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    with urllib.request.urlopen(req, timeout=180) as resp, open(destino, "wb") as f:
+        f.write(resp.read())
+    return destino
+
+
 def cargar_filas():
     columnas = [
         "id", "gender", "articleType", "baseColour", "season",
         "usage", "productDisplayName", "image",
     ]
     filas = []
-    for nombre in ("shard0.parquet", "shard1.parquet"):
-        ruta = CACHE_DIR / nombre
-        if not ruta.exists():
-            raise SystemExit(
-                f"ERROR: no existe {ruta}. Corre primero "
-                f"experimentos/clip_trend_matching/herramientas/poblar_muestras_dataset.py "
-                f"(descarga los shards) o copia los parquet ahi a mano."
-            )
+    for i, url in enumerate(SHARD_URLS):
+        ruta = descargar_shard_si_falta(f"shard{i}.parquet", url)
         filas.extend(pq.read_table(ruta, columns=columnas).to_pylist())
     return filas
 
