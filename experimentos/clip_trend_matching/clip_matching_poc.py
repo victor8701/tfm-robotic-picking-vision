@@ -11,11 +11,15 @@ prenda y el texto de la tendencia, y boost_estilo vale 1.0 si el
 grupo_estilo de la prenda coincide con el grupo_estilo_detectado de la
 tendencia (mismo vocabulario cerrado de 6 valores, seccion 3.4.1).
 
-No usa fotos nuevas de ropa: las 5 imagenes de muestras/ son las que ya
-se capturaron para el proyecto de Vision por Computador (rama
-proyecto_VC de este mismo repo), reutilizadas aqui como stand-in de
-fotos de catalogo mientras no hay acceso a los robots ni al setup real.
+No hace falta registrar las imagenes en ningun sitio: el script lee
+TODO el contenido de una carpeta (por defecto muestras/, o la que se
+indique con --muestras) y le pone cualquier nombre de archivo vale. El
+grupo_estilo de cada imagen lo infiere el propio CLIP por zero-shot
+(comparando la imagen contra los 6 grupos posibles) -- en el sistema
+real ese campo lo fija marketing en el ERP (Estado_arte.md S3.5), aqui
+se infiere solo para no tener que etiquetar nada a mano en este POC.
 """
+import argparse
 import json
 from pathlib import Path
 
@@ -24,11 +28,56 @@ import torch
 from PIL import Image
 
 BASE_DIR = Path(__file__).parent
-MUESTRAS_DIR = BASE_DIR / "muestras"
-METADATA_PATH = BASE_DIR / "muestras_metadata.json"
-TENDENCIAS_PATH = BASE_DIR / "tendencias_ejemplo.json"
+EXTENSIONES_VALIDAS = {".jpg", ".jpeg", ".png", ".webp"}
+
+# Vocabulario cerrado de Grupo de estilo (Estado_arte.md S3.4.1), con una
+# frase descriptiva por grupo para que la clasificacion zero-shot de CLIP
+# funcione mejor que comparando solo contra la palabra suelta.
+GRUPOS_ESTILO = {
+    "Casual": "ropa casual de diario",
+    "Streetwear": "ropa de estilo urbano, streetwear",
+    "De vestir": "ropa elegante y formal, de vestir",
+    "Fiesta/Noche": "ropa de fiesta o para salir de noche",
+    "Deportivo": "ropa deportiva",
+    "Playa/Resort": "ropa veraniega de playa o resort",
+}
 
 BETA_BOOST_ESTILO = 0.1  # mismo valor que Estado_arte.md, seccion 7.2
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="POC de matching semantico CLIP prenda <-> tendencia (Estado_arte.md S7)."
+    )
+    parser.add_argument(
+        "--muestras", "-m", type=Path, default=BASE_DIR / "muestras",
+        help="Carpeta con las imagenes a comparar (por defecto: muestras/). "
+             "Se leen TODAS las imagenes que haya dentro (.jpg/.jpeg/.png/.webp); "
+             "el nombre de archivo puede ser cualquiera, solo se usa para mostrarlo.",
+    )
+    parser.add_argument(
+        "--tendencias", "-t", type=Path, default=BASE_DIR / "tendencias_ejemplo.json",
+        help="JSON con las tendencias a evaluar (por defecto: tendencias_ejemplo.json).",
+    )
+    return parser.parse_args()
+
+
+def listar_imagenes(carpeta):
+    if not carpeta.is_dir():
+        raise SystemExit(f"ERROR: la carpeta '{carpeta}' no existe.")
+    rutas = sorted(
+        p for p in carpeta.iterdir()
+        if p.is_file() and p.suffix.lower() in EXTENSIONES_VALIDAS
+    )
+    if not rutas:
+        raise SystemExit(
+            f"ERROR: no hay imagenes ({', '.join(sorted(EXTENSIONES_VALIDAS))}) en '{carpeta}'."
+        )
+    return rutas
+
+
+def nombre_legible(ruta):
+    return ruta.stem.replace("_", " ").replace("-", " ").strip().capitalize()
 
 
 def cargar_modelo():
@@ -44,21 +93,50 @@ def cargar_modelo():
     return model, preprocess, tokenizer
 
 
-def encodear_imagenes(model, preprocess, muestras):
-    tensores = [preprocess(Image.open(m["ruta"]).convert("RGB")) for m in muestras]
+def encodear_imagenes(model, preprocess, rutas):
+    """Carga y encodea las imagenes validas. Devuelve (rutas_validas, vectores),
+    saltandose con un aviso cualquier archivo que no se pueda abrir como imagen."""
+    rutas_validas = []
+    tensores = []
+    for r in rutas:
+        try:
+            img = Image.open(r).convert("RGB")
+        except Exception as e:
+            print(f"  (aviso) no se pudo leer '{r.name}', se omite: {e}")
+            continue
+        tensores.append(preprocess(img))
+        rutas_validas.append(r)
+
+    if not tensores:
+        raise SystemExit("ERROR: ninguna imagen de la carpeta se pudo leer correctamente.")
+
     lote = torch.stack(tensores)
     with torch.no_grad():
         v = model.encode_image(lote)
         v = v / v.norm(dim=-1, keepdim=True)
-    return v
+    return rutas_validas, v
 
 
-def encodear_texto(model, tokenizer, texto):
-    tokens = tokenizer([texto])
+def encodear_textos(model, tokenizer, textos):
+    tokens = tokenizer(textos)
     with torch.no_grad():
         v = model.encode_text(tokens)
         v = v / v.norm(dim=-1, keepdim=True)
-    return v[0]
+    return v
+
+
+def inferir_grupos_estilo(model, tokenizer, v_prendas):
+    """Clasificacion zero-shot: a cada prenda le asigna el grupo de estilo
+    cuya frase descriptiva tiene mayor similitud coseno con su imagen."""
+    etiquetas = list(GRUPOS_ESTILO.keys())
+    v_grupos = encodear_textos(model, tokenizer, list(GRUPOS_ESTILO.values()))
+
+    asignados = []
+    for v_prenda in v_prendas:
+        similitudes = v_grupos @ v_prenda
+        idx = int(similitudes.argmax())
+        asignados.append(etiquetas[idx])
+    return asignados
 
 
 def calcular_score(v_prenda, v_tendencia, grupo_prenda, grupos_tendencia):
@@ -68,14 +146,22 @@ def calcular_score(v_prenda, v_tendencia, grupo_prenda, grupos_tendencia):
 
 
 def main():
-    muestras = json.loads(METADATA_PATH.read_text(encoding="utf-8"))
-    tendencias = json.loads(TENDENCIAS_PATH.read_text(encoding="utf-8"))
+    args = parse_args()
+    rutas_imagenes = listar_imagenes(args.muestras)
+    tendencias = json.loads(args.tendencias.read_text(encoding="utf-8"))
 
-    for m in muestras:
-        m["ruta"] = MUESTRAS_DIR / m["archivo"]
+    print(f"\n{len(rutas_imagenes)} imagen(es) encontradas en '{args.muestras}':")
+    for r in rutas_imagenes:
+        print(f"  - {r.name}")
 
     model, preprocess, tokenizer = cargar_modelo()
-    v_prendas = encodear_imagenes(model, preprocess, muestras)
+
+    rutas_imagenes, v_prendas = encodear_imagenes(model, preprocess, rutas_imagenes)
+    grupos_prendas = inferir_grupos_estilo(model, tokenizer, v_prendas)
+
+    print("\nGrupo de estilo detectado automaticamente por CLIP (zero-shot):")
+    for ruta, grupo in zip(rutas_imagenes, grupos_prendas):
+        print(f"  - {nombre_legible(ruta):<35} -> {grupo}")
 
     for tendencia in tendencias:
         print(f"\n{'=' * 78}")
@@ -84,23 +170,22 @@ def main():
               f"(intensidad={tendencia['intensidad']})")
         print("=" * 78)
 
-        v_tendencia = encodear_texto(model, tokenizer, tendencia["descripcion"])
+        v_tendencia = encodear_textos(model, tokenizer, [tendencia["descripcion"]])[0]
 
         resultados = []
-        for muestra, v_prenda in zip(muestras, v_prendas):
+        for ruta, v_prenda, grupo_prenda in zip(rutas_imagenes, v_prendas, grupos_prendas):
             s_sem, boost, s_total = calcular_score(
-                v_prenda, v_tendencia, muestra["grupo_estilo"],
-                tendencia["grupo_estilo_detectado"],
+                v_prenda, v_tendencia, grupo_prenda, tendencia["grupo_estilo_detectado"]
             )
-            resultados.append((muestra, s_sem, boost, s_total))
+            resultados.append((ruta, grupo_prenda, s_sem, boost, s_total))
 
-        resultados.sort(key=lambda r: r[3], reverse=True)
+        resultados.sort(key=lambda r: r[4], reverse=True)
 
-        for rank, (muestra, s_sem, boost, s_total) in enumerate(resultados, 1):
+        for rank, (ruta, grupo_prenda, s_sem, boost, s_total) in enumerate(resultados, 1):
             marca = "*" if boost > 0 else " "
             print(
-                f"{rank}. {marca} {muestra['nombre']:<38} "
-                f"(grupo={muestra['grupo_estilo']:<13}) "
+                f"{rank}. {marca} {nombre_legible(ruta):<35} "
+                f"(grupo={grupo_prenda:<13}) "
                 f"score_semantico={s_sem:+.4f}  boost={boost:.2f}  total={s_total:+.4f}"
             )
 
