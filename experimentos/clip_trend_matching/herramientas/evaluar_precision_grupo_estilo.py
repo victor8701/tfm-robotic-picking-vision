@@ -208,6 +208,56 @@ def main():
             marca = "*" if NOMBRE_MOSTRAR[categoria] in grupos_esperados else " "
             print(f"  {rank}. {marca} {NOMBRE_MOSTRAR[categoria]:<14} media_score_semantico={media:+.4f}")
 
+    # ---- Analisis 3: Precision@K (S11.1) usando la carpeta de origen ----
+    # ---- como grupo_estilo REAL (no el que adivina CLIP en el      ----
+    # ---- Analisis 1) -- asi es como funcionaria en el sistema real: ----
+    # ---- el campo lo fija marketing en el ERP (S3.5), CLIP no lo   ----
+    # ---- adivina. Se mezclan las 1207 imagenes en un solo banco y  ----
+    # ---- se mide, del top-K por score, que fraccion es realmente   ----
+    # ---- del grupo de la tendencia.                                ----
+    BETA_BOOST_ESTILO = 0.1  # igual que S7.2 y clip_matching_poc.py
+    K_VALUES = [20, 50, 100]
+
+    todas_rutas, todas_categorias, todos_v = [], [], []
+    for categoria, v_imgs in embeddings_por_categoria.items():
+        n = v_imgs.shape[0]
+        todas_categorias.extend([categoria] * n)
+        todos_v.append(v_imgs)
+    todos_v = torch.cat(todos_v, dim=0)
+
+    print(f"\n{'=' * 78}")
+    print(f"ANALISIS 3: Precision@K (Estado_arte.md S11.1), banco combinado de {len(todas_categorias)} imagenes")
+    print("grupo_estilo aqui es el de la CARPETA de origen (rol del ERP en S3.5),")
+    print("NO el adivinado por CLIP del Analisis 1 -- asi es como se usaria de verdad.")
+    print("=" * 78)
+
+    for tendencia in tendencias:
+        with torch.no_grad():
+            tokens = tokenizer([tendencia["descripcion"]])
+            v_tendencia = model.encode_text(tokens)
+            v_tendencia = (v_tendencia / v_tendencia.norm(dim=-1, keepdim=True))[0]
+
+        grupos_esperados = set(tendencia["grupo_estilo_detectado"])
+        es_relevante = [NOMBRE_MOSTRAR[c] in grupos_esperados for c in todas_categorias]
+
+        score_semantico = (todos_v @ v_tendencia).tolist()
+        boost = [BETA_BOOST_ESTILO if rel else 0.0 for rel in es_relevante]
+        score_total = [s + b for s, b in zip(score_semantico, boost)]
+
+        print(f"\nTENDENCIA: {tendencia['descripcion'][:80]}...")
+        print(f"grupo_estilo_detectado: {tendencia['grupo_estilo_detectado']}")
+
+        for nombre_metodo, scores in [
+            ("solo score_semantico (sin boost)", score_semantico),
+            ("score_semantico + boost real (S7.2 completo)", score_total),
+        ]:
+            orden = sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)
+            print(f"  {nombre_metodo}:")
+            for k in K_VALUES:
+                top_k = orden[:k]
+                relevantes = sum(es_relevante[i] for i in top_k)
+                print(f"    Precision@{k}: {relevantes}/{k} = {relevantes / k:.1%}")
+
 
 if __name__ == "__main__":
     main()
