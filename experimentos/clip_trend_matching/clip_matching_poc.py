@@ -18,6 +18,11 @@ grupo_estilo de cada imagen lo infiere el propio CLIP por zero-shot
 (comparando la imagen contra los 6 grupos posibles) -- en el sistema
 real ese campo lo fija marketing en el ERP (Estado_arte.md S3.5), aqui
 se infiere solo para no tener que etiquetar nada a mano en este POC.
+
+--muestras acepta una ruta corta relativa a la carpeta de este script:
+'streetwear' y '/streetwear' apuntan los dos a clip_trend_matching/streetwear.
+Una ruta absoluta que ya exista (p.ej. una carpeta fuera del proyecto)
+se sigue usando tal cual.
 """
 import argparse
 import json
@@ -50,16 +55,35 @@ def parse_args():
         description="POC de matching semantico CLIP prenda <-> tendencia (Estado_arte.md S7)."
     )
     parser.add_argument(
-        "--muestras", "-m", type=Path, default=BASE_DIR / "muestras",
+        "--muestras", "-m", type=str, default="muestras",
         help="Carpeta con las imagenes a comparar (por defecto: muestras/). "
-             "Se leen TODAS las imagenes que haya dentro (.jpg/.jpeg/.png/.webp); "
-             "el nombre de archivo puede ser cualquiera, solo se usa para mostrarlo.",
+             "Si no es una ruta absoluta que ya exista, se busca dentro de la "
+             "carpeta de este script -- '--muestras streetwear' y "
+             "'--muestras /streetwear' son equivalentes y ambas apuntan a "
+             "clip_trend_matching/streetwear. Se leen TODAS las imagenes que "
+             "haya dentro (.jpg/.jpeg/.png/.webp); el nombre de archivo puede "
+             "ser cualquiera, solo se usa para mostrarlo.",
     )
     parser.add_argument(
         "--tendencias", "-t", type=Path, default=BASE_DIR / "tendencias_ejemplo.json",
         help="JSON con las tendencias a evaluar (por defecto: tendencias_ejemplo.json).",
     )
     return parser.parse_args()
+
+
+def resolver_carpeta_muestras(valor):
+    """Resuelve el argumento --muestras a una ruta real.
+
+    Si 'valor' es una ruta absoluta que ya existe, se usa tal cual (para
+    poder apuntar a carpetas fuera del proyecto, como antes). En
+    cualquier otro caso -- incluido un valor con '/' inicial, tipo
+    '/streetwear' -- se interpreta como relativo a la carpeta de este
+    script, para poder escribir solo el nombre corto de la carpeta.
+    """
+    p = Path(valor)
+    if p.is_absolute() and p.is_dir():
+        return p
+    return BASE_DIR / valor.lstrip("/\\")
 
 
 def listar_imagenes(carpeta):
@@ -147,10 +171,11 @@ def calcular_score(v_prenda, v_tendencia, grupo_prenda, grupos_tendencia):
 
 def main():
     args = parse_args()
-    rutas_imagenes = listar_imagenes(args.muestras)
+    carpeta_muestras = resolver_carpeta_muestras(args.muestras)
+    rutas_imagenes = listar_imagenes(carpeta_muestras)
     tendencias = json.loads(args.tendencias.read_text(encoding="utf-8"))
 
-    print(f"\n{len(rutas_imagenes)} imagen(es) encontradas en '{args.muestras}':")
+    print(f"\n{len(rutas_imagenes)} imagen(es) encontradas en '{carpeta_muestras}':")
     for r in rutas_imagenes:
         print(f"  - {r.name}")
 

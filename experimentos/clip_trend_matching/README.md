@@ -80,15 +80,33 @@ python3 clip_matching_poc.py
 ```
 
 Eso usa la carpeta `muestras/` que ya trae el repo. Para usar tus propias
-imágenes sin tocar nada del código:
+imágenes sin tocar nada del código, tienes dos formas de indicar la
+carpeta con `--muestras` (o `-m`):
 
-```bash
-python3 clip_matching_poc.py --muestras /ruta/a/otra/carpeta
-```
+- **Nombre corto** (sin ruta): se busca como subcarpeta de
+  `clip_trend_matching/`. Por ejemplo, si creas
+  `experimentos/clip_trend_matching/streetwear/` y la llenas de fotos,
+  te vale con:
 
-(o `-m` como abreviatura). También puedes apuntar a otro fichero de
-tendencias con `--tendencias otro_archivo.json` (`-t`), si no quieres
-usar `tendencias_ejemplo.json`.
+  ```bash
+  python3 clip_matching_poc.py --muestras streetwear
+  # o, exactamente igual:
+  python3 clip_matching_poc.py --muestras /streetwear
+  ```
+
+  (la barra inicial es opcional, el script la ignora — ambas formas
+  apuntan a `clip_trend_matching/streetwear`).
+
+- **Ruta absoluta**: si la carpeta está fuera del proyecto (por ejemplo,
+  en tu escritorio), pásala completa y se usa tal cual:
+
+  ```bash
+  python3 clip_matching_poc.py --muestras /home/ubuntu22/Desktop/mis_fotos
+  ```
+
+También puedes apuntar a otro fichero de tendencias con
+`--tendencias otro_archivo.json` (`-t`), si no quieres usar
+`tendencias_ejemplo.json`.
 
 La primera ejecución tarda un poco más por la descarga del modelo; las
 siguientes son casi instantáneas (los pesos quedan cacheados en
