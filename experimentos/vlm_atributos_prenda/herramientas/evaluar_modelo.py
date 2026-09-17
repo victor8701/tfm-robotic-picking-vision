@@ -158,6 +158,10 @@ def main():
                          help="Saltar la comparacion sobre las 1207 imagenes de clip_trend_matching/.")
     parser.add_argument("--limite-1207", type=int, default=None,
                          help="Limitar imagenes por carpeta en la comparacion de las 1207 (por defecto: todas).")
+    parser.add_argument("--sin-zero-shot", action="store_true",
+                         help="Saltar la pasada zero-shot (usa el prompt custom <ATRIBUTOS_PRENDA> que el "
+                              "modelo base nunca vio -- casi siempre da JSON invalido, es menos informativa "
+                              "que el baseline de Stage 2 via caption nativa, ya documentado en el README).")
     args = parser.parse_args()
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -166,14 +170,16 @@ def main():
     if args.limite:
         filas_test = filas_test[: args.limite]
 
-    print("Cargando Florence-2-base (zero-shot)...")
-    base_zeroshot = AutoModelForCausalLM.from_pretrained(MODELO_BASE, trust_remote_code=True, torch_dtype=torch.float32).to(device)
     processor = AutoProcessor.from_pretrained(MODELO_BASE, trust_remote_code=True)
-    resultado_zeroshot = evaluar_test_set(base_zeroshot, processor, device, usar_amp, filas_test, "ZERO-SHOT (sin afinar)")
-    f1_por_clase(resultado_zeroshot["confusion_color"],
-                 sorted({f["color_primario"] for f in filas_test}), "color_primario (zero-shot)")
-    f1_por_clase(resultado_zeroshot["confusion_grupo"], GRUPOS_ESTILO_1207, "grupo_estilo (zero-shot)")
-    del base_zeroshot
+    resultado_zeroshot = None
+    if not args.sin_zero_shot:
+        print("Cargando Florence-2-base (zero-shot)...")
+        base_zeroshot = AutoModelForCausalLM.from_pretrained(MODELO_BASE, trust_remote_code=True, torch_dtype=torch.float32).to(device)
+        resultado_zeroshot = evaluar_test_set(base_zeroshot, processor, device, usar_amp, filas_test, "ZERO-SHOT (sin afinar)")
+        f1_por_clase(resultado_zeroshot["confusion_color"],
+                     sorted({f["color_primario"] for f in filas_test}), "color_primario (zero-shot)")
+        f1_por_clase(resultado_zeroshot["confusion_grupo"], GRUPOS_ESTILO_1207, "grupo_estilo (zero-shot)")
+        del base_zeroshot
 
     adapter_path = Path(args.adapter)
     if not adapter_path.exists():
@@ -189,11 +195,12 @@ def main():
                  sorted({f["color_primario"] for f in filas_test}), "color_primario (afinado)")
     f1_por_clase(resultado_afinado["confusion_grupo"], GRUPOS_ESTILO_1207, "grupo_estilo (afinado)")
 
-    print(f"\n{'=' * 78}\nRESUMEN zero-shot vs afinado\n{'=' * 78}")
-    for campo in CAMPOS:
-        antes = resultado_zeroshot["aciertos"][campo] / resultado_zeroshot["n"]
-        despues = resultado_afinado["aciertos"][campo] / resultado_afinado["n"]
-        print(f"  {campo:<16} {antes:.1%} -> {despues:.1%}  ({'+' if despues >= antes else ''}{(despues - antes) * 100:.1f} pp)")
+    if resultado_zeroshot is not None:
+        print(f"\n{'=' * 78}\nRESUMEN zero-shot vs afinado\n{'=' * 78}")
+        for campo in CAMPOS:
+            antes = resultado_zeroshot["aciertos"][campo] / resultado_zeroshot["n"]
+            despues = resultado_afinado["aciertos"][campo] / resultado_afinado["n"]
+            print(f"  {campo:<16} {antes:.1%} -> {despues:.1%}  ({'+' if despues >= antes else ''}{(despues - antes) * 100:.1f} pp)")
 
     if not args.sin_1207:
         evaluar_1207_imagenes(modelo_afinado, processor, device, usar_amp, "AFINADO (LoRA)", args.limite_1207)

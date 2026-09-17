@@ -121,6 +121,31 @@ CPU) para confirmar que el bucle completo —LoRA sobre las capas del decoder, f
 backward, generación, guardado de checkpoint— corre sin errores antes de gastar horas de GPU
 en el run real. LoRA aplicado: 1.9M parámetros entrenables de 233M totales (0.82%).
 
+**Resultado real del entrenamiento** (3 épocas, GPU T4 de Colab, accuracy en validación —
+500 imágenes, `resultados_entrenamiento.json` en el propio adapter):
+
+| Campo | Época 1 | Época 2 | Época 3 (usada) |
+|---|---|---|---|
+| `categoria` | 96.6% | 98.4% | **98.4%** |
+| `color_primario` | 64.6% | 71.8% | **72.6%** |
+| `género` | 85.4% | 90.0% | **90.4%** |
+| `grupo_estilo` | 81.8% | 88.2% | **88.0%** |
+| `temporada` | 49.4% | 53.6% | **57.8%** |
+| JSON válido | 100% | 100% | 100% |
+
+Mejora clara sobre el baseline zero-shot en todos los campos (§Stage 2 arriba). `temporada`
+apenas mejora (techo bajo esperado, ver aviso de esa sección).
+
+**Aviso sobre el 88% de `grupo_estilo`, para no venderlo como más de lo que es**: no hay
+motivo para pensar que el modelo ha aprendido "estilo" en un sentido abstracto — es mucho más
+probable que haya aprendido a reconstruir la propia regla de mapeo
+`articleType → grupo_estilo` de `preparar_dataset_florence2.py` a partir del tipo de prenda,
+que tiene señal visual fuerte (y por eso `categoria` también borda el 98%). Es un resultado
+real y útil para el catálogo, pero no contradice la limitación estructural ya anotada más
+abajo (estilo como propiedad del *look* completo, no de una prenda sola) — de hecho la
+confirma: el atajo tipo-de-prenda→estilo que aquí funciona tan bien es precisamente lo que no
+va a estar disponible en una foto de Instagram con el outfit completo puesto.
+
 ### Stage 4 — Evaluación final
 
 ```bash

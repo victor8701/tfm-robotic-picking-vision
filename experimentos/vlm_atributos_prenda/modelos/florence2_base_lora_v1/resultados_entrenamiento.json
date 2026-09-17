@@ -1,0 +1,29 @@
+[
+  {
+    "categoria": 0.966,
+    "color_primario": 0.646,
+    "grupo_estilo": 0.818,
+    "genero": 0.854,
+    "temporada": 0.494,
+    "_json_valido": 1.0,
+    "_accuracy_media": 0.7556
+  },
+  {
+    "categoria": 0.984,
+    "color_primario": 0.718,
+    "grupo_estilo": 0.882,
+    "genero": 0.9,
+    "temporada": 0.536,
+    "_json_valido": 1.0,
+    "_accuracy_media": 0.804
+  },
+  {
+    "categoria": 0.984,
+    "color_primario": 0.726,
+    "grupo_estilo": 0.88,
+    "genero": 0.904,
+    "temporada": 0.578,
+    "_json_valido": 1.0,
+    "_accuracy_media": 0.8144
+  }
+]
