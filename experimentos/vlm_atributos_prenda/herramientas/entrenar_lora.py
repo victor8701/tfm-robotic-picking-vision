@@ -89,6 +89,10 @@ def hacer_collate(processor, max_target_len):
 
 def generar_prediccion(model, processor, imagen, device, max_new_tokens=96):
     inputs = processor(text=TASK_PROMPT, images=imagen, return_tensors="pt").to(device)
+    # pixel_values sale siempre en float32 del processor, independientemente del dtype
+    # del modelo (bfloat16 en GPU) -- sin este cast, conv2d del vision_tower revienta con
+    # "Input type (float) and bias type (c10::BFloat16) should be the same".
+    inputs["pixel_values"] = inputs["pixel_values"].to(next(model.parameters()).dtype)
     with torch.no_grad():
         generados = model.generate(
             input_ids=inputs["input_ids"], pixel_values=inputs["pixel_values"],
@@ -196,6 +200,7 @@ def main():
 
         for paso, (inputs, _filas) in enumerate(train_loader, 1):
             inputs = {k: v.to(device) for k, v in inputs.items()}
+            inputs["pixel_values"] = inputs["pixel_values"].to(dtype)
             salida = model(**inputs)
             perdida = salida.loss / args.grad_accum
             perdida.backward()

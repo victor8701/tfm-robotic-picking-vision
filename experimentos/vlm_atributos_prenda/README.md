@@ -80,8 +80,27 @@ python3 baseline_zero_shot.py --limite 20   # prueba rápida
 ```
 
 Pide a Florence-2 sin afinar una `<MORE_DETAILED_CAPTION>` (texto libre en inglés) y la
-parsea por palabras clave contra el vocabulario cerrado de cada campo — el resultado real de
-esta ejecución se documentará aquí en cuanto termine (es lento en CPU, ~7-8s/imagen).
+parsea por palabras clave contra el vocabulario cerrado de cada campo.
+
+**Resultado real (500 imágenes de test.jsonl, ~65 min en CPU):**
+
+| Campo | Accuracy |
+|---|---|
+| `categoria` | 276/500 = 55.2% |
+| `color_primario` | 172/500 = 34.4% |
+| `grupo_estilo` | 201/500 = 40.2% |
+| `genero` | 317/500 = 63.4% |
+| `temporada` | 291/500 = 58.2% |
+
+**Aviso sobre el 40.2% de `grupo_estilo`**: no es directamente comparable al 32.8% de CLIP
+zero-shot ya documentado en `clip_trend_matching/` — este parseo por palabras clave usa
+`"casual"` como valor por defecto cuando la caption no menciona nada de estilo específico, y
+`casual` es también la clase mayoritaria real del test set (167/500). Eso infla el número:
+mirando la matriz de confusión, la mayoría de `streetwear`/`de_vestir`/`fiesta_noche` reales
+también caen en `casual` por defecto, no porque el modelo las reconozca bien. Es un baseline
+más parecido a "predice la clase mayoritaria" que a una clasificación real — exactamente el
+tipo de "antes" flojo que se espera que el fine-tuning del Stage 3 mejore de forma honesta,
+no inflada.
 
 ### Stage 3 — Fine-tuning LoRA (ejecutar en Colab)
 

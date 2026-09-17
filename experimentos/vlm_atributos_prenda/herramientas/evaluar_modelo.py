@@ -50,6 +50,10 @@ def parsear_json_seguro(texto):
 
 def generar(model, processor, imagen, device, max_new_tokens=96):
     inputs = processor(text=TASK_PROMPT, images=imagen, return_tensors="pt").to(device)
+    # por si algun dia esto corre con un modelo cargado en bfloat16/fp16 (GPU) --
+    # pixel_values sale siempre en float32 del processor. Ver el mismo aviso en
+    # entrenar_lora.py (bug real encontrado al entrenar en Colab).
+    inputs["pixel_values"] = inputs["pixel_values"].to(next(model.parameters()).dtype)
     with torch.no_grad():
         generados = model.generate(
             input_ids=inputs["input_ids"], pixel_values=inputs["pixel_values"],
