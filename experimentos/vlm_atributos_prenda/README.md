@@ -140,5 +140,14 @@ existe (no se ha bajado el adapter de Colab), solo corre la parte zero-shot.
   `viral_clips` (la herramienta de ingesta de vídeo de §6.1) no existe todavía en este
   entorno. Se espera una caída de precisión real al pasar a fotos reales (fondos, gente,
   oclusión) — ver Stage 5 del plan para el camino a validarlo con un puñado de fotos reales.
+  **Matiz importante para `grupo_estilo` en concreto**: no es solo un problema de fondo/luz —
+  el estilo es una propiedad del *look* completo (varias prendas combinadas), no de una
+  prenda aislada. Una zapatilla sola no dice "streetwear"; zapatilla + vaquero ancho +
+  sudadera sí. Entrenar solo con prendas sueltas pone un techo estructural a este campo que
+  no se arregla con más datos del mismo tipo — para acercarse de verdad al caso real
+  (influencer con varias prendas puestas) hace falta un dataset con outfits completos, no
+  solo más fotos de catálogo. Candidato natural ya citado en el estado del arte (§12.2):
+  **DeepFashion2**, que incluye pares foto-consumidor (calle/selfie, outfit completo) +
+  foto-tienda pensados exactamente para este salto de dominio.
 - `material`, `estampado` y `fit` (§3.4) quedan fuera del esquema v1 — el dataset de Kaggle no
   tiene columnas ni señal de texto fiable para ninguno de los tres.
