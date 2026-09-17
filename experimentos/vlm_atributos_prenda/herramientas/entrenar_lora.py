@@ -34,6 +34,7 @@ from pathlib import Path
 
 import torch
 from PIL import Image
+from torch.amp import GradScaler, autocast
 from torch.utils.data import DataLoader, Dataset
 from transformers import AutoModelForCausalLM, AutoProcessor, get_linear_schedule_with_warmup
 from peft import LoraConfig, get_peft_model
@@ -87,13 +88,9 @@ def hacer_collate(processor, max_target_len):
     return collate
 
 
-def generar_prediccion(model, processor, imagen, device, max_new_tokens=96):
+def generar_prediccion(model, processor, imagen, device, usar_amp, max_new_tokens=96):
     inputs = processor(text=TASK_PROMPT, images=imagen, return_tensors="pt").to(device)
-    # pixel_values sale siempre en float32 del processor, independientemente del dtype
-    # del modelo (bfloat16 en GPU) -- sin este cast, conv2d del vision_tower revienta con
-    # "Input type (float) and bias type (c10::BFloat16) should be the same".
-    inputs["pixel_values"] = inputs["pixel_values"].to(next(model.parameters()).dtype)
-    with torch.no_grad():
+    with torch.no_grad(), autocast(device_type="cuda", dtype=torch.float16, enabled=usar_amp):
         generados = model.generate(
             input_ids=inputs["input_ids"], pixel_values=inputs["pixel_values"],
             max_new_tokens=max_new_tokens, num_beams=1,
@@ -114,12 +111,12 @@ def parsear_json_seguro(texto):
         return None
 
 
-def evaluar(model, processor, dataset, device):
+def evaluar(model, processor, dataset, device, usar_amp):
     model.eval()
     aciertos = {campo: 0 for campo in CAMPOS}
     json_validos = 0
     for imagen, _texto, fila in dataset:
-        texto_generado = generar_prediccion(model, processor, imagen, device)
+        texto_generado = generar_prediccion(model, processor, imagen, device, usar_amp)
         prediccion = parsear_json_seguro(texto_generado)
         if prediccion is not None and all(c in prediccion for c in CAMPOS):
             json_validos += 1
@@ -155,11 +152,20 @@ def main():
     args = parser.parse_args()
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    dtype = torch.bfloat16 if device == "cuda" else torch.float32
-    print(f"Dispositivo: {device}, dtype: {dtype}")
+    # Precision mixta estandar (autocast + GradScaler), no cargar el modelo
+    # directamente en bfloat16/float16: en la GPU T4 de Colab (arquitectura
+    # Turing) varias convoluciones depthwise del vision_tower de Florence-2
+    # no tienen kernel bfloat16 disponible ("RuntimeError: GET was unable to
+    # find an engine to execute this computation") -- bug real encontrado en
+    # Colab. Los pesos se quedan en fp32 (maestros) y solo el computo interno
+    # se hace en fp16 donde es seguro; GradScaler evita el underflow de
+    # gradientes propio de fp16 puro. En CPU esto no aplica (autocast
+    # deshabilitado, todo corre en fp32 tal cual).
+    usar_amp = device == "cuda"
+    print(f"Dispositivo: {device}, AMP (fp16 autocast + GradScaler): {usar_amp}")
 
     print("Cargando Florence-2-base...")
-    model = AutoModelForCausalLM.from_pretrained(MODELO_BASE, trust_remote_code=True, torch_dtype=dtype)
+    model = AutoModelForCausalLM.from_pretrained(MODELO_BASE, trust_remote_code=True, torch_dtype=torch.float32)
     processor = AutoProcessor.from_pretrained(MODELO_BASE, trust_remote_code=True)
 
     lora_config = LoraConfig(
@@ -186,6 +192,7 @@ def main():
         optimizer, num_warmup_steps=int(pasos_totales * args.warmup_ratio),
         num_training_steps=pasos_totales,
     )
+    scaler = GradScaler(device="cuda", enabled=usar_amp)
 
     salida_dir = Path(args.salida)
     salida_dir.mkdir(parents=True, exist_ok=True)
@@ -200,17 +207,19 @@ def main():
 
         for paso, (inputs, _filas) in enumerate(train_loader, 1):
             inputs = {k: v.to(device) for k, v in inputs.items()}
-            inputs["pixel_values"] = inputs["pixel_values"].to(dtype)
-            salida = model(**inputs)
-            perdida = salida.loss / args.grad_accum
-            perdida.backward()
+            with autocast(device_type="cuda", dtype=torch.float16, enabled=usar_amp):
+                salida = model(**inputs)
+                perdida = salida.loss / args.grad_accum
+            scaler.scale(perdida).backward()
             perdida_acumulada += salida.loss.item()
 
             if paso % args.grad_accum == 0:
+                scaler.unscale_(optimizer)
                 torch.nn.utils.clip_grad_norm_(
                     [p for p in model.parameters() if p.requires_grad], 1.0
                 )
-                optimizer.step()
+                scaler.step(optimizer)
+                scaler.update()
                 scheduler.step()
                 optimizer.zero_grad()
 
@@ -221,7 +230,7 @@ def main():
                       f"({transcurrido / paso:.2f}s/paso)")
 
         print(f"Epoca {epoca} terminada en {(time.time() - inicio) / 60:.1f} min. Evaluando en val...")
-        metricas = evaluar(model, processor, val_ds, device)
+        metricas = evaluar(model, processor, val_ds, device, usar_amp)
         resultados_por_epoca.append(metricas)
         print(f"  val: {metricas}")
 

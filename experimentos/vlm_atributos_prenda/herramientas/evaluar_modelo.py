@@ -25,6 +25,7 @@ from pathlib import Path
 import torch
 from PIL import Image
 from peft import PeftModel
+from torch.amp import autocast
 from transformers import AutoModelForCausalLM, AutoProcessor
 
 BASE_DIR = Path(__file__).parent.parent
@@ -48,13 +49,14 @@ def parsear_json_seguro(texto):
         return None
 
 
-def generar(model, processor, imagen, device, max_new_tokens=96):
+def generar(model, processor, imagen, device, usar_amp, max_new_tokens=96):
     inputs = processor(text=TASK_PROMPT, images=imagen, return_tensors="pt").to(device)
-    # por si algun dia esto corre con un modelo cargado en bfloat16/fp16 (GPU) --
-    # pixel_values sale siempre en float32 del processor. Ver el mismo aviso en
-    # entrenar_lora.py (bug real encontrado al entrenar en Colab).
-    inputs["pixel_values"] = inputs["pixel_values"].to(next(model.parameters()).dtype)
-    with torch.no_grad():
+    # Precision mixta estandar (autocast), no cargar el modelo directamente en
+    # bfloat16/fp16: en la GPU T4 de Colab, varias convoluciones depthwise del
+    # vision_tower de Florence-2 no tienen kernel bfloat16 disponible (bug real
+    # encontrado al entrenar, ver entrenar_lora.py). Los pesos se quedan en
+    # fp32 y autocast castea el computo internamente donde es seguro.
+    with torch.no_grad(), autocast(device_type="cuda", dtype=torch.float16, enabled=usar_amp):
         generados = model.generate(
             input_ids=inputs["input_ids"], pixel_values=inputs["pixel_values"],
             max_new_tokens=max_new_tokens, num_beams=1,
@@ -62,7 +64,7 @@ def generar(model, processor, imagen, device, max_new_tokens=96):
     return processor.batch_decode(generados, skip_special_tokens=True)[0].strip()
 
 
-def evaluar_test_set(model, processor, device, filas, etiqueta_modelo):
+def evaluar_test_set(model, processor, device, usar_amp, filas, etiqueta_modelo):
     aciertos = collections.Counter()
     confusion_grupo = collections.Counter()
     confusion_color = collections.Counter()
@@ -72,7 +74,7 @@ def evaluar_test_set(model, processor, device, filas, etiqueta_modelo):
     for i, fila in enumerate(filas, 1):
         imagen = Image.open(BASE_DIR / "data" / fila["imagen"]).convert("RGB")
         t0 = time.time()
-        texto = generar(model, processor, imagen, device)
+        texto = generar(model, processor, imagen, device, usar_amp)
         latencias.append(time.time() - t0)
 
         prediccion = parsear_json_seguro(texto)
@@ -112,7 +114,7 @@ def f1_por_clase(confusion, clases, etiqueta_campo):
         print(f"  {clase:<14} precision={precision:.2f}  recall={recall:.2f}  F1={f1:.2f}")
 
 
-def evaluar_1207_imagenes(model, processor, device, etiqueta_modelo, limite_por_carpeta):
+def evaluar_1207_imagenes(model, processor, device, usar_amp, etiqueta_modelo, limite_por_carpeta):
     if not CLIP_POC_DIR.is_dir():
         print(f"\n(aviso) no se encuentra {CLIP_POC_DIR}, se omite la comparacion con CLIP.")
         return
@@ -133,7 +135,7 @@ def evaluar_1207_imagenes(model, processor, device, etiqueta_modelo, limite_por_
         aciertos_carpeta = 0
         for ruta in rutas:
             imagen = Image.open(ruta).convert("RGB")
-            texto = generar(model, processor, imagen, device)
+            texto = generar(model, processor, imagen, device, usar_amp)
             prediccion = parsear_json_seguro(texto)
             grupo_predicho = prediccion.get("grupo_estilo") if prediccion else None
             if grupo_predicho == carpeta_nombre:
@@ -159,6 +161,7 @@ def main():
     args = parser.parse_args()
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
+    usar_amp = device == "cuda"
     filas_test = [json.loads(l) for l in open(BASE_DIR / "data" / "test.jsonl", encoding="utf-8")]
     if args.limite:
         filas_test = filas_test[: args.limite]
@@ -166,7 +169,7 @@ def main():
     print("Cargando Florence-2-base (zero-shot)...")
     base_zeroshot = AutoModelForCausalLM.from_pretrained(MODELO_BASE, trust_remote_code=True, torch_dtype=torch.float32).to(device)
     processor = AutoProcessor.from_pretrained(MODELO_BASE, trust_remote_code=True)
-    resultado_zeroshot = evaluar_test_set(base_zeroshot, processor, device, filas_test, "ZERO-SHOT (sin afinar)")
+    resultado_zeroshot = evaluar_test_set(base_zeroshot, processor, device, usar_amp, filas_test, "ZERO-SHOT (sin afinar)")
     f1_por_clase(resultado_zeroshot["confusion_color"],
                  sorted({f["color_primario"] for f in filas_test}), "color_primario (zero-shot)")
     f1_por_clase(resultado_zeroshot["confusion_grupo"], GRUPOS_ESTILO_1207, "grupo_estilo (zero-shot)")
@@ -181,7 +184,7 @@ def main():
     print(f"\nCargando adapter afinado desde {adapter_path}...")
     base_afinado = AutoModelForCausalLM.from_pretrained(MODELO_BASE, trust_remote_code=True, torch_dtype=torch.float32)
     modelo_afinado = PeftModel.from_pretrained(base_afinado, adapter_path).to(device)
-    resultado_afinado = evaluar_test_set(modelo_afinado, processor, device, filas_test, "AFINADO (LoRA)")
+    resultado_afinado = evaluar_test_set(modelo_afinado, processor, device, usar_amp, filas_test, "AFINADO (LoRA)")
     f1_por_clase(resultado_afinado["confusion_color"],
                  sorted({f["color_primario"] for f in filas_test}), "color_primario (afinado)")
     f1_por_clase(resultado_afinado["confusion_grupo"], GRUPOS_ESTILO_1207, "grupo_estilo (afinado)")
@@ -193,7 +196,7 @@ def main():
         print(f"  {campo:<16} {antes:.1%} -> {despues:.1%}  ({'+' if despues >= antes else ''}{(despues - antes) * 100:.1f} pp)")
 
     if not args.sin_1207:
-        evaluar_1207_imagenes(modelo_afinado, processor, device, "AFINADO (LoRA)", args.limite_1207)
+        evaluar_1207_imagenes(modelo_afinado, processor, device, usar_amp, "AFINADO (LoRA)", args.limite_1207)
 
 
 if __name__ == "__main__":
