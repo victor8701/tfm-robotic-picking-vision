@@ -74,11 +74,14 @@ a las 1651-2569 del resto) — esperable, es la misma clase que ya iba peor con 
 > `Dresses` por estampado/liso en vez de fijo, filtro de ropa infantil por nombre además de por
 > `gender`) — detalle y motivo en [`esquema_atributos.md`](esquema_atributos.md) y
 > [`memoria/TFM_clasificador_visual_atributos.md`](../../memoria/TFM_clasificador_visual_atributos.md)
-> §11.1. **`data/*.jsonl` ya está regenerado con estas reglas (v2)**, pero
-> `modelos/florence2_base_lora_v1/` sigue siendo el adapter **v1** (entrenado con las reglas
-> anteriores) — todos los resultados de este README hasta la sección "Looks completos" son v1.
-> Reentrenar v2 es el siguiente paso (mismo notebook de Colab, ya apunta a
-> `modelos/florence2_base_lora_v2/` y no sobreescribe v1).
+> §11.1. **`data/*.jsonl` ya está regenerado con estas reglas (v2)**; `modelos/florence2_base_lora_v1/`
+> sigue siendo el adapter **v1** (entrenado con las reglas anteriores) — todos los resultados de
+> este README hasta la sección "Looks completos" son v1. **`modelos/florence2_base_lora_v2/` ya
+> está entrenado y evaluado** (Kaggle GPU vía API, `herramientas/kaggle_kernel/`) — no mejora el
+> test global de v1 (cae `grupo_estilo` y `color_primario`, se explica en la memoria §11.2), pero
+> hace lo que se pidió: ya no hace trampa con los vestidos y `temporada` distingue `todo_el_ano`
+> para chaquetas. Comparación campo a campo completa en
+> [`memoria/TFM_clasificador_visual_atributos.md`](../../memoria/TFM_clasificador_visual_atributos.md) §11.2.
 
 ## Estado: Stage 2 y Stage 3 (código) también listos
 
@@ -256,8 +259,9 @@ métricas. Detalle y cifras en la memoria (§8).
 
 ## Próximos pasos
 
-1. **Reentrenar v2 en Colab** con las reglas de esquema ya decididas (ver arriba y
-   `esquema_atributos.md`) y repetir la evaluación para comparar contra el v1 documentado aquí.
+1. ~~Reentrenar v2~~ — **hecho** (Kaggle GPU vía API en vez de Colab —
+   `herramientas/kaggle_kernel/`—, ver memoria §11.2-§11.3). No mejora el test global; explicado
+   campo a campo en la memoria.
 2. **Terminar la revisión humana** de las 120 fichas de la app (van 100): daría un subconjunto
    del test verificado por una persona, que es una evaluación más honesta que la de Kaggle.
    Conviene hacerlo *sin* mostrar la predicción del modelo, para no sesgar las etiquetas.
@@ -269,9 +273,10 @@ métricas. Detalle y cifras en la memoria (§8).
    nombre; `deportivo`+`streetwear` se queda sin resolver (se descartó reetiquetar por marca) y
    la paleta de color no se toca. Detalle en la memoria (§11.1). Sigue abierto: `temporada` del
    resto de tipos de prenda más allá de `Jackets`.
-5. Sobremuestrear la cola larga de tipos de prenda: el estilo cae al 3% en tipos con menos de
-   10 ejemplos de entrenamiento (memoria §6.3), y clases de color sin cobertura (`fucsia`,
-   `plateado`: F1 0.00).
+5. Sobremuestrear la cola larga de tipos de prenda (el estilo cae al 3% en tipos con menos de
+   10 ejemplos, §6.3) y las 5 clases de color con F1 0.00 en v2 (`fucsia`, `plateado`, `burdeos`,
+   `dorado`, `naranja` — memoria §11.2): es lo que más pinta a problema real, no ruido de una sola
+   repetición, pero hace falta más de un run para saberlo.
 
 ## Qué NO es (mismo aviso honesto que en `clip_trend_matching/`)
 

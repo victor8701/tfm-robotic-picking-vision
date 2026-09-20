@@ -3,8 +3,8 @@
 **Autor:** Víctor Martín Parra  
 **Máster:** Robótica y Automatización — UC3M (2025/2027)  
 **Fecha:** 20 de septiembre de 2026  
-**Versión:** 0.2 (documento vivo: v0.1 recogía los resultados del dataset/adapter v1; v0.2 añade las decisiones de
-esquema del autor y el dataset v2 regenerado, §11.1 — el adapter v2 todavía no se ha entrenado)  
+**Versión:** 0.3 (documento vivo: v0.1 = resultados del dataset/adapter v1; v0.2 = decisiones de esquema del autor y
+dataset v2 regenerado, §11.1; v0.3 = adapter v2 entrenado y evaluado, comparación con v1, §11.2)  
 **Código y datos:** [`experimentos/vlm_atributos_prenda/`](../experimentos/vlm_atributos_prenda/) (rama `clip-trend-semantic-matching-poc`)  
 **Relación con el estado del arte:** este documento cubre la pieza *visual* del Trend Intelligence Agent
 ([`Estado_arte.md`](Estado_arte.md) §6) y el matching semántico (§7). **No modifica `Estado_arte.md`**: el autor pidió
@@ -48,6 +48,11 @@ que lo aplica a fotos con personas (detectar → recortar → clasificar cada pr
 | Foto de calle: estilo del look dentro de lo aceptable (persona principal, 19 fotos) | 13/19 = 68 % (foto entera) | **16/19 = 84 %** (looks por prenda) | muestra pequeña, guardas ajustadas sobre las mismas fotos, auditada por Claude, §8.4 |
 | Looks: cajas de prenda correctas / prendas visibles detectadas | — | **93 %** (80/86) / **98 %** (82/84) | ídem |
 | Looks: `temporada` por prenda | — | 83 de 84 recortes → `primavera_verano` | inservible fuera del catálogo |
+
+*(Esta tabla es el "antes/después" del adapter **v1**. Hay una segunda vuelta, v2, con las reglas de
+esquema que decidió el autor — resultado real y comparación campo a campo en §11.2: en conjunto no
+mejora el test global, con una caída esperable en `grupo_estilo` — v1 hacía trampa con los
+vestidos — y una caída en `color_primario` sin explicar del todo.)*
 
 Seis conclusiones:
 
@@ -103,7 +108,8 @@ Esquema de salida (v1), detallado en [`esquema_atributos.md`](../experimentos/vl
 | 2026-09-17 | Etapa 3: entrenamiento LoRA en Colab (T4); correcciones de precisión mixta | `1da9a05`…`46cd0ff` |
 | 2026-09-17 | Etapa 4: evaluación en test, F1 por clase y comparación con CLIP (resultados sin registrar en el repositorio hasta este documento) | |
 | 2026-09-20 | App de revisión humana, fotos de calle, prototipo de looks, auditoría del solape con CLIP | `e03385f` y el commit de este documento |
-| 2026-09-20 (tarde) | Decisiones de esquema del autor (§11.1) implementadas; dataset v2 regenerado; reentrenamiento v2 pendiente | commit de esta actualización |
+| 2026-09-20 (tarde) | Decisiones de esquema del autor (§11.1) implementadas; dataset v2 regenerado | commit de esta actualización |
+| 2026-09-20 (noche) | Adapter v2 entrenado y evaluado (Kaggle GPU, vía API — §11.3); comparación v1/v2 en §11.2 | commit de esta actualización |
 
 ---
 
@@ -212,11 +218,12 @@ género 53.6 %, temporada 56.8 % (media 39.0 %).
 > respuestas del autor a §11.1, se corrigieron los dos primeros (`temporada` de `Jackets`,
 > `grupo_estilo` de `Dresses`) y el filtro de ropa infantil se hizo mucho más estricto (por
 > nombre, no solo por `gender`; sube de 111/4000 a un pool completo de 713 filas detectadas).
-> **Las tablas de esta sección y los resultados de §6–§8 son del dataset v1** (con el que se
-> entrenó y evaluó el adapter que se documenta en este archivo) — quedan como estaban a
-> propósito, para que los números de entrenamiento/evaluación sigan siendo coherentes entre
-> sí. El dataset v2 (reglas nuevas, ya regenerado en `data/*.jsonl`) y su comparación de
-> conteos están en §11.1; el adapter v2 está pendiente de entrenar.
+> **Las tablas de esta sección y los resultados de §6–§8 son del dataset y el adapter v1**
+> (`modelos/florence2_base_lora_v1/`) — quedan como estaban a propósito, para que los números de
+> entrenamiento/evaluación de esas secciones sigan siendo coherentes entre sí. El dataset v2
+> (reglas nuevas) ya está regenerado en `data/*.jsonl` y el adapter v2
+> (`modelos/florence2_base_lora_v2/`) **ya está entrenado y evaluado** — conteos del dataset en
+> §11.1, resultado real del entrenamiento y comparación campo a campo con v1 en §11.2.
 
 ---
 
@@ -592,9 +599,10 @@ look por prendas lo corrige en 3 fotos casuales (calle_02, calle_05, calle_20); 
 El autor resolvió las cinco dudas de la primera versión de esta sección. Cambios ya
 implementados en `herramientas/preparar_dataset_florence2.py` y documentados en
 `esquema_atributos.md`; **`data/{train,val,test}.jsonl` ya está regenerado con las reglas
-nuevas (v2)**, pero el adapter `modelos/florence2_base_lora_v1/` —y por tanto todos los
-resultados de §6–§8 de este documento— sigue entrenado con las reglas **v1** (anteriores a
-esta fecha). El reentrenamiento v2 es el primer punto de §11.2.
+nuevas (v2)**. El adapter `modelos/florence2_base_lora_v1/` —y por tanto todos los
+resultados de §6–§8 de este documento— sigue siendo el entrenado con las reglas **v1**
+(anteriores a esta fecha); el adapter v2, ya entrenado sobre estas reglas nuevas, y su
+comparación campo a campo con v1, están en §11.2.
 
 | Tema | Decisión del autor | Qué se implementó |
 |---|---|---|
@@ -635,14 +643,73 @@ regla nueva solo toca esa categoría y no tiene fugas a otras.
 | `grupo_estilo` multietiqueta de verdad (JSON con lista) | Se rechazó la vía por marca, pero no se preguntó si se quiere multietiqueta por otra vía |
 | Vestidos «brillantes» | Sin datos en este catálogo para validar esa parte de la regla |
 
-### 11.2 Trabajo técnico
+### 11.2 Reentrenamiento v2: resultado real (2026-09-20)
 
-1. **Reentrenar v2 en Colab** (≈ 25 min, mismo notebook —`notebook_colab_entrenamiento.ipynb`,
-   ya apunta a `modelos/florence2_base_lora_v2/` por defecto y no sobreescribe v1—) y repetir
-   §6–§8 de este documento con el adapter nuevo, para poder comparar v1 frente a v2 con números.
+Entrenado en Kaggle (GPU, ≈ 54 min con descarga de dataset incluida; 0.40–0.41 s/paso, igual de
+rápido que la T4 de Colab en v1) en vez de Colab — ver §11.4 para el porqué y cómo. Mismo dataset
+v2 de §11.1, mismos hiperparámetros que v1 (r=16, α=32, 3 épocas, batch efectivo 16). Época con
+mejor accuracy media en validación: **época 2** (81.4 %; en v1 fue la época 3, también 81.4 %).
+
+| Campo | Val, mejor época (v1 / v2) | Test 500 (v1 → **v2**) | Δ | IC95 (v2) |
+|---|---|---|---|---|
+| `categoria` | 98.4 / 98.2 | 99.6 % → **98.0 %** | −1.6 | 96.4–98.9 |
+| `color_primario` | 72.6 / 73.0 | 76.2 % → **72.0 %** | −4.2 | 67.9–75.8 |
+| `grupo_estilo` | 88.0 / 85.8 | 90.8 % → **86.8 %** | −4.0 | 83.6–89.5 |
+| `genero` | 90.4 / 90.4 | 94.0 % → **94.2 %** | +0.2 | 91.8–95.9 |
+| `temporada` | 57.8 / 59.6 | 60.2 % → **60.2 %** | 0.0 | 55.8–64.4 |
+| JSON válido | 100 / 100 | 100 % → **100 %** | — | |
+| Latencia (GPU Kaggle) | — | — → **1.00 s/imagen** | (v1: 6.5 s/imagen en CPU) | |
+
+**v2 no es mejor que v1 en el test global — es ligeramente peor en tres campos, salvo en lo que se
+pidió arreglar.** Con una sola repetición por versión (sin varias semillas) no se puede separar
+del todo señal de ruido, pero hay una lectura razonable campo a campo:
+
+- **`grupo_estilo` (−4.0 puntos) es la caída más esperable y la más fácil de explicar**: v1 podía
+  acertar `Dresses` con el atajo `tipo de prenda → fiesta_noche` sin mirar la imagen (§6.4); v2 le
+  quita ese atajo (necesita leer si el vestido está estampado) — es una tarea más difícil y más
+  honesta, no un fallo del entrenamiento. Consistente con la caída: `fiesta_noche` mejora su
+  recall (0.96) a costa de la precisión (0.80, era 0.95 en v1) — señal de que ahora hay que
+  *distinguir* en vez de aplicar la regla siempre.
+- **`color_primario` (−4.2 puntos) es la que más preocupa**: en v1 solo `fucsia` y `plateado`
+  tenían F1 0.00; en v2 se les unen **`burdeos`, `dorado` y `naranja`** (antes 0.22–0.57 de F1).
+  Estas cinco clases ya eran las de menos ejemplos en train (todas por debajo de 60 filas) —
+  compatible con varianza de una sola repetición sobre clases con poquísimos datos, pero no
+  descartable como regresión real hasta repetirlo. Sigue siendo el punto de la lista de §11.1
+  ("sobremuestrear la cola larga") el que más urge.
+- **`categoria` (−1.6) y `temporada` (0.0)** están dentro de lo esperable: `categoria` pierde 10
+  aciertos de 500 (ruido plausible), y `temporada` no tenía por qué cambiar en el agregado — la
+  única regla nueva es de `Jackets`, una fracción pequeña del test (aunque sí aparece por primera
+  vez `todo_el_ano` con señal, 205 filas de train con esa etiqueta exacta; no se ha medido todavía
+  el acierto específico en esa clase, `evaluar_modelo.py` no da F1 por clase de `temporada`).
+- **`genero` (+0.2, sin cambio real)**: como se documentó en §11.1, la etiqueta de entrenamiento
+  para `genero` no cambió en v2 (se mantiene la de Kaggle) — este número es la confirmación de que
+  no cambió nada ahí, no una mejora.
+
+**Conclusión honesta**: las tres reglas que pidió el autor están implementadas y el modelo entrena
+igual de bien en conjunto (accuracy media en el mejor punto de validación: 81.4 % en ambas), pero
+el test global de v2 no es un "v1 pero mejor" — es un modelo que ya no hace trampa en un campo
+(`grupo_estilo`) a cambio de una tarea más difícil, con una caída en `color_primario` que necesita
+más datos para las clases raras antes de poder decir si es ruido o un problema real. **v1 y v2 se
+quedan los dos en el repositorio** (`modelos/florence2_base_lora_v1/` y `_v2/`) para poder comparar.
+
+### 11.3 Cómo se entrenó v2 (nota técnica, para la sección de método)
+
+No se usó Colab para este run (ver §11.4): se entrenó vía la **API de Kaggle** con un script propio
+(`herramientas/kaggle_kernel/`, documentado en su propio `README.md`) que hace exactamente los
+mismos pasos que `notebook_colab_entrenamiento.ipynb` (clonar el repo, instalar dependencias,
+regenerar `data/*.jsonl`, `entrenar_lora.py`, `evaluar_modelo.py`) pero como un script no
+interactivo lanzado por API, sin manejar ningún notebook a mano. Detalle porque no es solo una
+curiosidad de esta sesión: es una vía de entrenamiento reproducible alternativa a Colab, ya
+probada y documentada, disponible para el siguiente reentrenamiento.
+
+### 11.4 Trabajo técnico
+
+1. ~~Reentrenar v2~~ — **hecho** (§11.2), vía Kaggle en vez de Colab (autor sin acceso a
+   ordenador; Colab no es manejable cómodamente desde el navegador móvil). Detalle en §11.3.
 2. **Terminar las 20 fichas** (autor) y reejecutar `analizar_revision_humana.py`.
-3. **Sobremuestrear la cola larga de tipos de prenda**: el estilo cae al 3 % en tipos con menos
-   de 10 ejemplos de entrenamiento (§6.3) — es un problema de datos, no de reglas.
+3. **Sobremuestrear la cola larga**: no solo tipos de prenda con <10 ejemplos (§6.3) — ahora
+   también las 5 clases de color con F1 0.00 en v2 (`fucsia`, `plateado`, `burdeos`, `dorado`,
+   `naranja`), para separar ruido de regresión real.
 4. **Looks**: sustituir las heurísticas por un **detector de prendas afinado** (DeepFashion2, el
    candidato de §12.2 de `Estado_arte.md`) y afinar el clasificador con **recortes reales**;
    para medirlo, una app v2 que muestre el recorte y pida validar la prenda (categoría, color,
@@ -662,9 +729,11 @@ cd herramientas
 python3 preparar_dataset_florence2.py    # train/val/test.jsonl v2 (reglas de §11.1), semilla 42
 python3 estadisticas_dataset.py          # tablas de la sección 4 (v1) / 11.1 (v2)
 python3 baseline_zero_shot.py            # ≈ 65 min en CPU (500 imágenes) -- resultado v1, no se ha repetido en v2
-#   entrenamiento v1 (documentado en este archivo): notebook_colab_entrenamiento.ipynb -> florence2_base_lora_v1/
-#   entrenamiento v2 (reglas de §11.1, pendiente): mismo notebook, ya apunta a florence2_base_lora_v2/
-python3 evaluar_modelo.py                # test 500, F1 por clase (usa florence2_base_lora_v1 por defecto; --adapter para v2 cuando exista)
+#   entrenamiento v1 (documentado en §5-§10): notebook_colab_entrenamiento.ipynb -> florence2_base_lora_v1/
+#   entrenamiento v2 (documentado en §11.2-§11.3): mismo notebook -> florence2_base_lora_v2/, o
+#   herramientas/kaggle_kernel/ (API de Kaggle, sin notebook) -- ver su README.md
+python3 evaluar_modelo.py --adapter ../modelos/florence2_base_lora_v1   # resultados de §6 (por defecto usa v1)
+python3 evaluar_modelo.py --adapter ../modelos/florence2_base_lora_v2 --sin-zero-shot --sin-1207  # resultados de §11.2
 python3 evaluar_solape_1207.py           # solape con train/val/test y comparación con CLIP sin contaminación (v1)
 python3 analizar_revision_humana.py --revisiones ../data/revision_humana/revisiones_app_n100_2026-09-20.json
 python3 predecir_lote.py --carpeta ../data/fotos_calle --salida calle.json
@@ -673,13 +742,14 @@ python3 resumen_outfit.py --outfits outfits.json --foto-entera ../data/revision_
     --auditoria ../data/revision_humana/auditoria_outfit_calle.json
 ```
 
-**Aviso de versión del dataset**: `preparar_dataset_florence2.py` ya regenera `data/*.jsonl` con las reglas **v2**
-(§11.1) — es lo que hay en el repositorio ahora. El adapter `modelos/florence2_base_lora_v1/`, y por tanto todos los
-comandos de arriba que lo usan (`evaluar_modelo.py`, `evaluar_solape_1207.py`), se entrenó con las reglas **v1**; sus
-resultados documentados en §6–§8 no son reproducibles ejecutándolos ahora sin más, porque el test set cambió de
-contenido. La versión v1 exacta de `data/*.jsonl` queda recuperable del historial de git si hace falta.
+**Aviso de versión del dataset**: `preparar_dataset_florence2.py` regenera `data/*.jsonl` con las reglas **v2** (§11.1)
+— es lo que hay en el repositorio ahora, y es lo que se usó para entrenar y evaluar `florence2_base_lora_v2/`. El
+adapter `modelos/florence2_base_lora_v1/` se entrenó con las reglas **v1**; sus resultados documentados en §6–§8 no son
+reproducibles ejecutando `evaluar_modelo.py`/`evaluar_solape_1207.py` tal cual ahora (test set con contenido distinto)
+— la versión v1 exacta de `data/*.jsonl` queda recuperable del historial de git si hace falta.
 
 Datos en el repositorio: `data/{train,val,test}.jsonl` (v2), `data/revision_humana/` (revisiones humanas, manifest de la
 app, predicciones del modelo, salida y auditoría de los looks), `data/eval_1207_solape.json` (v1),
-`modelos/florence2_base_lora_v1/` (adapter v1 y `resultados_entrenamiento.json`; v2 pendiente de subir tras el
-reentrenamiento en Colab).
+`modelos/florence2_base_lora_v1/` y `modelos/florence2_base_lora_v2/` (los dos adapters, cada uno con su
+`resultados_entrenamiento.json`; v2 añade `evaluacion_test_v2.txt`), `herramientas/kaggle_kernel/` (entrenamiento vía
+API de Kaggle, alternativa a Colab).
