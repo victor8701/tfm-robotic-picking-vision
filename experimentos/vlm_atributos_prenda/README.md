@@ -278,10 +278,14 @@ métricas. Detalle y cifras en la memoria (§8).
    temporada", 13 tipos más a `todo_el_ano` (antes solo `Jackets`); reentrenado como v3, y esta
    vez sí mejora — 85 % de media contra las 100 fichas humanas (v1: 79 %, v2: 77 %), con
    `temporada` subiendo de 44 %/38 % a **68 %**. Memoria §11.4.
-5. **Sobremuestrear colores raros** (`fucsia`, `dorado`, `naranja`, `plateado`, `burdeos`: F1
-   0.00 o muy bajo en v1/v2/v3, con muy pocos ejemplos en *todo* el dataset, no solo en la
-   muestra) — **en marcha**: dataset v4 ya regenerado reservando hasta 200 filas de cada color
-   antes del muestreo por categoría; reentrenamiento en curso. Memoria §11.5.
+5. ~~Sobremuestrear colores raros~~ (`fucsia`, `dorado`, `naranja`, `plateado`, `burdeos`: F1
+   0.00 o muy bajo en v1/v2/v3) — **hecho como v4, resultado mixto**: arregla de verdad
+   `naranja`/`dorado`/`plateado` (F1 0.00→0.56-0.87), pero `color_primario` cae en conjunto
+   contra el humano (84 %→75 %) — no es ruido, la frontera de decisión se desplaza y arrastra
+   colores próximos (`negro`/`gris`, `navy`/`azul`). **v3 sigue siendo la versión con mejor
+   acuerdo medio (85 %)**; v4 es la alternativa si lo que importa es no fallar sistemáticamente
+   en esos tres colores. `fucsia` sigue en F1 0.00 (solo 50 imágenes en todo el dataset).
+   Memoria §11.5.
 6. Sobremuestrear también la cola larga de **tipos de prenda** (no solo colores): el estilo cae
    al 3% en tipos con menos de 10 ejemplos de entrenamiento (§6.3).
 

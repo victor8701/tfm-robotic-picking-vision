@@ -3,10 +3,11 @@
 **Autor:** Víctor Martín Parra  
 **Máster:** Robótica y Automatización — UC3M (2025/2027)  
 **Fecha:** 20 de septiembre de 2026  
-**Versión:** 0.6 (documento vivo: v0.1 = resultados del dataset/adapter v1; v0.2 = decisiones de esquema del autor y
+**Versión:** 0.7 (documento vivo: v0.1 = resultados del dataset/adapter v1; v0.2 = decisiones de esquema del autor y
 dataset v2 regenerado, §11.1; v0.3 = adapter v2 entrenado y evaluado, comparación con v1, §11.2; v0.4 = resto de
 `temporada` decidido y dataset v3 regenerado, §11.4; v0.5 = adapter v3 entrenado y evaluado — mejor que v1 y v2 contra
-el humano, §11.4; v0.6 = sobremuestreo de colores raros, dataset v4 regenerado, §11.5)  
+el humano, §11.4; v0.6 = sobremuestreo de colores raros, dataset v4 regenerado, §11.5; v0.7 = adapter v4 entrenado y
+evaluado — arregla 3 clases de color, a costa de la media global, §11.5)  
 **Código y datos:** [`experimentos/vlm_atributos_prenda/`](../experimentos/vlm_atributos_prenda/) (rama `clip-trend-semantic-matching-poc`)  
 **Relación con el estado del arte:** este documento cubre la pieza *visual* del Trend Intelligence Agent
 ([`Estado_arte.md`](Estado_arte.md) §6) y el matching semántico (§7). **No modifica `Estado_arte.md`**: el autor pidió
@@ -51,14 +52,16 @@ que lo aplica a fotos con personas (detectar → recortar → clasificar cada pr
 | Looks: cajas de prenda correctas / prendas visibles detectadas | — | **93 %** (80/86) / **98 %** (82/84) | ídem |
 | Looks: `temporada` por prenda | — | 83 de 84 recortes → `primavera_verano` | inservible fuera del catálogo |
 
-*(Esta tabla es el "antes/después" del adapter **v1**. Hay dos vueltas más con las reglas de esquema
-que decidió el autor — v2 (`temporada` de `Jackets`, `grupo_estilo` de `Dresses`) y v3 (`temporada`
-de otros 13 tipos) — con resultado real y comparación campo a campo en §11.2 y §11.4. Contra las 100
-fichas revisadas a mano (más fiable que el test de 500, que cambia de contenido entre versiones):
-v2 se queda prácticamente igual que v1 en todo salvo `temporada`, que cae por el motivo esperado
-—el modelo ya ignora a propósito el juicio caso a caso en `Jackets`, como pidió el autor—; **v3 es
-la mejor de las tres versiones en casi todos los campos**, con `temporada` subiendo de 44 %/38 % a
-**68 %** al extender esa misma regla a 13 tipos más.)*
+*(Esta tabla es el "antes/después" del adapter **v1**. Hay tres vueltas más — v2 (`temporada` de
+`Jackets`, `grupo_estilo` de `Dresses`), v3 (`temporada` de otros 13 tipos) y v4 (sobremuestreo de
+colores raros) — con resultado real y comparación campo a campo en §11.2, §11.4 y §11.5. Contra las
+100 fichas revisadas a mano (más fiable que el test de 500, que cambia de contenido entre
+versiones): v2 se queda prácticamente igual que v1 salvo `temporada`, que cae por el motivo
+esperado; **v3 es la mejor de las cuatro versiones en acuerdo medio (85 %)**, con `temporada`
+subiendo de 44 %/38 % a 68 %; **v4 arregla de verdad 3 de los 5 colores que llevaban en F1 0.00
+desde v1** (`naranja`, `dorado`, `plateado`) pero a costa de `color_primario` en general —
+media 82 %, peor que v3 aunque sigue por delante de v1/v2 — un trade-off real, no una mejora
+limpia.)*
 
 Seis conclusiones:
 
@@ -118,7 +121,8 @@ Esquema de salida (v1), detallado en [`esquema_atributos.md`](../experimentos/vl
 | 2026-09-20 (noche) | Adapter v2 entrenado y evaluado (Kaggle GPU, vía API — §11.3); comparación v1/v2 en §11.2 | commit de esta actualización |
 | 2026-09-20 (noche, más tarde) | `temporada` decidida para 13 tipos más vía artifact; dataset v3 regenerado (Kaggle vía API) | `bbd78a0` |
 | 2026-09-20 (noche, aún más tarde) | Adapter v3 entrenado y evaluado — mejor que v1 y v2 contra el humano, sobre todo en `temporada` (§11.4) | `0cd5316` |
-| 2026-09-20 (noche, todavía más tarde) | Sobremuestreo de colores raros; dataset v4 regenerado (Kaggle vía API) | commit de esta actualización |
+| 2026-09-20 (noche, todavía más tarde) | Sobremuestreo de colores raros; dataset v4 regenerado (Kaggle vía API) | `6962797` |
+| 2026-09-20 (noche, última) | Adapter v4 entrenado y evaluado — arregla 3 colores, cae la media global (§11.5) | commit de esta actualización |
 
 ---
 
@@ -825,14 +829,44 @@ train/val/test. Resultado en train: `fucsia` 4→**39**, `dorado` ~46→**156**,
 21.7 % a 25.8 % del train, porque esos colores no se reparten igual entre tipos de prenda) pero
 sin romperse.
 
-**Resultado del entrenamiento (Kaggle GPU, mismo día):** «PENDIENTE».
+**Resultado del entrenamiento (Kaggle GPU, mismo día).** Mejor época en val: 3 (87.5 %, en línea
+con v3). F1 de `color_primario` en el test de 500, antes → después del refuerzo:
+
+| Clase | v1/v2/v3 | **v4** |
+|---|---|---|
+| `naranja` | 0.00 (las tres) | **0.87** — la mejor de las 17 clases |
+| `dorado` | 0.00 (las tres) | **0.69** |
+| `plateado` | 0.00 (las tres) | **0.56** |
+| `burdeos` | 0.22–0.45 | 0.45 |
+| `fucsia` | 0.00 (las tres) | **0.00** — sigue igual, esperable: son 50 imágenes en *todo* el dataset, no hay más que reservar por mucho que se reorganice el muestreo |
+
+**Pero no es una victoria limpia: `color_primario` cae contra el humano (84 %→75 %, contraste
+pareado en las 100 fichas) y con eso la media también (85 %→82 %).** No es ruido —10 fichas
+pasan de acierto a fallo por solo 1 en sentido contrario, muy distinto del vaivén 5-vs-2 que se
+vio de v2 a v3. Mirando las 10 que pierde, hay un patrón: 3 son `negro`→`gris`, 2 son
+`navy`→`azul`, 2 son un color cualquiera→`dorado`. Reforzar 4 clases (de ~2-6 % del train cada
+una a ~4-5 %) desplaza a ~700 filas de otros colores dentro del presupuesto fijo de 4000 —
+mueve la frontera de decisión y arrastra clases visualmente próximas (`negro`/`gris`,
+`navy`/`azul`, tonos cálidos/`dorado`) aunque no se tocara su muestreo. `temporada` (68 %→66 %)
+y `grupo_estilo` (81 %→82 %) se mueven poco, dentro de ruido.
+
+**Conclusión: es un trade-off real, no un v3-pero-mejor.** Arregla de verdad 3 de las 5 clases
+que llevaban rotas desde v1 (F1 0.00→0.56-0.87), a costa de una pérdida medible en el resto de
+`color_primario`. **v3 sigue siendo la versión con mejor acuerdo global con el humano (85 %)**;
+v4 es la que mejor cubre la paleta completa pero con peor acuerdo medio (82 %). Los cuatro
+adapters se quedan en el repositorio — cuál usar depende de si importa más acertar de media o
+no fallar sistemáticamente en cuatro colores completos.
 
 ### 11.6 Trabajo técnico
 
 1. ~~Reentrenar v2~~ — **hecho** (§11.2), vía Kaggle en vez de Colab (autor sin acceso a
    ordenador; Colab no es manejable cómodamente desde el navegador móvil). Detalle en §11.3.
 2. ~~`temporada` del resto de tipos de prenda~~ — **decidido y reentrenado como v3** (§11.4).
-3. ~~Sobremuestrear la cola larga de colores raros~~ — **hecho como v4** (§11.5).
+3. ~~Sobremuestrear la cola larga de colores raros~~ — **hecho como v4** (§11.5): arregla
+   `naranja`/`dorado`/`plateado` (F1 0.00→0.56-0.87) pero `color_primario` cae en conjunto
+   (84 %→75 % contra el humano) — **v3 se queda como la versión de mejor acuerdo medio (85 %)**;
+   v4 es la alternativa si lo que importa es no fallar sistemáticamente en esos colores.
+   `fucsia` sigue en F1 0.00 (solo 50 imágenes en todo el dataset, no se arregla remuestreando).
 4. **Terminar las 20 fichas** (autor) y reejecutar `analizar_revision_humana.py`.
 5. Sobremuestrear también la cola larga de **tipos de prenda** (no solo colores): el estilo cae
    al 3 % en tipos con menos de 10 ejemplos de entrenamiento (§6.3).
@@ -882,3 +916,7 @@ app, predicciones del modelo por versión `predicciones_app_120[_v2|_v3|_v4].jso
 `data/eval_1207_solape.json` (v1), `modelos/florence2_base_lora_v1/`, `_v2/`, `_v3/` y `_v4/` (los cuatro adapters, cada
 uno con su `resultados_entrenamiento.json` y su `evaluacion_test_*.txt`), `herramientas/kaggle_kernel/` (entrenamiento
 vía API de Kaggle, alternativa a Colab).
+
+**¿Qué adapter usar?** No hay un sucesor único — **v3** tiene el mejor acuerdo medio con el humano (85 %, §11.4); **v4**
+sacrifica algo de esa media (82 %) a cambio de dejar de fallar sistemáticamente en `naranja`/`dorado`/`plateado`
+(§11.5). Para cualquier uso que no dependa mucho de esos tres colores, v3 es la opción por defecto más segura.
