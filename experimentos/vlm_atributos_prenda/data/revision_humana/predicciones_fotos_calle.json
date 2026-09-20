@@ -1,0 +1,135 @@
+{
+ "calle_01": {
+  "categoria": "accesorio",
+  "color_primario": "negro",
+  "grupo_estilo": "streetwear",
+  "genero": "masculino",
+  "temporada": "primavera_verano"
+ },
+ "calle_02": {
+  "categoria": "calzado",
+  "color_primario": "gris",
+  "grupo_estilo": "fiesta_noche",
+  "genero": "femenino",
+  "temporada": "primavera_verano"
+ },
+ "calle_03": {
+  "categoria": "accesorio",
+  "color_primario": "azul",
+  "grupo_estilo": "streetwear",
+  "genero": "femenino",
+  "temporada": "primavera_verano"
+ },
+ "calle_04": {
+  "categoria": "accesorio",
+  "color_primario": "negro",
+  "grupo_estilo": "fiesta_noche",
+  "genero": "femenino",
+  "temporada": "primavera_verano"
+ },
+ "calle_05": {
+  "categoria": "accesorio",
+  "color_primario": "negro",
+  "grupo_estilo": "fiesta_noche",
+  "genero": "femenino",
+  "temporada": "primavera_verano"
+ },
+ "calle_07": {
+  "categoria": "accesorio",
+  "color_primario": "rosa",
+  "grupo_estilo": "fiesta_noche",
+  "genero": "femenino",
+  "temporada": "primavera_verano"
+ },
+ "calle_10": {
+  "categoria": "calzado",
+  "color_primario": "blanco",
+  "grupo_estilo": "casual",
+  "genero": "masculino",
+  "temporada": "primavera_verano"
+ },
+ "calle_11": {
+  "categoria": "accesorio",
+  "color_primario": "rosa",
+  "grupo_estilo": "fiesta_noche",
+  "genero": "femenino",
+  "temporada": "primavera_verano"
+ },
+ "calle_14": {
+  "categoria": "cuerpo_entero",
+  "color_primario": "negro",
+  "grupo_estilo": "fiesta_noche",
+  "genero": "femenino",
+  "temporada": "primavera_verano"
+ },
+ "calle_16": {
+  "categoria": "cuerpo_entero",
+  "color_primario": "negro",
+  "grupo_estilo": "fiesta_noche",
+  "genero": "femenino",
+  "temporada": "primavera_verano"
+ },
+ "calle_19": {
+  "categoria": "calzado",
+  "color_primario": "gris",
+  "grupo_estilo": "streetwear",
+  "genero": "masculino",
+  "temporada": "primavera_verano"
+ },
+ "calle_20": {
+  "categoria": "accesorio",
+  "color_primario": "negro",
+  "grupo_estilo": "fiesta_noche",
+  "genero": "femenino",
+  "temporada": "primavera_verano"
+ },
+ "calle_22": {
+  "categoria": "accesorio",
+  "color_primario": "negro",
+  "grupo_estilo": "streetwear",
+  "genero": "femenino",
+  "temporada": "primavera_verano"
+ },
+ "calle_23": {
+  "categoria": "accesorio",
+  "color_primario": "negro",
+  "grupo_estilo": "streetwear",
+  "genero": "femenino",
+  "temporada": "primavera_verano"
+ },
+ "calle_24": {
+  "categoria": "accesorio",
+  "color_primario": "negro",
+  "grupo_estilo": "streetwear",
+  "genero": "femenino",
+  "temporada": "primavera_verano"
+ },
+ "calle_25": {
+  "categoria": "ropa_superior",
+  "color_primario": "amarillo",
+  "grupo_estilo": "casual",
+  "genero": "masculino",
+  "temporada": "primavera_verano"
+ },
+ "calle_26": {
+  "categoria": "accesorio",
+  "color_primario": "negro",
+  "grupo_estilo": "streetwear",
+  "genero": "masculino",
+  "temporada": "primavera_verano"
+ },
+ "calle_29": {
+  "categoria": "accesorio",
+  "color_primario": "negro",
+  "grupo_estilo": "streetwear",
+  "genero": "masculino",
+  "temporada": "primavera_verano"
+ },
+ "calle_30": {
+  "categoria": "calzado",
+  "color_primario": "negro",
+  "grupo_estilo": "streetwear",
+  "genero": "masculino",
+  "temporada": "primavera_verano"
+ }
+}

@@ -5,3 +5,8 @@ data/imagenes_cache/
 
 # Adapters intermedios/experimentales que no sean el final documentado.
 modelos/*/checkpoint-*/
+
+# Fotos de personas identificables (Wikimedia Commons, street fashion): la licencia
+# permite redistribuirlas pero no hace falta; se regeneran con
+# herramientas/descargar_fotos_calle_wikimedia.py (ATRIBUCIONES.txt si se quiere citar).
+data/fotos_calle/**/*.jpg

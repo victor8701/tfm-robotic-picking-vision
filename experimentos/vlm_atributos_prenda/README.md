@@ -146,6 +146,55 @@ abajo (estilo como propiedad del *look* completo, no de una prenda sola) — de 
 confirma: el atajo tipo-de-prenda→estilo que aquí funciona tan bien es precisamente lo que no
 va a estar disponible en una foto de Instagram con el outfit completo puesto.
 
+### Revisión humana y prueba en fotos reales (primeros hallazgos)
+
+Dos comprobaciones hechas *después* del entrenamiento, ambas con muestras pequeñas — leerlas
+como indicios, no como métricas cerradas. Datos en `data/revision_humana/`.
+
+**1. Etiquetas humanas vs. etiquetas de Kaggle** (33 fichas revisadas a mano en la app
+"Ficha de Prenda", sacadas del test set; `revisiones_2026-09-20.json`). Las etiquetas de
+Kaggle son un *proxy*, y la revisión humana lo confirma:
+
+| Campo | Acuerdo humano-Kaggle | Qué pasa |
+|---|---|---|
+| `genero` | 33/33 | fiable |
+| `categoria` | 32/33 | única discrepancia: una chaqueta de forro polar (¿abrigo o ropa superior?) — frontera real de la taxonomía |
+| `grupo_estilo` | 24 iguales, 6 con estilos extra, 3 distintos | varios estilos válidos a la vez; y `Dresses → fiesta_noche` (mi regla de mapeo) falla en 2 vestidos casuales |
+| `color_primario` | 25 iguales, 6 con colores extra, 2 distintos | prendas multicolor — un solo color es una simplificación |
+| `temporada` | **16/33** | en 13 de 33 marcó "todo el año" donde Kaggle fuerza una estación |
+
+Conclusión: la `temporada` de Kaggle es la estación de la colección del comerciante, no la
+estacionalidad de la prenda, y "todo el año" —clase válida en §3.4— no existe en el
+entrenamiento. El ~60% de `temporada` es un techo de *definición de etiqueta*, no del modelo:
+el modelo acierta a Kaggle un 58% en esas 33 y a las etiquetas humanas un 45%, es decir, apenas
+por encima del propio acuerdo humano-Kaggle (52%).
+
+**2. El modelo contra tus etiquetas** (mismas 33; acierto = la predicción cae dentro de lo que
+marcó el revisor): media 81% frente a 85% contra Kaggle. Lo esencial aguanta (`categoria` 97%,
+`color_primario` 85%, `grupo_estilo` 88%); se cae solo `temporada`. Los errores de
+`grupo_estilo` incluyen el que ya se anticipaba: el modelo reproduce fielmente la regla
+`Dresses → fiesta_noche` que le enseñé, defecto incluido.
+
+**3. Fotos reales de calle** (19 fotos de *street fashion* de Wikimedia Commons, gente con
+el outfit puesto y fondo real; `descargar_fotos_calle_wikimedia.py`; sin etiquetas, valoración
+cualitativa mía sobre las miniaturas — no es una métrica):
+
+- `categoria`: en **12 de 19** predice `accesorio`. Casi nunca es lo correcto: en un look
+  completo hay varias prendas y el modelo, que solo ha visto prendas sueltas ocupando el
+  encuadre, cae en "objeto pequeño en escena grande". Es un atajo de layout, no de prenda.
+- `temporada`: **19/19 `primavera_verano`** — colapsa a una constante.
+- `color_primario`: `negro` en 12 de 19 (la clase más frecuente del entrenamiento).
+- `grupo_estilo`: es el campo que mejor sobrevive (a ojo, alrededor de la mitad plausibles):
+  acierta los vestidos de lentejuelas (`fiesta_noche`), la camiseta amarilla (`casual`) y varios
+  looks urbanos (`streetwear`), y falla con otros. El estilo es holístico y la imagen entera
+  lo arrastra, aunque no por el mecanismo que se pretendía.
+- El único caso limpio (una persona, una prenda, fondo neutro — la camiseta amarilla) sale
+  bien en los 4 campos: el modelo funciona cuando la foto se parece a lo que vio.
+
+Esto **confirma con imágenes** la limitación ya anotada: un clasificador de prenda única no es
+un clasificador de looks. El paso lógico es *detectar → recortar → clasificar cada prenda →
+agregar el estilo del outfit* (ver "Próximos pasos").
+
 ### Stage 4 — Evaluación final
 
 ```bash
@@ -158,6 +207,22 @@ Compara zero-shot vs afinado por campo (accuracy + F1 por clase en `color_primar
 las 1207 imágenes ya existentes en `clip_trend_matching/` para comparar directamente contra
 el 32.8% de CLIP zero-shot ya documentado. Si `modelos/florence2_base_lora_v1/` todavía no
 existe (no se ha bajado el adapter de Colab), solo corre la parte zero-shot.
+
+## Próximos pasos
+
+1. **Terminar la revisión humana** de las 120 fichas de la app (van 33): daría un subconjunto
+   del test verificado por una persona, que es una evaluación más honesta que la de Kaggle.
+   Conviene hacerlo *sin* mostrar la predicción del modelo, para no sesgar las etiquetas.
+2. **Looks completos: detectar → recortar → clasificar → agregar.** Florence-2 sabe hacer
+   *phrase grounding* de forma nativa: con el adapter desactivado localiza las prendas de la
+   foto ("top, pantalón, zapatos, chaqueta..."), y con el adapter activado se clasifica cada
+   recorte. El estilo del outfit se agrega a partir de las prendas. Es el mismo modelo con dos
+   capacidades, sin entrenar nada nuevo para el primer prototipo. Se mediría sobre las 19 fotos
+   de calle (anotándolas a mano) antes de plantearse un dataset nuevo como DeepFashion2.
+3. **Decisiones de esquema pendientes**, con los datos de la revisión humana delante:
+   `temporada` (añadir "todo el año" con etiquetas mejores, o dejarla fuera del v1) y
+   `grupo_estilo` (¿multietiqueta?; la revisión humana usa varios estilos a la vez en 6 de 33).
+4. Clases de color sin cobertura (`fucsia`, `plateado`: F1 0.00): más muestreo específico.
 
 ## Qué NO es (mismo aviso honesto que en `clip_trend_matching/`)
 

@@ -1,0 +1,149 @@
+calle_01.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:02022_0377_Equality_March_2022_in_Krak%C3%B3w.jpg
+  autor: Silar
+  licencia: CC BY-SA 4.0
+
+calle_02.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Beautful_women_and_handsome_man.jpg
+  autor: Peachyeung316
+  licencia: CC BY-SA 4.0
+
+calle_03.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Brisbane,_winter_female_street_fashion_in_2019;_t-shirt,_shorts_and_boots.jpg
+  autor: Chris Olszewski
+  licencia: CC BY-SA 4.0
+
+calle_04.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Brisbane_street_fashion_in_2018;_minidress,_black_mini_handbag_and_flip-flops.jpg
+  autor: Kgbo
+  licencia: CC BY-SA 4.0
+
+calle_05.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Culture._Rules._Everything._Around._Me_(C.R.E.A.M).jpg
+  autor: Karugadk
+  licencia: CC BY-SA 4.0
+
+calle_06.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Drag_Queen_in_Toronto_by_Pouria_Afkhami_pixoos_01.jpg
+  autor: Pixoos
+  licencia: CC BY-SA 4.0
+
+calle_07.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Drag_Queen_in_Toronto_by_Pouria_Afkhami_pixoos_02.jpg
+  autor: Pixoos
+  licencia: CC BY-SA 4.0
+
+calle_08.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Drag_Queen_in_Toronto_by_Pouria_Afkhami_pixoos_03.jpg
+  autor: Pixoos
+  licencia: CC BY-SA 4.0
+
+calle_09.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Drag_Queen_in_Toronto_by_Pouria_Afkhami_pixoos_04.jpg
+  autor: Pixoos
+  licencia: CC BY-SA 4.0
+
+calle_10.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Drag_Queen_in_Toronto_by_Pouria_Afkhami_pixoos_05.jpg
+  autor: Pixoos
+  licencia: CC BY-SA 4.0
+
+calle_11.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Drag_Queen_in_Toronto_by_Pouria_Afkhami_pixoos_08.jpg
+  autor: Pixoos
+  licencia: CC BY-SA 4.0
+
+calle_12.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Drag_Queen_in_Toronto_by_Pouria_Afkhami_pixoos_10.jpg
+  autor: Pixoos
+  licencia: CC BY-SA 4.0
+
+calle_13.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Drag_Queen_in_Toronto_by_Pouria_Afkhami_pixoos_11.jpg
+  autor: Pixoos
+  licencia: CC BY-SA 4.0
+
+calle_14.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Drag_Queen_in_Toronto_by_Pouria_Afkhami_pixoos_13.jpg
+  autor: Pixoos
+  licencia: CC BY-SA 4.0
+
+calle_15.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Drag_Queen_in_Toronto_by_Pouria_Afkhami_pixoos_15.jpg
+  autor: Pixoos
+  licencia: CC BY-SA 4.0
+
+calle_16.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Drag_Queen_in_Toronto_by_Pouria_Afkhami_pixoos_16.jpg
+  autor: Pixoos
+  licencia: CC BY-SA 4.0
+
+calle_17.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:French_Quarter_BP_Mime_Smile.JPG
+  autor: Infrogmation of New Orleans
+  licencia: CC BY-SA 3.0
+
+calle_18.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Good_wig!_(4392867570).jpg
+  autor: Darren Foreman from Surbiton, England
+  licencia: CC BY 2.0
+
+calle_19.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Harajuku_-_pedestrians_on_Omotesando_05_(15119981404).jpg
+  autor: Joe Mabel on Flickr as Joe Mabel from Seattle, US
+  licencia: CC BY-SA 3.0
+
+calle_20.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Junulinoj_apud_McDonald%27s_je_Avenuo_9-a_de_Julio_(Bonaero).jpg
+  autor: RG72
+  licencia: CC BY-SA 4.0
+
+calle_21.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:McDonald%27s_en_la_Avenuo_9-a_de_Julio_(Bonaero)_01.jpg
+  autor: RG72
+  licencia: CC BY-SA 4.0
+
+calle_22.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Moscow_girl_(53171626181).jpg
+  autor: kishjar? from Moscow, Russia
+  licencia: CC BY 2.0
+
+calle_23.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:NY_Fashion_Week_February_2017_(32004510624).jpg
+  autor: Peter  T from Brooklyn, NY, USA
+  licencia: CC BY 2.0
+
+calle_24.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:NY_Fashion_Week_February_2017_(32806494336).jpg
+  autor: Peter  T from Brooklyn, NY, USA
+  licencia: CC BY 2.0
+
+calle_25.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Please_smile_again_to_peach.jpg
+  autor: Peachyeung316
+  licencia: CC BY-SA 4.0
+
+calle_26.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Sagger_in_Paris.jpg
+  autor: Tom Evil
+  licencia: CC BY 2.0
+
+calle_27.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Spectators_-_Durga_Idol_Immersion_Ceremony_-_Baja_Kadamtala_Ghat_-_Kolkata_2012-10-24_1681.JPG
+  autor: Biswarup Ganguly
+  licencia: CC BY 3.0
+
+calle_28.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Street_fashion,_Sydney_1945_SLNSW_FL692463.jpg
+  autor: Norman Herfort
+  licencia: Public domain
+
+calle_29.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Street_fashion_in_Newstead,_Queensland,_2021.jpg
+  autor: Kgbo
+  licencia: CC BY-SA 4.0
+
+calle_30.jpg
+  fuente: https://commons.wikimedia.org/wiki/File:Street_male_fashion_in_Brisbane,_June_2019.jpg
+  autor: Chris Olszewski
+  licencia: CC BY-SA 4.0

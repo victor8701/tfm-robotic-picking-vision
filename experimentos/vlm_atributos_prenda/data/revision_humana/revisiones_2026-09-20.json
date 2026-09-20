@@ -1,0 +1,1206 @@
+[
+ {
+  "id": 1528,
+  "articleType": "Jackets",
+  "productDisplayName": "Puma Men Ferrari Black Fleece Jacket",
+  "etiqueta_kaggle": {
+   "categoria": "abrigo",
+   "color_primario": "negro",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "otono_invierno"
+  },
+  "etiqueta_humana": {
+   "categoria": "ropa_superior",
+   "color_primario": [
+    "negro"
+   ],
+   "grupo_estilo": [
+    "streetwear"
+   ],
+   "genero": [
+    "masculino"
+   ],
+   "temporada": [
+    "otono_invierno"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-20T07:51:27.156Z",
+  "prediccion_modelo": {
+   "categoria": "abrigo",
+   "color_primario": "negro",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "otono_invierno"
+  }
+ },
+ {
+  "id": 1610,
+  "articleType": "Jackets",
+  "productDisplayName": "Reebok Navy Jacket",
+  "etiqueta_kaggle": {
+   "categoria": "abrigo",
+   "color_primario": "navy",
+   "grupo_estilo": "streetwear",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "etiqueta_humana": {
+   "categoria": "abrigo",
+   "color_primario": [
+    "navy"
+   ],
+   "grupo_estilo": [
+    "streetwear"
+   ],
+   "genero": [
+    "femenino"
+   ],
+   "temporada": [
+    "primavera_verano"
+   ]
+  },
+  "coincide_original": true,
+  "revisado_en": "2026-09-20T07:53:33.828Z",
+  "prediccion_modelo": {
+   "categoria": "abrigo",
+   "color_primario": "navy",
+   "grupo_estilo": "streetwear",
+   "genero": "femenino",
+   "temporada": "otono_invierno"
+  }
+ },
+ {
+  "id": 4774,
+  "articleType": "Track Pants",
+  "productDisplayName": "ADIDAS Women 3S Pink Track Pants",
+  "etiqueta_kaggle": {
+   "categoria": "ropa_inferior",
+   "color_primario": "rosa",
+   "grupo_estilo": "deportivo",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "etiqueta_humana": {
+   "categoria": "ropa_inferior",
+   "color_primario": [
+    "rosa"
+   ],
+   "grupo_estilo": [
+    "deportivo"
+   ],
+   "genero": [
+    "femenino"
+   ],
+   "temporada": [
+    "todo_el_ano"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-20T07:53:02.683Z",
+  "prediccion_modelo": {
+   "categoria": "ropa_inferior",
+   "color_primario": "rosa",
+   "grupo_estilo": "deportivo",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  }
+ },
+ {
+  "id": 6531,
+  "articleType": "Backpacks",
+  "productDisplayName": "Nike Unisex Allegian Blue Backpack",
+  "etiqueta_kaggle": {
+   "categoria": "accesorio",
+   "color_primario": "azul",
+   "grupo_estilo": "streetwear",
+   "genero": "neutro",
+   "temporada": "primavera_verano"
+  },
+  "etiqueta_humana": {
+   "categoria": "accesorio",
+   "color_primario": [
+    "azul",
+    "rojo"
+   ],
+   "grupo_estilo": [
+    "streetwear"
+   ],
+   "genero": [
+    "neutro"
+   ],
+   "temporada": [
+    "todo_el_ano"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-20T07:52:13.791Z",
+  "prediccion_modelo": {
+   "categoria": "accesorio",
+   "color_primario": "azul",
+   "grupo_estilo": "streetwear",
+   "genero": "neutro",
+   "temporada": "primavera_verano"
+  }
+ },
+ {
+  "id": 8515,
+  "articleType": "Backpacks",
+  "productDisplayName": "Nike Unisex Ultimatum Max Grey Backpacks",
+  "etiqueta_kaggle": {
+   "categoria": "accesorio",
+   "color_primario": "gris",
+   "grupo_estilo": "streetwear",
+   "genero": "neutro",
+   "temporada": "primavera_verano"
+  },
+  "etiqueta_humana": {
+   "categoria": "accesorio",
+   "color_primario": [
+    "gris"
+   ],
+   "grupo_estilo": [
+    "streetwear"
+   ],
+   "genero": [
+    "neutro"
+   ],
+   "temporada": [
+    "primavera_verano",
+    "todo_el_ano"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-20T07:51:21.520Z",
+  "prediccion_modelo": {
+   "categoria": "accesorio",
+   "color_primario": "gris",
+   "grupo_estilo": "streetwear",
+   "genero": "neutro",
+   "temporada": "primavera_verano"
+  }
+ },
+ {
+  "id": 9227,
+  "articleType": "Shirts",
+  "productDisplayName": "Mark Taylor Men Plain Blue Shirts",
+  "etiqueta_kaggle": {
+   "categoria": "ropa_superior",
+   "color_primario": "azul",
+   "grupo_estilo": "de_vestir",
+   "genero": "masculino",
+   "temporada": "otono_invierno"
+  },
+  "etiqueta_humana": {
+   "categoria": "ropa_superior",
+   "color_primario": [
+    "azul"
+   ],
+   "grupo_estilo": [
+    "de_vestir"
+   ],
+   "genero": [
+    "masculino"
+   ],
+   "temporada": [
+    "todo_el_ano"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-20T07:54:39.731Z",
+  "prediccion_modelo": {
+   "categoria": "ropa_superior",
+   "color_primario": "azul",
+   "grupo_estilo": "de_vestir",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  }
+ },
+ {
+  "id": 11905,
+  "articleType": "Sandals",
+  "productDisplayName": "Franco Leone Men Casual Black Sandals",
+  "etiqueta_kaggle": {
+   "categoria": "calzado",
+   "color_primario": "negro",
+   "grupo_estilo": "playa_resort",
+   "genero": "masculino",
+   "temporada": "otono_invierno"
+  },
+  "etiqueta_humana": {
+   "categoria": "calzado",
+   "color_primario": [
+    "negro"
+   ],
+   "grupo_estilo": [
+    "playa_resort"
+   ],
+   "genero": [
+    "masculino"
+   ],
+   "temporada": [
+    "primavera_verano"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-20T07:50:41.121Z",
+  "prediccion_modelo": {
+   "categoria": "calzado",
+   "color_primario": "negro",
+   "grupo_estilo": "playa_resort",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  }
+ },
+ {
+  "id": 13192,
+  "articleType": "Casual Shoes",
+  "productDisplayName": "Puma Men Eco ortholite Blue Casual Shoes",
+  "etiqueta_kaggle": {
+   "categoria": "calzado",
+   "color_primario": "azul",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "otono_invierno"
+  },
+  "etiqueta_humana": {
+   "categoria": "calzado",
+   "color_primario": [
+    "azul"
+   ],
+   "grupo_estilo": [
+    "casual"
+   ],
+   "genero": [
+    "masculino"
+   ],
+   "temporada": [
+    "todo_el_ano"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-20T07:52:30.313Z",
+  "prediccion_modelo": {
+   "categoria": "calzado",
+   "color_primario": "azul",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "otono_invierno"
+  }
+ },
+ {
+  "id": 14091,
+  "articleType": "Sweaters",
+  "productDisplayName": "Flying Machine Women Solid Peach Sweaters",
+  "etiqueta_kaggle": {
+   "categoria": "ropa_superior",
+   "color_primario": "naranja",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "otono_invierno"
+  },
+  "etiqueta_humana": {
+   "categoria": "ropa_superior",
+   "color_primario": [
+    "rosa"
+   ],
+   "grupo_estilo": [
+    "casual"
+   ],
+   "genero": [
+    "femenino"
+   ],
+   "temporada": [
+    "todo_el_ano"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-18T04:56:38.709Z",
+  "prediccion_modelo": {
+   "categoria": "ropa_superior",
+   "color_primario": "rosa",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  }
+ },
+ {
+  "id": 14309,
+  "articleType": "Jackets",
+  "productDisplayName": "ADIDAS Men Solid Navy Blue Jackets",
+  "etiqueta_kaggle": {
+   "categoria": "abrigo",
+   "color_primario": "navy",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "otono_invierno"
+  },
+  "etiqueta_humana": {
+   "categoria": "abrigo",
+   "color_primario": [
+    "navy"
+   ],
+   "grupo_estilo": [
+    "streetwear"
+   ],
+   "genero": [
+    "masculino"
+   ],
+   "temporada": [
+    "otono_invierno"
+   ]
+  },
+  "coincide_original": true,
+  "revisado_en": "2026-09-20T07:52:02.907Z",
+  "prediccion_modelo": {
+   "categoria": "abrigo",
+   "color_primario": "navy",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "otono_invierno"
+  }
+ },
+ {
+  "id": 15319,
+  "articleType": "Jackets",
+  "productDisplayName": "Nike Men Solid Navy Blue Jackets",
+  "etiqueta_kaggle": {
+   "categoria": "abrigo",
+   "color_primario": "navy",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "otono_invierno"
+  },
+  "etiqueta_humana": {
+   "categoria": "abrigo",
+   "color_primario": [
+    "navy"
+   ],
+   "grupo_estilo": [
+    "streetwear"
+   ],
+   "genero": [
+    "masculino"
+   ],
+   "temporada": [
+    "otono_invierno"
+   ]
+  },
+  "coincide_original": true,
+  "revisado_en": "2026-09-20T07:51:35.139Z",
+  "prediccion_modelo": {
+   "categoria": "abrigo",
+   "color_primario": "navy",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "otono_invierno"
+  }
+ },
+ {
+  "id": 17951,
+  "articleType": "Caps",
+  "productDisplayName": "Nike Unisex Knit Beanie Red Skull Cap",
+  "etiqueta_kaggle": {
+   "categoria": "accesorio",
+   "color_primario": "rojo",
+   "grupo_estilo": "streetwear",
+   "genero": "neutro",
+   "temporada": "otono_invierno"
+  },
+  "etiqueta_humana": {
+   "categoria": "accesorio",
+   "color_primario": [
+    "rojo"
+   ],
+   "grupo_estilo": [
+    "streetwear",
+    "deportivo"
+   ],
+   "genero": [
+    "neutro"
+   ],
+   "temporada": [
+    "otono_invierno"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-20T07:51:05.135Z",
+  "prediccion_modelo": {
+   "categoria": "accesorio",
+   "color_primario": "rojo",
+   "grupo_estilo": "streetwear",
+   "genero": "neutro",
+   "temporada": "primavera_verano"
+  }
+ },
+ {
+  "id": 18439,
+  "articleType": "Backpacks",
+  "productDisplayName": "Vital Gear Unisex Grey Bag",
+  "etiqueta_kaggle": {
+   "categoria": "accesorio",
+   "color_primario": "gris",
+   "grupo_estilo": "streetwear",
+   "genero": "neutro",
+   "temporada": "otono_invierno"
+  },
+  "etiqueta_humana": {
+   "categoria": "accesorio",
+   "color_primario": [
+    "gris",
+    "fucsia"
+   ],
+   "grupo_estilo": [
+    "streetwear",
+    "deportivo"
+   ],
+   "genero": [
+    "neutro"
+   ],
+   "temporada": [
+    "todo_el_ano"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-17T19:37:53.708Z",
+  "prediccion_modelo": {
+   "categoria": "accesorio",
+   "color_primario": "negro",
+   "grupo_estilo": "streetwear",
+   "genero": "neutro",
+   "temporada": "primavera_verano"
+  }
+ },
+ {
+  "id": 18980,
+  "articleType": "Tshirts",
+  "productDisplayName": "ADIDAS Originals Men Polo Yellow Tshirt",
+  "etiqueta_kaggle": {
+   "categoria": "ropa_superior",
+   "color_primario": "amarillo",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "etiqueta_humana": {
+   "categoria": "ropa_superior",
+   "color_primario": [
+    "amarillo"
+   ],
+   "grupo_estilo": [
+    "casual"
+   ],
+   "genero": [
+    "masculino"
+   ],
+   "temporada": [
+    "primavera_verano"
+   ]
+  },
+  "coincide_original": true,
+  "revisado_en": "2026-09-20T07:50:57.057Z",
+  "prediccion_modelo": {
+   "categoria": "ropa_superior",
+   "color_primario": "amarillo",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  }
+ },
+ {
+  "id": 19394,
+  "articleType": "Jackets",
+  "productDisplayName": "ADIDAS Men Solid Blue Jacket",
+  "etiqueta_kaggle": {
+   "categoria": "abrigo",
+   "color_primario": "azul",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "etiqueta_humana": {
+   "categoria": "abrigo",
+   "color_primario": [
+    "azul"
+   ],
+   "grupo_estilo": [
+    "streetwear"
+   ],
+   "genero": [
+    "masculino"
+   ],
+   "temporada": [
+    "otono_invierno"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-20T07:57:05.823Z",
+  "prediccion_modelo": {
+   "categoria": "abrigo",
+   "color_primario": "azul",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "otono_invierno"
+  }
+ },
+ {
+  "id": 19578,
+  "articleType": "Tops",
+  "productDisplayName": "United Colors of Benetton Women Solid Purple Top",
+  "etiqueta_kaggle": {
+   "categoria": "ropa_superior",
+   "color_primario": "lavanda",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "etiqueta_humana": {
+   "categoria": "ropa_superior",
+   "color_primario": [
+    "lavanda"
+   ],
+   "grupo_estilo": [
+    "casual"
+   ],
+   "genero": [
+    "femenino"
+   ],
+   "temporada": [
+    "primavera_verano"
+   ]
+  },
+  "coincide_original": true,
+  "revisado_en": "2026-09-20T07:56:13.103Z",
+  "prediccion_modelo": {
+   "categoria": "ropa_superior",
+   "color_primario": "lavanda",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  }
+ },
+ {
+  "id": 21437,
+  "articleType": "Backpacks",
+  "productDisplayName": "Roxy Women Blue Backpack",
+  "etiqueta_kaggle": {
+   "categoria": "accesorio",
+   "color_primario": "azul",
+   "grupo_estilo": "streetwear",
+   "genero": "femenino",
+   "temporada": "otono_invierno"
+  },
+  "etiqueta_humana": {
+   "categoria": "accesorio",
+   "color_primario": [
+    "azul"
+   ],
+   "grupo_estilo": [
+    "streetwear"
+   ],
+   "genero": [
+    "femenino"
+   ],
+   "temporada": [
+    "todo_el_ano"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-20T07:52:42.740Z",
+  "prediccion_modelo": {
+   "categoria": "accesorio",
+   "color_primario": "azul",
+   "grupo_estilo": "streetwear",
+   "genero": "neutro",
+   "temporada": "primavera_verano"
+  }
+ },
+ {
+  "id": 25136,
+  "articleType": "Clutches",
+  "productDisplayName": "Lino Perros Women Gold Clutch",
+  "etiqueta_kaggle": {
+   "categoria": "accesorio",
+   "color_primario": "dorado",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "otono_invierno"
+  },
+  "etiqueta_humana": {
+   "categoria": "accesorio",
+   "color_primario": [
+    "dorado"
+   ],
+   "grupo_estilo": [
+    "fiesta_noche"
+   ],
+   "genero": [
+    "femenino"
+   ],
+   "temporada": [
+    "todo_el_ano"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-20T07:51:53.436Z",
+  "prediccion_modelo": {
+   "categoria": "accesorio",
+   "color_primario": "camel",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  }
+ },
+ {
+  "id": 26928,
+  "articleType": "Dresses",
+  "productDisplayName": "Jealous 21 Women Black Dress",
+  "etiqueta_kaggle": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "negro",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "etiqueta_humana": {
+   "categoria": "cuerpo_entero",
+   "color_primario": [
+    "negro"
+   ],
+   "grupo_estilo": [
+    "fiesta_noche"
+   ],
+   "genero": [
+    "femenino"
+   ],
+   "temporada": [
+    "todo_el_ano"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-20T07:53:45.753Z",
+  "prediccion_modelo": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "negro",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  }
+ },
+ {
+  "id": 28512,
+  "articleType": "Shorts",
+  "productDisplayName": "Nike Men Premier Knit Black Shorts",
+  "etiqueta_kaggle": {
+   "categoria": "ropa_inferior",
+   "color_primario": "negro",
+   "grupo_estilo": "deportivo",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "etiqueta_humana": {
+   "categoria": "ropa_inferior",
+   "color_primario": [
+    "negro"
+   ],
+   "grupo_estilo": [
+    "deportivo"
+   ],
+   "genero": [
+    "masculino"
+   ],
+   "temporada": [
+    "primavera_verano"
+   ]
+  },
+  "coincide_original": true,
+  "revisado_en": "2026-09-20T07:54:16.493Z",
+  "prediccion_modelo": {
+   "categoria": "ropa_inferior",
+   "color_primario": "negro",
+   "grupo_estilo": "deportivo",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  }
+ },
+ {
+  "id": 29226,
+  "articleType": "Flip Flops",
+  "productDisplayName": "ADIDAS Men Zeitfrei Slide Black Flip Flops",
+  "etiqueta_kaggle": {
+   "categoria": "calzado",
+   "color_primario": "negro",
+   "grupo_estilo": "playa_resort",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "etiqueta_humana": {
+   "categoria": "calzado",
+   "color_primario": [
+    "negro",
+    "naranja"
+   ],
+   "grupo_estilo": [
+    "playa_resort"
+   ],
+   "genero": [
+    "masculino"
+   ],
+   "temporada": [
+    "primavera_verano"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-20T07:55:26.418Z",
+  "prediccion_modelo": {
+   "categoria": "calzado",
+   "color_primario": "negro",
+   "grupo_estilo": "playa_resort",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  }
+ },
+ {
+  "id": 29789,
+  "articleType": "Tshirts",
+  "productDisplayName": "Basics Men Pack of 3 T-shirt",
+  "etiqueta_kaggle": {
+   "categoria": "ropa_superior",
+   "color_primario": "rosa",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "etiqueta_humana": {
+   "categoria": "ropa_superior",
+   "color_primario": [
+    "rosa",
+    "azul",
+    "beige"
+   ],
+   "grupo_estilo": [
+    "streetwear"
+   ],
+   "genero": [
+    "masculino"
+   ],
+   "temporada": [
+    "primavera_verano"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-17T19:38:38.686Z",
+  "prediccion_modelo": {
+   "categoria": "ropa_superior",
+   "color_primario": "navy",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  }
+ },
+ {
+  "id": 31023,
+  "articleType": "Shirts",
+  "productDisplayName": "Arrow New York Men Grey Check Slim Fit Shirt",
+  "etiqueta_kaggle": {
+   "categoria": "ropa_superior",
+   "color_primario": "gris",
+   "grupo_estilo": "de_vestir",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "etiqueta_humana": {
+   "categoria": "ropa_superior",
+   "color_primario": [
+    "gris"
+   ],
+   "grupo_estilo": [
+    "de_vestir"
+   ],
+   "genero": [
+    "masculino"
+   ],
+   "temporada": [
+    "todo_el_ano"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-20T07:55:37.729Z",
+  "prediccion_modelo": {
+   "categoria": "ropa_superior",
+   "color_primario": "gris",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  }
+ },
+ {
+  "id": 38828,
+  "articleType": "Dresses",
+  "productDisplayName": "Latin Quarters Women Teal Dress",
+  "etiqueta_kaggle": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "azul",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "etiqueta_humana": {
+   "categoria": "cuerpo_entero",
+   "color_primario": [
+    "azul"
+   ],
+   "grupo_estilo": [
+    "fiesta_noche",
+    "casual"
+   ],
+   "genero": [
+    "femenino"
+   ],
+   "temporada": [
+    "primavera_verano"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-18T04:55:33.548Z",
+  "prediccion_modelo": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "verde",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  }
+ },
+ {
+  "id": 40036,
+  "articleType": "Tshirts",
+  "productDisplayName": "ADIDAS Men Navy Blue T-shirt",
+  "etiqueta_kaggle": {
+   "categoria": "ropa_superior",
+   "color_primario": "navy",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "etiqueta_humana": {
+   "categoria": "ropa_superior",
+   "color_primario": [
+    "navy"
+   ],
+   "grupo_estilo": [
+    "casual"
+   ],
+   "genero": [
+    "masculino"
+   ],
+   "temporada": [
+    "primavera_verano"
+   ]
+  },
+  "coincide_original": true,
+  "revisado_en": "2026-09-20T07:50:28.977Z",
+  "prediccion_modelo": {
+   "categoria": "ropa_superior",
+   "color_primario": "navy",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  }
+ },
+ {
+  "id": 41670,
+  "articleType": "Heels",
+  "productDisplayName": "Catwalk Women Golden Heels",
+  "etiqueta_kaggle": {
+   "categoria": "calzado",
+   "color_primario": "dorado",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "otono_invierno"
+  },
+  "etiqueta_humana": {
+   "categoria": "calzado",
+   "color_primario": [
+    "dorado"
+   ],
+   "grupo_estilo": [
+    "fiesta_noche"
+   ],
+   "genero": [
+    "femenino"
+   ],
+   "temporada": [
+    "todo_el_ano"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-20T07:53:58.023Z",
+  "prediccion_modelo": {
+   "categoria": "calzado",
+   "color_primario": "dorado",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  }
+ },
+ {
+  "id": 43643,
+  "articleType": "Dresses",
+  "productDisplayName": "Vero Moda Women Magenta Dress",
+  "etiqueta_kaggle": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "fucsia",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "etiqueta_humana": {
+   "categoria": "cuerpo_entero",
+   "color_primario": [
+    "burdeos"
+   ],
+   "grupo_estilo": [
+    "fiesta_noche",
+    "casual"
+   ],
+   "genero": [
+    "femenino"
+   ],
+   "temporada": [
+    "primavera_verano"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-20T07:53:21.147Z",
+  "prediccion_modelo": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "lavanda",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  }
+ },
+ {
+  "id": 44694,
+  "articleType": "Dresses",
+  "productDisplayName": "Wills Lifestyle Women Multi Coloured Dress",
+  "etiqueta_kaggle": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "blanco",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "etiqueta_humana": {
+   "categoria": "cuerpo_entero",
+   "color_primario": [
+    "blanco",
+    "amarillo",
+    "azul"
+   ],
+   "grupo_estilo": [
+    "casual"
+   ],
+   "genero": [
+    "femenino"
+   ],
+   "temporada": [
+    "primavera_verano"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-20T07:55:16.540Z",
+  "prediccion_modelo": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "blanco",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  }
+ },
+ {
+  "id": 49236,
+  "articleType": "Caps",
+  "productDisplayName": "Arrow Men Cream Cap",
+  "etiqueta_kaggle": {
+   "categoria": "accesorio",
+   "color_primario": "beige",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "otono_invierno"
+  },
+  "etiqueta_humana": {
+   "categoria": "accesorio",
+   "color_primario": [
+    "beige"
+   ],
+   "grupo_estilo": [
+    "streetwear"
+   ],
+   "genero": [
+    "masculino"
+   ],
+   "temporada": [
+    "primavera_verano"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-20T07:54:53.750Z",
+  "prediccion_modelo": {
+   "categoria": "accesorio",
+   "color_primario": "beige",
+   "grupo_estilo": "streetwear",
+   "genero": "neutro",
+   "temporada": "otono_invierno"
+  }
+ },
+ {
+  "id": 49793,
+  "articleType": "Caps",
+  "productDisplayName": "Flying Machine Men Yellow Cap",
+  "etiqueta_kaggle": {
+   "categoria": "accesorio",
+   "color_primario": "amarillo",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "etiqueta_humana": {
+   "categoria": "accesorio",
+   "color_primario": [
+    "amarillo"
+   ],
+   "grupo_estilo": [
+    "streetwear",
+    "deportivo"
+   ],
+   "genero": [
+    "masculino"
+   ],
+   "temporada": [
+    "primavera_verano"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-20T07:51:25.406Z",
+  "prediccion_modelo": {
+   "categoria": "accesorio",
+   "color_primario": "amarillo",
+   "grupo_estilo": "streetwear",
+   "genero": "neutro",
+   "temporada": "otono_invierno"
+  }
+ },
+ {
+  "id": 58000,
+  "articleType": "Dresses",
+  "productDisplayName": "Latin Quarters Women Black Printed Dress",
+  "etiqueta_kaggle": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "negro",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "otono_invierno"
+  },
+  "etiqueta_humana": {
+   "categoria": "cuerpo_entero",
+   "color_primario": [
+    "negro"
+   ],
+   "grupo_estilo": [
+    "casual"
+   ],
+   "genero": [
+    "femenino"
+   ],
+   "temporada": [
+    "otono_invierno"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-20T07:56:52.520Z",
+  "prediccion_modelo": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "negro",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  }
+ },
+ {
+  "id": 58001,
+  "articleType": "Dresses",
+  "productDisplayName": "Latin Quarters Women Black Printed Dress",
+  "etiqueta_kaggle": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "negro",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "otono_invierno"
+  },
+  "etiqueta_humana": {
+   "categoria": "cuerpo_entero",
+   "color_primario": [
+    "gris",
+    "negro"
+   ],
+   "grupo_estilo": [
+    "fiesta_noche",
+    "de_vestir",
+    "casual"
+   ],
+   "genero": [
+    "femenino"
+   ],
+   "temporada": [
+    "todo_el_ano"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-17T19:38:10.951Z",
+  "prediccion_modelo": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "gris",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  }
+ },
+ {
+  "id": 59972,
+  "articleType": "Dresses",
+  "productDisplayName": "Avirate Black Dress",
+  "etiqueta_kaggle": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "negro",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "otono_invierno"
+  },
+  "etiqueta_humana": {
+   "categoria": "cuerpo_entero",
+   "color_primario": [
+    "negro"
+   ],
+   "grupo_estilo": [
+    "fiesta_noche"
+   ],
+   "genero": [
+    "femenino"
+   ],
+   "temporada": [
+    "todo_el_ano"
+   ]
+  },
+  "coincide_original": false,
+  "revisado_en": "2026-09-20T07:54:08.609Z",
+  "prediccion_modelo": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "negro",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  }
+ }
+]
