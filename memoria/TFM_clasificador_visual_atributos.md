@@ -3,8 +3,9 @@
 **Autor:** Víctor Martín Parra  
 **Máster:** Robótica y Automatización — UC3M (2025/2027)  
 **Fecha:** 20 de septiembre de 2026  
-**Versión:** 0.3 (documento vivo: v0.1 = resultados del dataset/adapter v1; v0.2 = decisiones de esquema del autor y
-dataset v2 regenerado, §11.1; v0.3 = adapter v2 entrenado y evaluado, comparación con v1, §11.2)  
+**Versión:** 0.4 (documento vivo: v0.1 = resultados del dataset/adapter v1; v0.2 = decisiones de esquema del autor y
+dataset v2 regenerado, §11.1; v0.3 = adapter v2 entrenado y evaluado, comparación con v1, §11.2; v0.4 = resto de
+`temporada` decidido y dataset/adapter v3, §11.5)  
 **Código y datos:** [`experimentos/vlm_atributos_prenda/`](../experimentos/vlm_atributos_prenda/) (rama `clip-trend-semantic-matching-poc`)  
 **Relación con el estado del arte:** este documento cubre la pieza *visual* del Trend Intelligence Agent
 ([`Estado_arte.md`](Estado_arte.md) §6) y el matching semántico (§7). **No modifica `Estado_arte.md`**: el autor pidió
@@ -113,6 +114,7 @@ Esquema de salida (v1), detallado en [`esquema_atributos.md`](../experimentos/vl
 | 2026-09-20 | App de revisión humana, fotos de calle, prototipo de looks, auditoría del solape con CLIP | `e03385f` y el commit de este documento |
 | 2026-09-20 (tarde) | Decisiones de esquema del autor (§11.1) implementadas; dataset v2 regenerado | commit de esta actualización |
 | 2026-09-20 (noche) | Adapter v2 entrenado y evaluado (Kaggle GPU, vía API — §11.3); comparación v1/v2 en §11.2 | commit de esta actualización |
+| 2026-09-20 (noche, más tarde) | `temporada` decidida para 13 tipos más vía artifact; dataset y adapter v3 (§11.5) | commit de esta actualización |
 
 ---
 
@@ -223,10 +225,10 @@ género 53.6 %, temporada 56.8 % (media 39.0 %).
 > nombre, no solo por `gender`; sube de 111/4000 a un pool completo de 713 filas detectadas).
 > **Las tablas de esta sección y los resultados de §6–§8 son del dataset y el adapter v1**
 > (`modelos/florence2_base_lora_v1/`) — quedan como estaban a propósito, para que los números de
-> entrenamiento/evaluación de esas secciones sigan siendo coherentes entre sí. El dataset v2
-> (reglas nuevas) ya está regenerado en `data/*.jsonl` y el adapter v2
-> (`modelos/florence2_base_lora_v2/`) **ya está entrenado y evaluado** — conteos del dataset en
-> §11.1, resultado real del entrenamiento y comparación campo a campo con v1 en §11.2.
+> entrenamiento/evaluación de esas secciones sigan siendo coherentes entre sí. `data/*.jsonl` ya
+> está en su versión **v3** (reglas de §11.1 + §11.5); los adapters v2
+> (`modelos/florence2_base_lora_v2/`) y v3 (`_v3/`) **ya están entrenados y evaluados** — conteos
+> del dataset en §11.1/§11.5, resultados y comparación campo a campo en §11.2/§11.5.
 
 ---
 
@@ -730,18 +732,40 @@ interactivo lanzado por API, sin manejar ningún notebook a mano. Detalle porque
 curiosidad de esta sesión: es una vía de entrenamiento reproducible alternativa a Colab, ya
 probada y documentada, disponible para el siguiente reentrenamiento.
 
-### 11.4 Trabajo técnico
+### 11.5 `temporada` del resto de tipos: decisión y dataset v3 (2026-09-20, misma noche)
+
+Pendiente desde §11.1: `Jackets` era el único tipo con regla de `temporada` decidida; el resto
+se quedaba con el mapeo de 2 valores de Kaggle. Se construyó un artifact,
+**"Reglas de temporada"** (`herramientas/generar_panel_temporada.py`), con una tarjeta por
+`articleType` (1-2 fotos de ejemplo de las mismas fichas ya revisadas, la combinación de
+respuestas que dio el autor para ese tipo, y una propuesta ya calculada — mayoría clara de
+`todo_el_ano` o de una sola estación → esa regla; sin patrón, como `Dresses`, → se deja el
+mapeo actual). Decidir es tocar una de 3 opciones; revertir es tocar otra vez, sin paso aparte
+(pedido explícito: "que sea cómodo desde el móvil"). `herramientas/leer_reglas_temporada.py`
+recoge las decisiones y genera el fragmento de código.
+
+De las 22 propuestas (21 tipos + el valor por defecto), el autor **confirmó 21 y corrigió 1**
+— `Caps`, de mi propuesta `estacional` (83 % de sus revisiones eran `primavera_verano`) a
+`todo_el_ano`. `TIPOS_TODO_EL_ANO` pasa de 1 tipo
+(`Jackets`) a **13**: `Jackets, Caps, Backpacks, Casual Shoes, Clutches, Formal Shoes, Heels,
+Jeans, Shirts, Sports Shoes, Sweaters, Track Pants, Trousers`. El resto (`Dresses, Flip Flops,
+Jumpsuit, Leggings, Sandals, Shorts, Skirts, Tops, Tshirts` y cualquier tipo no revisado) se
+queda con el mapeo de 2 valores por `season` de Kaggle. Implementado en
+`preparar_dataset_florence2.py`, detalle de cada tipo en `esquema_atributos.md`.
+
+**Efecto en el dataset (v3): `temporada` cambia de clase minoritaria a clase mayoritaria.**
+Esos 13 tipos cubren una parte grande del catálogo (casi todo `calzado` y `accesorio`, gran
+parte de `ropa_superior`/`ropa_inferior`) — `todo_el_ano` pasa de 205/4000 (5.1 %, solo
+`Jackets`) a **2422/4000 (60.6 %)** en train, con `primavera_verano` en 25.3 % y
+`otono_invierno` en 14.1 %. La clase mayoritaria trivial de `temporada` en test sube de 56.8 %
+(v1/v2) a **63.4 %** — el listón para que `temporada` "acierte algo" en vez de solo predecir la
+mayoritaria es ahora más alto, hay que tenerlo en cuenta al leer la accuracy de v3.
+
+### 11.6 Trabajo técnico
 
 1. ~~Reentrenar v2~~ — **hecho** (§11.2), vía Kaggle en vez de Colab (autor sin acceso a
    ordenador; Colab no es manejable cómodamente desde el navegador móvil). Detalle en §11.3.
-2. **`temporada` del resto de tipos de prenda** (pendiente desde §11.1 — solo `Jackets` está
-   decidido): artifact nuevo, **"Reglas de temporada"**
-   (`herramientas/generar_panel_temporada.py`), una tarjeta por `articleType` con 1-2 fotos de
-   ejemplo (de las mismas fichas ya revisadas) y una propuesta ya calculada de sus propias
-   respuestas (mayoría clara → esa regla; sin patrón, como en `Dresses`/`Jackets` → se deja el
-   comportamiento actual). Decidir = tocar una opción; **revertir = tocar otra vez, no hay un
-   paso aparte** (así lo pidió el autor). `herramientas/leer_reglas_temporada.py` recoge las
-   decisiones y genera el fragmento para `preparar_dataset_florence2.py`, cuando estén.
+2. ~~`temporada` del resto de tipos de prenda~~ — **decidido y reentrenado como v3** (§11.5).
 3. **Terminar las 20 fichas** (autor) y reejecutar `analizar_revision_humana.py`.
 4. **Sobremuestrear la cola larga**: no solo tipos de prenda con <10 ejemplos (§6.3) — ahora
    también las 5 clases de color con F1 0.00 en v2 (`fucsia`, `plateado`, `burdeos`, `dorado`,
@@ -762,14 +786,14 @@ probada y documentada, disponible para el siguiente reentrenamiento.
 cd experimentos/vlm_atributos_prenda
 pip install -r requirements.txt          # transformers==4.51.3 fijado a propósito
 cd herramientas
-python3 preparar_dataset_florence2.py    # train/val/test.jsonl v2 (reglas de §11.1), semilla 42
-python3 estadisticas_dataset.py          # tablas de la sección 4 (v1) / 11.1 (v2)
-python3 baseline_zero_shot.py            # ≈ 65 min en CPU (500 imágenes) -- resultado v1, no se ha repetido en v2
+python3 preparar_dataset_florence2.py    # train/val/test.jsonl v3 (reglas de §11.1 + §11.5), semilla 42
+python3 estadisticas_dataset.py          # tablas de la sección 4 (v1) / 11.1 y 11.5 (v3)
+python3 baseline_zero_shot.py            # ≈ 65 min en CPU (500 imágenes) -- resultado v1, no se ha repetido en v2/v3
 #   entrenamiento v1 (documentado en §5-§10): notebook_colab_entrenamiento.ipynb -> florence2_base_lora_v1/
-#   entrenamiento v2 (documentado en §11.2-§11.3): mismo notebook -> florence2_base_lora_v2/, o
-#   herramientas/kaggle_kernel/ (API de Kaggle, sin notebook) -- ver su README.md
+#   entrenamiento v2/v3 (documentado en §11.2-§11.3 y §11.5): mismo notebook -> florence2_base_lora_v3/, o
+#   herramientas/kaggle_kernel/ (API de Kaggle, sin notebook, VERSION="v3" en entrenar_en_kaggle.py) -- ver su README.md
 python3 evaluar_modelo.py --adapter ../modelos/florence2_base_lora_v1   # resultados de §6 (por defecto usa v1)
-python3 evaluar_modelo.py --adapter ../modelos/florence2_base_lora_v2 --sin-zero-shot --sin-1207  # resultados de §11.2
+python3 evaluar_modelo.py --adapter ../modelos/florence2_base_lora_v3 --sin-zero-shot --sin-1207  # resultados de §11.5
 python3 evaluar_solape_1207.py           # solape con train/val/test y comparación con CLIP sin contaminación (v1)
 python3 analizar_revision_humana.py --revisiones ../data/revision_humana/revisiones_app_n100_2026-09-20.json
 python3 predecir_lote.py --carpeta ../data/fotos_calle --salida calle.json
@@ -778,14 +802,13 @@ python3 resumen_outfit.py --outfits outfits.json --foto-entera ../data/revision_
     --auditoria ../data/revision_humana/auditoria_outfit_calle.json
 ```
 
-**Aviso de versión del dataset**: `preparar_dataset_florence2.py` regenera `data/*.jsonl` con las reglas **v2** (§11.1)
-— es lo que hay en el repositorio ahora, y es lo que se usó para entrenar y evaluar `florence2_base_lora_v2/`. El
-adapter `modelos/florence2_base_lora_v1/` se entrenó con las reglas **v1**; sus resultados documentados en §6–§8 no son
-reproducibles ejecutando `evaluar_modelo.py`/`evaluar_solape_1207.py` tal cual ahora (test set con contenido distinto)
-— la versión v1 exacta de `data/*.jsonl` queda recuperable del historial de git si hace falta.
+**Aviso de versión del dataset**: `preparar_dataset_florence2.py` regenera `data/*.jsonl` con las reglas **v3** (§11.1 +
+§11.5) — es lo que hay en el repositorio ahora, y es lo que se usó para entrenar y evaluar `florence2_base_lora_v3/`. Los
+adapters `modelos/florence2_base_lora_v1/` y `_v2/` se entrenaron con reglas anteriores; sus resultados documentados en
+§6–§8 y §11.2 no son reproducibles ejecutando `evaluar_modelo.py`/`evaluar_solape_1207.py` tal cual ahora (test set con
+contenido distinto) — esas versiones exactas de `data/*.jsonl` quedan recuperables del historial de git si hace falta.
 
-Datos en el repositorio: `data/{train,val,test}.jsonl` (v2), `data/revision_humana/` (revisiones humanas, manifest de la
+Datos en el repositorio: `data/{train,val,test}.jsonl` (v3), `data/revision_humana/` (revisiones humanas, manifest de la
 app, predicciones del modelo, salida y auditoría de los looks), `data/eval_1207_solape.json` (v1),
-`modelos/florence2_base_lora_v1/` y `modelos/florence2_base_lora_v2/` (los dos adapters, cada uno con su
-`resultados_entrenamiento.json`; v2 añade `evaluacion_test_v2.txt`), `herramientas/kaggle_kernel/` (entrenamiento vía
-API de Kaggle, alternativa a Colab).
+`modelos/florence2_base_lora_v1/`, `_v2/` y `_v3/` (los tres adapters, cada uno con su `resultados_entrenamiento.json` y
+su `evaluacion_test_*.txt`), `herramientas/kaggle_kernel/` (entrenamiento vía API de Kaggle, alternativa a Colab).

@@ -273,8 +273,10 @@ métricas. Detalle y cifras en la memoria (§8).
 4. ~~Decisiones de esquema pendientes~~ — **resueltas** (2026-09-20): `temporada` de `Jackets` →
    `todo_el_ano`; `grupo_estilo` de vestidos por estampado/liso; filtro de ropa infantil por
    nombre; `deportivo`+`streetwear` se queda sin resolver (se descartó reetiquetar por marca) y
-   la paleta de color no se toca. Detalle en la memoria (§11.1). Sigue abierto: `temporada` del
-   resto de tipos de prenda más allá de `Jackets`.
+   la paleta de color no se toca. Detalle en la memoria (§11.1). ~~Sigue abierto: `temporada`
+   del resto de tipos de prenda~~ — **resuelto también** (mismo día, más tarde): artifact
+   "Reglas de temporada", 13 tipos más a `todo_el_ano` (antes solo `Jackets`); reentrenado como
+   v3. Memoria §11.5.
 5. Sobremuestrear la cola larga de tipos de prenda (el estilo cae al 3% en tipos con menos de
    10 ejemplos, §6.3) y las 5 clases de color con F1 0.00 en v2 (`fucsia`, `plateado`, `burdeos`,
    `dorado`, `naranja` — memoria §11.2): sigue mereciendo la pena aunque el punto 1 rebaje la

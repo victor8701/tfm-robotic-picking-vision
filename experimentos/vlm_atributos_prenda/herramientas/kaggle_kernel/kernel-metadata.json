@@ -1,6 +1,6 @@
 {
-  "id": "Victor871/tfm-florence2-lora-v2",
-  "title": "TFM Florence-2 LoRA v2 (atributos prenda)",
+  "id": "Victor871/tfm-florence2-lora-v3",
+  "title": "TFM Florence-2 LoRA v3 (atributos prenda)",
   "code_file": "entrenar_en_kaggle.py",
   "language": "python",
   "kernel_type": "script",

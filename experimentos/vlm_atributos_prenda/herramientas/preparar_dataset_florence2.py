@@ -37,6 +37,12 @@ S11.1, a partir de la revision humana de 100 fichas):
     tan a fondo) -- `lavanda` sigue absorbiendo `Purple`, `fucsia`/`plateado` siguen con pocos
     ejemplos.
 
+Reglas v3 (2026-09-20, mismo dia): `temporada` amplia TIPOS_TODO_EL_ANO al resto de tipos de
+prenda, decidido tipo a tipo por el autor en el artifact "Reglas de temporada" (propuesta por
+tipo calculada de sus 100 revisiones -- mayoria clara -> esa regla, sin patron -> se deja el
+mapeo por `season` de Kaggle; el autor solo corrigio una, Caps, de la propuesta "estacional" a
+"todo_el_ano"). Nada mas cambia respecto a v2 -- ver TIPOS_TODO_EL_ANO abajo para el detalle.
+
 Uso:
     python3 preparar_dataset_florence2.py [--train N] [--val N] [--test N]
 """
@@ -112,8 +118,16 @@ TEMPORADA_POR_SEASON = {
     "Fall": "otono_invierno", "Winter": "otono_invierno",
 }
 # Tipos de prenda que se dan por "todo el año" pase lo que ponga `season` -- ver aviso v2
-# arriba. Solo Jackets por ahora; tabla pendiente de ampliar.
-TIPOS_TODO_EL_ANO = {"Jackets"}
+# arriba. v2 solo tenia Jackets; v3 (2026-09-20) amplia al resto de tipos segun las decisiones
+# del autor en el artifact "Reglas de temporada" (propuesta calculada de sus 100 revisiones,
+# confirmada o corregida por el a mano -- solo corrigio Caps, de "estacional" a "todo_el_ano";
+# el resto de propuestas se quedaron como estaban). Lo que no esta aqui sigue con el mapeo de
+# 2 valores por `season` de Kaggle (incluye Dresses, que se quedo sin patron claro en la
+# revision -- ver esquema_atributos.md).
+TIPOS_TODO_EL_ANO = {
+    "Jackets", "Caps", "Backpacks", "Casual Shoes", "Clutches", "Formal Shoes", "Heels",
+    "Jeans", "Shirts", "Sports Shoes", "Sweaters", "Track Pants", "Trousers",
+}
 
 # Ropa infantil que se cuela con gender=Women/Men (marcas y palabras habituales del dataset;
 # ver aviso v2 arriba). `gender` ya filtra Boys/Girls, esto filtra lo que ese campo no coge.

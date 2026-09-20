@@ -1,4 +1,4 @@
-# Esquema de atributos v2 — clasificador de prendas desde foto
+# Esquema de atributos v3 — clasificador de prendas desde foto
 
 Fuente de verdad de las tablas de mapeo `dataset Kaggle → esquema de esta tesis`, usadas por
 `herramientas/preparar_dataset_florence2.py`. Reutiliza y colapsa campos que ya existen en
@@ -10,9 +10,12 @@ campos compactos).
 tres cambios de regla (`temporada` de `Jackets`, `grupo_estilo` de `Dresses`, filtro de ropa
 infantil por nombre) — marcados como tal en cada sección, con la fecha y el motivo. El adapter
 `modelos/florence2_base_lora_v1/` está entrenado con las reglas **v1** (anteriores a esta
-fecha); el reentrenamiento con `data/*.jsonl` ya regenerado va a `florence2_base_lora_v2/`
-(pendiente, se hace en Colab). Detalle completo de la decisión en
-`memoria/TFM_clasificador_visual_atributos.md` §11.1.
+fecha); `florence2_base_lora_v2/` con las reglas v2.
+
+**v3 (2026-09-20, mismo día):** `temporada` se decide para el resto de tipos de prenda (13 más,
+además de `Jackets`) en el artifact *"Reglas de temporada"* — marcado como tal en su sección.
+Nada más cambia respecto a v2. `florence2_base_lora_v3/` es el adapter con estas reglas.
+Detalle completo de las decisiones en `memoria/TFM_clasificador_visual_atributos.md` §11.1/§11.5.
 
 ## JSON objetivo
 
@@ -136,7 +139,7 @@ y el criterio humano, no como algo corregido en v2.
 
 | Kaggle `season` / `articleType` | → `temporada` |
 |---|---|
-| `articleType == Jackets` (cualquier `season`) | **todo_el_ano** |
+| `articleType` ∈ `TIPOS_TODO_EL_ANO` (13 tipos, tabla abajo) | **todo_el_ano** |
 | resto, `season` = Summer, Spring | primavera_verano |
 | resto, `season` = Fall, Winter | otono_invierno |
 
@@ -146,10 +149,18 @@ a suponerlas de todas las estaciones, independientemente de lo que pusiese yo [e
 revisión]"*. Es una decisión deliberada, no derivada de los datos de revisión (que para
 `Jackets` estaban repartidos: 7 otoño-invierno, 3 primavera-verano, 9 todo el año).
 
-**Pendiente:** el resto de tipos de prenda se queda con el mapeo de 2 valores por `season` de
-Kaggle. `Dresses` es el siguiente candidato obvio (43/100 fichas de la revisión humana en
-general son `todo_el_ano`, y `Dresses` reparte 8 primavera-verano / 7 todo el año / 1 otoño-
-invierno) pero no se decidió un criterio, así que no se ha tocado.
+**Decisión v3 (2026-09-20, mismo día).** El resto de tipos de prenda ya está decidido, tipo a
+tipo, en el artifact *"Reglas de temporada"* (`herramientas/generar_panel_temporada.py` /
+`leer_reglas_temporada.py`): una propuesta por tipo calculada de las 100 fichas de la revisión
+humana (mayoría clara de `todo_el_ano`, o de una sola estación → esa propuesta; sin patrón
+claro, como `Dresses` — 8 primavera-verano / 7 todo el año / 1 otoño-invierno — o como el
+propio `Jackets` antes de decidirlo a mano → se deja el mapeo por `season` de Kaggle). El autor
+confirmó casi todas las propuestas; solo corrigió `Caps` (de `estacional`, pese al 83% de sus
+revisiones en `primavera_verano`, a `todo_el_ano`).
+
+| `TIPOS_TODO_EL_ANO` (13) | `estacional` — mapeo por `season` (9 con datos de revisión + el resto sin revisar) |
+|---|---|
+| Jackets, Caps, Backpacks, Casual Shoes, Clutches, Formal Shoes, Heels, Jeans, Shirts, Sports Shoes, Sweaters, Track Pants, Trousers | Dresses, Flip Flops, Jumpsuit, Leggings, Sandals, Shorts, Skirts, Tops, Tshirts, y cualquier tipo no revisado |
 
 ## Campos descartados para v1
 
