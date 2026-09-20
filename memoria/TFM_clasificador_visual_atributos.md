@@ -734,17 +734,25 @@ probada y documentada, disponible para el siguiente reentrenamiento.
 
 1. ~~Reentrenar v2~~ — **hecho** (§11.2), vía Kaggle en vez de Colab (autor sin acceso a
    ordenador; Colab no es manejable cómodamente desde el navegador móvil). Detalle en §11.3.
-2. **Terminar las 20 fichas** (autor) y reejecutar `analizar_revision_humana.py`.
-3. **Sobremuestrear la cola larga**: no solo tipos de prenda con <10 ejemplos (§6.3) — ahora
+2. **`temporada` del resto de tipos de prenda** (pendiente desde §11.1 — solo `Jackets` está
+   decidido): artifact nuevo, **"Reglas de temporada"**
+   (`herramientas/generar_panel_temporada.py`), una tarjeta por `articleType` con 1-2 fotos de
+   ejemplo (de las mismas fichas ya revisadas) y una propuesta ya calculada de sus propias
+   respuestas (mayoría clara → esa regla; sin patrón, como en `Dresses`/`Jackets` → se deja el
+   comportamiento actual). Decidir = tocar una opción; **revertir = tocar otra vez, no hay un
+   paso aparte** (así lo pidió el autor). `herramientas/leer_reglas_temporada.py` recoge las
+   decisiones y genera el fragmento para `preparar_dataset_florence2.py`, cuando estén.
+3. **Terminar las 20 fichas** (autor) y reejecutar `analizar_revision_humana.py`.
+4. **Sobremuestrear la cola larga**: no solo tipos de prenda con <10 ejemplos (§6.3) — ahora
    también las 5 clases de color con F1 0.00 en v2 (`fucsia`, `plateado`, `burdeos`, `dorado`,
-   `naranja`), para separar ruido de regresión real.
-4. **Looks**: sustituir las heurísticas por un **detector de prendas afinado** (DeepFashion2, el
+   `naranja`), aunque §11.2 (contraste pareado) rebaja la urgencia de esto último.
+5. **Looks**: sustituir las heurísticas por un **detector de prendas afinado** (DeepFashion2, el
    candidato de §12.2 de `Estado_arte.md`) y afinar el clasificador con **recortes reales**;
    para medirlo, una app v2 que muestre el recorte y pida validar la prenda (categoría, color,
    estilo) sobre fotos de calle.
-5. **Comparar con Claude/Gemini** en el mismo test y esquema (opcional, coste de API): es el
+6. **Comparar con Claude/Gemini** en el mismo test y esquema (opcional, coste de API): es el
    dato que responde a «no vale usar Claude directamente».
-6. Actualizar §6.3/§7 de `Estado_arte.md` **solo si el autor lo pide**.
+7. Actualizar §6.3/§7 de `Estado_arte.md` **solo si el autor lo pide**.
 
 ---
 
