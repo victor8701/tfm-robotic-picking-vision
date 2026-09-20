@@ -43,6 +43,12 @@ tipo calculada de sus 100 revisiones -- mayoria clara -> esa regla, sin patron -
 mapeo por `season` de Kaggle; el autor solo corrigio una, Caps, de la propuesta "estacional" a
 "todo_el_ano"). Nada mas cambia respecto a v2 -- ver TIPOS_TODO_EL_ANO abajo para el detalle.
 
+Reglas v4 (2026-09-20, mas tarde): refuerzo de las filas de `color_primario` mas raras
+(fucsia/dorado/naranja/plateado/burdeos -- F1 0.00 o muy bajo en v1/v2/v3, no por culpa del
+muestreo sino porque el dataset entero tiene pocas: fucsia solo 50 filas mapeables de 24215).
+Se reservan aparte (ver COLORES_A_REFORZAR/separar_refuerzo_color abajo) antes del muestreo por
+categoria, que no mira el color y las dejaba a la suerte. Nada mas cambia respecto a v3.
+
 Uso:
     python3 preparar_dataset_florence2.py [--train N] [--val N] [--test N]
 """
@@ -246,6 +252,35 @@ def cargar_filas():
     return filas
 
 
+
+# Colores con F1 0.00 (fucsia, dorado, naranja, plateado) o muy bajo (burdeos) en las tres
+# versiones del adapter (v1/v2/v3 -- ver memoria S11.2/S11.5): muy pocos ejemplos en el pool
+# ENTERO, no solo en la muestra de 4550 -- fucsia solo tiene 50 filas mapeables en las 44072
+# del dataset. El muestreo por categoria de mas abajo no mira el color, asi que estas filas se
+# reparten aparte primero (todas las que haya de fucsia, hasta 200 del resto) para asegurar que
+# caen en train/val/test en vez de dejarlo a la suerte de que sean tan pocas en general.
+COLORES_A_REFORZAR = {"fucsia": 200, "dorado": 200, "naranja": 200, "plateado": 200, "burdeos": 200}
+
+
+def separar_refuerzo_color(mapeadas, rng):
+    """Aparta hasta COLORES_A_REFORZAR[color] filas de cada color (todas las que haya si hay
+    menos) y las devuelve en un solo grupo -- se combinan luego con la seleccion por categoria
+    y todo junto se reparte en train/val/test con el mismo shuffle+slice de siempre (main()),
+    asi que caen repartidas proporcionalmente sin necesidad de fijar un cupo por split a mano."""
+    por_color = defaultdict(list)
+    resto = []
+    for f in mapeadas:
+        color = f["_atributos"]["color_primario"]
+        (por_color[color] if color in COLORES_A_REFORZAR else resto).append(f)
+    refuerzo = []
+    for color, filas in por_color.items():
+        rng.shuffle(filas)
+        tope = COLORES_A_REFORZAR[color]
+        refuerzo.extend(filas[:tope])
+        resto.extend(filas[tope:])  # lo que sobra de cada color vuelve al pool general
+    return refuerzo, resto
+
+
 def muestreo_estratificado(filas_mapeadas, n_objetivo, rng):
     """Reparte n_objetivo filas balanceando por categoria. Categorias con
     pocas filas (p.ej. abrigo, cuerpo_entero) no pueden llenar su cupo
@@ -321,7 +356,14 @@ def main():
             int(args.train * factor), int(args.val * factor), int(args.test * factor)
         )
 
-    seleccion = muestreo_estratificado(mapeadas, args.train + args.val + args.test, rng)
+    refuerzo, resto = separar_refuerzo_color(mapeadas, rng)
+    print(f"\nRefuerzo de colores raros ({sum(COLORES_A_REFORZAR.values())} tope, {len(refuerzo)} conseguidas):")
+    for color, tope in COLORES_A_REFORZAR.items():
+        n = sum(1 for f in refuerzo if f["_atributos"]["color_primario"] == color)
+        print(f"  {color:<10} {n}/{tope}" + ("  (todo lo que hay)" if n < tope else ""))
+
+    seleccion_categoria = muestreo_estratificado(resto, args.train + args.val + args.test - len(refuerzo), rng)
+    seleccion = refuerzo + seleccion_categoria
     rng.shuffle(seleccion)
 
     splits = {

@@ -30,7 +30,7 @@ USUARIO = "Victor871"
 # Kaggle ignora el slug pedido en el primer push de un kernel NUEVO y lo deriva del titulo --
 # tras el primer `push()` de una version nueva, copiar aqui el que devuelva de verdad (ver la
 # url de "Subido y lanzado") antes de llamar a estado()/log()/bajar().
-SLUG = "tfm-florence-2-lora-v3-atributos-prenda"
+SLUG = "tfm-florence-2-lora-v4-atributos-prenda"
 CARPETA = Path(__file__).parent
 
 
@@ -41,7 +41,7 @@ def cliente():
 def push():
     req = ApiSaveKernelRequest()
     req.slug = f"{USUARIO}/{SLUG}"
-    req.new_title = "TFM Florence-2 LoRA v3 (atributos prenda)"  # limite de Kaggle: 50 caracteres
+    req.new_title = "TFM Florence-2 LoRA v4 (atributos prenda)"  # limite de Kaggle: 50 caracteres
     req.text = (CARPETA / "entrenar_en_kaggle.py").read_text(encoding="utf-8")
     req.language = "python"
     req.kernel_type = "script"

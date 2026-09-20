@@ -274,13 +274,16 @@ métricas. Detalle y cifras en la memoria (§8).
    `todo_el_ano`; `grupo_estilo` de vestidos por estampado/liso; filtro de ropa infantil por
    nombre; `deportivo`+`streetwear` se queda sin resolver (se descartó reetiquetar por marca) y
    la paleta de color no se toca. Detalle en la memoria (§11.1). ~~Sigue abierto: `temporada`
-   del resto de tipos de prenda~~ — **resuelto también** (mismo día, más tarde): artifact
-   "Reglas de temporada", 13 tipos más a `todo_el_ano` (antes solo `Jackets`); reentrenado como
-   v3. Memoria §11.5.
-5. Sobremuestrear la cola larga de tipos de prenda (el estilo cae al 3% en tipos con menos de
-   10 ejemplos, §6.3) y las 5 clases de color con F1 0.00 en v2 (`fucsia`, `plateado`, `burdeos`,
-   `dorado`, `naranja` — memoria §11.2): sigue mereciendo la pena aunque el punto 1 rebaje la
-   urgencia, son las clases con menos datos de todo el esquema.
+   del resto de tipos de prenda~~ — **resuelto también, mismo día**: artifact "Reglas de
+   temporada", 13 tipos más a `todo_el_ano` (antes solo `Jackets`); reentrenado como v3, y esta
+   vez sí mejora — 85 % de media contra las 100 fichas humanas (v1: 79 %, v2: 77 %), con
+   `temporada` subiendo de 44 %/38 % a **68 %**. Memoria §11.4.
+5. **Sobremuestrear colores raros** (`fucsia`, `dorado`, `naranja`, `plateado`, `burdeos`: F1
+   0.00 o muy bajo en v1/v2/v3, con muy pocos ejemplos en *todo* el dataset, no solo en la
+   muestra) — **en marcha**: dataset v4 ya regenerado reservando hasta 200 filas de cada color
+   antes del muestreo por categoría; reentrenamiento en curso. Memoria §11.5.
+6. Sobremuestrear también la cola larga de **tipos de prenda** (no solo colores): el estilo cae
+   al 3% en tipos con menos de 10 ejemplos de entrenamiento (§6.3).
 
 ## Qué NO es (mismo aviso honesto que en `clip_trend_matching/`)
 

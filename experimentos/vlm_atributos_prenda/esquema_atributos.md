@@ -1,4 +1,4 @@
-# Esquema de atributos v3 — clasificador de prendas desde foto
+# Esquema de atributos v4 — clasificador de prendas desde foto
 
 Fuente de verdad de las tablas de mapeo `dataset Kaggle → esquema de esta tesis`, usadas por
 `herramientas/preparar_dataset_florence2.py`. Reutiliza y colapsa campos que ya existen en
@@ -14,8 +14,15 @@ fecha); `florence2_base_lora_v2/` con las reglas v2.
 
 **v3 (2026-09-20, mismo día):** `temporada` se decide para el resto de tipos de prenda (13 más,
 además de `Jackets`) en el artifact *"Reglas de temporada"* — marcado como tal en su sección.
-Nada más cambia respecto a v2. `florence2_base_lora_v3/` es el adapter con estas reglas.
-Detalle completo de las decisiones en `memoria/TFM_clasificador_visual_atributos.md` §11.1/§11.5.
+Nada más cambia respecto a v2. `florence2_base_lora_v3/` es el adapter con estas reglas —
+mejora de verdad sobre v1/v2 al comparar contra la revisión humana (§11.5).
+
+**v4 (2026-09-20, más tarde):** ningún cambio de regla, solo de **muestreo**. `fucsia`, `dorado`,
+`naranja`, `plateado` y `burdeos` tenían F1 0.00 o muy bajo en `color_primario` en v1/v2/v3 no
+por un mal reparto del muestreo sino porque el dataset entero tiene pocas filas de esos colores
+(`fucsia`: 50 de 24215 filas mapeables) — se reservan aparte antes del muestreo por categoría
+(`COLORES_A_REFORZAR` en `preparar_dataset_florence2.py`) para que caigan en train/val/test en
+vez de dejarlo a la suerte. `florence2_base_lora_v4/` es el adapter con este refuerzo.
 
 ## JSON objetivo
 
@@ -75,7 +82,12 @@ Casos exactos o casi exactos primero, luego aproximaciones documentadas:
 **Decisión (2026-09-20, tras la revisión humana de 100 fichas — ver `memoria/TFM_clasificador_visual_atributos.md`
 §11.1): la paleta se queda como está.** `lavanda` sigue absorbiendo `Purple` y `fucsia`/`plateado` siguen con pocos
 ejemplos (F1 0.00 en el test v1); se decidió no ampliar el vocabulario de §3.4 con un valor `morado` nuevo para no
-tocar en profundidad ese documento. El único remedio disponible es sobremuestrear esas dos clases.
+tocar en profundidad ese documento. El único remedio disponible es sobremuestrear esas clases.
+
+**v4 (2026-09-20, más tarde): sobremuestreo real.** `fucsia`, `dorado`, `naranja`, `plateado` y `burdeos` (F1 0.00 o
+muy bajo en v1/v2/v3) se reservan aparte del muestreo por `categoria` — hasta 200 filas de cada una (50 en el caso de
+`fucsia`, que es todo lo que hay en las 24215 filas mapeables) — para que no dependan de la suerte de si el muestreo
+por `categoria` se cruza con ellas o no. Detalle y resultado en `memoria/TFM_clasificador_visual_atributos.md` §11.6.
 
 ## `grupo_estilo` (§3.4.1, los 6 valores)
 
