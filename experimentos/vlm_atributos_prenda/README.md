@@ -260,8 +260,10 @@ métricas. Detalle y cifras en la memoria (§8).
 ## Próximos pasos
 
 1. ~~Reentrenar v2~~ — **hecho** (Kaggle GPU vía API en vez de Colab —
-   `herramientas/kaggle_kernel/`—, ver memoria §11.2-§11.3). No mejora el test global; explicado
-   campo a campo en la memoria.
+   `herramientas/kaggle_kernel/`—, ver memoria §11.2-§11.3). No mejora el test global de 500
+   imágenes, pero contra las 100 fichas revisadas a mano `color_primario` y `grupo_estilo` se
+   quedan prácticamente igual que v1 — la caída del test grande parece más ruido de qué imágenes
+   raras le tocaron que una pérdida de calidad real (contraste pareado en memoria §11.2).
 2. **Terminar la revisión humana** de las 120 fichas de la app (van 100): daría un subconjunto
    del test verificado por una persona, que es una evaluación más honesta que la de Kaggle.
    Conviene hacerlo *sin* mostrar la predicción del modelo, para no sesgar las etiquetas.
@@ -275,8 +277,8 @@ métricas. Detalle y cifras en la memoria (§8).
    resto de tipos de prenda más allá de `Jackets`.
 5. Sobremuestrear la cola larga de tipos de prenda (el estilo cae al 3% en tipos con menos de
    10 ejemplos, §6.3) y las 5 clases de color con F1 0.00 en v2 (`fucsia`, `plateado`, `burdeos`,
-   `dorado`, `naranja` — memoria §11.2): es lo que más pinta a problema real, no ruido de una sola
-   repetición, pero hace falta más de un run para saberlo.
+   `dorado`, `naranja` — memoria §11.2): sigue mereciendo la pena aunque el punto 1 rebaje la
+   urgencia, son las clases con menos datos de todo el esquema.
 
 ## Qué NO es (mismo aviso honesto que en `clip_trend_matching/`)
 

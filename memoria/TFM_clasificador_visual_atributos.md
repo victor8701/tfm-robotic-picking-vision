@@ -50,9 +50,12 @@ que lo aplica a fotos con personas (detectar → recortar → clasificar cada pr
 | Looks: `temporada` por prenda | — | 83 de 84 recortes → `primavera_verano` | inservible fuera del catálogo |
 
 *(Esta tabla es el "antes/después" del adapter **v1**. Hay una segunda vuelta, v2, con las reglas de
-esquema que decidió el autor — resultado real y comparación campo a campo en §11.2: en conjunto no
-mejora el test global, con una caída esperable en `grupo_estilo` — v1 hacía trampa con los
-vestidos — y una caída en `color_primario` sin explicar del todo.)*
+esquema que decidió el autor — resultado real y comparación campo a campo en §11.2: en el test de
+500 imágenes no mejora el global, con una caída esperable en `grupo_estilo` — v1 hacía trampa con
+los vestidos — y una caída en `color_primario` que **no se reproduce** al comparar contra las 100
+fichas revisadas a mano (§11.2, contraste pareado): ahí `color_primario` y `grupo_estilo` se quedan
+prácticamente iguales, y solo `temporada` cae de forma real, por el motivo esperado — el modelo ya
+ignora a propósito el juicio caso a caso en `Jackets`, como pidió el autor.)*
 
 Seis conclusiones:
 
@@ -691,6 +694,31 @@ el test global de v2 no es un "v1 pero mejor" — es un modelo que ya no hace tr
 (`grupo_estilo`) a cambio de una tarea más difícil, con una caída en `color_primario` que necesita
 más datos para las clases raras antes de poder decir si es ruido o un problema real. **v1 y v2 se
 quedan los dos en el repositorio** (`modelos/florence2_base_lora_v1/` y `_v2/`) para poder comparar.
+
+**Contraste pareado contra las 100 fichas revisadas a mano** (`herramientas/comparar_modelos_v1_v2.py`;
+mismas 100 fotos para los dos modelos, así que la comparación no la contamina un test set distinto):
+
+| Campo | v1 vs humano | v2 vs humano | Fichas que pierden / ganan (v1→v2) |
+|---|---|---|---|
+| `categoria` | 98 % | 97 % | 1 / 0 |
+| `color_primario` | **81 %** | **81 %** | 3 / 3 |
+| `genero` | 92 % | 91 % | 1 / 0 |
+| `temporada` | 44 % | 38 % | 16 / 10 |
+| `grupo_estilo` | 80 % | 79 % | 2 / 1 |
+| **Media** | 79 % | 77 % | |
+
+**Esto cambia la lectura de §11.2 arriba: la caída de `color_primario` del test de 500 (−4.2 puntos)
+no se reproduce contra el humano en estas 100 fichas — se queda exactamente en 81 % los dos, con
+tantas fichas que pierden como que ganan.** Es un indicio (n=100, no concluyente) de que la caída del
+test grande es más ruido de qué imágenes concretas de las clases raras cayeron en el test que una
+pérdida real de calidad — aunque el fallo aislado que sí aparece es justo de una clase débil (una
+chaqueta naranja: v1 acierta `naranja`, v2 dice `amarillo`). `grupo_estilo` tampoco se mueve de
+forma real (80 %→79 %, ruido de una ficha). **`temporada` sí cae de forma real (44 %→38 %), y es la
+consecuencia esperada, no un fallo**: el autor pidió `todo_el_ano` fijo para `Jackets`
+*"independientemente de lo que pusiese yo [en la revisión]"* — el modelo ahora ignora a propósito
+el juicio caso a caso que él mismo dio por ficha, así que comparar contra esas mismas respuestas
+antiguas tenía que bajar. Con las 20 fichas de `Jackets` pesando el 20 % de esta muestra reducida
+(no de la distribución real del catálogo), el efecto se nota más aquí que en el test de 500.
 
 ### 11.3 Cómo se entrenó v2 (nota técnica, para la sección de método)
 

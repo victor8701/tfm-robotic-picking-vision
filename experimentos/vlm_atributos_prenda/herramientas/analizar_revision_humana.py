@@ -42,6 +42,14 @@ def cargar_revisiones(ruta):
     return revs
 
 
+def cargar_predicciones(ruta):
+    """predicciones_app_120.json esta "aplanado" (los 5 campos sueltos); la salida cruda de
+    predecir_lote.py envuelve la prediccion en {"prediccion": {...}, "texto_crudo": ...} --
+    se admiten los dos formatos aqui."""
+    datos = json.load(open(Path(ruta).expanduser(), encoding="utf-8"))
+    return {str(i): (v.get("prediccion") or {}) if "prediccion" in v else v for i, v in datos.items()}
+
+
 def main():
     ap = argparse.ArgumentParser()
     datos = Path(__file__).parent.parent / "data" / "revision_humana"
@@ -52,7 +60,7 @@ def main():
     args = ap.parse_args()
 
     manifest = {str(m["id"]): m for m in json.load(open(Path(args.manifest).expanduser(), encoding="utf-8"))}
-    pred = json.load(open(args.predicciones, encoding="utf-8"))
+    pred = cargar_predicciones(args.predicciones)
     revs = cargar_revisiones(args.revisiones)
     ids = sorted(revs, key=int)
     n = len(ids)
