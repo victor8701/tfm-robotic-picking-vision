@@ -1,0 +1,8634 @@
+{
+"casual/capris_1.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "rosa",
+"grupo_estilo": "playa_resort",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/capris_10.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"casual/capris_2.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "verde",
+"grupo_estilo": "deportivo",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/capris_3.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"casual/capris_4.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "rosa",
+"grupo_estilo": "playa_resort",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/capris_5.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "azul",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/capris_6.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"casual/capris_7.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "rojo",
+"grupo_estilo": "deportivo",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/capris_8.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "azul",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/capris_9.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "amarillo",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/casual_shoes_1.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"casual/casual_shoes_10.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"casual/casual_shoes_11.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "rojo",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/casual_shoes_12.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "blanco",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/casual_shoes_13.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/casual_shoes_14.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"casual/casual_shoes_15.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/casual_shoes_16.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"casual/casual_shoes_17.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "calzado",
+"color_primario": "blanco",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/casual_shoes_18.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"casual/casual_shoes_19.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"casual/casual_shoes_2.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/casual_shoes_20.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "azul",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"casual/casual_shoes_21.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/casual_shoes_22.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/casual_shoes_23.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/casual_shoes_24.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/casual_shoes_25.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"casual/casual_shoes_26.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"casual/casual_shoes_27.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "verde",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"casual/casual_shoes_28.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/casual_shoes_29.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/casual_shoes_3.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/casual_shoes_30.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/casual_shoes_31.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "deportivo"
+},
+"casual/casual_shoes_32.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/casual_shoes_33.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/casual_shoes_34.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/casual_shoes_35.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "navy",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"casual/casual_shoes_36.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/casual_shoes_37.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/casual_shoes_38.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"casual/casual_shoes_39.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"casual/casual_shoes_4.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/casual_shoes_40.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "calzado",
+"color_primario": "blanco",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"casual/casual_shoes_5.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "rojo",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/casual_shoes_6.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/casual_shoes_7.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/casual_shoes_8.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "gris",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/casual_shoes_9.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/jeans_1.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "azul",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/jeans_10.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"casual/jeans_11.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"casual/jeans_12.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/jeans_13.jpg": {
+"carpeta": "casual",
+"visto_en": "test",
+"clip": "streetwear"
+},
+"casual/jeans_14.jpg": {
+"carpeta": "casual",
+"visto_en": "test",
+"clip": "streetwear"
+},
+"casual/jeans_15.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/jeans_16.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"casual/jeans_17.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/jeans_18.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"casual/jeans_19.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "casual"
+},
+"casual/jeans_2.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/jeans_20.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/jeans_21.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"casual/jeans_22.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"casual/jeans_23.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"casual/jeans_24.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/jeans_25.jpg": {
+"carpeta": "casual",
+"visto_en": "val",
+"clip": "streetwear"
+},
+"casual/jeans_26.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "azul",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/jeans_27.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/jeans_28.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"casual/jeans_29.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/jeans_3.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "casual"
+},
+"casual/jeans_30.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "casual"
+},
+"casual/jeans_31.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual"
+},
+"casual/jeans_32.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "azul",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/jeans_33.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "azul",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/jeans_34.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/jeans_35.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/jeans_36.jpg": {
+"carpeta": "casual",
+"visto_en": "test",
+"clip": "streetwear"
+},
+"casual/jeans_37.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/jeans_38.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/jeans_39.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/jeans_4.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/jeans_40.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/jeans_5.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"casual/jeans_6.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/jeans_7.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "azul",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/jeans_8.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "deportivo",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/jeans_9.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"casual/shirts_1.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/shirts_10.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual"
+},
+"casual/shirts_11.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/shirts_12.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "deportivo"
+},
+"casual/shirts_13.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "lavanda",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/shirts_14.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "lavanda",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"casual/shirts_15.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "azul",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/shirts_16.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "azul",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"casual/shirts_17.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "azul",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/shirts_18.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/shirts_19.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/shirts_2.jpg": {
+"carpeta": "casual",
+"visto_en": "test",
+"clip": "de_vestir"
+},
+"casual/shirts_20.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/shirts_21.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/shirts_22.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/shirts_23.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/shirts_24.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/shirts_25.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "playa_resort"
+},
+"casual/shirts_26.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "burdeos",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/shirts_27.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"casual/shirts_28.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/shirts_29.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"casual/shirts_3.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/shirts_30.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "rojo",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/shirts_31.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "azul",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/shirts_32.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/shirts_33.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/shirts_34.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "azul",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"casual/shirts_35.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"casual/shirts_36.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "rosa",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/shirts_37.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual"
+},
+"casual/shirts_38.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/shirts_39.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/shirts_4.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "playa_resort"
+},
+"casual/shirts_40.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/shirts_5.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/shirts_6.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"casual/shirts_7.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/shirts_8.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/shirts_9.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/sweaters_1.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/sweaters_10.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual"
+},
+"casual/sweaters_11.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"casual/sweaters_12.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "gris",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/sweaters_13.jpg": {
+"carpeta": "casual",
+"visto_en": "test",
+"clip": "de_vestir"
+},
+"casual/sweaters_14.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "rojo",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"casual/sweaters_15.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "azul",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/sweaters_16.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/sweaters_17.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/sweaters_18.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/sweaters_19.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "gris",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/sweaters_2.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/sweaters_20.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/sweaters_21.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/sweaters_22.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"casual/sweaters_23.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "gris",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/sweaters_24.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "lavanda",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/sweaters_25.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/sweaters_26.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/sweaters_27.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/sweaters_28.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "deportivo"
+},
+"casual/sweaters_29.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/sweaters_3.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/sweaters_30.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "deportivo"
+},
+"casual/sweaters_31.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/sweaters_32.jpg": {
+"carpeta": "casual",
+"visto_en": "test",
+"clip": "casual"
+},
+"casual/sweaters_33.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/sweaters_34.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "navy",
+"grupo_estilo": "streetwear",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"casual/sweaters_35.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "lavanda",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/sweaters_36.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual"
+},
+"casual/sweaters_37.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "lavanda",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/sweaters_38.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/sweaters_39.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/sweaters_4.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/sweaters_40.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"casual/sweaters_5.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "gris",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"casual/sweaters_6.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/sweaters_7.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual"
+},
+"casual/sweaters_8.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "navy",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"casual/sweaters_9.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/tops_1.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/tops_10.jpg": {
+"carpeta": "casual",
+"visto_en": "val",
+"clip": "de_vestir"
+},
+"casual/tops_11.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/tops_12.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/tops_13.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/tops_14.jpg": {
+"carpeta": "casual",
+"visto_en": "test",
+"clip": "casual"
+},
+"casual/tops_15.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/tops_16.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"casual/tops_17.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/tops_18.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "deportivo"
+},
+"casual/tops_19.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/tops_2.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"casual/tops_20.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual"
+},
+"casual/tops_21.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "blanco",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/tops_22.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual"
+},
+"casual/tops_23.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual"
+},
+"casual/tops_24.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/tops_25.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/tops_26.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual"
+},
+"casual/tops_27.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"casual/tops_28.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/tops_29.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "rosa",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/tops_3.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "rosa",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/tops_30.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual"
+},
+"casual/tops_31.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "amarillo",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"casual/tops_32.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "deportivo"
+},
+"casual/tops_33.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "blanco",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/tops_34.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/tops_35.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "verde",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/tops_36.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual"
+},
+"casual/tops_37.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/tops_38.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/tops_39.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual"
+},
+"casual/tops_4.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/tops_40.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/tops_5.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"casual/tops_6.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "azul",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/tops_7.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"casual/tops_8.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "rosa",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/tops_9.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"casual/tshirts_1.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "deportivo"
+},
+"casual/tshirts_10.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/tshirts_11.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "rojo",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/tshirts_12.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/tshirts_13.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/tshirts_14.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/tshirts_15.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual"
+},
+"casual/tshirts_16.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/tshirts_17.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"casual/tshirts_18.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/tshirts_19.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/tshirts_2.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "deportivo"
+},
+"casual/tshirts_20.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "amarillo",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"casual/tshirts_21.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/tshirts_22.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/tshirts_23.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/tshirts_24.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/tshirts_25.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "verde",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/tshirts_26.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "navy",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/tshirts_27.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "gris",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/tshirts_28.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/tshirts_29.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual"
+},
+"casual/tshirts_3.jpg": {
+"carpeta": "casual",
+"visto_en": "test",
+"clip": "deportivo"
+},
+"casual/tshirts_30.jpg": {
+"carpeta": "casual",
+"visto_en": "test",
+"clip": "streetwear"
+},
+"casual/tshirts_31.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "amarillo",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/tshirts_32.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/tshirts_33.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"casual/tshirts_34.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/tshirts_35.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/tshirts_36.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "casual",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "azul",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"casual/tshirts_37.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "rosa",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/tshirts_38.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"casual/tshirts_39.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "deportivo"
+},
+"casual/tshirts_4.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "deportivo"
+},
+"casual/tshirts_40.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/tshirts_5.jpg": {
+"carpeta": "casual",
+"visto_en": "train",
+"clip": "casual"
+},
+"casual/tshirts_6.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"casual/tshirts_7.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "lavanda",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"casual/tshirts_8.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"casual/tshirts_9.jpg": {
+"carpeta": "casual",
+"visto_en": null,
+"clip": "streetwear"
+},
+"de_vestir/formal_shoes_1.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/formal_shoes_10.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/formal_shoes_11.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/formal_shoes_12.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/formal_shoes_13.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/formal_shoes_14.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/formal_shoes_15.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/formal_shoes_16.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/formal_shoes_17.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/formal_shoes_18.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "test",
+"clip": "de_vestir"
+},
+"de_vestir/formal_shoes_19.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/formal_shoes_2.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/formal_shoes_20.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/formal_shoes_21.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/formal_shoes_22.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/formal_shoes_23.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/formal_shoes_24.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/formal_shoes_25.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"de_vestir/formal_shoes_26.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/formal_shoes_27.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/formal_shoes_28.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/formal_shoes_29.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/formal_shoes_3.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/formal_shoes_30.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/formal_shoes_31.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "gris",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/formal_shoes_32.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/formal_shoes_33.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/formal_shoes_34.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/formal_shoes_35.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/formal_shoes_36.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/formal_shoes_37.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/formal_shoes_38.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/formal_shoes_39.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/formal_shoes_4.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/formal_shoes_40.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/formal_shoes_5.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/formal_shoes_6.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/formal_shoes_7.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/formal_shoes_8.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/formal_shoes_9.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/shirts_1.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/shirts_10.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "blanco",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/shirts_11.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "lavanda",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"de_vestir/shirts_12.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "blanco",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"de_vestir/shirts_13.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/shirts_14.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/shirts_15.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "azul",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/shirts_16.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/shirts_17.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "blanco",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"de_vestir/shirts_18.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/shirts_19.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/shirts_2.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/shirts_20.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "blanco",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"de_vestir/shirts_21.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "azul",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"de_vestir/shirts_22.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/shirts_23.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "rosa",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"de_vestir/shirts_24.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/shirts_25.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "azul",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"de_vestir/shirts_26.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/shirts_27.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "blanco",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"de_vestir/shirts_28.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "azul",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"de_vestir/shirts_29.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "lavanda",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"de_vestir/shirts_3.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "test",
+"clip": "de_vestir"
+},
+"de_vestir/shirts_30.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "gris",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"de_vestir/shirts_31.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/shirts_32.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "casual",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "gris",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/shirts_33.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "val",
+"clip": "de_vestir"
+},
+"de_vestir/shirts_34.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "blanco",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"de_vestir/shirts_35.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "azul",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"de_vestir/shirts_36.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/shirts_37.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "azul",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"de_vestir/shirts_38.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/shirts_39.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "val",
+"clip": "de_vestir"
+},
+"de_vestir/shirts_4.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "gris",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/shirts_40.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/shirts_5.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "test",
+"clip": "de_vestir"
+},
+"de_vestir/shirts_6.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/shirts_7.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "azul",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/shirts_8.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "blanco",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/shirts_9.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/ties_1.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/ties_10.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/ties_11.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "val",
+"clip": "de_vestir"
+},
+"de_vestir/ties_12.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/ties_13.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"de_vestir/ties_14.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/ties_15.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/ties_16.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/ties_17.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "accesorio",
+"color_primario": "lavanda",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/ties_18.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/ties_19.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"de_vestir/ties_2.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "val",
+"clip": "de_vestir"
+},
+"de_vestir/ties_20.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/ties_21.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/ties_22.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/ties_23.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "test",
+"clip": "de_vestir"
+},
+"de_vestir/ties_24.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "test",
+"clip": "deportivo"
+},
+"de_vestir/ties_25.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/ties_26.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/ties_27.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/ties_28.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"de_vestir/ties_29.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "test",
+"clip": "de_vestir"
+},
+"de_vestir/ties_3.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "val",
+"clip": "de_vestir"
+},
+"de_vestir/ties_30.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/ties_31.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/ties_32.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "test",
+"clip": "de_vestir"
+},
+"de_vestir/ties_33.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/ties_34.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"de_vestir/ties_35.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "accesorio",
+"color_primario": "lavanda",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/ties_36.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/ties_37.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/ties_38.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/ties_39.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "val",
+"clip": "de_vestir"
+},
+"de_vestir/ties_4.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/ties_40.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/ties_5.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"de_vestir/ties_6.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/ties_7.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"de_vestir/ties_8.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/ties_9.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"de_vestir/trousers_1.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/trousers_10.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/trousers_11.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "test",
+"clip": "de_vestir"
+},
+"de_vestir/trousers_12.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/trousers_13.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/trousers_14.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/trousers_15.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "val",
+"clip": "de_vestir"
+},
+"de_vestir/trousers_16.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"de_vestir/trousers_17.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/trousers_18.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "streetwear"
+},
+"de_vestir/trousers_19.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/trousers_2.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "streetwear"
+},
+"de_vestir/trousers_20.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "test",
+"clip": "de_vestir"
+},
+"de_vestir/trousers_21.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"de_vestir/trousers_22.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "deportivo",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/trousers_23.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/trousers_24.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"de_vestir/trousers_25.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/trousers_26.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "streetwear"
+},
+"de_vestir/trousers_27.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"de_vestir/trousers_28.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/trousers_29.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "blanco",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/trousers_3.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/trousers_30.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/trousers_31.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/trousers_32.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/trousers_33.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/trousers_34.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "val",
+"clip": "streetwear"
+},
+"de_vestir/trousers_35.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/trousers_36.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"de_vestir/trousers_37.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "streetwear"
+},
+"de_vestir/trousers_38.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/trousers_39.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "azul",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/trousers_4.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "camel",
+"grupo_estilo": "deportivo",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/trousers_40.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/trousers_5.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "test",
+"clip": "streetwear"
+},
+"de_vestir/trousers_6.jpg": {
+"carpeta": "de_vestir",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"de_vestir/trousers_7.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/trousers_8.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/trousers_9.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "rojo",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/waistcoat_1.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "verde",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"de_vestir/waistcoat_10.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "verde",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"de_vestir/waistcoat_11.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "casual"
+},
+"de_vestir/waistcoat_12.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/waistcoat_13.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "casual",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "rojo",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/waistcoat_14.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "gris",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/waistcoat_15.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/waistcoat_2.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "casual",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "azul",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/waistcoat_3.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/waistcoat_4.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "lavanda",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/waistcoat_5.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "casual",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "azul",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/waistcoat_6.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "blanco",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/waistcoat_7.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "rojo",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"de_vestir/waistcoat_8.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"de_vestir/waistcoat_9.jpg": {
+"carpeta": "de_vestir",
+"visto_en": null,
+"clip": "casual",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "azul",
+"grupo_estilo": "streetwear",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/leggings_1.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "lavanda",
+"grupo_estilo": "deportivo",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/leggings_10.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "deportivo",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/leggings_11.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"deportivo/leggings_12.jpg": {
+"carpeta": "deportivo",
+"visto_en": "val",
+"clip": "de_vestir"
+},
+"deportivo/leggings_13.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "casual"
+},
+"deportivo/leggings_14.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"deportivo/leggings_15.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/leggings_16.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"deportivo/leggings_17.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/leggings_18.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/leggings_19.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "deportivo",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/leggings_2.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"deportivo/leggings_20.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/leggings_21.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"deportivo/leggings_22.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/leggings_23.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"deportivo/leggings_24.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"deportivo/leggings_25.jpg": {
+"carpeta": "deportivo",
+"visto_en": "val",
+"clip": "de_vestir"
+},
+"deportivo/leggings_26.jpg": {
+"carpeta": "deportivo",
+"visto_en": "test",
+"clip": "de_vestir"
+},
+"deportivo/leggings_27.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/leggings_28.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"deportivo/leggings_29.jpg": {
+"carpeta": "deportivo",
+"visto_en": "test",
+"clip": "deportivo"
+},
+"deportivo/leggings_3.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/leggings_30.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "verde",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/leggings_31.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"deportivo/leggings_32.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/leggings_33.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"deportivo/leggings_34.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"deportivo/leggings_35.jpg": {
+"carpeta": "deportivo",
+"visto_en": "test",
+"clip": "de_vestir"
+},
+"deportivo/leggings_36.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "rosa",
+"grupo_estilo": "deportivo",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/leggings_37.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"deportivo/leggings_38.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/leggings_39.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"deportivo/leggings_4.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"deportivo/leggings_40.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "verde",
+"grupo_estilo": "deportivo",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/leggings_5.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "casual"
+},
+"deportivo/leggings_6.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/leggings_7.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/leggings_8.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/leggings_9.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"deportivo/shorts_1.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/shorts_10.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"deportivo/shorts_11.jpg": {
+"carpeta": "deportivo",
+"visto_en": "test",
+"clip": "deportivo"
+},
+"deportivo/shorts_12.jpg": {
+"carpeta": "deportivo",
+"visto_en": "test",
+"clip": "deportivo"
+},
+"deportivo/shorts_13.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"deportivo/shorts_14.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "playa_resort"
+},
+"deportivo/shorts_15.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/shorts_16.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"deportivo/shorts_17.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/shorts_18.jpg": {
+"carpeta": "deportivo",
+"visto_en": "val",
+"clip": "deportivo"
+},
+"deportivo/shorts_19.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/shorts_2.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "playa_resort"
+},
+"deportivo/shorts_20.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "playa_resort"
+},
+"deportivo/shorts_21.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/shorts_22.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"deportivo/shorts_23.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"deportivo/shorts_24.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"deportivo/shorts_25.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/shorts_26.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/shorts_27.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/shorts_28.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"deportivo/shorts_29.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"deportivo/shorts_3.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "rosa",
+"grupo_estilo": "deportivo",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/shorts_30.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/shorts_31.jpg": {
+"carpeta": "deportivo",
+"visto_en": "test",
+"clip": "deportivo"
+},
+"deportivo/shorts_32.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"deportivo/shorts_33.jpg": {
+"carpeta": "deportivo",
+"visto_en": "val",
+"clip": "deportivo"
+},
+"deportivo/shorts_34.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"deportivo/shorts_35.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"deportivo/shorts_36.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/shorts_37.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"deportivo/shorts_38.jpg": {
+"carpeta": "deportivo",
+"visto_en": "test",
+"clip": "deportivo"
+},
+"deportivo/shorts_39.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"deportivo/shorts_4.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/shorts_40.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/shorts_5.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/shorts_6.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "gris",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/shorts_7.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/shorts_8.jpg": {
+"carpeta": "deportivo",
+"visto_en": "test",
+"clip": "streetwear"
+},
+"deportivo/shorts_9.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "playa_resort"
+},
+"deportivo/sports_sandals_1.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/sports_sandals_10.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/sports_sandals_11.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/sports_sandals_12.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/sports_sandals_13.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/sports_sandals_14.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"deportivo/sports_sandals_15.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/sports_sandals_16.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/sports_sandals_17.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/sports_sandals_18.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"deportivo/sports_sandals_19.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/sports_sandals_2.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "lavanda",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/sports_sandals_20.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/sports_sandals_21.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/sports_sandals_22.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/sports_sandals_23.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"deportivo/sports_sandals_24.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "gris",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/sports_sandals_25.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/sports_sandals_26.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/sports_sandals_27.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/sports_sandals_28.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/sports_sandals_29.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"deportivo/sports_sandals_3.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/sports_sandals_30.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "azul",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/sports_sandals_31.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/sports_sandals_32.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/sports_sandals_33.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/sports_sandals_34.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "verde",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/sports_sandals_35.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/sports_sandals_36.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/sports_sandals_37.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"deportivo/sports_sandals_38.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"deportivo/sports_sandals_39.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"deportivo/sports_sandals_4.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"deportivo/sports_sandals_40.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "gris",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/sports_sandals_5.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/sports_sandals_6.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "azul",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/sports_sandals_7.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"deportivo/sports_sandals_8.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/sports_sandals_9.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"deportivo/sports_shoes_1.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/sports_shoes_10.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/sports_shoes_11.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"deportivo/sports_shoes_12.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/sports_shoes_13.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/sports_shoes_14.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/sports_shoes_15.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/sports_shoes_16.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/sports_shoes_17.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/sports_shoes_18.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/sports_shoes_19.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/sports_shoes_2.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "blanco",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/sports_shoes_20.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/sports_shoes_21.jpg": {
+"carpeta": "deportivo",
+"visto_en": "test",
+"clip": "deportivo"
+},
+"deportivo/sports_shoes_22.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"deportivo/sports_shoes_23.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/sports_shoes_24.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/sports_shoes_25.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/sports_shoes_26.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "calzado",
+"color_primario": "blanco",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"deportivo/sports_shoes_27.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/sports_shoes_28.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "calzado",
+"color_primario": "azul",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/sports_shoes_29.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/sports_shoes_3.jpg": {
+"carpeta": "deportivo",
+"visto_en": "val",
+"clip": "deportivo"
+},
+"deportivo/sports_shoes_30.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "gris",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/sports_shoes_31.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/sports_shoes_32.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/sports_shoes_33.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "calzado",
+"color_primario": "blanco",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/sports_shoes_34.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/sports_shoes_35.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/sports_shoes_36.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/sports_shoes_37.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/sports_shoes_38.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/sports_shoes_39.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/sports_shoes_4.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"deportivo/sports_shoes_40.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "calzado",
+"color_primario": "blanco",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/sports_shoes_5.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"deportivo/sports_shoes_6.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/sports_shoes_7.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/sports_shoes_8.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/sports_shoes_9.jpg": {
+"carpeta": "deportivo",
+"visto_en": "test",
+"clip": "deportivo"
+},
+"deportivo/track_pants_1.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "navy",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/track_pants_10.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/track_pants_11.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/track_pants_12.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "gris",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/track_pants_13.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/track_pants_14.jpg": {
+"carpeta": "deportivo",
+"visto_en": "val",
+"clip": "de_vestir"
+},
+"deportivo/track_pants_15.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/track_pants_16.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"deportivo/track_pants_17.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"deportivo/track_pants_18.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"deportivo/track_pants_19.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"deportivo/track_pants_2.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "casual",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "gris",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/track_pants_20.jpg": {
+"carpeta": "deportivo",
+"visto_en": "test",
+"clip": "de_vestir"
+},
+"deportivo/track_pants_21.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"deportivo/track_pants_22.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "de_vestir",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/track_pants_23.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/track_pants_24.jpg": {
+"carpeta": "deportivo",
+"visto_en": "test",
+"clip": "streetwear"
+},
+"deportivo/track_pants_25.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "deportivo",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/track_pants_26.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"deportivo/track_pants_27.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/track_pants_28.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"deportivo/track_pants_29.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"deportivo/track_pants_3.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"deportivo/track_pants_30.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "casual"
+},
+"deportivo/track_pants_31.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"deportivo/track_pants_32.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "deportivo",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/track_pants_33.jpg": {
+"carpeta": "deportivo",
+"visto_en": "val",
+"clip": "streetwear"
+},
+"deportivo/track_pants_34.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "azul",
+"grupo_estilo": "streetwear",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/track_pants_35.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/track_pants_36.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"deportivo/track_pants_37.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"deportivo/track_pants_38.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"deportivo/track_pants_39.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/track_pants_4.jpg": {
+"carpeta": "deportivo",
+"visto_en": "test",
+"clip": "streetwear"
+},
+"deportivo/track_pants_40.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/track_pants_5.jpg": {
+"carpeta": "deportivo",
+"visto_en": "test",
+"clip": "de_vestir"
+},
+"deportivo/track_pants_6.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "casual"
+},
+"deportivo/track_pants_7.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/track_pants_8.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/track_pants_9.jpg": {
+"carpeta": "deportivo",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"deportivo/tracksuits_1.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/tracksuits_10.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/tracksuits_11.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/tracksuits_12.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/tracksuits_13.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/tracksuits_14.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/tracksuits_15.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "gris",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"deportivo/tracksuits_16.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "negro",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"deportivo/tracksuits_17.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/tracksuits_18.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/tracksuits_19.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo"
+},
+"deportivo/tracksuits_2.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/tracksuits_20.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "negro",
+"grupo_estilo": "streetwear",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"deportivo/tracksuits_21.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "negro",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"deportivo/tracksuits_22.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "negro",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"deportivo/tracksuits_23.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "azul",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"deportivo/tracksuits_24.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/tracksuits_25.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "negro",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"deportivo/tracksuits_26.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/tracksuits_27.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/tracksuits_28.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/tracksuits_29.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/tracksuits_3.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/tracksuits_4.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "blanco",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"deportivo/tracksuits_5.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear"
+},
+"deportivo/tracksuits_6.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "navy",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"deportivo/tracksuits_7.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"deportivo/tracksuits_8.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "azul",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"deportivo/tracksuits_9.jpg": {
+"carpeta": "deportivo",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "azul",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"fiesta_noche/clutches_1.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "playa_resort"
+},
+"fiesta_noche/clutches_10.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"fiesta_noche/clutches_11.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"fiesta_noche/clutches_12.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "test",
+"clip": "de_vestir"
+},
+"fiesta_noche/clutches_13.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"fiesta_noche/clutches_14.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "accesorio",
+"color_primario": "negro",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/clutches_15.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/clutches_16.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "accesorio",
+"color_primario": "negro",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/clutches_17.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/clutches_18.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"fiesta_noche/clutches_19.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "val",
+"clip": "streetwear"
+},
+"fiesta_noche/clutches_2.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "accesorio",
+"color_primario": "beige",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/clutches_20.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"fiesta_noche/clutches_21.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "accesorio",
+"color_primario": "negro",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/clutches_22.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/clutches_23.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/clutches_24.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/clutches_25.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/clutches_26.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/clutches_27.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"fiesta_noche/clutches_28.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/clutches_29.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "val",
+"clip": "de_vestir"
+},
+"fiesta_noche/clutches_3.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/clutches_30.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "val",
+"clip": "streetwear"
+},
+"fiesta_noche/clutches_31.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"fiesta_noche/clutches_32.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/clutches_33.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"fiesta_noche/clutches_34.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/clutches_35.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/clutches_36.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"fiesta_noche/clutches_37.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"fiesta_noche/clutches_38.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/clutches_39.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "test",
+"clip": "streetwear"
+},
+"fiesta_noche/clutches_4.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/clutches_40.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"fiesta_noche/clutches_5.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/clutches_6.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/clutches_7.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/clutches_8.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"fiesta_noche/clutches_9.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "accesorio",
+"color_primario": "negro",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/dresses_1.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_10.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_11.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "cuerpo_entero",
+"color_primario": "blanco",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/dresses_12.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_13.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_14.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "test",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_15.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "cuerpo_entero",
+"color_primario": "azul",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/dresses_16.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "test",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_17.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "val",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_18.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_19.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_2.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_20.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_21.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "cuerpo_entero",
+"color_primario": "gris",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/dresses_22.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "cuerpo_entero",
+"color_primario": "negro",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/dresses_23.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_24.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_25.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_26.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_27.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_28.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_29.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "cuerpo_entero",
+"color_primario": "rosa",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/dresses_3.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "cuerpo_entero",
+"color_primario": "negro",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/dresses_30.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_31.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "cuerpo_entero",
+"color_primario": "blanco",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/dresses_32.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_33.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_34.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "val",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_35.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"fiesta_noche/dresses_36.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_37.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "val",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_38.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "test",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_39.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "cuerpo_entero",
+"color_primario": "negro",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/dresses_4.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_40.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "cuerpo_entero",
+"color_primario": "blanco",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/dresses_5.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_6.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_7.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/dresses_8.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "cuerpo_entero",
+"color_primario": "azul",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/dresses_9.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "cuerpo_entero",
+"color_primario": "negro",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/heels_1.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"fiesta_noche/heels_10.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "beige",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"fiesta_noche/heels_11.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "playa_resort",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/heels_12.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"fiesta_noche/heels_13.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "beige",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/heels_14.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/heels_15.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "azul",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/heels_16.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "rojo",
+"grupo_estilo": "playa_resort",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/heels_17.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/heels_18.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "beige",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/heels_19.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"fiesta_noche/heels_2.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "playa_resort",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/heels_20.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/heels_21.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "rojo",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"fiesta_noche/heels_22.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "gris",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"fiesta_noche/heels_23.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "azul",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"fiesta_noche/heels_24.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"fiesta_noche/heels_25.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"fiesta_noche/heels_26.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "amarillo",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"fiesta_noche/heels_27.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "gris",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"fiesta_noche/heels_28.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/heels_29.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"fiesta_noche/heels_3.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/heels_30.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/heels_31.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/heels_32.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "blanco",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"fiesta_noche/heels_33.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "blanco",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/heels_34.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/heels_35.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/heels_36.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"fiesta_noche/heels_37.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "blanco",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/heels_38.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "rosa",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"fiesta_noche/heels_39.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/heels_4.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/heels_40.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "beige",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/heels_5.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"fiesta_noche/heels_6.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/heels_7.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "blanco",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"fiesta_noche/heels_8.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/heels_9.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"fiesta_noche/jumpsuit_1.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/jumpsuit_10.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/jumpsuit_11.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "val",
+"clip": "de_vestir"
+},
+"fiesta_noche/jumpsuit_12.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "playa_resort"
+},
+"fiesta_noche/jumpsuit_13.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/jumpsuit_14.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/jumpsuit_15.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/jumpsuit_16.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/jumpsuit_2.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/jumpsuit_3.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "test",
+"clip": "de_vestir"
+},
+"fiesta_noche/jumpsuit_4.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/jumpsuit_5.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/jumpsuit_6.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "cuerpo_entero",
+"color_primario": "rosa",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"fiesta_noche/jumpsuit_7.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"fiesta_noche/jumpsuit_8.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"fiesta_noche/jumpsuit_9.jpg": {
+"carpeta": "fiesta_noche",
+"visto_en": "test",
+"clip": "de_vestir"
+},
+"playa_resort/flip_flops_1.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/flip_flops_10.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/flip_flops_11.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/flip_flops_12.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "playa_resort"
+},
+"playa_resort/flip_flops_13.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/flip_flops_14.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/flip_flops_15.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/flip_flops_16.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "test",
+"clip": "deportivo"
+},
+"playa_resort/flip_flops_17.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/flip_flops_18.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/flip_flops_19.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "azul",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/flip_flops_2.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/flip_flops_20.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "rosa",
+"grupo_estilo": "playa_resort",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/flip_flops_21.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/flip_flops_22.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/flip_flops_23.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/flip_flops_24.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "rojo",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/flip_flops_25.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "azul",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/flip_flops_26.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "playa_resort",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/flip_flops_27.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "playa_resort"
+},
+"playa_resort/flip_flops_28.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/flip_flops_29.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "azul",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/flip_flops_3.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/flip_flops_30.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/flip_flops_31.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/flip_flops_32.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/flip_flops_33.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/flip_flops_34.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/flip_flops_35.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "playa_resort"
+},
+"playa_resort/flip_flops_36.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "rojo",
+"grupo_estilo": "playa_resort",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/flip_flops_37.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/flip_flops_38.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "rosa",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/flip_flops_39.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/flip_flops_4.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "playa_resort"
+},
+"playa_resort/flip_flops_40.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/flip_flops_5.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/flip_flops_6.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "rojo",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/flip_flops_7.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/flip_flops_8.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "rojo",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/flip_flops_9.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/sandals_1.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/sandals_10.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/sandals_11.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/sandals_12.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/sandals_13.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sandals_14.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"playa_resort/sandals_15.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"playa_resort/sandals_16.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/sandals_17.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "deportivo"
+},
+"playa_resort/sandals_18.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/sandals_19.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sandals_2.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/sandals_20.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/sandals_21.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"playa_resort/sandals_22.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"playa_resort/sandals_23.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/sandals_24.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/sandals_25.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/sandals_26.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sandals_27.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "playa_resort"
+},
+"playa_resort/sandals_28.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/sandals_29.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/sandals_3.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sandals_30.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/sandals_31.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/sandals_32.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/sandals_33.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/sandals_34.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sandals_35.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sandals_36.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/sandals_37.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sandals_38.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sandals_39.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/sandals_4.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"playa_resort/sandals_40.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sandals_5.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "blanco",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sandals_6.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "calzado",
+"color_primario": "verde",
+"grupo_estilo": "playa_resort",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sandals_7.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/sandals_8.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/sandals_9.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "playa_resort"
+},
+"playa_resort/shorts_1.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "val",
+"clip": "playa_resort"
+},
+"playa_resort/shorts_10.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/shorts_11.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "deportivo"
+},
+"playa_resort/shorts_12.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/shorts_13.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/shorts_14.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"playa_resort/shorts_15.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "blanco",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/shorts_16.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "azul",
+"grupo_estilo": "playa_resort",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/shorts_17.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/shorts_18.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "test",
+"clip": "streetwear"
+},
+"playa_resort/shorts_19.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "playa_resort"
+},
+"playa_resort/shorts_2.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/shorts_20.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "val",
+"clip": "streetwear"
+},
+"playa_resort/shorts_21.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/shorts_22.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"playa_resort/shorts_23.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "navy",
+"grupo_estilo": "playa_resort",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/shorts_24.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/shorts_25.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"playa_resort/shorts_26.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "val",
+"clip": "streetwear"
+},
+"playa_resort/shorts_27.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/shorts_28.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/shorts_29.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"playa_resort/shorts_3.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/shorts_30.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/shorts_31.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"playa_resort/shorts_32.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"playa_resort/shorts_33.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/shorts_34.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/shorts_35.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/shorts_36.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/shorts_37.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/shorts_38.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "deportivo"
+},
+"playa_resort/shorts_39.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"playa_resort/shorts_4.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "playa_resort"
+},
+"playa_resort/shorts_40.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/shorts_5.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/shorts_6.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/shorts_7.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "test",
+"clip": "de_vestir"
+},
+"playa_resort/shorts_8.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/shorts_9.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"playa_resort/skirts_1.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"playa_resort/skirts_10.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"playa_resort/skirts_11.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/skirts_12.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"playa_resort/skirts_13.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/skirts_14.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/skirts_15.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/skirts_16.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "rojo",
+"grupo_estilo": "playa_resort",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/skirts_17.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"playa_resort/skirts_18.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"playa_resort/skirts_19.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"playa_resort/skirts_2.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/skirts_20.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "cuerpo_entero",
+"color_primario": "rosa",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/skirts_21.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/skirts_22.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/skirts_23.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/skirts_24.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"playa_resort/skirts_25.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "gris",
+"grupo_estilo": "playa_resort",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/skirts_26.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"playa_resort/skirts_27.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/skirts_28.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"playa_resort/skirts_29.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"playa_resort/skirts_3.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/skirts_30.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/skirts_31.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/skirts_32.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"playa_resort/skirts_33.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "rojo",
+"grupo_estilo": "playa_resort",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/skirts_34.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/skirts_35.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"playa_resort/skirts_36.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"playa_resort/skirts_37.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"playa_resort/skirts_38.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"playa_resort/skirts_39.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "deportivo"
+},
+"playa_resort/skirts_4.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/skirts_40.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"playa_resort/skirts_5.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "deportivo"
+},
+"playa_resort/skirts_6.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "val",
+"clip": "streetwear"
+},
+"playa_resort/skirts_7.jpg": {
+"carpeta": "playa_resort",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"playa_resort/skirts_8.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "rosa",
+"grupo_estilo": "playa_resort",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/skirts_9.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/sunglasses_1.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "calzado",
+"color_primario": "gris",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sunglasses_10.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/sunglasses_11.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sunglasses_12.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sunglasses_13.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/sunglasses_14.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sunglasses_15.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/sunglasses_16.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/sunglasses_17.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/sunglasses_18.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "accesorio",
+"color_primario": "camel",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sunglasses_19.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/sunglasses_2.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sunglasses_20.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sunglasses_21.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/sunglasses_22.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "blanco",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sunglasses_23.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/sunglasses_24.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"playa_resort/sunglasses_25.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/sunglasses_26.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/sunglasses_27.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sunglasses_28.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sunglasses_29.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/sunglasses_3.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/sunglasses_30.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sunglasses_31.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "accesorio",
+"color_primario": "negro",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sunglasses_32.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/sunglasses_33.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sunglasses_34.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/sunglasses_35.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/sunglasses_36.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "accesorio",
+"color_primario": "lavanda",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sunglasses_37.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "blanco",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sunglasses_38.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/sunglasses_39.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/sunglasses_4.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sunglasses_40.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/sunglasses_5.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sunglasses_6.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/sunglasses_7.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "calzado",
+"color_primario": "camel",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/sunglasses_8.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/sunglasses_9.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/swimwear_1.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "streetwear"
+},
+"playa_resort/swimwear_10.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "accesorio",
+"color_primario": "negro",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/swimwear_11.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/swimwear_12.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "deportivo"
+},
+"playa_resort/swimwear_13.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "deportivo"
+},
+"playa_resort/swimwear_14.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/swimwear_15.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "cuerpo_entero",
+"color_primario": "navy",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/swimwear_16.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "cuerpo_entero",
+"color_primario": "negro",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/swimwear_17.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/swimwear_2.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/swimwear_3.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/swimwear_4.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "cuerpo_entero",
+"color_primario": "negro",
+"grupo_estilo": "fiesta_noche",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"playa_resort/swimwear_5.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/swimwear_6.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "deportivo"
+},
+"playa_resort/swimwear_7.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "deportivo"
+},
+"playa_resort/swimwear_8.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"playa_resort/swimwear_9.jpg": {
+"carpeta": "playa_resort",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"streetwear/backpacks_1.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/backpacks_10.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/backpacks_11.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear"
+},
+"streetwear/backpacks_12.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/backpacks_13.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/backpacks_14.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/backpacks_15.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/backpacks_16.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/backpacks_17.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/backpacks_18.jpg": {
+"carpeta": "streetwear",
+"visto_en": "val",
+"clip": "deportivo"
+},
+"streetwear/backpacks_19.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/backpacks_2.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/backpacks_20.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/backpacks_21.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/backpacks_22.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"streetwear/backpacks_23.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/backpacks_24.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/backpacks_25.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/backpacks_26.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "accesorio",
+"color_primario": "gris",
+"grupo_estilo": "streetwear",
+"genero": "neutro",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/backpacks_27.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"streetwear/backpacks_28.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/backpacks_29.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/backpacks_3.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/backpacks_30.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/backpacks_31.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/backpacks_32.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/backpacks_33.jpg": {
+"carpeta": "streetwear",
+"visto_en": "val",
+"clip": "deportivo"
+},
+"streetwear/backpacks_34.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/backpacks_35.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"streetwear/backpacks_36.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "accesorio",
+"color_primario": "azul",
+"grupo_estilo": "streetwear",
+"genero": "neutro",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/backpacks_37.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/backpacks_38.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "accesorio",
+"color_primario": "negro",
+"grupo_estilo": "streetwear",
+"genero": "neutro",
+"temporada": "otono_invierno"
+}
+},
+"streetwear/backpacks_39.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/backpacks_4.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/backpacks_40.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/backpacks_5.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "accesorio",
+"color_primario": "negro",
+"grupo_estilo": "streetwear",
+"genero": "neutro",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/backpacks_6.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/backpacks_7.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"streetwear/backpacks_8.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/backpacks_9.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "deportivo"
+},
+"streetwear/caps_1.jpg": {
+"carpeta": "streetwear",
+"visto_en": "val",
+"clip": "streetwear"
+},
+"streetwear/caps_10.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/caps_11.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/caps_12.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/caps_13.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/caps_14.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "accesorio",
+"color_primario": "azul",
+"grupo_estilo": "streetwear",
+"genero": "neutro",
+"temporada": "otono_invierno"
+}
+},
+"streetwear/caps_15.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/caps_16.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "accesorio",
+"color_primario": "gris",
+"grupo_estilo": "streetwear",
+"genero": "neutro",
+"temporada": "otono_invierno"
+}
+},
+"streetwear/caps_17.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "accesorio",
+"color_primario": "negro",
+"grupo_estilo": "streetwear",
+"genero": "neutro",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/caps_18.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/caps_19.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "accesorio",
+"color_primario": "gris",
+"grupo_estilo": "streetwear",
+"genero": "neutro",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/caps_2.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"streetwear/caps_20.jpg": {
+"carpeta": "streetwear",
+"visto_en": "val",
+"clip": "deportivo"
+},
+"streetwear/caps_21.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/caps_22.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/caps_23.jpg": {
+"carpeta": "streetwear",
+"visto_en": "test",
+"clip": "deportivo"
+},
+"streetwear/caps_24.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/caps_25.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/caps_26.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/caps_27.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/caps_28.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "accesorio",
+"color_primario": "rojo",
+"grupo_estilo": "streetwear",
+"genero": "neutro",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/caps_29.jpg": {
+"carpeta": "streetwear",
+"visto_en": "test",
+"clip": "streetwear"
+},
+"streetwear/caps_3.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/caps_30.jpg": {
+"carpeta": "streetwear",
+"visto_en": "test",
+"clip": "playa_resort"
+},
+"streetwear/caps_31.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/caps_32.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "accesorio",
+"color_primario": "negro",
+"grupo_estilo": "streetwear",
+"genero": "neutro",
+"temporada": "otono_invierno"
+}
+},
+"streetwear/caps_33.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/caps_34.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/caps_35.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/caps_36.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"streetwear/caps_37.jpg": {
+"carpeta": "streetwear",
+"visto_en": "val",
+"clip": "deportivo"
+},
+"streetwear/caps_38.jpg": {
+"carpeta": "streetwear",
+"visto_en": "test",
+"clip": "deportivo"
+},
+"streetwear/caps_39.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/caps_4.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "accesorio",
+"color_primario": "navy",
+"grupo_estilo": "streetwear",
+"genero": "neutro",
+"temporada": "otono_invierno"
+}
+},
+"streetwear/caps_40.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/caps_5.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/caps_6.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/caps_7.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "accesorio",
+"color_primario": "blanco",
+"grupo_estilo": "streetwear",
+"genero": "neutro",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/caps_8.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/caps_9.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "accesorio",
+"color_primario": "negro",
+"grupo_estilo": "streetwear",
+"genero": "neutro",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/jackets_1.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"streetwear/jackets_10.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/jackets_11.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "casual",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "azul",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"streetwear/jackets_12.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"streetwear/jackets_13.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/jackets_14.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"streetwear/jackets_15.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/jackets_16.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"streetwear/jackets_17.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/jackets_18.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/jackets_19.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/jackets_2.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "casual"
+},
+"streetwear/jackets_20.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/jackets_21.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/jackets_22.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "casual"
+},
+"streetwear/jackets_23.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/jackets_24.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/jackets_25.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"streetwear/jackets_26.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/jackets_27.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/jackets_28.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/jackets_29.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/jackets_3.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/jackets_30.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"streetwear/jackets_31.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/jackets_32.jpg": {
+"carpeta": "streetwear",
+"visto_en": "val",
+"clip": "streetwear"
+},
+"streetwear/jackets_33.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/jackets_34.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/jackets_35.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/jackets_36.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/jackets_37.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/jackets_38.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/jackets_39.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/jackets_4.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"streetwear/jackets_40.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/jackets_5.jpg": {
+"carpeta": "streetwear",
+"visto_en": "val",
+"clip": "streetwear"
+},
+"streetwear/jackets_6.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"streetwear/jackets_7.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/jackets_8.jpg": {
+"carpeta": "streetwear",
+"visto_en": "val",
+"clip": "streetwear"
+},
+"streetwear/jackets_9.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/sweatshirts_1.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "gris",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/sweatshirts_10.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "rosa",
+"grupo_estilo": "streetwear",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"streetwear/sweatshirts_11.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "deportivo"
+},
+"streetwear/sweatshirts_12.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "navy",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/sweatshirts_13.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "deportivo"
+},
+"streetwear/sweatshirts_14.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/sweatshirts_15.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear"
+},
+"streetwear/sweatshirts_16.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "gris",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"streetwear/sweatshirts_17.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "verde",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/sweatshirts_18.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "rojo",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/sweatshirts_19.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "blanco",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"streetwear/sweatshirts_2.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "azul",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"streetwear/sweatshirts_20.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "gris",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/sweatshirts_21.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "gris",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"streetwear/sweatshirts_22.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "azul",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"streetwear/sweatshirts_23.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "gris",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/sweatshirts_24.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear"
+},
+"streetwear/sweatshirts_25.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/sweatshirts_26.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "gris",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"streetwear/sweatshirts_27.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "lavanda",
+"grupo_estilo": "streetwear",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"streetwear/sweatshirts_28.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "camel",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/sweatshirts_29.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "burdeos",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"streetwear/sweatshirts_3.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear"
+},
+"streetwear/sweatshirts_30.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "rojo",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"streetwear/sweatshirts_31.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "negro",
+"grupo_estilo": "streetwear",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"streetwear/sweatshirts_32.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "verde",
+"grupo_estilo": "streetwear",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"streetwear/sweatshirts_33.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "azul",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"streetwear/sweatshirts_34.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "negro",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"streetwear/sweatshirts_35.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "gris",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"streetwear/sweatshirts_36.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "gris",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/sweatshirts_37.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "abrigo",
+"color_primario": "verde",
+"grupo_estilo": "streetwear",
+"genero": "masculino",
+"temporada": "otono_invierno"
+}
+},
+"streetwear/sweatshirts_38.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "gris",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/sweatshirts_39.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/sweatshirts_4.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/sweatshirts_40.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "rojo",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/sweatshirts_5.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "negro",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/sweatshirts_6.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear"
+},
+"streetwear/sweatshirts_7.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "gris",
+"grupo_estilo": "casual",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/sweatshirts_8.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "ropa_superior",
+"color_primario": "rosa",
+"grupo_estilo": "streetwear",
+"genero": "femenino",
+"temporada": "otono_invierno"
+}
+},
+"streetwear/sweatshirts_9.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/track_pants_1.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"streetwear/track_pants_10.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/track_pants_11.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/track_pants_12.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "navy",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/track_pants_13.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"streetwear/track_pants_14.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/track_pants_15.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/track_pants_16.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "casual",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "gris",
+"grupo_estilo": "deportivo",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/track_pants_17.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"streetwear/track_pants_18.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"streetwear/track_pants_19.jpg": {
+"carpeta": "streetwear",
+"visto_en": "test",
+"clip": "streetwear"
+},
+"streetwear/track_pants_2.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"streetwear/track_pants_20.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/track_pants_21.jpg": {
+"carpeta": "streetwear",
+"visto_en": "val",
+"clip": "deportivo"
+},
+"streetwear/track_pants_22.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "azul",
+"grupo_estilo": "deportivo",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/track_pants_23.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/track_pants_24.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"streetwear/track_pants_25.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/track_pants_26.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/track_pants_27.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/track_pants_28.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "deportivo",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "navy",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/track_pants_29.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/track_pants_3.jpg": {
+"carpeta": "streetwear",
+"visto_en": "val",
+"clip": "de_vestir"
+},
+"streetwear/track_pants_30.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "navy",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/track_pants_31.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"streetwear/track_pants_32.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "deportivo",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/track_pants_33.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/track_pants_34.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear"
+},
+"streetwear/track_pants_35.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"streetwear/track_pants_36.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"streetwear/track_pants_37.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "navy",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/track_pants_38.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "streetwear"
+},
+"streetwear/track_pants_39.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "navy",
+"grupo_estilo": "de_vestir",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/track_pants_4.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "de_vestir",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "navy",
+"grupo_estilo": "de_vestir",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/track_pants_40.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "deportivo"
+},
+"streetwear/track_pants_5.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "de_vestir"
+},
+"streetwear/track_pants_6.jpg": {
+"carpeta": "streetwear",
+"visto_en": "train",
+"clip": "de_vestir"
+},
+"streetwear/track_pants_7.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "negro",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/track_pants_8.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "azul",
+"grupo_estilo": "playa_resort",
+"genero": "femenino",
+"temporada": "primavera_verano"
+}
+},
+"streetwear/track_pants_9.jpg": {
+"carpeta": "streetwear",
+"visto_en": null,
+"clip": "streetwear",
+"florence": {
+"categoria": "ropa_inferior",
+"color_primario": "beige",
+"grupo_estilo": "deportivo",
+"genero": "masculino",
+"temporada": "primavera_verano"
+}
+}
+}

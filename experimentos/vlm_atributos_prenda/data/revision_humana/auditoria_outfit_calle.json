@@ -1,0 +1,673 @@
+{
+ "_nota": "Auditoria VISUAL hecha por Claude sobre las cajas anotadas de la version 2 de analizar_outfit.py (las 19 fotos de calle, mismas cifras que resumen_outfit.py). NO es una etiqueta humana del autor: esta pendiente de que Victor la valide o corrija. caja: ok = encuadra la prenda de esa categoria; parcial = solo parte de la prenda o mucho ruido; mal = no es esa prenda. color: ok = el color predicho es el dominante o de su familia cercana (beige/camel, azul/navy, rosa/fucsia, gris/plateado, rojo/burdeos); na = foto en blanco y negro o caja no valida. faltan: prendas basicas (superior, inferior, cuerpo entero, abrigo, calzado) visibles y sin ninguna caja. estilos_aceptables: los grupo_estilo que daria por buenos (varios, como en la revision humana de las fichas). personas_visibles: personas con cuerpo legible (se excluye fondo desenfocado o cortado por el borde).",
+ "calle_01": {
+  "personas_visibles": 3,
+  "P0": {
+   "prendas": {
+    "abrigo": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "calzado": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "ropa_inferior": {
+     "caja": "ok",
+     "color": "ok"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "streetwear"
+   ]
+  },
+  "P1": {
+   "prendas": {
+    "ropa_inferior": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "calzado": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "ropa_superior": {
+     "caja": "ok",
+     "color": "ok"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "streetwear",
+    "casual"
+   ]
+  },
+  "P2": {
+   "prendas": {
+    "calzado": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "ropa_inferior": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "ropa_superior": {
+     "caja": "parcial",
+     "color": "na"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "casual",
+    "streetwear"
+   ]
+  }
+ },
+ "calle_02": {
+  "personas_visibles": 2,
+  "P0": {
+   "prendas": {
+    "ropa_inferior": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "calzado": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "ropa_superior": {
+     "caja": "ok",
+     "color": "ok"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "casual"
+   ]
+  },
+  "P1": {
+   "prendas": {
+    "ropa_inferior": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "calzado": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "ropa_superior": {
+     "caja": "ok",
+     "color": "ok"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "casual",
+    "playa_resort"
+   ]
+  }
+ },
+ "calle_03": {
+  "personas_visibles": 1,
+  "P0": {
+   "prendas": {
+    "ropa_inferior": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "calzado": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "ropa_superior": {
+     "caja": "ok",
+     "color": "mal"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "casual",
+    "playa_resort"
+   ]
+  }
+ },
+ "calle_04": {
+  "personas_visibles": 2,
+  "P0": {
+   "prendas": {
+    "cuerpo_entero": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "calzado": {
+     "caja": "parcial",
+     "color": "na"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "casual",
+    "playa_resort"
+   ]
+  },
+  "P1": {
+   "prendas": {
+    "cuerpo_entero": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "calzado": {
+     "caja": "ok",
+     "color": "ok"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "casual",
+    "playa_resort"
+   ]
+  }
+ },
+ "calle_05": {
+  "personas_visibles": 1,
+  "P0": {
+   "prendas": {
+    "ropa_inferior": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "ropa_superior": {
+     "caja": "ok",
+     "color": "ok"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "casual"
+   ]
+  }
+ },
+ "calle_07": {
+  "personas_visibles": 1,
+  "P0": {
+   "prendas": {
+    "cuerpo_entero": {
+     "caja": "ok",
+     "color": "ok"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "fiesta_noche"
+   ]
+  }
+ },
+ "calle_10": {
+  "personas_visibles": 1,
+  "P0": {
+   "prendas": {
+    "ropa_inferior": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "calzado": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "ropa_superior": {
+     "caja": "ok",
+     "color": "ok"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "streetwear",
+    "fiesta_noche"
+   ]
+  }
+ },
+ "calle_11": {
+  "personas_visibles": 2,
+  "P0": {
+   "prendas": {
+    "cuerpo_entero": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "calzado": {
+     "caja": "parcial",
+     "color": "na"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "fiesta_noche"
+   ]
+  },
+  "P1": {
+   "prendas": {
+    "calzado": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "ropa_inferior": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "ropa_superior": {
+     "caja": "ok",
+     "color": "ok"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "fiesta_noche",
+    "streetwear"
+   ]
+  }
+ },
+ "calle_14": {
+  "personas_visibles": 1,
+  "P0": {
+   "prendas": {
+    "cuerpo_entero": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "calzado": {
+     "caja": "ok",
+     "color": "ok"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "fiesta_noche"
+   ]
+  }
+ },
+ "calle_16": {
+  "personas_visibles": 1,
+  "P0": {
+   "prendas": {
+    "cuerpo_entero": {
+     "caja": "ok",
+     "color": "na"
+    },
+    "calzado": {
+     "caja": "ok",
+     "color": "na"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "fiesta_noche"
+   ]
+  }
+ },
+ "calle_19": {
+  "personas_visibles": 3,
+  "P0": {
+   "prendas": {
+    "abrigo": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "ropa_inferior": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "calzado": {
+     "caja": "ok",
+     "color": "ok"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "streetwear"
+   ]
+  },
+  "P1": {
+   "prendas": {
+    "abrigo": {
+     "caja": "ok",
+     "color": "mal"
+    },
+    "ropa_inferior": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "calzado": {
+     "caja": "ok",
+     "color": "ok"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "casual"
+   ]
+  },
+  "P2": {
+   "prendas": {
+    "abrigo": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "calzado": {
+     "caja": "mal",
+     "color": "na"
+    },
+    "ropa_inferior": {
+     "caja": "ok",
+     "color": "ok"
+    }
+   },
+   "faltan": [
+    "calzado"
+   ],
+   "estilos_aceptables": [
+    "casual"
+   ]
+  }
+ },
+ "calle_20": {
+  "personas_visibles": 3,
+  "P0": {
+   "prendas": {
+    "ropa_inferior": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "abrigo": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "calzado": {
+     "caja": "ok",
+     "color": "ok"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "casual",
+    "streetwear"
+   ]
+  },
+  "P1": {
+   "prendas": {
+    "calzado": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "ropa_inferior": {
+     "caja": "ok",
+     "color": "mal"
+    },
+    "ropa_superior": {
+     "caja": "ok",
+     "color": "mal"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "casual",
+    "fiesta_noche"
+   ]
+  },
+  "P2": {
+   "prendas": {
+    "ropa_inferior": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "calzado": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "ropa_superior": {
+     "caja": "ok",
+     "color": "ok"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "streetwear",
+    "casual"
+   ]
+  }
+ },
+ "calle_22": {
+  "personas_visibles": 1,
+  "P0": {
+   "prendas": {
+    "ropa_inferior": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "calzado": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "ropa_superior": {
+     "caja": "ok",
+     "color": "ok"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "streetwear",
+    "casual"
+   ]
+  }
+ },
+ "calle_23": {
+  "personas_visibles": 2,
+  "P0": {
+   "prendas": {
+    "abrigo": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "calzado": {
+     "caja": "ok",
+     "color": "mal"
+    },
+    "ropa_inferior": {
+     "caja": "parcial",
+     "color": "na"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "streetwear",
+    "fiesta_noche"
+   ]
+  },
+  "P1": {
+   "prendas": {
+    "abrigo": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "ropa_inferior": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "calzado": {
+     "caja": "ok",
+     "color": "ok"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "streetwear",
+    "de_vestir"
+   ]
+  }
+ },
+ "calle_24": {
+  "personas_visibles": 1,
+  "P0": {
+   "prendas": {
+    "abrigo": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "ropa_inferior": {
+     "caja": "ok",
+     "color": "mal"
+    },
+    "calzado": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "accesorio": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "ropa_superior": {
+     "caja": "ok",
+     "color": "ok"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "streetwear",
+    "casual"
+   ]
+  }
+ },
+ "calle_25": {
+  "personas_visibles": 1,
+  "P0": {
+   "prendas": {
+    "ropa_superior": {
+     "caja": "ok",
+     "color": "ok"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "casual"
+   ]
+  }
+ },
+ "calle_26": {
+  "personas_visibles": 1,
+  "P0": {
+   "prendas": {
+    "ropa_inferior": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "calzado": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "ropa_superior": {
+     "caja": "ok",
+     "color": "ok"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "streetwear",
+    "casual"
+   ]
+  }
+ },
+ "calle_29": {
+  "personas_visibles": 2,
+  "P0": {
+   "prendas": {
+    "ropa_inferior": {
+     "caja": "ok",
+     "color": "mal"
+    },
+    "calzado": {
+     "caja": "mal",
+     "color": "na"
+    },
+    "ropa_superior": {
+     "caja": "ok",
+     "color": "ok"
+    }
+   },
+   "faltan": [
+    "calzado"
+   ],
+   "estilos_aceptables": [
+    "streetwear"
+   ]
+  },
+  "P1": {
+   "prendas": {
+    "accesorio": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "calzado": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "ropa_inferior": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "ropa_superior": {
+     "caja": "ok",
+     "color": "ok"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "casual",
+    "streetwear"
+   ]
+  }
+ },
+ "calle_30": {
+  "personas_visibles": 2,
+  "P0": {
+   "prendas": {
+    "calzado": {
+     "caja": "ok",
+     "color": "mal"
+    },
+    "ropa_inferior": {
+     "caja": "ok",
+     "color": "mal"
+    },
+    "ropa_superior": {
+     "caja": "ok",
+     "color": "mal"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "streetwear"
+   ]
+  },
+  "P1": {
+   "prendas": {
+    "ropa_inferior": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "calzado": {
+     "caja": "ok",
+     "color": "ok"
+    },
+    "ropa_superior": {
+     "caja": "ok",
+     "color": "mal"
+    }
+   },
+   "faltan": [],
+   "estilos_aceptables": [
+    "streetwear"
+   ]
+  }
+ }
+}

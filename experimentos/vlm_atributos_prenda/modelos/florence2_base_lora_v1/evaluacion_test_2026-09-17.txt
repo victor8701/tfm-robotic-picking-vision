@@ -1,0 +1,55 @@
+Salida de `herramientas/evaluar_modelo.py` (adapter florence2_base_lora_v1) sobre data/test.jsonl, ejecutada el 2026-09-17.
+Copiada tal cual de la salida por pantalla (el script no guardaba fichero).
+
+AVISO: la ultima seccion (las 1207 imagenes de clip_trend_matching/) esta CONTAMINADA: el 36% de esas imagenes son
+imagenes que el modelo ya habia visto en train/val/test. La comparacion corregida esta en
+memoria/TFM_clasificador_visual_atributos.md (secciones 6.3 y 10) y en herramientas/evaluar_solape_1207.py.
+
+==============================================================================
+AFINADO (LoRA) -- 500 imagenes
+==============================================================================
+  categoria         498/500 = 99.6%
+  color_primario    381/500 = 76.2%
+  grupo_estilo      454/500 = 90.8%
+  genero            470/500 = 94.0%
+  temporada         301/500 = 60.2%
+  JSON valido       500/500 = 100.0%
+  latencia media   6.50s/imagen (CPU)
+
+F1 por clase -- color_primario (afinado):
+  amarillo       precision=0.82  recall=0.75  F1=0.78
+  azul           precision=0.80  recall=0.81  F1=0.81
+  beige          precision=0.57  recall=0.29  F1=0.38
+  blanco         precision=0.79  recall=0.84  F1=0.82
+  burdeos        precision=0.50  recall=0.14  F1=0.22
+  camel          precision=0.76  recall=0.76  F1=0.76
+  dorado         precision=1.00  recall=0.60  F1=0.75
+  fucsia         precision=0.00  recall=0.00  F1=0.00
+  gris           precision=0.63  recall=0.66  F1=0.64
+  lavanda        precision=0.50  recall=0.83  F1=0.62
+  naranja        precision=1.00  recall=0.40  F1=0.57
+  navy           precision=0.71  recall=0.69  F1=0.70
+  negro          precision=0.85  recall=0.86  F1=0.86
+  plateado       precision=0.00  recall=0.00  F1=0.00
+  rojo           precision=0.74  recall=0.83  F1=0.78
+  rosa           precision=0.67  recall=0.93  F1=0.78
+  verde          precision=0.71  recall=0.77  F1=0.74
+
+F1 por clase -- grupo_estilo (afinado):
+  casual         precision=0.91  recall=0.92  F1=0.91
+  streetwear     precision=0.98  recall=0.93  F1=0.96
+  de_vestir      precision=0.94  recall=0.89  F1=0.92
+  fiesta_noche   precision=0.95  recall=0.96  F1=0.95
+  deportivo      precision=0.78  recall=0.83  F1=0.81
+  playa_resort   precision=0.81  recall=0.83  F1=0.82
+
+==============================================================================
+AFINADO (LoRA) sobre las 1207 imagenes de clip_trend_matching/ (CONTAMINADO, ver aviso)
+==============================================================================
+  casual          220/250 = 88.0%
+  streetwear      136/200 = 68.0%
+  de_vestir       136/175 = 77.7%
+  fiesta_noche    126/136 = 92.6%
+  deportivo       138/229 = 60.3%
+  playa_resort    130/217 = 59.9%
+  TOTAL           886/1207 = 73.4%  (referencia: CLIP zero-shot = 32.8%)

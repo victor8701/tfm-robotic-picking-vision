@@ -16,12 +16,34 @@ Solo se queda una fila si los 5 campos (categoria, color_primario,
 grupo_estilo, genero, temporada) se pueden mapear -- si falta alguno,
 la fila se descarta entera (no hay supervision parcial en este v1).
 
+Reglas v2 (2026-09-20, decisiones del autor sobre memoria/TFM_clasificador_visual_atributos.md
+S11.1, a partir de la revision humana de 100 fichas):
+  - Filtro de ropa infantil por NOMBRE, no solo por `gender`: ~3.3% del dataset tiene
+    gender=Boys/Girls (ya se descartaba), pero 713 filas mas (p.ej. "Doodle Kids Girl...",
+    "Gini and Jony Girl's...") llevan gender=Women/Men y se colaban -- 108 de las 464 Dresses.
+  - `temporada` gana un tercer valor, `todo_el_ano`: por ahora solo para Jackets (decision
+    explicita: "vamos a suponerlas de todas las estaciones, independientemente de lo que
+    pusiese yo [en la revision]"). El resto sigue con el mapeo de 2 valores por `season` de
+    Kaggle -- pendiente extender la tabla a mas tipos de prenda.
+  - `grupo_estilo` de Dresses ya no es fiesta_noche fijo (regla vieja, mal: usage=Party solo
+    18/464 filas, y la revision humana la corrige en 11 de 16 vestidos a casual). Nueva regla,
+    validada contra la revision humana (13/14 vestidos no infantiles, descartando los 2
+    contraejemplos por defecto de fabrica): estampado/multicolor -> casual, liso -> fiesta_noche
+    (el criterio dado fue "de noche suelen ser de un unico color, mas planos y quizas
+    brillantes" -- no hay vestidos con lentejuelas/brillo en este catalogo de 60x80px para
+    afinar esa parte). Heels/Clutches/Jumpsuit se quedan igual: la revision humana los confirma
+    (Heels 2/3, Clutches 4/4) salvo Jumpsuit (el unico caso revisado no encajaba, pero es 1 dato).
+  - Paleta de color SIN cambios (decision explicita: no tocar el vocabulario de Estado_arte.md
+    tan a fondo) -- `lavanda` sigue absorbiendo `Purple`, `fucsia`/`plateado` siguen con pocos
+    ejemplos.
+
 Uso:
     python3 preparar_dataset_florence2.py [--train N] [--val N] [--test N]
 """
 import argparse
 import json
 import random
+import re
 import urllib.request
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -89,6 +111,22 @@ TEMPORADA_POR_SEASON = {
     "Summer": "primavera_verano", "Spring": "primavera_verano",
     "Fall": "otono_invierno", "Winter": "otono_invierno",
 }
+# Tipos de prenda que se dan por "todo el año" pase lo que ponga `season` -- ver aviso v2
+# arriba. Solo Jackets por ahora; tabla pendiente de ampliar.
+TIPOS_TODO_EL_ANO = {"Jackets"}
+
+# Ropa infantil que se cuela con gender=Women/Men (marcas y palabras habituales del dataset;
+# ver aviso v2 arriba). `gender` ya filtra Boys/Girls, esto filtra lo que ese campo no coge.
+PATRON_INFANTIL = re.compile(
+    r"\b(kids?|girl'?s?|boy'?s?|infants?|baby|toddler|juniors?|kidz)\b|gini and jony|doodle",
+    re.IGNORECASE,
+)
+
+# Vestidos: estampado/multicolor -> casual, liso -> fiesta_noche (ver aviso v2 arriba).
+PATRON_ESTAMPADO_VESTIDO = re.compile(
+    r"printed?|striped?|floral|polka|dot|checked?|multi|colou?r|animal|a-line|tiered|ruffle",
+    re.IGNORECASE,
+)
 
 # grupo_estilo -> filtros (mismo formato y mismas listas que
 # clip_trend_matching/herramientas/poblar_muestras_dataset.py, reutilizadas
@@ -112,7 +150,7 @@ FILTROS_GRUPO_ESTILO = [
     ("de_vestir", {"articleType": "Ties"}),
     ("de_vestir", {"articleType": "Shirts", "usage": "Formal"}),
     ("de_vestir", {"articleType": "Waistcoat"}),
-    ("fiesta_noche", {"articleType": "Dresses"}),
+    # Dresses NO esta aqui: tiene regla propia en mapear_grupo_estilo (ver aviso v2 arriba).
     ("fiesta_noche", {"articleType": "Heels"}),
     ("fiesta_noche", {"articleType": "Clutches"}),
     ("fiesta_noche", {"articleType": "Jumpsuit"}),
@@ -131,19 +169,32 @@ FILTROS_GRUPO_ESTILO = [
 
 
 def mapear_grupo_estilo(fila):
+    if fila.get("articleType") == "Dresses":
+        nombre = fila.get("productDisplayName", "")
+        return "casual" if PATRON_ESTAMPADO_VESTIDO.search(nombre) else "fiesta_noche"
     for grupo, filtro in FILTROS_GRUPO_ESTILO:
         if all(fila.get(col) == val for col, val in filtro.items()):
             return grupo
     return None
 
 
+def mapear_temporada(fila):
+    if fila.get("articleType") in TIPOS_TODO_EL_ANO:
+        return "todo_el_ano"
+    return TEMPORADA_POR_SEASON.get(fila["season"])
+
+
 def mapear_fila(fila):
-    """Devuelve el dict de 5 campos, o None si falta alguno."""
+    """Devuelve el dict de 5 campos, o None si falta alguno o es ropa infantil colada
+    (gender=Women/Men/Unisex pero el nombre delata que es de niño/a; ver aviso v2 arriba)."""
+    if PATRON_INFANTIL.search(fila.get("productDisplayName", "")):
+        return None
+
     categoria = CATEGORIA_POR_ARTICLETYPE.get(fila["articleType"])
     color = COLOR_POR_BASECOLOUR.get(fila["baseColour"])
     grupo_estilo = mapear_grupo_estilo(fila)
     genero = GENERO_POR_GENDER.get(fila["gender"])
-    temporada = TEMPORADA_POR_SEASON.get(fila["season"])
+    temporada = mapear_temporada(fila)
 
     if None in (categoria, color, grupo_estilo, genero, temporada):
         return None

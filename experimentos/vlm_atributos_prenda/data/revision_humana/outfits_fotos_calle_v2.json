@@ -1,0 +1,2401 @@
+{
+ "calle_01": {
+  "n_personas": 3,
+  "personas": [
+   {
+    "caja": [
+     503.5,
+     298.3,
+     789.6,
+     1195.1
+    ],
+    "prendas": [
+     {
+      "deteccion": "jacket",
+      "categoria": "abrigo",
+      "caja": [
+       509.3,
+       426.4,
+       788.6,
+       829.6
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "accesorio",
+       "color_primario": "negro",
+       "grupo_estilo": "streetwear",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": false
+     },
+     {
+      "deteccion": "footwear (x1)",
+      "categoria": "calzado",
+      "caja": [
+       576.5,
+       1053.2,
+       672.5,
+       1207.6
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "calzado",
+       "color_primario": "negro",
+       "grupo_estilo": "casual",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "pants (grounding)",
+      "categoria": "ropa_inferior",
+      "caja": [
+       549.2,
+       794.8,
+       727.5,
+       1057.4
+      ],
+      "origen": "grounding",
+      "atributos": {
+       "categoria": "ropa_inferior",
+       "color_primario": "rojo",
+       "grupo_estilo": "deportivo",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "streetwear": 0.5,
+      "deportivo": 0.32,
+      "casual": 0.18
+     },
+     "paleta": [
+      "negro",
+      "rojo"
+     ],
+     "genero": "masculino",
+     "temporada": "primavera_verano"
+    }
+   },
+   {
+    "caja": [
+     249.1,
+     288.3,
+     530.4,
+     1144.8
+    ],
+    "prendas": [
+     {
+      "deteccion": "trousers",
+      "categoria": "ropa_inferior",
+      "caja": [
+       300.0,
+       680.1,
+       467.0,
+       1014.2
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "ropa_inferior",
+       "color_primario": "negro",
+       "grupo_estilo": "casual",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "footwear (x1)",
+      "categoria": "calzado",
+      "caja": [
+       343.2,
+       1002.9,
+       429.6,
+       1151.1
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "calzado",
+       "color_primario": "negro",
+       "grupo_estilo": "casual",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "shirt (grounding)",
+      "categoria": "ropa_superior",
+      "caja": [
+       248.5,
+       408.1,
+       526.9,
+       791.9
+      ],
+      "origen": "grounding",
+      "atributos": {
+       "categoria": "accesorio",
+       "color_primario": "negro",
+       "grupo_estilo": "streetwear",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": false
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "casual": 0.52,
+      "streetwear": 0.48
+     },
+     "paleta": [
+      "negro"
+     ],
+     "genero": "masculino",
+     "temporada": "primavera_verano"
+    }
+   },
+   {
+    "caja": [
+     0.5,
+     235.5,
+     138.7,
+     712.8
+    ],
+    "prendas": [
+     {
+      "deteccion": "footwear (x1)",
+      "categoria": "calzado",
+      "caja": [
+       31.2,
+       675.1,
+       91.7,
+       712.8
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "calzado",
+       "color_primario": "blanco",
+       "grupo_estilo": "casual",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "pants (grounding)",
+      "categoria": "ropa_inferior",
+      "caja": [
+       0.1,
+       449.2,
+       79.1,
+       581.0
+      ],
+      "origen": "grounding",
+      "atributos": {
+       "categoria": "ropa_inferior",
+       "color_primario": "negro",
+       "grupo_estilo": "playa_resort",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "shirt (grounding)",
+      "categoria": "ropa_superior",
+      "caja": [
+       55.6,
+       311.1,
+       127.2,
+       446.6
+      ],
+      "origen": "grounding",
+      "atributos": {
+       "categoria": "accesorio",
+       "color_primario": "negro",
+       "grupo_estilo": "streetwear",
+       "genero": "femenino",
+       "temporada": "otono_invierno"
+      },
+      "coincide_categoria": false
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "playa_resort": 0.41,
+      "streetwear": 0.4,
+      "casual": 0.19
+     },
+     "paleta": [
+      "negro",
+      "blanco"
+     ],
+     "genero": "masculino",
+     "temporada": "primavera_verano"
+    }
+   }
+  ]
+ },
+ "calle_02": {
+  "n_personas": 2,
+  "personas": [
+   {
+    "caja": [
+     185.8,
+     298.6,
+     542.9,
+     1328.9
+    ],
+    "prendas": [
+     {
+      "deteccion": "trousers",
+      "categoria": "ropa_inferior",
+      "caja": [
+       196.3,
+       808.0,
+       472.8,
+       1267.0
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "ropa_inferior",
+       "color_primario": "azul",
+       "grupo_estilo": "casual",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "footwear (x2)",
+      "categoria": "calzado",
+      "caja": [
+       199.2,
+       1215.2,
+       432.5,
+       1357.7
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "calzado",
+       "color_primario": "negro",
+       "grupo_estilo": "casual",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "shirt (grounding)",
+      "categoria": "ropa_superior",
+      "caja": [
+       211.3,
+       451.6,
+       512.8,
+       834.5
+      ],
+      "origen": "grounding",
+      "atributos": {
+       "categoria": "ropa_superior",
+       "color_primario": "negro",
+       "grupo_estilo": "casual",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "casual": 1.0
+     },
+     "paleta": [
+      "negro",
+      "azul"
+     ],
+     "genero": "masculino",
+     "temporada": "primavera_verano"
+    }
+   },
+   {
+    "caja": [
+     467.0,
+     386.4,
+     782.9,
+     1340.4
+    ],
+    "prendas": [
+     {
+      "deteccion": "miniskirt",
+      "categoria": "ropa_inferior",
+      "caja": [
+       468.0,
+       713.0,
+       724.3,
+       1284.3
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "ropa_inferior",
+       "color_primario": "camel",
+       "grupo_estilo": "playa_resort",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "footwear (x2)",
+      "categoria": "calzado",
+      "caja": [
+       529.4,
+       1255.5,
+       636.0,
+       1354.8
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "calzado",
+       "color_primario": "blanco",
+       "grupo_estilo": "casual",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "torso (geometrico)",
+      "categoria": "ropa_superior",
+      "caja": [
+       467.0,
+       529.5,
+       782.9,
+       713.0
+      ],
+      "origen": "geometrico",
+      "atributos": {
+       "categoria": "ropa_superior",
+       "color_primario": "negro",
+       "grupo_estilo": "casual",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "playa_resort": 0.53,
+      "casual": 0.47
+     },
+     "paleta": [
+      "camel",
+      "negro",
+      "blanco"
+     ],
+     "genero": "femenino",
+     "temporada": "primavera_verano"
+    }
+   }
+  ]
+ },
+ "calle_03": {
+  "n_personas": 1,
+  "personas": [
+   {
+    "caja": [
+     358.6,
+     349.9,
+     675.4,
+     1248.2
+    ],
+    "prendas": [
+     {
+      "deteccion": "shorts",
+      "categoria": "ropa_inferior",
+      "caja": [
+       414.2,
+       710.1,
+       613.9,
+       847.3
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "ropa_inferior",
+       "color_primario": "azul",
+       "grupo_estilo": "playa_resort",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "footwear (x2)",
+      "categoria": "calzado",
+      "caja": [
+       461.3,
+       1066.1,
+       562.1,
+       1275.4
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "calzado",
+       "color_primario": "negro",
+       "grupo_estilo": "casual",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "shirt (grounding)",
+      "categoria": "ropa_superior",
+      "caja": [
+       414.9,
+       479.4,
+       647.0,
+       714.6
+      ],
+      "origen": "grounding",
+      "atributos": {
+       "categoria": "accesorio",
+       "color_primario": "beige",
+       "grupo_estilo": "fiesta_noche",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": false
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "fiesta_noche": 0.43,
+      "playa_resort": 0.3,
+      "casual": 0.27
+     },
+     "paleta": [
+      "beige",
+      "azul",
+      "negro"
+     ],
+     "genero": "femenino",
+     "temporada": "primavera_verano"
+    }
+   }
+  ]
+ },
+ "calle_04": {
+  "n_personas": 2,
+  "personas": [
+   {
+    "caja": [
+     191.5,
+     402.2,
+     535.2,
+     1259.8
+    ],
+    "prendas": [
+     {
+      "deteccion": "fancy dress",
+      "categoria": "cuerpo_entero",
+      "caja": [
+       263.5,
+       540.3,
+       497.8,
+       923.1
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "cuerpo_entero",
+       "color_primario": "amarillo",
+       "grupo_estilo": "fiesta_noche",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "footwear (x1)",
+      "categoria": "calzado",
+      "caja": [
+       382.6,
+       1154.8,
+       408.5,
+       1199.4
+      ],
+      "origen": "od",
+      "atributos": null,
+      "coincide_categoria": null
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "fiesta_noche": 1.0
+     },
+     "paleta": [
+      "amarillo"
+     ],
+     "genero": "femenino",
+     "temporada": "primavera_verano"
+    }
+   },
+   {
+    "caja": [
+     537.1,
+     373.4,
+     808.8,
+     1264.2
+    ],
+    "prendas": [
+     {
+      "deteccion": "fancy dress",
+      "categoria": "cuerpo_entero",
+      "caja": [
+       543.8,
+       515.9,
+       757.0,
+       915.9
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "cuerpo_entero",
+       "color_primario": "blanco",
+       "grupo_estilo": "fiesta_noche",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "footwear (x2)",
+      "categoria": "calzado",
+      "caja": [
+       576.5,
+       1143.3,
+       723.4,
+       1277.1
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "calzado",
+       "color_primario": "negro",
+       "grupo_estilo": "playa_resort",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "fiesta_noche": 0.68,
+      "playa_resort": 0.32
+     },
+     "paleta": [
+      "blanco",
+      "negro"
+     ],
+     "genero": "femenino",
+     "temporada": "primavera_verano"
+    }
+   }
+  ]
+ },
+ "calle_05": {
+  "n_personas": 1,
+  "personas": [
+   {
+    "caja": [
+     297.8,
+     392.3,
+     839.6,
+     1278.1
+    ],
+    "prendas": [
+     {
+      "deteccion": "pants (grounding)",
+      "categoria": "ropa_inferior",
+      "caja": [
+       409.8,
+       1100.6,
+       812.5,
+       1278.6
+      ],
+      "origen": "grounding",
+      "atributos": {
+       "categoria": "cuerpo_entero",
+       "color_primario": "negro",
+       "grupo_estilo": "fiesta_noche",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": false
+     },
+     {
+      "deteccion": "shirt (grounding)",
+      "categoria": "ropa_superior",
+      "caja": [
+       430.7,
+       682.2,
+       850.8,
+       1133.2
+      ],
+      "origen": "grounding",
+      "atributos": {
+       "categoria": "ropa_superior",
+       "color_primario": "negro",
+       "grupo_estilo": "casual",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "casual": 0.62,
+      "fiesta_noche": 0.38
+     },
+     "paleta": [
+      "negro"
+     ],
+     "genero": "femenino",
+     "temporada": "primavera_verano"
+    }
+   }
+  ]
+ },
+ "calle_07": {
+  "n_personas": 1,
+  "personas": [
+   {
+    "caja": [
+     120.5,
+     308.9,
+     829.0,
+     1437.8
+    ],
+    "prendas": [
+     {
+      "deteccion": "fancy dress",
+      "categoria": "cuerpo_entero",
+      "caja": [
+       59.0,
+       666.0,
+       911.5,
+       1437.8
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "cuerpo_entero",
+       "color_primario": "rosa",
+       "grupo_estilo": "fiesta_noche",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "fiesta_noche": 1.0
+     },
+     "paleta": [
+      "rosa"
+     ],
+     "genero": "femenino",
+     "temporada": "primavera_verano"
+    }
+   }
+  ]
+ },
+ "calle_10": {
+  "n_personas": 1,
+  "personas": [
+   {
+    "caja": [
+     231.8,
+     428.4,
+     511.2,
+     1234.8
+    ],
+    "prendas": [
+     {
+      "deteccion": "shorts",
+      "categoria": "ropa_inferior",
+      "caja": [
+       275.0,
+       798.5,
+       443.0,
+       1028.9
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "ropa_inferior",
+       "color_primario": "blanco",
+       "grupo_estilo": "deportivo",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "footwear (x1)",
+      "categoria": "calzado",
+      "caja": [
+       349.0,
+       1151.3,
+       413.3,
+       1257.8
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "calzado",
+       "color_primario": "rosa",
+       "grupo_estilo": "casual",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "shirt (grounding)",
+      "categoria": "ropa_superior",
+      "caja": [
+       241.7,
+       535.8,
+       486.7,
+       847.1
+      ],
+      "origen": "grounding",
+      "atributos": {
+       "categoria": "ropa_superior",
+       "color_primario": "blanco",
+       "grupo_estilo": "casual",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "casual": 0.65,
+      "deportivo": 0.35
+     },
+     "paleta": [
+      "blanco",
+      "rosa"
+     ],
+     "genero": "femenino",
+     "temporada": "primavera_verano"
+    }
+   }
+  ]
+ },
+ "calle_11": {
+  "n_personas": 2,
+  "personas": [
+   {
+    "caja": [
+     435.4,
+     66.7,
+     814.6,
+     1153.6
+    ],
+    "prendas": [
+     {
+      "deteccion": "fancy dress",
+      "categoria": "cuerpo_entero",
+      "caja": [
+       499.7,
+       216.8,
+       809.8,
+       1122.3
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "cuerpo_entero",
+       "color_primario": "rosa",
+       "grupo_estilo": "fiesta_noche",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "footwear (x3)",
+      "categoria": "calzado",
+      "caja": [
+       471.8,
+       1086.3,
+       772.3,
+       1156.0
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "accesorio",
+       "color_primario": "lavanda",
+       "grupo_estilo": "fiesta_noche",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": false
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "fiesta_noche": 1.0
+     },
+     "paleta": [
+      "rosa",
+      "lavanda"
+     ],
+     "genero": "femenino",
+     "temporada": "primavera_verano"
+    }
+   },
+   {
+    "caja": [
+     135.8,
+     312.9,
+     562.1,
+     1176.4
+    ],
+    "prendas": [
+     {
+      "deteccion": "footwear (x2)",
+      "categoria": "calzado",
+      "caja": [
+       119.5,
+       1023.9,
+       439.2,
+       1195.6
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "calzado",
+       "color_primario": "rosa",
+       "grupo_estilo": "casual",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "pants (grounding)",
+      "categoria": "ropa_inferior",
+      "caja": [
+       140.5,
+       785.9,
+       541.6,
+       1106.2
+      ],
+      "origen": "grounding",
+      "atributos": {
+       "categoria": "accesorio",
+       "color_primario": "blanco",
+       "grupo_estilo": "de_vestir",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": false
+     },
+     {
+      "deteccion": "torso (geometrico)",
+      "categoria": "ropa_superior",
+      "caja": [
+       135.8,
+       442.4,
+       562.1,
+       785.9
+      ],
+      "origen": "geometrico",
+      "atributos": {
+       "categoria": "accesorio",
+       "color_primario": "blanco",
+       "grupo_estilo": "fiesta_noche",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": false
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "fiesta_noche": 0.39,
+      "de_vestir": 0.37,
+      "casual": 0.24
+     },
+     "paleta": [
+      "blanco",
+      "rosa"
+     ],
+     "genero": "femenino",
+     "temporada": "primavera_verano"
+    }
+   }
+  ]
+ },
+ "calle_14": {
+  "n_personas": 1,
+  "personas": [
+   {
+    "caja": [
+     373.0,
+     298.4,
+     824.2,
+     1145.2
+    ],
+    "prendas": [
+     {
+      "deteccion": "fancy dress",
+      "categoria": "cuerpo_entero",
+      "caja": [
+       446.9,
+       400.5,
+       831.8,
+       774.0
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "cuerpo_entero",
+       "color_primario": "negro",
+       "grupo_estilo": "fiesta_noche",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "footwear (x1)",
+      "categoria": "calzado",
+      "caja": [
+       636.0,
+       1037.1,
+       725.3,
+       1158.4
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "calzado",
+       "color_primario": "rosa",
+       "grupo_estilo": "casual",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "fiesta_noche": 0.78,
+      "casual": 0.22
+     },
+     "paleta": [
+      "negro",
+      "rosa"
+     ],
+     "genero": "femenino",
+     "temporada": "primavera_verano"
+    }
+   }
+  ]
+ },
+ "calle_16": {
+  "n_personas": 1,
+  "personas": [
+   {
+    "caja": [
+     187.7,
+     143.3,
+     694.6,
+     1437.8
+    ],
+    "prendas": [
+     {
+      "deteccion": "fancy dress",
+      "categoria": "cuerpo_entero",
+      "caja": [
+       203.0,
+       419.8,
+       661.9,
+       1121.0
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "cuerpo_entero",
+       "color_primario": "negro",
+       "grupo_estilo": "fiesta_noche",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "footwear (x1)",
+      "categoria": "calzado",
+      "caja": [
+       342.2,
+       1229.0,
+       499.7,
+       1437.8
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "cuerpo_entero",
+       "color_primario": "negro",
+       "grupo_estilo": "fiesta_noche",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": false
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "fiesta_noche": 1.0
+     },
+     "paleta": [
+      "negro"
+     ],
+     "genero": "femenino",
+     "temporada": "primavera_verano"
+    }
+   }
+  ]
+ },
+ "calle_19": {
+  "n_personas": 3,
+  "personas": [
+   {
+    "caja": [
+     222.2,
+     128.5,
+     644.6,
+     1365.4
+    ],
+    "prendas": [
+     {
+      "deteccion": "jacket",
+      "categoria": "abrigo",
+      "caja": [
+       259.7,
+       256.3,
+       640.8,
+       833.7
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "accesorio",
+       "color_primario": "negro",
+       "grupo_estilo": "streetwear",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": false
+     },
+     {
+      "deteccion": "trousers",
+      "categoria": "ropa_inferior",
+      "caja": [
+       280.8,
+       798.4,
+       564.0,
+       1333.1
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "ropa_inferior",
+       "color_primario": "negro",
+       "grupo_estilo": "deportivo",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "footwear (x2)",
+      "categoria": "calzado",
+      "caja": [
+       316.3,
+       1173.0,
+       591.8,
+       1372.8
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "calzado",
+       "color_primario": "blanco",
+       "grupo_estilo": "casual",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "streetwear": 0.43,
+      "deportivo": 0.36,
+      "casual": 0.21
+     },
+     "paleta": [
+      "negro",
+      "blanco"
+     ],
+     "genero": "masculino",
+     "temporada": "primavera_verano"
+    }
+   },
+   {
+    "caja": [
+     0.5,
+     116.8,
+     278.9,
+     1261.1
+    ],
+    "prendas": [
+     {
+      "deteccion": "jacket",
+      "categoria": "abrigo",
+      "caja": [
+       0.5,
+       257.8,
+       278.9,
+       918.9
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "accesorio",
+       "color_primario": "rojo",
+       "grupo_estilo": "streetwear",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": false
+     },
+     {
+      "deteccion": "trousers",
+      "categoria": "ropa_inferior",
+      "caja": [
+       0.5,
+       892.4,
+       94.6,
+       1212.7
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "ropa_inferior",
+       "color_primario": "negro",
+       "grupo_estilo": "deportivo",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "footwear (x2)",
+      "categoria": "calzado",
+      "caja": [
+       0.5,
+       1096.6,
+       164.6,
+       1261.1
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "calzado",
+       "color_primario": "negro",
+       "grupo_estilo": "casual",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "streetwear": 0.56,
+      "deportivo": 0.23,
+      "casual": 0.21
+     },
+     "paleta": [
+      "rojo",
+      "negro"
+     ],
+     "genero": "femenino",
+     "temporada": "primavera_verano"
+    }
+   },
+   {
+    "caja": [
+     92.6,
+     112.4,
+     317.3,
+     1177.4
+    ],
+    "prendas": [
+     {
+      "deteccion": "jacket",
+      "categoria": "abrigo",
+      "caja": [
+       138.7,
+       271.0,
+       311.5,
+       707.3
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "accesorio",
+       "color_primario": "rojo",
+       "grupo_estilo": "streetwear",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": false
+     },
+     {
+      "deteccion": "footwear (x1)",
+      "categoria": "calzado",
+      "caja": [
+       282.7,
+       1127.5,
+       301.0,
+       1167.1
+      ],
+      "origen": "od",
+      "atributos": null,
+      "coincide_categoria": null
+     },
+     {
+      "deteccion": "pants (grounding)",
+      "categoria": "ropa_inferior",
+      "caja": [
+       119.0,
+       874.3,
+       220.4,
+       1099.3
+      ],
+      "origen": "grounding",
+      "atributos": {
+       "categoria": "ropa_inferior",
+       "color_primario": "negro",
+       "grupo_estilo": "deportivo",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "streetwear": 0.65,
+      "deportivo": 0.35
+     },
+     "paleta": [
+      "rojo",
+      "negro"
+     ],
+     "genero": "femenino",
+     "temporada": "primavera_verano"
+    }
+   }
+  ]
+ },
+ "calle_20": {
+  "n_personas": 3,
+  "personas": [
+   {
+    "caja": [
+     104.2,
+     579.3,
+     372.0,
+     1332.2
+    ],
+    "prendas": [
+     {
+      "deteccion": "trousers",
+      "categoria": "ropa_inferior",
+      "caja": [
+       156.0,
+       882.7,
+       324.0,
+       1262.7
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "ropa_inferior",
+       "color_primario": "azul",
+       "grupo_estilo": "casual",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "jacket",
+      "categoria": "abrigo",
+      "caja": [
+       105.1,
+       677.1,
+       368.2,
+       911.1
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "abrigo",
+       "color_primario": "negro",
+       "grupo_estilo": "streetwear",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "footwear (x2)",
+      "categoria": "calzado",
+      "caja": [
+       197.3,
+       1213.1,
+       288.5,
+       1335.0
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "calzado",
+       "color_primario": "camel",
+       "grupo_estilo": "casual",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "casual": 0.59,
+      "streetwear": 0.41
+     },
+     "paleta": [
+      "azul",
+      "negro",
+      "camel"
+     ],
+     "genero": "femenino",
+     "temporada": "primavera_verano"
+    }
+   },
+   {
+    "caja": [
+     581.3,
+     609.0,
+     802.1,
+     1261.3
+    ],
+    "prendas": [
+     {
+      "deteccion": "footwear (x1)",
+      "categoria": "calzado",
+      "caja": [
+       686.9,
+       1044.4,
+       763.7,
+       1262.7
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "calzado",
+       "color_primario": "negro",
+       "grupo_estilo": "fiesta_noche",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "shorts",
+      "categoria": "ropa_inferior",
+      "caja": [
+       624.5,
+       891.2,
+       763.7,
+       955.0
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "ropa_inferior",
+       "color_primario": "azul",
+       "grupo_estilo": "playa_resort",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "shirt (grounding)",
+      "categoria": "ropa_superior",
+      "caja": [
+       585.7,
+       704.6,
+       798.8,
+       936.5
+      ],
+      "origen": "grounding",
+      "atributos": {
+       "categoria": "abrigo",
+       "color_primario": "negro",
+       "grupo_estilo": "streetwear",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": false
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "streetwear": 0.5,
+      "fiesta_noche": 0.29,
+      "playa_resort": 0.21
+     },
+     "paleta": [
+      "negro",
+      "azul"
+     ],
+     "genero": "femenino",
+     "temporada": "primavera_verano"
+    }
+   },
+   {
+    "caja": [
+     261.6,
+     586.3,
+     447.8,
+     1105.3
+    ],
+    "prendas": [
+     {
+      "deteccion": "trousers",
+      "categoria": "ropa_inferior",
+      "caja": [
+       305.8,
+       793.4,
+       380.6,
+       1051.4
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "ropa_inferior",
+       "color_primario": "negro",
+       "grupo_estilo": "casual",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "footwear (x1)",
+      "categoria": "calzado",
+      "caja": [
+       324.0,
+       1045.8,
+       360.5,
+       1105.3
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "accesorio",
+       "color_primario": "negro",
+       "grupo_estilo": "streetwear",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": false
+     },
+     {
+      "deteccion": "shirt (grounding)",
+      "categoria": "ropa_superior",
+      "caja": [
+       262.0,
+       661.2,
+       441.4,
+       802.8
+      ],
+      "origen": "grounding",
+      "atributos": {
+       "categoria": "abrigo",
+       "color_primario": "negro",
+       "grupo_estilo": "streetwear",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": false
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "streetwear": 0.6,
+      "casual": 0.4
+     },
+     "paleta": [
+      "negro"
+     ],
+     "genero": "femenino",
+     "temporada": "primavera_verano"
+    }
+   }
+  ]
+ },
+ "calle_22": {
+  "n_personas": 1,
+  "personas": [
+   {
+    "caja": [
+     353.8,
+     269.6,
+     805.9,
+     1280.5
+    ],
+    "prendas": [
+     {
+      "deteccion": "shorts",
+      "categoria": "ropa_inferior",
+      "caja": [
+       496.8,
+       647.8,
+       731.0,
+       847.7
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "ropa_inferior",
+       "color_primario": "azul",
+       "grupo_estilo": "playa_resort",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "footwear (x1)",
+      "categoria": "calzado",
+      "caja": [
+       588.0,
+       1161.2,
+       668.6,
+       1286.3
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "calzado",
+       "color_primario": "negro",
+       "grupo_estilo": "casual",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "torso (geometrico)",
+      "categoria": "ropa_superior",
+      "caja": [
+       353.8,
+       421.3,
+       805.9,
+       647.8
+      ],
+      "origen": "geometrico",
+      "atributos": {
+       "categoria": "accesorio",
+       "color_primario": "negro",
+       "grupo_estilo": "streetwear",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": false
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "streetwear": 0.5,
+      "playa_resort": 0.34,
+      "casual": 0.16
+     },
+     "paleta": [
+      "negro",
+      "azul"
+     ],
+     "genero": "masculino",
+     "temporada": "primavera_verano"
+    }
+   }
+  ]
+ },
+ "calle_23": {
+  "n_personas": 2,
+  "personas": [
+   {
+    "caja": [
+     75.4,
+     383.6,
+     553.4,
+     1218.4
+    ],
+    "prendas": [
+     {
+      "deteccion": "jacket",
+      "categoria": "abrigo",
+      "caja": [
+       98.4,
+       443.1,
+       420.0,
+       893.7
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "abrigo",
+       "color_primario": "rosa",
+       "grupo_estilo": "streetwear",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "footwear (x1)",
+      "categoria": "calzado",
+      "caja": [
+       386.4,
+       1099.3,
+       477.6,
+       1219.7
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "calzado",
+       "color_primario": "negro",
+       "grupo_estilo": "fiesta_noche",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "pants (grounding)",
+      "categoria": "ropa_inferior",
+      "caja": [
+       230.0,
+       811.4,
+       551.4,
+       1216.2
+      ],
+      "origen": "grounding",
+      "atributos": {
+       "categoria": "calzado",
+       "color_primario": "negro",
+       "grupo_estilo": "playa_resort",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": false
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "streetwear": 0.45,
+      "playa_resort": 0.43,
+      "fiesta_noche": 0.12
+     },
+     "paleta": [
+      "negro",
+      "rosa"
+     ],
+     "genero": "femenino",
+     "temporada": "primavera_verano"
+    }
+   },
+   {
+    "caja": [
+     546.7,
+     142.7,
+     930.7,
+     922.1
+    ],
+    "prendas": [
+     {
+      "deteccion": "jacket",
+      "categoria": "abrigo",
+      "caja": [
+       548.6,
+       229.3,
+       907.7,
+       670.4
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "abrigo",
+       "color_primario": "camel",
+       "grupo_estilo": "streetwear",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "trousers",
+      "categoria": "ropa_inferior",
+      "caja": [
+       722.4,
+       613.6,
+       924.0,
+       877.4
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "ropa_inferior",
+       "color_primario": "negro",
+       "grupo_estilo": "streetwear",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "footwear (x2)",
+      "categoria": "calzado",
+      "caja": [
+       821.3,
+       785.4,
+       927.8,
+       922.1
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "calzado",
+       "color_primario": "negro",
+       "grupo_estilo": "de_vestir",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "streetwear": 0.84,
+      "de_vestir": 0.16
+     },
+     "paleta": [
+      "camel",
+      "negro"
+     ],
+     "genero": "femenino",
+     "temporada": "primavera_verano"
+    }
+   }
+  ]
+ },
+ "calle_24": {
+  "n_personas": 1,
+  "personas": [
+   {
+    "caja": [
+     298.1,
+     275.3,
+     854.9,
+     1386.5
+    ],
+    "prendas": [
+     {
+      "deteccion": "coat",
+      "categoria": "abrigo",
+      "caja": [
+       301.9,
+       441.4,
+       770.4,
+       1168.3
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "accesorio",
+       "color_primario": "negro",
+       "grupo_estilo": "streetwear",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": false
+     },
+     {
+      "deteccion": "trousers",
+      "categoria": "ropa_inferior",
+      "caja": [
+       517.9,
+       742.0,
+       780.0,
+       1250.6
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "accesorio",
+       "color_primario": "negro",
+       "grupo_estilo": "streetwear",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": false
+     },
+     {
+      "deteccion": "footwear (x2)",
+      "categoria": "calzado",
+      "caja": [
+       594.7,
+       1168.3,
+       858.7,
+       1389.4
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "calzado",
+       "color_primario": "negro",
+       "grupo_estilo": "casual",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "hat",
+      "categoria": "accesorio",
+      "caja": [
+       301.0,
+       275.3,
+       471.8,
+       405.3
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "accesorio",
+       "color_primario": "negro",
+       "grupo_estilo": "streetwear",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "shirt (grounding)",
+      "categoria": "ropa_superior",
+      "caja": [
+       364.9,
+       467.2,
+       611.4,
+       771.4
+      ],
+      "origen": "grounding",
+      "atributos": {
+       "categoria": "ropa_superior",
+       "color_primario": "negro",
+       "grupo_estilo": "casual",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "streetwear": 0.68,
+      "casual": 0.32
+     },
+     "paleta": [
+      "negro"
+     ],
+     "genero": "femenino",
+     "temporada": "primavera_verano"
+    }
+   }
+  ]
+ },
+ "calle_25": {
+  "n_personas": 1,
+  "personas": [
+   {
+    "caja": [
+     0.5,
+     84.0,
+     951.8,
+     1433.8
+    ],
+    "prendas": [
+     {
+      "deteccion": "shirt (grounding)",
+      "categoria": "ropa_superior",
+      "caja": [
+       0.5,
+       591.9,
+       940.3,
+       1433.4
+      ],
+      "origen": "grounding",
+      "atributos": {
+       "categoria": "ropa_superior",
+       "color_primario": "amarillo",
+       "grupo_estilo": "casual",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "casual": 1.0
+     },
+     "paleta": [
+      "amarillo"
+     ],
+     "genero": "masculino",
+     "temporada": "primavera_verano"
+    }
+   }
+  ]
+ },
+ "calle_26": {
+  "n_personas": 1,
+  "personas": [
+   {
+    "caja": [
+     221.3,
+     0.6,
+     821.3,
+     1278.1
+    ],
+    "prendas": [
+     {
+      "deteccion": "trousers",
+      "categoria": "ropa_inferior",
+      "caja": [
+       322.1,
+       565.1,
+       662.9,
+       1202.6
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "ropa_inferior",
+       "color_primario": "azul",
+       "grupo_estilo": "casual",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "footwear (x2)",
+      "categoria": "calzado",
+      "caja": [
+       338.4,
+       1086.1,
+       553.4,
+       1278.1
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "calzado",
+       "color_primario": "negro",
+       "grupo_estilo": "casual",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "torso (geometrico)",
+      "categoria": "ropa_superior",
+      "caja": [
+       221.3,
+       192.3,
+       821.3,
+       565.1
+      ],
+      "origen": "geometrico",
+      "atributos": {
+       "categoria": "accesorio",
+       "color_primario": "negro",
+       "grupo_estilo": "streetwear",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": false
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "casual": 0.59,
+      "streetwear": 0.41
+     },
+     "paleta": [
+      "negro",
+      "azul"
+     ],
+     "genero": "masculino",
+     "temporada": "primavera_verano"
+    }
+   }
+  ]
+ },
+ "calle_29": {
+  "n_personas": 2,
+  "personas": [
+   {
+    "caja": [
+     148.3,
+     336.1,
+     392.2,
+     1097.3
+    ],
+    "prendas": [
+     {
+      "deteccion": "trousers",
+      "categoria": "ropa_inferior",
+      "caja": [
+       182.9,
+       703.2,
+       340.3,
+       1057.5
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "ropa_inferior",
+       "color_primario": "azul",
+       "grupo_estilo": "streetwear",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "footwear (x1)",
+      "categoria": "calzado",
+      "caja": [
+       213.6,
+       998.8,
+       277.0,
+       1052.8
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "accesorio",
+       "color_primario": "azul",
+       "grupo_estilo": "streetwear",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": false
+     },
+     {
+      "deteccion": "shirt (grounding)",
+      "categoria": "ropa_superior",
+      "caja": [
+       150.5,
+       435.7,
+       366.5,
+       723.6
+      ],
+      "origen": "grounding",
+      "atributos": {
+       "categoria": "abrigo",
+       "color_primario": "negro",
+       "grupo_estilo": "streetwear",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": false
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "streetwear": 1.0
+     },
+     "paleta": [
+      "azul",
+      "negro"
+     ],
+     "genero": "masculino",
+     "temporada": "primavera_verano"
+    }
+   },
+   {
+    "caja": [
+     625.4,
+     404.1,
+     833.8,
+     1085.6
+    ],
+    "prendas": [
+     {
+      "deteccion": "handbag",
+      "categoria": "accesorio",
+      "caja": [
+       732.0,
+       515.5,
+       845.3,
+       790.0
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "accesorio",
+       "color_primario": "negro",
+       "grupo_estilo": "fiesta_noche",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "footwear (x2)",
+      "categoria": "calzado",
+      "caja": [
+       669.6,
+       923.7,
+       791.5,
+       1085.6
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "calzado",
+       "color_primario": "negro",
+       "grupo_estilo": "casual",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "shorts",
+      "categoria": "ropa_inferior",
+      "caja": [
+       657.1,
+       710.3,
+       750.2,
+       785.3
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "accesorio",
+       "color_primario": "gris",
+       "grupo_estilo": "fiesta_noche",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": false
+     },
+     {
+      "deteccion": "shirt (grounding)",
+      "categoria": "ropa_superior",
+      "caja": [
+       625.0,
+       512.9,
+       830.2,
+       735.6
+      ],
+      "origen": "grounding",
+      "atributos": {
+       "categoria": "ropa_superior",
+       "color_primario": "negro",
+       "grupo_estilo": "casual",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "casual": 0.58,
+      "fiesta_noche": 0.42
+     },
+     "paleta": [
+      "negro",
+      "gris"
+     ],
+     "genero": "femenino",
+     "temporada": "primavera_verano"
+    }
+   }
+  ]
+ },
+ "calle_30": {
+  "n_personas": 2,
+  "personas": [
+   {
+    "caja": [
+     171.4,
+     257.9,
+     531.4,
+     1272.9
+    ],
+    "prendas": [
+     {
+      "deteccion": "footwear (x2)",
+      "categoria": "calzado",
+      "caja": [
+       165.6,
+       1143.0,
+       467.0,
+       1274.3
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "calzado",
+       "color_primario": "blanco",
+       "grupo_estilo": "casual",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "pants (grounding)",
+      "categoria": "ropa_inferior",
+      "caja": [
+       207.0,
+       779.6,
+       465.6,
+       1182.8
+      ],
+      "origen": "grounding",
+      "atributos": {
+       "categoria": "ropa_inferior",
+       "color_primario": "negro",
+       "grupo_estilo": "deportivo",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "shirt (grounding)",
+      "categoria": "ropa_superior",
+      "caja": [
+       223.3,
+       347.3,
+       548.8,
+       803.0
+      ],
+      "origen": "grounding",
+      "atributos": {
+       "categoria": "abrigo",
+       "color_primario": "camel",
+       "grupo_estilo": "streetwear",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": false
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "streetwear": 0.42,
+      "deportivo": 0.36,
+      "casual": 0.22
+     },
+     "paleta": [
+      "camel",
+      "negro",
+      "blanco"
+     ],
+     "genero": "masculino",
+     "temporada": "primavera_verano"
+    }
+   },
+   {
+    "caja": [
+     395.0,
+     259.2,
+     736.8,
+     1314.0
+    ],
+    "prendas": [
+     {
+      "deteccion": "trousers",
+      "categoria": "ropa_inferior",
+      "caja": [
+       469.0,
+       768.1,
+       672.5,
+       1263.3
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "ropa_inferior",
+       "color_primario": "negro",
+       "grupo_estilo": "deportivo",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "footwear (x2)",
+      "categoria": "calzado",
+      "caja": [
+       459.4,
+       1237.4,
+       681.1,
+       1320.8
+      ],
+      "origen": "od",
+      "atributos": {
+       "categoria": "calzado",
+       "color_primario": "camel",
+       "grupo_estilo": "casual",
+       "genero": "masculino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": true
+     },
+     {
+      "deteccion": "torso (geometrico)",
+      "categoria": "ropa_superior",
+      "caja": [
+       395.0,
+       417.4,
+       736.8,
+       768.1
+      ],
+      "origen": "geometrico",
+      "atributos": {
+       "categoria": "abrigo",
+       "color_primario": "camel",
+       "grupo_estilo": "streetwear",
+       "genero": "femenino",
+       "temporada": "primavera_verano"
+      },
+      "coincide_categoria": false
+     }
+    ],
+    "outfit": {
+     "estilo_outfit": {
+      "streetwear": 0.43,
+      "deportivo": 0.4,
+      "casual": 0.17
+     },
+     "paleta": [
+      "camel",
+      "negro"
+     ],
+     "genero": "femenino",
+     "temporada": "primavera_verano"
+    }
+   }
+  ]
+ }
+}

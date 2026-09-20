@@ -69,6 +69,17 @@ criterios que `poblar_muestras_dataset.py`), o no encajar en ningún filtro de `
 `grupo_estilo` sigue siendo la señal más desequilibrada (`casual` domina con 14357 filas frente
 a las 1651-2569 del resto) — esperable, es la misma clase que ya iba peor con CLIP.
 
+> **Actualización (2026-09-20, dataset v2):** tras la revisión humana de 100 fichas, se
+> cambiaron tres reglas de mapeo (`temporada` de `Jackets` → `todo_el_ano`, `grupo_estilo` de
+> `Dresses` por estampado/liso en vez de fijo, filtro de ropa infantil por nombre además de por
+> `gender`) — detalle y motivo en [`esquema_atributos.md`](esquema_atributos.md) y
+> [`memoria/TFM_clasificador_visual_atributos.md`](../../memoria/TFM_clasificador_visual_atributos.md)
+> §11.1. **`data/*.jsonl` ya está regenerado con estas reglas (v2)**, pero
+> `modelos/florence2_base_lora_v1/` sigue siendo el adapter **v1** (entrenado con las reglas
+> anteriores) — todos los resultados de este README hasta la sección "Looks completos" son v1.
+> Reentrenar v2 es el siguiente paso (mismo notebook de Colab, ya apunta a
+> `modelos/florence2_base_lora_v2/` y no sobreescribe v1).
+
 ## Estado: Stage 2 y Stage 3 (código) también listos
 
 ### Stage 2 — Baseline zero-shot
@@ -151,8 +162,14 @@ va a estar disponible en una foto de Instagram con el outfit completo puesto.
 Dos comprobaciones hechas *después* del entrenamiento, ambas con muestras pequeñas — leerlas
 como indicios, no como métricas cerradas. Datos en `data/revision_humana/`.
 
+> **Actualización (2026-09-20):** las cifras de esta sección son las de las **primeras 33 fichas**
+> y se conservan como registro histórico. Con 100 fichas revisadas (`data/revision_humana/revisiones_app_n100_2026-09-20.json`)
+> las conclusiones se mantienen; los números completos y actualizados están en
+> [`memoria/TFM_clasificador_visual_atributos.md`](../../memoria/TFM_clasificador_visual_atributos.md) §7, y se recalculan con
+> `herramientas/analizar_revision_humana.py`.
+
 **1. Etiquetas humanas vs. etiquetas de Kaggle** (33 fichas revisadas a mano en la app
-"Ficha de Prenda", sacadas del test set; `revisiones_2026-09-20.json`). Las etiquetas de
+"Ficha de Prenda", sacadas del test set). Las etiquetas de
 Kaggle son un *proxy*, y la revisión humana lo confirma:
 
 | Campo | Acuerdo humano-Kaggle | Qué pasa |
@@ -208,21 +225,53 @@ las 1207 imágenes ya existentes en `clip_trend_matching/` para comparar directa
 el 32.8% de CLIP zero-shot ya documentado. Si `modelos/florence2_base_lora_v1/` todavía no
 existe (no se ha bajado el adapter de Colab), solo corre la parte zero-shot.
 
+**Resultado real** (test de 500 imágenes: categoría 99.6 %, color 76.2 %, estilo 90.8 %,
+género 94.0 %, temporada 60.2 %, JSON válido 100 %): salida completa en
+`modelos/florence2_base_lora_v1/evaluacion_test_2026-09-17.txt`.
+
+**Aviso — la comparación con CLIP que imprime este script está contaminada.** Las 1207
+imágenes salen del mismo dataset que train/val/test y el **36 % (434) son imágenes que el
+modelo ya había visto** (348 en train), así que el 73.4 % que sale al final no es una prueba
+de generalización. La comparación limpia (solo las no vistas, con CLIP evaluado sobre las
+mismas imágenes) es `herramientas/evaluar_solape_1207.py`; resultado y análisis en
+[`memoria/TFM_clasificador_visual_atributos.md`](../../memoria/TFM_clasificador_visual_atributos.md) §6.3 y §10.
+
+### Looks completos: detectar → recortar → clasificar → agregar (prototipo)
+
+```bash
+cd herramientas
+python3 analizar_outfit.py --carpeta ../data/fotos_calle --salida-json outfits.json \
+    --salida-imagenes anotadas --cache cache.json     # ≈ 40 s por foto en CPU
+python3 resumen_outfit.py --outfits outfits.json \
+    --foto-entera ../data/revision_humana/predicciones_fotos_calle.json \
+    --auditoria ../data/revision_humana/auditoria_outfit_calle.json
+```
+
+Mismo Florence-2 con dos capacidades: con el adapter **desactivado** detecta personas y prendas
+(`<OD>` + *phrase grounding* de una frase cada vez) y con el adapter **activado** clasifica cada
+recorte. El estilo del look es el voto ponderado de sus prendas. Es un prototipo heurístico
+(la detección es la parte frágil) evaluado sobre 19 fotos, con una auditoría hecha por Claude y
+guardas ajustadas mirando esas mismas fotos: leer los resultados como indicios, no como
+métricas. Detalle y cifras en la memoria (§8).
+
 ## Próximos pasos
 
-1. **Terminar la revisión humana** de las 120 fichas de la app (van 33): daría un subconjunto
+1. **Reentrenar v2 en Colab** con las reglas de esquema ya decididas (ver arriba y
+   `esquema_atributos.md`) y repetir la evaluación para comparar contra el v1 documentado aquí.
+2. **Terminar la revisión humana** de las 120 fichas de la app (van 100): daría un subconjunto
    del test verificado por una persona, que es una evaluación más honesta que la de Kaggle.
    Conviene hacerlo *sin* mostrar la predicción del modelo, para no sesgar las etiquetas.
-2. **Looks completos: detectar → recortar → clasificar → agregar.** Florence-2 sabe hacer
-   *phrase grounding* de forma nativa: con el adapter desactivado localiza las prendas de la
-   foto ("top, pantalón, zapatos, chaqueta..."), y con el adapter activado se clasifica cada
-   recorte. El estilo del outfit se agrega a partir de las prendas. Es el mismo modelo con dos
-   capacidades, sin entrenar nada nuevo para el primer prototipo. Se mediría sobre las 19 fotos
-   de calle (anotándolas a mano) antes de plantearse un dataset nuevo como DeepFashion2.
-3. **Decisiones de esquema pendientes**, con los datos de la revisión humana delante:
-   `temporada` (añadir "todo el año" con etiquetas mejores, o dejarla fuera del v1) y
-   `grupo_estilo` (¿multietiqueta?; la revisión humana usa varios estilos a la vez en 6 de 33).
-4. Clases de color sin cobertura (`fucsia`, `plateado`: F1 0.00): más muestreo específico.
+3. ~~Looks completos: detectar → recortar → clasificar → agregar~~ — **hecho como prototipo**
+   (ver arriba). Falta: sustituir las heurísticas de detección por un detector de prendas afinado
+   (DeepFashion2) y validar los recortes con etiquetas humanas (el prototipo se auditó solo a ojo).
+4. ~~Decisiones de esquema pendientes~~ — **resueltas** (2026-09-20): `temporada` de `Jackets` →
+   `todo_el_ano`; `grupo_estilo` de vestidos por estampado/liso; filtro de ropa infantil por
+   nombre; `deportivo`+`streetwear` se queda sin resolver (se descartó reetiquetar por marca) y
+   la paleta de color no se toca. Detalle en la memoria (§11.1). Sigue abierto: `temporada` del
+   resto de tipos de prenda más allá de `Jackets`.
+5. Sobremuestrear la cola larga de tipos de prenda: el estilo cae al 3% en tipos con menos de
+   10 ejemplos de entrenamiento (memoria §6.3), y clases de color sin cobertura (`fucsia`,
+   `plateado`: F1 0.00).
 
 ## Qué NO es (mismo aviso honesto que en `clip_trend_matching/`)
 
