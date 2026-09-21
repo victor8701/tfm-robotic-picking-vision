@@ -3,13 +3,14 @@
 **Autor:** Víctor Martín Parra  
 **Máster:** Robótica y Automatización — UC3M (2025/2027)  
 **Fecha:** 21 de septiembre de 2026  
-**Versión:** 0.9 (documento vivo: v0.1 = resultados del dataset/adapter v1; v0.2 = decisiones de esquema del autor y
+**Versión:** 0.10 (documento vivo: v0.1 = resultados del dataset/adapter v1; v0.2 = decisiones de esquema del autor y
 dataset v2 regenerado, §11.1; v0.3 = adapter v2 entrenado y evaluado, comparación con v1, §11.2; v0.4 = resto de
 `temporada` decidido y dataset v3 regenerado, §11.4; v0.5 = adapter v3 entrenado y evaluado — mejor que v1 y v2 contra
 el humano, §11.4; v0.6 = sobremuestreo de colores raros, dataset v4 regenerado, §11.5; v0.7 = adapter v4 entrenado y
 evaluado — arregla 3 clases de color, a costa de la media global, §11.5; v0.8 = auditoría de coherencia v1-v4 y
 repetición del prototipo de looks con v3, §8.5; v0.9 = sobremuestreo de tipos de prenda raros + fix
-`Tracksuits`/`Swimwear`, dataset/adapter v5 entrenado y evaluado, §11.7)  
+`Tracksuits`/`Swimwear`, dataset/adapter v5 entrenado y evaluado, §11.7; v0.10 = detector real DeepFashion2
+(YOLOv8-seg de terceros) sustituye la mayoría de las heurísticas de detección del prototipo de looks, §8.6)  
 **Código y datos:** [`experimentos/vlm_atributos_prenda/`](../experimentos/vlm_atributos_prenda/) (rama `clip-trend-semantic-matching-poc`)  
 **Relación con el estado del arte:** este documento cubre la pieza *visual* del Trend Intelligence Agent
 ([`Estado_arte.md`](Estado_arte.md) §6) y el matching semántico (§7). **No modifica `Estado_arte.md`**: el autor pidió
@@ -89,8 +90,10 @@ Seis conclusiones:
 5. **El salto de dominio es real y se puede mitigar**: el clasificador de prenda suelta colapsa sobre una foto entera
    (`accesorio`, `temporada` constante); con detectar → recortar → clasificar el estilo del look mejora y la
    estructura del look aparece, aunque `temporada` y el color siguen siendo débiles.
-6. **La detección es la parte frágil** del prototipo (heurísticas sobre Florence-2 sin afinar) y está evaluada sobre
-   19 fotos, con ajustes hechos mirando esas mismas fotos.
+6. **La detección era la parte frágil** del prototipo (heurísticas sobre Florence-2 sin afinar); desde §8.6 la
+   mayor parte viene de un detector real (YOLOv8-seg sobre DeepFashion2, de terceros) y las heurísticas se
+   quedan de red de seguridad residual (5 % de las cajas, antes 29 %) — sigue evaluado sobre las mismas 19
+   fotos, sin etiqueta de referencia humana.
 
 ---
 
@@ -632,6 +635,92 @@ detección, y sirve de comprobación de que no se ha roto nada.
 (imágenes con cajas dibujadas) y `cache_adapterv3.json` no se suben — mismo criterio que `data/fotos_calle/`
 (personas identificables el primero, regenerable el segundo).
 
+### 8.6 Detector real: DeepFashion2 (2026-09-21) — la pieza grande de §11.6/§11.7
+
+Hasta aquí, "detectar" era Florence-2-base nativo con cinco guardas heurísticas ajustadas a mano mirando estas
+mismas 19 fotos (§8.3). Esta sección sustituye la parte de esas heurísticas que más fallaba —prenda superior,
+inferior, abrigo y vestido— por un **detector real**: un YOLOv8s-seg afinado sobre
+[DeepFashion2](https://github.com/switchablenorms/DeepFashion2) (491k imágenes, 13 categorías de prenda,
+licencia Apache-2.0; pesos de `Bingsu/adetailer` en HuggingFace, no entrenado por mí — ver "Qué no es esto"
+más abajo). Calzado y accesorio se quedan en `<OD>` nativo (DeepFashion2 no tiene esas categorías, es un
+dataset de prenda puesta en torso/piernas). El clasificador (Florence-2+LoRA v3) **no cambia**.
+
+**Por qué un detector ya entrenado y no uno propio, por ahora.** El dataset oficial de DeepFashion2 está detrás
+de un formulario de acceso (probablemente pide email institucional, no es algo que se pudiera rellenar sin
+intervención del autor) y afinar un detector de verdad es un proyecto de otro orden de magnitud que el LoRA
+del clasificador (entrenamiento de detección, no de clasificación; el pipeline de Kaggle ya construido no sirve
+tal cual). Decisión explícita del autor: empezar con un detector ya entrenado sobre DeepFashion2 (integrarlo
+ya, sin esperas) en vez de bloquear en el formulario oficial o en entrenar uno propio sobre un espejo no
+oficial del dataset. Detalle de las tres opciones valoradas y por qué esta, en la conversación de esta sesión.
+
+**Arquitectura resultante:** persona + calzado/accesorio siguen viniendo de `<OD>`; prenda superior/inferior/
+abrigo/vestido vienen de DeepFashion2 en una sola pasada por foto (no por persona — igual que `<OD>`), asignadas
+después a la persona más cercana con la misma función `persona_de()` de siempre. Las guardas de *grounding* +
+torso geométrico de la v1/v2 del script **no se han borrado**: se quedan como red de seguridad, y solo se
+disparan cuando DeepFashion2 no encuentra nada para esa persona (ver aviso de versionado del script en la
+cabecera de `analizar_outfit.py` — "v3" ahí es la iteración del script, no tiene nada que ver con el adapter v5).
+
+**Resultado, mismas 19 fotos, mismo criterio de personas (31):**
+
+| | Heurística vieja (§8.5, adapter v3) | DeepFashion2 (adapter v3, sin cambios) |
+|---|---|---|
+| Prendas detectadas | 86 | 89 |
+| Origen de la caja | `<OD>` 61 (71 %), *grounding* 20 (23 %), geométrico 5 (6 %) | **DeepFashion2 54 (61 %)**, `<OD>` 30 (34 %, solo calzado/accesorio), *grounding* **3 (3 %)**, geométrico **2 (2 %)** |
+| Cajas correctas / parciales / erróneas (auditoría propia, ver abajo) | 80/86 = 93 % / 5 % / 2 % | **84/89 = 94 %** / 1 (1 %) / 4 (4 %) |
+
+**El cambio real no es el porcentaje de cajas correctas (ya era alto) — es de dónde vienen.** Antes, el 29 % de
+las cajas de prenda dependían de dos heurísticas ajustadas mirando estas mismas 19 fotos (*grounding* de una
+frase + torso geométrico), la parte que el propio §8.3 marcaba como "la débil". Ahora esas dos heurísticas
+juntas explican solo el 5 % de las cajas — se quedan de red de seguridad para casos raros (una persona muy
+occluida entre varias, ver `calle_19`), no como mecanismo principal.
+
+**Auditoría de cajas (hecha por Claude mirando las 19 fotos anotadas de esta versión — nueva, la de §8.4/§8.5
+ya no sirve: son cajas distintas. Pendiente, igual que las anteriores, de que el autor la valide):**
+
+- **4 errores reales, 1 parcial, sobre 89 prendas.** `calle_16`: un vestido de lentejuelas se detecta como dos
+  cajas separadas (`ropa_superior` + `ropa_inferior`) en vez de una `cuerpo_entero` — el único caso de los 19
+  donde DeepFashion2 confunde un vestido con prenda de dos piezas. `calle_22`: una persona con abrigo largo
+  sobre shorts vaqueros saca una caja de `ropa_inferior` redundante (la manga/bajo del abrigo, mal
+  categorizada) además de la correcta. `calle_01`: una persona de fondo, parcialmente cortada por el borde,
+  se etiqueta `cuerpo_entero` de forma plausible pero no verificable (cuenta como parcial). El resto (85/89) no
+  tiene ningún problema de caja que yo pueda ver.
+- **`calle_19` (la foto ya señalada en §8.4 como la más difícil, tres personas solapadas) sigue siendo la más
+  ruidosa**, pero de forma distinta: DeepFashion2 cubre bien a las dos personas menos ocluidas y la red de
+  seguridad (*grounding*/geométrico) entra correctamente solo para la tercera, muy tapada — el diseño híbrido
+  funciona como se esperaba en el caso duro, no como el caso general.
+- **No he repetido la auditoría completa de color/estilo aceptable** de §8.4/§8.5 esta vez (habría hecho falta
+  juzgar las 89 prendas una a una otra vez): sí hice una revisión visual de las 19 fotos completas al construir
+  la tabla de arriba, y encontré **al menos dos errores de color claros** (un vestido fucsia clasificado
+  `negro` en `calle_11`, unas medias de rayas rojas/negras clasificadas `negro` en `calle_30`) — del
+  clasificador, no del detector (mismo adapter v3 que en §8.5, los crops solo cambian de tamaño/encuadre). No
+  hay base para dar un porcentaje de color fiable con esta revisión parcial; queda pendiente si hace falta el
+  dato exacto.
+- **Aviso importante, y motivo por el que baja el "acuerdo categoría detector/clasificador":** ese acuerdo cae a
+  63 % (era 70 % en v1, §8.4/§8.5) — **no es una regresión del detector, es la confirmación de un patrón ya
+  documentado en §8.4**: el clasificador tiende a decir `accesorio` ante un recorte que no se parece a una foto
+  de catálogo (fondo, piel, encuadre ajustado). Las cajas de DeepFashion2 son *más* precisas y *más* ajustadas
+  que las heurísticas viejas — recortan justo la prenda, con menos fondo y menos contexto de "producto sobre
+  fondo neutro" — así que el clasificador las reconoce peor como su propia categoría, aunque la caja en sí esté
+  mejor puesta. Esto es exactamente por lo que el diseño del pipeline toma la categoría del detector y no del
+  clasificador (decisión ya tomada en §8.3): la caída de esta métrica confirma que esa decisión sigue siendo la
+  correcta, no la pone en duda.
+- **`temporada` en los recortes**: 76 % `todo_el_ano` / 24 % `primavera_verano` — prácticamente igual que §8.5
+  (75 %/25 %), como cabía esperar (mismo adapter, el detector no toca `temporada`).
+
+**Qué NO es esto.** El detector no está afinado por mí — es un YOLOv8s-seg de terceros ya entrenado sobre
+DeepFashion2 (`Bingsu/adetailer`, Apache-2.0), no descargado ni redistribuido en este repositorio (igual que
+`microsoft/Florence-2-base`, se descarga y cachea en tiempo de ejecución vía `huggingface_hub`). No es la
+aportación de investigación del TFM — esa sigue siendo el clasificador Florence-2+LoRA afinado a mano (§5-§11);
+el detector aquí es un componente de apoyo, sustituible, igual que lo era la heurística a la que reemplaza.
+Sigue pendiente, si hace falta más adelante y hay tiempo: afinar un detector propio sobre DeepFashion2 de
+verdad (dataset oficial vía formulario, o un espejo no oficial ya localizado en HuggingFace), y afinar también
+el *clasificador* con recortes reales en vez de fotos de catálogo — las dos cosas que la memoria ya señalaba
+como "la pieza grande" antes de esta sección (§11.6 punto 7 / §11.7).
+
+**Ficheros:** `data/revision_humana/outfits_fotos_calle_deepfashion2.json` (89 prendas) y
+`resumen_outfit_deepfashion2.json`, ambos commiteados. `anotadas_deepfashion2/` y `cache_deepfashion2.json` no
+se suben (mismo criterio que siempre).
+
 ---
 
 ## 9. Limitaciones y amenazas a la validez
@@ -944,10 +1033,15 @@ no fallar sistemáticamente en cuatro colores completos.
    no se ha vuelto a auditar a mano.
 7. **Looks, la pieza grande**: sustituir las heurísticas de detección por un **detector de
    prendas afinado** (DeepFashion2, el candidato de §12.2 de `Estado_arte.md`) y afinar el
-   clasificador con **recortes reales**; para medirlo, una app v2 que muestre el recorte y pida
-   validar la prenda (categoría, color, estilo) sobre fotos de calle. Es la pieza pendiente de
-   verdad: todo lo de v1-v5 se mide sobre catálogo, no sobre fotos reales de redes sociales —
-   el objetivo original de todo este componente (§1).
+   clasificador con **recortes reales**. ~~Sustituir la heurística de detección~~ — **hecho a
+   medias** (§8.6, 2026-09-21): integrado un detector YOLOv8-seg **ya entrenado** por terceros
+   sobre DeepFashion2 (`Bingsu/adetailer`, Apache-2.0) — las heurísticas de *grounding*/geométrico
+   pasan de explicar el 29 % de las cajas al 5 %. **No** es un detector afinado por mí (eso sigue
+   pendiente, dataset oficial detrás de formulario) y el clasificador **sigue sin afinar con
+   recortes reales** — ninguna de las dos cosas necesitaba un detector afinado propio para
+   valorarse, así que quedan igual de pendientes que antes. Sigue siendo la pieza que falta de
+   verdad para el objetivo original: todo lo de v1-v5 se mide sobre catálogo, no sobre fotos
+   reales de redes sociales (§1).
 8. **Comparar con Claude/Gemini** en el mismo test y esquema (opcional, coste de API): es el
    dato que responde a «no vale usar Claude directamente».
 9. Actualizar §6.3/§7 de `Estado_arte.md` **solo si el autor lo pide**.

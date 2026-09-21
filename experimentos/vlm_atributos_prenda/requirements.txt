@@ -11,3 +11,6 @@ einops
 timm
 pillow>=12.0.0
 pyarrow
+huggingface_hub
+ultralytics  # detector DeepFashion2 en analizar_outfit.py (S8.6) -- YOLOv8, pesos de
+             # terceros descargados en tiempo de ejecucion, no incluidos en el repo

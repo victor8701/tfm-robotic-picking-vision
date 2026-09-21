@@ -245,18 +245,20 @@ mismas imágenes) es `herramientas/evaluar_solape_1207.py`; resultado y análisi
 ```bash
 cd herramientas
 python3 analizar_outfit.py --carpeta ../data/fotos_calle --salida-json outfits.json \
-    --salida-imagenes anotadas --cache cache.json     # ≈ 40 s por foto en CPU
+    --salida-imagenes anotadas --cache cache.json     # ≈ 20-50 s por foto en CPU
 python3 resumen_outfit.py --outfits outfits.json \
-    --foto-entera ../data/revision_humana/predicciones_fotos_calle.json \
-    --auditoria ../data/revision_humana/auditoria_outfit_calle.json
+    --foto-entera ../data/revision_humana/predicciones_fotos_calle.json
 ```
 
-Mismo Florence-2 con dos capacidades: con el adapter **desactivado** detecta personas y prendas
-(`<OD>` + *phrase grounding* de una frase cada vez) y con el adapter **activado** clasifica cada
-recorte. El estilo del look es el voto ponderado de sus prendas. Es un prototipo heurístico
-(la detección es la parte frágil) evaluado sobre 19 fotos, con una auditoría hecha por Claude y
-guardas ajustadas mirando esas mismas fotos: leer los resultados como indicios, no como
-métricas. Detalle y cifras en la memoria (§8).
+Detectar ya no es solo heurísticas: persona/calzado/accesorio siguen viniendo de Florence-2-base
+nativo (`<OD>`, adapter **desactivado**), pero prenda superior/inferior/abrigo/vestido vienen de
+un **detector real** (YOLOv8-seg afinado sobre DeepFashion2, de terceros — Apache-2.0, se
+descarga solo la primera vez). Las heurísticas de *grounding* + torso geométrico se quedan de red
+de seguridad residual (5% de las cajas, antes 29%). Clasificar sigue igual: adapter **activado**,
+`<ATRIBUTOS_PRENDA>` sobre cada recorte. El estilo del look es el voto ponderado de sus prendas.
+Evaluado sobre las mismas 19 fotos, con una auditoría hecha por Claude: leer los resultados como
+indicios, no como métricas — sobre todo el detector, que sí es real pero de terceros, no propio.
+Detalle y cifras en la memoria (§8.6).
 
 ## Próximos pasos
 
@@ -264,20 +266,23 @@ métricas. Detalle y cifras en la memoria (§8).
 no se desincronicen): reentrenar v2 (§11.2-§11.3) · decidir `temporada` de `Jackets` y del resto
 de tipos, dataset/adapter v3 (§11.1, §11.4) · sobremuestrear colores raros, adapter v4 (§11.5) ·
 looks completos como prototipo (§8, ver arriba) · revisión humana de las 120 fichas completada
-(§9) · prototipo de looks repetido con el adapter v3 (§8.5): detección idéntica, `temporada`
-deja de ser una constante, resto dentro del ruido de la muestra · sobremuestrear la cola larga
-de **tipos de prenda**, adapter v5 (§11.7): `grupo_estilo` en los tipos objetivo pasa de 3-59% a
-76.6%, de paso corrige un bug real (`Tracksuits`/`Swimwear` nunca se mapeaban en v1-v4). **v3
-sigue siendo el adapter recomendado por defecto** (mejor acuerdo medio con la revisión humana,
-85%); v4 cuando importa más no fallar en `naranja`/`dorado`/`plateado` que la media; v5 cuando
-importan los tipos de prenda raros (o se necesita que el esquema cubra `Tracksuits`/`Swimwear`).
-Ver memoria §11.7 y la tabla "¿Qué adapter usar?" de §12 para la lista completa y con contexto.
+(§9) · prototipo de looks repetido con el adapter v3 (§8.5) · sobremuestrear la cola larga de
+**tipos de prenda**, adapter v5 (§11.7): `grupo_estilo` en los tipos objetivo pasa de 3-59% a
+76.6%, de paso corrige un bug real (`Tracksuits`/`Swimwear` nunca se mapeaban en v1-v4) ·
+**detector real (DeepFashion2) sustituye la mayoría de las heurísticas de detección** (§8.6): un
+YOLOv8-seg de terceros, ya entrenado (no afinado por mí), integrado en `analizar_outfit.py` —
+las heurísticas de *grounding*/geométrico caen del 29% al 5% de las cajas. **v3 sigue siendo el
+adapter recomendado por defecto** (mejor acuerdo medio con la revisión humana, 85%); v4 cuando
+importa más no fallar en `naranja`/`dorado`/`plateado` que la media; v5 cuando importan los tipos
+de prenda raros (o se necesita que el esquema cubra `Tracksuits`/`Swimwear`). Ver memoria §11.7
+y la tabla "¿Qué adapter usar?" de §12 para la lista completa y con contexto.
 
 **Pendiente**, por orden aproximado de coste/beneficio:
 
-1. **Looks, la pieza grande**: detector de prendas afinado (DeepFashion2) en vez de las
-   heurísticas actuales, y clasificador afinado con recortes reales — es la pieza que falta para
-   el objetivo original (fotos reales de redes sociales, no catálogo).
+1. **Looks, lo que queda de la pieza grande**: afinar un detector **propio** sobre DeepFashion2
+   (el de ahora es de terceros, ya entrenado — ver §8.6) y afinar el **clasificador** con
+   recortes reales en vez de fotos de catálogo — la pieza que falta para el objetivo original
+   (fotos reales de redes sociales, no catálogo).
 2. Comparar con Claude/Gemini en el mismo test (opcional): el dato que justifica "modelo propio"
    con números, no solo con el argumento.
 
@@ -293,8 +298,10 @@ Ver memoria §11.7 y la tabla "¿Qué adapter usar?" de §12 para la lista compl
   sudadera sí. Entrenar solo con prendas sueltas pone un techo estructural a este campo que
   no se arregla con más datos del mismo tipo — para acercarse de verdad al caso real
   (influencer con varias prendas puestas) hace falta un dataset con outfits completos, no
-  solo más fotos de catálogo. Candidato natural ya citado en el estado del arte (§12.2):
-  **DeepFashion2**, que incluye pares foto-consumidor (calle/selfie, outfit completo) +
-  foto-tienda pensados exactamente para este salto de dominio.
+  solo más fotos de catálogo. **DeepFashion2** (candidato ya citado en el estado del arte,
+  §12.2) ya se usa a medias desde §8.6: el *detector* del prototipo de looks es un YOLOv8-seg
+  afinado sobre DeepFashion2, pero de terceros, no entrenado por mí, y el *clasificador* (la
+  parte que da `grupo_estilo`) sigue siendo Florence-2+LoRA entrenado solo con fotos de
+  catálogo de Kaggle — este párrafo sigue siendo cierto para el clasificador.
 - `material`, `estampado` y `fit` (§3.4) quedan fuera del esquema v1 — el dataset de Kaggle no
   tiene columnas ni señal de texto fiable para ninguno de los tres.

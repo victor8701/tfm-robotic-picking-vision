@@ -1,0 +1,23 @@
+{
+ "n_fotos": 19,
+ "n_personas": 31,
+ "n_prendas": 89,
+ "prendas_por_categoria": {
+  "ropa_superior": 21,
+  "ropa_inferior": 25,
+  "calzado": 28,
+  "abrigo": 7,
+  "cuerpo_entero": 6,
+  "accesorio": 2
+ },
+ "origen_caja": {
+  "deepfashion2": 54,
+  "od": 30,
+  "grounding": 3,
+  "geometrico": 2
+ },
+ "acuerdo_categoria_global": {
+  "coincide": 55,
+  "n": 87
+ }
+}

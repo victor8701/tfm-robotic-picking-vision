@@ -5,36 +5,46 @@ atributos POR PRENDA + estilo del outfit.
 
 El clasificador afinado (adapter LoRA) solo ha visto prendas sueltas, asi que
 sobre una foto entera de calle degrada de forma estructural (ver README). Este
-script lo evita con el mismo Florence-2-base, usado con dos capacidades:
+script lo evita en tres pasos:
 
-  1. DETECTAR (adapter DESACTIVADO, capacidad nativa del modelo base):
-       - <OD> sobre la foto: personas y las prendas que sabe nombrar (calzado,
-         pantalon, falda, vestido, chaqueta, gorro, bolso...).
-       - <CAPTION_TO_PHRASE_GROUNDING> con UNA sola frase ("shirt", "pants") sobre
-         el recorte de cada persona, para lo que <OD> casi nunca nombra (prenda
-         superior) o se deja (pantalon). Con varias palabras a la vez devuelve una
-         caja por palabra aunque la prenda no este, asi que no sirve para decidir
-         presencia; por eso una frase cada vez, y solo si falta esa prenda.
-       - Si la caja de la prenda superior no es plausible (muy estrecha o fuera del
-         torso), se sustituye por el torso geometrico (entre el 15% de la altura de
-         la persona y el inicio de la prenda inferior). Se marca como origen
-         "geometrico" para poder contar cuantas veces hace falta.
+  1. DETECTAR:
+       - Personas y calzado/accesorios: Florence-2-base nativo, adapter
+         DESACTIVADO, <OD> sobre la foto entera (vocabulario libre).
+       - Prenda superior/inferior/abrigo/vestido: **detector real (v3 del script,
+         2026-09-21)**, un YOLOv8-seg afinado sobre DeepFashion2 (13 categorias,
+         Apache-2.0, `Bingsu/adetailer` en HuggingFace) -- ver DF2_REPO/MAPA_DF2 mas
+         abajo. Sustituye lo que hacian las guardas heuristicas de la v1/v2 del
+         script (grounding de una frase + torso geometrico, ver abajo), que se
+         quedan solo como red de seguridad para lo que el detector no cubre (nunca
+         se activan si DeepFashion2 ya encontro la prenda de esa persona).
+       - Red de seguridad (v1/v2 del script, ahora residual): <CAPTION_TO_PHRASE_
+         GROUNDING> con UNA sola frase ("shirt", "pants") sobre el recorte de la
+         persona, y si la caja de la prenda superior no es plausible, torso
+         geometrico (entre el 15% de la altura de la persona y el inicio de la
+         prenda inferior) -- marcado como origen "geometrico" para poder contar
+         cuantas veces hace falta (debería ser casi nunca ya).
   2. CLASIFICAR (adapter ACTIVADO): cada recorte de prenda pasa por
-       <ATRIBUTOS_PRENDA>, exactamente igual que en el entrenamiento.
+       <ATRIBUTOS_PRENDA>, exactamente igual que en el entrenamiento -- esto NO
+       cambia con el detector nuevo, sigue siendo el mismo Florence-2+LoRA.
   3. AGREGAR: el estilo del outfit es el voto de los grupo_estilo de sus prendas,
        ponderado por la raiz del tamano relativo de cada recorte.
 
-Guardas de la version 2 (anadidas tras ver los fallos de la primera pasada sobre las
-19 fotos de calle, asi que las cifras sobre ellas son EN MUESTRA): caja de "prenda
-superior" que abarca a toda la persona -> torso geometrico; personas de fondo por debajo
-del 12% del area de la principal -> descartadas; calzado solo si el par esta junto;
-"pants" solo si empieza en la mitad baja; primer plano (persona >= 85% de la foto) sin
-buscar pantalon ni torso geometrico.
+Guardas de la version 2 del script (anadidas tras ver los fallos de la primera pasada
+sobre las 19 fotos de calle, asi que las cifras sobre ellas son EN MUESTRA): caja de
+"prenda superior" que abarca a toda la persona -> torso geometrico; personas de fondo
+por debajo del 12% del area de la principal -> descartadas; calzado solo si el par esta
+junto; "pants" solo si empieza en la mitad baja; primer plano (persona >= 85% de la
+foto) sin buscar pantalon ni torso geometrico. Siguen activas, ya que la red de
+seguridad de grounding todavia las necesita cuando se dispara.
 
-Es un prototipo: la deteccion es la parte debil (heuristica) y esta pensada para
-sustituirse por un detector de prendas afinado (p.ej. sobre DeepFashion2). La
-categoria de cada prenda se toma de la deteccion cuando existe; se guarda tambien
-la del clasificador para poder medir el desacuerdo entre ambas.
+Aviso de versionado (mismo que ya avisa la memoria S8.3): "v2"/"v3" aqui son
+iteraciones del SCRIPT de deteccion, no tienen nada que ver con "v1".."v5" del adapter
+clasificador (--adapter mas abajo) -- son dos numeraciones independientes que
+coinciden por casualidad.
+
+La categoria de cada prenda se toma de la deteccion (DeepFashion2 o <OD>) cuando
+existe; se guarda tambien la del clasificador para poder medir el desacuerdo entre
+ambas (ver "coincide_categoria").
 
 Uso:
     python3 analizar_outfit.py --carpeta ../data/fotos_calle --salida-json outfits.json \
@@ -49,9 +59,11 @@ import time
 from pathlib import Path
 
 import torch
+from huggingface_hub import hf_hub_download
 from PIL import Image, ImageDraw, ImageFont
 from peft import PeftModel
 from transformers import AutoModelForCausalLM, AutoProcessor
+from ultralytics import YOLO
 
 BASE_DIR = Path(__file__).parent.parent
 MODELO_BASE = "microsoft/Florence-2-base"
@@ -61,6 +73,13 @@ PERSONAS = {"man", "woman", "person", "boy", "girl"}
 # etiqueta de <OD> (vocabulario libre de Florence-2) -> categoria de nuestro esquema
 # (mismas cabeceras que esquema_atributos.md). Se ignoran a proposito rostro, gafas,
 # reloj, movil...: no son prendas de la taxonomia. El orden importa (primera que casa).
+# Nota (v3 del script, 2026-09-21): de aqui abajo, solo se usan de verdad las dos
+# ultimas filas (calzado, accesorio) -- ropa_superior/inferior/abrigo/cuerpo_entero
+# ahora las detecta DeepFashion2 (ver MAPA_DF2), mucho mas fiable que este regex sobre
+# el vocabulario libre de <OD>. Se dejan las filas igual (no se borran) porque
+# documentan lo que <OD> es capaz de nombrar y sirven de referencia si algun dia hace
+# falta lo contrario (DeepFashion2 no reconoce calzado/accesorios en absoluto, asi que
+# ahi <OD> se queda siendo la unica fuente).
 MAPA_OD = [
     (r"dress|gown|jumpsuit|romper", "cuerpo_entero"),
     (r"jacket|coat|blazer|parka|windbreaker", "abrigo"),
@@ -69,6 +88,24 @@ MAPA_OD = [
     (r"footwear|shoe|boot|sneaker|sandal|heel|slipper", "calzado"),
     (r"\bhat\b|\bcap\b|beanie|bag|backpack|purse|\btie\b|scarf|\bbelt\b", "accesorio"),
 ]
+CATEGORIAS_DE_OD = {"calzado", "accesorio"}  # el resto las cubre DeepFashion2, ver detectar()
+
+# Detector real (v3 del script): YOLOv8s-seg afinado sobre DeepFashion2 (491K imagenes,
+# 13 categorias, licencia Apache-2.0), pesos de terceros -- no se commitea al repo
+# (igual que microsoft/Florence-2-base tampoco se commitea), se descarga y cachea de
+# HuggingFace la primera vez. DeepFashion2 NO tiene calzado ni accesorios (es un
+# dataset de prendas puestas en el torso/piernas), de ahi que <OD> se siga usando para
+# esas dos categorias.
+DF2_REPO = "Bingsu/adetailer"
+DF2_ARCHIVO = "deepfashion2_yolov8s-seg.pt"
+MAPA_DF2 = {
+    "short_sleeved_shirt": "ropa_superior", "long_sleeved_shirt": "ropa_superior",
+    "vest": "ropa_superior", "sling": "ropa_superior",
+    "short_sleeved_outwear": "abrigo", "long_sleeved_outwear": "abrigo",
+    "shorts": "ropa_inferior", "trousers": "ropa_inferior", "skirt": "ropa_inferior",
+    "short_sleeved_dress": "cuerpo_entero", "long_sleeved_dress": "cuerpo_entero",
+    "vest_dress": "cuerpo_entero", "sling_dress": "cuerpo_entero",
+}
 
 COLOR_CATEGORIA = {
     "ropa_superior": (0, 120, 255), "ropa_inferior": (0, 170, 90), "cuerpo_entero": (220, 40, 140),
@@ -177,7 +214,32 @@ def categoria_de_etiqueta(etiqueta):
     return None
 
 
-def detectar(motor, im, foto, args):
+def cargar_detector_df2():
+    """Descarga (y cachea localmente, via huggingface_hub) el YOLOv8s-seg afinado
+    sobre DeepFashion2 -- misma idea que AutoModelForCausalLM.from_pretrained para
+    Florence-2-base: pesos de terceros, no se commitean al repo."""
+    ruta = hf_hub_download(repo_id=DF2_REPO, filename=DF2_ARCHIVO)
+    return YOLO(ruta)
+
+
+def detectar_df2(detector_df2, im, min_conf):
+    """Prenda superior/inferior/abrigo/vestido via DeepFashion2 -- una sola pasada
+    sobre la foto entera, igual que <OD> para personas. Misma forma de diccionario que
+    prendas_od (categoria/caja/origen) para que el resto del pipeline no note la
+    diferencia; guarda ademas la etiqueta cruda de DeepFashion2 y la confianza."""
+    r = detector_df2.predict(im, conf=min_conf, verbose=False)[0]
+    prendas = []
+    for box in r.boxes:
+        etiqueta = detector_df2.names[int(box.cls)]
+        prendas.append({
+            "deteccion": etiqueta, "categoria": MAPA_DF2[etiqueta],
+            "caja": [float(v) for v in box.xyxy[0]], "origen": "deepfashion2",
+            "confianza": round(float(box.conf), 2),
+        })
+    return prendas
+
+
+def detectar(motor, detector_df2, im, foto, args):
     od = motor.base(im, "<OD>", clave=f"{foto}|<OD>")
     H = im.height
     personas = [{"etiqueta": l, "caja": [float(v) for v in b]}
@@ -196,11 +258,15 @@ def detectar(motor, im, foto, args):
     if not personas:  # sin ninguna persona detectada: se trata la foto entera como una persona
         personas = [{"etiqueta": "imagen_completa", "caja": [0.0, 0.0, float(im.width), float(im.height)]}]
 
+    # calzado/accesorio de <OD> (unica fuente, DeepFashion2 no los tiene) + prenda
+    # superior/inferior/abrigo/cuerpo_entero de DeepFashion2 (fuente principal ahora;
+    # ver aviso de MAPA_OD/CATEGORIAS_DE_OD mas arriba).
     prendas_od = []
     for l, b in zip(od["labels"], od["bboxes"]):
         cat = categoria_de_etiqueta(l)
-        if cat:
+        if cat in CATEGORIAS_DE_OD:
             prendas_od.append({"deteccion": l, "categoria": cat, "caja": [float(v) for v in b], "origen": "od"})
+    prendas_od += detectar_df2(detector_df2, im, args.min_conf_df2)
     return personas, prendas_od
 
 
@@ -319,7 +385,7 @@ def dibujar(im, personas_res, ruta):
             col = COLOR_CATEGORIA.get(p["categoria"], (0, 0, 0))
             d.rectangle(p["caja"], outline=col, width=4)
             a = p.get("atributos") or {}
-            marca = {"od": "", "grounding": "~", "geometrico": "*"}[p["origen"]]
+            marca = {"od": "", "deepfashion2": "+", "grounding": "~", "geometrico": "*"}[p["origen"]]
             txt = f"{marca}{p['categoria']}|{a.get('color_primario')}|{a.get('grupo_estilo')}"
             d.text((p["caja"][0] + 3, p["caja"][1] + 3), txt, fill=col, font=fuente, stroke_width=2, stroke_fill=(255, 255, 255))
     lienzo.save(ruta, quality=88)
@@ -330,11 +396,14 @@ def main():
     ap.add_argument("--carpeta", required=True, help="Carpeta plana con las fotos (.jpg/.png).")
     ap.add_argument("--salida-json", required=True)
     ap.add_argument("--salida-imagenes", help="Si se indica, guarda cada foto con cajas y atributos dibujados "
-                                              "(sin marca = <OD>, ~ = grounding, * = torso geometrico).")
-    ap.add_argument("--cache", help="JSON donde cachear la salida de <OD> y grounding (para iterar la logica sin recalcular).")
+                                              "(sin marca = <OD>, + = DeepFashion2, ~ = grounding, * = torso geometrico).")
+    ap.add_argument("--cache", help="JSON donde cachear la salida de <OD> y grounding (para iterar la logica sin recalcular; "
+                                     "no cachea DeepFashion2, que ya es barato -- una pasada por foto, sin CPU de Florence-2).")
     ap.add_argument("--adapter", default=str(BASE_DIR / "modelos" / "florence2_base_lora_v3"),
                     help="v3 tiene el mejor acuerdo medio con la revision humana (ver memoria S11.4/S11.6); "
                          "los resultados de la memoria S8 se midieron con v1, sin repetir todavia con este default.")
+    ap.add_argument("--min-conf-df2", type=float, default=0.3,
+                    help="Confianza minima del detector DeepFashion2 (YOLOv8-seg) para aceptar una caja.")
     ap.add_argument("--max-personas", type=int, default=3)
     ap.add_argument("--min-area-rel", type=float, default=0.12,
                     help="Area minima de una persona respecto a la principal (descarta fondo desenfocado o cortado por el borde).")
@@ -348,6 +417,8 @@ def main():
     if args.limite:
         fotos = fotos[: args.limite]
     motor = Motor(args.adapter, args.cache)
+    print("Cargando detector DeepFashion2 (YOLOv8s-seg, se descarga la primera vez)...")
+    detector_df2 = cargar_detector_df2()
     if args.salida_imagenes:
         Path(args.salida_imagenes).mkdir(parents=True, exist_ok=True)
 
@@ -355,7 +426,7 @@ def main():
     for n, f in enumerate(fotos, 1):
         t0 = time.time()
         im = Image.open(f).convert("RGB")
-        personas, prendas_od = detectar(motor, im, f.stem, args)
+        personas, prendas_od = detectar(motor, detector_df2, im, f.stem, args)
         propias = collections.defaultdict(list)
         for pr in prendas_od:
             k = persona_de(pr["caja"], personas)
