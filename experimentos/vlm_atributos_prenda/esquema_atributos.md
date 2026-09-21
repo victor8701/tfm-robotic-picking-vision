@@ -1,4 +1,4 @@
-# Esquema de atributos v4 — clasificador de prendas desde foto
+# Esquema de atributos v5 — clasificador de prendas desde foto
 
 Fuente de verdad de las tablas de mapeo `dataset Kaggle → esquema de esta tesis`, usadas por
 `herramientas/preparar_dataset_florence2.py`. Reutiliza y colapsa campos que ya existen en
@@ -24,6 +24,15 @@ por un mal reparto del muestreo sino porque el dataset entero tiene pocas filas 
 (`COLORES_A_REFORZAR` en `preparar_dataset_florence2.py`) para que caigan en train/val/test en
 vez de dejarlo a la suerte. `florence2_base_lora_v4/` es el adapter con este refuerzo.
 
+**v5 (2026-09-21):** mismo mecanismo de v4, generalizado y aplicado a `articleType` en vez de
+solo a `color_primario` (`TIPOS_A_REFORZAR`/`separar_refuerzo()`, ver `categoria` abajo). Además
+corrige un bug real: `Tracksuits` y `Swimwear` faltaban en la tabla de `categoria` (siguiente
+sección) pese a tener regla de `grupo_estilo` — se descartaban siempre, 0 filas de esos dos tipos
+en v1-v4. `florence2_base_lora_v5/` es el adapter con el refuerzo de tipos + el fix. No mejora la
+media general sobre v3 (sigue siendo la mejor, 85 % contra la revisión humana) pero sí mide mejor
+en los tipos que tenía como objetivo — detalle en `memoria/TFM_clasificador_visual_atributos.md`
+§11.7.
+
 ## JSON objetivo
 
 ```json
@@ -36,10 +45,23 @@ vez de dejarlo a la suerte. `florence2_base_lora_v4/` es el adapter con este ref
 |---|---|
 | `ropa_superior` | Tshirts, Shirts, Tops, Sweatshirts, Sweaters, Waistcoat |
 | `ropa_inferior` | Jeans, Shorts, Trousers, Track Pants, Leggings, Capris, Skirts |
-| `cuerpo_entero` | Dresses, Jumpsuit |
+| `cuerpo_entero` | Dresses, Jumpsuit, Tracksuits, Swimwear (los dos últimos, v5 — ver aviso abajo) |
 | `abrigo` | Jackets, Blazers, Rain Jacket, Nehru Jackets |
 | `calzado` | Casual Shoes, Sports Shoes, Heels, Formal Shoes, Flats, Sandals, Flip Flops, Sports Sandals |
 | `accesorio` | Handbags, Backpacks, Belts, Caps, Scarves, Stoles, Mufflers, Ties, Clutches |
+
+**v5 (2026-09-21) — bug corregido, no una decisión nueva:** `Tracksuits` y `Swimwear` ya tenían
+regla de `grupo_estilo` (`deportivo`/`playa_resort` respectivamente, en `FILTROS_GRUPO_ESTILO`)
+pero faltaban en esta tabla de `categoria` — `mapear_fila()` exige los 5 campos para quedarse con
+una fila, así que sin `categoria` esas filas se descartaban siempre (0 filas de esos dos tipos
+en v1-v4, pasara lo que pasara con el muestreo). Añadidos a `cuerpo_entero`, mismo criterio que
+`Jumpsuit`/`Dresses` (prenda de una pieza que cubre torso y piernas).
+
+**v5 (2026-09-21) — sobremuestreo de `articleType` de cola larga.** Igual que v4 hizo con
+`color_primario`, `TIPOS_A_REFORZAR` en `preparar_dataset_florence2.py` reserva aparte hasta 150
+filas (o todas las que haya) de los tipos que memoria §6.3 mide en el rango de peor acierto de
+estilo (<50 ejemplos en train): `Waistcoat`, `Sports Sandals`, `Sweatshirts`, `Skirts`,
+`Sweaters`, `Capris`. Detalle y resultado en memoria §11.7.
 
 **Excluido siempre** (mismo criterio ya usado en `poblar_muestras_dataset.py`): ropa étnica
 india (Kurtas, Sarees, Salwar, Churidar, Dupatta, Patiala, Kurtis, Kurta Sets, Lehenga Choli,

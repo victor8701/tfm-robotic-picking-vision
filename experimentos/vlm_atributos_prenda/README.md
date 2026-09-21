@@ -127,7 +127,7 @@ cuestión de días) — se ejecuta en Colab con GPU T4 gratuita:
    GitHub), activa GPU (`Entorno de ejecución > Cambiar tipo de entorno de ejecución > T4
    GPU`), y ejecuta las celdas en orden.
 3. Descarga el `.zip` del adapter resultante y descomprímelo en
-   `modelos/florence2_base_lora_v4/` (o la versión que toque — el notebook y
+   `modelos/florence2_base_lora_v5/` (o la versión que toque — el notebook y
    `entrenar_lora.py --salida` usan siempre la más reciente por defecto).
 
 `herramientas/entrenar_lora.py` es el script real (el notebook es solo un wrapper que lo
@@ -265,19 +265,20 @@ no se desincronicen): reentrenar v2 (§11.2-§11.3) · decidir `temporada` de `J
 de tipos, dataset/adapter v3 (§11.1, §11.4) · sobremuestrear colores raros, adapter v4 (§11.5) ·
 looks completos como prototipo (§8, ver arriba) · revisión humana de las 120 fichas completada
 (§9) · prototipo de looks repetido con el adapter v3 (§8.5): detección idéntica, `temporada`
-deja de ser una constante, resto dentro del ruido de la muestra. **v3 es el adapter recomendado
-por defecto** (mejor acuerdo medio con la revisión humana, 85 %); v4 es la alternativa cuando
-importa más no fallar en `naranja`/`dorado`/`plateado` que la media. Ver memoria §11.6 para la
-lista completa y con contexto.
+deja de ser una constante, resto dentro del ruido de la muestra · sobremuestrear la cola larga
+de **tipos de prenda**, adapter v5 (§11.7): `grupo_estilo` en los tipos objetivo pasa de 3-59% a
+76.6%, de paso corrige un bug real (`Tracksuits`/`Swimwear` nunca se mapeaban en v1-v4). **v3
+sigue siendo el adapter recomendado por defecto** (mejor acuerdo medio con la revisión humana,
+85%); v4 cuando importa más no fallar en `naranja`/`dorado`/`plateado` que la media; v5 cuando
+importan los tipos de prenda raros (o se necesita que el esquema cubra `Tracksuits`/`Swimwear`).
+Ver memoria §11.7 y la tabla "¿Qué adapter usar?" de §12 para la lista completa y con contexto.
 
 **Pendiente**, por orden aproximado de coste/beneficio:
 
-1. Sobremuestrear la cola larga de **tipos de prenda**, no solo de colores (el estilo cae al 3%
-   en tipos con <10 ejemplos, §6.3).
-2. **Looks, la pieza grande**: detector de prendas afinado (DeepFashion2) en vez de las
+1. **Looks, la pieza grande**: detector de prendas afinado (DeepFashion2) en vez de las
    heurísticas actuales, y clasificador afinado con recortes reales — es la pieza que falta para
    el objetivo original (fotos reales de redes sociales, no catálogo).
-3. Comparar con Claude/Gemini en el mismo test (opcional): el dato que justifica "modelo propio"
+2. Comparar con Claude/Gemini en el mismo test (opcional): el dato que justifica "modelo propio"
    con números, no solo con el argumento.
 
 ## Qué NO es (mismo aviso honesto que en `clip_trend_matching/`)

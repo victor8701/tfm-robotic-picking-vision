@@ -2,12 +2,14 @@
 
 **Autor:** Víctor Martín Parra  
 **Máster:** Robótica y Automatización — UC3M (2025/2027)  
-**Fecha:** 20 de septiembre de 2026  
-**Versión:** 0.7 (documento vivo: v0.1 = resultados del dataset/adapter v1; v0.2 = decisiones de esquema del autor y
+**Fecha:** 21 de septiembre de 2026  
+**Versión:** 0.9 (documento vivo: v0.1 = resultados del dataset/adapter v1; v0.2 = decisiones de esquema del autor y
 dataset v2 regenerado, §11.1; v0.3 = adapter v2 entrenado y evaluado, comparación con v1, §11.2; v0.4 = resto de
 `temporada` decidido y dataset v3 regenerado, §11.4; v0.5 = adapter v3 entrenado y evaluado — mejor que v1 y v2 contra
 el humano, §11.4; v0.6 = sobremuestreo de colores raros, dataset v4 regenerado, §11.5; v0.7 = adapter v4 entrenado y
-evaluado — arregla 3 clases de color, a costa de la media global, §11.5)  
+evaluado — arregla 3 clases de color, a costa de la media global, §11.5; v0.8 = auditoría de coherencia v1-v4 y
+repetición del prototipo de looks con v3, §8.5; v0.9 = sobremuestreo de tipos de prenda raros + fix
+`Tracksuits`/`Swimwear`, dataset/adapter v5 entrenado y evaluado, §11.7)  
 **Código y datos:** [`experimentos/vlm_atributos_prenda/`](../experimentos/vlm_atributos_prenda/) (rama `clip-trend-semantic-matching-poc`)  
 **Relación con el estado del arte:** este documento cubre la pieza *visual* del Trend Intelligence Agent
 ([`Estado_arte.md`](Estado_arte.md) §6) y el matching semántico (§7). **No modifica `Estado_arte.md`**: el autor pidió
@@ -52,19 +54,23 @@ que lo aplica a fotos con personas (detectar → recortar → clasificar cada pr
 | Looks: cajas de prenda correctas / prendas visibles detectadas | — | **93 %** (80/86) / **98 %** (82/84) | ídem |
 | Looks: `temporada` por prenda | — | 83 de 84 recortes → `primavera_verano` | inservible fuera del catálogo |
 
-*(Esta tabla es el "antes/después" del adapter **v1**. Hay tres vueltas más — v2 (`temporada` de
-`Jackets`, `grupo_estilo` de `Dresses`), v3 (`temporada` de otros 13 tipos) y v4 (sobremuestreo de
-colores raros) — con resultado real y comparación campo a campo en §11.2, §11.4 y §11.5. Contra las
-100 fichas revisadas a mano (más fiable que el test de 500, que cambia de contenido entre
-versiones): v2 se queda prácticamente igual que v1 salvo `temporada`, que cae por el motivo
-esperado; **v3 es la mejor de las cuatro versiones en acuerdo medio (85 %)**, con `temporada`
-subiendo de 44 %/38 % a 68 %; **v4 arregla de verdad 3 de los 5 colores que llevaban en F1 0.00
-desde v1** (`naranja`, `dorado`, `plateado`) pero a costa de `color_primario` en general —
-media 82 %, peor que v3 aunque sigue por delante de v1/v2 — un trade-off real, no una mejora
-limpia. Las tres filas de "Looks" de esta tabla son también v1; repetidas con el adapter v3 en
-§8.5: detección idéntica (no depende del adapter), `temporada` deja de ser una constante
-(`todo_el_ano` 75 % de los recortes, ya no 99 % `primavera_verano`) y el resto de cifras dentro
-del ruido de una muestra de 19-31.)*
+*(Esta tabla es el "antes/después" del adapter **v1**. Hay cuatro vueltas más — v2 (`temporada` de
+`Jackets`, `grupo_estilo` de `Dresses`), v3 (`temporada` de otros 13 tipos), v4 (sobremuestreo de
+colores raros) y v5 (sobremuestreo de tipos de prenda raros + fix de `Tracksuits`/`Swimwear`) —
+con resultado real y comparación campo a campo en §11.2, §11.4, §11.5 y §11.7. Contra las fichas
+revisadas a mano (100 para v1-v4, las 120 completas ya para v5 — más fiable que el test de 500,
+que cambia de contenido entre versiones): v2 se queda prácticamente igual que v1 salvo
+`temporada`, que cae por el motivo esperado; **v3 es la mejor de las cinco versiones en acuerdo
+medio (85 %)**, con `temporada` subiendo de 44 %/38 % a 68 %; **v4 arregla de verdad 3 de los 5
+colores que llevaban en F1 0.00 desde v1** (`naranja`, `dorado`, `plateado`) pero a costa de
+`color_primario` en general — media 82-83 % según el subconjunto, peor que v3 aunque sigue por
+delante de v1/v2 — un trade-off real, no una mejora limpia; **v5 se queda en esa misma media
+(83 %) pero arregla de verdad la cola larga de tipos de prenda** (`grupo_estilo` en los tipos
+objetivo pasa de 3-59 % a 76.6 %, §11.7) sin mover la media para bien ni para mal frente a v4 —
+mismo patrón de trade-off, no un sucesor de v3. Las tres filas de "Looks" de esta tabla son
+también v1; repetidas con el adapter v3 en §8.5: detección idéntica (no depende del adapter),
+`temporada` deja de ser una constante (`todo_el_ano` 75 % de los recortes, ya no 99 %
+`primavera_verano`) y el resto de cifras dentro del ruido de una muestra de 19-31.)*
 
 Seis conclusiones:
 
@@ -926,8 +932,11 @@ no fallar sistemáticamente en cuatro colores completos.
    la db en vivo (no quedaba ninguna pendiente pese a lo que yo mismo había dicho antes de
    comprobarlo). Pendiente de bajo coste: reejecutar `analizar_revision_humana.py` sobre las
    120 (§7 y este apartado siguen con el subconjunto de 100).
-5. Sobremuestrear también la cola larga de **tipos de prenda** (no solo colores): el estilo cae
-   al 3 % en tipos con menos de 10 ejemplos de entrenamiento (§6.3).
+5. ~~Sobremuestrear también la cola larga de **tipos de prenda**~~ (no solo colores) — **hecho
+   como v5** (§11.7, 2026-09-21): `grupo_estilo` en los seis tipos objetivo pasa del régimen
+   3-59 % de acierto (§6.3) a **76.6 %**, y de paso corrige un bug real (`Tracksuits`/`Swimwear`
+   nunca se mapeaban en v1-v4). No mueve la media frente a v4 (83 %=83 %) ni alcanza la de v3
+   (85 %) — mismo patrón de trade-off que v3-vs-v4, no un sucesor único.
 6. ~~Repetir el prototipo de looks (§8) con el adapter v3~~ — **hecho** (§8.5, 2026-09-21):
    detección idéntica a §8.4 (como se esperaba), `temporada` deja de ser una constante
    degenerada, el resto de cifras dentro del ruido de la muestra. Aviso importante dentro de
@@ -937,11 +946,103 @@ no fallar sistemáticamente en cuatro colores completos.
    prendas afinado** (DeepFashion2, el candidato de §12.2 de `Estado_arte.md`) y afinar el
    clasificador con **recortes reales**; para medirlo, una app v2 que muestre el recorte y pida
    validar la prenda (categoría, color, estilo) sobre fotos de calle. Es la pieza pendiente de
-   verdad: todo lo de v1-v4 se mide sobre catálogo, no sobre fotos reales de redes sociales —
+   verdad: todo lo de v1-v5 se mide sobre catálogo, no sobre fotos reales de redes sociales —
    el objetivo original de todo este componente (§1).
 8. **Comparar con Claude/Gemini** en el mismo test y esquema (opcional, coste de API): es el
    dato que responde a «no vale usar Claude directamente».
 9. Actualizar §6.3/§7 de `Estado_arte.md` **solo si el autor lo pide**.
+
+### 11.7 Sobremuestreo de tipos de prenda raros: dataset y adapter v5 (2026-09-21)
+
+Sigue directamente del punto 5 de §11.6: §6.3 mide que el acierto de `grupo_estilo` cae al 3 % en
+tipos de prenda con menos de 10 ejemplos en train y al 59 % con 10-49, frente a 76 % con 50-199.
+Con el muestreo de v4 (que solo estratifica por `categoria`, 6 valores, no por `articleType`, 30),
+seis tipos se quedaban claramente en ese régimen malo pese a haber pool de sobra o casi:
+`Waistcoat` (0 de 12 seleccionadas), `Sports Sandals` (5 de 65), `Sweatshirts` (23 de 278),
+`Skirts` (26 de 57), `Sweaters` (38 de 277), `Capris` (42 de 114) — conteos reales, no estimados.
+
+**Cambio 1 (muestreo, mismo mecanismo de v4 generalizado).** `separar_refuerzo_color()` pasa a
+`separar_refuerzo()` genérico (una `clave_fn` en vez de un campo fijo) y se usa dos veces:
+color (sin cambios) y `articleType`, con `TIPOS_A_REFORZAR` reservando hasta 150 filas de cada
+uno de los seis tipos de arriba (o todas las que haya, si hay menos) antes del muestreo por
+categoría.
+
+**Cambio 2 (bug real, no una decisión).** Investigando la cola larga apareció que `Tracksuits` y
+`Swimwear` tenían regla de `grupo_estilo` (`FILTROS_GRUPO_ESTILO` los resuelve a
+`deportivo`/`playa_resort`) pero **faltaban en `CATEGORIA_POR_ARTICLETYPE`** — `mapear_fila()`
+exige los 5 campos, así que con `categoria=None` esas filas se descartaban siempre, en las
+cuatro versiones anteriores, sin que ningún cambio de muestreo pudiera arreglarlo. Añadidos a
+`cuerpo_entero` (mismo criterio que `Jumpsuit`/`Dresses`). Pool mapeable total: 24215→**24260**
+filas (+29 `Tracksuits` +16 `Swimwear`). Una vez mapeables, la categoría `cuerpo_entero` es tan
+pequeña que el muestreo ya las coge casi al 100 % solas, sin necesitar `TIPOS_A_REFORZAR`.
+
+**Entrenamiento (Kaggle GPU, 2026-09-21 — esta vez tardó 58 min en vez de los ~21 min
+habituales, sin ningún error; variabilidad de la GPU T4 compartida gratuita, no un problema del
+código).** Mejor época en val: 3 (83.9 %). Test de 500 imágenes (composición distinta a v4, no
+comparable fila a fila): categoría 97.2 %, color 72.4 %, estilo 82.8 %, género 92.4 %,
+temporada 82.2 %, JSON válido 100 %. Curiosidad sin explicación firme: `fucsia` pasa de F1 0.00
+(v1-v4) a **0.33** (precisión 1.00, recall 0.20) sin que `COLORES_A_REFORZAR` cambiara — lo más
+probable es varianza propia del entrenamiento (fucsia tiene ~40 filas en train, un cambio de 0 a
+1-2 aciertos ya mueve el F1 así de golpe), no un efecto de v5; no se afirma que esté arreglado.
+
+**La prueba que de verdad importa: ¿mejoran los seis tipos objetivo?** Evaluación aparte sobre
+las 64 filas de `test.jsonl` (v5) que son de esos tipos — held-out de verdad, no las 120 fichas
+de revisión (ver más abajo por qué):
+
+| Tipo | n (test) | `categoria` | `color_primario` | `grupo_estilo` | `género` | `temporada` |
+|---|---|---|---|---|---|---|
+| Capris | 19 | 19/19 | 15/19 | 12/19 | 19/19 | 12/19 |
+| Skirts | 5 | 5/5 | 4/5 | 3/5 | 5/5 | 5/5 |
+| Sports Sandals | 6 | 6/6 | 5/6 | 4/6 | 2/6 | 2/6 |
+| Sweaters | 20 | 18/20 | 16/20 | **18/20** | 20/20 | 19/20 |
+| Sweatshirts | 13 | 10/13 | 12/13 | 11/13 | 13/13 | 9/13 |
+| Tracksuits | 1 | 1/1 | 1/1 | 1/1 | 1/1 | 1/1 |
+| **Total** | **64** | **92.2 %** | **82.8 %** | **76.6 %** | **93.8 %** | **75.0 %** |
+
+`grupo_estilo` — el campo que §6.3 diagnosticó — sale **76.6 %**, justo el nivel del tramo
+«50-199 ejemplos en train» de esa misma tabla (antes estos tipos estaban en el tramo «0-9» al
+3 % o «10-49» al 59 %). `Sweaters` y `Sweatshirts` (los que más cupo ganaron) son los que más
+suben; `Sports Sandals` se queda débil en `género`/`temporada` (2/6 cada uno) — parece
+ambigüedad real de la prenda en la foto (sandalias que no dan pista de género ni estación), no
+algo que el volumen de datos por sí solo arregle. `Waistcoat` y `Swimwear` no tienen ninguna fila
+en este test (pool de solo 12 y 16, casi todo cayó en train); no hay forma de medirlos aparte con
+esta muestra.
+
+**Frente a las 120 fichas de revisión humana (comparación pareada, `comparar_modelos.py`,
+`revisiones_app_n120_2026-09-21.json` — primera vez que se usan las 120 completas en vez del
+subconjunto de 100, ver §11.6 punto 4):**
+
+| campo | v3 vs humano | v4 vs humano | **v5 vs humano** |
+|---|---|---|---|
+| `categoria` | 98 % | 98 % | 96 % |
+| `color_primario` | 85 % | 78 % | 82 % |
+| `género` | 92 % | 92 % | 89 % |
+| `temporada` | 71 % | 68 % | 68 % |
+| `grupo_estilo` | 81 % | 81 % | 80 % |
+| **MEDIA** | **85 %** | **83 %** | **83 %** |
+
+v4→v5 pareado: `categoria` 2 pierde/0 gana, `color_primario` 4 pierde/9 gana, `género` 4
+pierde/1 gana, `temporada` 3/3, `grupo_estilo` 6 pierde/5 gana — en las cinco, el número de
+fichas que cambia de lado es demasiado pequeño (5-13 de 120) para distinguirlo de ruido; ninguno
+se parece al patrón claro de v3→v4 (10 pierde/1 gana en color). **v5 no mueve la media frente a
+v4 (83 %=83 %), y no alcanza la de v3 (85 %).**
+
+**Por qué esto no contradice la tabla de arriba: la comparación pareada casi no toca los tipos
+que v5 cambia.** De las 120 fichas revisadas, solo **3** son de los seis tipos reforzados
+(`Sweaters` 1, `Skirts` 1, `Capris` 1 — ninguna de `Waistcoat`/`Sports Sandals`/`Sweatshirts`, y
+`Tracksuits`/`Swimwear` ni existían como categoría posible antes de v5). Con 3 de 120 fichas
+afectadas, cualquier mejora real en esos tipos queda enterrada en el ruido de las otras 117 —
+la comparación pareada es el instrumento equivocado para medir este cambio concreto, por eso se
+necesitó la tabla de arriba sobre `test.jsonl`.
+
+**Conclusión, mismo formato que v3-vs-v4 (§11.6 punto 3): no hay un sucesor único.** v5 cumple
+lo que se proponía — los seis tipos de la cola larga rinden como un tipo bien representado en
+vez de casi al azar, y corrige un bug real (`Tracksuits`/`Swimwear` inexistentes en v1-v4) — sin
+tocar la media general para bien ni para mal frente a v4. **v3 sigue siendo el adapter con mejor
+acuerdo medio (85 %)** y el default recomendado para uso general; v5 es la opción cuando importan
+específicamente `Capris`/`Skirts`/`Sports Sandals`/`Sweaters`/`Sweatshirts`/`Tracksuits`/
+`Waistcoat`/`Swimwear` — o simplemente porque es el único adapter que puede producir
+`Tracksuits`/`Swimwear` en absoluto. Los cinco adapters se quedan en el repositorio.
 
 ---
 
@@ -951,36 +1052,42 @@ no fallar sistemáticamente en cuatro colores completos.
 cd experimentos/vlm_atributos_prenda
 pip install -r requirements.txt          # transformers==4.51.3 fijado a propósito
 cd herramientas
-python3 preparar_dataset_florence2.py    # train/val/test.jsonl v4 (reglas de §11.1 + §11.4, muestreo de §11.5), semilla 42
-python3 estadisticas_dataset.py          # tablas de la sección 4 (v1) / 11.1, 11.4 y 11.5 (v4)
-python3 baseline_zero_shot.py            # ≈ 65 min en CPU (500 imágenes) -- resultado v1, no se ha repetido en v2/v3/v4
+python3 preparar_dataset_florence2.py    # train/val/test.jsonl v5 (reglas de §11.1 + §11.4, refuerzo de §11.5 + §11.7), semilla 42
+python3 estadisticas_dataset.py          # tablas de la sección 4 (v1) / 11.1, 11.4, 11.5 y 11.7 (v5)
+python3 baseline_zero_shot.py            # ≈ 65 min en CPU (500 imágenes) -- resultado v1, no se ha repetido en v2-v5
 #   entrenamiento v1 (documentado en §5-§10): notebook_colab_entrenamiento.ipynb -> florence2_base_lora_v1/
-#   entrenamiento v2/v3/v4 (documentado en §11.2-§11.5): mismo notebook -> florence2_base_lora_v4/, o
-#   herramientas/kaggle_kernel/ (API de Kaggle, sin notebook, VERSION="v4" en entrenar_en_kaggle.py) -- ver su README.md
+#   entrenamiento v2-v5 (documentado en §11.2-§11.5, §11.7): mismo notebook -> florence2_base_lora_v5/, o
+#   herramientas/kaggle_kernel/ (API de Kaggle, sin notebook, VERSION="v5" en entrenar_en_kaggle.py) -- ver su README.md
 python3 evaluar_modelo.py --adapter ../modelos/florence2_base_lora_v1   # resultados de §6 (por defecto usa v1)
-python3 evaluar_modelo.py --adapter ../modelos/florence2_base_lora_v4 --sin-zero-shot --sin-1207  # resultados de §11.5
+python3 evaluar_modelo.py --adapter ../modelos/florence2_base_lora_v5 --sin-zero-shot --sin-1207  # resultados de §11.7
 python3 evaluar_solape_1207.py           # solape con train/val/test y comparación con CLIP sin contaminación (v1)
-python3 analizar_revision_humana.py --revisiones ../data/revision_humana/revisiones_app_n100_2026-09-20.json
-python3 comparar_modelos.py --revisiones ../data/revision_humana/revisiones_app_n100_2026-09-20.json  # v1/v2/v3/v4 pareado, §11.2/§11.4/§11.5
+python3 analizar_revision_humana.py --revisiones ../data/revision_humana/revisiones_app_n120_2026-09-21.json
+python3 comparar_modelos.py --revisiones ../data/revision_humana/revisiones_app_n120_2026-09-21.json  # v1-v5 pareado, §11.2/§11.4/§11.5/§11.7
 python3 predecir_lote.py --carpeta ../data/fotos_calle --salida calle.json
 python3 analizar_outfit.py --carpeta ../data/fotos_calle --salida-json outfits.json --salida-imagenes anotadas --cache cache.json
 python3 resumen_outfit.py --outfits outfits.json --foto-entera ../data/revision_humana/predicciones_fotos_calle.json \
     --auditoria ../data/revision_humana/auditoria_outfit_calle.json
 ```
 
-**Aviso de versión del dataset**: `preparar_dataset_florence2.py` regenera `data/*.jsonl` con las reglas **v4** (§11.1 +
-§11.4, muestreo de §11.5) — es lo que hay en el repositorio ahora, y es lo que se usó para entrenar y evaluar
-`florence2_base_lora_v4/`. Los adapters `modelos/florence2_base_lora_v1/`, `_v2/` y `_v3/` se entrenaron con reglas o
-muestreo anteriores; sus resultados documentados en §6–§8, §11.2 y §11.4 no son reproducibles ejecutando
+**Aviso de versión del dataset**: `preparar_dataset_florence2.py` regenera `data/*.jsonl` con las reglas **v5** (§11.1 +
+§11.4, refuerzo de §11.5 + §11.7) — es lo que hay en el repositorio ahora, y es lo que se usó para entrenar y evaluar
+`florence2_base_lora_v5/`. Los adapters `modelos/florence2_base_lora_v1/` a `_v4/` se entrenaron con reglas o
+muestreo anteriores; sus resultados documentados en §6–§8, §11.2, §11.4 y §11.5 no son reproducibles ejecutando
 `evaluar_modelo.py`/`evaluar_solape_1207.py` tal cual ahora (test set con contenido distinto) — esas versiones exactas
 de `data/*.jsonl` quedan recuperables del historial de git si hace falta.
 
-Datos en el repositorio: `data/{train,val,test}.jsonl` (v4), `data/revision_humana/` (revisiones humanas, manifest de la
-app, predicciones del modelo por versión `predicciones_app_120[_v2|_v3|_v4].json`, salida y auditoría de los looks),
-`data/eval_1207_solape.json` (v1), `modelos/florence2_base_lora_v1/`, `_v2/`, `_v3/` y `_v4/` (los cuatro adapters, cada
-uno con su `resultados_entrenamiento.json` y su `evaluacion_test_*.txt`), `herramientas/kaggle_kernel/` (entrenamiento
-vía API de Kaggle, alternativa a Colab).
+Datos en el repositorio: `data/{train,val,test}.jsonl` (v5), `data/revision_humana/` (revisiones humanas — snapshot
+completo de las 120 en `revisiones_app_n120_2026-09-21.json`, el de 100 de `revisiones_app_n100_2026-09-20.json` se
+queda para reproducir los números ya publicados que se midieron con ese subconjunto —, manifest de la app,
+predicciones del modelo por versión `predicciones_app_120[_v2|_v3|_v4|_v5].json`, salida y auditoría de los looks),
+`data/eval_1207_solape.json` (v1), `modelos/florence2_base_lora_v1/` a `_v5/` (los cinco adapters, cada uno con su
+`resultados_entrenamiento.json` y su `evaluacion_test_*.txt`), `herramientas/kaggle_kernel/` (entrenamiento vía API
+de Kaggle, alternativa a Colab).
 
-**¿Qué adapter usar?** No hay un sucesor único — **v3** tiene el mejor acuerdo medio con el humano (85 %, §11.4); **v4**
-sacrifica algo de esa media (82 %) a cambio de dejar de fallar sistemáticamente en `naranja`/`dorado`/`plateado`
-(§11.5). Para cualquier uso que no dependa mucho de esos tres colores, v3 es la opción por defecto más segura.
+**¿Qué adapter usar?** No hay un sucesor único. **v3** tiene el mejor acuerdo medio con el humano (85 %, §11.4).
+**v4** sacrifica algo de esa media (83 % sobre las 120 fichas) a cambio de dejar de fallar sistemáticamente en
+`naranja`/`dorado`/`plateado` (§11.5). **v5** se queda en la misma media que v4 (83 %) pero soluciona la cola larga
+de tipos de prenda raros (§11.7) y es el único que reconoce `Tracksuits`/`Swimwear` en absoluto. Para uso general,
+**v3 sigue siendo la opción por defecto más segura**; v4 cuando importan esos tres colores más que la media; v5
+cuando importan esos ocho tipos de prenda más que la media (o cuando se necesite que el esquema cubra `Tracksuits`/
+`Swimwear`, que en v1-v4 no existen para el modelo).

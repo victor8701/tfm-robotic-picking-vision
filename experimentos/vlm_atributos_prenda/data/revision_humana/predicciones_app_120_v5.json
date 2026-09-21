@@ -1,0 +1,1202 @@
+{
+ "18439": {
+  "prediccion": {
+   "categoria": "accesorio",
+   "color_primario": "negro",
+   "grupo_estilo": "streetwear",
+   "genero": "neutro",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"accesorio\",\"color_primario\":\"negro\",\"grupo_estilo\":\"streetwear\",\"genero\":\"neutro\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "38828": {
+  "prediccion": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "verde",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"cuerpo_entero\",\"color_primario\":\"verde\",\"grupo_estilo\":\"fiesta_noche\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "58001": {
+  "prediccion": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "gris",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"cuerpo_entero\",\"color_primario\":\"gris\",\"grupo_estilo\":\"fiesta_noche\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "29789": {
+  "prediccion": {
+   "categoria": "ropa_superior",
+   "color_primario": "navy",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_superior\",\"color_primario\":\"navy\",\"grupo_estilo\":\"casual\",\"genero\":\"masculino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "14091": {
+  "prediccion": {
+   "categoria": "ropa_superior",
+   "color_primario": "naranja",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_superior\",\"color_primario\":\"naranja\",\"grupo_estilo\":\"casual\",\"genero\":\"femenino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "40036": {
+  "prediccion": {
+   "categoria": "ropa_superior",
+   "color_primario": "navy",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_superior\",\"color_primario\":\"navy\",\"grupo_estilo\":\"casual\",\"genero\":\"masculino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "11905": {
+  "prediccion": {
+   "categoria": "calzado",
+   "color_primario": "negro",
+   "grupo_estilo": "playa_resort",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"calzado\",\"color_primario\":\"negro\",\"grupo_estilo\":\"playa_resort\",\"genero\":\"masculino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "18980": {
+  "prediccion": {
+   "categoria": "ropa_superior",
+   "color_primario": "amarillo",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_superior\",\"color_primario\":\"amarillo\",\"grupo_estilo\":\"casual\",\"genero\":\"masculino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "17951": {
+  "prediccion": {
+   "categoria": "accesorio",
+   "color_primario": "rojo",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"accesorio\",\"color_primario\":\"rojo\",\"grupo_estilo\":\"streetwear\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "8515": {
+  "prediccion": {
+   "categoria": "accesorio",
+   "color_primario": "gris",
+   "grupo_estilo": "streetwear",
+   "genero": "neutro",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"accesorio\",\"color_primario\":\"gris\",\"grupo_estilo\":\"streetwear\",\"genero\":\"neutro\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "49793": {
+  "prediccion": {
+   "categoria": "accesorio",
+   "color_primario": "amarillo",
+   "grupo_estilo": "streetwear",
+   "genero": "neutro",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"accesorio\",\"color_primario\":\"amarillo\",\"grupo_estilo\":\"streetwear\",\"genero\":\"neutro\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "1528": {
+  "prediccion": {
+   "categoria": "abrigo",
+   "color_primario": "negro",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"abrigo\",\"color_primario\":\"negro\",\"grupo_estilo\":\"streetwear\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "15319": {
+  "prediccion": {
+   "categoria": "abrigo",
+   "color_primario": "navy",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"abrigo\",\"color_primario\":\"navy\",\"grupo_estilo\":\"streetwear\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "25136": {
+  "prediccion": {
+   "categoria": "accesorio",
+   "color_primario": "dorado",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"accesorio\",\"color_primario\":\"dorado\",\"grupo_estilo\":\"fiesta_noche\",\"genero\":\"femenino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "14309": {
+  "prediccion": {
+   "categoria": "abrigo",
+   "color_primario": "navy",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"abrigo\",\"color_primario\":\"navy\",\"grupo_estilo\":\"streetwear\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "6531": {
+  "prediccion": {
+   "categoria": "accesorio",
+   "color_primario": "azul",
+   "grupo_estilo": "streetwear",
+   "genero": "neutro",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"accesorio\",\"color_primario\":\"azul\",\"grupo_estilo\":\"streetwear\",\"genero\":\"neutro\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "13192": {
+  "prediccion": {
+   "categoria": "calzado",
+   "color_primario": "azul",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"calzado\",\"color_primario\":\"azul\",\"grupo_estilo\":\"casual\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "21437": {
+  "prediccion": {
+   "categoria": "accesorio",
+   "color_primario": "azul",
+   "grupo_estilo": "streetwear",
+   "genero": "neutro",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"accesorio\",\"color_primario\":\"azul\",\"grupo_estilo\":\"streetwear\",\"genero\":\"neutro\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "4774": {
+  "prediccion": {
+   "categoria": "ropa_inferior",
+   "color_primario": "rosa",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_inferior\",\"color_primario\":\"rosa\",\"grupo_estilo\":\"casual\",\"genero\":\"femenino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "43643": {
+  "prediccion": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "fucsia",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"cuerpo_entero\",\"color_primario\":\"fucsia\",\"grupo_estilo\":\"fiesta_noche\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "1610": {
+  "prediccion": {
+   "categoria": "abrigo",
+   "color_primario": "azul",
+   "grupo_estilo": "streetwear",
+   "genero": "femenino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"abrigo\",\"color_primario\":\"azul\",\"grupo_estilo\":\"streetwear\",\"genero\":\"femenino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "26928": {
+  "prediccion": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "negro",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"cuerpo_entero\",\"color_primario\":\"negro\",\"grupo_estilo\":\"casual\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "41670": {
+  "prediccion": {
+   "categoria": "calzado",
+   "color_primario": "dorado",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"calzado\",\"color_primario\":\"dorado\",\"grupo_estilo\":\"fiesta_noche\",\"genero\":\"femenino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "59972": {
+  "prediccion": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "negro",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"cuerpo_entero\",\"color_primario\":\"negro\",\"grupo_estilo\":\"casual\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "28512": {
+  "prediccion": {
+   "categoria": "ropa_inferior",
+   "color_primario": "negro",
+   "grupo_estilo": "deportivo",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_inferior\",\"color_primario\":\"negro\",\"grupo_estilo\":\"deportivo\",\"genero\":\"masculino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "9227": {
+  "prediccion": {
+   "categoria": "ropa_superior",
+   "color_primario": "azul",
+   "grupo_estilo": "de_vestir",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_superior\",\"color_primario\":\"azul\",\"grupo_estilo\":\"de_vestir\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "49236": {
+  "prediccion": {
+   "categoria": "accesorio",
+   "color_primario": "beige",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"accesorio\",\"color_primario\":\"beige\",\"grupo_estilo\":\"streetwear\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "44694": {
+  "prediccion": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "blanco",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"cuerpo_entero\",\"color_primario\":\"blanco\",\"grupo_estilo\":\"casual\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "29226": {
+  "prediccion": {
+   "categoria": "calzado",
+   "color_primario": "negro",
+   "grupo_estilo": "playa_resort",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"calzado\",\"color_primario\":\"negro\",\"grupo_estilo\":\"playa_resort\",\"genero\":\"masculino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "31023": {
+  "prediccion": {
+   "categoria": "ropa_superior",
+   "color_primario": "gris",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_superior\",\"color_primario\":\"gris\",\"grupo_estilo\":\"casual\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "19578": {
+  "prediccion": {
+   "categoria": "ropa_superior",
+   "color_primario": "lavanda",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_superior\",\"color_primario\":\"lavanda\",\"grupo_estilo\":\"casual\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "58000": {
+  "prediccion": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "negro",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"cuerpo_entero\",\"color_primario\":\"negro\",\"grupo_estilo\":\"casual\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "19394": {
+  "prediccion": {
+   "categoria": "ropa_superior",
+   "color_primario": "azul",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "otono_invierno"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_superior\",\"color_primario\":\"azul\",\"grupo_estilo\":\"streetwear\",\"genero\":\"masculino\",\"temporada\":\"otono_invierno\"}"
+ },
+ "30929": {
+  "prediccion": {
+   "categoria": "ropa_inferior",
+   "color_primario": "gris",
+   "grupo_estilo": "playa_resort",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_inferior\",\"color_primario\":\"gris\",\"grupo_estilo\":\"playa_resort\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "7769": {
+  "prediccion": {
+   "categoria": "ropa_superior",
+   "color_primario": "rojo",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "otono_invierno"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_superior\",\"color_primario\":\"rojo\",\"grupo_estilo\":\"streetwear\",\"genero\":\"masculino\",\"temporada\":\"otono_invierno\"}"
+ },
+ "13290": {
+  "prediccion": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "rosa",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"cuerpo_entero\",\"color_primario\":\"rosa\",\"grupo_estilo\":\"fiesta_noche\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "22608": {
+  "prediccion": {
+   "categoria": "abrigo",
+   "color_primario": "navy",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"abrigo\",\"color_primario\":\"navy\",\"grupo_estilo\":\"streetwear\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "29178": {
+  "prediccion": {
+   "categoria": "ropa_inferior",
+   "color_primario": "azul",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_inferior\",\"color_primario\":\"azul\",\"grupo_estilo\":\"casual\",\"genero\":\"femenino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "59973": {
+  "prediccion": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "negro",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"cuerpo_entero\",\"color_primario\":\"negro\",\"grupo_estilo\":\"fiesta_noche\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "43674": {
+  "prediccion": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "navy",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"cuerpo_entero\",\"color_primario\":\"navy\",\"grupo_estilo\":\"casual\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "46602": {
+  "prediccion": {
+   "categoria": "calzado",
+   "color_primario": "dorado",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"calzado\",\"color_primario\":\"dorado\",\"grupo_estilo\":\"fiesta_noche\",\"genero\":\"femenino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "42217": {
+  "prediccion": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "negro",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"cuerpo_entero\",\"color_primario\":\"negro\",\"grupo_estilo\":\"casual\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "2331": {
+  "prediccion": {
+   "categoria": "ropa_superior",
+   "color_primario": "gris",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "otono_invierno"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_superior\",\"color_primario\":\"gris\",\"grupo_estilo\":\"casual\",\"genero\":\"masculino\",\"temporada\":\"otono_invierno\"}"
+ },
+ "33440": {
+  "prediccion": {
+   "categoria": "accesorio",
+   "color_primario": "dorado",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"accesorio\",\"color_primario\":\"dorado\",\"grupo_estilo\":\"fiesta_noche\",\"genero\":\"femenino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "34087": {
+  "prediccion": {
+   "categoria": "calzado",
+   "color_primario": "blanco",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"calzado\",\"color_primario\":\"blanco\",\"grupo_estilo\":\"casual\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "5453": {
+  "prediccion": {
+   "categoria": "ropa_inferior",
+   "color_primario": "azul",
+   "grupo_estilo": "playa_resort",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_inferior\",\"color_primario\":\"azul\",\"grupo_estilo\":\"playa_resort\",\"genero\":\"masculino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "4017": {
+  "prediccion": {
+   "categoria": "calzado",
+   "color_primario": "negro",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"calzado\",\"color_primario\":\"negro\",\"grupo_estilo\":\"casual\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "57057": {
+  "prediccion": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "rojo",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"cuerpo_entero\",\"color_primario\":\"rojo\",\"grupo_estilo\":\"fiesta_noche\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "16414": {
+  "prediccion": {
+   "categoria": "ropa_superior",
+   "color_primario": "navy",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "otono_invierno"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_superior\",\"color_primario\":\"navy\",\"grupo_estilo\":\"casual\",\"genero\":\"masculino\",\"temporada\":\"otono_invierno\"}"
+ },
+ "2564": {
+  "prediccion": {
+   "categoria": "ropa_superior",
+   "color_primario": "negro",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_superior\",\"color_primario\":\"negro\",\"grupo_estilo\":\"casual\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "2249": {
+  "prediccion": {
+   "categoria": "accesorio",
+   "color_primario": "azul",
+   "grupo_estilo": "streetwear",
+   "genero": "neutro",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"accesorio\",\"color_primario\":\"azul\",\"grupo_estilo\":\"streetwear\",\"genero\":\"neutro\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "9532": {
+  "prediccion": {
+   "categoria": "abrigo",
+   "color_primario": "naranja",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"abrigo\",\"color_primario\":\"naranja\",\"grupo_estilo\":\"streetwear\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "12683": {
+  "prediccion": {
+   "categoria": "calzado",
+   "color_primario": "blanco",
+   "grupo_estilo": "deportivo",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"calzado\",\"color_primario\":\"blanco\",\"grupo_estilo\":\"deportivo\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "39546": {
+  "prediccion": {
+   "categoria": "calzado",
+   "color_primario": "amarillo",
+   "grupo_estilo": "playa_resort",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"calzado\",\"color_primario\":\"amarillo\",\"grupo_estilo\":\"playa_resort\",\"genero\":\"masculino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "7926": {
+  "prediccion": {
+   "categoria": "ropa_superior",
+   "color_primario": "navy",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "otono_invierno"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_superior\",\"color_primario\":\"navy\",\"grupo_estilo\":\"casual\",\"genero\":\"masculino\",\"temporada\":\"otono_invierno\"}"
+ },
+ "18491": {
+  "prediccion": {
+   "categoria": "abrigo",
+   "color_primario": "negro",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"abrigo\",\"color_primario\":\"negro\",\"grupo_estilo\":\"streetwear\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "6553": {
+  "prediccion": {
+   "categoria": "accesorio",
+   "color_primario": "azul",
+   "grupo_estilo": "streetwear",
+   "genero": "neutro",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"accesorio\",\"color_primario\":\"azul\",\"grupo_estilo\":\"streetwear\",\"genero\":\"neutro\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "15024": {
+  "prediccion": {
+   "categoria": "accesorio",
+   "color_primario": "azul",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"accesorio\",\"color_primario\":\"azul\",\"grupo_estilo\":\"streetwear\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "25120": {
+  "prediccion": {
+   "categoria": "accesorio",
+   "color_primario": "negro",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"accesorio\",\"color_primario\":\"negro\",\"grupo_estilo\":\"fiesta_noche\",\"genero\":\"femenino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "33075": {
+  "prediccion": {
+   "categoria": "ropa_superior",
+   "color_primario": "naranja",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_superior\",\"color_primario\":\"naranja\",\"grupo_estilo\":\"casual\",\"genero\":\"masculino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "40688": {
+  "prediccion": {
+   "categoria": "calzado",
+   "color_primario": "negro",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"calzado\",\"color_primario\":\"negro\",\"grupo_estilo\":\"casual\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "24704": {
+  "prediccion": {
+   "categoria": "calzado",
+   "color_primario": "negro",
+   "grupo_estilo": "playa_resort",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"calzado\",\"color_primario\":\"negro\",\"grupo_estilo\":\"playa_resort\",\"genero\":\"masculino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "12807": {
+  "prediccion": {
+   "categoria": "abrigo",
+   "color_primario": "rosa",
+   "grupo_estilo": "streetwear",
+   "genero": "femenino",
+   "temporada": "otono_invierno"
+  },
+  "texto_crudo": "{\"categoria\":\"abrigo\",\"color_primario\":\"rosa\",\"grupo_estilo\":\"streetwear\",\"genero\":\"femenino\",\"temporada\":\"otono_invierno\"}"
+ },
+ "15004": {
+  "prediccion": {
+   "categoria": "abrigo",
+   "color_primario": "gris",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"abrigo\",\"color_primario\":\"gris\",\"grupo_estilo\":\"streetwear\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "23962": {
+  "prediccion": {
+   "categoria": "abrigo",
+   "color_primario": "negro",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"abrigo\",\"color_primario\":\"negro\",\"grupo_estilo\":\"streetwear\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "43552": {
+  "prediccion": {
+   "categoria": "accesorio",
+   "color_primario": "lavanda",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"accesorio\",\"color_primario\":\"lavanda\",\"grupo_estilo\":\"streetwear\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "44749": {
+  "prediccion": {
+   "categoria": "calzado",
+   "color_primario": "gris",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"calzado\",\"color_primario\":\"gris\",\"grupo_estilo\":\"casual\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "18978": {
+  "prediccion": {
+   "categoria": "abrigo",
+   "color_primario": "azul",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"abrigo\",\"color_primario\":\"azul\",\"grupo_estilo\":\"streetwear\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "10017": {
+  "prediccion": {
+   "categoria": "abrigo",
+   "color_primario": "azul",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"abrigo\",\"color_primario\":\"azul\",\"grupo_estilo\":\"streetwear\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "11340": {
+  "prediccion": {
+   "categoria": "ropa_inferior",
+   "color_primario": "azul",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_inferior\",\"color_primario\":\"azul\",\"grupo_estilo\":\"casual\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "53747": {
+  "prediccion": {
+   "categoria": "ropa_inferior",
+   "color_primario": "negro",
+   "grupo_estilo": "de_vestir",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_inferior\",\"color_primario\":\"negro\",\"grupo_estilo\":\"de_vestir\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "59120": {
+  "prediccion": {
+   "categoria": "abrigo",
+   "color_primario": "verde",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"abrigo\",\"color_primario\":\"verde\",\"grupo_estilo\":\"streetwear\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "21596": {
+  "prediccion": {
+   "categoria": "ropa_superior",
+   "color_primario": "azul",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_superior\",\"color_primario\":\"azul\",\"grupo_estilo\":\"casual\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "5222": {
+  "prediccion": {
+   "categoria": "accesorio",
+   "color_primario": "negro",
+   "grupo_estilo": "streetwear",
+   "genero": "neutro",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"accesorio\",\"color_primario\":\"negro\",\"grupo_estilo\":\"streetwear\",\"genero\":\"neutro\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "33225": {
+  "prediccion": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "rosa",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "otono_invierno"
+  },
+  "texto_crudo": "{\"categoria\":\"cuerpo_entero\",\"color_primario\":\"rosa\",\"grupo_estilo\":\"fiesta_noche\",\"genero\":\"femenino\",\"temporada\":\"otono_invierno\"}"
+ },
+ "34570": {
+  "prediccion": {
+   "categoria": "ropa_inferior",
+   "color_primario": "negro",
+   "grupo_estilo": "playa_resort",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_inferior\",\"color_primario\":\"negro\",\"grupo_estilo\":\"playa_resort\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "25714": {
+  "prediccion": {
+   "categoria": "accesorio",
+   "color_primario": "negro",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"accesorio\",\"color_primario\":\"negro\",\"grupo_estilo\":\"streetwear\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "41725": {
+  "prediccion": {
+   "categoria": "calzado",
+   "color_primario": "rojo",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"calzado\",\"color_primario\":\"rojo\",\"grupo_estilo\":\"fiesta_noche\",\"genero\":\"femenino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "33942": {
+  "prediccion": {
+   "categoria": "ropa_superior",
+   "color_primario": "verde",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_superior\",\"color_primario\":\"verde\",\"grupo_estilo\":\"casual\",\"genero\":\"masculino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "28138": {
+  "prediccion": {
+   "categoria": "ropa_inferior",
+   "color_primario": "negro",
+   "grupo_estilo": "deportivo",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_inferior\",\"color_primario\":\"negro\",\"grupo_estilo\":\"deportivo\",\"genero\":\"masculino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "59909": {
+  "prediccion": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "azul",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "otono_invierno"
+  },
+  "texto_crudo": "{\"categoria\":\"cuerpo_entero\",\"color_primario\":\"azul\",\"grupo_estilo\":\"fiesta_noche\",\"genero\":\"femenino\",\"temporada\":\"otono_invierno\"}"
+ },
+ "4934": {
+  "prediccion": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "rosa",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"cuerpo_entero\",\"color_primario\":\"rosa\",\"grupo_estilo\":\"fiesta_noche\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "12673": {
+  "prediccion": {
+   "categoria": "ropa_inferior",
+   "color_primario": "camel",
+   "grupo_estilo": "de_vestir",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_inferior\",\"color_primario\":\"camel\",\"grupo_estilo\":\"de_vestir\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "24135": {
+  "prediccion": {
+   "categoria": "abrigo",
+   "color_primario": "negro",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"abrigo\",\"color_primario\":\"negro\",\"grupo_estilo\":\"streetwear\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "4260": {
+  "prediccion": {
+   "categoria": "ropa_superior",
+   "color_primario": "blanco",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_superior\",\"color_primario\":\"blanco\",\"grupo_estilo\":\"casual\",\"genero\":\"masculino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "26484": {
+  "prediccion": {
+   "categoria": "ropa_superior",
+   "color_primario": "blanco",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_superior\",\"color_primario\":\"blanco\",\"grupo_estilo\":\"casual\",\"genero\":\"masculino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "59117": {
+  "prediccion": {
+   "categoria": "abrigo",
+   "color_primario": "negro",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"abrigo\",\"color_primario\":\"negro\",\"grupo_estilo\":\"streetwear\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "45578": {
+  "prediccion": {
+   "categoria": "calzado",
+   "color_primario": "camel",
+   "grupo_estilo": "playa_resort",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"calzado\",\"color_primario\":\"camel\",\"grupo_estilo\":\"playa_resort\",\"genero\":\"masculino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "26999": {
+  "prediccion": {
+   "categoria": "ropa_inferior",
+   "color_primario": "azul",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_inferior\",\"color_primario\":\"azul\",\"grupo_estilo\":\"casual\",\"genero\":\"femenino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "5697": {
+  "prediccion": {
+   "categoria": "calzado",
+   "color_primario": "negro",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"calzado\",\"color_primario\":\"negro\",\"grupo_estilo\":\"casual\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "17111": {
+  "prediccion": {
+   "categoria": "accesorio",
+   "color_primario": "negro",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"accesorio\",\"color_primario\":\"negro\",\"grupo_estilo\":\"fiesta_noche\",\"genero\":\"femenino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "15013": {
+  "prediccion": {
+   "categoria": "abrigo",
+   "color_primario": "negro",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"abrigo\",\"color_primario\":\"negro\",\"grupo_estilo\":\"streetwear\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "14285": {
+  "prediccion": {
+   "categoria": "ropa_inferior",
+   "color_primario": "negro",
+   "grupo_estilo": "de_vestir",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_inferior\",\"color_primario\":\"negro\",\"grupo_estilo\":\"de_vestir\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "3948": {
+  "prediccion": {
+   "categoria": "ropa_superior",
+   "color_primario": "blanco",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_superior\",\"color_primario\":\"blanco\",\"grupo_estilo\":\"casual\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "49648": {
+  "prediccion": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "beige",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"cuerpo_entero\",\"color_primario\":\"beige\",\"grupo_estilo\":\"casual\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "6119": {
+  "prediccion": {
+   "categoria": "accesorio",
+   "color_primario": "negro",
+   "grupo_estilo": "streetwear",
+   "genero": "neutro",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"accesorio\",\"color_primario\":\"negro\",\"grupo_estilo\":\"streetwear\",\"genero\":\"neutro\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "50023": {
+  "prediccion": {
+   "categoria": "ropa_inferior",
+   "color_primario": "blanco",
+   "grupo_estilo": "deportivo",
+   "genero": "femenino",
+   "temporada": "otono_invierno"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_inferior\",\"color_primario\":\"blanco\",\"grupo_estilo\":\"deportivo\",\"genero\":\"femenino\",\"temporada\":\"otono_invierno\"}"
+ },
+ "51614": {
+  "prediccion": {
+   "categoria": "ropa_inferior",
+   "color_primario": "blanco",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_inferior\",\"color_primario\":\"blanco\",\"grupo_estilo\":\"casual\",\"genero\":\"femenino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "14676": {
+  "prediccion": {
+   "categoria": "ropa_superior",
+   "color_primario": "camel",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_superior\",\"color_primario\":\"camel\",\"grupo_estilo\":\"casual\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "31317": {
+  "prediccion": {
+   "categoria": "ropa_superior",
+   "color_primario": "verde",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_superior\",\"color_primario\":\"verde\",\"grupo_estilo\":\"casual\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "17900": {
+  "prediccion": {
+   "categoria": "abrigo",
+   "color_primario": "rojo",
+   "grupo_estilo": "streetwear",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"abrigo\",\"color_primario\":\"rojo\",\"grupo_estilo\":\"streetwear\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "18625": {
+  "prediccion": {
+   "categoria": "ropa_superior",
+   "color_primario": "rojo",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_superior\",\"color_primario\":\"rojo\",\"grupo_estilo\":\"casual\",\"genero\":\"masculino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "44925": {
+  "prediccion": {
+   "categoria": "ropa_inferior",
+   "color_primario": "camel",
+   "grupo_estilo": "de_vestir",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_inferior\",\"color_primario\":\"camel\",\"grupo_estilo\":\"de_vestir\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "58561": {
+  "prediccion": {
+   "categoria": "ropa_inferior",
+   "color_primario": "azul",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_inferior\",\"color_primario\":\"azul\",\"grupo_estilo\":\"casual\",\"genero\":\"femenino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "28459": {
+  "prediccion": {
+   "categoria": "ropa_inferior",
+   "color_primario": "azul",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_inferior\",\"color_primario\":\"azul\",\"grupo_estilo\":\"casual\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "56993": {
+  "prediccion": {
+   "categoria": "calzado",
+   "color_primario": "dorado",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"calzado\",\"color_primario\":\"dorado\",\"grupo_estilo\":\"casual\",\"genero\":\"femenino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "41701": {
+  "prediccion": {
+   "categoria": "ropa_inferior",
+   "color_primario": "navy",
+   "grupo_estilo": "playa_resort",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_inferior\",\"color_primario\":\"navy\",\"grupo_estilo\":\"playa_resort\",\"genero\":\"masculino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "8026": {
+  "prediccion": {
+   "categoria": "ropa_inferior",
+   "color_primario": "negro",
+   "grupo_estilo": "deportivo",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_inferior\",\"color_primario\":\"negro\",\"grupo_estilo\":\"deportivo\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "13903": {
+  "prediccion": {
+   "categoria": "calzado",
+   "color_primario": "blanco",
+   "grupo_estilo": "casual",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"calzado\",\"color_primario\":\"blanco\",\"grupo_estilo\":\"casual\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "48111": {
+  "prediccion": {
+   "categoria": "ropa_inferior",
+   "color_primario": "camel",
+   "grupo_estilo": "playa_resort",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_inferior\",\"color_primario\":\"camel\",\"grupo_estilo\":\"playa_resort\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "31453": {
+  "prediccion": {
+   "categoria": "ropa_superior",
+   "color_primario": "negro",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_superior\",\"color_primario\":\"negro\",\"grupo_estilo\":\"casual\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "38847": {
+  "prediccion": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "blanco",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"cuerpo_entero\",\"color_primario\":\"blanco\",\"grupo_estilo\":\"casual\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "49838": {
+  "prediccion": {
+   "categoria": "calzado",
+   "color_primario": "negro",
+   "grupo_estilo": "playa_resort",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"calzado\",\"color_primario\":\"negro\",\"grupo_estilo\":\"playa_resort\",\"genero\":\"masculino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "13910": {
+  "prediccion": {
+   "categoria": "calzado",
+   "color_primario": "blanco",
+   "grupo_estilo": "deportivo",
+   "genero": "masculino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"calzado\",\"color_primario\":\"blanco\",\"grupo_estilo\":\"deportivo\",\"genero\":\"masculino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "41563": {
+  "prediccion": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "gris",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"cuerpo_entero\",\"color_primario\":\"gris\",\"grupo_estilo\":\"fiesta_noche\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "27013": {
+  "prediccion": {
+   "categoria": "ropa_inferior",
+   "color_primario": "azul",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"ropa_inferior\",\"color_primario\":\"azul\",\"grupo_estilo\":\"casual\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "58883": {
+  "prediccion": {
+   "categoria": "accesorio",
+   "color_primario": "azul",
+   "grupo_estilo": "de_vestir",
+   "genero": "masculino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"accesorio\",\"color_primario\":\"azul\",\"grupo_estilo\":\"de_vestir\",\"genero\":\"masculino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "57045": {
+  "prediccion": {
+   "categoria": "cuerpo_entero",
+   "color_primario": "negro",
+   "grupo_estilo": "casual",
+   "genero": "femenino",
+   "temporada": "primavera_verano"
+  },
+  "texto_crudo": "{\"categoria\":\"cuerpo_entero\",\"color_primario\":\"negro\",\"grupo_estilo\":\"casual\",\"genero\":\"femenino\",\"temporada\":\"primavera_verano\"}"
+ },
+ "58167": {
+  "prediccion": {
+   "categoria": "accesorio",
+   "color_primario": "beige",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"accesorio\",\"color_primario\":\"beige\",\"grupo_estilo\":\"fiesta_noche\",\"genero\":\"femenino\",\"temporada\":\"todo_el_ano\"}"
+ },
+ "24083": {
+  "prediccion": {
+   "categoria": "calzado",
+   "color_primario": "negro",
+   "grupo_estilo": "fiesta_noche",
+   "genero": "femenino",
+   "temporada": "todo_el_ano"
+  },
+  "texto_crudo": "{\"categoria\":\"calzado\",\"color_primario\":\"negro\",\"grupo_estilo\":\"fiesta_noche\",\"genero\":\"femenino\",\"temporada\":\"todo_el_ano\"}"
+ }
+}

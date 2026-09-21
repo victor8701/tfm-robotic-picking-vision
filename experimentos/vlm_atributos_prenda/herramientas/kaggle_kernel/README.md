@@ -3,8 +3,10 @@
 Mismos pasos que `notebook_colab_entrenamiento.ipynb` (clonar, instalar, preparar dataset, entrenar,
 evaluar), pero lanzados y seguidos por API en vez de abrir un notebook a mano — pensado para cuando
 no hay forma cómoda de manejar la interfaz de Colab (p. ej. desde el móvil). Kaggle da GPU gratis
-(T4×2 o P100, ~30 h/semana) igual que Colab. Usado de verdad el 2026-09-20 para entrenar v2, v3 y
-v4 seguidos (resultados en `memoria/TFM_clasificador_visual_atributos.md` §11.2, §11.4, §11.5).
+(T4×2 o P100, ~30 h/semana) igual que Colab. Usado de verdad el 2026-09-20/21 para entrenar v2,
+v3, v4 y v5 seguidos (resultados en `memoria/TFM_clasificador_visual_atributos.md` §11.2, §11.4,
+§11.5, §11.7). La v5 tardó 58 min en vez de los ~21 min habituales, sin ningún error — variación
+normal de la cola de GPU T4 compartida gratuita, no algo del código a lo que prestar atención.
 
 ## Qué hace falta (una vez, ~2 min desde cualquier navegador)
 

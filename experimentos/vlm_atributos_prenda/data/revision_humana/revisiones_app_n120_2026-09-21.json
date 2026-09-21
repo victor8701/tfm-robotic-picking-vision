@@ -1,0 +1,2096 @@
+{
+ "18978": {
+  "categoria": "abrigo",
+  "coincide_original": false,
+  "color_primario": [
+   "blanco",
+   "azul"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "streetwear",
+   "deportivo"
+  ],
+  "revisado_en": "2026-09-20T08:43:03.667Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "4934": {
+  "categoria": "cuerpo_entero",
+  "coincide_original": false,
+  "color_primario": [
+   "naranja"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:46:18.499Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "50023": {
+  "categoria": "ropa_inferior",
+  "coincide_original": false,
+  "color_primario": [
+   "blanco"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "deportivo"
+  ],
+  "revisado_en": "2026-09-20T08:55:13.493Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "5453": {
+  "categoria": "ropa_inferior",
+  "coincide_original": true,
+  "color_primario": [
+   "gris"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "deportivo"
+  ],
+  "revisado_en": "2026-09-20T08:20:25.499Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "15004": {
+  "categoria": "abrigo",
+  "coincide_original": false,
+  "color_primario": [
+   "gris"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T08:42:17.291Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "29178": {
+  "categoria": "ropa_inferior",
+  "coincide_original": false,
+  "color_primario": [
+   "azul"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:16:47.500Z",
+  "temporada": [
+   "otono_invierno"
+  ]
+ },
+ "15319": {
+  "categoria": "abrigo",
+  "coincide_original": true,
+  "color_primario": [
+   "navy"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T07:51:35.139Z",
+  "temporada": [
+   "otono_invierno"
+  ]
+ },
+ "46602": {
+  "categoria": "calzado",
+  "coincide_original": false,
+  "color_primario": [
+   "azul",
+   "camel"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:17:48.819Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "2564": {
+  "categoria": "ropa_superior",
+  "coincide_original": false,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "deportivo"
+  ],
+  "revisado_en": "2026-09-20T08:28:27.189Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "14676": {
+  "categoria": "ropa_superior",
+  "coincide_original": false,
+  "color_primario": [
+   "camel"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:55:31.855Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "59117": {
+  "categoria": "abrigo",
+  "coincide_original": false,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T08:47:03.785Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "9532": {
+  "categoria": "abrigo",
+  "coincide_original": false,
+  "color_primario": [
+   "naranja"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "streetwear",
+   "deportivo"
+  ],
+  "revisado_en": "2026-09-20T08:28:53.099Z",
+  "temporada": [
+   "otono_invierno"
+  ]
+ },
+ "1610": {
+  "categoria": "abrigo",
+  "coincide_original": true,
+  "color_primario": [
+   "navy"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T07:53:33.828Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "12807": {
+  "categoria": "abrigo",
+  "coincide_original": false,
+  "color_primario": [
+   "rosa"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T08:42:06.774Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "12673": {
+  "categoria": "ropa_inferior",
+  "coincide_original": true,
+  "color_primario": [
+   "beige"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "de_vestir"
+  ],
+  "revisado_en": "2026-09-20T08:46:32.979Z",
+  "temporada": [
+   "otono_invierno"
+  ]
+ },
+ "21596": {
+  "categoria": "ropa_superior",
+  "coincide_original": false,
+  "color_primario": [
+   "gris"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "de_vestir",
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:44:40.449Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "25120": {
+  "categoria": "accesorio",
+  "coincide_original": false,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "fiesta_noche"
+  ],
+  "revisado_en": "2026-09-20T08:41:26.844Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "13290": {
+  "categoria": "cuerpo_entero",
+  "coincide_original": false,
+  "color_primario": [
+   "rosa"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:16:19.530Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "3948": {
+  "categoria": "ropa_superior",
+  "coincide_original": false,
+  "color_primario": [
+   "blanco",
+   "gris"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:54:31.776Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "18439": {
+  "categoria": "accesorio",
+  "coincide_original": false,
+  "color_primario": [
+   "gris",
+   "fucsia"
+  ],
+  "genero": [
+   "neutro"
+  ],
+  "grupo_estilo": [
+   "streetwear",
+   "deportivo"
+  ],
+  "revisado_en": "2026-09-17T19:37:53.708Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "44694": {
+  "categoria": "cuerpo_entero",
+  "coincide_original": false,
+  "color_primario": [
+   "blanco",
+   "amarillo",
+   "azul"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T07:55:16.540Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "33440": {
+  "categoria": "accesorio",
+  "coincide_original": false,
+  "color_primario": [
+   "beige"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "fiesta_noche"
+  ],
+  "revisado_en": "2026-09-20T08:19:58.622Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "48111": {
+  "categoria": "ropa_inferior",
+  "coincide_original": true,
+  "color_primario": [
+   "camel"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "playa_resort"
+  ],
+  "revisado_en": "2026-09-20T08:58:25.505Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "13910": {
+  "categoria": "calzado",
+  "coincide_original": false,
+  "color_primario": [
+   "blanco"
+  ],
+  "genero": [
+   "neutro"
+  ],
+  "grupo_estilo": [
+   "streetwear",
+   "deportivo"
+  ],
+  "revisado_en": "2026-09-20T08:58:59.913Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "34570": {
+  "categoria": "cuerpo_entero",
+  "coincide_original": false,
+  "color_primario": [
+   "negro",
+   "blanco",
+   "gris"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "casual",
+   "fiesta_noche"
+  ],
+  "revisado_en": "2026-09-20T08:45:14.827Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "14309": {
+  "categoria": "abrigo",
+  "coincide_original": true,
+  "color_primario": [
+   "navy"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T07:52:02.907Z",
+  "temporada": [
+   "otono_invierno"
+  ]
+ },
+ "33942": {
+  "categoria": "ropa_superior",
+  "coincide_original": true,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:45:48.095Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "22608": {
+  "categoria": "abrigo",
+  "coincide_original": false,
+  "color_primario": [
+   "navy"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "streetwear",
+   "deportivo"
+  ],
+  "revisado_en": "2026-09-20T08:16:34.796Z",
+  "temporada": [
+   "otono_invierno"
+  ]
+ },
+ "40688": {
+  "categoria": "calzado",
+  "coincide_original": false,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "de_vestir"
+  ],
+  "revisado_en": "2026-09-20T08:41:44.408Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "6119": {
+  "categoria": "accesorio",
+  "coincide_original": false,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "neutro"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T08:54:51.813Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "41725": {
+  "categoria": "calzado",
+  "coincide_original": false,
+  "color_primario": [
+   "rojo",
+   "dorado"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "fiesta_noche"
+  ],
+  "revisado_en": "2026-09-20T08:45:39.113Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "19578": {
+  "categoria": "ropa_superior",
+  "coincide_original": true,
+  "color_primario": [
+   "lavanda"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T07:56:13.103Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "57045": {
+  "categoria": "cuerpo_entero",
+  "coincide_original": false,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "fiesta_noche"
+  ],
+  "revisado_en": "2026-09-20T08:59:33.989Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "10017": {
+  "categoria": "abrigo",
+  "coincide_original": false,
+  "color_primario": [
+   "azul"
+  ],
+  "genero": [
+   "neutro"
+  ],
+  "grupo_estilo": [
+   "streetwear",
+   "deportivo"
+  ],
+  "revisado_en": "2026-09-20T08:43:49.992Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "58001": {
+  "categoria": "cuerpo_entero",
+  "coincide_original": false,
+  "color_primario": [
+   "gris",
+   "negro"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "fiesta_noche",
+   "de_vestir",
+   "casual"
+  ],
+  "revisado_en": "2026-09-17T19:38:10.951Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "11905": {
+  "categoria": "calzado",
+  "coincide_original": false,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "playa_resort"
+  ],
+  "revisado_en": "2026-09-20T07:50:41.121Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "24083": {
+  "categoria": "calzado",
+  "coincide_original": false,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "fiesta_noche"
+  ],
+  "revisado_en": "2026-09-20T08:59:49.743Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "17111": {
+  "categoria": "accesorio",
+  "coincide_original": false,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "fiesta_noche"
+  ],
+  "revisado_en": "2026-09-20T08:47:36.055Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "18625": {
+  "categoria": "ropa_superior",
+  "coincide_original": false,
+  "color_primario": [
+   "rojo"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:56:47.645Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "18491": {
+  "categoria": "abrigo",
+  "coincide_original": false,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "streetwear",
+   "deportivo"
+  ],
+  "revisado_en": "2026-09-20T08:34:42.325Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "28459": {
+  "categoria": "ropa_inferior",
+  "coincide_original": true,
+  "color_primario": [
+   "lavanda"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "deportivo"
+  ],
+  "revisado_en": "2026-09-20T08:57:25.159Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "12683": {
+  "categoria": "calzado",
+  "coincide_original": false,
+  "color_primario": [
+   "blanco"
+  ],
+  "genero": [
+   "neutro"
+  ],
+  "grupo_estilo": [
+   "deportivo",
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T08:29:10.477Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "31023": {
+  "categoria": "ropa_superior",
+  "coincide_original": false,
+  "color_primario": [
+   "gris"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "de_vestir"
+  ],
+  "revisado_en": "2026-09-20T07:55:37.729Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "49648": {
+  "categoria": "cuerpo_entero",
+  "coincide_original": false,
+  "color_primario": [
+   "beige"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:54:42.315Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "38828": {
+  "categoria": "cuerpo_entero",
+  "coincide_original": false,
+  "color_primario": [
+   "azul"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "fiesta_noche",
+   "casual"
+  ],
+  "revisado_en": "2026-09-18T04:55:33.548Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "13903": {
+  "categoria": "calzado",
+  "coincide_original": false,
+  "color_primario": [
+   "blanco"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T08:58:15.352Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "59120": {
+  "categoria": "abrigo",
+  "coincide_original": false,
+  "color_primario": [
+   "verde"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T08:44:24.315Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "56993": {
+  "categoria": "calzado",
+  "coincide_original": false,
+  "color_primario": [
+   "camel"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "casual",
+   "fiesta_noche"
+  ],
+  "revisado_en": "2026-09-20T08:57:40.415Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "59909": {
+  "categoria": "cuerpo_entero",
+  "coincide_original": false,
+  "color_primario": [
+   "azul"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "fiesta_noche"
+  ],
+  "revisado_en": "2026-09-20T08:46:09.919Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "43643": {
+  "categoria": "cuerpo_entero",
+  "coincide_original": false,
+  "color_primario": [
+   "burdeos"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "fiesta_noche",
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T07:53:21.147Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "45578": {
+  "categoria": "calzado",
+  "coincide_original": true,
+  "color_primario": [
+   "camel"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "playa_resort"
+  ],
+  "revisado_en": "2026-09-20T08:47:12.827Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "25136": {
+  "categoria": "accesorio",
+  "coincide_original": false,
+  "color_primario": [
+   "dorado"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "fiesta_noche"
+  ],
+  "revisado_en": "2026-09-20T07:51:53.436Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "58000": {
+  "categoria": "cuerpo_entero",
+  "coincide_original": false,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T07:56:52.520Z",
+  "temporada": [
+   "otono_invierno"
+  ]
+ },
+ "31317": {
+  "categoria": "abrigo",
+  "coincide_original": true,
+  "color_primario": [
+   "azul"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T08:55:43.657Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "15024": {
+  "categoria": "accesorio",
+  "coincide_original": false,
+  "color_primario": [
+   "azul",
+   "blanco"
+  ],
+  "genero": [
+   "neutro"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T08:35:11.075Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "17951": {
+  "categoria": "accesorio",
+  "coincide_original": false,
+  "color_primario": [
+   "rojo"
+  ],
+  "genero": [
+   "neutro"
+  ],
+  "grupo_estilo": [
+   "streetwear",
+   "deportivo"
+  ],
+  "revisado_en": "2026-09-20T07:51:05.135Z",
+  "temporada": [
+   "otono_invierno"
+  ]
+ },
+ "2331": {
+  "categoria": "ropa_superior",
+  "coincide_original": false,
+  "color_primario": [
+   "gris"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:19:45.815Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "58167": {
+  "categoria": "accesorio",
+  "coincide_original": false,
+  "color_primario": [
+   "beige"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "fiesta_noche"
+  ],
+  "revisado_en": "2026-09-20T08:59:41.723Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "43674": {
+  "categoria": "cuerpo_entero",
+  "coincide_original": false,
+  "color_primario": [
+   "azul",
+   "blanco",
+   "negro"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "playa_resort"
+  ],
+  "revisado_en": "2026-09-20T08:17:29.469Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "41563": {
+  "categoria": "cuerpo_entero",
+  "coincide_original": false,
+  "color_primario": [
+   "gris"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "fiesta_noche",
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:59:11.951Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "49793": {
+  "categoria": "accesorio",
+  "coincide_original": false,
+  "color_primario": [
+   "amarillo"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "streetwear",
+   "deportivo"
+  ],
+  "revisado_en": "2026-09-20T07:51:25.406Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "5222": {
+  "categoria": "accesorio",
+  "coincide_original": false,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "neutro"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T08:44:45.413Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "59972": {
+  "categoria": "cuerpo_entero",
+  "coincide_original": false,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "fiesta_noche"
+  ],
+  "revisado_en": "2026-09-20T07:54:08.609Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "59973": {
+  "categoria": "cuerpo_entero",
+  "coincide_original": false,
+  "color_primario": [
+   "navy"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "fiesta_noche",
+   "de_vestir"
+  ],
+  "revisado_en": "2026-09-20T08:17:07.444Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "24704": {
+  "categoria": "calzado",
+  "coincide_original": false,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "playa_resort"
+  ],
+  "revisado_en": "2026-09-20T08:41:54.041Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "26484": {
+  "categoria": "ropa_superior",
+  "coincide_original": false,
+  "color_primario": [
+   "blanco"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T08:46:56.041Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "41670": {
+  "categoria": "calzado",
+  "coincide_original": false,
+  "color_primario": [
+   "dorado"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "fiesta_noche"
+  ],
+  "revisado_en": "2026-09-20T07:53:58.023Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "49838": {
+  "categoria": "calzado",
+  "coincide_original": false,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "playa_resort"
+  ],
+  "revisado_en": "2026-09-20T08:58:49.345Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "25714": {
+  "categoria": "accesorio",
+  "coincide_original": true,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "neutro"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T08:45:25.058Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "2249": {
+  "categoria": "accesorio",
+  "coincide_original": false,
+  "color_primario": [
+   "azul"
+  ],
+  "genero": [
+   "neutro"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T08:28:36.039Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "19394": {
+  "categoria": "abrigo",
+  "coincide_original": false,
+  "color_primario": [
+   "azul"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T07:57:05.823Z",
+  "temporada": [
+   "otono_invierno"
+  ]
+ },
+ "26928": {
+  "categoria": "cuerpo_entero",
+  "coincide_original": false,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "fiesta_noche"
+  ],
+  "revisado_en": "2026-09-20T07:53:45.753Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "44925": {
+  "categoria": "ropa_inferior",
+  "coincide_original": false,
+  "color_primario": [
+   "camel"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "de_vestir",
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:56:59.255Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "7926": {
+  "categoria": "ropa_superior",
+  "coincide_original": false,
+  "color_primario": [
+   "navy",
+   "rojo"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:34:25.217Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "49236": {
+  "categoria": "accesorio",
+  "coincide_original": false,
+  "color_primario": [
+   "beige"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T07:54:53.750Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "27013": {
+  "categoria": "ropa_inferior",
+  "coincide_original": true,
+  "color_primario": [
+   "azul"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:59:18.752Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "4260": {
+  "categoria": "ropa_superior",
+  "coincide_original": false,
+  "color_primario": [
+   "amarillo"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T08:46:50.131Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "28138": {
+  "categoria": "ropa_inferior",
+  "coincide_original": false,
+  "color_primario": [
+   "negro",
+   "blanco"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "playa_resort",
+   "deportivo"
+  ],
+  "revisado_en": "2026-09-20T08:46:02.081Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "6553": {
+  "categoria": "accesorio",
+  "coincide_original": false,
+  "color_primario": [
+   "azul",
+   "amarillo",
+   "negro"
+  ],
+  "genero": [
+   "neutro"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T08:34:58.483Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "43552": {
+  "categoria": "accesorio",
+  "coincide_original": true,
+  "color_primario": [
+   "azul"
+  ],
+  "genero": [
+   "neutro"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T08:42:37.958Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "6531": {
+  "categoria": "accesorio",
+  "coincide_original": false,
+  "color_primario": [
+   "azul",
+   "rojo"
+  ],
+  "genero": [
+   "neutro"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T07:52:13.791Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "53747": {
+  "categoria": "ropa_inferior",
+  "coincide_original": false,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "streetwear",
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:44:11.655Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "17900": {
+  "categoria": "abrigo",
+  "coincide_original": false,
+  "color_primario": [
+   "rojo",
+   "negro"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T08:56:41.118Z",
+  "temporada": [
+   "otono_invierno"
+  ]
+ },
+ "15013": {
+  "categoria": "abrigo",
+  "coincide_original": false,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T08:47:42.572Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "14285": {
+  "categoria": "ropa_inferior",
+  "coincide_original": false,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "de_vestir"
+  ],
+  "revisado_en": "2026-09-20T08:54:24.153Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "14091": {
+  "categoria": "ropa_superior",
+  "coincide_original": false,
+  "color_primario": [
+   "rosa"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-18T04:56:38.709Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "13192": {
+  "categoria": "calzado",
+  "coincide_original": false,
+  "color_primario": [
+   "azul"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T07:52:30.313Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "57057": {
+  "categoria": "cuerpo_entero",
+  "coincide_original": false,
+  "color_primario": [
+   "rojo"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:22:49.959Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "4017": {
+  "categoria": "calzado",
+  "coincide_original": false,
+  "color_primario": [
+   "negro",
+   "rojo"
+  ],
+  "genero": [
+   "neutro"
+  ],
+  "grupo_estilo": [
+   "casual",
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T08:20:46.033Z",
+  "temporada": [
+   "otono_invierno"
+  ]
+ },
+ "16414": {
+  "categoria": "ropa_superior",
+  "coincide_original": false,
+  "color_primario": [
+   "navy"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:28:13.644Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "24135": {
+  "categoria": "abrigo",
+  "coincide_original": false,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T08:46:41.403Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "18980": {
+  "categoria": "ropa_superior",
+  "coincide_original": true,
+  "color_primario": [
+   "amarillo"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T07:50:57.057Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "34087": {
+  "categoria": "calzado",
+  "coincide_original": false,
+  "color_primario": [
+   "blanco"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "casual",
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T08:20:16.699Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "29226": {
+  "categoria": "calzado",
+  "coincide_original": false,
+  "color_primario": [
+   "negro",
+   "naranja"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "playa_resort"
+  ],
+  "revisado_en": "2026-09-20T07:55:26.418Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "33075": {
+  "categoria": "ropa_superior",
+  "coincide_original": false,
+  "color_primario": [
+   "azul",
+   "rojo",
+   "blanco"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:41:36.815Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "1528": {
+  "categoria": "ropa_superior",
+  "coincide_original": false,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T07:51:27.156Z",
+  "temporada": [
+   "otono_invierno"
+  ]
+ },
+ "51614": {
+  "categoria": "ropa_inferior",
+  "coincide_original": false,
+  "color_primario": [
+   "blanco"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "deportivo"
+  ],
+  "revisado_en": "2026-09-20T08:55:23.420Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "9227": {
+  "categoria": "ropa_superior",
+  "coincide_original": false,
+  "color_primario": [
+   "azul"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "de_vestir"
+  ],
+  "revisado_en": "2026-09-20T07:54:39.731Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "23962": {
+  "categoria": "abrigo",
+  "coincide_original": true,
+  "color_primario": [
+   "gris"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T08:42:30.909Z",
+  "temporada": [
+   "otono_invierno"
+  ]
+ },
+ "7769": {
+  "categoria": "abrigo",
+  "coincide_original": false,
+  "color_primario": [
+   "rojo"
+  ],
+  "genero": [
+   "neutro"
+  ],
+  "grupo_estilo": [
+   "streetwear",
+   "deportivo"
+  ],
+  "revisado_en": "2026-09-20T08:16:01.660Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "40036": {
+  "categoria": "ropa_superior",
+  "coincide_original": true,
+  "color_primario": [
+   "navy"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T07:50:28.977Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "58561": {
+  "categoria": "ropa_inferior",
+  "coincide_original": false,
+  "color_primario": [
+   "azul"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:57:15.253Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "41701": {
+  "categoria": "ropa_inferior",
+  "coincide_original": true,
+  "color_primario": [
+   "navy"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "playa_resort"
+  ],
+  "revisado_en": "2026-09-20T08:57:52.155Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "8026": {
+  "categoria": "ropa_inferior",
+  "coincide_original": true,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "deportivo"
+  ],
+  "revisado_en": "2026-09-20T08:58:03.947Z",
+  "temporada": [
+   "otono_invierno"
+  ]
+ },
+ "26999": {
+  "categoria": "ropa_inferior",
+  "coincide_original": false,
+  "color_primario": [
+   "azul"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:47:19.784Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "30929": {
+  "categoria": "ropa_inferior",
+  "coincide_original": false,
+  "color_primario": [
+   "gris"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:15:37.709Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "28512": {
+  "categoria": "ropa_inferior",
+  "coincide_original": true,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "deportivo"
+  ],
+  "revisado_en": "2026-09-20T07:54:16.493Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "29789": {
+  "categoria": "ropa_superior",
+  "coincide_original": false,
+  "color_primario": [
+   "rosa",
+   "azul",
+   "beige"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-17T19:38:38.686Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "4774": {
+  "categoria": "ropa_inferior",
+  "coincide_original": false,
+  "color_primario": [
+   "rosa"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "deportivo"
+  ],
+  "revisado_en": "2026-09-20T07:53:02.683Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "39546": {
+  "categoria": "calzado",
+  "coincide_original": false,
+  "color_primario": [
+   "amarillo",
+   "verde"
+  ],
+  "genero": [
+   "neutro"
+  ],
+  "grupo_estilo": [
+   "playa_resort"
+  ],
+  "revisado_en": "2026-09-20T08:34:12.063Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "8515": {
+  "categoria": "accesorio",
+  "coincide_original": false,
+  "color_primario": [
+   "gris"
+  ],
+  "genero": [
+   "neutro"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T07:51:21.520Z",
+  "temporada": [
+   "primavera_verano",
+   "todo_el_ano"
+  ]
+ },
+ "58883": {
+  "categoria": "accesorio",
+  "coincide_original": true,
+  "color_primario": [
+   "azul"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "de_vestir"
+  ],
+  "revisado_en": "2026-09-20T08:59:26.445Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "33225": {
+  "categoria": "cuerpo_entero",
+  "coincide_original": true,
+  "color_primario": [
+   "rosa"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "fiesta_noche"
+  ],
+  "revisado_en": "2026-09-20T08:44:55.077Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "42217": {
+  "categoria": "cuerpo_entero",
+  "coincide_original": false,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:18:43.565Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "44749": {
+  "categoria": "calzado",
+  "coincide_original": false,
+  "color_primario": [
+   "gris",
+   "negro"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "casual",
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T08:42:52.387Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "5697": {
+  "categoria": "calzado",
+  "coincide_original": false,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:47:29.874Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "31453": {
+  "categoria": "ropa_superior",
+  "coincide_original": false,
+  "color_primario": [
+   "negro"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "deportivo"
+  ],
+  "revisado_en": "2026-09-20T08:58:35.951Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "21437": {
+  "categoria": "accesorio",
+  "coincide_original": false,
+  "color_primario": [
+   "azul"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "streetwear"
+  ],
+  "revisado_en": "2026-09-20T07:52:42.740Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ },
+ "38847": {
+  "categoria": "cuerpo_entero",
+  "coincide_original": false,
+  "color_primario": [
+   "blanco"
+  ],
+  "genero": [
+   "femenino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:58:43.317Z",
+  "temporada": [
+   "primavera_verano"
+  ]
+ },
+ "11340": {
+  "categoria": "ropa_inferior",
+  "coincide_original": false,
+  "color_primario": [
+   "azul"
+  ],
+  "genero": [
+   "masculino"
+  ],
+  "grupo_estilo": [
+   "casual"
+  ],
+  "revisado_en": "2026-09-20T08:44:00.741Z",
+  "temporada": [
+   "todo_el_ano"
+  ]
+ }
+}

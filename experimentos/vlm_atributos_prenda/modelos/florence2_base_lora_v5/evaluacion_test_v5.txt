@@ -1,0 +1,52 @@
+/usr/local/lib/python3.12/dist-packages/transformers/generation/configuration_utils.py:679: UserWarning: `num_beams` is set to 1. However, `early_stopping` is set to `True` -- this flag is only used in beam-based generation modes. You should set `num_beams>1` or unset `early_stopping`.
+  warnings.warn(
+
+Cargando adapter afinado desde modelos/florence2_base_lora_v5...
+  [AFINADO (LoRA)] 50/500
+  [AFINADO (LoRA)] 100/500
+  [AFINADO (LoRA)] 150/500
+  [AFINADO (LoRA)] 200/500
+  [AFINADO (LoRA)] 250/500
+  [AFINADO (LoRA)] 300/500
+  [AFINADO (LoRA)] 350/500
+  [AFINADO (LoRA)] 400/500
+  [AFINADO (LoRA)] 450/500
+  [AFINADO (LoRA)] 500/500
+
+==============================================================================
+AFINADO (LoRA) -- 500 imagenes
+==============================================================================
+  categoria         486/500 = 97.2%
+  color_primario    362/500 = 72.4%
+  grupo_estilo      414/500 = 82.8%
+  genero            462/500 = 92.4%
+  temporada         411/500 = 82.2%
+  JSON valido       500/500 = 100.0%
+  latencia media   1.13s/imagen (CPU)
+
+F1 por clase -- color_primario (afinado):
+  amarillo       precision=0.88  recall=0.88  F1=0.88
+  azul           precision=0.82  recall=0.85  F1=0.83
+  beige          precision=1.00  recall=0.60  F1=0.75
+  blanco         precision=0.79  recall=0.79  F1=0.79
+  burdeos        precision=0.55  recall=0.55  F1=0.55
+  camel          precision=0.62  recall=0.65  F1=0.63
+  dorado         precision=0.52  recall=1.00  F1=0.68
+  fucsia         precision=1.00  recall=0.20  F1=0.33
+  gris           precision=0.66  recall=0.54  F1=0.59
+  lavanda        precision=0.75  recall=0.75  F1=0.75
+  naranja        precision=0.89  recall=0.68  F1=0.77
+  navy           precision=0.70  recall=0.43  F1=0.53
+  negro          precision=0.74  recall=0.87  F1=0.80
+  plateado       precision=0.78  recall=0.64  F1=0.70
+  rojo           precision=0.75  recall=0.60  F1=0.67
+  rosa           precision=0.32  recall=0.86  F1=0.46
+  verde          precision=0.78  recall=0.86  F1=0.82
+
+F1 por clase -- grupo_estilo (afinado):
+  casual         precision=0.85  recall=0.82  F1=0.83
+  streetwear     precision=0.97  recall=0.93  F1=0.95
+  de_vestir      precision=0.82  recall=0.82  F1=0.82
+  fiesta_noche   precision=0.69  recall=0.75  F1=0.72
+  deportivo      precision=0.75  recall=0.79  F1=0.77
+  playa_resort   precision=0.61  recall=0.74  F1=0.67

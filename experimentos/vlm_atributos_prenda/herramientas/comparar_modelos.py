@@ -24,6 +24,7 @@ DEFAULT_MODELOS = [
     ("v2", DATOS / "predicciones_app_120_v2.json"),
     ("v3", DATOS / "predicciones_app_120_v3.json"),
     ("v4", DATOS / "predicciones_app_120_v4.json"),
+    ("v5", DATOS / "predicciones_app_120_v5.json"),
 ]
 
 
