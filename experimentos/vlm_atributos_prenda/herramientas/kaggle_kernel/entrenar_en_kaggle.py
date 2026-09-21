@@ -25,7 +25,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-VERSION = "v4"
+VERSION = "v5"
 RAMA = "clip-trend-semantic-matching-poc"
 REPO_URL = "https://github.com/victor8701/tfm-robotic-picking-vision.git"
 SALIDA_KAGGLE = Path("/kaggle/working")

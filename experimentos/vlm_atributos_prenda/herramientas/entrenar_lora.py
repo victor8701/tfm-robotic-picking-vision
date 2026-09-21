@@ -22,14 +22,15 @@ cada epoca y al final se deja claro cual tuvo mejor accuracy en
 validacion (no se asume que la ultima epoca sea la mejor: el dataset
 es mas pequeno que el del paper, mas riesgo de sobreajuste).
 
-La salida por defecto es `florence2_base_lora_v4` (2026-09-20): data/*.jsonl se regenero con
-las reglas v4 de preparar_dataset_florence2.py (refuerzo de las filas de `color_primario` mas
-raras -- fucsia/dorado/naranja/plateado/burdeos, F1 0.00 o muy bajo en v1/v2/v3 -- ademas de
-todo lo de v2/v3) y los adapters v1/v2/v3 ya no son consistentes con esas etiquetas -- no los
-sobreescribe, para poder comparar los cuatro.
+La salida por defecto es `florence2_base_lora_v5` (2026-09-21): data/*.jsonl se regenero con
+las reglas v5 de preparar_dataset_florence2.py (refuerzo de `articleType` de cola larga --
+Waistcoat/Sports Sandals/Sweatshirts/Skirts/Sweaters/Capris -- mas el fix de Tracksuits/
+Swimwear que faltaban en CATEGORIA_POR_ARTICLETYPE, ademas de todo lo de v2/v3/v4) y los
+adapters v1-v4 ya no son consistentes con esas etiquetas -- no los sobreescribe, para poder
+comparar los cinco.
 
 Uso:
-    python3 entrenar_lora.py --salida ../modelos/florence2_base_lora_v4
+    python3 entrenar_lora.py --salida ../modelos/florence2_base_lora_v5
     python3 entrenar_lora.py --limite-train 40 --limite-val 10 --epocas 1  # prueba de humo
 """
 import argparse
@@ -154,7 +155,7 @@ def main():
                          help="Limitar filas de train (para prueba de humo en CPU).")
     parser.add_argument("--limite-val", type=int, default=None,
                          help="Limitar filas de val (para prueba de humo en CPU).")
-    parser.add_argument("--salida", default=str(BASE_DIR / "modelos" / "florence2_base_lora_v4"))
+    parser.add_argument("--salida", default=str(BASE_DIR / "modelos" / "florence2_base_lora_v5"))
     args = parser.parse_args()
 
     device = "cuda" if torch.cuda.is_available() else "cpu"

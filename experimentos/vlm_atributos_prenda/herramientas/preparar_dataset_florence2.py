@@ -46,8 +46,17 @@ mapeo por `season` de Kaggle; el autor solo corrigio una, Caps, de la propuesta 
 Reglas v4 (2026-09-20, mas tarde): refuerzo de las filas de `color_primario` mas raras
 (fucsia/dorado/naranja/plateado/burdeos -- F1 0.00 o muy bajo en v1/v2/v3, no por culpa del
 muestreo sino porque el dataset entero tiene pocas: fucsia solo 50 filas mapeables de 24215).
-Se reservan aparte (ver COLORES_A_REFORZAR/separar_refuerzo_color abajo) antes del muestreo por
+Se reservan aparte (ver COLORES_A_REFORZAR/separar_refuerzo abajo) antes del muestreo por
 categoria, que no mira el color y las dejaba a la suerte. Nada mas cambia respecto a v3.
+
+Reglas v5 (2026-09-21): mismo mecanismo de refuerzo de v4, generalizado (separar_refuerzo ya
+no es especifico de color) y aplicado tambien a `articleType` -- ver TIPOS_A_REFORZAR abajo
+para que tipos y por que (cola larga real: S6.3 de la memoria mide que el acierto de estilo
+cae al 3% en tipos con <10 ejemplos en train y al 59% con 10-49). Ademas, arregla un bug real:
+`Tracksuits` y `Swimwear` aparecian en FILTROS_GRUPO_ESTILO pero no en
+CATEGORIA_POR_ARTICLETYPE, asi que mapear_fila los descartaba siempre (categoria=None) --
+0 filas de esos dos tipos en todas las versiones v1-v4, pase lo que pasara con el muestreo.
+Nada mas cambia respecto a v4.
 
 Uso:
     python3 preparar_dataset_florence2.py [--train N] [--val N] [--test N]
@@ -92,6 +101,12 @@ CATEGORIA_POR_ARTICLETYPE = {
     "Handbags": "accesorio", "Backpacks": "accesorio", "Belts": "accesorio", "Caps": "accesorio",
     "Scarves": "accesorio", "Stoles": "accesorio", "Mufflers": "accesorio", "Ties": "accesorio",
     "Clutches": "accesorio",
+    # Tracksuits y Swimwear: bug real encontrado al sobremuestrear tipos de prenda (v5, ver
+    # aviso mas abajo) -- FILTROS_GRUPO_ESTILO ya los resuelve a "deportivo"/"playa_resort",
+    # pero al faltar aqui mapear_fila devolvia categoria=None y la fila se descartaba SIEMPRE,
+    # nunca llegaban a "mapeadas" pasara lo que pasara con el color o el muestreo. Mismo
+    # criterio que Jumpsuit/Dresses (prenda de una pieza que cubre torso+piernas).
+    "Tracksuits": "cuerpo_entero", "Swimwear": "cuerpo_entero",
 }
 
 COLOR_POR_BASECOLOUR = {
@@ -262,22 +277,45 @@ def cargar_filas():
 COLORES_A_REFORZAR = {"fucsia": 200, "dorado": 200, "naranja": 200, "plateado": 200, "burdeos": 200}
 
 
-def separar_refuerzo_color(mapeadas, rng):
-    """Aparta hasta COLORES_A_REFORZAR[color] filas de cada color (todas las que haya si hay
-    menos) y las devuelve en un solo grupo -- se combinan luego con la seleccion por categoria
-    y todo junto se reparte en train/val/test con el mismo shuffle+slice de siempre (main()),
-    asi que caen repartidas proporcionalmente sin necesidad de fijar un cupo por split a mano."""
-    por_color = defaultdict(list)
+# Tipos de prenda de la cola larga (v5, 2026-09-21). El estilo cae al 3% de acierto en tipos
+# con <10 ejemplos en train y al 59% con 10-49, medido de verdad en imagenes no vistas
+# (evaluar_solape_1207.py / memoria S6.3) -- el muestreo estratificado de mas abajo solo mira
+# `categoria` (6 valores), no `articleType` (30), asi que dentro de una categoria grande
+# (ropa_superior: 11222 filas en 6 tipos; calzado: 7847 en 8 tipos) un tipo raro se queda casi
+# sin cupo por pura proporcion aunque el pool tenga de sobra. Elegidos calculando cuantas filas
+# de cada tipo caian realmente en train+val+test con el muestreo de v4 (ver commit): los que
+# quedaban claramente por debajo de 50 en train (bucket "10-49" o peor de la tabla de S6.3) --
+# Waistcoat (0 seleccionadas de 12 en el pool), Sports Sandals (5 de 65), Sweatshirts (23 de
+# 278), Skirts (26 de 57), Sweaters (38 de 277), Capris (42 de 114). Tope 150 (deja a los que sí
+# tienen pool para ello en el rango "50-199" de S6.3, donde el acierto ya sube a 76%); los que
+# tienen menos de 150 en TODO el pool (Waistcoat/Sports Sandals/Skirts/Capris) cogen el 100%
+# igual que fucsia con los colores. Tracksuits/Swimwear NO estan aqui a proposito: su problema
+# no era de muestreo sino que faltaban en CATEGORIA_POR_ARTICLETYPE (ver el aviso ahi arriba);
+# una vez mapeables se corrigen solas porque su categoria (cuerpo_entero) es pequena y el
+# muestreo ya coge el 100% de lo que hay (comprobado, ver commit).
+TIPOS_A_REFORZAR = {
+    "Waistcoat": 150, "Sports Sandals": 150, "Sweatshirts": 150,
+    "Skirts": 150, "Sweaters": 150, "Capris": 150,
+}
+
+
+def separar_refuerzo(mapeadas, clave_fn, objetivo, rng):
+    """Generaliza el refuerzo de v4 (que era solo de color) a cualquier campo: aparta hasta
+    objetivo[clave] filas de cada valor de clave_fn(fila) (todas las que haya si hay menos) y
+    las devuelve en un solo grupo -- se combinan luego con el resto y todo junto se reparte en
+    train/val/test con el mismo shuffle+slice de siempre (main()), asi que caen repartidas
+    proporcionalmente sin necesidad de fijar un cupo por split a mano."""
+    por_clave = defaultdict(list)
     resto = []
     for f in mapeadas:
-        color = f["_atributos"]["color_primario"]
-        (por_color[color] if color in COLORES_A_REFORZAR else resto).append(f)
+        clave = clave_fn(f)
+        (por_clave[clave] if clave in objetivo else resto).append(f)
     refuerzo = []
-    for color, filas in por_color.items():
+    for clave, filas in por_clave.items():
         rng.shuffle(filas)
-        tope = COLORES_A_REFORZAR[color]
+        tope = objetivo[clave]
         refuerzo.extend(filas[:tope])
-        resto.extend(filas[tope:])  # lo que sobra de cada color vuelve al pool general
+        resto.extend(filas[tope:])  # lo que sobra de cada clave vuelve al pool general
     return refuerzo, resto
 
 
@@ -356,12 +394,20 @@ def main():
             int(args.train * factor), int(args.val * factor), int(args.test * factor)
         )
 
-    refuerzo, resto = separar_refuerzo_color(mapeadas, rng)
-    print(f"\nRefuerzo de colores raros ({sum(COLORES_A_REFORZAR.values())} tope, {len(refuerzo)} conseguidas):")
+    refuerzo_color, resto = separar_refuerzo(
+        mapeadas, lambda f: f["_atributos"]["color_primario"], COLORES_A_REFORZAR, rng)
+    print(f"\nRefuerzo de colores raros ({sum(COLORES_A_REFORZAR.values())} tope, {len(refuerzo_color)} conseguidas):")
     for color, tope in COLORES_A_REFORZAR.items():
-        n = sum(1 for f in refuerzo if f["_atributos"]["color_primario"] == color)
+        n = sum(1 for f in refuerzo_color if f["_atributos"]["color_primario"] == color)
         print(f"  {color:<10} {n}/{tope}" + ("  (todo lo que hay)" if n < tope else ""))
 
+    refuerzo_tipo, resto = separar_refuerzo(resto, lambda f: f["articleType"], TIPOS_A_REFORZAR, rng)
+    print(f"\nRefuerzo de tipos de prenda raros ({sum(TIPOS_A_REFORZAR.values())} tope, {len(refuerzo_tipo)} conseguidas):")
+    for tipo, tope in TIPOS_A_REFORZAR.items():
+        n = sum(1 for f in refuerzo_tipo if f["articleType"] == tipo)
+        print(f"  {tipo:<16} {n}/{tope}" + ("  (todo lo que hay)" if n < tope else ""))
+
+    refuerzo = refuerzo_color + refuerzo_tipo
     seleccion_categoria = muestreo_estratificado(resto, args.train + args.val + args.test - len(refuerzo), rng)
     seleccion = refuerzo + seleccion_categoria
     rng.shuffle(seleccion)
