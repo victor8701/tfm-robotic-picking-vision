@@ -1,0 +1,142 @@
+{
+ "32426": {
+  "categoria": "ropa_inferior",
+  "color_primario": "blanco",
+  "grupo_estilo": "deportivo",
+  "genero": "masculino",
+  "temporada": "primavera_verano"
+ },
+ "24760": {
+  "categoria": "calzado",
+  "color_primario": "gris",
+  "grupo_estilo": "de_vestir",
+  "genero": "femenino",
+  "temporada": "primavera_verano"
+ },
+ "38325": {
+  "categoria": "accesorio",
+  "color_primario": "rojo",
+  "grupo_estilo": "deportivo",
+  "genero": "neutro",
+  "temporada": "todo_el_ano"
+ },
+ "11233": {
+  "categoria": "ropa_inferior",
+  "color_primario": "negro",
+  "grupo_estilo": "casual",
+  "genero": "femenino",
+  "temporada": "todo_el_ano"
+ },
+ "10859": {
+  "categoria": "ropa_superior",
+  "color_primario": "navy",
+  "grupo_estilo": "casual",
+  "genero": "masculino",
+  "temporada": "primavera_verano"
+ },
+ "32577": {
+  "categoria": "cuerpo_entero",
+  "color_primario": "gris",
+  "grupo_estilo": "casual",
+  "genero": "femenino",
+  "temporada": "primavera_verano"
+ },
+ "49240": {
+  "categoria": "accesorio",
+  "color_primario": "azul",
+  "grupo_estilo": "casual",
+  "genero": "neutro",
+  "temporada": "todo_el_ano"
+ },
+ "15252": {
+  "categoria": "calzado",
+  "color_primario": "verde",
+  "grupo_estilo": "playa_resort",
+  "genero": "neutro",
+  "temporada": "primavera_verano"
+ },
+ "4068": {
+  "categoria": "calzado",
+  "color_primario": "camel",
+  "grupo_estilo": "casual",
+  "genero": "neutro",
+  "temporada": "todo_el_ano"
+ },
+ "13815": {
+  "categoria": "ropa_superior",
+  "color_primario": "navy",
+  "grupo_estilo": "casual",
+  "genero": "masculino",
+  "temporada": "primavera_verano"
+ },
+ "17990": {
+  "categoria": "accesorio",
+  "color_primario": "navy",
+  "grupo_estilo": "de_vestir",
+  "genero": "masculino",
+  "temporada": "todo_el_ano"
+ },
+ "41712": {
+  "categoria": "calzado",
+  "color_primario": "menta",
+  "grupo_estilo": "casual",
+  "genero": "femenino",
+  "temporada": "primavera_verano"
+ },
+ "13803": {
+  "categoria": "ropa_superior",
+  "color_primario": "navy",
+  "grupo_estilo": "casual",
+  "genero": "masculino",
+  "temporada": "otono_invierno"
+ },
+ "43533": {},
+ "3511": {
+  "categoria": "cuerpo_entero",
+  "color_primario": "negro",
+  "grupo_estilo": "deportivo",
+  "genero": "masculino",
+  "temporada": "todo_el_ano"
+ },
+ "15630": {
+  "categoria": "abrigo",
+  "color_primario": "negro",
+  "grupo_estilo": "deportivo",
+  "genero": "neutro",
+  "temporada": "otono_invierno"
+ },
+ "35777": {},
+ "17904": {},
+ "39907": {},
+ "25899": {},
+ "2249": {},
+ "35649": {},
+ "3268": {},
+ "9379": {},
+ "43873": {},
+ "22651": {},
+ "44587": {},
+ "8063": {},
+ "19223": {},
+ "33245": {},
+ "40413": {},
+ "12278": {},
+ "46906": {},
+ "43673": {},
+ "47556": {},
+ "12466": {},
+ "53798": {},
+ "26803": {},
+ "14117": {},
+ "12376": {},
+ "30925": {},
+ "29073": {},
+ "14112": {},
+ "54731": {},
+ "47675": {},
+ "33240": {},
+ "51508": {},
+ "11658": {},
+ "9167": {},
+ "22290": {}
+}

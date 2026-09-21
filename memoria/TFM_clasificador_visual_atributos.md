@@ -3,14 +3,16 @@
 **Autor:** Víctor Martín Parra  
 **Máster:** Robótica y Automatización — UC3M (2025/2027)  
 **Fecha:** 21 de septiembre de 2026  
-**Versión:** 0.10 (documento vivo: v0.1 = resultados del dataset/adapter v1; v0.2 = decisiones de esquema del autor y
+**Versión:** 0.11 (documento vivo: v0.1 = resultados del dataset/adapter v1; v0.2 = decisiones de esquema del autor y
 dataset v2 regenerado, §11.1; v0.3 = adapter v2 entrenado y evaluado, comparación con v1, §11.2; v0.4 = resto de
 `temporada` decidido y dataset v3 regenerado, §11.4; v0.5 = adapter v3 entrenado y evaluado — mejor que v1 y v2 contra
 el humano, §11.4; v0.6 = sobremuestreo de colores raros, dataset v4 regenerado, §11.5; v0.7 = adapter v4 entrenado y
 evaluado — arregla 3 clases de color, a costa de la media global, §11.5; v0.8 = auditoría de coherencia v1-v4 y
 repetición del prototipo de looks con v3, §8.5; v0.9 = sobremuestreo de tipos de prenda raros + fix
 `Tracksuits`/`Swimwear`, dataset/adapter v5 entrenado y evaluado, §11.7; v0.10 = detector real DeepFashion2
-(YOLOv8-seg de terceros) sustituye la mayoría de las heurísticas de detección del prototipo de looks, §8.6)  
+(YOLOv8-seg de terceros) sustituye la mayoría de las heurísticas de detección del prototipo de looks, §8.6;
+v0.11 = comparación con Claude y Gemini sin afinar sobre 50 imágenes — el propio gana de media (85% vs
+74-76%) pero pierde en color, gana por goleada en estilo/temporada, §11.8)  
 **Código y datos:** [`experimentos/vlm_atributos_prenda/`](../experimentos/vlm_atributos_prenda/) (rama `clip-trend-semantic-matching-poc`)  
 **Relación con el estado del arte:** este documento cubre la pieza *visual* del Trend Intelligence Agent
 ([`Estado_arte.md`](Estado_arte.md) §6) y el matching semántico (§7). **No modifica `Estado_arte.md`**: el autor pidió
@@ -1137,6 +1139,61 @@ acuerdo medio (85 %)** y el default recomendado para uso general; v5 es la opci�
 específicamente `Capris`/`Skirts`/`Sports Sandals`/`Sweaters`/`Sweatshirts`/`Tracksuits`/
 `Waistcoat`/`Swimwear` — o simplemente porque es el único adapter que puede producir
 `Tracksuits`/`Swimwear` en absoluto. Los cinco adapters se quedan en el repositorio.
+
+### 11.8 Comparación con Claude y Gemini sin afinar (2026-09-21)
+
+Punto pendiente desde el plan inicial de esta pieza (§1): mostrar con números, no solo con el argumento,
+que un LLM comercial general usado directamente (sin afinar) no sustituye a un modelo propio afinado para
+esta tarea — el mismo tipo de comparación que hace el paper "Fashion Florence" en el que se basa este
+enfoque (`herramientas/comparar_llm_comercial.py`).
+
+**Alcance deliberadamente pequeño: 50 de las 500 filas de test.jsonl (semilla 42, estratificado por
+categoría), no las 500 ni las 371 de §6.3.** El autor no quería gastar dinero aparte de sus suscripciones
+Pro de Claude/Gemini (que no cubren la API de pago, son productos distintos). Con eso: Claude lo clasificó
+el propio Claude de esta sesión mirando cada imagen a mano (sin API, sin coste, misma sesión ya cubierta
+por el Pro) y Gemini vía su nivel gratuito real de Google AI Studio (sin tarjeta). Mismo esquema, mismo
+prompt con las 5 listas cerradas de valores, para los tres.
+
+**Aviso sobre qué modelo de Gemini es en realidad, y por qué.** El plan citaba Gemini 2.5 Flash (el que usa
+el paper de referencia) — ya no está disponible para claves nuevas. El sustituto que da la propia API,
+`gemini-3.6-flash`, tiene solo **20 peticiones al día** de cupo gratuito en este proyecto (muy por debajo
+de las "1500/día" que anuncia la página general de precios de Google, una cifra que no aplica igual por
+modelo) — se agotó a las 15 de 50. Se cambió a `gemini-3.5-flash-lite`, con cupo diario separado, para las
+50 completas con un único modelo consistente. Es la variante *ligera* de Gemini, no la de gama alta — la
+comparación mide "un Gemini gratuito y accesible", no el mejor Gemini posible.
+
+**Resultado (50 imágenes, JSON válido 100% en los tres):**
+
+| Campo | Florence-2+LoRA v3 (propio) | Claude (sin afinar) | Gemini 3.5 Flash-Lite (sin afinar) |
+|---|---|---|---|
+| `categoria` | 98% | 94% | 98% |
+| `color_primario` | 64% | **70%** | **74%** |
+| `grupo_estilo` | **84%** | 56% | 60% |
+| `genero` | **94%** | 88% | 84% |
+| `temporada` | **84%** | 60% | 64% |
+| **MEDIA** | **85%** | 74% | 76% |
+
+**El modelo propio gana de media (85% vs 74-76%), pero no en todo — y el patrón de dónde gana es la
+parte que importa.** En `categoria` los tres van casi empatados (94-98%, es el campo "fácil"). En
+`color_primario` **los dos comerciales superan al propio** (70-74% vs 64%): el color es percepción visual
+genérica, algo en lo que un VLM general ya es bueno, y el modelo propio arrastra aquí las convenciones
+específicas (a veces imperfectas) del vocabulario de Kaggle (`camel` absorbiendo varios marrones, `Purple`
+→ `lavanda`, etc. — ver §11.1). Donde el modelo propio **gana por goleada** es `grupo_estilo` (+24-28 pp) y
+`temporada` (+20-24 pp) — exactamente los dos campos que codifican reglas propias de este esquema
+(`articleType` → `grupo_estilo`, `Jackets`/13 tipos más → `todo_el_ano` fijo — §11.1/§11.4) que ningún
+modelo general puede adivinar sin haber visto estas reglas. **Es el argumento que se quería mostrar con
+números**: no es que Claude/Gemini "no sepan ver" una prenda — es que no conocen las reglas concretas de
+este esquema, y eso solo se consigue afinando.
+
+**Limitaciones de esta comparación, explícitas:** n=50 (no 500), un único revisor calibrando el prompt
+(yo mismo), y la parte de "Claude" evaluada a mano por el propio Claude en vez de por una llamada de API
+programática — mismo modelo, mecanismo de invocación distinto. Se lee como un indicio fuerte, no como una
+medida definitiva del tamaño exacto de la ventaja.
+
+**Ficheros:** `data/revision_humana/muestra_llm_comercial.json` (la muestra), `predicciones_florence_v3_comercial.json`,
+`predicciones_claude_comercial.json`, `predicciones_gemini_3_5_flash_lite_comercial.json` (las tres, mismo
+formato), `predicciones_gemini_3_6_flash_comercial.json` (las 15 conseguidas antes de agotar ese cupo,
+se queda como rastro pero no se usa en la tabla de arriba). Todos commiteados.
 
 ---
 

@@ -271,11 +271,15 @@ looks completos como prototipo (§8, ver arriba) · revisión humana de las 120 
 76.6%, de paso corrige un bug real (`Tracksuits`/`Swimwear` nunca se mapeaban en v1-v4) ·
 **detector real (DeepFashion2) sustituye la mayoría de las heurísticas de detección** (§8.6): un
 YOLOv8-seg de terceros, ya entrenado (no afinado por mí), integrado en `analizar_outfit.py` —
-las heurísticas de *grounding*/geométrico caen del 29% al 5% de las cajas. **v3 sigue siendo el
-adapter recomendado por defecto** (mejor acuerdo medio con la revisión humana, 85%); v4 cuando
-importa más no fallar en `naranja`/`dorado`/`plateado` que la media; v5 cuando importan los tipos
-de prenda raros (o se necesita que el esquema cubra `Tracksuits`/`Swimwear`). Ver memoria §11.7
-y la tabla "¿Qué adapter usar?" de §12 para la lista completa y con contexto.
+las heurísticas de *grounding*/geométrico caen del 29% al 5% de las cajas · **comparación con
+Claude y Gemini sin afinar** (§11.8, 50 imágenes): el modelo propio gana de media (85% vs 74-76%)
+pero no en todo — pierde en `color_primario` (los comerciales son mejores en percepción de color
+genérica) y gana por goleada en `grupo_estilo`/`temporada` (+20-28 pp, los campos que codifican
+reglas propias del esquema que ningún modelo general puede adivinar sin afinar). **v3 sigue
+siendo el adapter recomendado por defecto** (mejor acuerdo medio con la revisión humana, 85%);
+v4 cuando importa más no fallar en `naranja`/`dorado`/`plateado` que la media; v5 cuando importan
+los tipos de prenda raros (o se necesita que el esquema cubra `Tracksuits`/`Swimwear`). Ver
+memoria §11.7/§11.8 y la tabla "¿Qué adapter usar?" de §12 para la lista completa y con contexto.
 
 **Pendiente**, por orden aproximado de coste/beneficio:
 
@@ -283,8 +287,6 @@ y la tabla "¿Qué adapter usar?" de §12 para la lista completa y con contexto.
    (el de ahora es de terceros, ya entrenado — ver §8.6) y afinar el **clasificador** con
    recortes reales en vez de fotos de catálogo — la pieza que falta para el objetivo original
    (fotos reales de redes sociales, no catálogo).
-2. Comparar con Claude/Gemini en el mismo test (opcional): el dato que justifica "modelo propio"
-   con números, no solo con el argumento.
 
 ## Qué NO es (mismo aviso honesto que en `clip_trend_matching/`)
 
