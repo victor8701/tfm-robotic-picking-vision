@@ -1,5 +1,11 @@
 # Clasificador de características de prendas desde foto (VLM propio)
 
+> **Estado: fase cerrada (2026-09-21).** Cinco adapters entrenados y evaluados (v1-v5), detector
+> real integrado, comparación empírica contra Claude/Gemini hecha. Cierre honesto — puntos
+> fuertes, puntos flojos, qué mejorar — en
+> [`memoria/TFM_clasificador_visual_atributos.md`](../../memoria/TFM_clasificador_visual_atributos.md) §13.
+> El siguiente paso (fotos reales de redes sociales) vive en otra rama.
+
 Programa que mira una foto de una prenda (estilo redes sociales / catálogo) y devuelve sus
 características estructuradas: categoría, color, grupo de estilo, género, temporada. Es la
 pieza **visual** que le faltaba al Trend Intelligence Agent de
@@ -27,7 +33,7 @@ clasificación fina que no es el suyo, se entrena un modelo generativo específi
 tarea. Las 1207 imágenes de `clip_trend_matching/` se reutilizan más adelante (Stage 4) como
 banco de comparación directa contra ese 32.8%.
 
-## Estado: Stage 0 y Stage 1 completados
+## Cómo probarlo
 
 ### Stage 0 — Entorno
 
@@ -82,8 +88,6 @@ a las 1651-2569 del resto) — esperable, es la misma clase que ya iba peor con 
 > hace lo que se pidió: ya no hace trampa con los vestidos y `temporada` distingue `todo_el_ano`
 > para chaquetas. Comparación campo a campo completa en
 > [`memoria/TFM_clasificador_visual_atributos.md`](../../memoria/TFM_clasificador_visual_atributos.md) §11.2.
-
-## Estado: Stage 2 y Stage 3 (código) también listos
 
 ### Stage 2 — Baseline zero-shot
 

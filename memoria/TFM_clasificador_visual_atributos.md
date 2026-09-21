@@ -1,18 +1,24 @@
 # Clasificador visual de atributos de prenda (VLM propio): proceso y resultados
 
+> **Estado: fase cerrada (2026-09-21).** Esta rama (`clip-trend-semantic-matching-poc`) se da por
+> completa tal como está — ver §13 para el cierre honesto (qué funciona, qué no, qué falta). El
+> siguiente paso (fotos reales de redes sociales, `viral_clips`) vive en otra rama, con su propio
+> plan de implementación — buscar el documento de esa rama antes de retomar esto.
+
 **Autor:** Víctor Martín Parra  
 **Máster:** Robótica y Automatización — UC3M (2025/2027)  
 **Fecha:** 21 de septiembre de 2026  
-**Versión:** 0.11 (documento vivo: v0.1 = resultados del dataset/adapter v1; v0.2 = decisiones de esquema del autor y
-dataset v2 regenerado, §11.1; v0.3 = adapter v2 entrenado y evaluado, comparación con v1, §11.2; v0.4 = resto de
-`temporada` decidido y dataset v3 regenerado, §11.4; v0.5 = adapter v3 entrenado y evaluado — mejor que v1 y v2 contra
-el humano, §11.4; v0.6 = sobremuestreo de colores raros, dataset v4 regenerado, §11.5; v0.7 = adapter v4 entrenado y
-evaluado — arregla 3 clases de color, a costa de la media global, §11.5; v0.8 = auditoría de coherencia v1-v4 y
-repetición del prototipo de looks con v3, §8.5; v0.9 = sobremuestreo de tipos de prenda raros + fix
-`Tracksuits`/`Swimwear`, dataset/adapter v5 entrenado y evaluado, §11.7; v0.10 = detector real DeepFashion2
-(YOLOv8-seg de terceros) sustituye la mayoría de las heurísticas de detección del prototipo de looks, §8.6;
-v0.11 = comparación con Claude y Gemini sin afinar sobre 50 imágenes — el propio gana de media (85% vs
-74-76%) pero pierde en color, gana por goleada en estilo/temporada, §11.8)  
+**Versión:** 1.0 — cierre de fase (documento vivo hasta aquí: v0.1 = resultados del dataset/adapter v1; v0.2 =
+decisiones de esquema del autor y dataset v2 regenerado, §11.1; v0.3 = adapter v2 entrenado y evaluado, comparación
+con v1, §11.2; v0.4 = resto de `temporada` decidido y dataset v3 regenerado, §11.4; v0.5 = adapter v3 entrenado y
+evaluado — mejor que v1 y v2 contra el humano, §11.4; v0.6 = sobremuestreo de colores raros, dataset v4 regenerado,
+§11.5; v0.7 = adapter v4 entrenado y evaluado — arregla 3 clases de color, a costa de la media global, §11.5; v0.8 =
+auditoría de coherencia v1-v4 y repetición del prototipo de looks con v3, §8.5; v0.9 = sobremuestreo de tipos de
+prenda raros + fix `Tracksuits`/`Swimwear`, dataset/adapter v5 entrenado y evaluado, §11.7; v0.10 = detector real
+DeepFashion2 (YOLOv8-seg de terceros) sustituye la mayoría de las heurísticas de detección del prototipo de looks,
+§8.6; v0.11 = comparación con Claude y Gemini sin afinar sobre 50 imágenes — el propio gana de media (85% vs
+74-76%) pero pierde en color, gana por goleada en estilo/temporada, §11.8; **v1.0 = cierre de fase, §13: puntos
+fuertes, puntos flojos y qué mejorar si se retoma**)  
 **Código y datos:** [`experimentos/vlm_atributos_prenda/`](../experimentos/vlm_atributos_prenda/) (rama `clip-trend-semantic-matching-poc`)  
 **Relación con el estado del arte:** este documento cubre la pieza *visual* del Trend Intelligence Agent
 ([`Estado_arte.md`](Estado_arte.md) §6) y el matching semántico (§7). **No modifica `Estado_arte.md`**: el autor pidió
@@ -35,6 +41,7 @@ no tocarlo en profundidad, así que el vocabulario de color de §3.4 se queda co
 10. [Correcciones a lo dicho antes](#10-correcciones-a-lo-dicho-antes)
 11. [Decisiones abiertas y próximos pasos](#11-decisiones-abiertas-y-próximos-pasos)
 12. [Reproducibilidad](#12-reproducibilidad)
+13. [Conclusiones y cierre de esta fase](#13-conclusiones-y-cierre-de-esta-fase-2026-09-21)
 
 ---
 
@@ -1216,8 +1223,15 @@ python3 analizar_revision_humana.py --revisiones ../data/revision_humana/revisio
 python3 comparar_modelos.py --revisiones ../data/revision_humana/revisiones_app_n120_2026-09-21.json  # v1-v5 pareado, §11.2/§11.4/§11.5/§11.7
 python3 predecir_lote.py --carpeta ../data/fotos_calle --salida calle.json
 python3 analizar_outfit.py --carpeta ../data/fotos_calle --salida-json outfits.json --salida-imagenes anotadas --cache cache.json
-python3 resumen_outfit.py --outfits outfits.json --foto-entera ../data/revision_humana/predicciones_fotos_calle.json \
-    --auditoria ../data/revision_humana/auditoria_outfit_calle.json
+    # detector DeepFashion2 (S8.6) + adapter v3 por defecto, sin flags extra -- descarga el YOLO de HuggingFace la primera vez
+python3 resumen_outfit.py --outfits outfits.json --foto-entera ../data/revision_humana/predicciones_fotos_calle.json
+    # SIN --auditoria: auditoria_outfit_calle.json es de las cajas de v1/heuristica (S8.4), ya no corresponde a las
+    # cajas de DeepFashion2 -- pasarlo aqui imprimiria un "color correcto" que no mide nada de la version actual (S8.6)
+python3 comparar_llm_comercial.py muestra && python3 comparar_llm_comercial.py florence \
+    && python3 comparar_llm_comercial.py gemini && python3 comparar_llm_comercial.py resumen
+    # S11.8 -- gemini necesita ~/.config/gemini/api_key (nivel gratuito, ver el aviso de cuota
+    # diaria en el propio script); la parte "claude" de la tabla no la genera este comando, se
+    # guarda a mano en predicciones_claude_comercial.json
 ```
 
 **Aviso de versión del dataset**: `preparar_dataset_florence2.py` regenera `data/*.jsonl` con las reglas **v5** (§11.1 +
@@ -1242,3 +1256,102 @@ de tipos de prenda raros (§11.7) y es el único que reconoce `Tracksuits`/`Swim
 **v3 sigue siendo la opción por defecto más segura**; v4 cuando importan esos tres colores más que la media; v5
 cuando importan esos ocho tipos de prenda más que la media (o cuando se necesite que el esquema cubra `Tracksuits`/
 `Swimwear`, que en v1-v4 no existen para el modelo).
+
+---
+
+## 13. Conclusiones y cierre de esta fase (2026-09-21)
+
+Esta fase (rama `clip-trend-semantic-matching-poc`) se da por cerrada aquí. Lo que sigue —fotos reales de
+redes sociales, `viral_clips`— pasa a una rama nueva (ver el aviso al principio de este documento y el
+plan dedicado en esa rama). Este apartado es el resumen honesto de qué se ha construido, qué funciona bien,
+qué no, y qué haría falta para seguir.
+
+### 13.1 Qué existe al cerrar esta fase
+
+Un clasificador de atributos de prenda **propio** (Florence-2-base + LoRA, pesos abiertos, autoalojado, sin
+llamar a ningún LLM comercial en producción) en cinco versiones (v1-v5, §11), cada una con su adapter
+entrenado y evaluado de verdad, no solo planeado. Un prototipo de looks completos (detectar → recortar →
+clasificar → agregar, §8) que pasa de heurísticas propias a un detector real de terceros (§8.6). Una
+comparación empírica con Claude y Gemini sin afinar que confirma con números, no solo con el argumento, que
+afinar aporta algo que un modelo general no tiene (§11.8). Una revisión humana completa de 120 fichas
+(§7, §9). Una app de revisión y un panel de decisiones, los dos pensados para usarse desde el móvil, porque
+así es como se tomaron varias de las decisiones de esta fase. Un pipeline de entrenamiento reproducible por
+API de Kaggle, usado con éxito cinco veces. Todo commiteado, con número de commit y fichero de datos
+trazable para cada cifra de este documento.
+
+### 13.2 Puntos fuertes
+
+1. **Es de verdad un modelo propio, y se demuestra, no se afirma.** §11.8 lo compara con Claude y Gemini
+   sobre el mismo esquema: gana de media (85 % frente a 74-76 %) y, más importante, gana justo en los dos
+   campos que codifican reglas propias del esquema (`grupo_estilo`, `temporada`) que ningún modelo general
+   puede conocer sin haber sido afinado con ellas.
+2. **Metodología que separa señal de ruido, no solo compara medias.** El contraste pareado
+   (`comparar_modelos.py`) sobre las mismas fichas revisadas a mano fue lo que reveló que la caída de color
+   de v2 en el test de 500 era ruido de qué imágenes cayeron en el test (§11.2), y que la de v4 no lo era
+   (§11.5) — dos conclusiones opuestas que un solo número agregado no habría distinguido.
+3. **Trade-offs documentados como trade-offs, no maquillados como mejoras.** v3 vs. v4 vs. v5 (§11.5, §11.7,
+   la tabla "¿Qué adapter usar?" de arriba) es el ejemplo más claro: tres adapters válidos, cada uno mejor
+   en algo distinto, sin fingir que hay un único ganador.
+4. **Todo pensado para poder usarse desde el móvil**, porque así se ha usado de verdad: la app «Ficha de
+   Prenda», el panel «Reglas de temporada», el pipeline de Kaggle por API en vez de Colab (§11.3) — ninguno
+   de los tres era necesario para que el sistema funcionase, pero sin ellos varias decisiones de esta fase
+   no se habrían podido tomar cuando se tomaron.
+5. **Detección real en vez de heurística**, sin haber tenido que entrenar nada nuevo para conseguirlo
+   (§8.6): las guardas que sostenían el 29 % de las cajas del prototipo de looks bajan a un 5 % residual.
+6. **Documentación viva y con fecha**: cada versión de dataset/adapter tiene su commit, su tabla de
+   resultados y su comparación pareada contra la anterior, escritas el mismo día que se generaron los
+   números, no reconstruidas después de memoria.
+
+### 13.3 Puntos flojos
+
+1. **Todo lo de v1-v5 se entrena y evalúa sobre fotos de catálogo (Kaggle), nunca sobre fotos reales de
+   redes sociales.** Es la limitación que más se repite en este documento (§1, §8.1, §9.1) porque es la que
+   más importa: el objetivo original del componente es analizar contenido de tendencia de redes sociales, y
+   eso no se ha probado ni una vez con datos reales de esa procedencia — solo con 19 fotos de calle de
+   Wikimedia como sustituto parcial.
+2. **`grupo_estilo` y `categoria` rinden muy bien sobre catálogo en buena parte porque aprenden el atajo
+   `articleType → etiqueta`, no un criterio visual de estilo** (§6.4, confirmado en §6.3 con la caída a 3 %
+   en tipos de prenda no vistos). El 90.8 % de estilo del test no dice lo que parece decir fuera de este
+   dataset.
+3. **`temporada` sigue sin ser una señal fiable en el fondo**, pese a que v3 la mejora mucho en el test:
+   Kaggle etiqueta la estación de la colección del comerciante, no la estacionalidad real de la prenda
+   (§7.3), y la regla de v3 (`articleType` → `todo_el_ano` fijo para 13 tipos) mejora el acuerdo con el
+   humano desplazando el problema, no resolviéndolo — no hay ninguna foto de calle con etiqueta de
+   referencia de `temporada` para poder comprobarlo de verdad (§8.5, §8.6).
+4. **`fucsia` queda irresoluble con lo que hay: 50 imágenes en las 24260 filas mapeables de todo el
+   dataset** (§11.5) — ningún cambio de muestreo puede darle más ejemplos que los que existen. Necesitaría
+   una fuente de datos nueva, no un ajuste de este pipeline.
+5. **No hay un adapter único recomendable para todo** (v3/v4/v5, §12) — quien use este sistema tiene que
+   saber cuál elegir según qué le importa más, no puede asumir "el último es el mejor".
+6. **El detector de §8.6 no es propio** — es un YOLOv8-seg de terceros ya entrenado. Funciona bien y está
+   documentado como lo que es, pero no cuenta como aportación de investigación por sí mismo.
+7. **Varias auditorías siguen sin validar por el autor**: la de cajas/color/estilo de §8.4, §8.5 y §8.6 las
+   hizo Claude mirando las fotos, marcadas explícitamente como pendientes de que Víctor las revise — nunca
+   se ha hecho.
+8. **Una sola repetición de entrenamiento por versión** (semilla 42 fija, §9.6): no hay medida de varianza
+   entre semillas, así que algunas lecturas de "esto es ruido/esto es real" descansan en contrastes
+   pareados de una sola muestra de revisión humana, no en múltiples entrenamientos independientes.
+9. **Revisión humana de un único revisor**, con las etiquetas de Kaggle pre-rellenadas (sesgo de anclaje,
+   §9.4) — el 79-85 % de acuerdo con el humano tiene ese techo incorporado, no es un techo absoluto.
+
+### 13.4 Qué mejoraría primero si se retoma esta rama en el futuro (orden de coste/beneficio)
+
+1. Validar (o corregir) las auditorías de §8.4/§8.5/§8.6 — coste bajo, ya están hechas, solo falta que el
+   autor las revise.
+2. Reejecutar `analizar_revision_humana.py`/`comparar_modelos.py` sobre las 120 fichas completas en vez del
+   subconjunto de 100 que usan §7 y parte de §11 — coste bajo, dato ya recogido.
+3. Repetir el sobremuestreo de color con un tope más bajo (o distinto mecanismo) para ver si el trade-off
+   de v4/v5 se puede suavizar sin perder lo que arreglan.
+4. Si hace falta rigor estadístico más fuerte para la memoria final: repetir el entrenamiento con 2-3
+   semillas más sobre la mejor configuración (v3) para tener una medida real de varianza.
+5. **La pieza grande, ya movida a la rama nueva**: fotos reales de redes sociales (`viral_clips`), detector
+   y clasificador afinados sobre recortes reales en vez de catálogo. Ver el plan de esa rama.
+
+### 13.5 Estado del repositorio a fecha de cierre
+
+Rama `clip-trend-semantic-matching-poc`, working tree limpio, todo commiteado y subido a `origin`.
+`memoria/Estado_arte.md` sin tocar en toda esta fase, por petición explícita del autor. Cinco adapters
+(`florence2_base_lora_v1` a `_v5`) y sus datasets correspondientes en el repositorio, junto con todos los
+scripts, resultados y comparaciones que sustentan cada cifra de este documento. No se ha hecho merge a
+`main` — esta rama se queda tal cual, como historial completo de esta fase, hasta que el autor decida qué
+hacer con ella.
