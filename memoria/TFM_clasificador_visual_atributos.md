@@ -507,6 +507,14 @@ una prenda, fondo neutro) sale bien en los cuatro campos.
 
 ### 8.3 Prototipo de looks (`analizar_outfit.py`)
 
+> **Aviso de versión (añadido en §11.6):** el «v2» de esta sección es la versión del *script* de
+> detección (las guardas heurísticas de más abajo), no la del adapter clasificador — nombre
+> desafortunado, coincide por casualidad con `florence2_base_lora_v2/`. Esta sección se corrió
+> con el adapter **v1** (el único que existía en ese momento de la sesión, antes de las
+> decisiones de esquema de §11.1). Con el adapter **v3** (mejor acuerdo medio con el humano,
+> §11.4) los recortes deberían clasificarse mejor sin tocar nada de la detección — no se ha
+> vuelto a correr todavía, ver §11.6.
+
 Mismo modelo con dos capacidades y sin entrenar nada nuevo:
 
 1. **Detectar** (adapter *desactivado*, Florence-2 base nativo): `<OD>` para personas y las prendas que sabe nombrar
@@ -870,14 +878,19 @@ no fallar sistemáticamente en cuatro colores completos.
 4. **Terminar las 20 fichas** (autor) y reejecutar `analizar_revision_humana.py`.
 5. Sobremuestrear también la cola larga de **tipos de prenda** (no solo colores): el estilo cae
    al 3 % en tipos con menos de 10 ejemplos de entrenamiento (§6.3).
-6. **Looks**: sustituir las heurísticas por un **detector de prendas afinado** (DeepFashion2, el
-   candidato de §12.2 de `Estado_arte.md`) y afinar el clasificador con **recortes reales**;
-   para medirlo, una app v2 que muestre el recorte y pida validar la prenda (categoría, color,
-   estilo) sobre fotos de calle. Es la pieza grande pendiente: todo lo de v1-v4 se mide sobre
-   catálogo, no sobre fotos reales de redes sociales.
-7. **Comparar con Claude/Gemini** en el mismo test y esquema (opcional, coste de API): es el
+6. **Repetir el prototipo de looks (§8) con el adapter v3**, ahora que existe y es mejor que el
+   v1 con el que se midió §8.4 — mismo `analizar_outfit.py`, que ya apunta a v3 por defecto;
+   no hace falta reentrenar nada, solo volver a correrlo sobre las 19 fotos de calle. Barato,
+   pendiente de hacer.
+7. **Looks, la pieza grande**: sustituir las heurísticas de detección por un **detector de
+   prendas afinado** (DeepFashion2, el candidato de §12.2 de `Estado_arte.md`) y afinar el
+   clasificador con **recortes reales**; para medirlo, una app v2 que muestre el recorte y pida
+   validar la prenda (categoría, color, estilo) sobre fotos de calle. Es la pieza pendiente de
+   verdad: todo lo de v1-v4 se mide sobre catálogo, no sobre fotos reales de redes sociales —
+   el objetivo original de todo este componente (§1).
+8. **Comparar con Claude/Gemini** en el mismo test y esquema (opcional, coste de API): es el
    dato que responde a «no vale usar Claude directamente».
-8. Actualizar §6.3/§7 de `Estado_arte.md` **solo si el autor lo pide**.
+9. Actualizar §6.3/§7 de `Estado_arte.md` **solo si el autor lo pide**.
 
 ---
 

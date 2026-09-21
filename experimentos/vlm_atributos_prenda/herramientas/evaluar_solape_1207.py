@@ -16,6 +16,15 @@ el modelo afinado YA VIO en train (o esta en val/test). Este script:
 
 Requiere data/imagenes_cache/ (regenerable con preparar_dataset_florence2.py) y open_clip.
 
+AVISO DE VERSION (importante, no solo cosmetico): el solape se calcula contra
+data/{train,val,test}.jsonl TAL COMO ESTAN EN DISCO ahora mismo -- que a fecha de escribir esto
+son v4 (memoria S11.5), no v1. El --adapter por defecto de mas abajo sigue siendo v1 (para
+reproducir la memoria S6.3 tal cual), pero si alguien regenera el dataset a v4 (ya sucedio) y
+luego corre este script sin mas, compara el adapter v1 contra el solape de la particion v4 --
+inconsistente. Para repetir S6.3 de verdad hay que reconstruir train/val/test.jsonl de v1 desde
+el historial de git primero. Para una comparacion de v4, pasar --adapter y regenerar antes con
+la version de preparar_dataset_florence2.py correspondiente.
+
 Uso:
     python3 evaluar_solape_1207.py                       # Florence solo en las no vistas
     python3 evaluar_solape_1207.py --florence vistas     # contraste: las que si vio

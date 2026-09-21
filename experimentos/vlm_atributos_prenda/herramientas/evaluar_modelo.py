@@ -12,9 +12,14 @@ comparar el modelo afinado directamente contra el 32.8% de CLIP
 zero-shot ya documentado en evaluar_precision_grupo_estilo.py -- mismas
 imagenes, comparacion limpia.
 
+El default de --adapter se queda fijo en v1 a proposito (no se actualiza en cada version nueva
+como entrenar_lora.py): es lo que reproduce los numeros de la memoria S6 tal cual estan
+documentados. Para evaluar otra version, pasar --adapter explicitamente (ver S11.2/S11.4/S11.5
+para los resultados ya calculados de v2/v3/v4).
+
 Uso:
-    python3 evaluar_modelo.py [--limite N] [--sin-1207]
-    python3 evaluar_modelo.py --adapter ../modelos/otro_experimento
+    python3 evaluar_modelo.py [--limite N] [--sin-1207]              # reproduce la memoria S6 (v1)
+    python3 evaluar_modelo.py --adapter ../modelos/florence2_base_lora_v4 --sin-zero-shot --sin-1207
 """
 import argparse
 import collections

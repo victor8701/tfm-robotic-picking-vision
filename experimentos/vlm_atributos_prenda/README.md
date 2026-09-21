@@ -127,7 +127,8 @@ cuestión de días) — se ejecuta en Colab con GPU T4 gratuita:
    GitHub), activa GPU (`Entorno de ejecución > Cambiar tipo de entorno de ejecución > T4
    GPU`), y ejecuta las celdas en orden.
 3. Descarga el `.zip` del adapter resultante y descomprímelo en
-   `modelos/florence2_base_lora_v1/`.
+   `modelos/florence2_base_lora_v4/` (o la versión que toque — el notebook y
+   `entrenar_lora.py --salida` usan siempre la más reciente por defecto).
 
 `herramientas/entrenar_lora.py` es el script real (el notebook es solo un wrapper que lo
 instala y lo llama). **Ya probado localmente en modo "prueba de humo"** (8 imágenes, 1 época,
@@ -259,35 +260,27 @@ métricas. Detalle y cifras en la memoria (§8).
 
 ## Próximos pasos
 
-1. ~~Reentrenar v2~~ — **hecho** (Kaggle GPU vía API en vez de Colab —
-   `herramientas/kaggle_kernel/`—, ver memoria §11.2-§11.3). No mejora el test global de 500
-   imágenes, pero contra las 100 fichas revisadas a mano `color_primario` y `grupo_estilo` se
-   quedan prácticamente igual que v1 — la caída del test grande parece más ruido de qué imágenes
-   raras le tocaron que una pérdida de calidad real (contraste pareado en memoria §11.2).
-2. **Terminar la revisión humana** de las 120 fichas de la app (van 100): daría un subconjunto
-   del test verificado por una persona, que es una evaluación más honesta que la de Kaggle.
-   Conviene hacerlo *sin* mostrar la predicción del modelo, para no sesgar las etiquetas.
-3. ~~Looks completos: detectar → recortar → clasificar → agregar~~ — **hecho como prototipo**
-   (ver arriba). Falta: sustituir las heurísticas de detección por un detector de prendas afinado
-   (DeepFashion2) y validar los recortes con etiquetas humanas (el prototipo se auditó solo a ojo).
-4. ~~Decisiones de esquema pendientes~~ — **resueltas** (2026-09-20): `temporada` de `Jackets` →
-   `todo_el_ano`; `grupo_estilo` de vestidos por estampado/liso; filtro de ropa infantil por
-   nombre; `deportivo`+`streetwear` se queda sin resolver (se descartó reetiquetar por marca) y
-   la paleta de color no se toca. Detalle en la memoria (§11.1). ~~Sigue abierto: `temporada`
-   del resto de tipos de prenda~~ — **resuelto también, mismo día**: artifact "Reglas de
-   temporada", 13 tipos más a `todo_el_ano` (antes solo `Jackets`); reentrenado como v3, y esta
-   vez sí mejora — 85 % de media contra las 100 fichas humanas (v1: 79 %, v2: 77 %), con
-   `temporada` subiendo de 44 %/38 % a **68 %**. Memoria §11.4.
-5. ~~Sobremuestrear colores raros~~ (`fucsia`, `dorado`, `naranja`, `plateado`, `burdeos`: F1
-   0.00 o muy bajo en v1/v2/v3) — **hecho como v4, resultado mixto**: arregla de verdad
-   `naranja`/`dorado`/`plateado` (F1 0.00→0.56-0.87), pero `color_primario` cae en conjunto
-   contra el humano (84 %→75 %) — no es ruido, la frontera de decisión se desplaza y arrastra
-   colores próximos (`negro`/`gris`, `navy`/`azul`). **v3 sigue siendo la versión con mejor
-   acuerdo medio (85 %)**; v4 es la alternativa si lo que importa es no fallar sistemáticamente
-   en esos tres colores. `fucsia` sigue en F1 0.00 (solo 50 imágenes en todo el dataset).
-   Memoria §11.5.
-6. Sobremuestrear también la cola larga de **tipos de prenda** (no solo colores): el estilo cae
-   al 3% en tipos con menos de 10 ejemplos de entrenamiento (§6.3).
+**Hecho** (2026-09-20, mismo día — detalle y números completos en la memoria, no repetidos aquí
+para que no se desincronicen): reentrenar v2 (§11.2-§11.3) · decidir `temporada` de `Jackets` y
+del resto de tipos, dataset/adapter v3 (§11.1, §11.4) · sobremuestrear colores raros, adapter v4
+(§11.5) · looks completos como prototipo (§8, ver arriba). **v3 es el adapter recomendado por
+defecto** (mejor acuerdo medio con la revisión humana, 85 %); v4 es la alternativa cuando
+importa más no fallar en `naranja`/`dorado`/`plateado` que la media. Ver memoria §11.6 para la
+lista completa y con contexto.
+
+**Pendiente**, por orden aproximado de coste/beneficio:
+
+1. **Terminar la revisión humana** de las 120 fichas de la app (van 100) — sin mostrar la
+   predicción del modelo, para no sesgar las etiquetas.
+2. Sobremuestrear la cola larga de **tipos de prenda**, no solo de colores (el estilo cae al 3%
+   en tipos con <10 ejemplos, §6.3).
+3. **Repetir el prototipo de looks (§8) con el adapter v3** — barato, `analizar_outfit.py` ya
+   apunta a v3 por defecto, solo hace falta volver a correrlo sobre las 19 fotos de calle.
+4. **Looks, la pieza grande**: detector de prendas afinado (DeepFashion2) en vez de las
+   heurísticas actuales, y clasificador afinado con recortes reales — es la pieza que falta para
+   el objetivo original (fotos reales de redes sociales, no catálogo).
+5. Comparar con Claude/Gemini en el mismo test (opcional): el dato que justifica "modelo propio"
+   con números, no solo con el argumento.
 
 ## Qué NO es (mismo aviso honesto que en `clip_trend_matching/`)
 

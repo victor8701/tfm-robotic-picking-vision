@@ -49,7 +49,8 @@ def main():
     parser.add_argument("--carpeta", required=True,
                          help="Carpeta con manifest.json e imagenes/ (formato de la app de revision).")
     parser.add_argument("--salida", required=True, help="JSON de salida con las predicciones.")
-    parser.add_argument("--adapter", default=str(BASE_DIR / "modelos" / "florence2_base_lora_v1"))
+    parser.add_argument("--adapter", default=str(BASE_DIR / "modelos" / "florence2_base_lora_v3"),
+                        help="v3 tiene el mejor acuerdo medio con la revision humana (memoria S11.4/S11.6).")
     args = parser.parse_args()
 
     carpeta = Path(args.carpeta).expanduser()

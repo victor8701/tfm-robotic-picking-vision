@@ -332,7 +332,9 @@ def main():
     ap.add_argument("--salida-imagenes", help="Si se indica, guarda cada foto con cajas y atributos dibujados "
                                               "(sin marca = <OD>, ~ = grounding, * = torso geometrico).")
     ap.add_argument("--cache", help="JSON donde cachear la salida de <OD> y grounding (para iterar la logica sin recalcular).")
-    ap.add_argument("--adapter", default=str(BASE_DIR / "modelos" / "florence2_base_lora_v1"))
+    ap.add_argument("--adapter", default=str(BASE_DIR / "modelos" / "florence2_base_lora_v3"),
+                    help="v3 tiene el mejor acuerdo medio con la revision humana (ver memoria S11.4/S11.6); "
+                         "los resultados de la memoria S8 se midieron con v1, sin repetir todavia con este default.")
     ap.add_argument("--max-personas", type=int, default=3)
     ap.add_argument("--min-area-rel", type=float, default=0.12,
                     help="Area minima de una persona respecto a la principal (descarta fondo desenfocado o cortado por el borde).")
