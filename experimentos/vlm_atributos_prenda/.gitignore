@@ -10,3 +10,10 @@ modelos/*/checkpoint-*/
 # permite redistribuirlas pero no hace falta; se regeneran con
 # herramientas/descargar_fotos_calle_wikimedia.py (ATRIBUCIONES.txt si se quiere citar).
 data/fotos_calle/**/*.jpg
+
+# Salida de analizar_outfit.py que no se commitea: imagenes anotadas (mismas
+# personas identificables que arriba) y el cache de deteccion (regenerable,
+# --cache en analizar_outfit.py). outfits_*.json y resumen_outfit_*.json si
+# se suben (texto, pequenos, es lo que referencia la memoria).
+data/revision_humana/anotadas*/
+data/revision_humana/cache*.json

@@ -1,0 +1,54 @@
+{
+ "n_fotos": 19,
+ "n_personas": 31,
+ "n_prendas": 86,
+ "prendas_por_categoria": {
+  "abrigo": 8,
+  "calzado": 28,
+  "ropa_inferior": 24,
+  "ropa_superior": 18,
+  "cuerpo_entero": 6,
+  "accesorio": 2
+ },
+ "origen_caja": {
+  "od": 61,
+  "grounding": 20,
+  "geometrico": 5
+ },
+ "acuerdo_categoria_global": {
+  "coincide": 57,
+  "n": 84
+ },
+ "auditoria": {
+  "cajas": {
+   "ok": 80,
+   "parcial": 4,
+   "mal": 2
+  },
+  "color_ok": 67,
+  "color_n": 78,
+  "basicas_visibles": 84,
+  "basicas_faltan": 2,
+  "estilo_pipeline_p0": 14,
+  "estilo_foto_entera_p0": 13,
+  "n_p0": 19,
+  "estilo_pipeline_todas": 22,
+  "n_todas": 31,
+  "personas_visibles": 31,
+  "personas_detectadas": 31,
+  "cajas_por_origen": {
+   "od": {
+    "ok": 57,
+    "parcial": 2,
+    "mal": 2
+   },
+   "grounding": {
+    "ok": 18,
+    "parcial": 2
+   },
+   "geometrico": {
+    "ok": 5
+   }
+  }
+ }
+}

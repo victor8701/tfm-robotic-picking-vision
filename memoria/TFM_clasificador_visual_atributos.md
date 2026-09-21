@@ -61,7 +61,10 @@ esperado; **v3 es la mejor de las cuatro versiones en acuerdo medio (85 %)**, co
 subiendo de 44 %/38 % a 68 %; **v4 arregla de verdad 3 de los 5 colores que llevaban en F1 0.00
 desde v1** (`naranja`, `dorado`, `plateado`) pero a costa de `color_primario` en general —
 media 82 %, peor que v3 aunque sigue por delante de v1/v2 — un trade-off real, no una mejora
-limpia.)*
+limpia. Las tres filas de "Looks" de esta tabla son también v1; repetidas con el adapter v3 en
+§8.5: detección idéntica (no depende del adapter), `temporada` deja de ser una constante
+(`todo_el_ano` 75 % de los recortes, ya no 99 % `primavera_verano`) y el resto de cifras dentro
+del ruido de una muestra de 19-31.)*
 
 Seis conclusiones:
 
@@ -581,6 +584,48 @@ look por prendas lo corrige en 3 fotos casuales (calle_02, calle_05, calle_20); 
 
 **Tiempo:** ≈ 41 s por foto en CPU sin caché (`<OD>` con 3 haces + *grounding* + clasificación de cada recorte).
 
+### 8.5 Repetición con el adapter v3 (2026-09-21)
+
+Mismo `analizar_outfit.py`, mismas 19 fotos, cache de detección recalculado desde cero. **Detección idéntica a
+§8.4** (86 prendas, 31 personas, mismo desglose por categoría y origen de caja; cajas ok/parcial/mal 93 %/5 %/2 %;
+recall de prendas básicas 98 %) — esperable, `--adapter` solo cambia la clasificación de cada recorte, no la
+detección, y sirve de comprobación de que no se ha roto nada.
+
+**Lo que cambia con v3** (clasificación):
+
+| | v1 (§8.4) | v3 |
+|---|---|---|
+| Categoría clasificador = categoría detector | 59/84 = 70 % | 57/84 = 68 % |
+| `temporada` en recortes | 83/84 → `primavera_verano` (constante) | `todo_el_ano` 63/84 (75 %), `primavera_verano` 21/84 (25 %) |
+| `color_primario` `negro` en recortes | 47/84 = 56 % | 51/84 = 61 % |
+| Estilo aceptable, persona principal (pipeline vs. foto entera) | 13/19 = 68 % vs. 13/19 = 68 % | 14/19 = 74 % vs. 13/19 = 68 % (mismo fichero de referencia) |
+| Estilo aceptable, todas las personas | 23/31 = 74 % | 22/31 = 71 % |
+
+- **`temporada` deja de ser una constante degenerada.** Con v1, 83 de 84 recortes salían `primavera_verano`
+  pasara lo que pasara (§8.4: "inservible fuera del catálogo"). Con v3 aparece variación real, dominada por
+  `todo_el_ano` (75 %) — el efecto esperado de la regla de §11.4 (13 tipos de prenda mapeados a `todo_el_ano`).
+  Esto **no** es "se ha arreglado": estas 19 fotos no tienen ninguna etiqueta de referencia para `temporada`, así
+  que no hay forma de saber si ese 75 % acierta o es solo un sesgo distinto al anterior. Es honestamente mejor
+  que una constante, nada más se puede afirmar con esta muestra.
+- **El resto de diferencias está dentro del ruido de una muestra de 19-31.** Acuerdo categoría detector/clasificador
+  baja 2 puntos (70→68 %); estilo aceptable de la persona principal sube 1 foto sobre 19 (68→74 %); estilo
+  aceptable de todas las personas baja 1 sobre 31 (74→71 %). Mismo orden de magnitud que la diferencia de 3 fotos
+  que §8.4 ya documentó como no significativa (IC95 solapados) — ninguna de estas tres cifras cambia la lectura
+  cualitativa de §8.4.
+- **Aviso sobre el color, para no leer mal la salida de `resumen_outfit.py`:** el bloque "5) Auditoría manual"
+  sigue imprimiendo "color correcto en cajas ok: 67/78 = 86 %" — **es el mismo número que en §8.4, no una medida
+  nueva.** `auditoria_outfit_calle.json` guarda un veredicto ok/mal fijo por caja, anotado a mano mirando las
+  predicciones de **v1**; el script lo relee tal cual, no lo recalcula contra las predicciones nuevas de v3. No
+  hay base para decir que v3 acierta color el 86 % en estos recortes concretos — el dato fiable de color para v3
+  es el 84 % de media sobre las 100 fichas revisadas (§11.4/§11.6), no este. Saber el color real de v3 sobre estas
+  19 fotos requeriría repetir la auditoría manual mirando las cajas nuevas; no se ha hecho (no es una decisión mía
+  y esta auditoría, como la de §8.4, sigue pendiente de que el autor la valide).
+
+**Ficheros:** `data/revision_humana/outfits_fotos_calle_adapterv3.json` (86 prendas, adapter v3) y
+`resumen_outfit_adapterv3.json` (salida de `resumen_outfit.py`), ambos commiteados. `anotadas_adapterv3/`
+(imágenes con cajas dibujadas) y `cache_adapterv3.json` no se suben — mismo criterio que `data/fotos_calle/`
+(personas identificables el primero, regenerable el segundo).
+
 ---
 
 ## 9. Limitaciones y amenazas a la validez
@@ -591,8 +636,10 @@ look por prendas lo corrige en 3 fotos casuales (calle_02, calle_05, calle_20); 
    Además refleja la distribución natural de tipos de prenda: **el estilo cae a 3 % en tipos con < 10 ejemplos de
    entrenamiento y a 59 % con 10–49** (§6.3), un dato que el 90.8 % del test esconde.
 3. **Solape con la comparación de CLIP** (corregido en §6.3 y §10).
-4. **Revisión humana** parcial (100/120), de un único revisor, **con etiquetas pre-rellenadas** (efecto de anclaje hacia
-   Kaggle: el acuerdo con Kaggle es una cota superior) y regla de acierto permisiva con selección múltiple.
+4. **Revisión humana** completa (120/120, confirmado 2026-09-21) pero de un único revisor, **con etiquetas
+   pre-rellenadas** (efecto de anclaje hacia Kaggle: el acuerdo con Kaggle es una cota superior) y regla de
+   acierto permisiva con selección múltiple. Los análisis de §7 y §11 siguen sobre el subconjunto de 100 que
+   estaba revisado cuando se calcularon; repetirlos sobre las 120 es sencillo pero no se ha vuelto a hacer.
 5. **Fotos de calle: 19 fotos, 31 personas.** Sin etiquetas humanas: auditoría de Claude con «estilos aceptables» subjetivos;
    guardas ajustadas mirando esas mismas fotos (en muestra); `personas visibles` se cuentan con el mismo criterio que la
    detección (recall de personas no informativo). Wikimedia no representa la diversidad de una cuenta real de moda.
@@ -875,13 +922,17 @@ no fallar sistemáticamente en cuatro colores completos.
    (84 %→75 % contra el humano) — **v3 se queda como la versión de mejor acuerdo medio (85 %)**;
    v4 es la alternativa si lo que importa es no fallar sistemáticamente en esos colores.
    `fucsia` sigue en F1 0.00 (solo 50 imágenes en todo el dataset, no se arregla remuestreando).
-4. **Terminar las 20 fichas** (autor) y reejecutar `analizar_revision_humana.py`.
+4. ~~Terminar las fichas~~ (autor) — **hecho**: 120/120 revisadas, confirmado 2026-09-21 contra
+   la db en vivo (no quedaba ninguna pendiente pese a lo que yo mismo había dicho antes de
+   comprobarlo). Pendiente de bajo coste: reejecutar `analizar_revision_humana.py` sobre las
+   120 (§7 y este apartado siguen con el subconjunto de 100).
 5. Sobremuestrear también la cola larga de **tipos de prenda** (no solo colores): el estilo cae
    al 3 % en tipos con menos de 10 ejemplos de entrenamiento (§6.3).
-6. **Repetir el prototipo de looks (§8) con el adapter v3**, ahora que existe y es mejor que el
-   v1 con el que se midió §8.4 — mismo `analizar_outfit.py`, que ya apunta a v3 por defecto;
-   no hace falta reentrenar nada, solo volver a correrlo sobre las 19 fotos de calle. Barato,
-   pendiente de hacer.
+6. ~~Repetir el prototipo de looks (§8) con el adapter v3~~ — **hecho** (§8.5, 2026-09-21):
+   detección idéntica a §8.4 (como se esperaba), `temporada` deja de ser una constante
+   degenerada, el resto de cifras dentro del ruido de la muestra. Aviso importante dentro de
+   §8.5: la cifra de "color correcto" que imprime `resumen_outfit.py` sigue siendo la de v1,
+   no se ha vuelto a auditar a mano.
 7. **Looks, la pieza grande**: sustituir las heurísticas de detección por un **detector de
    prendas afinado** (DeepFashion2, el candidato de §12.2 de `Estado_arte.md`) y afinar el
    clasificador con **recortes reales**; para medirlo, una app v2 que muestre el recorte y pida
