@@ -363,12 +363,16 @@ ahora, además del estilo, una etiqueta opcional de ocasión (Fiesta/Noche, Depo
 un estilo en sí sino un uso que cruza con cualquiera de los 7. No es una galería nueva, es una
 etiqueta más sobre las mismas fotos.
 
-**"Ninguna" en ambos ejes (2026-09-24, más tarde el mismo día)**: a petición del autor, cada foto
-tiene ahora también una opción "Ninguna" explícita en los dos ejes, pero con efecto distinto en
-cada uno — en estilo, "Ninguna" significa que la foto no es buen ejemplo de nada de la lista: sale
-de los 7 grupos y baja a una sección "Descartadas" al final (recuperable tocando otra etiqueta, no
-se borra el archivo); en ocasión, "Ninguna" simplemente dice "no aplica ninguna ocasión concreta",
-sin ningún efecto sobre dónde se ve la foto.
+**"Ninguna" en ambos ejes, y eliminar como acción aparte (2026-09-24, más tarde el mismo día)**: a
+petición del autor, cada foto tiene una opción "Ninguna" explícita en los dos ejes. En estilo,
+"Ninguna" dice que la foto no encaja en ninguno de los 7 — baja a una sección "Sin estilo" al
+final, pero **no la quita de la herramienta**; en ocasión, "Ninguna" solo dice "no aplica ninguna
+en concreto", sin mover la foto de sitio. El autor corrigió una primera versión en la que "Ninguna"
+sí implicaba quitar la foto: pidió que eliminar fuera una **acción aparte y explícita**, no un
+efecto secundario de clasificar. Ahora cada foto tiene su propio botón ✕ en la esquina (independiente
+de las etiquetas), que la manda a una sección "Eliminadas" — con el mismo botón, ya como ↺, para
+recuperarla; nada se borra de verdad. De paso, se quitó `capture="environment"` del campo de subir
+foto propia (forzaba la cámara en el móvil) para que abra la galería, como pidió.
 
 ## Anexo B: Estilo vs. ocasión de uso — dos ejes complementarios (2026-09-24)
 
