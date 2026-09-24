@@ -318,3 +318,24 @@ integrarlo de verdad en el matching, si se decide, es trabajo pendiente, no hech
 - **D. Buscar más series del mismo tipo** (de esta creadora u otras) para ver si estas 7 categorías
   se repiten como consenso informal o si cada creadora corta el pastel de forma distinta — antes de
   tratarlas como una taxonomía "consensuada".
+
+### Herramienta de revisión táctil (2026-09-24)
+
+Artefacto: **[Taxonomía de estilos](https://claude.ai/artifact/T4vJ4qbbiCuJGMKaZ8cgLL)** — primer
+paso concreto de la opción C de arriba (punto de partida para etiquetar, no espera a la Etapa 2).
+
+21 fotos reales, buscadas y atribuidas una a una (fuente y enlace visibles bajo cada foto),
+agrupadas por las 7 categorías de la tabla de arriba con una propuesta mía inicial ya marcada —
+Old Money 3, Lujo ostentoso 3, Clásico-tradicional 6, Urbano 1, Bohemio 2, Alternativo-geek 0,
+Convencional 6. Se corrige tocando otra etiqueta en cualquier foto, sin paso de guardado aparte;
+las correcciones quedan guardadas para poder leerlas de vuelta más adelante.
+
+**Alternativo-geek se queda deliberadamente en 0**: no encontré fotos que fueran a la vez reales,
+con fuente clara y sin depender de un personaje o marca con copyright de por medio — mejor vacío
+que forzar un mal ejemplo. La propia herramienta permite subir foto propia por categoría, pensado
+sobre todo para rellenar esta.
+
+**Urbano se queda con 1 sola foto** (cobertura débil, a diferencia de las otras categorías) — la
+mayoría de lo que se encontró buscando "moda urbana/trap española" eran fotos de los propios
+artistas citados en la tabla (Cruz Cafuné y similares), con derechos de imagen más delicados que
+una foto de archivo o de blog de moda; se prefirió 1 foto segura a varias dudosas.
