@@ -324,12 +324,14 @@ integrarlo de verdad en el matching, si se decide, es trabajo pendiente, no hech
 Artefacto: **[Taxonomía de estilos](https://claude.ai/artifact/T4vJ4qbbiCuJGMKaZ8cgLL)** — primer
 paso concreto de la opción C de arriba (punto de partida para etiquetar, no espera a la Etapa 2).
 
-**34 fotos reales** (subida de 21 en la primera pasada), buscadas y atribuidas una a una (fuente y
-enlace visibles bajo cada foto; sin enlace cuando solo se pudo confirmar el medio, no la URL
-exacta del artículo), agrupadas por las 7 categorías con una propuesta mía inicial ya marcada. Se
-corrige tocando otra etiqueta, sin paso de guardado aparte; las correcciones quedan guardadas para
-leerlas de vuelta más adelante. Reparto final por categoría: Old Money 3, Lujo ostentoso 3,
-Clásico-tradicional 6, **Urbano 11**, Bohemio 2, **Alternativo-geek 3**, Convencional 6.
+**99 fotos reales** (21 en la primera pasada, 13 en la segunda, 65 en la tercera — ver más abajo),
+buscadas y atribuidas una a una (fuente y enlace visibles bajo cada foto; sin enlace cuando solo se
+pudo confirmar el medio, no la URL exacta del artículo), agrupadas por las 7 categorías con una
+propuesta mía inicial ya marcada. Se corrige tocando otra etiqueta, sin paso de guardado aparte;
+las correcciones quedan guardadas para leerlas de vuelta más adelante. Reparto tras la tercera
+pasada: Old Money 13, Lujo ostentoso 14, Clásico-tradicional 17, Urbano 16, Bohemio 14,
+Alternativo-geek 8, Convencional 17 (más las que el propio autor haya subido, que se cuentan
+aparte).
 
 La primera pasada (21 fotos, todas de archivo/blog de moda, sin personas identificables con
 nombre) se quedó floja en dos categorías — Urbano con 1 sola foto y Alternativo-geek en 0 — por
@@ -426,3 +428,49 @@ deshaciendo parcialmente la fusión "Ocasión + Estética → Grupo de estilo" q
 
 (La segunda pasada de fotos con personas reales, pedida el mismo día, está documentada con detalle
 dentro de "Herramienta de revisión táctil", más arriba, junto con el resto de esa herramienta.)
+
+## Tercera pasada: ampliación masiva + filtros (2026-09-24, más tarde)
+
+El autor ya había subido muchas fotos propias desde el móvil (función de subida múltiple) y pidió
+ampliar mucho más el lado de fotos buscadas por mí — "muchísimas más", probando sitios con
+galerías enteras en vez de personas una a una — y añadir dos filtros a la herramienta: por origen
+(subidas por el autor / por Claude) y por si ya las revisó o siguen solo con mi propuesta.
+
+**Filtros**: dos `<select>` en la cabecera. Origen usa el propio `id` de la foto como marca —
+todo lo subido por el autor lleva prefijo `u_` (ver la función de subida), no hace falta guardar
+un campo aparte. Revisión comprueba si el `id` está en las correcciones guardadas en `db`. Ambos
+filtran las tres secciones (grupos de estilo, "Sin estilo", "Eliminadas") a la vez, y el mensaje de
+"sin fotos" distingue entre categoría vacía de verdad y categoría vaciada solo por el filtro.
+
+**Búsqueda ampliada**: 7 sub-tareas en paralelo, una por categoría, con instrucción explícita de
+priorizar páginas con galerías (varias fotos de una vez) en vez de buscar persona a persona.
+Resultado: **65 fotos nuevas** (tabla de reparto final más arriba). Fuentes nuevas de peso:
+Wikimedia Commons (Quevedo, Yung Beef, Bad Gyal, La Zowi, Morad, Central Cee, Maluma, Ufo361,
+jugadores de esports G2 — todas con licencia CC verificable), ¡HOLA! (Cayetana Rivera, Tamara
+Falcó y varias influencers con nombre), Who What Wear y tenshi-streetwear.com (artículos con
+galería completa), Unsplash (Bohemio, fotógrafo con nombre en cada una).
+
+**Incidente y fix — Urbano, rate-limit de Wikimedia**: la sub-tarea de Urbano se cortó a mitad de
+las descargas por un bloqueo 429 de `upload.wikimedia.org` y devolvió 5 archivos `.jpg` que en
+realidad eran páginas HTML de error (detectado al comprobar con `file`, no solo por la extensión).
+Se retomó esa misma sub-tarea (en vez de relanzarla desde cero) pidiéndole que borrara esos 5 y
+diera la atribución de las 5 fotos válidas que sí había guardado — así se recuperó el trabajo ya
+hecho sin perderlo. Lección para la próxima vez que se lance una búsqueda así: verificar siempre
+con `file`, nunca fiarse de la extensión ni del resumen final de la sub-tarea sin contrastarlo.
+
+**Alternativo-geek, la más difícil, cubierta con criterio**: la sub-tarea descartó activamente una
+foto (DJ con camiseta con estampado de Superman/Wonder Woman de DC) por depender de personajes con
+copyright, y avisó de un caso límite (bolso con forma de consola retro genérica, sin logo) para que
+el autor lo revise él mismo si quiere máxima seguridad — el mismo criterio de cautela que ya se
+aplicó en la primera pasada, esta vez aplicado por la propia sub-tarea sin que hiciera falta
+repetirle la instrucción.
+
+**Compresión antes de publicar**: las 65 fotos nuevas pesaban 37MB en total (una, de Wikimedia,
+13MB ella sola). Se redujeron con Pillow a máximo 1200px de lado más largo y calidad JPEG 85% antes
+de publicar — quedaron en 9MB, más razonable para cargar desde el móvil (que es como el autor usa
+esto). Los PNG de origen (3 de las 65) se convirtieron a JPEG en el mismo paso, mismo criterio que
+ya se había aplicado antes con `om2.png`.
+
+Estado a 2026-09-24: **99 fotos** entre las 7 categorías, más las que el autor haya
+subido él mismo (no contadas aquí porque cambian constantemente). Sigue sin tocarse
+`Estado_arte.md`.
