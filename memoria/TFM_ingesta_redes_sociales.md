@@ -374,12 +374,20 @@ de las etiquetas), que la manda a una sección "Eliminadas" — con el mismo bot
 recuperarla; nada se borra de verdad. De paso, se quitó `capture="environment"` del campo de subir
 foto propia (forzaba la cámara en el móvil) para que abra la galería, como pidió.
 
-**Fix de compatibilidad móvil (mismo día, un rato después)**: en Samsung (móvil) el botón de subir
-foto no abría nada, aunque en escritorio sí — el disparo por JS (`div` con click → `input.click()`)
-no se reenviaba de forma fiable en ese navegador/WebView. Cambiado a un `<label for="...">`
-envolviendo el `<input type="file">`, que es el mecanismo nativo del HTML (no depende de JS) y
-debería ser más compatible entre navegadores móviles — pendiente de confirmación real del autor,
-no se pudo probar en un Samsung de verdad.
+**Fix de compatibilidad móvil, causa real (mismo día, un rato después)**: el `<label for="...">`
+no arregló nada por sí solo — el problema no era el mecanismo de disparo, sino que el autor abría
+el artefacto **dentro de la app de Claude**, cuyo visor embebido (WebView) no implementa selector
+de archivos nativo (ni con `<label>` ni con nada — no es arreglable desde el código del artefacto).
+**Solución real: abrir el enlace del artefacto en el navegador normal del móvil** (Chrome/Samsung
+Internet) en vez de dentro de la app — confirmado por el autor que así sí funciona. Se planteó
+construir una web totalmente aparte (fuera de claude.ai) para evitar este problema de raíz, pero
+se descartó: para guardar fotos de verdad hace falta backend o una clave de acceso embebida en una
+página pública (riesgo de seguridad), y el navegador ya resuelve el problema sin nada de eso — el
+autor confirmó quedarse así.
+
+**Selección múltiple (mismo día, más tarde)**: a petición del autor, "Añadir fotos propias" ahora
+acepta elegir varias imágenes de golpe (`<input multiple>`), subiéndolas una a una con progreso
+("Subiendo 2/5…") y un aviso final con cuántas se añadieron y cuántas fallaron, si acaso.
 
 ## Anexo B: Estilo vs. ocasión de uso — dos ejes complementarios (2026-09-24)
 
