@@ -297,8 +297,7 @@ JSON de 6.4 y el prompt de 6.3 siguen dependiendo solo de los 6 valores de 3.4.1
 | **Old Money** | De vestir (con cruce a Casual) | Elegancia clásica y discreta — americana/chaleco, camisa de corte náutico, punto fino, ausencia de logos visibles ("lujo silencioso") |
 | **Lujo ostentoso** (*New Money*) | De vestir / Fiesta·Noche, según la prenda | Marca de lujo muy visible y reconocible (p. ej. Gucci, Philipp Plein), colores y estampados llamativos — el contraste deliberado de Old Money |
 | **Clásico-tradicional** | Casual (con cruce a De vestir) | Silueta clásica, tonos tierra/neutros, prenda atemporal |
-| **Urbano** | Streetwear | Prácticamente el mismo concepto que Streetwear ya cubre, con una escena musical/estética concreta (trap/rap español) en vez de streetwear genérico |
-| **Urbano-aspiracional** | Streetwear (con cruce a Casual) | Versión pulida del urbano: marca deportiva/lifestyle de gama alta, estética de reality/redes |
+| **Urbano** | Streetwear | Escena musical/estética trap-rap español, desde su versión más cruda hasta la más pulida (bronceado, gimnasio, marca deportiva/lifestyle de gama alta, estética de reality/redes) — un único espectro, no dos categorías separadas (2026-09-24: se probó a separar "urbano" de "urbano-aspiracional" y se decidió que no aportaba, ver el histórico de `TFM_ingesta_redes_sociales.md`) |
 | **Bohemio** | Casual (con cruce a Playa/Resort) | Telas fluidas, tonos tierra, capas, accesorios artesanales |
 | **Alternativo-geek** | Casual | Ropa ligada a fandom (gaming, anime, cómic); el motivo/estampado pesa más que la silueta |
 | **Convencional** | Casual | Sigue la tendencia dominante del momento sin rasgo diferenciador propio |

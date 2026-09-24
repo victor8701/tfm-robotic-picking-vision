@@ -290,24 +290,19 @@ estilo que sí es información útil.
 
 | # | Nombre coloquial (vídeo) | Nombre formal propuesto | Rasgos distintivos | Referencias citadas |
 |---|---|---|---|---|
-| 1 | Pijos | **Elegante de marca** | Prendas de marca reconocible y visible como símbolo de estatus; acabado pulido, poco riesgo de color | — |
+| 1a | Pijos (parte 1) | **Old Money** | Lujo discreto y clásico — americana/chaleco, camisa de corte náutico, punto fino, sin logos visibles | Separado de 1b el 2026-09-24 a petición del autor |
+| 1b | Pijos (parte 2) | **Lujo ostentoso** (*New Money*) | Marca de lujo muy visible (p. ej. Gucci, Philipp Plein), el contraste deliberado de Old Money | Referencia del autor: estética "futbolista" |
 | 2 | Cayetanos | **Clásico-tradicional** | Silueta clásica, tonos tierra/neutros, prendas atemporales; contraste con maquillaje más atrevido de lo que sugiere la ropa | Prenda icónica citada en prensa: chaqueta Barbour, manoletinas |
-| 3 | Modernos (el autor los re-clasifica como "raperos"/urbano, no "hipster" genérico) | **Urbano** | Estética de escena trap/rap española; streetwear con identidad de escena musical concreta, no genérica | Cruz Cafuné y otros nombrados por el autor (figuras reales de la escena, no verificadas una a una por mí) |
-| 4 | Modernos pijos | **Urbano-aspiracional** | Versión "pulida"/influencer del urbano: bronceado, gimnasio, buen calzado de marca, estética de reality/redes | El autor cita creadores tipo "bycalitos" y perfiles de *La Isla de las Tentaciones* como referencia |
-| 5 | Hippies | **Bohemio** | Telas fluidas, tonos tierra, capas, accesorios artesanales | Coincide con "Boho/Bohemian", ya documentado como categoría internacional establecida (ver más abajo) |
-| 6 | Frikis | **Alternativo-geek** | Ropa ligada a fandom/cultura pop (gaming, anime, cómic), prioriza el motivo/estampado sobre la silueta | — |
-| 7 | Básicos | **Convencional** | Sigue la tendencia dominante del momento sin rasgo diferenciador propio | Coincide con "Normcore", ya documentado como categoría internacional establecida |
+| 3 | Modernos + Modernos pijos (fusionados el 2026-09-24 a petición del autor — antes eran dos filas separadas) | **Urbano** | Escena trap/rap española, de la versión más cruda a la más pulida (bronceado, gimnasio, marca deportiva/lifestyle de gama alta, estética de reality/redes) — un único espectro | Cruz Cafuné y otros nombrados por el autor; en la versión pulida, "bycalitos" y perfiles de *La Isla de las Tentaciones* |
+| 4 | Hippies | **Bohemio** | Telas fluidas, tonos tierra, capas, accesorios artesanales | Coincide con "Boho/Bohemian", ya documentado como categoría internacional establecida (ver más abajo) |
+| 5 | Frikis | **Alternativo-geek** | Ropa ligada a fandom/cultura pop (gaming, anime, cómic), prioriza el motivo/estampado sobre la silueta | — |
+| 6 | Básicos | **Convencional** | Sigue la tendencia dominante del momento sin rasgo diferenciador propio | Coincide con "Normcore", ya documentado como categoría internacional establecida |
 
-**Aviso importante, dos cosas que no se pueden dar por resueltas todavía:**
-
-1. **La categoría 3 ("Urbano") se solapa mucho con `streetwear`, que ya existe en el `grupo_estilo`
-   de `Estado_arte.md` §3.4.1.** No es una categoría nueva limpia — habría que decidir si esta
-   taxonomía sustituye/afina la actual o convive con ella como una capa más específica.
-2. **Esto sigue sin tocar `Estado_arte.md`.** Es material de referencia en esta rama, no una
-   propuesta de cambio ya aplicada — cualquier cambio al vocabulario de §3.4.1 necesita que el
-   autor lo pida explícitamente (igual que se ha respetado durante toda la rama del clasificador,
-   ver [[feedback-no-tocar-estado-arte]] si se está leyendo desde la memoria persistente, o
-   simplemente: no tocar ese fichero sin permiso).
+**Estado a 2026-09-24: ya aplicado a `Estado_arte.md` §3.4.2**, con permiso explícito del autor
+("modificando lo menos posible") — capa de referencia nueva, sin tocar los 6 valores de `grupo_estilo`
+de §3.4.1 de los que depende el matching (§7.2), el Trend JSON (§6.4) y el prompt (§6.3). Sigue en pie
+el aviso de solape: **"Urbano" se parece mucho a `streetwear`**, que ya existe en esos 6 valores —
+integrarlo de verdad en el matching, si se decide, es trabajo pendiente, no hecho todavía.
 
 **Cómo seguir con esto, opciones (no excluyentes):**
 
