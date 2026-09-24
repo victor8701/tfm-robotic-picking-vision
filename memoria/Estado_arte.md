@@ -282,6 +282,32 @@ Las versiones anteriores del ERP separaban **Ocasión** (deportivo/casual/vestir
 
 Esta tabla es la respuesta operativa a "chándal → streetwear, traje → de vestir, vaquero → casual": el mapeo vive en el ERP (introducido o confirmado por marketing al etiquetar cada SKU), **no** se implementa como clases YOLO adicionales. YOLO solo necesita saber que la prenda es "un pantalón" o "una chaqueta"; qué tan formal, urbano o playero es ese pantalón concreto lo dice el ERP.
 
+#### 3.4.2 Sub-estilo: detalle de referencia dentro de Grupo de estilo (no integrado todavía)
+
+Los 6 valores de 3.4.1 son deliberadamente amplios para que el filtro categórico de 7.2 siga siendo
+tratable. Investigando contenido real de creadoras de moda en redes sociales (2026-09-24, ver el
+plan de la rama `ingesta-viral-clips`) aparece un nivel de detalle más fino, con reconocimiento de
+audiencia real, que varias de esas 6 categorías no distinguen — sobre todo dentro de **Casual**, que
+al ser la categoría "todo lo demás" absorbe estilos muy distintos entre sí. Se documenta aquí como
+**capa opcional de referencia**, no como sustituto de Grupo de estilo: el matching de 7.2, el Trend
+JSON de 6.4 y el prompt de 6.3 siguen dependiendo solo de los 6 valores de 3.4.1 sin cambios.
+
+| Sub-estilo | Grupo de estilo más cercano | Rasgos distintivos |
+|---|---|---|
+| **Old Money** | De vestir (con cruce a Casual) | Elegancia clásica y discreta — americana/chaleco, camisa de corte náutico, punto fino, ausencia de logos visibles ("lujo silencioso") |
+| **Lujo ostentoso** (*New Money*) | De vestir / Fiesta·Noche, según la prenda | Marca de lujo muy visible y reconocible (p. ej. Gucci, Philipp Plein), colores y estampados llamativos — el contraste deliberado de Old Money |
+| **Clásico-tradicional** | Casual (con cruce a De vestir) | Silueta clásica, tonos tierra/neutros, prenda atemporal |
+| **Urbano** | Streetwear | Prácticamente el mismo concepto que Streetwear ya cubre, con una escena musical/estética concreta (trap/rap español) en vez de streetwear genérico |
+| **Urbano-aspiracional** | Streetwear (con cruce a Casual) | Versión pulida del urbano: marca deportiva/lifestyle de gama alta, estética de reality/redes |
+| **Bohemio** | Casual (con cruce a Playa/Resort) | Telas fluidas, tonos tierra, capas, accesorios artesanales |
+| **Alternativo-geek** | Casual | Ropa ligada a fandom (gaming, anime, cómic); el motivo/estampado pesa más que la silueta |
+| **Convencional** | Casual | Sigue la tendencia dominante del momento sin rasgo diferenciador propio |
+
+Que la mitad caiga en "Casual" es en sí mismo un dato: confirma que esa categoría, tal como está
+definida hoy, mezcla estilos que una audiencia real sí distingue. Si se decide integrar este nivel
+de detalle de verdad (como sub-campo del Trend JSON, o ampliando 3.4.1 con sus implicaciones en 6.3,
+6.4 y 7.2), es una decisión pendiente y deliberada, no aplicada en esta revisión.
+
 ### 3.5 Flujo completo: qué ve YOLO, qué sabe el ERP, qué compara el LLM
 
 Esta sección fija, sin ambigüedad, la responsabilidad de cada componente. Es la aclaración central de este apartado y responde directamente a la pregunta "¿cómo va a funcionar realmente el proceso del LLM y el YOLO?".
