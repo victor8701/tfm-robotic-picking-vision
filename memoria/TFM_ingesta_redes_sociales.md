@@ -363,6 +363,12 @@ ahora, además del estilo, una etiqueta opcional de ocasión (Fiesta/Noche, Depo
 un estilo en sí sino un uso que cruza con cualquiera de los 7. No es una galería nueva, es una
 etiqueta más sobre las mismas fotos.
 
+**Cuarto valor de ocasión, "Arreglado" (2026-09-24, más tarde)**: a petición del autor. A
+diferencia de los 3 anteriores, **este no existe como valor de `grupo_estilo` en
+`Estado_arte.md` §3.4.1** — es vocabulario nuevo, no una reutilización. Si más adelante se plantea
+la opción B del Anexo A (proponer formalmente esta taxonomía para `Estado_arte.md`), "Arreglado"
+es el único valor del eje de ocasión que habría que decidir desde cero, no solo trasladar.
+
 **"Ninguna" en ambos ejes, y eliminar como acción aparte (2026-09-24, más tarde el mismo día)**: a
 petición del autor, cada foto tiene una opción "Ninguna" explícita en los dos ejes. En estilo,
 "Ninguna" dice que la foto no encaja en ninguno de los 7 — baja a una sección "Sin estilo" al
