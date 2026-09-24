@@ -319,23 +319,78 @@ integrarlo de verdad en el matching, si se decide, es trabajo pendiente, no hech
   se repiten como consenso informal o si cada creadora corta el pastel de forma distinta — antes de
   tratarlas como una taxonomía "consensuada".
 
-### Herramienta de revisión táctil (2026-09-24)
+### Herramienta de revisión táctil (2026-09-24, dos pasadas)
 
 Artefacto: **[Taxonomía de estilos](https://claude.ai/artifact/T4vJ4qbbiCuJGMKaZ8cgLL)** — primer
 paso concreto de la opción C de arriba (punto de partida para etiquetar, no espera a la Etapa 2).
 
-21 fotos reales, buscadas y atribuidas una a una (fuente y enlace visibles bajo cada foto),
-agrupadas por las 7 categorías de la tabla de arriba con una propuesta mía inicial ya marcada —
-Old Money 3, Lujo ostentoso 3, Clásico-tradicional 6, Urbano 1, Bohemio 2, Alternativo-geek 0,
-Convencional 6. Se corrige tocando otra etiqueta en cualquier foto, sin paso de guardado aparte;
-las correcciones quedan guardadas para poder leerlas de vuelta más adelante.
+**34 fotos reales** (subida de 21 en la primera pasada), buscadas y atribuidas una a una (fuente y
+enlace visibles bajo cada foto; sin enlace cuando solo se pudo confirmar el medio, no la URL
+exacta del artículo), agrupadas por las 7 categorías con una propuesta mía inicial ya marcada. Se
+corrige tocando otra etiqueta, sin paso de guardado aparte; las correcciones quedan guardadas para
+leerlas de vuelta más adelante. Reparto final por categoría: Old Money 3, Lujo ostentoso 3,
+Clásico-tradicional 6, **Urbano 11**, Bohemio 2, **Alternativo-geek 3**, Convencional 6.
 
-**Alternativo-geek se queda deliberadamente en 0**: no encontré fotos que fueran a la vez reales,
-con fuente clara y sin depender de un personaje o marca con copyright de por medio — mejor vacío
-que forzar un mal ejemplo. La propia herramienta permite subir foto propia por categoría, pensado
-sobre todo para rellenar esta.
+La primera pasada (21 fotos, todas de archivo/blog de moda, sin personas identificables con
+nombre) se quedó floja en dos categorías — Urbano con 1 sola foto y Alternativo-geek en 0 — por
+evitar deliberadamente a las personas reales que el autor ya había citado, para no meterme en
+derechos de imagen sin que él lo pidiera explícitamente. El autor corrigió esto: pidió dedicar más
+tiempo a buscar exactamente a esas personas (él no quería tener que buscarlas), y además dio un
+nuevo nombre para Alternativo-geek (**orslok**) que no había citado antes.
 
-**Urbano se queda con 1 sola foto** (cobertura débil, a diferencia de las otras categorías) — la
-mayoría de lo que se encontró buscando "moda urbana/trap española" eran fotos de los propios
-artistas citados en la tabla (Cruz Cafuné y similares), con derechos de imagen más delicados que
-una foto de archivo o de blog de moda; se prefirió 1 foto segura a varias dudosas.
+**Segunda pasada — personas reales, una por una:**
+
+| Categoría | Persona buscada | Quién es | Fuente de la(s) foto(s) |
+|---|---|---|---|
+| Urbano | Cruz Cafuné | Rapero (Tenerife, PXXR GVNG) | Wikimedia Commons, CC BY-SA 4.0 (2 fotos) |
+| Urbano | Hoke | Rapero (Valencia), nunca da la cara en entrevistas | informaUVA.com |
+| Urbano | Israel B | Rapero (Madrid, ex-Corredores del Bloque) | MondoSonoro |
+| Urbano | Shoda / Monkas | **Es una sola persona** (Shoda Monkas, Albacete) — el autor los citó como si fueran dos | MondoSonoro + Urban Life (2 fotos) |
+| Urbano | bycalitos | Influencer streetwear/lujo — **es hombre** (Carlos Martín), no la mujer que se había asumido | Neo2 (2 fotos) |
+| Urbano | *La Isla de las Tentaciones* | Reality Mediaset — no hay una persona concreta citada, se usó el propio programa | Notas de prensa oficiales de Mediaset (2 fotos) |
+| Alternativo-geek | orslok | Germán García Carro — youtuber/streamer gaming, luego música (hyperpop/rap) | La Gaceta de Salamanca + Marca (fuente sólida, 2 fotos); labiode.com (fuente menos verificada, 1 foto) |
+
+Todo verificado como imagen real antes de incluirla (no HTML de error ni avatar/ilustración
+haciéndose pasar por la persona — se descartaron 2 avatares de orslok por ser justo eso: un troll
+dibujado y un personaje de videojuego). Prioridad de fuente, de mejor a peor: Wikimedia Commons >
+nota de prensa oficial > prensa musical/medio editorial > blog de biografías. Instagram/TikTok no
+dieron ninguna foto descargable directo (bloquean el acceso sin sesión) — cuando la única fuente
+habría sido eso, se dejó sin foto en vez de forzarlo.
+
+**Eje nuevo: ocasión de uso, complementario al estilo (ver Anexo B más abajo).** Cada foto admite
+ahora, además del estilo, una etiqueta opcional de ocasión (Fiesta/Noche, Deportivo, Playa/Resort)
+— los 3 valores que ya existían en `Estado_arte.md` §3.4.1 y que, según observó el autor, no son
+un estilo en sí sino un uso que cruza con cualquiera de los 7. No es una galería nueva, es una
+etiqueta más sobre las mismas fotos.
+
+## Anexo B: Estilo vs. ocasión de uso — dos ejes complementarios (2026-09-24)
+
+Observación del autor, textual: **"Playa, deporte o fiesta no tiene estilo propio"**. De los 6
+valores ya existentes de `grupo_estilo` (`Estado_arte.md` §3.4.1), tres son realmente una
+estética/identidad personal — **Casual, Streetwear, De vestir** — que es exactamente donde caen
+los 7 sub-estilos del Anexo A (columna "Grupo de estilo más cercano" de §3.4.2 de
+`Estado_arte.md`). Los otros tres — **Fiesta/Noche, Deportivo, Playa/Resort** — no son un estilo
+propio sino una **ocasión/uso**: cualquiera de los 7 sub-estilos puede vestirse "de fiesta", "de
+deporte" o "de playa" sin dejar de ser ese estilo. Son dos ejes ortogonales (estilo × ocasión), no
+valores hermanos de un mismo campo.
+
+Esto no invalida el diseño de §3.4.1 (que funciona bien para el ERP de catálogo, donde cada SKU
+tiene un uso predominante claro y no necesita describir a una persona) — es una distinción que se
+vuelve visible al construir la capa de sub-estilo, pensada para describir a una **persona** a
+partir de una foto de tendencia, no una prenda suelta de catálogo. Alguien de estilo Old Money
+puede llevar ropa de playa en vacaciones sin dejar de proyectar Old Money; ese matiz se pierde si
+"Playa/Resort" compite como si fuera un estilo más.
+
+**Aplicado en la herramienta de revisión táctil**: cada foto admite ahora, además del estilo, una
+ocasión opcional — reutilizando tal cual los 3 valores que ya existen en `Estado_arte.md` §3.4.1
+(Fiesta/Noche, Deportivo, Playa/Resort), sin inventar vocabulario nuevo. No es una segunda galería
+de fotos propia (coherente con que "no tienen estilo propio"): es una etiqueta adicional sobre las
+mismas fotos de estilo.
+
+**No se ha tocado `Estado_arte.md`.** Si en algún momento se decide que esta distinción de dos ejes
+debería reflejarse también allí (por ejemplo, separar de nuevo `grupo_estilo` en dos campos,
+deshaciendo parcialmente la fusión "Ocasión + Estética → Grupo de estilo" que motivó el propio
+§3.4.1), es una decisión pendiente y explícita del autor — no asumida aquí.
+
+(La segunda pasada de fotos con personas reales, pedida el mismo día, está documentada con detalle
+dentro de "Herramienta de revisión táctil", más arriba, junto con el resto de esa herramienta.)
