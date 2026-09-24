@@ -363,6 +363,13 @@ ahora, además del estilo, una etiqueta opcional de ocasión (Fiesta/Noche, Depo
 un estilo en sí sino un uso que cruza con cualquiera de los 7. No es una galería nueva, es una
 etiqueta más sobre las mismas fotos.
 
+**"Ninguna" en ambos ejes (2026-09-24, más tarde el mismo día)**: a petición del autor, cada foto
+tiene ahora también una opción "Ninguna" explícita en los dos ejes, pero con efecto distinto en
+cada uno — en estilo, "Ninguna" significa que la foto no es buen ejemplo de nada de la lista: sale
+de los 7 grupos y baja a una sección "Descartadas" al final (recuperable tocando otra etiqueta, no
+se borra el archivo); en ocasión, "Ninguna" simplemente dice "no aplica ninguna ocasión concreta",
+sin ningún efecto sobre dónde se ve la foto.
+
 ## Anexo B: Estilo vs. ocasión de uso — dos ejes complementarios (2026-09-24)
 
 Observación del autor, textual: **"Playa, deporte o fiesta no tiene estilo propio"**. De los 6
