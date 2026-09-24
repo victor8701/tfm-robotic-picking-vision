@@ -374,6 +374,13 @@ de las etiquetas), que la manda a una sección "Eliminadas" — con el mismo bot
 recuperarla; nada se borra de verdad. De paso, se quitó `capture="environment"` del campo de subir
 foto propia (forzaba la cámara en el móvil) para que abra la galería, como pidió.
 
+**Fix de compatibilidad móvil (mismo día, un rato después)**: en Samsung (móvil) el botón de subir
+foto no abría nada, aunque en escritorio sí — el disparo por JS (`div` con click → `input.click()`)
+no se reenviaba de forma fiable en ese navegador/WebView. Cambiado a un `<label for="...">`
+envolviendo el `<input type="file">`, que es el mecanismo nativo del HTML (no depende de JS) y
+debería ser más compatible entre navegadores móviles — pendiente de confirmación real del autor,
+no se pudo probar en un Samsung de verdad.
+
 ## Anexo B: Estilo vs. ocasión de uso — dos ejes complementarios (2026-09-24)
 
 Observación del autor, textual: **"Playa, deporte o fiesta no tiene estilo propio"**. De los 6
