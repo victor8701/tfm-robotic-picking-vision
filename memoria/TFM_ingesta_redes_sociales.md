@@ -266,3 +266,60 @@ Nuevos, específicos de esta pieza:
 4. Decide las preguntas de §5 con lo que encuentres.
 5. Empieza por la Etapa 1-2 de §6 — extracción de fotogramas + evaluación honesta del pipeline ya
    construido, antes de plantearte entrenar nada nuevo.
+
+---
+
+## Anexo A: Taxonomía de estilos observada en contenido real (2026-09-24)
+
+**Fuente**: serie de 7 vídeos de [@almucarrion](https://www.tiktok.com/@almucarrion) en TikTok
+("Tipos de Cayetanas" → "tipos de modernas" → "chicas pijas" → "chicas básicas" → "mis hippies" →
+"tipos de frikis, último episodio"), identificados por título vía búsqueda (no se ha podido ver el
+contenido de los vídeos en sí — ver §7, limitación técnica de acceso a TikTok ya documentada).
+**El contenido de cada categoría lo aportó el autor de primera mano** (él sí vio los vídeos), no es
+una interpretación mía ni está verificado más allá de eso — incluye correcciones suyas sobre lo que
+yo había podido reconstruir solo con los títulos (distingue "modernos" de "modernos pijos", dos
+categorías que yo no había separado).
+
+Esta es exactamente el tipo de vocabulario más rico que quedó como pregunta abierta hace unos días
+(§5 de la memoria del clasificador visual, y la conversación de esa fecha): 7 categorías con
+reconocimiento real de audiencia (decenas/cientos de miles de "me gusta" por vídeo, ver búsquedas
+de §7), no inventadas por diseño académico. Se documentan aquí **formalizadas para poder citarse en
+el TFM** — nombre neutro y descriptivo en vez del término coloquial/de argot, quitando la carga de
+juicio de clase social que llevan varios de los nombres originales, y quedándonos con el rasgo de
+estilo que sí es información útil.
+
+| # | Nombre coloquial (vídeo) | Nombre formal propuesto | Rasgos distintivos | Referencias citadas |
+|---|---|---|---|---|
+| 1 | Pijos | **Elegante de marca** | Prendas de marca reconocible y visible como símbolo de estatus; acabado pulido, poco riesgo de color | — |
+| 2 | Cayetanos | **Clásico-tradicional** | Silueta clásica, tonos tierra/neutros, prendas atemporales; contraste con maquillaje más atrevido de lo que sugiere la ropa | Prenda icónica citada en prensa: chaqueta Barbour, manoletinas |
+| 3 | Modernos (el autor los re-clasifica como "raperos"/urbano, no "hipster" genérico) | **Urbano** | Estética de escena trap/rap española; streetwear con identidad de escena musical concreta, no genérica | Cruz Cafuné y otros nombrados por el autor (figuras reales de la escena, no verificadas una a una por mí) |
+| 4 | Modernos pijos | **Urbano-aspiracional** | Versión "pulida"/influencer del urbano: bronceado, gimnasio, buen calzado de marca, estética de reality/redes | El autor cita creadores tipo "bycalitos" y perfiles de *La Isla de las Tentaciones* como referencia |
+| 5 | Hippies | **Bohemio** | Telas fluidas, tonos tierra, capas, accesorios artesanales | Coincide con "Boho/Bohemian", ya documentado como categoría internacional establecida (ver más abajo) |
+| 6 | Frikis | **Alternativo-geek** | Ropa ligada a fandom/cultura pop (gaming, anime, cómic), prioriza el motivo/estampado sobre la silueta | — |
+| 7 | Básicos | **Convencional** | Sigue la tendencia dominante del momento sin rasgo diferenciador propio | Coincide con "Normcore", ya documentado como categoría internacional establecida |
+
+**Aviso importante, dos cosas que no se pueden dar por resueltas todavía:**
+
+1. **La categoría 3 ("Urbano") se solapa mucho con `streetwear`, que ya existe en el `grupo_estilo`
+   de `Estado_arte.md` §3.4.1.** No es una categoría nueva limpia — habría que decidir si esta
+   taxonomía sustituye/afina la actual o convive con ella como una capa más específica.
+2. **Esto sigue sin tocar `Estado_arte.md`.** Es material de referencia en esta rama, no una
+   propuesta de cambio ya aplicada — cualquier cambio al vocabulario de §3.4.1 necesita que el
+   autor lo pida explícitamente (igual que se ha respetado durante toda la rama del clasificador,
+   ver [[feedback-no-tocar-estado-arte]] si se está leyendo desde la memoria persistente, o
+   simplemente: no tocar ese fichero sin permiso).
+
+**Cómo seguir con esto, opciones (no excluyentes):**
+
+- **A. Dejarlo aquí como referencia**, sin decidir nada más todavía — vocabulario documentado y
+  con fuente, listo para cuando se retome la rama de verdad.
+- **B. Proponer formalmente ampliar/revisar `grupo_estilo`** con esta taxonomía (o una versión
+  afinada de ella) — requiere decisión explícita del autor y, si se acepta, tocar
+  `Estado_arte.md` §3.4.1 (y todo lo que depende de esos 6 valores exactos, ver la nota de
+  acoplamiento frágil de su propio §14.1).
+- **C. Usarla como punto de partida para etiquetar contenido real** cuando se retome la Etapa 2
+  del plan (§6) — en vez de inventar categorías de cero al construir la herramienta de revisión
+  de looks reales, partir de estas 7 (formalizadas) y ajustar con lo que se vea de verdad.
+- **D. Buscar más series del mismo tipo** (de esta creadora u otras) para ver si estas 7 categorías
+  se repiten como consenso informal o si cada creadora corta el pastel de forma distinta — antes de
+  tratarlas como una taxonomía "consensuada".
