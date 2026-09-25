@@ -1,0 +1,1782 @@
+{
+  "bo1": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": true,
+    "fuente": "Falda vaporosa, 2005 (dominio público) — Wikimedia Commons",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:Boho_001.jpg",
+    "imagen": "bo1.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "bo2": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": true,
+    "fuente": "Ropa bohemia (CC0) — Wikimedia Commons",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:Bohemian_clothing.jpg",
+    "imagen": "bo2.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "box1": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": false,
+    "fuente": "Foto de Nicole Geri — Unsplash",
+    "fuente_url": "https://unsplash.com/photos/woman-sitting-on-stairs-3DLb-DCqUvg",
+    "imagen": "box1.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "box10": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": false,
+    "fuente": "Karen Elson en concierto — Wikimedia Commons (CC BY-SA 2.0)",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:Karen_Elson_June_2010_e.jpg",
+    "imagen": "box10.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "box11": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": true,
+    "fuente": "\"Boho Chic Cocoa Blouse\" — Wikimedia Commons (CC BY-SA 2.0)",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:Boho_Chic_Cocoa_Blouse.jpg",
+    "imagen": "box11.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "box12": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": true,
+    "fuente": "Foto de Alexandra Iva — Unsplash (boho minimalista, match más flojo)",
+    "fuente_url": "https://unsplash.com/photos/woman-in-brown-coat-and-brown-hat-standing-on-white-sand-during-daytime-Mh709bEydUY",
+    "imagen": "box12.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "box2": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": false,
+    "fuente": "Foto de Paige Muller — Unsplash",
+    "fuente_url": "https://unsplash.com/photos/woman-in-brown-v-neck-top-q_iJJGDATYQ",
+    "imagen": "box2.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "box3": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": true,
+    "fuente": "Foto de Margaret Young — Unsplash",
+    "fuente_url": "https://unsplash.com/photos/woman-sitting-outdoors-under-palm-trees-kOrV2HaUKuA",
+    "imagen": "box3.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "box4": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": false,
+    "fuente": "Foto de Jonathan Borba — Unsplash",
+    "fuente_url": "https://unsplash.com/photos/womens-white-v-neck-spaghetti-strap-dress-XJt51hAa3z8",
+    "imagen": "box4.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "box5": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": false,
+    "fuente": "Foto de Brooke Cagle — Unsplash",
+    "fuente_url": "https://unsplash.com/photos/woman-sitting-beside-plant-and-concrete-wall-kElEigko7PU",
+    "imagen": "box5.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "box6": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": false,
+    "fuente": "Foto de Nicol Castillo — Unsplash",
+    "fuente_url": "https://unsplash.com/photos/woman-in-white-and-red-floral-shirt-wearing-silver-necklace-yNffEEz9Ta8",
+    "imagen": "box6.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "box7": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": false,
+    "fuente": "Foto de Oksana Zub — Unsplash",
+    "fuente_url": "https://unsplash.com/photos/a-person-in-a-white-dress-and-black-boots-holding-a-hat-1vCNwzw6i-0",
+    "imagen": "box7.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "box8": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": true,
+    "fuente": "Foto de IMANA (cuenta de marca) — Unsplash",
+    "fuente_url": "https://unsplash.com/photos/woman-in-pink-floral-outfit-sitting-on-stairs-Pl77woTuLHc",
+    "imagen": "box8.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "box9": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": true,
+    "fuente": "Foto de Alexandra Iva — Unsplash",
+    "fuente_url": "https://unsplash.com/photos/woman-in-white-long-sleeve-shirt-wearing-black-hat-Tz6orIUxcAk",
+    "imagen": "box9.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ct1": {
+    "categoria_final": "clasico_tradicional",
+    "categoria_ia": "clasico_tradicional",
+    "eliminada": false,
+    "fuente": "Vestido de lino y alpargatas — druni.es",
+    "fuente_url": "https://www.druni.es/blog/moda/outfits-estilo-cayetana-para-llevar-en-verano/",
+    "imagen": "ct1.jpg",
+    "ocasion_final": "arreglado",
+    "origen": "claude"
+  },
+  "ct2": {
+    "categoria_final": "convencional",
+    "categoria_ia": "clasico_tradicional",
+    "eliminada": false,
+    "fuente": "Blusa bordada y falda midi — druni.es",
+    "fuente_url": "https://www.druni.es/blog/moda/outfits-estilo-cayetana-para-llevar-en-verano/",
+    "imagen": "ct2.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ct3": {
+    "categoria_final": "clasico_tradicional",
+    "categoria_ia": "clasico_tradicional",
+    "eliminada": false,
+    "fuente": "Pantalón de sarga y camiseta básica — druni.es",
+    "fuente_url": "https://www.druni.es/blog/moda/outfits-estilo-cayetana-para-llevar-en-verano/",
+    "imagen": "ct3.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ct4": {
+    "categoria_final": "clasico_tradicional",
+    "categoria_ia": "clasico_tradicional",
+    "eliminada": false,
+    "fuente": "Vestido estampado y sandalias de tiras — druni.es",
+    "fuente_url": "https://www.druni.es/blog/moda/outfits-estilo-cayetana-para-llevar-en-verano/",
+    "imagen": "ct4.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ct5": {
+    "categoria_final": "clasico_tradicional",
+    "categoria_ia": "clasico_tradicional",
+    "eliminada": true,
+    "fuente": "Blazer ligero y shorts — druni.es",
+    "fuente_url": "https://www.druni.es/blog/moda/outfits-estilo-cayetana-para-llevar-en-verano/",
+    "imagen": "ct5.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ct6": {
+    "categoria_final": "clasico_tradicional",
+    "categoria_ia": "clasico_tradicional",
+    "eliminada": false,
+    "fuente": "Vestido camisero y sandalias planas — druni.es",
+    "fuente_url": "https://www.druni.es/blog/moda/outfits-estilo-cayetana-para-llevar-en-verano/",
+    "imagen": "ct6.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ctx1": {
+    "categoria_final": "convencional",
+    "categoria_ia": "clasico_tradicional",
+    "eliminada": false,
+    "fuente": "Cayetana Rivera, look de entretiempo — ¡HOLA! (foto GTRES)",
+    "fuente_url": "https://www.hola.com/moda/20241019724762/cayetana-rivera-25-cumpleanios-looks/",
+    "imagen": "ctx1.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ctx10": {
+    "categoria_final": "clasico_tradicional",
+    "categoria_ia": "clasico_tradicional",
+    "eliminada": false,
+    "fuente": "Blazer negro y pañuelo — hablemosdebelleza.es",
+    "fuente_url": "https://hablemosdebelleza.es/wp-content/uploads/2023/04/estilo-cayetana-3-820x1024.jpg",
+    "imagen": "ctx10.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ctx11": {
+    "categoria_final": "clasico_tradicional",
+    "categoria_ia": "clasico_tradicional",
+    "eliminada": false,
+    "fuente": "Tamara Falcó, blazer marino y manoletinas leopardo, evento Tous — trendencias.com",
+    "fuente_url": "",
+    "imagen": "ctx11.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ctx2": {
+    "categoria_final": "convencional",
+    "categoria_ia": "clasico_tradicional",
+    "eliminada": false,
+    "fuente": "Tamara Falcó, jersey beige y manoletinas — trendencias.com",
+    "fuente_url": "",
+    "imagen": "ctx2.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ctx3": {
+    "categoria_final": "convencional",
+    "categoria_ia": "clasico_tradicional",
+    "eliminada": false,
+    "fuente": "María Segarra (@mariasegarr), falda de lino, Sevilla — ¡HOLA!",
+    "fuente_url": "",
+    "imagen": "ctx3.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ctx4": {
+    "categoria_final": "convencional",
+    "categoria_ia": "clasico_tradicional",
+    "eliminada": false,
+    "fuente": "María Hernández (@mariahernandezc), conjunto de lino, Lisboa — ¡HOLA!",
+    "fuente_url": "",
+    "imagen": "ctx4.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ctx5": {
+    "categoria_final": "convencional",
+    "categoria_ia": "clasico_tradicional",
+    "eliminada": false,
+    "fuente": "Lucía Bárcena (@luciabarcena), blusa de lino, Madrid — ¡HOLA!",
+    "fuente_url": "",
+    "imagen": "ctx5.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ctx6": {
+    "categoria_final": "clasico_tradicional",
+    "categoria_ia": "clasico_tradicional",
+    "eliminada": false,
+    "fuente": "Rocío Osorno (@rocioosorno), traje de lino beige y alpargatas — ¡HOLA!",
+    "fuente_url": "",
+    "imagen": "ctx6.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ctx7": {
+    "categoria_final": "clasico_tradicional",
+    "categoria_ia": "clasico_tradicional",
+    "eliminada": false,
+    "fuente": "Chaqueta encerada estilo Barbour (Sfera) — trendencias.com",
+    "fuente_url": "",
+    "imagen": "ctx7.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ctx8": {
+    "categoria_final": "clasico_tradicional",
+    "categoria_ia": "clasico_tradicional",
+    "eliminada": true,
+    "fuente": "Street style, chaqueta tipo Barbour — trendencias.com",
+    "fuente_url": "",
+    "imagen": "ctx8.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ctx9": {
+    "categoria_final": "convencional",
+    "categoria_ia": "clasico_tradicional",
+    "eliminada": false,
+    "fuente": "Mono vaquero — hablemosdebelleza.es, \"Descubre el estilo cayetana\"",
+    "fuente_url": "https://hablemosdebelleza.es/wp-content/uploads/2023/04/estilo-cayetana-2-820x1024.jpg",
+    "imagen": "ctx9.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "cv1": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "Camisa blanca lisa — fashionbeans.com",
+    "fuente_url": "https://www.fashionbeans.com/article/normcore-aesthetic/",
+    "imagen": "cv1.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "cv2": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "Look de playa sin nada llamativo — fashionbeans.com",
+    "fuente_url": "https://www.fashionbeans.com/article/normcore-aesthetic/",
+    "imagen": "cv2.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "cv3": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "Camisa blanca y pantalón gris — fashionbeans.com",
+    "fuente_url": "https://www.fashionbeans.com/article/normcore-aesthetic/",
+    "imagen": "cv3.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "cv4": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "Camisa blanca remetida — fashionbeans.com",
+    "fuente_url": "https://www.fashionbeans.com/article/normcore-aesthetic/",
+    "imagen": "cv4.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "cv5": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "Polo de manga larga — fashionbeans.com",
+    "fuente_url": "https://www.fashionbeans.com/article/normcore-aesthetic/",
+    "imagen": "cv5.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "cv6": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "Gorro y jersey crew neck — fashionbeans.com",
+    "fuente_url": "https://www.fashionbeans.com/article/normcore-aesthetic/",
+    "imagen": "cv6.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "cvx1": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": true,
+    "fuente": "Foto de Shixart1985 — Wikimedia Commons (CC BY 2.0)",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:Woman_in_casual_outfit_holds_a_cup.jpg",
+    "imagen": "cvx1.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "cvx10": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "Style by Savina, outfits minimalistas",
+    "fuente_url": "https://www.stylebysavina.com/minimalist-outfits/",
+    "imagen": "cvx10.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "cvx11": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "Style by Savina, outfits minimalistas",
+    "fuente_url": "https://www.stylebysavina.com/minimalist-outfits/",
+    "imagen": "cvx11.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "cvx2": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "Who What Wear, \"The Normcore Aesthetic\"",
+    "fuente_url": "https://www.whowhatwear.com/normcore-aesthetic",
+    "imagen": "cvx2.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "cvx3": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "Who What Wear, \"The Normcore Aesthetic\"",
+    "fuente_url": "https://www.whowhatwear.com/normcore-aesthetic",
+    "imagen": "cvx3.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "cvx4": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "Who What Wear, \"The Normcore Aesthetic\"",
+    "fuente_url": "https://www.whowhatwear.com/normcore-aesthetic",
+    "imagen": "cvx4.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "cvx5": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "Who What Wear, \"The Normcore Aesthetic\"",
+    "fuente_url": "https://www.whowhatwear.com/normcore-aesthetic",
+    "imagen": "cvx5.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "cvx6": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "Who What Wear, \"The Normcore Aesthetic\"",
+    "fuente_url": "https://www.whowhatwear.com/normcore-aesthetic",
+    "imagen": "cvx6.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "cvx7": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "Who What Wear, \"The Normcore Aesthetic\"",
+    "fuente_url": "https://www.whowhatwear.com/normcore-aesthetic",
+    "imagen": "cvx7.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "cvx8": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "Style by Savina, outfits minimalistas",
+    "fuente_url": "https://www.stylebysavina.com/minimalist-outfits/",
+    "imagen": "cvx8.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "cvx9": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "Style by Savina, outfits minimalistas",
+    "fuente_url": "https://www.stylebysavina.com/minimalist-outfits/",
+    "imagen": "cvx9.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "cvz1": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "Camisa blanca + vaqueros pitillo, calle — @OldNavy en X",
+    "fuente_url": "https://x.com/OldNavy/status/892520453285097473",
+    "imagen": "cvz1.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "cvz2": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "Chaqueta vaquera + sudadera con capucha + vaqueros — @Gap en X",
+    "fuente_url": "https://x.com/gap/status/1027660819658616832",
+    "imagen": "cvz2.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "cvz3": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "Camiseta gris + vaqueros + zapatillas blancas — @UniqloIn en X",
+    "fuente_url": "https://x.com/UniqloIn/status/1353288938497036288",
+    "imagen": "cvz3.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "cvz4": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "Camiseta de rayas + short vaquero, vídeo de calle — @UniqloUSA en X",
+    "fuente_url": "https://x.com/UniqloUSA/status/1904213466199589333",
+    "imagen": "cvz4.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "cvz5": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "Camisa blanca + pantalón ancho + zapatillas, vídeo — @UniqloThailand en X",
+    "fuente_url": "https://x.com/UniqloThailand/status/1944592788349411498",
+    "imagen": "cvz5.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "friki_orslok": {
+    "categoria_final": "alternativo_geek",
+    "categoria_ia": "alternativo_geek",
+    "eliminada": false,
+    "fuente": "orslok (Germán García Carro), streamer/músico — La Gaceta de Salamanca, 2023",
+    "fuente_url": "https://s3.ppllstatics.com/lagacetadesalamanca/www/multimedia/2023/12/16/orslok-kJYF-U101076668134SC-1200x840@Gaceta%20Salamanca.jpg",
+    "imagen": "friki_orslok.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "friki_orslok_2": {
+    "categoria_final": "alternativo_geek",
+    "categoria_ia": "alternativo_geek",
+    "eliminada": false,
+    "fuente": "orslok (Germán García Carro) — Marca, 2023",
+    "fuente_url": "https://e00-marca.uecdn.es/assets/multimedia/imagenes/2023/12/15/17026613744698.jpg",
+    "imagen": "friki_orslok_2.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "friki_orslok_3": {
+    "categoria_final": "alternativo_geek",
+    "categoria_ia": "alternativo_geek",
+    "eliminada": false,
+    "fuente": "orslok (Germán García Carro) — labiode.com (fuente menos verificada)",
+    "fuente_url": "https://labiode.com/wp-content/uploads/2022/05/Orslok-cantante.jpg",
+    "imagen": "friki_orslok_3.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "gkx1": {
+    "categoria_final": "alternativo_geek",
+    "categoria_ia": "alternativo_geek",
+    "eliminada": true,
+    "fuente": "Caps (Rasmus Winther), jugador de League of Legends, G2 Esports — Wikimedia Commons",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:Caps_G2_2020_(1).jpg",
+    "imagen": "gkx1.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "gkx2": {
+    "categoria_final": "alternativo_geek",
+    "categoria_ia": "alternativo_geek",
+    "eliminada": true,
+    "fuente": "M0NESY (Ilya Osipov), jugador de Counter-Strike 2, G2 Esports — Wikimedia Commons",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:M0nesy.png",
+    "imagen": "gkx2.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "gkx3": {
+    "categoria_final": "alternativo_geek",
+    "categoria_ia": "alternativo_geek",
+    "eliminada": false,
+    "fuente": "Kaede, Harajuku, bolso forma de consola retro — Tokyo Fashion (vía Wayback Machine)",
+    "fuente_url": "https://web.archive.org/web/20191113230117/http://tokyofashion.com/blue-style-in-harajuku-w-clear-visor-glasses-esc-studio-ruched-shirt-detox-leopard-print-shorts-oh-pearl-swimmer-game-controller-bag-demonia-platform-boots/",
+    "imagen": "gkx3.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "gkx4": {
+    "categoria_final": "alternativo_geek",
+    "categoria_ia": "alternativo_geek",
+    "eliminada": false,
+    "fuente": "Tanago \"Cyber Mum\", kimono placa de circuito, Akihabara — designyoutrust.com",
+    "fuente_url": "https://designyoutrust.com/2020/11/cyberpunk-kimono-fashion-hits-the-streets-of-akihabara-complete-with-neon-sign-obi/",
+    "imagen": "gkx4.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "gkx5": {
+    "categoria_final": "alternativo_geek",
+    "categoria_ia": "alternativo_geek",
+    "eliminada": false,
+    "fuente": "Kimono placa de circuito, taller Gofukuyasan — vía tokyo-fashion (Tumblr)",
+    "fuente_url": "https://www.tumblr.com/tokyo-fashion/173481840373/circuit-board-print-kimono-obi-by-japanese",
+    "imagen": "gkx5.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "lo1": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": true,
+    "fuente": "Streetwear de lujo (Louis Vuitton) — tenshi-streetwear.com",
+    "fuente_url": "https://tenshi-streetwear.com/blogs/streetculture/luxury-streetwear-or-when-the-street-dresses-like-gucci",
+    "imagen": "lo1.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "lo2": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": true,
+    "fuente": "Streetwear de lujo (Dior/Gucci) — tenshi-streetwear.com",
+    "fuente_url": "https://tenshi-streetwear.com/blogs/streetculture/luxury-streetwear-or-when-the-street-dresses-like-gucci",
+    "imagen": "lo2.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "lo3": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "fuente": "Streetwear de lujo (Off-White) — tenshi-streetwear.com",
+    "fuente_url": "https://tenshi-streetwear.com/blogs/streetculture/luxury-streetwear-or-when-the-street-dresses-like-gucci",
+    "imagen": "lo3.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "lox1": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "fuente": "Hoodie + mochila monograma Louis Vuitton / pantalón Fendi FF — tenshi-streetwear.com",
+    "fuente_url": "https://tenshi-streetwear.com/blogs/streetculture/luxury-streetwear-or-when-the-street-dresses-like-gucci",
+    "imagen": "lox1.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "lox10": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "fuente": "Camiseta logo Gucci — PurseBop.com, \"The Resurgence of Logomania\" (créd. IG @jamialix)",
+    "fuente_url": "",
+    "imagen": "lox10.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "lox11": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "fuente": "Abrigo shearling + bolso Gucci GG Marmont — PurseBop.com (créd. IG @eddiefischer)",
+    "fuente_url": "",
+    "imagen": "lox11.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "lox2": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "fuente": "Monograma Louis Vuitton / chándal con logo Gucci — tenshi-streetwear.com",
+    "fuente_url": "https://tenshi-streetwear.com/blogs/streetculture/luxury-streetwear-or-when-the-street-dresses-like-gucci",
+    "imagen": "lox2.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "lox3": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "fuente": "Pasarela, cazadoras monograma Louis Vuitton — tenshi-streetwear.com",
+    "fuente_url": "https://tenshi-streetwear.com/blogs/streetculture/luxury-streetwear-or-when-the-street-dresses-like-gucci",
+    "imagen": "lox3.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "lox4": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "fuente": "Colaboración Louis Vuitton x Supreme — tenshi-streetwear.com",
+    "fuente_url": "https://tenshi-streetwear.com/blogs/streetculture/luxury-streetwear-or-when-the-street-dresses-like-gucci",
+    "imagen": "lox4.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "lox5": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "fuente": "Pasarela y accesorios Louis Vuitton x Supreme — tenshi-streetwear.com",
+    "fuente_url": "https://tenshi-streetwear.com/blogs/streetculture/luxury-streetwear-or-when-the-street-dresses-like-gucci",
+    "imagen": "lox5.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "lox6": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "fuente": "Look de pies a cabeza en monograma Louis Vuitton — tenshi-streetwear.com",
+    "fuente_url": "https://tenshi-streetwear.com/blogs/streetculture/luxury-streetwear-or-when-the-street-dresses-like-gucci",
+    "imagen": "lox6.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "lox7": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "fuente": "Central Cee, chaleco Dior Oblique — Lollapalooza París 2023, Wikimedia Commons (CC BY-SA 4.0)",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:Central_cee-5.jpg",
+    "imagen": "lox7.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "lox8": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": true,
+    "fuente": "Ufo361, rapero alemán, riñonera Balenciaga + Gucci — Wikimedia Commons (CC BY-SA 4.0)",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:Ufo361_at_Sputnik_Spring_Break_2018_(crop).jpg",
+    "imagen": "lox8.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "lox9": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": true,
+    "fuente": "Maluma en el desfile Louis Vuitton Menswear SS25 — Wikimedia Commons (CC0)",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:Colombian_singer_Maluma_attending_the_Louis_Vuitton_Menswear_Spring_Summer_2025_show.jpg",
+    "imagen": "lox9.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "om1": {
+    "categoria_final": "ninguna",
+    "categoria_ia": "old_money",
+    "eliminada": true,
+    "fuente": "Leonard Bernstein, 1945 (blazer de remo) — Wikimedia Commons",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:Leonard_Bernstein_NYWTS_1945.jpg",
+    "imagen": "om1.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "om2": {
+    "categoria_final": "ninguna",
+    "categoria_ia": "old_money",
+    "eliminada": true,
+    "fuente": "Steve Waugh, blazer de críquet — Wikimedia Commons",
+    "fuente_url": "https://en.wikipedia.org/wiki/Blazer",
+    "imagen": "om2.png",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "om3": {
+    "categoria_final": "ninguna",
+    "categoria_ia": "old_money",
+    "eliminada": true,
+    "fuente": "Ilustración 1902, estudiante estilo preppy — Wikimedia Commons",
+    "fuente_url": "https://en.wikipedia.org/wiki/Preppy",
+    "imagen": "om3.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "omx1": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Sir Richard Musgrave con su perro, 1911 — Wikimedia Commons",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:Sir_Richard_John_Musgrave,_5th_Baronet_of_Tourin_(10_December_1850-1930)_on_February_18,_1911_(6895894695).jpg",
+    "imagen": "omx1.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "omx10": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Blazer de mohair Dunhill, sin logo visible — Wikimedia Commons (CC BY-SA 3.0)",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:The_dunhill_Camdeboo_Blazer.jpg",
+    "imagen": "omx10.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "omx2": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Golf en Tramore, Irlanda, años 1900 — Wikimedia Commons",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:P._Gallwey_-_Golf_at_Tramore_Ireland_1900s_(6933777014).jpg",
+    "imagen": "omx2.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "omx3": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Traje de tweed de tres piezas, Aarhus — Wikimedia Commons (CC BY-SA 4.0)",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:ManInTweed.jpg",
+    "imagen": "omx3.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "omx4": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Golfistas con blazer de club, Brisbane c. 1935 — Wikimedia Commons",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:Group_of_unidentified_male_golfers,_Brisbane_(4461737040).jpg",
+    "imagen": "omx4.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "omx5": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Chaleco de punto fino estilo cricket — Wikimedia Commons (CC BY 4.0)",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:Half-length_portrait_of_a_man_standing_in_front_of_bushes_(AM_85636-1).jpg",
+    "imagen": "omx5.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "omx6": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Chaleco de punto trenzado, 1936 — Wikimedia Commons",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:Mark_Weston_and_miss_Bray_1936.jpg",
+    "imagen": "omx6.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "omx7": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Ambrose Congreve en Clonbrock House, 1860s — Wikimedia Commons",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:Portrait_of_Ambrose_Congreve_reading_newspaper,_Clonbrock_House,_Ahascragh,_County_Galway,_1860s_(6795319641).jpg",
+    "imagen": "omx7.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "omx8": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Guardas de finca escocesas con americana de tweed — Wikimedia Commons (CC BY-SA 2.0)",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:A_trio_of_'Keepers_in_tweed_-_geograph.org.uk_-_1560277.jpg",
+    "imagen": "omx8.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "omx9": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Croquet en el Jardin du Luxembourg, 1921 — Gallica/BnF (dominio público)",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:Croquet_au_Jardin_du_Luxembourg_-_15-06-1921_A.jpg",
+    "imagen": "omx9.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "omz1": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Americana marino + camisa abierta, look de calle — @dieworkwear en X",
+    "fuente_url": "https://x.com/dieworkwear/status/1696710945534582924",
+    "imagen": "omz1.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "omz10": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Abrigo cruzado, look completo — @suitsupply en X",
+    "fuente_url": "https://x.com/suitsupply/status/1852363789200408838",
+    "imagen": "omz10.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "omz11": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Americana de tweed espiga, foto vintage B/N estilo Ivy — @dieworkwear en X, crítica de sastrería",
+    "fuente_url": "https://x.com/dieworkwear/status/1887708842265616505",
+    "imagen": "omz11.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "omz12": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Americana de tweed espiga, detalle — @dieworkwear en X",
+    "fuente_url": "https://x.com/dieworkwear/status/1887708842265616505",
+    "imagen": "omz12.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "omz13": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Americana de tweed espiga, look completo — @dieworkwear en X",
+    "fuente_url": "https://x.com/dieworkwear/status/1887708842265616505",
+    "imagen": "omz13.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "omz2": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Jersey de cuello vuelto gris bajo americana marino — @dieworkwear en X",
+    "fuente_url": "https://x.com/dieworkwear/status/1696710945534582924",
+    "imagen": "omz2.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "omz3": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Americana marino, detalle — @dieworkwear en X",
+    "fuente_url": "https://x.com/dieworkwear/status/1696710945534582924",
+    "imagen": "omz3.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "omz4": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Americana marino, look completo — @dieworkwear en X",
+    "fuente_url": "https://x.com/dieworkwear/status/1696710945534582924",
+    "imagen": "omz4.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "omz5": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Jersey de cuello vuelto gris + americana marino, editorial — @dieworkwear en X, crítica de sastrería",
+    "fuente_url": "https://x.com/dieworkwear/status/1811086265040982117",
+    "imagen": "omz5.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "omz6": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Americana marino, detalle de sastrería — @dieworkwear en X",
+    "fuente_url": "https://x.com/dieworkwear/status/1811086265040982117",
+    "imagen": "omz6.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "omz7": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Americana marino, look completo — @dieworkwear en X",
+    "fuente_url": "https://x.com/dieworkwear/status/1811086265040982117",
+    "imagen": "omz7.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "omz8": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Abrigo cruzado de lana/cachemira crudo + cuello alto negro — @suitsupply en X",
+    "fuente_url": "https://x.com/suitsupply/status/1852363789200408838",
+    "imagen": "omz8.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "omz9": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Abrigo cruzado, detalle — @suitsupply en X",
+    "fuente_url": "https://x.com/suitsupply/status/1852363789200408838",
+    "imagen": "omz9.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "u_1790274260305": {
+    "categoria_final": "clasico_tradicional",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "imagen": null,
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274453737_0": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274453737_0.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274454879_1": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274454879_1.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274455860_2": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": true,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274455860_2.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274457018_3": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": true,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274457018_3.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274458065_4": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": true,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274458065_4.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274459125_5": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": true,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274459125_5.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274460189_6": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": true,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274460189_6.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274480565_0": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "imagen": null,
+    "ocasion_final": "arreglado",
+    "origen": "autor"
+  },
+  "u_1790274481703_1": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": true,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274481703_1.jpg",
+    "ocasion_final": "arreglado",
+    "origen": "autor"
+  },
+  "u_1790274482952_2": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": true,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274482952_2.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274483918_3": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": true,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274483918_3.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274497316_5": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": true,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274497316_5.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274498404_6": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": true,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274498404_6.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274545602_0": {
+    "categoria_final": "clasico_tradicional",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "imagen": null,
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274546618_1": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274546618_1.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274547643_2": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274547643_2.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274548609_3": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274548609_3.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274549646_4": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274549646_4.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274550818_5": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274550818_5.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274551954_6": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274551954_6.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274553027_7": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274553027_7.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274604166_0": {
+    "categoria_final": "clasico_tradicional",
+    "categoria_ia": "clasico_tradicional",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274604166_0.jpg",
+    "ocasion_final": "arreglado",
+    "origen": "autor"
+  },
+  "u_1790274605186_1": {
+    "categoria_final": "clasico_tradicional",
+    "categoria_ia": "clasico_tradicional",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274605186_1.jpg",
+    "ocasion_final": "arreglado",
+    "origen": "autor"
+  },
+  "u_1790274606216_2": {
+    "categoria_final": "clasico_tradicional",
+    "categoria_ia": "clasico_tradicional",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274606216_2.jpg",
+    "ocasion_final": "arreglado",
+    "origen": "autor"
+  },
+  "u_1790274607343_3": {
+    "categoria_final": "clasico_tradicional",
+    "categoria_ia": "clasico_tradicional",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274607343_3.jpg",
+    "ocasion_final": "arreglado",
+    "origen": "autor"
+  },
+  "u_1790274608282_4": {
+    "categoria_final": "clasico_tradicional",
+    "categoria_ia": "clasico_tradicional",
+    "eliminada": true,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274608282_4.jpg",
+    "ocasion_final": "arreglado",
+    "origen": "autor"
+  },
+  "u_1790274646464_0": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "imagen": null,
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274647513_1": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274647513_1.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274648409_2": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274648409_2.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274649415_3": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274649415_3.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274650482_4": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274650482_4.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274651582_5": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274651582_5.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274652496_6": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274652496_6.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274673084_0": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": false,
+    "imagen": null,
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274674109_1": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274674109_1.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274675106_2": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274675106_2.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274676100_3": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274676100_3.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274677073_4": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274677073_4.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274678068_5": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274678068_5.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274679059_6": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274679059_6.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274680097_7": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274680097_7.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274681105_8": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274681105_8.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274682194_9": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274682194_9.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274683201_10": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274683201_10.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274861803_0": {
+    "categoria_final": "alternativo_geek",
+    "categoria_ia": "alternativo_geek",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274861803_0.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274863442_1": {
+    "categoria_final": "alternativo_geek",
+    "categoria_ia": "alternativo_geek",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274863442_1.png",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274864423_2": {
+    "categoria_final": "alternativo_geek",
+    "categoria_ia": "alternativo_geek",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274864423_2.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274865390_3": {
+    "categoria_final": "alternativo_geek",
+    "categoria_ia": "alternativo_geek",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274865390_3.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274887874_0": {
+    "categoria_final": "alternativo_geek",
+    "categoria_ia": "alternativo_geek",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274887874_0.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274888944_1": {
+    "categoria_final": "alternativo_geek",
+    "categoria_ia": "alternativo_geek",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274888944_1.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274889864_2": {
+    "categoria_final": "alternativo_geek",
+    "categoria_ia": "alternativo_geek",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274889864_2.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274890888_3": {
+    "categoria_final": "alternativo_geek",
+    "categoria_ia": "alternativo_geek",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274890888_3.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790274892016_4": {
+    "categoria_final": "alternativo_geek",
+    "categoria_ia": "alternativo_geek",
+    "eliminada": false,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790274892016_4.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "u_1790275279648_0": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": true,
+    "fuente": "Añadida por ti",
+    "fuente_url": "",
+    "imagen": "u_1790275279648_0.jpg",
+    "ocasion_final": null,
+    "origen": "autor"
+  },
+  "ur1": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": true,
+    "fuente": "Moda trap española — trendencias.com",
+    "fuente_url": "https://www.trendencias.com/tendencias/trap-ha-saltado-musica-a-moda-estilos-como-rosalia-zowi-bad-gyal-tienen-culpa",
+    "imagen": "ur1.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ur_bycalitos1": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": true,
+    "fuente": "bycalitos (Carlos Martín), streetwear/lujo — Neo2, editorial ScrapWorld 2024",
+    "fuente_url": "https://www.neo2.com/wp-content/uploads/2024/06/Bycalitos-entrevista-scrapworld-5.jpg",
+    "imagen": "ur_bycalitos1.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ur_bycalitos1_alt": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "bycalitos (Carlos Martín) — portada Neo2, 2024",
+    "fuente_url": "",
+    "imagen": "ur_bycalitos1_alt.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ur_cruzcafune1": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "Cruz Cafuné, rapero — Festival Cruïlla 2023, Wikimedia Commons (CC BY-SA 4.0)",
+    "fuente_url": "https://upload.wikimedia.org/wikipedia/commons/d/db/CruzCafun%C3%A9_Cru%C3%AFlla2023.jpg",
+    "imagen": "ur_cruzcafune1.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ur_cruzcafune2": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "Cruz Cafuné, rapero — estreno de gira, 2024, Wikimedia Commons (CC BY-SA 4.0)",
+    "fuente_url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Cruz_Cafun%C3%A9_na_estrea_da_s%C3%BAa_xira..jpg",
+    "imagen": "ur_cruzcafune2.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ur_hoke1": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "Hoke, rapero (Valencia) — informaUVA.com, de su canal de YouTube",
+    "fuente_url": "",
+    "imagen": "ur_hoke1.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ur_isla1": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": true,
+    "fuente": "Concursantes de La Isla de las Tentaciones — nota de prensa Mediaset, sep. 2026",
+    "fuente_url": "https://album.mediaset.es/eimg/2026/09/11/5o5a3952-16-9-aspect-ratio-default-1054130_da39.jpg",
+    "imagen": "ur_isla1.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ur_isla2": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": true,
+    "fuente": "Parejas de La Isla de las Tentaciones, ropa de noche — nota de prensa Mediaset, oct. 2025",
+    "fuente_url": "https://album.mediaset.es/eimg/2025/10/27/parejas-sandra-16-9-aspect-ratio-default-1021307_da39.jpg",
+    "imagen": "ur_isla2.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ur_israelb1": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "Israel B, rapero (Madrid, ex-Corredores del Bloque) — MondoSonoro",
+    "fuente_url": "",
+    "imagen": "ur_israelb1.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ur_monkas1": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "Shoda Monkas, rapero — concierto en Alicante, 2022, Urban Life (foto: Martín Halabrín)",
+    "fuente_url": "https://urbanlife.es/wp-content/uploads/2022/12/shoda-monkas-concierto-alicante-scaled.jpg",
+    "imagen": "ur_monkas1.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "ur_shoda1": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "Shoda Monkas, rapero (Albacete) — MondoSonoro, 2023",
+    "fuente_url": "https://mondosonoro.com/wp-content/uploads/2023/02/ShodaMonkas.jpg",
+    "imagen": "ur_shoda1.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "urx1": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "Quevedo, rapero canario — Wikimedia Commons (CC BY-SA 4.0)",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:Quevedo2023hh.jpg",
+    "imagen": "urx1.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "urx2": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "Yung Beef, rapero (Granada, PXXR GVNG), Madrid 2018 — Wikimedia Commons (CC BY-SA 4.0)",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:Yung_Beef,_10_de_mayo_de_2018,_Madrid.jpg",
+    "imagen": "urx2.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "urx3": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "Bad Gyal, cantante catalana — Wikimedia Commons (CC BY-SA 2.0)",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:Bad_Gyal_(46605576754)_(cropped).jpg",
+    "imagen": "urx3.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "urx4": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "La Zowi, trap latino (PXXR GVNG) — Wikimedia Commons (CC BY-SA 2.0)",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:La_Zowi_(33452945308).jpg",
+    "imagen": "urx4.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "urx6": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": true,
+    "fuente": "Morad, rapero hispano-marroquí, 2021 — Wikimedia Commons (CC BY-SA 4.0)",
+    "fuente_url": "https://commons.wikimedia.org/wiki/File:Morad-082021.jpg",
+    "imagen": "urx6.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "urz1": {
+    "categoria_final": "ninguna",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "Rels B, rapero mallorquín, portada/artwork con camisa monograma Dior — @skinnyflakk en X",
+    "fuente_url": "https://x.com/skinnyflakk/status/1390014442356756483",
+    "imagen": "urz1.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "urz2": {
+    "categoria_final": "ninguna",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "C. Tangana en concierto, traje oscuro — @c_tangana en X",
+    "fuente_url": "https://x.com/c_tangana/status/1532763106304303110",
+    "imagen": "urz2.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "urz3": {
+    "categoria_final": "ninguna",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "C. Tangana en concierto, detalle — @c_tangana en X",
+    "fuente_url": "https://x.com/c_tangana/status/1532763106304303110",
+    "imagen": "urz3.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "urz4": {
+    "categoria_final": "ninguna",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "C. Tangana en concierto, look completo — @c_tangana en X",
+    "fuente_url": "https://x.com/c_tangana/status/1532763106304303110",
+    "imagen": "urz4.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "urz5": {
+    "categoria_final": "ninguna",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "C. Tangana, look de calle — @c_tangana en X",
+    "fuente_url": "https://x.com/c_tangana/status/1540026827309293576",
+    "imagen": "urz5.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "urz6": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "Kaydy Cain (ex-PXXR GVNG), camiseta gráfica y cadena — @kaydyCain en X",
+    "fuente_url": "https://x.com/kaydyCain/status/1755621889400062183",
+    "imagen": "urz6.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  },
+  "urz7": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "Kaydy Cain, detalle de look — @kaydyCain en X",
+    "fuente_url": "https://x.com/kaydyCain/status/1755621889400062183",
+    "imagen": "urz7.jpg",
+    "ocasion_final": null,
+    "origen": "claude"
+  }
+}
