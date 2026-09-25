@@ -1,13 +1,24 @@
 # Panel web (Render)
 
-Una página con una URL propia para ver la cola pendiente, disparar la Action ya mismo, y cambiar
-el horario (`activo`/`hora_local`/`zona_horaria`) sin entrar en GitHub a mano.
+Una sola app con una URL propia. Dos partes:
 
-**Importante — qué es esto y qué no es**: la ejecución programada (diaria/horaria, según
+- **Galería (`/`)**: clasificar fotos por estilo, corregir con un toque, eje de ocasión
+  (fiesta/deportivo/playa/arreglado), subir fotos propias, eliminar/restaurar. Sustituye por
+  completo al artefacto de claude.ai que se usaba antes — mismos datos, migrados una vez.
+- **Automatización de X (`/automatizacion`)**: ver la cola pendiente, disparar la Action ya
+  mismo, cambiar el horario (`activo`/`hora_local`/`zona_horaria`) sin entrar en GitHub a mano.
+
+**De dónde vienen los datos**: no hay base de datos de verdad (el plan gratuito de Render no
+tiene disco persistente). Las clasificaciones viven en `data/clasificaciones.json` y las fotos
+en `static/fotos/`, ambos dentro de este mismo repo de GitHub — el panel los lee y escribe con
+la API de GitHub (misma que ya usaba para `config.json`), así que cada cambio en la galería
+genera un commit real en el repo.
+
+**Importante — qué es esto y qué no es**: la ejecución programada de X (diaria/horaria, según
 `config.json`) ya corre sola dentro de GitHub Actions — eso no depende de que este panel exista
-ni de que esté despierto. Este panel es solo una interfaz más cómoda para verla y controlarla
-desde una URL, en vez de navegar la web de GitHub. No hace la ingesta más autónoma de lo que ya
-era; la hace más cómoda de mirar y tocar.
+ni de que esté despierto. La pestaña de automatización es solo una interfaz más cómoda para
+verla y controlarla desde una URL. La galería, en cambio, sí depende de que el panel esté
+despierto (es la única forma de ver/editar las fotos ahora).
 
 ## Qué necesitas hacer tú una vez (esto no lo puede hacer Claude por ti)
 
@@ -40,4 +51,11 @@ pip install -r requirements.txt
 PANEL_PASSWORD=loquesea GITHUB_TOKEN=tu_token python3 app.py
 ```
 
-Abre `http://localhost:5000`.
+Abre `http://localhost:5000`. Sin `GITHUB_TOKEN` válido verás la galería vacía (no puede leer
+`data/clasificaciones.json` del repo) pero la app no se cae — sirve para probar la interfaz.
+
+## Si cambiaste la contraseña alguna vez en el chat
+
+Si en algún momento pegaste `PANEL_PASSWORD` en una conversación con Claude, trátala como
+comprometida: cámbiala en Render → el servicio → *Environment* → `PANEL_PASSWORD`, y guarda
+(Render redepliega solo con el valor nuevo).
