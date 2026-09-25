@@ -282,6 +282,23 @@ cruzado de lana/cachemira sobre cuello alto (@suitsupply, marcadas con ocasión 
 tratarse de un look claramente cuidado/de evento), y una foto vintage en B/N de americana de
 tweed espiga estilo Ivy.
 
+**Dos mejoras a la pestaña, a petición del autor tras ver la primera versión (mismo día)**:
+- **Registro de pasos en vivo, tipo terminal**: cada solicitud guarda un array `pasos` (texto +
+  hora) que Claude va ampliando con `write_db` mientras la procesa — el autor lo ve aparecer en
+  la propia pestaña casi en directo si tiene la página abierta, en vez de solo un estado final.
+  Va también con expectativa de tiempo explícita en la UI: **~10-20 min una vez que Claude se
+  pone con una solicitud, pero solo si hay sesión activa** — no hay ningún proceso corriendo en
+  segundo plano 24/7; si nadie está trabajando en esto, se queda en "Pendiente" sin más.
+- **Botón cancelar/reactivar**: por solicitud, mientras esté pendiente o en proceso. No borra el
+  documento, solo cambia su estado a `cancelado` (mismo patrón de reversibilidad por toggle que
+  ✕/↺ en las fotos — nunca una eliminación dura sin poder deshacerla).
+
+**Segunda demo real, con las dos mejoras ya puestas** (solicitud "Convencional", modo
+predeterminado, texto *"normcore basic outfit real photos"*): 6 URLs candidatas, 5 con
+foto/vídeo nativo (@OldNavy, @Gap, @UniqloIn, @UniqloUSA, @UniqloThailand — estas dos últimas de
+un vídeo, del que solo se cogió el mejor fotograma de cada uno, no todos: los demás fotogramas
+salían mal encuadrados o repetían el mismo plano). 5 fotos añadidas, Convencional pasa de 23 a 28.
+
 ### Etapa 2 — Evaluación honesta de lo que ya existe (sin afinar nada)
 
 - Correr `analizar_outfit.py` (adapter v3 por defecto, detector DeepFashion2 ya integrado) sobre
