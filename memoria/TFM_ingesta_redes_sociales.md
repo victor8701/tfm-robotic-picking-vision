@@ -152,14 +152,33 @@ De `Estado_arte.md` (sin tocar el fichero, solo como referencia):
 
 Esto es lo que hace falta decidir al retomar, antes de escribir código:
 
-1. **¿Qué hace `viral_clips` exactamente hoy?** Sin mirar el repo no se sabe si ya extrae
-   fotogramas de los clips (aunque no los use) o si solo guarda el vídeo/audio. Esto cambia mucho
-   el punto de partida real.
-2. **Fuente concreta para empezar.** El diseño apunta a YouTube/TikTok/X vía `viral_clips`, pero
-   para una primera validación rápida podría ser más simple un lote pequeño curado a mano (mismo
-   espíritu que las 19 fotos de calle de Wikimedia de la rama cerrada, pero de contenido de moda
-   real de redes sociales) — más lento de escalar, pero sin depender de que `viral_clips` ya
-   soporte la plataforma que haga falta.
+1. ~~**¿Qué hace `viral_clips` exactamente hoy?**~~ **Resuelto 2026-09-25** — ver §1.2: solo
+   descarga de YouTube, no extrae fotogramas en ningún punto. Ambas cosas habría que construirlas.
+2. **Fuente concreta para empezar.** El diseño apunta a YouTube/TikTok/X, pero como `viral_clips`
+   no descarga de TikTok/X hoy (ver §1.2), esto ahora es una decisión real de por dónde empezar a
+   construir, no de configuración. **Prueba empírica hecha 2026-09-25** con `yt-dlp` (la misma
+   librería que ya usa `viral_clips` para YouTube) contra un post público real de cada red —
+   [@VogueRunway en X](https://x.com/VogueRunway/status/2053500729072247254),
+   [@zaralarssonscloset en Instagram](https://www.instagram.com/p/DX4KrINiDn-/), y un vídeo de
+   moda en TikTok — sin usar ninguna cuenta ni cookies, solo para medir la fricción de cada una:
+   - **X/Twitter: la más accesible.** Token de invitado anónimo + una llamada GraphQL limpia,
+     sin avisos, igual en los 3 posts distintos probados (dos sin vídeo real, uno con — en los
+     tres yt-dlp identificó el contenido sin fricción).
+   - **Instagram: intermedia.** Accesible sin login, pero con más peso — sesión propia, aviso de
+     "no CSRF token" (modo degradado sin autenticar), y estructura de carrusel más compleja que
+     una sola pieza de contenido. Además, la extracción de **fotos** (no vídeo) de Instagram no
+     es el punto fuerte de `yt-dlp` — puede hacer falta `gallery-dl` u otra herramienta para eso.
+   - **TikTok: la más protegida, con diferencia.** Bloqueada de raíz: la petición inicial de
+     página devolvió un reto anti-bot (challenge) de 537 bytes que `yt-dlp` no pudo resolver sin
+     herramientas de "impersonation" (suplantar la huella TLS de un navegador real,
+     `curl_cffi`) — ni siquiera llegó a ver el contenido.
+
+   **Conclusión operativa**: si hay que elegir una plataforma nueva para construir la descarga,
+   **X/Twitter es la más barata de implementar**; Instagram es factible pero más frágil y
+   necesita más pieza extra para fotos; TikTok necesita herramientas de evasión de bot-detection
+   más serias antes de plantearse nada más. Esto no decide *cuál tiene el contenido de moda que
+   de verdad interesa* (ese es un criterio aparte, y probablemente Instagram/TikTok ganen ahí)
+   — es solo la dificultad técnica de construirlo, que es lo que se pidió medir.
 3. **Volumen necesario.** ¿Cuántos fotogramas/clips hacen falta para una evaluación honesta? Un
    punto de partida razonable, por comparación con lo ya hecho: algo entre las 19 fotos de calle
    (insuficiente, ya se demostró que es solo para detectar el problema) y los cientos que se
