@@ -299,6 +299,19 @@ foto/vídeo nativo (@OldNavy, @Gap, @UniqloIn, @UniqloUSA, @UniqloThailand — e
 un vídeo, del que solo se cogió el mejor fotograma de cada uno, no todos: los demás fotogramas
 salían mal encuadrados o repetían el mismo plano). 5 fotos añadidas, Convencional pasa de 23 a 28.
 
+**Fallo real, no de la herramienta (2026-09-25, mismo día, ~3h después)**: mientras se hacían las
+dos demos de arriba, el autor había mandado su **propia** solicitud real por la pestaña
+("Urbano", modo predeterminado) — y se quedó sin procesar durante horas porque Claude estaba
+ocupado haciendo sus propias demos (Old Money, Convencional) y no llegó a mirar la cola de
+verdad. El autor la canceló y la volvió a mandar; siguió parada. Avisó tras ~3 horas sin ver
+ningún avance. **No fue un límite de la arquitectura (eso ya estaba avisado y es cierto: sin
+sesión activa no se procesa nada) — fue que, habiendo sesión activa, no se revisó la solicitud
+real del autor mientras se hacían pruebas propias.** Lección: cuando se vaya a procesar la cola,
+revisar primero qué hay de verdad ahí (`read_db` sobre `solicitudes_x`) antes de inventar una
+demo propia — la solicitud del usuario, si existe, va primero. Una vez detectado, se procesó al
+momento: 5 URLs nuevas encontradas (Rels B, C. Tangana ×2, Kaydy Cain — Dellafuente falló, sin
+media descargable), 7 fotos añadidas a Urbano.
+
 ### Etapa 2 — Evaluación honesta de lo que ya existe (sin afinar nada)
 
 - Correr `analizar_outfit.py` (adapter v3 por defecto, detector DeepFashion2 ya integrado) sobre
