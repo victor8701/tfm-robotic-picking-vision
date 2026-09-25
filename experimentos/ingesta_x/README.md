@@ -12,22 +12,39 @@ autor, 2026-09-25) — más simple y aislado, a costa de no ser reutilizable en 
 
 ## Qué hace
 
-`herramientas/descargar_x.py` recibe una o varias URLs de posts de X **con vídeo**, descarga el
-vídeo con `yt-dlp`, extrae un fotograma cada N segundos con `ffmpeg` (binario portable vía
-`imageio-ffmpeg`, no hace falta tenerlo instalado en el sistema), y guarda los fotogramas +
-una metadata JSON con la procedencia (URL, cuenta, descripción, fecha de publicación). El vídeo
-descargado se borra tras extraer los fotogramas — solo se conservan las imágenes fijas.
+`herramientas/descargar_x.py` recibe una o varias URLs de posts de X (por argumento, o por lote
+con `--urls-file`). Para cada una, primero consulta el endpoint público de sindicación de X
+(`cdn.syndication.twimg.com` — el mismo que usan los widgets de "insertar tuit" de cualquier web,
+sin sesión ni clave de API) para saber qué tiene el post:
 
-## Alcance de esta v1, a propósito reducido
+- **Si tiene vídeo**: lo descarga con `yt-dlp` y extrae un fotograma cada N segundos con `ffmpeg`
+  (binario portable vía `imageio-ffmpeg`, no hace falta instalarlo aparte). El vídeo se borra
+  tras extraer los fotogramas.
+- **Si tiene foto(s) nativas**: las descarga directamente en su resolución original.
+- **Si no tiene ninguna de las dos** (solo texto, o solo una tarjeta de vista previa de un
+  enlace externo): falla con un error claro, no en silencio.
 
-- **Solo tuits con vídeo.** Los de solo foto no funcionan aquí: `yt-dlp` no expone la URL de la
-  imagen para Twitter (solo formatos de vídeo) — un tuit de solo foto falla con un error claro,
-  no en silencio. Resolverlo (con otra librería, o llamando a la API/oEmbed de X directamente)
-  queda para cuando haga falta de verdad.
-- **Sin descubrimiento automático.** Hay que darle URLs de posts concretos, uno a uno — no busca
-  por hashtag ni sigue una cuenta. `yt-dlp` tampoco soporta URLs de perfil/timeline de X
-  directamente (probado, da `Unsupported URL`).
-- **Sin filtro de contenido de moda.** No distingue si el vídeo tiene ropa o gente o nada de
+Cada imagen se guarda junto a una metadata JSON con su procedencia (URL, cuenta, descripción,
+fecha de publicación, tipo de contenido).
+
+## Alcance de esta v1
+
+- ~~Solo tuits con vídeo~~ **resuelto (2026-09-25)**: ahora también descarga fotos nativas (ver
+  arriba). Sigue habiendo un caso sin cubrir: posts que solo tienen una tarjeta de vista previa
+  de un enlace externo (p. ej. un tuit que solo enlaza a un artículo) no se descargan — no es
+  contenido nativo del post, tiene menos valor como dato de moda real.
+- ~~Sin descubrimiento automático~~ **investigado a fondo (2026-09-25) y descartado por ahora,
+  no solo pospuesto**: se probó (a) los extractores de timeline/búsqueda de `yt-dlp` (no
+  existen para X), (b) el endpoint de timeline de sindicación (da 429 / vacío), y (c) el token
+  de invitado de la API pública que usan herramientas de scraping conocidas —
+  **X lo ha invalidado** ("Invalid or expired token"). Sin autenticarse con una cuenta real de X
+  no hay forma fiable de buscar/listar contenido automáticamente ahora mismo, y autenticarse es
+  una decisión aparte (¿cuenta de quién?, ¿riesgo de que X la banee?) que no se ha tomado. La
+  vía que sí funciona: `--urls-file` acepta un lote de URLs ya identificadas (a mano, o por
+  búsqueda web hecha por Claude, como se ha hecho durante todo este proyecto) — quita la
+  fricción de invocar el script uno a uno, aunque la identificación de URLs siga siendo externa
+  al script.
+- **Sin filtro de contenido de moda.** No distingue si el post tiene ropa o gente o nada de
   interés — eso lo decide quien elija las URLs de entrada, o un paso posterior de clasificación.
 
 ## Cómo probarlo
@@ -35,13 +52,17 @@ descargado se borra tras extraer los fotogramas — solo se conservan las imáge
 ```bash
 pip install -r requirements.txt
 cd herramientas
-python descargar_x.py "https://x.com/usuario/status/1234567890" --out ../data/mi_lote --intervalo 2.0
+python descargar_x.py "https://x.com/usuario/status/1234567890" --out ../data/mi_lote
+
+# o por lote:
+python descargar_x.py --urls-file lista_urls.txt --out ../data/mi_lote --intervalo 2.0
 ```
 
-`data/prueba_mecanismo/` es la prueba end-to-end ya hecha (2026-09-25) con un vídeo real
-(`x.com/teganandsara/status/2102191354956693835`, sin relación con moda, elegido solo para
-probar el mecanismo) — 7 fotogramas reales de 1080×1920, con su `_metadata.json` al lado. Sirve
-como prueba de que la descarga + extracción funciona de principio a fin, no como dataset.
+`data/prueba_lote/` es la prueba end-to-end ya hecha (2026-09-25), por lote y mezclando los dos
+tipos de contenido: una foto nativa real (`x.com/PopCrave/status/2025945514370310293`, 2 fotos a
+resolución original) y un vídeo real (`x.com/teganandsara/status/2102191354956693835`, 7
+fotogramas) — ninguno de moda, elegidos solo para probar el mecanismo, con su `_metadata.json`
+al lado de cada uno. Sirve como prueba de que funciona de principio a fin, no como dataset.
 
 ## Aviso de privacidad (pendiente de decisión consciente)
 
@@ -54,10 +75,8 @@ redistribuir los fotogramas fuera de este proyecto.
 
 ## Qué falta para que esto sea útil de verdad
 
-1. Un lote real de URLs de vídeos de moda/tendencia en X (curado a mano, o encontrado por
-   búsqueda) — esta v1 solo prueba el mecanismo con un vídeo cualquiera.
-2. Pasar esos fotogramas por el clasificador ya entrenado (`experimentos/vlm_atributos_prenda/`)
+1. Un lote real de URLs de fotos/vídeos de moda/tendencia en X (curado a mano, o encontrado por
+   búsqueda) — esta v1 solo prueba el mecanismo con contenido cualquiera, no de moda.
+2. Pasar esas imágenes por el clasificador ya entrenado (`experimentos/vlm_atributos_prenda/`)
    para tener el primer número real de "cómo rinde el modelo entrenado en catálogo sobre
    contenido real" — Etapa 2 del plan.
-3. Decidir si merece la pena resolver la descarga de posts de solo foto (probablemente sí, mucho
-   contenido de moda en X es foto, no vídeo).

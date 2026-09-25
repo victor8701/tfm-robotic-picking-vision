@@ -226,13 +226,23 @@ en tener todo perfecto antes de empezar).
   **`experimentos/ingesta_x/`** (ver su README). `descargar_x.py` descarga vídeo de un post de X
   con `yt-dlp` y extrae fotogramas con `ffmpeg` a intervalos (fps=1/N), tal como se anticipaba
   aquí — "algo tan simple como ffmpeg a intervalos" resultó ser suficiente para la v1.
-- **Probado de principio a fin** con un vídeo real de X (no de moda, solo para probar el
-  mecanismo): 7 fotogramas reales de 1080×1920 guardados con su metadata (URL, cuenta,
-  descripción, fecha) — sí quedan "trazables a su fuente original", como pedía este punto.
+- **Probado de principio a fin** con contenido real de X (no de moda, solo para probar el
+  mecanismo, por lote): un vídeo (7 fotogramas de 1080×1920) y un post de foto nativa (2 fotos a
+  resolución original) — todo guardado con su metadata (URL, cuenta, descripción, fecha), así que
+  sí queda "trazable a su fuente original", como pedía este punto.
+- ~~Decidir si hace falta resolver la descarga de posts de solo foto~~ **resuelto (2026-09-25)**:
+  ahora `descargar_x.py` también descarga fotos nativas (vía el endpoint público de sindicación
+  de X, sin sesión), no solo vídeo.
+- **Descubrimiento automático, investigado y descartado por ahora** (2026-09-25): se probaron 3
+  vías (extractores de timeline/búsqueda de `yt-dlp` -- no existen para X; endpoint de timeline
+  de sindicación -- 429/vacío; token de invitado de la API pública usado por herramientas de
+  scraping conocidas -- **X lo invalidó**, "Invalid or expired token"). Sin autenticar con una
+  cuenta real no hay búsqueda/listado fiable. `descargar_x.py --urls-file` acepta un lote de URLs
+  ya identificadas en su lugar (a mano, o por búsqueda web) -- quita la fricción de invocarlo uno
+  a uno, aunque identificar las URLs siga siendo un paso externo al script.
 - Pendiente dentro de esta misma etapa: un lote real de URLs de contenido de moda/tendencia (no
-  el vídeo de prueba), y decidir si hace falta resolver la descarga de posts de solo foto (esta
-  v1 solo soporta vídeo — ver limitaciones en el README de `experimentos/ingesta_x/`).
-- Sin entrenar ni afinar nada todavía: solo conseguir fotogramas reales guardados en disco.
+  el vídeo/foto de prueba, que no son de moda).
+- Sin entrenar ni afinar nada todavía: solo conseguir fotogramas/fotos reales guardados en disco.
 
 ### Etapa 2 — Evaluación honesta de lo que ya existe (sin afinar nada)
 

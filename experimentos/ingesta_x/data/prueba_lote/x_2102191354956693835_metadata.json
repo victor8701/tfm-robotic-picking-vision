@@ -1,22 +1,22 @@
 {
   "fuente": "x_twitter",
+  "tipo_contenido": "video",
   "url_original": "https://x.com/teganandsara/status/2102191354956693835",
-  "tweet_id": "2102191213315043328",
+  "tweet_id": "2102191354956693835",
   "cuenta": "teganandsara",
   "cuenta_nombre": "Tegan and Sara",
   "descripcion": "When we sat down to develop a concept for the video for our new song “Our Year,” we tried to come up with something truly original that we hadn’t done before. A double-decker bus! Rain on the beach in the middle of July! A rooftop at sunset! Custom outfits by a Vancouver designer https://t.co/aPd6szkyE3",
   "fecha_publicacion": "2026-09-22T00:20:50+00:00",
-  "duracion_seg": 22.147,
   "intervalo_seg": 3.0,
-  "n_fotogramas": 7,
-  "fotogramas": [
-    "x_2102191213315043328_0001.jpg",
-    "x_2102191213315043328_0002.jpg",
-    "x_2102191213315043328_0003.jpg",
-    "x_2102191213315043328_0004.jpg",
-    "x_2102191213315043328_0005.jpg",
-    "x_2102191213315043328_0006.jpg",
-    "x_2102191213315043328_0007.jpg"
+  "n_imagenes": 7,
+  "imagenes": [
+    "x_2102191354956693835_0001.jpg",
+    "x_2102191354956693835_0002.jpg",
+    "x_2102191354956693835_0003.jpg",
+    "x_2102191354956693835_0004.jpg",
+    "x_2102191354956693835_0005.jpg",
+    "x_2102191354956693835_0006.jpg",
+    "x_2102191354956693835_0007.jpg"
   ],
-  "descargado_en": "2026-09-25T05:16:30.793947+00:00"
+  "descargado_en": "2026-09-25T05:26:29.015368+00:00"
 }
