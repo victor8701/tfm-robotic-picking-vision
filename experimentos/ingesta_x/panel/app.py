@@ -165,6 +165,10 @@ def galeria():
             return False
         if filtro_origen == "claude" and item["origen"] != "claude":
             return False
+        if filtro_revision == "revisadas" and not item.get("revisada"):
+            return False
+        if filtro_revision == "sin_revisar" and item.get("revisada"):
+            return False
         return True
 
     grupos = {}
@@ -188,12 +192,13 @@ def galeria():
     ]
 
     total = len(datos)
+    revisadas = sum(1 for item in datos.values() if item.get("revisada"))
     return render_template_string(
         PLANTILLA_GALERIA,
         categorias=CATEGORIAS, grupos=grupos, sin_estilo=sin_estilo,
         eliminadas=eliminadas_vista, ocasiones=OCASIONES, nombre_ocasion=NOMBRE_OCASION,
         estilos_chip=ESTILOS_CHIP, nombre_categoria=NOMBRE_CATEGORIA,
-        total=total, sin_imagen=sin_imagen,
+        total=total, sin_imagen=sin_imagen, revisadas=revisadas,
         filtro_origen=filtro_origen, filtro_revision=filtro_revision,
     )
 
@@ -206,6 +211,7 @@ def clasificar(iid):
         return jsonify({"ok": False, "error": "no existe"}), 404
     valor = request.json.get("categoria")
     datos[iid]["categoria_final"] = valor
+    datos[iid]["revisada"] = True
     ok = guardar_datos(f"panel: clasifica {iid} -> {valor}")
     return jsonify({"ok": ok})
 
@@ -253,7 +259,7 @@ def subir():
         if not escribir_repo(f"{RUTA_FOTOS}/{nombre_archivo}", contenido, f"panel: sube foto {nuevo_id}", None):
             continue
         datos[nuevo_id] = {
-            "categoria_final": categoria, "categoria_ia": categoria,
+            "categoria_final": categoria, "categoria_ia": categoria, "revisada": True,
             "ocasion_final": None, "eliminada": False, "origen": "autor",
             "fuente": "Añadida por ti", "fuente_url": "", "imagen": nombre_archivo,
         }
@@ -362,6 +368,10 @@ ESTILO_PAGINA = """
   nav a { flex: 1; text-align: center; font-size: 0.78rem; font-weight: 700; padding: 8px 6px; border-radius: 9px;
           border: 1px solid #e2dcd0; background: #efeae1; color: #746c60; text-decoration: none; }
   nav a.activa { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
+  .progreso { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+  .progreso-barra { flex: 1; height: 6px; border-radius: 4px; background: #e4ebf1; overflow: hidden; }
+  .progreso-relleno { height: 100%; background: #4f7a56; border-radius: 4px; transition: width .3s ease; }
+  .progreso span { font-size: 0.68rem; color: #746c60; white-space: nowrap; font-variant-numeric: tabular-nums; }
   .filtros { display: flex; gap: 8px; margin-top: 10px; }
   .filtros select { flex: 1; font-size: 0.72rem; font-weight: 600; padding: 6px 8px; border-radius: 8px; border: 1px solid #e2dcd0; background: #efeae1; }
   main { padding: 16px; }
@@ -446,11 +456,20 @@ PLANTILLA_GALERIA = """
   <header>
     <h1>Taxonomía de estilos</h1>
     <div style="font-size:0.75rem;color:#746c60;">{{ total }} fotos{% if sin_imagen %} · {{ sin_imagen|length }} sin imagen recuperada{% endif %}</div>
+    <div class="progreso">
+      <div class="progreso-barra"><div class="progreso-relleno" style="width:{{ (100 * revisadas / total)|round(1) if total else 0 }}%;"></div></div>
+      <span>{{ revisadas }} revisadas de {{ total }}</span>
+    </div>
     <div class="filtros">
       <select id="filtro-origen" onchange="cambiarFiltro()">
         <option value="todas" {{ 'selected' if filtro_origen=='todas' }}>Origen: todas</option>
         <option value="autor" {{ 'selected' if filtro_origen=='autor' }}>Añadidas por mí</option>
         <option value="claude" {{ 'selected' if filtro_origen=='claude' }}>Añadidas por Claude</option>
+      </select>
+      <select id="filtro-revision" onchange="cambiarFiltro()">
+        <option value="todas" {{ 'selected' if filtro_revision=='todas' }}>Revisión: todas</option>
+        <option value="revisadas" {{ 'selected' if filtro_revision=='revisadas' }}>Ya las revisé</option>
+        <option value="sin_revisar" {{ 'selected' if filtro_revision=='sin_revisar' }}>Sin revisar todavía</option>
       </select>
     </div>
     <nav>
@@ -519,7 +538,8 @@ function mostrarAviso(texto) {
 }
 function cambiarFiltro() {
   const origen = document.getElementById('filtro-origen').value;
-  window.location.href = '{{ url_for("galeria") }}?origen=' + origen;
+  const revision = document.getElementById('filtro-revision').value;
+  window.location.href = '{{ url_for("galeria") }}?origen=' + origen + '&revision=' + revision;
 }
 async function clasificar(id, valor, btn) {
   const fila = btn.closest('.chips');
