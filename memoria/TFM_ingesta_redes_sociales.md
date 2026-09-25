@@ -51,18 +51,34 @@ Lo mínimo que hace falta saber para esta rama, sin ir a leerla entera:
   aunque conviene traerlos a esta rama (`git merge`/`git rebase` desde `clip-trend-semantic-matching-poc`,
   o simplemente trabajar sabiendo que ambas ramas comparten ese historial).
 
-### 1.2 `viral_clips` (repo separado, ya existente)
+### 1.2 `viral_clips` (repo separado, ya existente) — **Etapa 0 hecha, 2026-09-25: corrige una suposición equivocada**
 
-**Esto es importante y fácil de olvidar en un mes: `viral_clips` no es parte de este repositorio.**
-Es un repo propio distinto: **[`github.com/victor8701/viral_clips`](https://github.com/victor8701/viral_clips)**.
-Según `Estado_arte.md` §6.1, ya está **"desarrollada para YouTube, ampliada a TikTok y X/Twitter"** —
-es decir, a fecha de este documento ya descarga/recorta clips de YouTube, y ampliarlo a TikTok/X
-**ya estaba planeado independientemente de todo lo visual**, como parte del propio diseño del
-Trend Intelligence Agent.
+**`viral_clips` no es parte de este repositorio.** Es un repo propio distinto, público:
+**[`github.com/victor8701/viral_clips`](https://github.com/victor8701/viral_clips)**.
 
-**No se ha mirado ese repositorio durante esta sesión** — no está clonado en esta máquina y no se ha
-inspeccionado su código ni su README. El primer paso real de esta rama (§6, Etapa 0) es literalmente
-ir a verlo.
+`Estado_arte.md` §6.1 dice que está **"desarrollada para YouTube, ampliada a TikTok y
+X/Twitter"** — esta frase se había interpretado hasta ahora (incluida la primera versión de
+este documento) como que **descarga/scrapea contenido DESDE esas tres plataformas**. Al clonar
+el repo y leer el código de verdad (Etapa 0, por fin hecha), **eso es incorrecto**:
+
+- **Descarga (fuente): solo YouTube**, vía `yt-dlp` (`src/viral_clips/pipeline/download.py`).
+  No hay ningún código de descarga de TikTok o X/Twitter en todo el repo.
+- **TikTok/Instagram/YouTube en `src/viral_clips/uploaders/`: son destinos de PUBLICACIÓN**,
+  no fuentes — el pipeline genera clips verticales editados (subtítulos, gancho) a partir de un
+  vídeo de YouTube y los **sube** a esas plataformas como contenido propio. "Ampliada a TikTok y
+  X/Twitter" se refería a publicar ahí el resultado, no a ingerir contenido de tendencia desde
+  ahí. Interpretación anterior equivocada, no solo incompleta.
+- **No extrae fotogramas en ningún punto** (`grep` de "frame/fotograma/screenshot/keyframe" en
+  todo `src/` no encuentra nada) — el pipeline es descarga → transcripción (Whisper) → selección
+  de momentos con Claude → renderizado de vídeo. Nunca produce una imagen fija suelta.
+
+**Consecuencia real para esta rama**: `viral_clips`, tal como está hoy, **no es un atajo** para
+conseguir muchas fotos de tendencia real. Haría falta construir dos cosas que no existen: (a) una
+vía de descarga desde TikTok/X (`yt-dlp` sí soporta TikTok como fuente en general, pero no hay
+nada de eso conectado aquí, y TikTok tiene protecciones anti-scraping fuertes — no se sabe si
+funcionaría sin probarlo), y (b) extracción de fotogramas (más simple, `ffmpeg` a intervalos,
+tal como ya anticipaba la Etapa 1 de este plan). Esto es una construcción nueva, no conectar dos
+piezas ya hechas — bastante más trabajo del que sugería la redacción anterior de este documento.
 
 ### 1.3 El hueco real: nadie mira el contenido visual todavía
 
