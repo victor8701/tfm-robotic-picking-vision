@@ -29,7 +29,7 @@ app.secret_key = os.environ.get("FLASK_SECRET_KEY", os.urandom(24))
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN", "")
 PANEL_PASSWORD = os.environ.get("PANEL_PASSWORD", "")
 REPO = os.environ.get("GITHUB_REPO", "victor8701/tfm-robotic-picking-vision")
-BRANCH = os.environ.get("GITHUB_BRANCH", "ingesta-viral-clips")
+BRANCH = os.environ.get("GITHUB_BRANCH", "main")
 WORKFLOW_FILE = "ingesta_x.yml"
 WORKFLOW_BUSQUEDA = "buscar_x.yml"
 
