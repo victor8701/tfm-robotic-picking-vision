@@ -240,9 +240,47 @@ en tener todo perfecto antes de empezar).
   cuenta real no hay búsqueda/listado fiable. `descargar_x.py --urls-file` acepta un lote de URLs
   ya identificadas en su lugar (a mano, o por búsqueda web) -- quita la fricción de invocarlo uno
   a uno, aunque identificar las URLs siga siendo un paso externo al script.
-- Pendiente dentro de esta misma etapa: un lote real de URLs de contenido de moda/tendencia (no
-  el vídeo/foto de prueba, que no son de moda).
+- ~~Un lote real de URLs de contenido de moda/tendencia~~ **primer lote real hecho (2026-09-25)**:
+  13 fotos de estilo Old Money desde X (@dieworkwear, crítico de sastrería clásica, y
+  @suitsupply), ya integradas en el artefacto de taxonomía — ver más abajo.
 - Sin entrenar ni afinar nada todavía: solo conseguir fotogramas/fotos reales guardados en disco.
+
+### Pestaña "Buscar en X" en el artefacto de taxonomía (2026-09-25)
+
+A petición del autor, el artefacto **[Taxonomía de estilos](https://claude.ai/artifact/T4vJ4qbbiCuJGMKaZ8cgLL)**
+tiene ahora una segunda pestaña para pedir búsquedas de contenido en X por estilo/ocasión, sin
+salir de la app que ya usa desde el móvil.
+
+**Cómo funciona de verdad (importante, no es búsqueda en vivo)**: la CSP del artefacto no deja
+llamar a hosts externos desde su JS — no puede llamar a X directamente. La pestaña escribe una
+**solicitud** en la colección `solicitudes_x` de la base de datos del artefacto (estilo, ocasión
+opcional, y el texto de búsqueda ya resuelto: predeterminado, "automático" combinando estilo +
+ocasión, o el que escriba el autor) y la deja en estado `pendiente`. Claude revisa esa cola y la
+completa la próxima vez que se trabaje en esto — busca URLs reales por web, las pasa por
+`descargar_x.py`, y añade las fotos resultantes al artefacto. El autor ve el estado
+(pendiente/en proceso/completado/error) en la misma pestaña. Esto se explica también dentro de la
+propia UI, no solo aquí.
+
+**Demo real hecha para probar el ciclo completo** (no solo el mecanismo, con contenido de moda de
+verdad): solicitud "Old Money", modo predeterminado (texto: *"old money aesthetic outfit quiet
+luxury real photos"*). Encontradas 7 URLs candidatas por búsqueda web, pasadas por
+`descargar_x.py`: 5 tenían foto/vídeo nativo descargable (15 fotos), 2 fallaron limpiamente (sin
+media nativa). De las 15, se descartaron 2 tras revisión visual antes de integrarlas — **criterio
+de curación, no solo mecánico**:
+- Una foto de un tuit de @dieworkwear mostraba a personas reales en un contexto político concreto
+  (photo-op con marca de un expresidente de EE.UU. de fondo) — la prenda en sí encajaba
+  (americana/abrigo), pero meter ese contexto en un dataset académico de estilos no aporta nada y
+  sí introduce un tema ajeno al TFM. Descartada aunque el mecanismo la hubiera descargado bien.
+- Una era la portada ilustrada de un folleto antiguo ("The Tale of an Old Tweed Jacket"), no una
+  foto real de una persona vistiendo la prenda — mismo criterio que ya se aplicó antes (las 3
+  fotos originales de Old Money incluían una ilustración de 1902 que el autor acabó marcando como
+  "Ninguna"; se prefiere foto real a ilustración salvo que se pida lo contrario).
+
+Las 13 restantes, integradas en el artefacto (prefijo `omz`, Old Money pasa de 23 a 36 fotos):
+look de calle con americana marino, jersey de cuello vuelto + americana (editorial), abrigo
+cruzado de lana/cachemira sobre cuello alto (@suitsupply, marcadas con ocasión "Arreglado" por
+tratarse de un look claramente cuidado/de evento), y una foto vintage en B/N de americana de
+tweed espiga estilo Ivy.
 
 ### Etapa 2 — Evaluación honesta de lo que ya existe (sin afinar nada)
 
