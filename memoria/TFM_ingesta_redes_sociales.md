@@ -312,6 +312,40 @@ demo propia — la solicitud del usuario, si existe, va primero. Una vez detecta
 momento: 5 URLs nuevas encontradas (Rels B, C. Tangana ×2, Kaydy Cain — Dellafuente falló, sin
 media descargable), 7 fotos añadidas a Urbano.
 
+### Pivote: de la pestaña del artefacto a GitHub Actions (2026-09-25)
+
+El fallo de arriba confirmó lo que el autor ya sospechaba: mientras la descarga dependa de que
+Claude esté en una sesión activa, nunca va a ser "automático" de verdad. Decisión del autor:
+sacar la ejecución del artefacto de Claude y montarla en GitHub Actions, sin gastar dinero más
+allá de las suscripciones que ya tiene (Claude, Gemini) — nada de una API de pago aparte.
+
+**Se probó primero si la API de Gemini (free tier) podía sustituir a la búsqueda web de Claude**
+para que la propia Action encontrara URLs nueva sola. Resultado real, no supuesto: la llamada de
+prueba a `gemini-3.6-flash` con la herramienta `google_search` dio **429 (cuota agotada)** al
+momento, mientras que la misma llamada sin esa herramienta sí funcionaba — la cuota gratuita de
+*grounding* con búsqueda parece ser mucho más estricta que la de generación de texto normal, y ya
+estaba a cero. No es una base fiable para montar la automatización encima.
+
+**Diseño final, con esa limitación asumida en vez de ignorada**: la pestaña "Buscar en X" del
+artefacto se deja de usar para esto (el autor prefiere revisar los resultados directamente en
+GitHub, no en el móvil vía Claude). En su lugar:
+- `experimentos/ingesta_x/cola/<estilo>.txt` — un fichero de URLs pendientes por estilo (7,
+  uno por cada categoría de la taxonomía). Las URLs las añade quien tenga búsqueda web real
+  (Claude en sesión activa, o el autor a mano) — eso no se ha podido automatizar del todo.
+- `herramientas/procesar_cola.py` — descarga cada URL pendiente (reutiliza `descargar_x.py` tal
+  cual, mismo soporte de foto+vídeo), comitea el resultado en `data/<estilo>/`, y saca de la cola
+  las que tuvieron éxito o fallaron de forma permanente (deja en cola, para reintentar, solo las
+  que podrían ser un fallo temporal).
+- `.github/workflows/ingesta_x.yml` — dispara `procesar_cola.py` a diario (08:00 UTC) o a mano
+  desde la app/web de GitHub (Actions → Run workflow), sin ninguna sesión de Claude de por medio.
+  Probado en local antes de subirlo: un fallo permanente y un éxito, ambos se comportaron como se
+  esperaba (la URL fallida salió de la cola con su motivo registrado en `procesadas.txt`; la que
+  funcionó bajó la foto, la comiteó, y desapareció de la cola).
+
+Con esto, lo lento de verdad (encontrar URLs) sigue necesitando una sesión activa de vez en
+cuando, pero lo que antes fallaba por depender de mí en el momento exacto (descargar, extraer,
+comitear) ya no depende de nadie.
+
 ### Etapa 2 — Evaluación honesta de lo que ya existe (sin afinar nada)
 
 - Correr `analizar_outfit.py` (adapter v3 por defecto, detector DeepFashion2 ya integrado) sobre

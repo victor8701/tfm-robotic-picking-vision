@@ -80,3 +80,37 @@ redistribuir los fotogramas fuera de este proyecto.
 2. Pasar esas imágenes por el clasificador ya entrenado (`experimentos/vlm_atributos_prenda/`)
    para tener el primer número real de "cómo rinde el modelo entrenado en catálogo sobre
    contenido real" — Etapa 2 del plan.
+
+## Ejecución automática (GitHub Actions) — 2026-09-25
+
+Esta parte corre sola, sin necesitar ninguna sesión de Claude activa. Ver
+`.github/workflows/ingesta_x.yml` y `herramientas/procesar_cola.py`.
+
+**Por qué existe**: la pestaña "Buscar en X" del artefacto de taxonomía dependía de que Claude
+estuviera en una sesión activa para revisar la cola y procesarla — en la práctica eso falló (una
+solicitud real se quedó sin atender varias horas). Esto lo saca de esa dependencia: la descarga
+en sí (`descargar_x.py`) ya no necesita a Claude, así que se ejecuta en la infraestructura de
+GitHub, en un horario o cuando se dispare a mano.
+
+**Lo que SÍ hace sola**: dado un fichero `cola/<estilo>.txt` con URLs de X (una por línea),
+las descarga, extrae fotogramas si hace falta, y comitea el resultado en `data/<estilo>/` — sin
+intervención humana ni de Claude.
+
+**Lo que NO hace sola**: encontrar las URLs. Eso seguía necesitando una IA con acceso real a
+búsqueda web, y la única vía sin coste (la búsqueda integrada de la API de Gemini, que el autor
+ya tiene en free tier) **se probó el 2026-09-25 y su cuota gratuita ya estaba agotada** — no es
+fiable montar la automatización entera sobre eso. Así que de momento las URLs las añade quien
+tenga acceso a búsqueda real: Claude, en una sesión activa (edita `cola/<estilo>.txt` y hace
+`git push`), o el autor a mano si encuentra algo él mismo. Una vez están en la cola, la Action ya
+no depende de nadie.
+
+**Cómo usarlo**:
+1. Añade URLs a `cola/<estilo>.txt` (una por línea) y haz commit + push.
+2. La Action se dispara sola a diario (08:00 UTC) o a mano desde GitHub: pestaña **Actions** →
+   "Ingesta X — moda por estilo" → **Run workflow**. Funciona igual desde la app móvil de GitHub.
+3. Los resultados (fotos + `_metadata.json`) aparecen comiteados en `data/<estilo>/` — revísalos
+   directamente en GitHub, sin pasar por el artefacto de Claude.
+4. Las URLs procesadas con éxito se quitan de la cola automáticamente; las que fallan por algo
+   permanente (sin foto/vídeo nativo) también se quitan, pero quedan registradas en
+   `cola/procesadas.txt` para saber qué pasó. Las que fallan por algo que podría ser temporal se
+   quedan en la cola para reintentarlas en la siguiente ejecución.

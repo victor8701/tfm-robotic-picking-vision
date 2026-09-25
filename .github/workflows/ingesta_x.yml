@@ -1,0 +1,34 @@
+name: Ingesta X — moda por estilo
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    # Diario a las 08:00 UTC. Cambia esto o bórralo si prefieres solo disparo manual.
+    - cron: '0 8 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  procesar-cola:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: pip install -r experimentos/ingesta_x/requirements.txt
+
+      - name: Procesar cola de URLs pendientes
+        run: python experimentos/ingesta_x/herramientas/procesar_cola.py
+
+      - name: Comitear resultados (si hay algo nuevo)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add experimentos/ingesta_x/cola experimentos/ingesta_x/data
+          git diff --staged --quiet || git commit -m "ingesta_x: procesa cola automaticamente"
+          git push
