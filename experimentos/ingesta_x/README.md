@@ -104,10 +104,21 @@ tenga acceso a búsqueda real: Claude, en una sesión activa (edita `cola/<estil
 `git push`), o el autor a mano si encuentra algo él mismo. Una vez están en la cola, la Action ya
 no depende de nadie.
 
+**Horario configurable — `config.json`** (2026-09-25, a petición del autor):
+```json
+{ "activo": true, "hora_local": 3, "zona_horaria": "Europe/Madrid" }
+```
+El workflow en realidad se dispara **cada hora**, pero solo hace algo si `comprobar_horario.py`
+dice que toca: `activo` en `true` y la hora actual (en `zona_horaria`) coincide con `hora_local`.
+Para cambiar el horario o desactivarlo del todo, edita este fichero directamente desde GitHub
+(web o app móvil, sin necesitar terminal) y comitea — no hace falta tocar el YAML del workflow.
+**Un disparo manual (Run workflow) se salta siempre esta comprobación**, corre en el momento
+independientemente de `activo`/`hora_local`.
+
 **Cómo usarlo**:
 1. Añade URLs a `cola/<estilo>.txt` (una por línea) y haz commit + push.
-2. La Action se dispara sola a diario (08:00 UTC) o a mano desde GitHub: pestaña **Actions** →
-   "Ingesta X — moda por estilo" → **Run workflow**. Funciona igual desde la app móvil de GitHub.
+2. Se procesa sola a la hora que digas en `config.json`, o a mano desde GitHub: pestaña
+   **Actions** → "Ingesta X — moda por estilo" → **Run workflow**. Igual desde la app móvil.
 3. Los resultados (fotos + `_metadata.json`) aparecen comiteados en `data/<estilo>/` — revísalos
    directamente en GitHub, sin pasar por el artefacto de Claude.
 4. Las URLs procesadas con éxito se quitan de la cola automáticamente; las que fallan por algo

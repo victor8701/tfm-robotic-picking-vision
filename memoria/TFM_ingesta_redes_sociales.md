@@ -342,6 +342,13 @@ GitHub, no en el móvil vía Claude). En su lugar:
   esperaba (la URL fallida salió de la cola con su motivo registrado en `procesadas.txt`; la que
   funcionó bajó la foto, la comiteó, y desapareció de la cola).
 
+**Horario configurable, no fijo en el YAML** (mismo día, a petición del autor): el workflow ahora
+se dispara cada hora, pero `herramientas/comprobar_horario.py` decide si ESTA hora es la que toca
+leyendo `experimentos/ingesta_x/config.json` (`activo`, `hora_local`, `zona_horaria` —
+por defecto `3` / `Europe/Madrid`). Cambiar el horario o desactivarlo es editar ese JSON desde la
+app de GitHub, sin tocar el YAML. Un disparo manual siempre se salta esa comprobación. Probado en
+local (con la hora configurada a la actual y a otra distinta) antes de subirlo.
+
 Con esto, lo lento de verdad (encontrar URLs) sigue necesitando una sesión activa de vez en
 cuando, pero lo que antes fallaba por depender de mí en el momento exacto (descargar, extraer,
 comitear) ya no depende de nadie.

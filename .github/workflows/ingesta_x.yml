@@ -3,8 +3,10 @@ name: Ingesta X — moda por estilo
 on:
   workflow_dispatch: {}
   schedule:
-    # Diario a las 08:00 UTC. Cambia esto o bórralo si prefieres solo disparo manual.
-    - cron: '0 8 * * *'
+    # Cada hora — comprobar_horario.py decide si ESTA hora es la que toca según config.json
+    # (activo + hora_local + zona_horaria). El horario real se cambia editando ese fichero,
+    # no este cron. Un disparo manual (workflow_dispatch) se salta esta comprobación siempre.
+    - cron: '0 * * * *'
 
 permissions:
   contents: write
@@ -15,17 +17,31 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Comprobar horario (solo aplica a disparos programados)
+        id: horario
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            python3 experimentos/ingesta_x/herramientas/comprobar_horario.py
+          else
+            echo "toca=true" >> "$GITHUB_OUTPUT"
+            echo "Disparo manual: se ejecuta sin comprobar config.json."
+          fi
+
       - uses: actions/setup-python@v5
+        if: steps.horario.outputs.toca == 'true'
         with:
           python-version: '3.11'
 
       - name: Instalar dependencias
+        if: steps.horario.outputs.toca == 'true'
         run: pip install -r experimentos/ingesta_x/requirements.txt
 
       - name: Procesar cola de URLs pendientes
+        if: steps.horario.outputs.toca == 'true'
         run: python experimentos/ingesta_x/herramientas/procesar_cola.py
 
       - name: Comitear resultados (si hay algo nuevo)
+        if: steps.horario.outputs.toca == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
