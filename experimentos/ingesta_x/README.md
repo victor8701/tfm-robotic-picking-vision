@@ -81,6 +81,12 @@ redistribuir los fotogramas fuera de este proyecto.
    para tener el primer número real de "cómo rinde el modelo entrenado en catálogo sobre
    contenido real" — Etapa 2 del plan.
 
+## Panel web (Render) — una URL propia
+
+Ver `panel/README.md`. Es una interfaz con su propia URL para ver la cola, disparar la Action y
+cambiar el horario sin entrar en GitHub a mano — pero la ejecución programada de abajo ya corre
+sola sin él, así que no es imprescindible, es comodidad.
+
 ## Ejecución automática (GitHub Actions) — 2026-09-25
 
 Esta parte corre sola, sin necesitar ninguna sesión de Claude activa. Ver

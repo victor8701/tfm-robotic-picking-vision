@@ -353,6 +353,29 @@ Con esto, lo lento de verdad (encontrar URLs) sigue necesitando una sesión acti
 cuando, pero lo que antes fallaba por depender de mí en el momento exacto (descargar, extraer,
 comitear) ya no depende de nadie.
 
+### Panel en Render (2026-09-25, mismo día) — una URL propia, sin quitarle autonomía a lo de arriba
+
+El autor pidió una URL de verdad ("la app fuera de Claude") que se conectara con GitHub Actions.
+Aclaración importante que se le hizo explícita: la ejecución programada **ya era autónoma** sin
+esto (el cron horario + `config.json` de más arriba no necesitan que nada esté despierto); este
+panel (`experimentos/ingesta_x/panel/`, Flask) es una interfaz cómoda encima de eso — ver la cola,
+disparar la Action, cambiar el horario — no una pieza más de la que dependa la autonomía.
+
+Dos límites reales, no arreglables desde aquí porque hacen falta credenciales del autor:
+- **Desplegar en Render requiere su cuenta** (conectar GitHub vía OAuth) — no se puede hacer en
+  su nombre. Se dejó un `render.yaml` (blueprint) para que el despliegue sea "New → Blueprint →
+  elegir repo → pegar 2 valores" en vez de configurar todo a mano.
+- **El panel necesita un token de GitHub** con permiso de escribir en el repo y disparar Actions
+  — eso también lo tiene que generar el autor (Settings → Developer settings → tokens), no algo
+  que Claude pueda crear en su nombre.
+
+Con contraseña (`PANEL_PASSWORD`, variable de entorno) porque es una URL pública en el plan
+gratuito de Render — sin eso, cualquiera que la encontrara podría disparar la Action o tocar el
+token guardado. Probado en local de principio a fin (login, botón ejecutar, guardar config) antes
+de subirlo — se encontró y arregló un detalle real: los redirects tras un POST iban con código
+302 y algún cliente los repetía como POST en vez de GET contra `/`, así que se cambiaron a 303
+(el código pensado exactamente para esto) y además se dejó `/` aceptando ambos métodos por si acaso.
+
 ### Etapa 2 — Evaluación honesta de lo que ya existe (sin afinar nada)
 
 - Correr `analizar_outfit.py` (adapter v3 por defecto, detector DeepFashion2 ya integrado) sobre

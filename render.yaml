@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: ingesta-x-panel
+    runtime: python
+    plan: free
+    rootDir: experimentos/ingesta_x/panel
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: GITHUB_TOKEN
+        sync: false
+      - key: PANEL_PASSWORD
+        sync: false
+      - key: GITHUB_REPO
+        value: victor8701/tfm-robotic-picking-vision
+      - key: GITHUB_BRANCH
+        value: ingesta-viral-clips
+      - key: FLASK_SECRET_KEY
+        generateValue: true
