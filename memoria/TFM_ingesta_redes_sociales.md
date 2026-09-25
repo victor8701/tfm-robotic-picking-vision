@@ -3,11 +3,14 @@
 **Autor:** Víctor Martín Parra
 **Máster:** Robótica y Automatización — UC3M (2025/2027)
 **Fecha del plan:** 21 de septiembre de 2026
-**Estado: SOLO PLAN — nada de esto está implementado todavía.** Esta rama (`ingesta-viral-clips`) se creó
-para tener un sitio propio donde trabajar esto sin mezclarlo con la rama ya cerrada del clasificador
-(`clip-trend-semantic-matching-poc`). Pensado para retomarlo dentro de aproximadamente un mes —
-este documento está escrito para que sea suficiente por sí solo, sin tener que reconstruir el
-contexto de memoria.
+**Estado a 2026-09-25: en implementación activa** (se retomó antes de lo previsto). Esta rama
+(`ingesta-viral-clips`) se creó para tener un sitio propio donde trabajar esto sin mezclarlo con
+la rama ya cerrada del clasificador (`clip-trend-semantic-matching-poc`). Este documento está
+escrito para que sea suficiente por sí solo, sin tener que reconstruir el contexto de memoria.
+Ya hechos: taxonomía de sub-estilos + herramienta de revisión táctil (Anexo A), Etapa 0 del plan
+de abajo (`viral_clips` leído de verdad, corrige una suposición equivocada — ver §1.2), y arranque
+de la Etapa 1 (`experimentos/ingesta_x/`, descarga+extracción de fotogramas desde X probada de
+principio a fin).
 
 ---
 
@@ -216,14 +219,20 @@ en tener todo perfecto antes de empezar).
 - Verificar si sigue vigente el riesgo de §13.4 de `Estado_arte.md` (cron de GitHub Actions
   desactivado a los 60 días sin commits) si `viral_clips` lleva tiempo sin tocarse.
 
-### Etapa 1 — Extracción de fotogramas (mínimo viable)
+### Etapa 1 — Extracción de fotogramas (mínimo viable) — **en marcha, 2026-09-25**
 
-- Si `viral_clips` no extrae fotogramas todavía: añadir esa capacidad (algo tan simple como
-  `ffmpeg` a intervalos, o más elaborado con detección de escena — empezar simple).
-  Referencia práctica de coste: la extracción de fotogramas es barata comparada con cualquier
-  paso de inferencia del clasificador, no es la parte que hay que optimizar primero.
-- Sin entrenar ni afinar nada todavía: solo conseguir fotogramas reales guardados en disco,
-  trazables a su clip/fuente original.
+- ~~Si `viral_clips` no extrae fotogramas todavía: añadir esa capacidad~~ — resuelto: no se toca
+  `viral_clips` (decisión explícita del autor), se construyó aparte en
+  **`experimentos/ingesta_x/`** (ver su README). `descargar_x.py` descarga vídeo de un post de X
+  con `yt-dlp` y extrae fotogramas con `ffmpeg` a intervalos (fps=1/N), tal como se anticipaba
+  aquí — "algo tan simple como ffmpeg a intervalos" resultó ser suficiente para la v1.
+- **Probado de principio a fin** con un vídeo real de X (no de moda, solo para probar el
+  mecanismo): 7 fotogramas reales de 1080×1920 guardados con su metadata (URL, cuenta,
+  descripción, fecha) — sí quedan "trazables a su fuente original", como pedía este punto.
+- Pendiente dentro de esta misma etapa: un lote real de URLs de contenido de moda/tendencia (no
+  el vídeo de prueba), y decidir si hace falta resolver la descarga de posts de solo foto (esta
+  v1 solo soporta vídeo — ver limitaciones en el README de `experimentos/ingesta_x/`).
+- Sin entrenar ni afinar nada todavía: solo conseguir fotogramas reales guardados en disco.
 
 ### Etapa 2 — Evaluación honesta de lo que ya existe (sin afinar nada)
 
