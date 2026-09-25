@@ -1,10 +1,16 @@
 # Panel web (Render)
 
-Una sola app con una URL propia. Dos partes:
+Una sola app con una URL propia. Tres partes:
 
 - **Galería (`/`)**: clasificar fotos por estilo, corregir con un toque, eje de ocasión
   (fiesta/deportivo/playa/arreglado), subir fotos propias, eliminar/restaurar. Sustituye por
   completo al artefacto de claude.ai que se usaba antes — mismos datos, migrados una vez.
+- **Buscar en X (`/buscar-x`)**: pedir una búsqueda (estilo, ocasión opcional, texto tuyo o
+  predeterminado o automático) para encontrar publicaciones reales de X y añadirlas a la cola de
+  descarga. Dispara el workflow de GitHub Actions "Buscar en X", que usa el CLI de Claude Code
+  en modo no interactivo con la búsqueda web activada — con tu token de suscripción
+  (`CLAUDE_CODE_OAUTH_TOKEN`), no con una API de pago aparte. El estado de cada búsqueda
+  (pendiente/buscando/completado/error) se actualiza aquí según avanza el workflow.
 - **Automatización de X (`/automatizacion`)**: ver la cola pendiente, disparar la Action ya
   mismo, cambiar el horario (`activo`/`hora_local`/`zona_horaria`) sin entrar en GitHub a mano.
 
@@ -38,6 +44,14 @@ no algo que se pueda automatizar desde aquí.
    - `PANEL_PASSWORD`: la contraseña que quieras para entrar al panel (es una URL pública en el
      plan gratuito de Render, sin contraseña la vería cualquiera que la encontrara).
 4. Deploy. Render te da una URL tipo `https://ingesta-x-panel.onrender.com` — esa es la app.
+5. **Para que funcione "Buscar en X"**: añade el secreto `CLAUDE_CODE_OAUTH_TOKEN` a este repo
+   (Settings → Secrets and variables → **Actions** → New repository secret — esto es un secreto
+   de GitHub, no de Render). Si ya lo generaste para `viral_clips`, puedes reutilizar el mismo
+   valor (es tu token de suscripción, no está atado a un repo concreto); si no, genéralo con
+   `claude setup-token` (necesitas el CLI de Claude Code instalado en tu PC:
+   `npm install -g @anthropic-ai/claude-code`). Sin este secreto, las búsquedas se quedan en
+   estado "error" — el panel te lo mostrará en el paso correspondiente en vez de fallar en
+   silencio.
 
 **Aviso del plan gratuito de Render**: si nadie la visita en 15 minutos, el servicio se "duerme"
 y la primera visita después tarda ~30-60s en despertar (normal, no está roto). Esto no afecta a

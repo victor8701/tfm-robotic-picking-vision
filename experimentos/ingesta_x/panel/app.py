@@ -16,6 +16,8 @@ from __future__ import annotations
 import base64
 import json
 import os
+import time
+from datetime import datetime, timezone
 from functools import wraps
 
 import requests
@@ -29,11 +31,17 @@ PANEL_PASSWORD = os.environ.get("PANEL_PASSWORD", "")
 REPO = os.environ.get("GITHUB_REPO", "victor8701/tfm-robotic-picking-vision")
 BRANCH = os.environ.get("GITHUB_BRANCH", "ingesta-viral-clips")
 WORKFLOW_FILE = "ingesta_x.yml"
+WORKFLOW_BUSQUEDA = "buscar_x.yml"
 
 RUTA_BASE = "experimentos/ingesta_x/panel"
-RUTA_CONFIG = f"{RUTA_BASE}/config.json" if False else "experimentos/ingesta_x/config.json"
+RUTA_CONFIG = "experimentos/ingesta_x/config.json"
 RUTA_DATOS = f"{RUTA_BASE}/data/clasificaciones.json"
 RUTA_FOTOS = f"{RUTA_BASE}/static/fotos"
+RUTA_SOLICITUDES = f"{RUTA_BASE}/data/solicitudes_x.json"
+
+
+def ahora_iso() -> str:
+    return datetime.now(timezone.utc).isoformat()
 
 CATEGORIAS = [
     ("old_money", "Old Money"), ("lujo_ostentoso", "Lujo ostentoso"),
@@ -49,6 +57,35 @@ OCASIONES = [
     ("playa_resort", "Playa/Resort"), ("arreglado", "Arreglado"),
 ]
 NOMBRE_OCASION = dict(OCASIONES)
+
+# Mismos textos que usaba el artefacto retirado, para que "predeterminado" y "automático"
+# sigan dando resultados consistentes con las fotos ya clasificadas.
+TEXTO_PREDETERMINADO_ESTILO = {
+    "old_money": "old money aesthetic outfit quiet luxury real photos",
+    "lujo_ostentoso": "logomania luxury streetwear outfit real photos",
+    "clasico_tradicional": "cayetana style outfit spain classic preppy",
+    "urbano": "moda trap español streetwear outfit real",
+    "bohemio": "bohemian boho chic outfit real photos",
+    "alternativo_geek": "geek gamer streetwear outfit real photos",
+    "convencional": "normcore basic outfit real photos",
+}
+CALIFICADOR_OCASION = {
+    "fiesta_noche": "night out party look",
+    "deportivo": "athletic sporty look",
+    "playa_resort": "beach resort vacation look",
+    "arreglado": "dressed up smart casual look",
+}
+
+
+def calcular_texto_busqueda(estilo: str, ocasion: str, modo: str, texto_manual: str) -> str:
+    if modo == "personalizado":
+        return (texto_manual or "").strip()
+    base = TEXTO_PREDETERMINADO_ESTILO.get(estilo, "")
+    if modo == "predeterminado":
+        return base
+    # "automatico": añade un calificador de ocasión mecánicamente, si se ha elegido una.
+    calificador = CALIFICADOR_OCASION.get(ocasion)
+    return f"{base} {calificador}" if calificador else base
 
 API = "https://api.github.com"
 CABECERAS = {
@@ -252,7 +289,6 @@ def subir():
         ext = f.filename.rsplit(".", 1)[-1].lower() if "." in f.filename else "jpg"
         if ext not in ("jpg", "jpeg", "png", "webp"):
             ext = "jpg"
-        import time
         nuevo_id = f"u_{int(time.time() * 1000)}_{subidas}"
         contenido = f.read()
         nombre_archivo = f"{nuevo_id}.{ext}"
@@ -267,6 +303,88 @@ def subir():
     if subidas:
         guardar_datos(f"panel: sube {subidas} foto(s) a {categoria}")
     return redirect(url_for("galeria"), code=303)
+
+
+# --- Buscar en X: encola una solicitud y dispara el workflow "Buscar en X" ---
+#
+# A diferencia de clasificaciones.json (que solo escribe este panel), solicitudes_x.json lo
+# escriben DOS cosas a la vez: este panel (al crear/cancelar una solicitud) y el propio workflow
+# de GitHub Actions (al pasar de "buscando" a "completado"/"error", con git commit directo, no
+# con esta API). Por eso, a diferencia de cargar_datos()/guardar_datos(), aquí NO se usa una
+# caché en memoria entre peticiones -- se lee fresco de GitHub en cada carga de página, para que
+# el progreso que va escribiendo la Action se vea según avanza y no una foto vieja cacheada.
+
+def cargar_solicitudes() -> tuple[dict, str | None]:
+    resultado = leer_contenido_repo(RUTA_SOLICITUDES)
+    if resultado:
+        contenido, sha = resultado
+        return json.loads(contenido), sha
+    return {}, None
+
+
+@app.route("/buscar-x", methods=["GET"])
+@requiere_login
+def buscar_x():
+    solicitudes, _ = cargar_solicitudes()
+    lista = sorted(
+        ({"id": sid, **s} for sid, s in solicitudes.items()),
+        key=lambda s: s.get("creado_en", ""), reverse=True,
+    )
+    return render_template_string(
+        PLANTILLA_BUSCAR_X, categorias=CATEGORIAS, ocasiones=OCASIONES,
+        nombre_categoria=NOMBRE_CATEGORIA, nombre_ocasion=NOMBRE_OCASION,
+        texto_predeterminado=TEXTO_PREDETERMINADO_ESTILO, calificador_ocasion=CALIFICADOR_OCASION,
+        solicitudes=lista,
+    )
+
+
+@app.route("/buscar-x", methods=["POST"])
+@requiere_login
+def enviar_busqueda_x():
+    estilo = request.form.get("estilo")
+    ocasion = request.form.get("ocasion", "ninguna")
+    modo = request.form.get("modo", "automatico")
+    texto_personalizado = request.form.get("texto_personalizado", "")
+    try:
+        cantidad = max(3, min(15, int(request.form.get("cantidad", 8))))
+    except ValueError:
+        cantidad = 8
+
+    texto_busqueda = calcular_texto_busqueda(estilo, ocasion, modo, texto_personalizado)
+    if not estilo or estilo not in NOMBRE_CATEGORIA or not texto_busqueda:
+        return redirect(url_for("buscar_x"), code=303)
+
+    nuevo_id = f"sol_{int(time.time() * 1000)}"
+    solicitudes, sha = cargar_solicitudes()
+    solicitudes[nuevo_id] = {
+        "estilo": estilo, "ocasion": ocasion, "modo": modo,
+        "texto_busqueda": texto_busqueda, "cantidad": cantidad,
+        "estado": "pendiente",
+        "pasos": [{"ts": ahora_iso(), "texto": "Solicitud creada, esperando a que GitHub Actions la recoja."}],
+        "creado_en": ahora_iso(),
+    }
+    contenido = json.dumps(solicitudes, ensure_ascii=False, indent=2, sort_keys=True).encode("utf-8")
+    if escribir_repo(RUTA_SOLICITUDES, contenido, f"panel: nueva busqueda X {nuevo_id} ({estilo})", sha):
+        requests.post(
+            f"{API}/repos/{REPO}/actions/workflows/{WORKFLOW_BUSQUEDA}/dispatches",
+            headers=CABECERAS, json={"ref": BRANCH, "inputs": {"solicitud_id": nuevo_id}}, timeout=15,
+        )
+    return redirect(url_for("buscar_x"), code=303)
+
+
+@app.route("/cancelar-busqueda-x/<sid>", methods=["POST"])
+@requiere_login
+def cancelar_busqueda_x(sid):
+    solicitudes, sha = cargar_solicitudes()
+    if sid not in solicitudes:
+        return jsonify({"ok": False, "error": "no existe"}), 404
+    solicitudes[sid]["estado"] = "cancelada"
+    solicitudes[sid].setdefault("pasos", []).append(
+        {"ts": ahora_iso(), "texto": "Cancelada desde el panel."}
+    )
+    contenido = json.dumps(solicitudes, ensure_ascii=False, indent=2, sort_keys=True).encode("utf-8")
+    ok = escribir_repo(RUTA_SOLICITUDES, contenido, f"panel: cancela busqueda X {sid}", sha)
+    return jsonify({"ok": ok})
 
 
 # --- Panel de automatización de X (lo que ya había) ---
@@ -409,6 +527,23 @@ ESTILO_PAGINA = """
   .aviso.visible { transform: translateX(-50%) translateY(0); }
 """
 
+NAV_COMUN = """
+    <nav>
+      <a href="{{ url_for('galeria') }}"%(activa_clasificar)s>Clasificar fotos</a>
+      <a href="{{ url_for('buscar_x') }}"%(activa_buscar)s>Buscar en X</a>
+      <a href="{{ url_for('panel') }}"%(activa_automatizacion)s>Automatización X</a>
+    </nav>
+"""
+
+
+def nav(activa: str) -> str:
+    return NAV_COMUN % {
+        "activa_clasificar": ' class="activa"' if activa == "clasificar" else "",
+        "activa_buscar": ' class="activa"' if activa == "buscar" else "",
+        "activa_automatizacion": ' class="activa"' if activa == "automatizacion" else "",
+    }
+
+
 PLANTILLA_GALERIA = """
 <!doctype html><html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -472,10 +607,7 @@ PLANTILLA_GALERIA = """
         <option value="sin_revisar" {{ 'selected' if filtro_revision=='sin_revisar' }}>Sin revisar todavía</option>
       </select>
     </div>
-    <nav>
-      <a href="{{ url_for('galeria') }}" class="activa">Clasificar fotos</a>
-      <a href="{{ url_for('panel') }}">Automatización X</a>
-    </nav>
+    """ + nav("clasificar") + """
   </header>
   <main>
     {% for clave, etiqueta in categorias %}
@@ -584,28 +716,39 @@ async function alternarEliminar(id, btn) {
 </body></html>
 """
 
-PLANTILLA_PANEL = """
-<!doctype html><html lang="es"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Automatización X</title>
-<style>""" + ESTILO_PAGINA + """
+ESTILO_PANEL_EXTRA = """
   .tarjeta2 { background: #fff; border-radius: 12px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
   .btn { display: inline-block; width: 100%; box-sizing: border-box; padding: 13px; border: none; border-radius: 9px;
          background: #2f4a6b; color: #fff; font-weight: 700; font-size: 1rem; text-align: center; cursor: pointer; }
   .fila2 { display: flex; justify-content: space-between; padding: 5px 0; font-size: 0.9rem; border-bottom: 1px solid #eee; }
   .fila2:last-child { border-bottom: none; }
   label { display: block; font-size: 0.72rem; text-transform: uppercase; color: #746c60; margin-top: 10px; }
-  input[type=number], input[type=text] { width: 100%; padding: 8px; border-radius: 8px; border: 1px solid #ddd; box-sizing: border-box; }
+  input[type=number], input[type=text], select.ancho, textarea {
+    width: 100%; padding: 8px; border-radius: 8px; border: 1px solid #ddd; box-sizing: border-box; font-family: inherit;
+  }
   .toggle-row { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
   .estado2 { font-size: 0.7rem; padding: 2px 8px; border-radius: 20px; background: #efeae1; }
+  .estado2.buscando { background: #fdf1d8; color: #8a6116; }
+  .estado2.completado { background: #e4f0e6; color: #3f6a45; }
+  .estado2.error { background: #fbe3e0; color: #a8433a; }
+  .estado2.cancelada, .estado2.pendiente { background: #efeae1; color: #746c60; }
+  .pasos-log { list-style: none; margin: 8px 0 0; padding: 0; font-size: 0.72rem; color: #746c60; }
+  .pasos-log li { padding: 3px 0; border-top: 1px dashed #eee; }
+  .pasos-log li:first-child { border-top: none; }
+  .pasos-log time { font-variant-numeric: tabular-nums; color: #a39a8b; margin-right: 6px; }
+  .vista-previa-texto { font-size: 0.75rem; color: #746c60; margin-top: 8px; font-style: italic; }
+"""
+
+PLANTILLA_PANEL = """
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Automatización X</title>
+<style>""" + ESTILO_PAGINA + ESTILO_PANEL_EXTRA + """
 </style></head><body>
 <div class="envoltura">
   <header>
     <h1>Automatización de ingesta en X</h1>
-    <nav>
-      <a href="{{ url_for('galeria') }}">Clasificar fotos</a>
-      <a href="{{ url_for('panel') }}" class="activa">Automatización X</a>
-    </nav>
+    """ + nav("automatizacion") + """
   </header>
   <main>
   <div class="tarjeta2">
@@ -644,6 +787,123 @@ PLANTILLA_PANEL = """
   <p style="font-size:0.72rem;color:#746c60;text-align:center;">Repo: <a href="https://github.com/{{ repo }}" target="_blank">{{ repo }}</a></p>
   </main>
 </div>
+</body></html>
+"""
+
+PLANTILLA_BUSCAR_X = """
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buscar en X</title>
+<style>""" + ESTILO_PAGINA + ESTILO_PANEL_EXTRA + """
+</style></head><body>
+<div class="envoltura">
+  <header>
+    <h1>Buscar en X</h1>
+    """ + nav("buscar") + """
+  </header>
+  <main>
+  <div class="tarjeta2">
+    <p style="font-size:0.8rem;color:#746c60;margin-top:0;">
+      Esto dispara un workflow de GitHub Actions que usa Claude Code (con tu suscripción, sin
+      coste aparte) para buscar publicaciones reales en X y añadirlas a la cola de descarga.
+      Tarda unos minutos — el estado de cada búsqueda se actualiza aquí abajo según avanza.
+    </p>
+    <form method="post" action="{{ url_for('enviar_busqueda_x') }}" id="form-busqueda">
+      <label for="estilo">Estilo</label>
+      <select class="ancho" name="estilo" id="estilo" onchange="actualizarVistaPrevia()">
+        {% for clave, etiqueta in categorias %}<option value="{{ clave }}">{{ etiqueta }}</option>{% endfor %}
+      </select>
+
+      <label for="ocasion">Ocasión (opcional — solo afecta al modo "Automático")</label>
+      <select class="ancho" name="ocasion" id="ocasion" onchange="actualizarVistaPrevia()">
+        {% for clave, etiqueta in ocasiones %}<option value="{{ clave }}">{{ etiqueta }}</option>{% endfor %}
+      </select>
+
+      <label for="modo">Texto de búsqueda</label>
+      <select class="ancho" name="modo" id="modo" onchange="actualizarVistaPrevia()">
+        <option value="automatico">Automático (estilo + ocasión)</option>
+        <option value="predeterminado">Predeterminado (solo estilo)</option>
+        <option value="personalizado">Escribirlo yo</option>
+      </select>
+
+      <div id="fila-texto-personalizado" hidden>
+        <label for="texto_personalizado">Texto personalizado</label>
+        <input type="text" name="texto_personalizado" id="texto_personalizado" placeholder="p. ej. streetwear madrileño invierno"
+               oninput="actualizarVistaPrevia()">
+      </div>
+
+      <div class="vista-previa-texto" id="vista-previa">Se buscará: "…"</div>
+
+      <label for="cantidad">Cuántas publicaciones buscar (3–15)</label>
+      <input type="number" name="cantidad" id="cantidad" value="8" min="3" max="15">
+
+      <button class="btn" type="submit" style="margin-top:14px;">Buscar en X</button>
+    </form>
+  </div>
+
+  {% for s in solicitudes %}
+  <div class="tarjeta2">
+    <div class="fila2" style="border-bottom:none;padding-bottom:0;">
+      <span><strong>{{ s.id|replace('sol_', '') }}</strong> · {{ s.texto_busqueda }}</span>
+      <span class="estado2 {{ s.estado }}">{{ s.estado }}</span>
+    </div>
+    <p style="font-size:0.72rem;color:#746c60;margin:4px 0 0;">
+      {{ nombre_categoria.get(s.estilo, s.estilo) }}{% if s.ocasion and s.ocasion != 'ninguna' %} · {{ nombre_ocasion.get(s.ocasion, s.ocasion) }}{% endif %}
+      {% if s.urls_encontradas is defined %} · {{ s.urls_encontradas }} URL(s) encontradas{% endif %}
+    </p>
+    <ul class="pasos-log">
+      {% for paso in s.pasos or [] %}
+      <li><time>{{ paso.ts[11:16] if paso.ts|length > 16 else paso.ts }}</time>{{ paso.texto }}</li>
+      {% endfor %}
+    </ul>
+    {% if s.estado in ('pendiente', 'buscando') %}
+    <button type="button" class="chip" style="margin-top:8px;" onclick="cancelarBusqueda('{{ s.id }}', this)">Cancelar</button>
+    {% endif %}
+  </div>
+  {% else %}
+  <p style="font-size:0.85rem;color:#746c60;">Todavía no has lanzado ninguna búsqueda.</p>
+  {% endfor %}
+  </main>
+</div>
+
+<script>
+const TEXTO_PREDETERMINADO_ESTILO = {{ texto_predeterminado | tojson }};
+const CALIFICADOR_OCASION = {{ calificador_ocasion | tojson }};
+
+function calcularTextoBusqueda(estilo, ocasion, modo, textoManual) {
+  if (modo === "personalizado") return (textoManual || "").trim();
+  const base = TEXTO_PREDETERMINADO_ESTILO[estilo] || "";
+  if (modo === "predeterminado") return base;
+  const calificador = CALIFICADOR_OCASION[ocasion];
+  return calificador ? `${base} ${calificador}` : base;
+}
+
+function actualizarVistaPrevia() {
+  const estilo = document.getElementById("estilo").value;
+  const ocasion = document.getElementById("ocasion").value;
+  const modo = document.getElementById("modo").value;
+  const textoManual = document.getElementById("texto_personalizado").value;
+  document.getElementById("fila-texto-personalizado").hidden = modo !== "personalizado";
+  const texto = calcularTextoBusqueda(estilo, ocasion, modo, textoManual);
+  document.getElementById("vista-previa").textContent = `Se buscará: "${texto}"`;
+}
+actualizarVistaPrevia();
+
+async function cancelarBusqueda(id, btn) {
+  btn.disabled = true;
+  try {
+    const r = await fetch('/cancelar-busqueda-x/' + id, {method: 'POST'});
+    const d = await r.json();
+    if (d.ok) {
+      window.location.reload();
+    } else {
+      btn.disabled = false;
+    }
+  } catch (e) {
+    btn.disabled = false;
+  }
+}
+</script>
 </body></html>
 """
 
