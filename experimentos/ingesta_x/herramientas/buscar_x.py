@@ -3,24 +3,32 @@
 añade sus URLs a la cola de descarga -- para que procesar_cola.py las descargue/clasifique solo
 después, sin tocar esto.
 
-Cómo busca: llama al propio CLI de Claude Code en modo no interactivo (`claude -p`) con la
-herramienta de búsqueda web permitida. Es el mismo mecanismo que ya usa el otro proyecto de
-Víctor (viral_clips) para llamar a Claude desde GitHub Actions sin salirse de su suscripción
-mensual: autenticado con CLAUDE_CODE_OAUTH_TOKEN (generado una vez con 'claude setup-token'),
-NO con ANTHROPIC_API_KEY (esa sí se cobra aparte, por eso no se usa). Confirmado con una prueba
-real antes de construir esto: con --allowedTools WebSearch la búsqueda se ejecuta sola, sin
-pedir permiso interactivo (permission_denials vacío en la respuesta).
+Cómo busca, en dos pasos (v2 -- ver por qué en el commit que introdujo este cambio):
+1. **Tavily** (`https://tavily.com`, capa gratuita: 1000 créditos/mes, sin tarjeta) hace la
+   búsqueda real en la web, acotada a x.com/twitter.com. Esto es lo que de verdad encuentra
+   URLs -- cero coste, no pasa por Claude en absoluto.
+2. **Claude Code en modo no interactivo** (`claude -p`, autenticado con CLAUDE_CODE_OAUTH_TOKEN,
+   mismo mecanismo que ya usa viral_clips) recibe esos resultados YA encontrados por Tavily
+   (título + URL + fragmento de texto de cada uno) y elige/filtra cuáles encajan de verdad --
+   sin ninguna herramienta activada, tarea de puro texto, igual que el patrón que ya usa
+   viral_clips en producción sin coste, dentro de la suscripción mensual.
+
+Por qué no lo hace todo Claude con su propia búsqueda web (como en la v1 de este script):
+probado en real, y la búsqueda web de Claude Code gasta saldo de crédito de pago de verdad
+("Credit balance is too low" fue el error real que dio en producción) -- no está cubierta por
+la suscripción como sí lo está una llamada de puro texto sin herramientas. Separar "buscar" de
+"juzgar" en dos herramientas distintas mantiene todo esto en 0€ aparte de lo que ya se paga.
 
 Se ejecuta dentro de un job de GitHub Actions ya con el repo cloneado (mismo patrón que
-procesar_cola.py), pero a diferencia de ese script, este SÍ commitea y pushea él mismo en dos
-puntos (al empezar a buscar, y al terminar) -- así la solicitud pasa por "pendiente" ->
-"buscando" -> "completado"/"error" de verdad mientras el job corre, en vez de que el panel se
-quede sin saber nada hasta que el job entero termine.
+procesar_cola.py), pero a diferencia de ese script, este SÍ commitea y pushea él mismo en varios
+puntos -- así la solicitud pasa por "pendiente" -> "buscando" -> "completado"/"error" de verdad
+mientras el job corre, en vez de que el panel se quede sin saber nada hasta que el job termine.
 """
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -28,33 +36,43 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+import requests
+
 RAIZ_REPO = Path(__file__).resolve().parents[3]
 RAIZ_INGESTA = Path(__file__).resolve().parents[1]
 RUTA_COLA = RAIZ_INGESTA / "cola"
 RUTA_SOLICITUDES = RAIZ_INGESTA / "panel" / "data" / "solicitudes_x.json"
 
-CLAUDE_TIMEOUT_SECONDS = 600
+TAVILY_API_KEY = os.environ.get("TAVILY_API_KEY", "")
+TAVILY_URL = "https://api.tavily.com/search"
+TAVILY_TIMEOUT_SECONDS = 30
+# Pedimos de más para que Claude tenga margen real donde elegir/descartar -- Tavily permite
+# hasta 20 por llamada.
+FACTOR_CANDIDATAS = 3
+MAX_CANDIDATAS_TAVILY = 20
+
+CLAUDE_TIMEOUT_SECONDS = 300
 MAX_INTENTOS = 3
 
 SISTEMA_PROMPT = (
-    "Eres un investigador que busca fotos o vídeos REALES publicados en X (Twitter) para un "
-    "proyecto universitario de clasificación de estilo de ropa (TFM de robótica). Usa la "
-    "herramienta de búsqueda web para encontrar publicaciones de X que muestren a gente vestida "
-    "con el estilo pedido -- fotos o vídeos de cuerpo entero o medio cuerpo, con la ropa "
-    "claramente visible, contenido real (nunca dibujos, arte generado por IA, ni capturas de "
-    "otra red social). Evita contenido con personajes con copyright (cosplay, merchandising de "
-    "franquicias), contenido sensible o fuera de tema aunque la ropa encaje, y publicaciones que "
-    "sean solo un enlace, un meme de texto, o un vídeo sin ropa visible. Cada URL debe apuntar a "
-    "una publicación CONCRETA (x.com/usuario/status/NUMERO o twitter.com/usuario/status/NUMERO), "
-    "nunca a un perfil, un hashtag ni una búsqueda. No inventes ninguna URL: si no la has visto "
-    "de verdad en un resultado de búsqueda, no la incluyas.\n\n"
+    "Eres un curador que revisa resultados de búsqueda YA ENCONTRADOS (título, URL y fragmento "
+    "de texto de cada uno) para un proyecto universitario de clasificación de estilo de ropa "
+    "(TFM de robótica), y elige cuáles apuntan de verdad a una foto o vídeo REAL de una persona "
+    "vestida con el estilo pedido -- ropa claramente visible, contenido real (nunca dibujos, "
+    "arte generado por IA, ni capturas de otra red social). Descarta contenido con personajes "
+    "con copyright (cosplay, merchandising de franquicias), contenido sensible o fuera de tema "
+    "aunque el texto mencione el estilo, y cualquier resultado que por el título/fragmento "
+    "parezca ser solo un enlace, un meme de texto, una noticia, o un perfil/hashtag en vez de "
+    "una publicación concreta. NO TIENES herramientas ni acceso a la web: solo puedes elegir "
+    "entre las URLs que te paso en la lista, nunca inventar ni completar una URL que no esté "
+    "ahí literal.\n\n"
     "FORMATO DE RESPUESTA OBLIGATORIO -- un programa parsea esto automáticamente, ningún humano "
     "lo lee. Responde ÚNICAMENTE con el objeto JSON con esta estructura exacta, nada de texto "
     "antes ni después, nada de bloques de código markdown:\n"
-    '{"encontradas": [{"url": "https://x.com/usuario/status/1234567890123456789", '
+    '{"encontradas": [{"url": "(copiada tal cual de la lista)", '
     '"nota": "breve razón de por qué encaja"}]}\n'
-    "Si no encuentras suficientes que encajen de verdad, devuelve solo las que sí encuentres -- "
-    "es preferible devolver menos que inventar o forzar encaje."
+    "Si ninguna de la lista encaja de verdad, devuelve la lista vacía -- es preferible devolver "
+    "menos que forzar encaje."
 )
 
 RE_URL_TWEET = re.compile(
@@ -95,7 +113,12 @@ def guardar_y_commitear(solicitudes: dict, mensaje: str) -> None:
     )
     _git("config", "user.name", "github-actions[bot]")
     _git("config", "user.email", "github-actions[bot]@users.noreply.github.com")
-    _git("add", str(RUTA_SOLICITUDES), str(RUTA_COLA))
+    # RUTA_COLA puede no existir todavía en un checkout nuevo -- 'git add' de una ruta
+    # inexistente falla y tira abajo todo el script, así que solo se añade si está.
+    rutas = [str(RUTA_SOLICITUDES)]
+    if RUTA_COLA.exists():
+        rutas.append(str(RUTA_COLA))
+    _git("add", *rutas)
     if _hay_cambios_staged():
         _git("commit", "-m", mensaje)
         _git("push")
@@ -118,6 +141,36 @@ def _extraer_json(texto: str) -> str | None:
     return None
 
 
+def consultar_tavily(consulta: str, cantidad: int) -> list[dict]:
+    """Busca de verdad en la web, acotado a x.com/twitter.com. Sin esto no hay forma de saber
+    qué URLs existen realmente -- Claude, sin herramientas, no puede saberlo por sí solo."""
+    if not TAVILY_API_KEY:
+        raise ErrorBusqueda(
+            "Falta el secreto TAVILY_API_KEY en este repo (Settings -> Secrets -> Actions). "
+            "Se genera gratis, sin tarjeta, en tavily.com."
+        )
+    max_resultados = min(MAX_CANDIDATAS_TAVILY, max(cantidad * FACTOR_CANDIDATAS, cantidad))
+    try:
+        r = requests.post(
+            TAVILY_URL,
+            headers={"Authorization": f"Bearer {TAVILY_API_KEY}"},
+            json={
+                "query": consulta,
+                "include_domains": ["x.com", "twitter.com"],
+                "max_results": max_resultados,
+                "search_depth": "basic",
+            },
+            timeout=TAVILY_TIMEOUT_SECONDS,
+        )
+    except requests.RequestException as exc:
+        raise ErrorBusqueda(f"Error de red hacia Tavily: {exc}") from exc
+
+    if r.status_code != 200:
+        raise ErrorBusqueda(f"Tavily respondió {r.status_code}: {r.text[:300]}")
+
+    return r.json().get("results") or []
+
+
 def ejecutar_claude(prompt_usuario: str) -> dict:
     ejecutable = shutil.which("claude")
     if ejecutable is None:
@@ -126,10 +179,11 @@ def ejecutar_claude(prompt_usuario: str) -> dict:
             "@anthropic-ai/claude-code' en el workflow?)"
         )
     sistema_una_linea = " ".join(SISTEMA_PROMPT.split())
+    # Sin --allowedTools: esta tarea es de puro texto (elegir entre candidatas ya dadas), no
+    # necesita ninguna herramienta -- así se queda dentro de la suscripción, sin tocar saldo de
+    # crédito de pago (confirmado en real: con la búsqueda web activada sí lo tocaba).
     args = [
         ejecutable, "-p", "--output-format", "json", "--model", "sonnet",
-        "--allowedTools", "WebSearch",
-        "--permission-mode", "acceptEdits",
         "--setting-sources", "",
         "--no-session-persistence",
         "--system-prompt", sistema_una_linea,
@@ -229,15 +283,33 @@ def main() -> int:
         guardar_y_commitear(solicitudes, f"buscar_x: {args.solicitud_id} cancelada antes de empezar")
         return 0
 
-    solicitud["estado"] = "buscando"
-    añadir_paso(solicitud, "Buscando en X con Claude...")
-    guardar_y_commitear(solicitudes, f"buscar_x: {args.solicitud_id} empieza a buscar")
-
     try:
+        solicitud["estado"] = "buscando"
+        añadir_paso(solicitud, "Buscando en la web con Tavily...")
+        guardar_y_commitear(solicitudes, f"buscar_x: {args.solicitud_id} empieza a buscar")
+
         cantidad = int(solicitud.get("cantidad", 8))
+        resultados_tavily = consultar_tavily(solicitud["texto_busqueda"], cantidad)
+
+        if not resultados_tavily:
+            solicitud["estado"] = "completado"
+            solicitud["urls_encontradas"] = 0
+            añadir_paso(solicitud, "Tavily no encontró ningún resultado en x.com/twitter.com para este texto.")
+            guardar_y_commitear(solicitudes, f"buscar_x: {args.solicitud_id} completado (0 resultados)")
+            print("Sin resultados de Tavily.")
+            return 0
+
+        añadir_paso(solicitud, f"Tavily encontró {len(resultados_tavily)} resultado(s), pidiendo a Claude que filtre...")
+        guardar_y_commitear(solicitudes, f"buscar_x: {args.solicitud_id} filtrando con Claude")
+
+        lista_candidatas = "\n\n".join(
+            f"{i + 1}. URL: {r.get('url', '')}\n   Título: {r.get('title', '')}\n   Fragmento: {r.get('content', '')[:300]}"
+            for i, r in enumerate(resultados_tavily)
+        )
         prompt_usuario = (
-            f"Busca {cantidad} publicaciones de X que encajen con: "
-            f"{solicitud['texto_busqueda']!r}."
+            f"Busco publicaciones que encajen con: {solicitud['texto_busqueda']!r}. "
+            f"Elige hasta {cantidad} de estos {len(resultados_tavily)} resultados ya encontrados "
+            f"(los que de verdad encajen, no fuerces si no hay tantos):\n\n{lista_candidatas}"
         )
         respuesta = ejecutar_claude(prompt_usuario)
         candidatas = respuesta.get("encontradas") or []
@@ -263,8 +335,6 @@ def main() -> int:
         resumen = f"Encontradas {len(validas)} URL(s) nuevas, añadidas a la cola de '{solicitud['estilo']}'."
         if descartadas:
             resumen += f" Descartadas {descartadas} (repetidas o no eran una publicación válida)."
-        if len(candidatas) - len(validas) - descartadas > 0:
-            resumen += " Aviso: alguna candidata no tenía URL."
         añadir_paso(solicitud, resumen)
         guardar_y_commitear(solicitudes, f"buscar_x: {args.solicitud_id} completado ({len(validas)} URLs)")
         print(resumen)
