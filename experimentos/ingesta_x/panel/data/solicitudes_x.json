@@ -213,5 +213,20 @@
     ],
     "texto_busqueda": "old money aesthetic outfit quiet luxury real photos",
     "urls_encontradas": 0
+  },
+  "sol_1790426251863": {
+    "cantidad": 15,
+    "creado_en": "2026-09-26T12:37:32.136978+00:00",
+    "estado": "pendiente",
+    "estilo": "bohemio",
+    "modo": "automatico",
+    "ocasion": "ninguna",
+    "pasos": [
+      {
+        "texto": "Solicitud creada, esperando a que GitHub Actions la recoja.",
+        "ts": "2026-09-26T12:37:32.136962+00:00"
+      }
+    ],
+    "texto_busqueda": "bohemian boho chic outfit real photos"
   }
 }
