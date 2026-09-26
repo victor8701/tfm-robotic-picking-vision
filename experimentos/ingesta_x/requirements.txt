@@ -1,3 +1,4 @@
 yt-dlp>=2026.8
 imageio-ffmpeg>=0.5
 requests>=2.31
+Pillow>=10.0

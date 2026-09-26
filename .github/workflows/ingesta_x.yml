@@ -40,11 +40,17 @@ jobs:
         if: steps.horario.outputs.toca == 'true'
         run: python experimentos/ingesta_x/herramientas/procesar_cola.py
 
+      - name: Importar lo descargado a la galería (sin revisar)
+        if: steps.horario.outputs.toca == 'true'
+        run: python experimentos/ingesta_x/herramientas/importar_a_galeria.py
+
       - name: Comitear resultados (si hay algo nuevo)
         if: steps.horario.outputs.toca == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add experimentos/ingesta_x/cola experimentos/ingesta_x/data
-          git diff --staged --quiet || git commit -m "ingesta_x: procesa cola automaticamente"
+          git add experimentos/ingesta_x/cola experimentos/ingesta_x/data \
+            experimentos/ingesta_x/panel/data/clasificaciones.json \
+            experimentos/ingesta_x/panel/static/fotos
+          git diff --staged --quiet || git commit -m "ingesta_x: procesa cola e importa a la galeria automaticamente"
           git push
