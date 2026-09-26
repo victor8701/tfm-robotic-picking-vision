@@ -25,7 +25,7 @@
   "sol_1790422156070": {
     "cantidad": 15,
     "creado_en": "2026-09-26T11:29:16.502262+00:00",
-    "estado": "pendiente",
+    "estado": "buscando",
     "estilo": "old_money",
     "modo": "automatico",
     "ocasion": "ninguna",
@@ -33,6 +33,10 @@
       {
         "texto": "Solicitud creada, esperando a que GitHub Actions la recoja.",
         "ts": "2026-09-26T11:29:16.502239+00:00"
+      },
+      {
+        "texto": "Buscando en X con Claude...",
+        "ts": "2026-09-26T11:29:36.964532+00:00"
       }
     ],
     "texto_busqueda": "old money aesthetic outfit quiet luxury real photos"
