@@ -48,7 +48,7 @@
   "sol_1790424777160": {
     "cantidad": 15,
     "creado_en": "2026-09-26T12:12:57.569017+00:00",
-    "estado": "pendiente",
+    "estado": "error",
     "estilo": "old_money",
     "modo": "automatico",
     "ocasion": "ninguna",
@@ -56,6 +56,10 @@
       {
         "texto": "Solicitud creada, esperando a que GitHub Actions la recoja.",
         "ts": "2026-09-26T12:12:57.569003+00:00"
+      },
+      {
+        "texto": "Error: esta ejecución perdió una carrera de git push contra otra búsqueda lanzada casi a la vez, y se quedó sin poder guardar ni su propio fallo (arreglado: ver buscar_x.py, ya no debería repetirse).",
+        "ts": "2026-09-26T12:20:00+00:00"
       }
     ],
     "texto_busqueda": "old money aesthetic outfit quiet luxury real photos"
