@@ -129,7 +129,7 @@
   "sol_1790425988631": {
     "cantidad": 15,
     "creado_en": "2026-09-26T12:33:09.026782+00:00",
-    "estado": "completado",
+    "estado": "cancelada",
     "estilo": "old_money",
     "modo": "automatico",
     "ocasion": "ninguna",
@@ -149,6 +149,10 @@
       {
         "texto": "Encontradas 12 URL(s) nuevas, añadidas a la cola de 'old_money'. Descartadas 8 (repetidas, no válidas, o coincidían con la lista de palabras a evitar).",
         "ts": "2026-09-26T12:33:25.526758+00:00"
+      },
+      {
+        "texto": "Cancelada desde el panel.",
+        "ts": "2026-09-26T12:33:28.659840+00:00"
       }
     ],
     "texto_busqueda": "old money aesthetic outfit quiet luxury real photos",
