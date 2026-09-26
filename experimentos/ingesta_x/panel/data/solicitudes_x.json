@@ -217,7 +217,7 @@
   "sol_1790426251863": {
     "cantidad": 15,
     "creado_en": "2026-09-26T12:37:32.136978+00:00",
-    "estado": "pendiente",
+    "estado": "buscando",
     "estilo": "bohemio",
     "modo": "automatico",
     "ocasion": "ninguna",
@@ -225,6 +225,10 @@
       {
         "texto": "Solicitud creada, esperando a que GitHub Actions la recoja.",
         "ts": "2026-09-26T12:37:32.136962+00:00"
+      },
+      {
+        "texto": "Buscando en la web con Tavily...",
+        "ts": "2026-09-26T12:37:52.549805+00:00"
       }
     ],
     "texto_busqueda": "bohemian boho chic outfit real photos"
