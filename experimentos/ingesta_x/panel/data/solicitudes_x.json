@@ -245,7 +245,7 @@
   "sol_1790426851904": {
     "cantidad": 15,
     "creado_en": "2026-09-26T12:47:32.396643+00:00",
-    "estado": "pendiente",
+    "estado": "buscando",
     "estilo": "alternativo_geek",
     "modo": "automatico",
     "ocasion": "ninguna",
@@ -253,6 +253,10 @@
       {
         "texto": "Solicitud creada, esperando a que GitHub Actions la recoja.",
         "ts": "2026-09-26T12:47:32.396627+00:00"
+      },
+      {
+        "texto": "Buscando en la web con Tavily...",
+        "ts": "2026-09-26T12:47:48.997349+00:00"
       }
     ],
     "texto_busqueda": "geek gamer streetwear outfit real photos"
