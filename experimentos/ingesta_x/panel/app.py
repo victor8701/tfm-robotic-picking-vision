@@ -16,6 +16,7 @@ from __future__ import annotations
 import base64
 import json
 import os
+import sys
 import time
 from datetime import datetime, timezone
 from functools import wraps
@@ -134,7 +135,10 @@ def leer_contenido_repo(ruta: str) -> tuple[str, str] | None:
     return contenido, data["sha"]
 
 
-def escribir_repo(ruta: str, contenido_bytes: bytes, mensaje: str, sha_actual: str | None) -> bool:
+def escribir_repo(ruta: str, contenido_bytes: bytes, mensaje: str, sha_actual: str | None) -> tuple[bool, str]:
+    """Devuelve (ok, detalle). Si falla, `detalle` trae el motivo real que dio GitHub (token
+    caducado, permisos, rama inexistente...) -- para que un fallo se vea en la propia app o en
+    los logs de Render, en vez de desaparecer en silencio como pasaba antes."""
     payload = {
         "message": mensaje,
         "content": base64.b64encode(contenido_bytes).decode("ascii"),
@@ -142,11 +146,20 @@ def escribir_repo(ruta: str, contenido_bytes: bytes, mensaje: str, sha_actual: s
     }
     if sha_actual:
         payload["sha"] = sha_actual
-    r = requests.put(
-        f"{API}/repos/{REPO}/contents/{ruta}",
-        headers=CABECERAS, json=payload, timeout=20,
-    )
-    return r.status_code in (200, 201)
+    try:
+        r = requests.put(
+            f"{API}/repos/{REPO}/contents/{ruta}",
+            headers=CABECERAS, json=payload, timeout=20,
+        )
+    except requests.RequestException as exc:
+        return False, f"error de red hacia GitHub: {exc}"
+    if r.status_code in (200, 201):
+        return True, ""
+    try:
+        detalle = r.json().get("message", r.text[:200])
+    except ValueError:
+        detalle = r.text[:200]
+    return False, f"GitHub respondió {r.status_code}: {detalle}"
 
 
 def obtener_sha_actual(ruta: str) -> str | None:
@@ -172,12 +185,14 @@ def cargar_datos() -> dict:
     return _CACHE["datos"]
 
 
-def guardar_datos(mensaje: str) -> bool:
+def guardar_datos(mensaje: str) -> tuple[bool, str]:
     contenido = json.dumps(_CACHE["datos"], ensure_ascii=False, indent=2, sort_keys=True).encode("utf-8")
-    ok = escribir_repo(RUTA_DATOS, contenido, mensaje, _CACHE["sha"])
+    ok, detalle = escribir_repo(RUTA_DATOS, contenido, mensaje, _CACHE["sha"])
     if ok:
         _CACHE["sha"] = obtener_sha_actual(RUTA_DATOS)
-    return ok
+    else:
+        print(f"guardar_datos: {detalle}", file=sys.stderr)
+    return ok, detalle
 
 
 def categoria_actual(item: dict) -> str:
@@ -237,6 +252,7 @@ def galeria():
         estilos_chip=ESTILOS_CHIP, nombre_categoria=NOMBRE_CATEGORIA,
         total=total, sin_imagen=sin_imagen, revisadas=revisadas,
         filtro_origen=filtro_origen, filtro_revision=filtro_revision,
+        error=request.args.get("error"),
     )
 
 
@@ -249,8 +265,8 @@ def clasificar(iid):
     valor = request.json.get("categoria")
     datos[iid]["categoria_final"] = valor
     datos[iid]["revisada"] = True
-    ok = guardar_datos(f"panel: clasifica {iid} -> {valor}")
-    return jsonify({"ok": ok})
+    ok, detalle = guardar_datos(f"panel: clasifica {iid} -> {valor}")
+    return jsonify({"ok": ok, "detalle": detalle})
 
 
 @app.route("/ocasion/<iid>", methods=["POST"])
@@ -261,8 +277,8 @@ def ocasion(iid):
         return jsonify({"ok": False, "error": "no existe"}), 404
     valor = request.json.get("ocasion")
     datos[iid]["ocasion_final"] = None if valor == "ninguna" else valor
-    ok = guardar_datos(f"panel: ocasion {iid} -> {valor}")
-    return jsonify({"ok": ok})
+    ok, detalle = guardar_datos(f"panel: ocasion {iid} -> {valor}")
+    return jsonify({"ok": ok, "detalle": detalle})
 
 
 @app.route("/eliminar/<iid>", methods=["POST"])
@@ -272,8 +288,8 @@ def eliminar(iid):
     if iid not in datos:
         return jsonify({"ok": False, "error": "no existe"}), 404
     datos[iid]["eliminada"] = not datos[iid]["eliminada"]
-    ok = guardar_datos(f"panel: {'elimina' if datos[iid]['eliminada'] else 'restaura'} {iid}")
-    return jsonify({"ok": ok, "eliminada": datos[iid]["eliminada"]})
+    ok, detalle = guardar_datos(f"panel: {'elimina' if datos[iid]['eliminada'] else 'restaura'} {iid}")
+    return jsonify({"ok": ok, "eliminada": datos[iid]["eliminada"], "detalle": detalle})
 
 
 @app.route("/subir", methods=["POST"])
@@ -283,6 +299,7 @@ def subir():
     archivos = request.files.getlist("fotos")
     datos = cargar_datos()
     subidas = 0
+    ultimo_error = ""
     for f in archivos:
         if not f or not f.filename:
             continue
@@ -292,7 +309,10 @@ def subir():
         nuevo_id = f"u_{int(time.time() * 1000)}_{subidas}"
         contenido = f.read()
         nombre_archivo = f"{nuevo_id}.{ext}"
-        if not escribir_repo(f"{RUTA_FOTOS}/{nombre_archivo}", contenido, f"panel: sube foto {nuevo_id}", None):
+        ok, detalle = escribir_repo(f"{RUTA_FOTOS}/{nombre_archivo}", contenido, f"panel: sube foto {nuevo_id}", None)
+        if not ok:
+            print(f"subir: {detalle}", file=sys.stderr)
+            ultimo_error = detalle
             continue
         datos[nuevo_id] = {
             "categoria_final": categoria, "categoria_ia": categoria, "revisada": True,
@@ -301,7 +321,13 @@ def subir():
         }
         subidas += 1
     if subidas:
-        guardar_datos(f"panel: sube {subidas} foto(s) a {categoria}")
+        ok, detalle = guardar_datos(f"panel: sube {subidas} foto(s) a {categoria}")
+        if not ok:
+            ultimo_error = detalle
+    if ultimo_error and not subidas:
+        return redirect(url_for("galeria", error=ultimo_error), code=303)
+    if ultimo_error:
+        return redirect(url_for("galeria", error=f"{subidas} foto(s) subidas, pero: {ultimo_error}"), code=303)
     return redirect(url_for("galeria"), code=303)
 
 
@@ -334,7 +360,7 @@ def buscar_x():
         PLANTILLA_BUSCAR_X, categorias=CATEGORIAS, ocasiones=OCASIONES,
         nombre_categoria=NOMBRE_CATEGORIA, nombre_ocasion=NOMBRE_OCASION,
         texto_predeterminado=TEXTO_PREDETERMINADO_ESTILO, calificador_ocasion=CALIFICADOR_OCASION,
-        solicitudes=lista,
+        solicitudes=lista, error=request.args.get("error"),
     )
 
 
@@ -364,11 +390,19 @@ def enviar_busqueda_x():
         "creado_en": ahora_iso(),
     }
     contenido = json.dumps(solicitudes, ensure_ascii=False, indent=2, sort_keys=True).encode("utf-8")
-    if escribir_repo(RUTA_SOLICITUDES, contenido, f"panel: nueva busqueda X {nuevo_id} ({estilo})", sha):
-        requests.post(
-            f"{API}/repos/{REPO}/actions/workflows/{WORKFLOW_BUSQUEDA}/dispatches",
-            headers=CABECERAS, json={"ref": BRANCH, "inputs": {"solicitud_id": nuevo_id}}, timeout=15,
-        )
+    ok, detalle = escribir_repo(RUTA_SOLICITUDES, contenido, f"panel: nueva busqueda X {nuevo_id} ({estilo})", sha)
+    if not ok:
+        print(f"enviar_busqueda_x: {detalle}", file=sys.stderr)
+        return redirect(url_for("buscar_x", error=detalle), code=303)
+
+    r = requests.post(
+        f"{API}/repos/{REPO}/actions/workflows/{WORKFLOW_BUSQUEDA}/dispatches",
+        headers=CABECERAS, json={"ref": BRANCH, "inputs": {"solicitud_id": nuevo_id}}, timeout=15,
+    )
+    if r.status_code != 204:
+        detalle_disparo = f"GitHub respondió {r.status_code} al disparar el workflow: {r.text[:200]}"
+        print(f"enviar_busqueda_x (dispatch): {detalle_disparo}", file=sys.stderr)
+        return redirect(url_for("buscar_x", error=detalle_disparo), code=303)
     return redirect(url_for("buscar_x"), code=303)
 
 
@@ -383,8 +417,8 @@ def cancelar_busqueda_x(sid):
         {"ts": ahora_iso(), "texto": "Cancelada desde el panel."}
     )
     contenido = json.dumps(solicitudes, ensure_ascii=False, indent=2, sort_keys=True).encode("utf-8")
-    ok = escribir_repo(RUTA_SOLICITUDES, contenido, f"panel: cancela busqueda X {sid}", sha)
-    return jsonify({"ok": ok})
+    ok, detalle = escribir_repo(RUTA_SOLICITUDES, contenido, f"panel: cancela busqueda X {sid}", sha)
+    return jsonify({"ok": ok, "detalle": detalle})
 
 
 # --- Panel de automatización de X (lo que ya había) ---
@@ -427,17 +461,21 @@ def panel():
     return render_template_string(
         PLANTILLA_PANEL, config=config, config_sha=config_sha,
         pendientes=pendientes, total_pendientes=sum(pendientes.values()),
-        ejecuciones=ejecuciones, repo=REPO,
+        ejecuciones=ejecuciones, repo=REPO, error=request.args.get("error"),
     )
 
 
 @app.route("/ejecutar", methods=["POST"])
 @requiere_login
 def ejecutar():
-    requests.post(
+    r = requests.post(
         f"{API}/repos/{REPO}/actions/workflows/{WORKFLOW_FILE}/dispatches",
         headers=CABECERAS, json={"ref": BRANCH}, timeout=15,
     )
+    if r.status_code != 204:
+        detalle = f"GitHub respondió {r.status_code} al disparar el workflow: {r.text[:200]}"
+        print(f"ejecutar: {detalle}", file=sys.stderr)
+        return redirect(url_for("panel", error=detalle), code=303)
     return redirect(url_for("panel"), code=303)
 
 
@@ -452,7 +490,10 @@ def guardar_config():
         "zona_horaria": request.form.get("zona_horaria", "Europe/Madrid").strip(),
     }
     contenido = (json.dumps(nuevo_config, indent=2, ensure_ascii=False) + "\n").encode("utf-8")
-    escribir_repo(RUTA_CONFIG, contenido, "panel: actualiza config.json", sha_actual)
+    ok, detalle = escribir_repo(RUTA_CONFIG, contenido, "panel: actualiza config.json", sha_actual)
+    if not ok:
+        print(f"guardar_config: {detalle}", file=sys.stderr)
+        return redirect(url_for("panel", error=detalle), code=303)
     return redirect(url_for("panel"), code=303)
 
 
@@ -525,6 +566,9 @@ ESTILO_PAGINA = """
   .aviso { position: fixed; top: 14px; left: 50%; transform: translateX(-50%) translateY(-140%); background: #211d18; color: #f6f3ee;
            font-size: 0.8rem; font-weight: 600; padding: 8px 15px; border-radius: 20px; z-index: 20; transition: transform .25s ease; white-space: nowrap; }
   .aviso.visible { transform: translateX(-50%) translateY(0); }
+  .banner-error { background: #fbe3e0; color: #7a2a22; border: 1px solid #edb3ac; border-radius: 10px;
+                  padding: 10px 14px; font-size: 0.78rem; margin: 12px 16px 0; }
+  .banner-error strong { display: block; margin-bottom: 2px; }
 """
 
 NAV_COMUN = """
@@ -609,6 +653,7 @@ PLANTILLA_GALERIA = """
     </div>
     """ + nav("clasificar") + """
   </header>
+  {% if error %}<div class="banner-error"><strong>No se pudo guardar</strong>{{ error }}</div>{% endif %}
   <main>
     {% for clave, etiqueta in categorias %}
     <section class="grupo">
@@ -666,7 +711,7 @@ function mostrarAviso(texto) {
   const el = document.getElementById('aviso');
   el.textContent = texto;
   el.classList.add('visible');
-  setTimeout(() => el.classList.remove('visible'), 1300);
+  setTimeout(() => el.classList.remove('visible'), texto.length > 40 ? 5000 : 1300);
 }
 function cambiarFiltro() {
   const origen = document.getElementById('filtro-origen').value;
@@ -687,7 +732,7 @@ async function clasificar(id, valor, btn) {
       body: JSON.stringify({categoria: valor}),
     });
     const d = await r.json();
-    mostrarAviso(d.ok ? (esIA ? 'Confirmada' : 'Corregida') : 'No se pudo guardar');
+    mostrarAviso(d.ok ? (esIA ? 'Confirmada' : 'Corregida') : ('No se pudo guardar: ' + (d.detalle || '?')));
     if (d.ok) setTimeout(() => window.location.reload(), 600);
   } catch (e) { mostrarAviso('Error de red'); }
 }
@@ -701,14 +746,14 @@ async function marcarOcasion(id, valor, btn) {
       body: JSON.stringify({ocasion: valor}),
     });
     const d = await r.json();
-    mostrarAviso(d.ok ? 'Guardado' : 'No se pudo guardar');
+    mostrarAviso(d.ok ? 'Guardado' : ('No se pudo guardar: ' + (d.detalle || '?')));
   } catch (e) { mostrarAviso('Error de red'); }
 }
 async function alternarEliminar(id, btn) {
   try {
     const r = await fetch('/eliminar/' + id, {method: 'POST'});
     const d = await r.json();
-    mostrarAviso(d.ok ? (d.eliminada ? 'Eliminada' : 'Restaurada') : 'No se pudo guardar');
+    mostrarAviso(d.ok ? (d.eliminada ? 'Eliminada' : 'Restaurada') : ('No se pudo guardar: ' + (d.detalle || '?')));
     if (d.ok) setTimeout(() => window.location.reload(), 500);
   } catch (e) { mostrarAviso('Error de red'); }
 }
@@ -750,6 +795,7 @@ PLANTILLA_PANEL = """
     <h1>Automatización de ingesta en X</h1>
     """ + nav("automatizacion") + """
   </header>
+  {% if error %}<div class="banner-error"><strong>No se pudo guardar</strong>{{ error }}</div>{% endif %}
   <main>
   <div class="tarjeta2">
     <form method="post" action="{{ url_for('ejecutar') }}">
@@ -801,6 +847,7 @@ PLANTILLA_BUSCAR_X = """
     <h1>Buscar en X</h1>
     """ + nav("buscar") + """
   </header>
+  {% if error %}<div class="banner-error"><strong>No se pudo guardar</strong>{{ error }}</div>{% endif %}
   <main>
   <div class="tarjeta2">
     <p style="font-size:0.8rem;color:#746c60;margin-top:0;">
@@ -865,8 +912,15 @@ PLANTILLA_BUSCAR_X = """
   {% endfor %}
   </main>
 </div>
+<div class="aviso" id="aviso">Guardado</div>
 
 <script>
+function mostrarAviso(texto) {
+  const el = document.getElementById('aviso');
+  el.textContent = texto;
+  el.classList.add('visible');
+  setTimeout(() => el.classList.remove('visible'), texto.length > 40 ? 5000 : 1300);
+}
 const TEXTO_PREDETERMINADO_ESTILO = {{ texto_predeterminado | tojson }};
 const CALIFICADOR_OCASION = {{ calificador_ocasion | tojson }};
 
@@ -897,9 +951,11 @@ async function cancelarBusqueda(id, btn) {
     if (d.ok) {
       window.location.reload();
     } else {
+      mostrarAviso('No se pudo cancelar: ' + (d.detalle || d.error || '?'));
       btn.disabled = false;
     }
   } catch (e) {
+    mostrarAviso('Error de red');
     btn.disabled = false;
   }
 }
