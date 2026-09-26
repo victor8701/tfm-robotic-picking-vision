@@ -1113,7 +1113,7 @@
   "u_1790274260305": {
     "categoria_final": "clasico_tradicional",
     "categoria_ia": "old_money",
-    "eliminada": false,
+    "eliminada": true,
     "imagen": null,
     "ocasion_final": null,
     "origen": "autor",
