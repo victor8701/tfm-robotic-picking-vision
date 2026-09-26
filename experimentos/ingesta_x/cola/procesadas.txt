@@ -23,3 +23,10 @@
 2026-09-26T12:38:59.942127+00:00 | alternativo_geek | https://x.com/TeamLiquid/status/1436404361916149760 | ok:1_foto
 2026-09-26T12:39:01.541049+00:00 | alternativo_geek | https://x.com/TeamLiquid/status/2017311998380474560 | ok:2_foto
 2026-09-26T12:39:02.510752+00:00 | alternativo_geek | https://x.com/G2esports/status/1878759033198534834 | ok:1_foto
+2026-09-26T12:49:23.672712+00:00 | alternativo_geek | https://x.com/AndrezPerry/status/1095362196371136512 | ok:2_foto
+2026-09-26T12:49:24.084414+00:00 | alternativo_geek | https://x.com/PlayerClothing_/status/1020013865764089856?lang=ar | ok:1_foto
+2026-09-26T12:49:24.451552+00:00 | alternativo_geek | https://x.com/iamaiistudio/status/2057251524368322856 | ok:1_foto
+2026-09-26T12:49:24.721530+00:00 | alternativo_geek | https://x.com/Lei_Takanashi/status/1812980686653170103 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-26T12:49:25.518513+00:00 | alternativo_geek | https://x.com/dieworkwear/status/1849549649398702149 | ok:4_foto
+2026-09-26T12:49:25.760212+00:00 | alternativo_geek | https://x.com/dieworkwear/status/1853306411469734298 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-26T12:49:26.193320+00:00 | alternativo_geek | https://x.com/i/status/2065462280502866175 | ok:1_foto
