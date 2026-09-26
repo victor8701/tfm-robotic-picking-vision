@@ -1,0 +1,17 @@
+{
+  "sol_1790418515887": {
+    "cantidad": 10,
+    "creado_en": "2026-09-26T10:28:36.307849+00:00",
+    "estado": "pendiente",
+    "estilo": "lujo_ostentoso",
+    "modo": "automatico",
+    "ocasion": "ninguna",
+    "pasos": [
+      {
+        "texto": "Solicitud creada, esperando a que GitHub Actions la recoja.",
+        "ts": "2026-09-26T10:28:36.307834+00:00"
+      }
+    ],
+    "texto_busqueda": "logomania luxury streetwear outfit real photos"
+  }
+}
