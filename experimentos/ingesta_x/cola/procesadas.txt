@@ -1,2 +1,25 @@
 2026-09-25T09:35:39.903719+00:00 | old_money | https://x.com/dieworkwear/status/1594104516035667969 | fallo_permanente:post no accesible (borrado/privado/bloqueado)
 2026-09-25T09:35:49.160995+00:00 | urbano | https://x.com/c_tangana/status/1540026827309293576 | ok:1_foto
+2026-09-26T12:38:48.003611+00:00 | old_money | https://twitter.com/sshesanangel/status/1651578809295024130 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-26T12:38:48.242859+00:00 | old_money | https://x.com/dieworkwear/status/1625240779508834304?lang=en | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-26T12:38:48.466916+00:00 | old_money | https://twitter.com/RMRStyle/status/1759928393867374897 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-26T12:38:48.707890+00:00 | old_money | https://x.com/sidona/status/2031903551505776832 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-26T12:38:49.120757+00:00 | old_money | https://x.com/vantsreve/status/1972680424812847605 | ok:1_foto
+2026-09-26T12:38:49.357331+00:00 | old_money | https://x.com/sidona/status/2025060194687090858 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-26T12:38:49.604174+00:00 | old_money | https://x.com/MSN_Money/status/1907100854231982408 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-26T12:38:49.807588+00:00 | old_money | https://x.com/oldmoneygo/status/1957434817554911251 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-26T12:38:50.837584+00:00 | old_money | https://x.com/dieworkwear/status/2069299331065344316 | ok:4_foto
+2026-09-26T12:38:53.307406+00:00 | old_money | https://x.com/SizzlingStills/status/2094372374321967382?launch_app_store=true&ct=engagement_generic | ok:9_video
+2026-09-26T12:38:53.861953+00:00 | old_money | https://x.com/oye_samia/status/2089449343988432933 | ok:2_foto
+2026-09-26T12:38:54.775397+00:00 | old_money | https://x.com/dieworkwear/status/1691290335580971009 | ok:4_foto
+2026-09-26T12:38:55.216967+00:00 | bohemio | https://x.com/KibohoKimonos/status/1006812723852857349 | ok:1_foto
+2026-09-26T12:38:55.622216+00:00 | bohemio | https://x.com/AvelyrahnAI/status/2062468123178271007 | ok:1_foto
+2026-09-26T12:38:55.868053+00:00 | bohemio | https://x.com/savbrads/status/2090876050733486331 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-26T12:38:56.432754+00:00 | bohemio | https://x.com/techhalla/status/1669450977202651136 | ok:2_foto
+2026-09-26T12:38:57.111060+00:00 | bohemio | https://x.com/mrgreen/status/1646517066500014083 | ok:2_foto
+2026-09-26T12:38:57.505056+00:00 | bohemio | https://x.com/mchburton/status/956253396314546176/photo/1 | ok:1_foto
+2026-09-26T12:38:59.060509+00:00 | alternativo_geek | https://x.com/G2esports/status/1846599503136068067 | ok:4_foto
+2026-09-26T12:38:59.448259+00:00 | alternativo_geek | https://x.com/FaZeEsports/status/1981040438912983421 | ok:1_foto
+2026-09-26T12:38:59.942127+00:00 | alternativo_geek | https://x.com/TeamLiquid/status/1436404361916149760 | ok:1_foto
+2026-09-26T12:39:01.541049+00:00 | alternativo_geek | https://x.com/TeamLiquid/status/2017311998380474560 | ok:2_foto
+2026-09-26T12:39:02.510752+00:00 | alternativo_geek | https://x.com/G2esports/status/1878759033198534834 | ok:1_foto

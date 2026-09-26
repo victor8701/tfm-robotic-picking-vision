@@ -1,15 +1,3 @@
 # Una URL de X (x.com/usuario/status/ID) por linea.
 # Las lineas vacias o que empiezan por # se ignoran.
 # La Action mueve cada URL procesada a procesadas.txt automaticamente.
-https://twitter.com/sshesanangel/status/1651578809295024130
-https://x.com/dieworkwear/status/1625240779508834304?lang=en
-https://twitter.com/RMRStyle/status/1759928393867374897
-https://x.com/sidona/status/2031903551505776832
-https://x.com/vantsreve/status/1972680424812847605
-https://x.com/sidona/status/2025060194687090858
-https://x.com/MSN_Money/status/1907100854231982408
-https://x.com/oldmoneygo/status/1957434817554911251
-https://x.com/dieworkwear/status/2069299331065344316
-https://x.com/SizzlingStills/status/2094372374321967382?launch_app_store=true&ct=engagement_generic
-https://x.com/oye_samia/status/2089449343988432933
-https://x.com/dieworkwear/status/1691290335580971009
