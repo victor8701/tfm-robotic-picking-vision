@@ -245,7 +245,7 @@
   "sol_1790426851904": {
     "cantidad": 15,
     "creado_en": "2026-09-26T12:47:32.396643+00:00",
-    "estado": "buscando",
+    "estado": "completado",
     "estilo": "alternativo_geek",
     "modo": "automatico",
     "ocasion": "ninguna",
@@ -261,8 +261,13 @@
       {
         "texto": "Tavily encontró 20 resultado(s), aplicando filtro...",
         "ts": "2026-09-26T12:47:53.046702+00:00"
+      },
+      {
+        "texto": "Encontradas 7 URL(s) nuevas, añadidas a la cola de 'alternativo_geek'. Descartadas 13 (repetidas, no válidas, o coincidían con la lista de palabras a evitar).",
+        "ts": "2026-09-26T12:47:54.628028+00:00"
       }
     ],
-    "texto_busqueda": "geek gamer streetwear outfit real photos"
+    "texto_busqueda": "geek gamer streetwear outfit real photos",
+    "urls_encontradas": 7
   }
 }
