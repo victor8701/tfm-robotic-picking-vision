@@ -34,6 +34,7 @@ import shutil
 import subprocess
 import sys
 from datetime import datetime, timezone
+from typing import Callable
 from pathlib import Path
 
 import requests
@@ -105,23 +106,46 @@ def cargar_solicitudes() -> dict:
     return json.loads(RUTA_SOLICITUDES.read_text(encoding="utf-8"))
 
 
-def guardar_y_commitear(solicitudes: dict, mensaje: str) -> None:
-    RUTA_SOLICITUDES.parent.mkdir(parents=True, exist_ok=True)
-    RUTA_SOLICITUDES.write_text(
-        json.dumps(solicitudes, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
-    )
+MAX_INTENTOS_PUSH = 5
+
+
+def guardar_con_reintentos(preparar: Callable[[], None], mensaje: str) -> None:
+    """Llama a `preparar` (que debe escribir en disco lo que haga falta -- actualizar
+    solicitudes_x.json y, si toca, añadir URLs a la cola) y lo commitea/pushea. Si el push
+    falla, reintenta desde cero: reset duro al último estado remoto y se vuelve a llamar a
+    `preparar` sobre esa versión fresca, antes de reintentar.
+
+    Por qué hace falta: visto en real -- si se lanzan dos búsquedas casi a la vez, sus dos
+    ejecuciones de GitHub Actions pueden intentar avanzar la rama al mismo tiempo; la segunda
+    en llegar se quedaba con el push rechazado y, como el propio manejo de errores también
+    intentaba pushear, se quedaba sin poder guardar ni su propio mensaje de error -- la
+    solicitud se veía atascada en "pendiente" para siempre, sin ninguna pista. Reintentar sobre
+    el estado fresco evita que una ejecución pise el progreso de la otra."""
     _git("config", "user.name", "github-actions[bot]")
     _git("config", "user.email", "github-actions[bot]@users.noreply.github.com")
-    # RUTA_COLA puede no existir todavía en un checkout nuevo -- 'git add' de una ruta
-    # inexistente falla y tira abajo todo el script, así que solo se añade si está.
-    rutas = [str(RUTA_SOLICITUDES)]
-    if RUTA_COLA.exists():
-        rutas.append(str(RUTA_COLA))
-    _git("add", *rutas)
-    if _hay_cambios_staged():
+
+    for intento in range(MAX_INTENTOS_PUSH):
+        preparar()
+        # RUTA_COLA puede no existir todavía en un checkout nuevo -- 'git add' de una ruta
+        # inexistente falla y tira abajo todo el script, así que solo se añade si está.
+        rutas = [str(RUTA_SOLICITUDES)]
+        if RUTA_COLA.exists():
+            rutas.append(str(RUTA_COLA))
+        _git("add", *rutas)
+        if not _hay_cambios_staged():
+            return
         _git("commit", "-m", mensaje)
-        _git("push")
+
+        resultado_push = subprocess.run(["git", "push"], cwd=RAIZ_REPO)
+        if resultado_push.returncode == 0:
+            return
+        if intento == MAX_INTENTOS_PUSH - 1:
+            raise ErrorBusqueda(
+                f"No se pudo hacer push tras {MAX_INTENTOS_PUSH} intentos (probablemente otra "
+                "búsqueda se lanzó casi a la vez y ganó la carrera cada vez)"
+            )
+        _git("fetch", "origin")
+        _git("reset", "--hard", "@{u}")
 
 
 def añadir_paso(solicitud: dict, texto: str) -> None:
@@ -267,6 +291,22 @@ def añadir_a_cola(estilo: str, urls_nuevas: list[str]) -> None:
             f.write(url + "\n")
 
 
+def _escribir_solicitudes_json(datos: dict) -> None:
+    RUTA_SOLICITUDES.parent.mkdir(parents=True, exist_ok=True)
+    RUTA_SOLICITUDES.write_text(
+        json.dumps(datos, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+
+
+def _guardar_solo_solicitud(id_solicitud: str, solicitud: dict) -> None:
+    """Se llama de nuevo en cada reintento -- por eso vuelve a leer el fichero fresco cada vez
+    en vez de reusar un `solicitudes` cargado una sola vez al principio."""
+    datos = cargar_solicitudes()
+    datos[id_solicitud] = solicitud
+    _escribir_solicitudes_json(datos)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--solicitud-id", required=True)
@@ -280,13 +320,19 @@ def main() -> int:
 
     if solicitud.get("estado") == "cancelada":
         añadir_paso(solicitud, "Cancelada antes de empezar a buscar, no se hace nada.")
-        guardar_y_commitear(solicitudes, f"buscar_x: {args.solicitud_id} cancelada antes de empezar")
+        guardar_con_reintentos(
+            lambda: _guardar_solo_solicitud(args.solicitud_id, solicitud),
+            f"buscar_x: {args.solicitud_id} cancelada antes de empezar",
+        )
         return 0
 
     try:
         solicitud["estado"] = "buscando"
         añadir_paso(solicitud, "Buscando en la web con Tavily...")
-        guardar_y_commitear(solicitudes, f"buscar_x: {args.solicitud_id} empieza a buscar")
+        guardar_con_reintentos(
+            lambda: _guardar_solo_solicitud(args.solicitud_id, solicitud),
+            f"buscar_x: {args.solicitud_id} empieza a buscar",
+        )
 
         cantidad = int(solicitud.get("cantidad", 8))
         resultados_tavily = consultar_tavily(solicitud["texto_busqueda"], cantidad)
@@ -295,12 +341,18 @@ def main() -> int:
             solicitud["estado"] = "completado"
             solicitud["urls_encontradas"] = 0
             añadir_paso(solicitud, "Tavily no encontró ningún resultado en x.com/twitter.com para este texto.")
-            guardar_y_commitear(solicitudes, f"buscar_x: {args.solicitud_id} completado (0 resultados)")
+            guardar_con_reintentos(
+                lambda: _guardar_solo_solicitud(args.solicitud_id, solicitud),
+                f"buscar_x: {args.solicitud_id} completado (0 resultados)",
+            )
             print("Sin resultados de Tavily.")
             return 0
 
         añadir_paso(solicitud, f"Tavily encontró {len(resultados_tavily)} resultado(s), pidiendo a Claude que filtre...")
-        guardar_y_commitear(solicitudes, f"buscar_x: {args.solicitud_id} filtrando con Claude")
+        guardar_con_reintentos(
+            lambda: _guardar_solo_solicitud(args.solicitud_id, solicitud),
+            f"buscar_x: {args.solicitud_id} filtrando con Claude",
+        )
 
         lista_candidatas = "\n\n".join(
             f"{i + 1}. URL: {r.get('url', '')}\n   Título: {r.get('title', '')}\n   Fragmento: {r.get('content', '')[:300]}"
@@ -314,7 +366,6 @@ def main() -> int:
         respuesta = ejecutar_claude(prompt_usuario)
         candidatas = respuesta.get("encontradas") or []
 
-        ya_en_cola = urls_ya_en_cola(solicitud["estilo"])
         validas: list[str] = []
         descartadas = 0
         for item in candidatas:
@@ -322,31 +373,42 @@ def main() -> int:
             if not RE_URL_TWEET.match(url):
                 descartadas += 1
                 continue
-            if url in ya_en_cola or url in validas:
+            if url in validas:
                 descartadas += 1
                 continue
             validas.append(url)
 
-        if validas:
-            añadir_a_cola(solicitud["estilo"], validas)
-
         solicitud["estado"] = "completado"
-        solicitud["urls_encontradas"] = len(validas)
-        resumen = f"Encontradas {len(validas)} URL(s) nuevas, añadidas a la cola de '{solicitud['estilo']}'."
-        if descartadas:
-            resumen += f" Descartadas {descartadas} (repetidas o no eran una publicación válida)."
-        añadir_paso(solicitud, resumen)
-        guardar_y_commitear(solicitudes, f"buscar_x: {args.solicitud_id} completado ({len(validas)} URLs)")
-        print(resumen)
+        resumen_base = f"Descartadas {descartadas} (repetidas o no eran una publicación válida)." if descartadas else ""
+
+        def _guardar_final() -> None:
+            # Se recalcula qué es "ya en cola" en cada intento -- puede haber cambiado si otra
+            # ejecución concurrente (misma estilo) escribió primero en este reintento.
+            ya_en_cola = urls_ya_en_cola(solicitud["estilo"])
+            nuevas = [u for u in validas if u not in ya_en_cola]
+            if nuevas:
+                añadir_a_cola(solicitud["estilo"], nuevas)
+            solicitud["urls_encontradas"] = len(nuevas)
+            resumen = f"Encontradas {len(nuevas)} URL(s) nuevas, añadidas a la cola de '{solicitud['estilo']}'. {resumen_base}".strip()
+            # Si esta es la segunda vez que se llama (reintento tras un push rechazado),
+            # sustituye el resumen ya añadido en vez de duplicarlo.
+            if solicitud["pasos"] and solicitud["pasos"][-1]["texto"].startswith("Encontradas "):
+                solicitud["pasos"][-1] = {"ts": _ahora(), "texto": resumen}
+            else:
+                añadir_paso(solicitud, resumen)
+            _guardar_solo_solicitud(args.solicitud_id, solicitud)
+
+        guardar_con_reintentos(_guardar_final, f"buscar_x: {args.solicitud_id} completado")
+        print(f"Completado: {len(validas)} URL(s) válidas encontradas.")
         return 0
 
     except Exception as exc:  # noqa: BLE001 -- se registra cualquier fallo, nunca se queda callado
-        solicitudes = cargar_solicitudes()  # recargar por si acaso, aunque no debería haber cambiado
-        solicitud = solicitudes.get(args.solicitud_id, solicitud)
         solicitud["estado"] = "error"
         añadir_paso(solicitud, f"Error: {exc}")
-        solicitudes[args.solicitud_id] = solicitud
-        guardar_y_commitear(solicitudes, f"buscar_x: {args.solicitud_id} fallo")
+        guardar_con_reintentos(
+            lambda: _guardar_solo_solicitud(args.solicitud_id, solicitud),
+            f"buscar_x: {args.solicitud_id} fallo",
+        )
         print(f"Error en la solicitud {args.solicitud_id}: {exc}", file=sys.stderr)
         return 1
 
