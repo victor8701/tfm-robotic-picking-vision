@@ -141,6 +141,10 @@
       {
         "texto": "Buscando en la web con Tavily...",
         "ts": "2026-09-26T12:33:22.962855+00:00"
+      },
+      {
+        "texto": "Tavily encontró 20 resultado(s), aplicando filtro...",
+        "ts": "2026-09-26T12:33:24.511664+00:00"
       }
     ],
     "texto_busqueda": "old money aesthetic outfit quiet luxury real photos"
