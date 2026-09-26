@@ -157,5 +157,20 @@
     ],
     "texto_busqueda": "old money aesthetic outfit quiet luxury real photos",
     "urls_encontradas": 12
+  },
+  "sol_1790426017276": {
+    "cantidad": 15,
+    "creado_en": "2026-09-26T12:33:37.724414+00:00",
+    "estado": "pendiente",
+    "estilo": "old_money",
+    "modo": "automatico",
+    "ocasion": "ninguna",
+    "pasos": [
+      {
+        "texto": "Solicitud creada, esperando a que GitHub Actions la recoja.",
+        "ts": "2026-09-26T12:33:37.724400+00:00"
+      }
+    ],
+    "texto_busqueda": "old money aesthetic outfit quiet luxury real photos"
   }
 }
