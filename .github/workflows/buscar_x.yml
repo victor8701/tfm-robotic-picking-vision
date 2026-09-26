@@ -21,18 +21,11 @@ jobs:
         with:
           python-version: '3.11'
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
       - name: Instalar dependencias
-        run: |
-          pip install -r experimentos/ingesta_x/requirements.txt
-          npm install -g @anthropic-ai/claude-code
+        run: pip install -r experimentos/ingesta_x/requirements.txt
 
-      - name: Buscar en X (Tavily) y filtrar con Claude, encolando las URLs elegidas
+      - name: Buscar en X con Tavily y encolar las URLs elegidas
         env:
-          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
         run: |
           python3 experimentos/ingesta_x/herramientas/buscar_x.py \

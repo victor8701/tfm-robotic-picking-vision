@@ -7,13 +7,15 @@ Una sola app con una URL propia. Tres partes:
   completo al artefacto de claude.ai que se usaba antes — mismos datos, migrados una vez.
 - **Buscar en X (`/buscar-x`)**: pedir una búsqueda (estilo, ocasión opcional, texto tuyo o
   predeterminado o automático) para encontrar publicaciones reales de X y añadirlas a la cola de
-  descarga. Dispara el workflow "Buscar en X", que busca en dos pasos: primero **Tavily**
-  (capa gratuita, sin tarjeta) encuentra URLs reales en x.com/twitter.com; luego **Claude Code**
-  en modo no interactivo (tu token de suscripción, `CLAUDE_CODE_OAUTH_TOKEN`, sin ninguna
-  herramienta activada) elige/filtra cuáles encajan de verdad con el estilo pedido. Se separó
-  así porque la búsqueda web de Claude sí gasta saldo de pago aparte de la suscripción — lo
-  comprobamos en real — mientras que Tavily es gratis y la parte de Claude, sin herramientas, sí
-  está cubierta por la suscripción igual que en `viral_clips`. El estado de cada búsqueda
+  descarga. Dispara el workflow "Buscar en X", que busca con **Tavily** (capa gratuita, sin
+  tarjeta), acotado a x.com/twitter.com, y aplica un filtro mecánico simple (lista de palabras a
+  evitar tipo "cosplay"/"resultado del partido", más quedarse con las URLs con forma de
+  publicación real) antes de encolarlas. No pasa por Claude: se probó primero con Claude Code
+  filtrando (sin ninguna herramienta, autenticado con tu suscripción) y aun así consumía saldo
+  de crédito de pago de la API — confirmado con el dueño de la cuenta que solo tiene el plan Pro
+  mensual, sin saldo cargado, así que se quitó del todo para que esto sea gratis de verdad. El
+  filtro mecánico es más flojo que el de un LLM (puede colar algo de ruido); lo que sobre se
+  descarta a mano con el botón ✕ de la galería. El estado de cada búsqueda
   (pendiente/buscando/completado/error) se actualiza aquí según avanza el workflow.
 - **Automatización de X (`/automatizacion`)**: ver la cola pendiente, disparar la Action ya
   mismo, cambiar el horario (`activo`/`hora_local`/`zona_horaria`) sin entrar en GitHub a mano.
@@ -48,15 +50,11 @@ no algo que se pueda automatizar desde aquí.
    - `PANEL_PASSWORD`: la contraseña que quieras para entrar al panel (es una URL pública en el
      plan gratuito de Render, sin contraseña la vería cualquiera que la encontrara).
 4. Deploy. Render te da una URL tipo `https://ingesta-x-panel.onrender.com` — esa es la app.
-5. **Para que funcione "Buscar en X"**, añade DOS secretos a este repo (Settings → Secrets and
-   variables → **Actions** → New repository secret — son secretos de GitHub, no de Render):
-   - `CLAUDE_CODE_OAUTH_TOKEN`: si ya lo generaste para `viral_clips`, reutiliza el mismo valor
-     (es tu token de suscripción, no está atado a un repo concreto); si no, genéralo con
-     `claude setup-token` (necesitas el CLI de Claude Code instalado en tu PC:
-     `npm install -g @anthropic-ai/claude-code`).
-   - `TAVILY_API_KEY`: gratis, sin tarjeta, 1000 búsquedas/mes — créala en
-     [tavily.com](https://tavily.com), plan "Researcher"/free, y copia la API key (empieza por
-     `tvly-`).
+5. **Para que funcione "Buscar en X"**, añade un secreto a este repo (Settings → Secrets and
+   variables → **Actions** → New repository secret — es un secreto de GitHub, no de Render):
+   `TAVILY_API_KEY`, gratis, sin tarjeta, 1000 búsquedas/mes — créala en
+   [tavily.com](https://tavily.com), plan "Researcher"/free (ojo, no el plan "Pay as you go" que
+   sale primero: ese sí es de pago), y copia la API key (empieza por `tvly-`).
 
    El repo tiene también permisos que revisar en el token de GitHub del paso 1: en
    [github.com/settings/tokens?type=beta](https://github.com/settings/tokens?type=beta) →
@@ -65,8 +63,8 @@ no algo que se pueda automatizar desde aquí.
    más que con un "no se pudo guardar" genérico si el token es antiguo; ahora sí debería avisar
    con el motivo real que dé GitHub.
 
-   Sin cualquiera de estos secretos, las búsquedas se quedan en estado "error" — el panel te
-   mostrará el motivo exacto en el paso correspondiente en vez de fallar en silencio.
+   Sin `TAVILY_API_KEY`, las búsquedas se quedan en estado "error" — el panel te mostrará el
+   motivo exacto en el paso correspondiente en vez de fallar en silencio.
 
 **Aviso del plan gratuito de Render**: si nadie la visita en 15 minutos, el servicio se "duerme"
 y la primera visita después tarda ~30-60s en despertar (normal, no está roto). Esto no afecta a
