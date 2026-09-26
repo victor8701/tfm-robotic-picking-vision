@@ -95,10 +95,6 @@ CABECERAS = {
     "X-GitHub-Api-Version": "2022-11-28",
 }
 
-# Cache en memoria de data/clasificaciones.json -- 1 solo worker de gunicorn (ver Procfile /
-# comando de arranque), si no cada worker tendría su propia copia y se desincronizarían.
-_CACHE = {"datos": None, "sha": None}
-
 
 def requiere_login(f):
     @wraps(f)
@@ -170,27 +166,26 @@ def obtener_sha_actual(ruta: str) -> str | None:
     return r.json().get("sha") if r.status_code == 200 else None
 
 
-# --- Datos de clasificación (cache + escritura al repo) ---
+# --- Datos de clasificación (siempre frescos, escritura al repo) ---
+#
+# Sin caché en memoria a propósito -- la tuvo hasta hace poco, y ese fue exactamente el motivo
+# de que las fotos que importa la Action de ingesta_x.yml (con git normal, no con esta API) no
+# aparecieran en la galería: un worker de Render que lleva un rato despierto se había quedado
+# con la foto vieja de clasificaciones.json en memoria, sin enterarse de los commits nuevos.
+# Mismo criterio que ya se aplicaba en solicitudes_x.json.
 
-def cargar_datos() -> dict:
-    if _CACHE["datos"] is None:
-        resultado = leer_contenido_repo(RUTA_DATOS)
-        if resultado:
-            contenido, sha = resultado
-            _CACHE["datos"] = json.loads(contenido)
-            _CACHE["sha"] = sha
-        else:
-            _CACHE["datos"] = {}
-            _CACHE["sha"] = None
-    return _CACHE["datos"]
+def cargar_datos() -> tuple[dict, str | None]:
+    resultado = leer_contenido_repo(RUTA_DATOS)
+    if resultado:
+        contenido, sha = resultado
+        return json.loads(contenido), sha
+    return {}, None
 
 
-def guardar_datos(mensaje: str) -> tuple[bool, str]:
-    contenido = json.dumps(_CACHE["datos"], ensure_ascii=False, indent=2, sort_keys=True).encode("utf-8")
-    ok, detalle = escribir_repo(RUTA_DATOS, contenido, mensaje, _CACHE["sha"])
-    if ok:
-        _CACHE["sha"] = obtener_sha_actual(RUTA_DATOS)
-    else:
+def guardar_datos(datos: dict, sha: str | None, mensaje: str) -> tuple[bool, str]:
+    contenido = json.dumps(datos, ensure_ascii=False, indent=2, sort_keys=True).encode("utf-8")
+    ok, detalle = escribir_repo(RUTA_DATOS, contenido, mensaje, sha)
+    if not ok:
         print(f"guardar_datos: {detalle}", file=sys.stderr)
     return ok, detalle
 
@@ -208,7 +203,7 @@ def ocasion_actual(item: dict) -> str:
 @app.route("/")
 @requiere_login
 def galeria():
-    datos = cargar_datos()
+    datos, _ = cargar_datos()
     filtro_origen = request.args.get("origen", "todas")
     filtro_revision = request.args.get("revision", "todas")
 
@@ -259,36 +254,36 @@ def galeria():
 @app.route("/clasificar/<iid>", methods=["POST"])
 @requiere_login
 def clasificar(iid):
-    datos = cargar_datos()
+    datos, sha = cargar_datos()
     if iid not in datos:
         return jsonify({"ok": False, "error": "no existe"}), 404
     valor = request.json.get("categoria")
     datos[iid]["categoria_final"] = valor
     datos[iid]["revisada"] = True
-    ok, detalle = guardar_datos(f"panel: clasifica {iid} -> {valor}")
+    ok, detalle = guardar_datos(datos, sha, f"panel: clasifica {iid} -> {valor}")
     return jsonify({"ok": ok, "detalle": detalle})
 
 
 @app.route("/ocasion/<iid>", methods=["POST"])
 @requiere_login
 def ocasion(iid):
-    datos = cargar_datos()
+    datos, sha = cargar_datos()
     if iid not in datos:
         return jsonify({"ok": False, "error": "no existe"}), 404
     valor = request.json.get("ocasion")
     datos[iid]["ocasion_final"] = None if valor == "ninguna" else valor
-    ok, detalle = guardar_datos(f"panel: ocasion {iid} -> {valor}")
+    ok, detalle = guardar_datos(datos, sha, f"panel: ocasion {iid} -> {valor}")
     return jsonify({"ok": ok, "detalle": detalle})
 
 
 @app.route("/eliminar/<iid>", methods=["POST"])
 @requiere_login
 def eliminar(iid):
-    datos = cargar_datos()
+    datos, sha = cargar_datos()
     if iid not in datos:
         return jsonify({"ok": False, "error": "no existe"}), 404
     datos[iid]["eliminada"] = not datos[iid]["eliminada"]
-    ok, detalle = guardar_datos(f"panel: {'elimina' if datos[iid]['eliminada'] else 'restaura'} {iid}")
+    ok, detalle = guardar_datos(datos, sha, f"panel: {'elimina' if datos[iid]['eliminada'] else 'restaura'} {iid}")
     return jsonify({"ok": ok, "eliminada": datos[iid]["eliminada"], "detalle": detalle})
 
 
@@ -297,7 +292,7 @@ def eliminar(iid):
 def subir():
     categoria = request.form.get("categoria")
     archivos = request.files.getlist("fotos")
-    datos = cargar_datos()
+    datos, sha = cargar_datos()
     subidas = 0
     ultimo_error = ""
     for f in archivos:
@@ -321,7 +316,7 @@ def subir():
         }
         subidas += 1
     if subidas:
-        ok, detalle = guardar_datos(f"panel: sube {subidas} foto(s) a {categoria}")
+        ok, detalle = guardar_datos(datos, sha, f"panel: sube {subidas} foto(s) a {categoria}")
         if not ok:
             ultimo_error = detalle
     if ultimo_error and not subidas:
@@ -333,12 +328,10 @@ def subir():
 
 # --- Buscar en X: encola una solicitud y dispara el workflow "Buscar en X" ---
 #
-# A diferencia de clasificaciones.json (que solo escribe este panel), solicitudes_x.json lo
-# escriben DOS cosas a la vez: este panel (al crear/cancelar una solicitud) y el propio workflow
-# de GitHub Actions (al pasar de "buscando" a "completado"/"error", con git commit directo, no
-# con esta API). Por eso, a diferencia de cargar_datos()/guardar_datos(), aquí NO se usa una
-# caché en memoria entre peticiones -- se lee fresco de GitHub en cada carga de página, para que
-# el progreso que va escribiendo la Action se vea según avanza y no una foto vieja cacheada.
+# solicitudes_x.json lo escriben DOS cosas a la vez: este panel (al crear/cancelar una
+# solicitud) y el propio workflow de GitHub Actions (al pasar de "buscando" a
+# "completado"/"error", con git commit directo). Igual que clasificaciones.json: siempre se lee
+# fresco de GitHub, sin caché en memoria entre peticiones.
 
 def cargar_solicitudes() -> tuple[dict, str | None]:
     resultado = leer_contenido_repo(RUTA_SOLICITUDES)
