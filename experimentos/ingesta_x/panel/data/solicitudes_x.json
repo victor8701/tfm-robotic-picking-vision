@@ -189,7 +189,7 @@
   "sol_1790426176402": {
     "cantidad": 15,
     "creado_en": "2026-09-26T12:36:16.641634+00:00",
-    "estado": "pendiente",
+    "estado": "buscando",
     "estilo": "old_money",
     "modo": "automatico",
     "ocasion": "ninguna",
@@ -197,6 +197,10 @@
       {
         "texto": "Solicitud creada, esperando a que GitHub Actions la recoja.",
         "ts": "2026-09-26T12:36:16.641621+00:00"
+      },
+      {
+        "texto": "Buscando en la web con Tavily...",
+        "ts": "2026-09-26T12:36:32.576663+00:00"
       }
     ],
     "texto_busqueda": "old money aesthetic outfit quiet luxury real photos"
