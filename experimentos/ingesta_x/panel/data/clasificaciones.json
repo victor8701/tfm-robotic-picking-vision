@@ -2324,7 +2324,7 @@
   "x_1895353737054691735_1": {
     "categoria_final": "urbano",
     "categoria_ia": "urbano",
-    "eliminada": false,
+    "eliminada": true,
     "fuente": "@MHKogath (X)",
     "fuente_url": "https://x.com/MHKogath/status/1895353737054691735",
     "imagen": "x_1895353737054691735_1.jpg",
