@@ -48,3 +48,10 @@
 2026-09-27T14:23:48.749499+00:00 | urbano | https://x.com/MHKogath/status/1895353737054691735 | ok:1_foto
 2026-09-27T14:23:49.739796+00:00 | urbano | https://x.com/MHKogath/status/2033482013379100698?lang=en | ok:1_foto
 2026-09-27T14:23:50.720908+00:00 | urbano | https://twitter.com/shodamonkas/status/1067012227528646657 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T14:34:21.107285+00:00 | lujo_ostentoso | https://x.com/InStyle/status/1998233680012042356 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T14:34:21.211405+00:00 | lujo_ostentoso | https://x.com/satyaXBT/status/2056200296263712855 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T14:34:21.320089+00:00 | lujo_ostentoso | https://x.com/TechieBySA/status/2051378461034381319 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T14:34:21.546197+00:00 | lujo_ostentoso | https://x.com/ComplexStyle/status/2008639480568131789 | ok:1_foto
+2026-09-27T14:34:21.689510+00:00 | lujo_ostentoso | https://x.com/sfastlicht/status/2009511823171518820 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T14:34:21.908638+00:00 | lujo_ostentoso | https://twitter.com/ocoutfits/status/1371894664505262080 | ok:1_foto
+2026-09-27T14:34:22.014477+00:00 | lujo_ostentoso | https://x.com/OCModeling/status/1976948757959983464?lang=en | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)

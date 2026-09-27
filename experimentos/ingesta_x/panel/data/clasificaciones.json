@@ -2046,6 +2046,17 @@
     "origen": "claude",
     "revisada": true
   },
+  "x_1371894664505262080_1": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "fuente": "@OCOutfits (X)",
+    "fuente_url": "https://twitter.com/ocoutfits/status/1371894664505262080",
+    "imagen": "x_1371894664505262080_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
   "x_1436404361916149760_1": {
     "categoria_final": "urbano",
     "categoria_ia": "alternativo_geek",
@@ -2691,6 +2702,17 @@
     "fuente": "@FaZeEsports (X)",
     "fuente_url": "https://x.com/FaZeEsports/status/1981040438912983421",
     "imagen": "x_1981040438912983421_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2008639480568131789_1": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "fuente": "@ComplexStyle (X)",
+    "fuente_url": "https://x.com/ComplexStyle/status/2008639480568131789",
+    "imagen": "x_2008639480568131789_1.jpg",
     "ocasion_final": null,
     "origen": "claude",
     "revisada": false
