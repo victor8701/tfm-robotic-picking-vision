@@ -313,6 +313,10 @@
       {
         "texto": "Buscando en la web con Tavily...",
         "ts": "2026-09-27T12:54:35.551967+00:00"
+      },
+      {
+        "texto": "Tavily encontró 20 resultado(s), aplicando filtro...",
+        "ts": "2026-09-27T12:54:39.418597+00:00"
       }
     ],
     "texto_busqueda": "techwear cyberpunk outfit tech accessories real photos"
