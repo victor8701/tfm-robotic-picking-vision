@@ -297,5 +297,20 @@
     ],
     "texto_busqueda": "moda trap español streetwear outfit real night out party look",
     "urls_encontradas": 0
+  },
+  "sol_1790513659183": {
+    "cantidad": 15,
+    "creado_en": "2026-09-27T12:54:19.661295+00:00",
+    "estado": "pendiente",
+    "estilo": "alternativo_geek",
+    "modo": "automatico",
+    "ocasion": "ninguna",
+    "pasos": [
+      {
+        "texto": "Solicitud creada, esperando a que GitHub Actions la recoja.",
+        "ts": "2026-09-27T12:54:19.661255+00:00"
+      }
+    ],
+    "texto_busqueda": "techwear cyberpunk outfit tech accessories real photos"
   }
 }
