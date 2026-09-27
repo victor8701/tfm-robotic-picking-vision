@@ -175,6 +175,15 @@ def ocasion_actual(item: dict) -> str:
 
 # --- Galería: ver, clasificar, ocasión, eliminar, subir ---
 
+# Meta de entrenamiento (2026-09-27): en vez de perseguir "miles de fotos, casi perfectas" --
+# eso es un objetivo de producto, no de TFM -- se fija un número cerrado por estilo. En cuanto
+# se alcance en todos, toca dejar de recolectar y pasar a entrenar el LoRA nuevo con lo que haya
+# (ver [[project-ingesta-viral-clips]]). 60 es una cifra razonable y defendible para demostrar
+# que afinar con fotos reales mejora algo medible frente al catálogo, no una ley fija -- se
+# puede ajustar si hace falta.
+META_FOTOS_POR_ESTILO = 60
+
+
 @app.route("/")
 @requiere_login
 def galeria():
@@ -194,12 +203,25 @@ def galeria():
         return True
 
     grupos = {}
+    confirmadas_por_estilo = {}
     for clave, _ in CATEGORIAS:
         grupos[clave] = [
             {"id": iid, **item} for iid, item in datos.items()
             if not item["eliminada"] and categoria_actual(item) == clave
             and item.get("imagen") and pasa_filtros(item)
         ]
+        # Cuenta hacia la meta cualquier foto revisada por una persona (confirmada tal cual o
+        # corregida a mano) -- ambas son una etiqueta humana válida para entrenar, lo que importa
+        # es que ya no sea una predicción sin verificar. Se calcula sobre TODOS los datos, no
+        # sobre "grupos" (que ya viene filtrado por filtro_origen/filtro_revision de la URL) --
+        # la meta de entrenamiento no depende de qué filtro esté mirando Víctor ahora mismo.
+        confirmadas_por_estilo[clave] = sum(
+            1 for item in datos.values()
+            if not item["eliminada"] and categoria_actual(item) == clave and item.get("revisada")
+        )
+    estilos_en_meta = sum(
+        1 for clave, _ in CATEGORIAS if confirmadas_por_estilo[clave] >= META_FOTOS_POR_ESTILO
+    )
     sin_estilo = [
         {"id": iid, **item} for iid, item in datos.items()
         if not item["eliminada"] and categoria_actual(item) == "ninguna"
@@ -223,6 +245,8 @@ def galeria():
         total=total, sin_imagen=sin_imagen, revisadas=revisadas,
         filtro_origen=filtro_origen, filtro_revision=filtro_revision,
         error=request.args.get("error"), url_fotos_base=URL_FOTOS_BASE,
+        confirmadas_por_estilo=confirmadas_por_estilo, meta_por_estilo=META_FOTOS_POR_ESTILO,
+        estilos_en_meta=estilos_en_meta,
     )
 
 
@@ -580,6 +604,8 @@ ESTILO_PAGINA = """
   .titulo-grupo { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 2px solid #e4ebf1; padding-bottom: 6px; margin-bottom: 10px; }
   .titulo-grupo h2 { font-size: 1rem; margin: 0; font-weight: 800; }
   .titulo-grupo .n { font-size: 0.72rem; color: #746c60; font-variant-numeric: tabular-nums; }
+  .progreso-estilo { margin: -4px 0 10px; }
+  .progreso-estilo.completo span { color: #4f7a56; font-weight: 700; }
   .rejilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
   .tarjeta { position: relative; background: #fff; border: 1px solid #e2dcd0; border-radius: 12px; overflow: hidden;
              box-shadow: 0 1px 2px rgba(33,29,24,.06), 0 8px 24px -12px rgba(33,29,24,.18); display: flex; flex-direction: column; }
@@ -702,6 +728,11 @@ PLANTILLA_GALERIA = """
       <div class="progreso-barra"><div class="progreso-relleno" style="width:{{ (100 * revisadas / total)|round(1) if total else 0 }}%;"></div></div>
       <span>{{ revisadas }} revisadas de {{ total }}</span>
     </div>
+    <div style="font-size:0.72rem;color:#746c60;margin-top:2px;">
+      Meta de entrenamiento: {{ meta_por_estilo }} confirmadas por estilo ·
+      {% if estilos_en_meta == categorias|length %}<strong style="color:#4f7a56;">todos los estilos listos</strong>
+      {% else %}{{ estilos_en_meta }} de {{ categorias|length }} estilos listos{% endif %}
+    </div>
     <div class="filtros">
       <select id="filtro-origen" onchange="cambiarFiltro()">
         <option value="todas" {{ 'selected' if filtro_origen=='todas' }}>Origen: todas</option>
@@ -722,6 +753,10 @@ PLANTILLA_GALERIA = """
     {% for clave, etiqueta in categorias %}
     <section class="grupo">
       <div class="titulo-grupo"><h2>{{ etiqueta }}</h2><span class="n">{{ grupos[clave]|length }}</span></div>
+      <div class="progreso progreso-estilo{{ ' completo' if confirmadas_por_estilo[clave] >= meta_por_estilo }}">
+        <div class="progreso-barra"><div class="progreso-relleno" style="width:{{ (100 * confirmadas_por_estilo[clave] / meta_por_estilo)|round(1) }}%;"></div></div>
+        <span>{{ confirmadas_por_estilo[clave] }} / {{ meta_por_estilo }} confirmadas{{ ' ✓' if confirmadas_por_estilo[clave] >= meta_por_estilo }}</span>
+      </div>
       <div class="rejilla">
         {% if grupos[clave]|length == 0 %}<div class="vacio">Sin fotos en esta categoría.</div>{% endif %}
         {% for item in grupos[clave] %}{{ tarjeta(item) }}{% endfor %}
