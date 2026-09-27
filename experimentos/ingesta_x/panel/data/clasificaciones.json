@@ -2157,7 +2157,7 @@
     "revisada": true
   },
   "x_1386978556736020483_3": {
-    "categoria_final": "alternativo_geek",
+    "categoria_final": "clasico_tradicional",
     "categoria_ia": "alternativo_geek",
     "eliminada": false,
     "fuente": "@TechwearClub (X)",
@@ -2165,7 +2165,7 @@
     "imagen": "x_1386978556736020483_3.jpg",
     "ocasion_final": null,
     "origen": "claude",
-    "revisada": false
+    "revisada": true
   },
   "x_1386978556736020483_4": {
     "categoria_final": "alternativo_geek",
