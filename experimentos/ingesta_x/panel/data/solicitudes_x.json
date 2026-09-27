@@ -369,6 +369,10 @@
       {
         "texto": "Buscando en la web con Tavily...",
         "ts": "2026-09-27T14:32:17.543009+00:00"
+      },
+      {
+        "texto": "Tavily encontró 20 resultado(s), aplicando filtro...",
+        "ts": "2026-09-27T14:32:25.202672+00:00"
       }
     ],
     "texto_busqueda": "logomania luxury streetwear outfit real photos"
