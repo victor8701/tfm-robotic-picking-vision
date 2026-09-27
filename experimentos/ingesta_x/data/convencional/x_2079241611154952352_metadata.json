@@ -1,0 +1,19 @@
+{
+  "fuente": "x_twitter",
+  "tipo_contenido": "foto",
+  "url_original": "https://x.com/SD_Tutorial/status/2079241611154952352",
+  "tweet_id": "2079241611154952352",
+  "cuenta": "SD_Tutorial",
+  "cuenta_nombre": "Stable Diffusion Tutorials",
+  "descripcion": "Krea 2 👕🥼🧥👖 🔁Edit Outfit Transfer Lora\n\n-Transfer clothing from a reference image\n-Works with Krea 2 Edit workflows\n-Preserves the generated character while applying the reference outfit\n-Best results with female outfits\n\n👇\nhttps://t.co/wmBD9u0iGP https://t.co/JLiWOkth0M",
+  "fecha_publicacion": "2026-07-20T16:26:45.000Z",
+  "intervalo_seg": null,
+  "n_imagenes": 4,
+  "imagenes": [
+    "x_2079241611154952352_foto01.jpg",
+    "x_2079241611154952352_foto02.jpg",
+    "x_2079241611154952352_foto03.jpg",
+    "x_2079241611154952352_foto04.jpg"
+  ],
+  "descargado_en": "2026-09-27T15:29:43.104973+00:00"
+}

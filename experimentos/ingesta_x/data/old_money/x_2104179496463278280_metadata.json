@@ -1,0 +1,17 @@
+{
+  "fuente": "x_twitter",
+  "tipo_contenido": "foto",
+  "url_original": "https://x.com/the_real_reason/status/2104179496463278280",
+  "tweet_id": "2104179496463278280",
+  "cuenta": "the_real_reason",
+  "cuenta_nombre": "Reason",
+  "descripcion": "Walk with me through 2027 and 2028. #PhinsUp https://t.co/3Ez7rixoMk",
+  "fecha_publicacion": "2026-09-27T12:01:00.000Z",
+  "intervalo_seg": null,
+  "n_imagenes": 2,
+  "imagenes": [
+    "x_2104179496463278280_foto01.jpg",
+    "x_2104179496463278280_foto02.jpg"
+  ],
+  "descargado_en": "2026-09-27T15:29:27.966199+00:00"
+}

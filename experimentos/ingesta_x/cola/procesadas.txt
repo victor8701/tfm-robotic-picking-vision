@@ -55,3 +55,43 @@
 2026-09-27T14:34:21.689510+00:00 | lujo_ostentoso | https://x.com/sfastlicht/status/2009511823171518820 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
 2026-09-27T14:34:21.908638+00:00 | lujo_ostentoso | https://twitter.com/ocoutfits/status/1371894664505262080 | ok:1_foto
 2026-09-27T14:34:22.014477+00:00 | lujo_ostentoso | https://x.com/OCModeling/status/1976948757959983464?lang=en | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T15:29:27.472349+00:00 | old_money | https://x.com/dieworkwear/status/1625240779508834304?lang=en | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T15:29:27.666739+00:00 | old_money | https://x.com/agadmator/status/2104151893199233189 | ok:1_foto
+2026-09-27T15:29:27.966510+00:00 | old_money | https://x.com/the_real_reason/status/2104179496463278280 | ok:2_foto
+2026-09-27T15:29:28.164048+00:00 | old_money | https://x.com/LordGood_/status/2104194345742004354/photo/1 | ok:1_foto
+2026-09-27T15:29:28.446971+00:00 | old_money | https://x.com/RiseNDraft/status/2104206153848631587/photo/1 | ok:2_foto
+2026-09-27T15:29:28.557794+00:00 | old_money | https://x.com/the_real_reason/status/2104175469448904863 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T15:29:28.831796+00:00 | old_money | https://x.com/OggyOsbourne/status/2104149199256223786/photo/1 | ok:1_foto
+2026-09-27T15:29:29.283971+00:00 | old_money | https://x.com/MissMixi/status/1099660676501368832 | ok:4_foto
+2026-09-27T15:29:29.406480+00:00 | lujo_ostentoso | https://x.com/OCModeling/status/1976948757959983464?lang=en | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T15:29:29.613710+00:00 | clasico_tradicional | https://x.com/looksofaitana/status/2046964926854402242?lang=en | ok:1_foto
+2026-09-27T15:29:29.737810+00:00 | clasico_tradicional | https://x.com/cayetana/status/2095695049065369654 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T15:29:29.842924+00:00 | clasico_tradicional | https://x.com/elle_es/status/1967667345234567609 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T15:29:29.978778+00:00 | clasico_tradicional | https://x.com/L4DYBANSHEE/status/1904186138736128084 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T15:29:30.312670+00:00 | clasico_tradicional | https://x.com/dieworkwear/status/2043139233079255320?lang=en | fallo_temporal:404 Client Error: Not Found for url: https://pbs.twimg.com/media/HFqu0EZbgAADngo.png?format=jpg&name=orig
+2026-09-27T15:29:30.504709+00:00 | clasico_tradicional | https://x.com/estella_rua/status/2095482716053491845 | ok:1_foto
+2026-09-27T15:29:31.081832+00:00 | clasico_tradicional | https://twitter.com/girlspontevedra/status/894917138900758528 | ok:3_foto
+2026-09-27T15:29:31.501019+00:00 | urbano | https://x.com/KusoPhoto/status/2029663243174592705?lang=en | ok:3_foto
+2026-09-27T15:29:31.621569+00:00 | urbano | https://x.com/Laurastar142/status/1960724595696128013?lang=en | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T15:29:31.824114+00:00 | urbano | https://x.com/OWCavalry/status/2021325191259775125 | ok:1_foto
+2026-09-27T15:29:32.128344+00:00 | urbano | https://x.com/thepublishpress/status/1923448032009322793 | ok:2_foto
+2026-09-27T15:29:32.588227+00:00 | urbano | https://x.com/Beta10mods/status/2039711480782995733 | ok:4_foto
+2026-09-27T15:29:32.705094+00:00 | bohemio | https://x.com/voguemagazine/status/1956009988536573984 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T15:29:32.942223+00:00 | bohemio | https://x.com/Cutedressup1/status/1858483413571039660 | ok:1_foto
+2026-09-27T15:29:33.367768+00:00 | bohemio | https://x.com/YuShuXin_Global/status/2042408570399179147 | ok:3_foto
+2026-09-27T15:29:33.482324+00:00 | bohemio | https://x.com/InStyle/status/1938651155531215249 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T15:29:33.569972+00:00 | bohemio | https://x.com/Starryboba28/status/2029028816958763372 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T15:29:33.669653+00:00 | bohemio | https://twitter.com/WhoWhatWearUK/status/1806568595670831203 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T15:29:33.762832+00:00 | bohemio | https://twitter.com/moonlitbohemian/status/1893964666126147968 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T15:29:33.993881+00:00 | bohemio | https://x.com/JohnHartRE/status/1910000031488266493 | ok:1_foto
+2026-09-27T15:29:41.241850+00:00 | alternativo_geek | https://x.com/StreetFighterJA/status/2059409247847522587 | ok:16_video
+2026-09-27T15:29:41.366885+00:00 | alternativo_geek | https://x.com/voguemagazine/status/2044559905248673980 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T15:29:41.497944+00:00 | alternativo_geek | https://x.com/VictoriaFutures/status/2043329530924855589 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T15:29:41.602426+00:00 | alternativo_geek | https://x.com/VictoriaFutures/status/2043329530924855589?lang=en | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T15:29:41.708375+00:00 | alternativo_geek | https://x.com/wsj/status/1345234732804694017?lang=en | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T15:29:42.002937+00:00 | alternativo_geek | https://x.com/KusoPhoto/status/2029663243174592705?lang=en | ok:3_foto
+2026-09-27T15:29:42.193218+00:00 | alternativo_geek | https://x.com/tetocock/status/1909036874930303339 | ok:1_foto
+2026-09-27T15:29:42.316475+00:00 | alternativo_geek | https://x.com/satyaXBT/status/2056200296263712855 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T15:29:42.548252+00:00 | convencional | https://twitter.com/spmaslansky/status/992163206490714112 | ok:1_foto
+2026-09-27T15:29:43.105302+00:00 | convencional | https://x.com/SD_Tutorial/status/2079241611154952352 | ok:4_foto
+2026-09-27T15:29:43.314156+00:00 | convencional | https://x.com/ZZZAnonymously/status/2050709538417058245 | ok:1_foto

@@ -1,0 +1,18 @@
+{
+  "fuente": "x_twitter",
+  "tipo_contenido": "foto",
+  "url_original": "https://x.com/KusoPhoto/status/2029663243174592705?lang=en",
+  "tweet_id": "2029663243174592705",
+  "cuenta": "KusoPhoto",
+  "cuenta_nombre": "空想写真家",
+  "descripcion": "本日ピックアップした #空想AIファッション です✨\n\nそのまま使うかアレンジして是非ご試着ください！\n\n【プロンプト（ファッション）】\nplayful devil-themed streetwear outfit, bright red oversized zip-up hoodie with pointed devil horns on the hood and white gothic script graphics on the https://t.co/BAbhlL1sCS",
+  "fecha_publicacion": "2026-03-05T21:00:01.000Z",
+  "intervalo_seg": null,
+  "n_imagenes": 3,
+  "imagenes": [
+    "x_2029663243174592705_foto01.jpg",
+    "x_2029663243174592705_foto02.jpg",
+    "x_2029663243174592705_foto03.jpg"
+  ],
+  "descargado_en": "2026-09-27T15:29:42.002523+00:00"
+}
