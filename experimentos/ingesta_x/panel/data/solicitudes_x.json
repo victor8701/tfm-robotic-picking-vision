@@ -381,5 +381,20 @@
     ],
     "texto_busqueda": "logomania luxury streetwear outfit real photos",
     "urls_encontradas": 7
+  },
+  "sol_1790522900440": {
+    "cantidad": 8,
+    "creado_en": "2026-09-27T15:28:20.440704+00:00",
+    "estado": "pendiente",
+    "estilo": "old_money",
+    "modo": "predeterminado",
+    "ocasion": "ninguna",
+    "pasos": [
+      {
+        "texto": "Solicitud creada automáticamente (sin intervención manual).",
+        "ts": "2026-09-27T15:28:20.440715+00:00"
+      }
+    ],
+    "texto_busqueda": "old money aesthetic outfit quiet luxury real photos"
   }
 }
