@@ -357,7 +357,7 @@
   "sol_1790519519488": {
     "cantidad": 15,
     "creado_en": "2026-09-27T14:31:59.765600+00:00",
-    "estado": "buscando",
+    "estado": "completado",
     "estilo": "lujo_ostentoso",
     "modo": "automatico",
     "ocasion": "ninguna",
@@ -373,8 +373,13 @@
       {
         "texto": "Tavily encontró 20 resultado(s), aplicando filtro...",
         "ts": "2026-09-27T14:32:25.202672+00:00"
+      },
+      {
+        "texto": "Encontradas 7 URL(s) nuevas, añadidas a la cola de 'lujo_ostentoso'. Descartadas 13 (repetidas, no válidas, o coincidían con la lista de palabras a evitar).",
+        "ts": "2026-09-27T14:32:26.376510+00:00"
       }
     ],
-    "texto_busqueda": "logomania luxury streetwear outfit real photos"
+    "texto_busqueda": "logomania luxury streetwear outfit real photos",
+    "urls_encontradas": 7
   }
 }
