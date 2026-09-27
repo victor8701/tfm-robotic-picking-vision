@@ -3314,7 +3314,7 @@
   "x_2079241611154952352_1": {
     "categoria_final": "convencional",
     "categoria_ia": "convencional",
-    "eliminada": false,
+    "eliminada": true,
     "fuente": "@SD_Tutorial (X)",
     "fuente_url": "https://x.com/SD_Tutorial/status/2079241611154952352",
     "imagen": "x_2079241611154952352_1.jpg",
@@ -3325,7 +3325,7 @@
   "x_2079241611154952352_2": {
     "categoria_final": "convencional",
     "categoria_ia": "convencional",
-    "eliminada": false,
+    "eliminada": true,
     "fuente": "@SD_Tutorial (X)",
     "fuente_url": "https://x.com/SD_Tutorial/status/2079241611154952352",
     "imagen": "x_2079241611154952352_2.jpg",
@@ -3336,7 +3336,7 @@
   "x_2079241611154952352_3": {
     "categoria_final": "convencional",
     "categoria_ia": "convencional",
-    "eliminada": false,
+    "eliminada": true,
     "fuente": "@SD_Tutorial (X)",
     "fuente_url": "https://x.com/SD_Tutorial/status/2079241611154952352",
     "imagen": "x_2079241611154952352_3.jpg",
@@ -3622,7 +3622,7 @@
   "x_992163206490714112_1": {
     "categoria_final": "convencional",
     "categoria_ia": "convencional",
-    "eliminada": false,
+    "eliminada": true,
     "fuente": "@spmaslansky (X)",
     "fuente_url": "https://twitter.com/spmaslansky/status/992163206490714112",
     "imagen": "x_992163206490714112_1.jpg",
