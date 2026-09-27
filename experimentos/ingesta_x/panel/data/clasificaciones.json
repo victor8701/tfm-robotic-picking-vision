@@ -2003,7 +2003,7 @@
     "revisada": false
   },
   "x_1099660676501368832_1": {
-    "categoria_final": "old_money",
+    "categoria_final": "alternativo_geek",
     "categoria_ia": "old_money",
     "eliminada": false,
     "fuente": "@MissMixi (X)",
@@ -2011,7 +2011,7 @@
     "imagen": "x_1099660676501368832_1.jpg",
     "ocasion_final": null,
     "origen": "claude",
-    "revisada": false
+    "revisada": true
   },
   "x_1099660676501368832_2": {
     "categoria_final": "old_money",
