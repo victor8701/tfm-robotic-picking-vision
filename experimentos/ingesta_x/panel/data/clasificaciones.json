@@ -2047,7 +2047,7 @@
     "revisada": true
   },
   "x_1371894664505262080_1": {
-    "categoria_final": "lujo_ostentoso",
+    "categoria_final": "alternativo_geek",
     "categoria_ia": "lujo_ostentoso",
     "eliminada": false,
     "fuente": "@OCOutfits (X)",
@@ -2055,7 +2055,7 @@
     "imagen": "x_1371894664505262080_1.jpg",
     "ocasion_final": null,
     "origen": "claude",
-    "revisada": false
+    "revisada": true
   },
   "x_1436404361916149760_1": {
     "categoria_final": "urbano",
