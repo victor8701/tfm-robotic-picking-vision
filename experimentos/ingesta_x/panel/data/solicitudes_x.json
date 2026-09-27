@@ -736,5 +736,20 @@
       }
     ],
     "texto_busqueda": "techwear utilitarian gorpcore streetwear outfit real photos"
+  },
+  "sol_1790540443071": {
+    "cantidad": 20,
+    "creado_en": "2026-09-27T20:20:43.071487+00:00",
+    "estado": "pendiente",
+    "estilo": "old_money",
+    "modo": "predeterminado",
+    "ocasion": "ninguna",
+    "pasos": [
+      {
+        "texto": "Solicitud creada automáticamente (sin intervención manual).",
+        "ts": "2026-09-27T20:20:43.071509+00:00"
+      }
+    ],
+    "texto_busqueda": "old money aesthetic outfit quiet luxury real photos"
   }
 }
