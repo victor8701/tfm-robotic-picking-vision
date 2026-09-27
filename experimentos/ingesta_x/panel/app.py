@@ -40,6 +40,14 @@ RUTA_DATOS = f"{RUTA_BASE}/data/clasificaciones.json"
 RUTA_FOTOS = f"{RUTA_BASE}/static/fotos"
 RUTA_SOLICITUDES = f"{RUTA_BASE}/data/solicitudes_x.json"
 
+# Las fotos se sirven directamente desde GitHub (raw.githubusercontent.com), no desde el disco
+# de Render -- ese disco es una foto fija de la última vez que Render hizo un deploy, así que
+# cualquier imagen que llegue por una Action entre un deploy y el siguiente existiría en GitHub
+# pero daría una imagen rota en la galería. Sirviendo desde GitHub, igual que ya se hace con
+# clasificaciones.json, las fotos están disponibles en cuanto se commitean, sin depender de
+# ningún deploy. Repo público, no hace falta token para leer esto.
+URL_FOTOS_BASE = f"https://raw.githubusercontent.com/{REPO}/{BRANCH}/{RUTA_FOTOS}/"
+
 
 def ahora_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
@@ -252,7 +260,7 @@ def galeria():
         estilos_chip=ESTILOS_CHIP, nombre_categoria=NOMBRE_CATEGORIA,
         total=total, sin_imagen=sin_imagen, revisadas=revisadas,
         filtro_origen=filtro_origen, filtro_revision=filtro_revision,
-        error=request.args.get("error"),
+        error=request.args.get("error"), url_fotos_base=URL_FOTOS_BASE,
     )
 
 
@@ -593,7 +601,7 @@ PLANTILLA_GALERIA = """
 <style>""" + ESTILO_PAGINA + """</style></head><body>
 {% macro tarjeta(item) %}
 <article class="tarjeta" data-id="{{ item.id }}" data-categoria-ia="{{ item.categoria_ia }}">
-  <img src="{{ url_for('static', filename='fotos/' + item.imagen) }}" loading="lazy" alt="{{ nombre_categoria.get(item.categoria_final or item.categoria_ia, '') }}">
+  <img src="{{ url_fotos_base }}{{ item.imagen }}" loading="lazy" alt="{{ nombre_categoria.get(item.categoria_final or item.categoria_ia, '') }}">
   <button type="button" class="btn-x" data-activo="{{ 'true' if item.eliminada else 'false' }}"
           onclick="alternarEliminar('{{ item.id }}', this)">{{ '↺' if item.eliminada else '✕' }}</button>
   <div class="cuerpo">
