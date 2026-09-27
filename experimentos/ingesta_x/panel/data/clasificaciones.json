@@ -2003,7 +2003,7 @@
     "revisada": false
   },
   "x_1436404361916149760_1": {
-    "categoria_final": "alternativo_geek",
+    "categoria_final": "urbano",
     "categoria_ia": "alternativo_geek",
     "eliminada": false,
     "fuente": "@TeamLiquid (X)",
@@ -2011,7 +2011,7 @@
     "imagen": "x_1436404361916149760_1.jpg",
     "ocasion_final": null,
     "origen": "claude",
-    "revisada": false
+    "revisada": true
   },
   "x_1646517066500014083_1": {
     "categoria_final": "bohemio",
