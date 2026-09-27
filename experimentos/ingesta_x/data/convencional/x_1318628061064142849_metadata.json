@@ -1,0 +1,17 @@
+{
+  "fuente": "x_twitter",
+  "tipo_contenido": "video",
+  "url_original": "https://twitter.com/normalvr/status/1318628061064142849",
+  "tweet_id": "1318628061064142849",
+  "cuenta": "normalvr",
+  "cuenta_nombre": "Normal",
+  "descripcion": "Today we're launching Normcore 2. Multiplayer for any Unity project :)  https://t.co/sTZqDMCwSP https://t.co/RjtST2UzVG",
+  "fecha_publicacion": "2020-10-20T19:00:03+00:00",
+  "intervalo_seg": 3.0,
+  "n_imagenes": 2,
+  "imagenes": [
+    "x_1318628061064142849_0001.jpg",
+    "x_1318628061064142849_0002.jpg"
+  ],
+  "descargado_en": "2026-09-27T20:22:02.313448+00:00"
+}

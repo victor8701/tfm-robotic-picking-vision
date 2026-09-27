@@ -1,0 +1,19 @@
+{
+  "fuente": "x_twitter",
+  "tipo_contenido": "foto",
+  "url_original": "https://x.com/Chiefs/status/2104235535816646879/photo/3",
+  "tweet_id": "2104235535816646879",
+  "cuenta": "Chiefs",
+  "cuenta_nombre": "Kansas City Chiefs",
+  "descripcion": "Warming up under the ☀️ https://t.co/HYOI65f35v",
+  "fecha_publicacion": "2026-09-27T15:43:41.000Z",
+  "intervalo_seg": null,
+  "n_imagenes": 4,
+  "imagenes": [
+    "x_2104235535816646879_foto01.jpg",
+    "x_2104235535816646879_foto02.jpg",
+    "x_2104235535816646879_foto03.jpg",
+    "x_2104235535816646879_foto04.jpg"
+  ],
+  "descargado_en": "2026-09-27T20:21:40.517520+00:00"
+}

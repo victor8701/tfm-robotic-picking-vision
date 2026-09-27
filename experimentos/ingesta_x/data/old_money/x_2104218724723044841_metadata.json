@@ -1,0 +1,16 @@
+{
+  "fuente": "x_twitter",
+  "tipo_contenido": "foto",
+  "url_original": "https://x.com/TheClemReport/status/2104218724723044841/photo/1",
+  "tweet_id": "2104218724723044841",
+  "cuenta": "TheClemReport",
+  "cuenta_nombre": "Clem 🏆",
+  "descripcion": "https://t.co/LFvanm2s8E",
+  "fecha_publicacion": "2026-09-27T14:36:53.000Z",
+  "intervalo_seg": null,
+  "n_imagenes": 1,
+  "imagenes": [
+    "x_2104218724723044841_foto01.jpg"
+  ],
+  "descargado_en": "2026-09-27T20:21:43.561087+00:00"
+}
