@@ -1884,7 +1884,7 @@
   "urz1": {
     "categoria_final": "ninguna",
     "categoria_ia": "urbano",
-    "eliminada": false,
+    "eliminada": true,
     "fuente": "Rels B, rapero mallorquín, portada/artwork con camisa monograma Dior — @skinnyflakk en X",
     "fuente_url": "https://x.com/skinnyflakk/status/1390014442356756483",
     "imagen": "urz1.jpg",
