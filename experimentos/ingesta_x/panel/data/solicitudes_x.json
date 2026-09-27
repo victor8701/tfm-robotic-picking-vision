@@ -792,5 +792,20 @@
       }
     ],
     "texto_busqueda": "normcore basic outfit real photos"
+  },
+  "sol_1790540460892": {
+    "cantidad": 20,
+    "creado_en": "2026-09-27T20:21:00.892667+00:00",
+    "estado": "pendiente",
+    "estilo": "lujo_ostentoso",
+    "modo": "predeterminado",
+    "ocasion": "ninguna",
+    "pasos": [
+      {
+        "texto": "Solicitud creada automáticamente (sin intervención manual).",
+        "ts": "2026-09-27T20:21:00.892685+00:00"
+      }
+    ],
+    "texto_busqueda": "logomania flashy designer brands outfit real photos"
   }
 }
