@@ -2025,7 +2025,7 @@
     "revisada": true
   },
   "x_1099660676501368832_3": {
-    "categoria_final": "old_money",
+    "categoria_final": "alternativo_geek",
     "categoria_ia": "old_money",
     "eliminada": false,
     "fuente": "@MissMixi (X)",
@@ -2033,10 +2033,10 @@
     "imagen": "x_1099660676501368832_3.jpg",
     "ocasion_final": null,
     "origen": "claude",
-    "revisada": false
+    "revisada": true
   },
   "x_1099660676501368832_4": {
-    "categoria_final": "old_money",
+    "categoria_final": "alternativo_geek",
     "categoria_ia": "old_money",
     "eliminada": false,
     "fuente": "@MissMixi (X)",
@@ -2044,7 +2044,7 @@
     "imagen": "x_1099660676501368832_4.jpg",
     "ocasion_final": null,
     "origen": "claude",
-    "revisada": false
+    "revisada": true
   },
   "x_1254766446044942337_1": {
     "categoria_final": "alternativo_geek",
