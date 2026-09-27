@@ -30,3 +30,16 @@
 2026-09-26T12:49:25.518513+00:00 | alternativo_geek | https://x.com/dieworkwear/status/1849549649398702149 | ok:4_foto
 2026-09-26T12:49:25.760212+00:00 | alternativo_geek | https://x.com/dieworkwear/status/1853306411469734298 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
 2026-09-26T12:49:26.193320+00:00 | alternativo_geek | https://x.com/i/status/2065462280502866175 | ok:1_foto
+2026-09-27T12:59:12.484152+00:00 | alternativo_geek | https://x.com/Fenyr_0nx/status/1980625969493995782 | ok:1_foto
+2026-09-27T12:59:13.438697+00:00 | alternativo_geek | https://x.com/TerminusArtwor1/status/1538228696875778052 | ok:2_foto
+2026-09-27T12:59:13.859974+00:00 | alternativo_geek | https://x.com/Fenyr_0nx/status/2090441842114621660 | ok:1_foto
+2026-09-27T12:59:15.287531+00:00 | alternativo_geek | https://x.com/solthrys/status/1751730226990915634 | ok:4_foto
+2026-09-27T12:59:15.483747+00:00 | alternativo_geek | https://x.com/lukasersil/status/2022076204527104115?lang=bn | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T12:59:15.901561+00:00 | alternativo_geek | https://x.com/Znarlax_arts/status/1611032049363869697 | ok:1_foto
+2026-09-27T12:59:16.980930+00:00 | alternativo_geek | https://x.com/Painthisice/status/1254766446044942337 | ok:4_foto
+2026-09-27T12:59:17.414701+00:00 | alternativo_geek | https://x.com/ZephyraLeigh/status/2057342945901326769 | ok:1_foto
+2026-09-27T12:59:17.767146+00:00 | alternativo_geek | https://x.com/Fenyr_0nx/status/1907398404541743186 | ok:1_foto
+2026-09-27T12:59:18.557738+00:00 | alternativo_geek | https://x.com/MIMIC339_AI/status/2075441520854147478 | ok:3_foto
+2026-09-27T12:59:18.913180+00:00 | alternativo_geek | https://x.com/Fenyr_0nx/status/2030285101427540388 | ok:1_foto
+2026-09-27T12:59:19.082863+00:00 | alternativo_geek | https://x.com/KaruptKP/status/2090229817371443201?lang=ar | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T12:59:20.510383+00:00 | alternativo_geek | https://x.com/No_Tables/status/1973347079339778470 | ok:2_video
