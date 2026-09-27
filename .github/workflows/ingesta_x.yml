@@ -3,9 +3,11 @@ name: Ingesta X — moda por estilo
 on:
   workflow_dispatch: {}
   schedule:
-    # Cada hora — comprobar_horario.py decide si ESTA hora es la que toca según config.json
-    # (activo + hora_local + zona_horaria). El horario real se cambia editando ese fichero,
-    # no este cron. Un disparo manual (workflow_dispatch) se salta esta comprobación siempre.
+    # "Cada hora" en teoría -- en la práctica GitHub lo retrasa bastante en repos con poco
+    # tráfico (huecos reales medidos: 2.5-6.5h, no 1h). comprobar_horario.py decide si ESTA
+    # hora (la real, la que sea) está en la lista configurada en config.json (activo +
+    # horas_locales + zona_horaria). El horario se cambia editando ese fichero, no este cron.
+    # Un disparo manual (workflow_dispatch) se salta esta comprobación siempre.
     - cron: '0 * * * *'
 
 permissions:
@@ -58,5 +60,32 @@ jobs:
           git add experimentos/ingesta_x/cola experimentos/ingesta_x/data \
             experimentos/ingesta_x/panel/data/clasificaciones.json \
             experimentos/ingesta_x/panel/static/fotos
-          git diff --staged --quiet || git commit -m "ingesta_x: procesa cola e importa a la galeria automaticamente"
-          git push
+          if git diff --staged --quiet; then
+            echo "Nada que comitear."
+            exit 0
+          fi
+          git commit -m "ingesta_x: procesa cola e importa a la galeria automaticamente"
+
+          # La galería (panel/app.py) escribe a estos mismos ficheros por su cuenta en cada
+          # tap -- un push aquí puede llegar justo cuando main se acaba de mover (pasó de
+          # verdad: 2026-09-27, run 36347609781, "! [rejected] ... fetch first"). Reintenta
+          # con rebase antes de rendirse -- NUNCA con "reset --hard": lo que se acaba de
+          # descargar en los pasos anteriores (fotos, clasificaciones.json) solo vive en este
+          # working tree, un reset lo perdería de verdad. No es como guardar_con_reintentos()
+          # en buscar_x.py, que puede regenerar su commit desde datos que sigue teniendo en
+          # memoria -- aquí no hay de dónde regenerarlo sin re-descargar todo.
+          for intento in 1 2 3 4 5; do
+            if git push origin main; then
+              echo "Push OK (intento $intento de 5)."
+              exit 0
+            fi
+            echo "Push rechazado (intento $intento de 5), reintentando tras rebase..."
+            sleep $((intento * 5))
+            if ! git pull --rebase origin main; then
+              echo "Rebase con conflicto real, no se puede resolver solo -- se para aquí." >&2
+              git rebase --abort
+              exit 1
+            fi
+          done
+          echo "Push seguía fallando tras 5 intentos." >&2
+          exit 1
