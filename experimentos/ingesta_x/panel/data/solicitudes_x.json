@@ -273,7 +273,7 @@
   "sol_1790513187733": {
     "cantidad": 15,
     "creado_en": "2026-09-27T12:46:28.218269+00:00",
-    "estado": "pendiente",
+    "estado": "buscando",
     "estilo": "urbano",
     "modo": "automatico",
     "ocasion": "fiesta_noche",
@@ -281,6 +281,10 @@
       {
         "texto": "Solicitud creada, esperando a que GitHub Actions la recoja.",
         "ts": "2026-09-27T12:46:28.218249+00:00"
+      },
+      {
+        "texto": "Buscando en la web con Tavily...",
+        "ts": "2026-09-27T12:46:45.995811+00:00"
       }
     ],
     "texto_busqueda": "moda trap español streetwear outfit real night out party look"
