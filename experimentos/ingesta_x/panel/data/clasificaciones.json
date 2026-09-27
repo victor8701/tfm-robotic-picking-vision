@@ -1895,7 +1895,7 @@
   "urz2": {
     "categoria_final": "ninguna",
     "categoria_ia": "urbano",
-    "eliminada": false,
+    "eliminada": true,
     "fuente": "C. Tangana en concierto, traje oscuro — @c_tangana en X",
     "fuente_url": "https://x.com/c_tangana/status/1532763106304303110",
     "imagen": "urz2.jpg",
@@ -1906,7 +1906,7 @@
   "urz3": {
     "categoria_final": "ninguna",
     "categoria_ia": "urbano",
-    "eliminada": false,
+    "eliminada": true,
     "fuente": "C. Tangana en concierto, detalle — @c_tangana en X",
     "fuente_url": "https://x.com/c_tangana/status/1532763106304303110",
     "imagen": "urz3.jpg",
@@ -1917,7 +1917,7 @@
   "urz4": {
     "categoria_final": "ninguna",
     "categoria_ia": "urbano",
-    "eliminada": false,
+    "eliminada": true,
     "fuente": "C. Tangana en concierto, look completo — @c_tangana en X",
     "fuente_url": "https://x.com/c_tangana/status/1532763106304303110",
     "imagen": "urz4.jpg",
@@ -1928,7 +1928,7 @@
   "urz5": {
     "categoria_final": "ninguna",
     "categoria_ia": "urbano",
-    "eliminada": false,
+    "eliminada": true,
     "fuente": "C. Tangana, look de calle — @c_tangana en X",
     "fuente_url": "https://x.com/c_tangana/status/1540026827309293576",
     "imagen": "urz5.jpg",
