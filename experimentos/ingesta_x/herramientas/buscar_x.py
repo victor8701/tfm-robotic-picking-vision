@@ -89,6 +89,16 @@ PALABRAS_PROHIBIDAS = [
     # una camiseta para software de patronaje. Ninguna es una foto de una persona vestida.
     "figure builder", "collectible figure", "action figure", "capcom",
     "clo3d", "marvelous designer", "product mockup",
+    # Cuatro categorías nuevas, ninguna de las anteriores las cubría -- encontradas en una sola
+    # ejecución automática (2026-09-27, los 7 estilos de una vez): ajedrez (captura de partida
+    # online, comentarista conocido), fútbol americano/NFL (nada que ver con "quiet luxury"),
+    # un vídeo de Street Fighter con copyright (16 fotogramas, incluida la pantalla de
+    # clasificación por edad), y un juego móvil de "vestir personajes" (arte de personaje
+    # promocionando la app, no una foto real). Confirma que ninguna lista es nunca definitiva --
+    # cada búsqueda abierta puede encontrar un tipo de ruido distinto.
+    "chess.com", "lichess", "grandmaster", "nfl", "touchdown", "quarterback", "super bowl",
+    "street fighter", "cero rating", "esrb rating", "dress-up", "dress up game", "dressup game",
+    "play now", "download the game", "gacha game",
 ]
 
 
