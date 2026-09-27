@@ -353,5 +353,20 @@
     ],
     "texto_busqueda": "Outfit pikete shoda monkas",
     "urls_encontradas": 5
+  },
+  "sol_1790519519488": {
+    "cantidad": 15,
+    "creado_en": "2026-09-27T14:31:59.765600+00:00",
+    "estado": "pendiente",
+    "estilo": "lujo_ostentoso",
+    "modo": "automatico",
+    "ocasion": "ninguna",
+    "pasos": [
+      {
+        "texto": "Solicitud creada, esperando a que GitHub Actions la recoja.",
+        "ts": "2026-09-27T14:31:59.765581+00:00"
+      }
+    ],
+    "texto_busqueda": "logomania luxury streetwear outfit real photos"
   }
 }
