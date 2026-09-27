@@ -329,7 +329,7 @@
   "sol_1790518846027": {
     "cantidad": 15,
     "creado_en": "2026-09-27T14:20:46.374364+00:00",
-    "estado": "pendiente",
+    "estado": "buscando",
     "estilo": "urbano",
     "modo": "personalizado",
     "ocasion": "ninguna",
@@ -337,6 +337,10 @@
       {
         "texto": "Solicitud creada, esperando a que GitHub Actions la recoja.",
         "ts": "2026-09-27T14:20:46.374343+00:00"
+      },
+      {
+        "texto": "Buscando en la web con Tavily...",
+        "ts": "2026-09-27T14:21:04.282586+00:00"
       }
     ],
     "texto_busqueda": "Outfit pikete shoda monkas"
