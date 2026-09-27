@@ -3589,7 +3589,7 @@
   "x_894917138900758528_2": {
     "categoria_final": "clasico_tradicional",
     "categoria_ia": "clasico_tradicional",
-    "eliminada": false,
+    "eliminada": true,
     "fuente": "@girlspontevedra (X)",
     "fuente_url": "https://twitter.com/girlspontevedra/status/894917138900758528",
     "imagen": "x_894917138900758528_2.jpg",
