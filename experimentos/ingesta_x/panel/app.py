@@ -300,6 +300,80 @@ def eliminar(iid):
     return jsonify({"ok": ok, "eliminada": datos[iid]["eliminada"], "detalle": detalle})
 
 
+# --- Acciones en lote (seleccionar varias fotos a la vez) -- un único guardar_datos() por
+# acción, así que N fotos son un solo commit en vez de N.
+
+@app.route("/confirmar-masivo", methods=["POST"])
+@requiere_login
+def confirmar_masivo():
+    ids = request.json.get("ids") or []
+    datos, sha = cargar_datos()
+    afectados = 0
+    for iid in ids:
+        if iid in datos:
+            datos[iid]["revisada"] = True
+            afectados += 1
+    if not afectados:
+        return jsonify({"ok": True, "afectados": 0})
+    ok, detalle = guardar_datos(datos, sha, f"panel: confirma {afectados} foto(s) en lote")
+    return jsonify({"ok": ok, "afectados": afectados, "detalle": detalle})
+
+
+@app.route("/clasificar-masivo", methods=["POST"])
+@requiere_login
+def clasificar_masivo():
+    ids = request.json.get("ids") or []
+    categoria = request.json.get("categoria")
+    if categoria not in NOMBRE_CATEGORIA:
+        return jsonify({"ok": False, "error": "categoría inválida"}), 400
+    datos, sha = cargar_datos()
+    afectados = 0
+    for iid in ids:
+        if iid in datos:
+            datos[iid]["categoria_final"] = categoria
+            datos[iid]["revisada"] = True
+            afectados += 1
+    if not afectados:
+        return jsonify({"ok": True, "afectados": 0})
+    ok, detalle = guardar_datos(datos, sha, f"panel: clasifica {afectados} foto(s) en lote -> {categoria}")
+    return jsonify({"ok": ok, "afectados": afectados, "detalle": detalle})
+
+
+@app.route("/ocasion-masivo", methods=["POST"])
+@requiere_login
+def ocasion_masivo():
+    ids = request.json.get("ids") or []
+    valor = request.json.get("ocasion")
+    if valor not in NOMBRE_OCASION:
+        return jsonify({"ok": False, "error": "ocasión inválida"}), 400
+    datos, sha = cargar_datos()
+    afectados = 0
+    for iid in ids:
+        if iid in datos:
+            datos[iid]["ocasion_final"] = None if valor == "ninguna" else valor
+            afectados += 1
+    if not afectados:
+        return jsonify({"ok": True, "afectados": 0})
+    ok, detalle = guardar_datos(datos, sha, f"panel: ocasion {afectados} foto(s) en lote -> {valor}")
+    return jsonify({"ok": ok, "afectados": afectados, "detalle": detalle})
+
+
+@app.route("/eliminar-masivo", methods=["POST"])
+@requiere_login
+def eliminar_masivo():
+    ids = request.json.get("ids") or []
+    datos, sha = cargar_datos()
+    afectados = 0
+    for iid in ids:
+        if iid in datos and not datos[iid]["eliminada"]:
+            datos[iid]["eliminada"] = True
+            afectados += 1
+    if not afectados:
+        return jsonify({"ok": True, "afectados": 0})
+    ok, detalle = guardar_datos(datos, sha, f"panel: elimina {afectados} foto(s) en lote")
+    return jsonify({"ok": ok, "afectados": afectados, "detalle": detalle})
+
+
 @app.route("/subir", methods=["POST"])
 @requiere_login
 def subir():
@@ -551,6 +625,25 @@ ESTILO_PAGINA = """
   .btn-x { position: absolute; top: 6px; right: 6px; width: 28px; height: 28px; border-radius: 50%; border: none;
            background: rgba(20,18,14,.6); color: #fff; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; cursor: pointer; }
   .btn-x[data-activo="true"] { background: #4f7a56; }
+  .capa-seleccion { display: none; position: absolute; inset: 0; z-index: 5; cursor: pointer; border-radius: inherit; }
+  .marca-seleccion { display: none; position: absolute; top: 6px; left: 6px; width: 26px; height: 26px; border-radius: 50%;
+                      background: rgba(255,255,255,.9); border: 2px solid #cfc9bd; z-index: 6; align-items: center; justify-content: center;
+                      font-size: 0.8rem; font-weight: 700; color: transparent; }
+  .modo-seleccion .capa-seleccion { display: block; }
+  .modo-seleccion .marca-seleccion { display: flex; }
+  .modo-seleccion .btn-x { display: none; }
+  .tarjeta.seleccionada .capa-seleccion { background: rgba(47,74,107,.32); border: 3px solid #2f4a6b; box-sizing: border-box; }
+  .tarjeta.seleccionada .marca-seleccion { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
+  .barra-seleccion { position: fixed; left: 0; right: 0; bottom: 0; background: #fff; border-top: 1px solid #e2dcd0;
+                      box-shadow: 0 -6px 20px -6px rgba(33,29,24,.2); padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+                      z-index: 15; }
+  .barra-seleccion-fila { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; font-weight: 600; margin-bottom: 8px; }
+  .barra-seleccion-acciones { display: flex; gap: 6px; flex-wrap: wrap; }
+  .btn-accion { flex: 1; min-width: 80px; font-size: 0.72rem; font-weight: 700; padding: 9px 6px; border-radius: 9px; border: none;
+                background: #2f4a6b; color: #fff; cursor: pointer; }
+  .btn-accion:disabled { background: #cfc9bd; cursor: not-allowed; }
+  .btn-accion.btn-peligro:not(:disabled) { background: #a8433a; }
+  .barra-seleccion-panel { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #e2dcd0; }
   .cuerpo { padding: 8px; display: flex; flex-direction: column; gap: 6px; }
   .fuente { font-size: 0.6rem; color: #746c60; text-decoration: none; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .chips { display: flex; flex-wrap: wrap; gap: 4px; }
@@ -601,6 +694,8 @@ PLANTILLA_GALERIA = """
 <style>""" + ESTILO_PAGINA + """</style></head><body>
 {% macro tarjeta(item) %}
 <article class="tarjeta" data-id="{{ item.id }}" data-categoria-ia="{{ item.categoria_ia }}">
+  <div class="capa-seleccion" onclick="alternarSeleccion('{{ item.id }}', this)"></div>
+  <div class="marca-seleccion">✓</div>
   <img src="{{ url_fotos_base }}{{ item.imagen }}" loading="lazy" alt="{{ nombre_categoria.get(item.categoria_final or item.categoria_ia, '') }}">
   <button type="button" class="btn-x" data-activo="{{ 'true' if item.eliminada else 'false' }}"
           onclick="alternarEliminar('{{ item.id }}', this)">{{ '↺' if item.eliminada else '✕' }}</button>
@@ -656,6 +751,7 @@ PLANTILLA_GALERIA = """
         <option value="revisadas" {{ 'selected' if filtro_revision=='revisadas' }}>Ya las revisé</option>
         <option value="sin_revisar" {{ 'selected' if filtro_revision=='sin_revisar' }}>Sin revisar todavía</option>
       </select>
+      <button type="button" class="chip" id="btn-modo-seleccion" onclick="alternarModoSeleccion()">Seleccionar varias</button>
     </div>
     """ + nav("clasificar") + """
   </header>
@@ -711,6 +807,28 @@ PLANTILLA_GALERIA = """
   </main>
 </div>
 <div class="aviso" id="aviso">Guardado</div>
+<div class="barra-seleccion" id="barra-seleccion" hidden>
+  <div class="barra-seleccion-fila">
+    <span id="contador-seleccion">0 seleccionadas</span>
+    <button type="button" class="chip" onclick="cancelarSeleccion()">Cancelar</button>
+  </div>
+  <div class="barra-seleccion-acciones">
+    <button type="button" class="btn-accion" disabled onclick="confirmarSeleccionadas()">✓ Confirmar</button>
+    <button type="button" class="btn-accion" disabled onclick="alternarPanel('panel-estilo')">Estilo ▾</button>
+    <button type="button" class="btn-accion" disabled onclick="alternarPanel('panel-ocasion')">Función ▾</button>
+    <button type="button" class="btn-accion btn-peligro" disabled onclick="eliminarSeleccionadas()">✕ Eliminar</button>
+  </div>
+  <div class="barra-seleccion-panel" id="panel-estilo" hidden>
+    {% for valor, etiqueta in estilos_chip %}
+    <button type="button" class="chip" onclick="aplicarEstiloMasivo('{{ valor }}')">{{ etiqueta }}</button>
+    {% endfor %}
+  </div>
+  <div class="barra-seleccion-panel" id="panel-ocasion" hidden>
+    {% for valor, etiqueta in ocasiones %}
+    <button type="button" class="chip chip-ocasion" onclick="aplicarOcasionMasivo('{{ valor }}')">{{ etiqueta }}</button>
+    {% endfor %}
+  </div>
+</div>
 
 <script>
 function mostrarAviso(texto) {
@@ -763,6 +881,67 @@ async function alternarEliminar(id, btn) {
     if (d.ok) setTimeout(() => window.location.reload(), 500);
   } catch (e) { mostrarAviso('Error de red'); }
 }
+
+// --- Selección en lote ---
+let seleccionActiva = false;
+let idsSeleccionados = new Set();
+
+function alternarModoSeleccion() {
+  seleccionActiva = !seleccionActiva;
+  document.querySelector('.envoltura').classList.toggle('modo-seleccion', seleccionActiva);
+  document.getElementById('btn-modo-seleccion').textContent = seleccionActiva ? 'Cancelar selección' : 'Seleccionar varias';
+  document.getElementById('barra-seleccion').hidden = !seleccionActiva;
+  if (!seleccionActiva) {
+    idsSeleccionados.clear();
+    document.querySelectorAll('.tarjeta.seleccionada').forEach(t => t.classList.remove('seleccionada'));
+    document.getElementById('panel-estilo').hidden = true;
+    document.getElementById('panel-ocasion').hidden = true;
+    actualizarContadorSeleccion();
+  }
+}
+function cancelarSeleccion() { if (seleccionActiva) alternarModoSeleccion(); }
+
+function alternarSeleccion(id, capa) {
+  const tarjeta = capa.closest('.tarjeta');
+  if (idsSeleccionados.has(id)) {
+    idsSeleccionados.delete(id);
+    tarjeta.classList.remove('seleccionada');
+  } else {
+    idsSeleccionados.add(id);
+    tarjeta.classList.add('seleccionada');
+  }
+  actualizarContadorSeleccion();
+}
+
+function actualizarContadorSeleccion() {
+  const n = idsSeleccionados.size;
+  document.getElementById('contador-seleccion').textContent = n + (n === 1 ? ' seleccionada' : ' seleccionadas');
+  document.querySelectorAll('.btn-accion').forEach(b => b.disabled = n === 0);
+}
+
+function alternarPanel(id) {
+  const panel = document.getElementById(id);
+  const otroId = id === 'panel-estilo' ? 'panel-ocasion' : 'panel-estilo';
+  document.getElementById(otroId).hidden = true;
+  panel.hidden = !panel.hidden;
+}
+
+async function peticionMasiva(url, cuerpoExtra) {
+  if (idsSeleccionados.size === 0) return;
+  try {
+    const r = await fetch(url, {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(Object.assign({ids: Array.from(idsSeleccionados)}, cuerpoExtra || {})),
+    });
+    const d = await r.json();
+    mostrarAviso(d.ok ? ('Hecho: ' + d.afectados) : ('No se pudo: ' + (d.detalle || d.error || '?')));
+    if (d.ok) setTimeout(() => window.location.reload(), 700);
+  } catch (e) { mostrarAviso('Error de red'); }
+}
+function confirmarSeleccionadas() { peticionMasiva('/confirmar-masivo'); }
+function eliminarSeleccionadas() { peticionMasiva('/eliminar-masivo'); }
+function aplicarEstiloMasivo(valor) { peticionMasiva('/clasificar-masivo', {categoria: valor}); }
+function aplicarOcasionMasivo(valor) { peticionMasiva('/ocasion-masivo', {ocasion: valor}); }
 </script>
 </body></html>
 """
