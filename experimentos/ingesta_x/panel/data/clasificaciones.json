@@ -2102,7 +2102,7 @@
     "revisada": false
   },
   "x_1846599503136068067_1": {
-    "categoria_final": "alternativo_geek",
+    "categoria_final": "urbano",
     "categoria_ia": "alternativo_geek",
     "eliminada": false,
     "fuente": "@G2esports (X)",
@@ -2110,7 +2110,7 @@
     "imagen": "x_1846599503136068067_1.jpg",
     "ocasion_final": null,
     "origen": "claude",
-    "revisada": false
+    "revisada": true
   },
   "x_1846599503136068067_2": {
     "categoria_final": "alternativo_geek",
