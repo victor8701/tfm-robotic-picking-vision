@@ -43,3 +43,8 @@
 2026-09-27T12:59:18.913180+00:00 | alternativo_geek | https://x.com/Fenyr_0nx/status/2030285101427540388 | ok:1_foto
 2026-09-27T12:59:19.082863+00:00 | alternativo_geek | https://x.com/KaruptKP/status/2090229817371443201?lang=ar | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
 2026-09-27T12:59:20.510383+00:00 | alternativo_geek | https://x.com/No_Tables/status/1973347079339778470 | ok:2_video
+2026-09-27T14:23:35.804779+00:00 | urbano | https://x.com/ac_dzn/status/2044253800538472744 | ok:1_foto
+2026-09-27T14:23:47.752621+00:00 | urbano | https://x.com/Alibaba_Wan/status/1968921551392432175 | ok:27_video
+2026-09-27T14:23:48.749499+00:00 | urbano | https://x.com/MHKogath/status/1895353737054691735 | ok:1_foto
+2026-09-27T14:23:49.739796+00:00 | urbano | https://x.com/MHKogath/status/2033482013379100698?lang=en | ok:1_foto
+2026-09-27T14:23:50.720908+00:00 | urbano | https://twitter.com/shodamonkas/status/1067012227528646657 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
