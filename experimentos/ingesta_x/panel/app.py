@@ -67,7 +67,12 @@ TEXTO_PREDETERMINADO_ESTILO = {
     "clasico_tradicional": "cayetana style outfit spain classic preppy",
     "urbano": "moda trap español streetwear outfit real",
     "bohemio": "bohemian boho chic outfit real photos",
-    "alternativo_geek": "geek gamer streetwear outfit real photos",
+    # "geek gamer streetwear" (texto original) traía sobre todo cuentas de equipos de esports
+    # (TeamLiquid, G2esports...) con merchandising de marca de equipo, no una estética geek/tech
+    # propia -- Víctor corrigió 6 de 6 resultados de esta búsqueda (revisión real, 2026-09-27).
+    # "gamer" busca una comunidad, no una estética; "techwear/cyberpunk" sí describen el look en
+    # sí, sin depender de merchandising con copyright (que de todas formas se descarta siempre).
+    "alternativo_geek": "techwear cyberpunk outfit tech accessories real photos",
     "convencional": "normcore basic outfit real photos",
 }
 CALIFICADOR_OCASION = {
