@@ -3820,7 +3820,7 @@
   "x_2104217313008374142_1": {
     "categoria_final": "old_money",
     "categoria_ia": "old_money",
-    "eliminada": false,
+    "eliminada": true,
     "fuente": "@poddtadre (X)",
     "fuente_url": "https://x.com/poddtadre/status/2104217313008374142/photo/1",
     "imagen": "x_2104217313008374142_1.jpg",
