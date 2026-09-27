@@ -301,7 +301,7 @@
   "sol_1790513659183": {
     "cantidad": 15,
     "creado_en": "2026-09-27T12:54:19.661295+00:00",
-    "estado": "buscando",
+    "estado": "completado",
     "estilo": "alternativo_geek",
     "modo": "automatico",
     "ocasion": "ninguna",
@@ -317,8 +317,13 @@
       {
         "texto": "Tavily encontró 20 resultado(s), aplicando filtro...",
         "ts": "2026-09-27T12:54:39.418597+00:00"
+      },
+      {
+        "texto": "Encontradas 13 URL(s) nuevas, añadidas a la cola de 'alternativo_geek'. Descartadas 7 (repetidas, no válidas, o coincidían con la lista de palabras a evitar).",
+        "ts": "2026-09-27T12:54:40.545328+00:00"
       }
     ],
-    "texto_busqueda": "techwear cyberpunk outfit tech accessories real photos"
+    "texto_busqueda": "techwear cyberpunk outfit tech accessories real photos",
+    "urls_encontradas": 13
   }
 }
