@@ -3,9 +3,12 @@
 añade sus URLs a la cola de descarga -- para que procesar_cola.py las descargue/clasifique solo
 después, sin tocar esto.
 
-Cómo busca (v3): **solo Tavily** (`https://tavily.com`, capa gratuita: 1000 créditos/mes, sin
+Cómo busca (v4): **solo Tavily** (`https://tavily.com`, capa gratuita: 1000 créditos/mes, sin
 tarjeta) -- acotado a x.com/twitter.com, ordenado por su propia relevancia, con un filtro
-mecánico de palabras a evitar (ver PALABRAS_PROHIBIDAS) como red de seguridad básica.
+mecánico de palabras a evitar (ver PALABRAS_PROHIBIDAS) como red de seguridad básica. Híbrida
+desde v4: si el estilo tiene cuentas ya verificadas como fiables (cuentas_confiables.json),
+busca ahí ADEMÁS de la búsqueda abierta de siempre -- nunca solo en las cuentas conocidas, para
+no perder ni volumen ni diversidad (ver consultar_tavily_hibrido).
 
 Por qué no pasa por Claude (v1 y v2 sí lo hacían): probado en real, DOS veces, con enfoques
 distintos -- ni la búsqueda web de Claude Code ni siquiera una llamada de puro texto sin
@@ -40,6 +43,14 @@ RAIZ_REPO = Path(__file__).resolve().parents[3]
 RAIZ_INGESTA = Path(__file__).resolve().parents[1]
 RUTA_COLA = RAIZ_INGESTA / "cola"
 RUTA_SOLICITUDES = RAIZ_INGESTA / "panel" / "data" / "solicitudes_x.json"
+RUTA_CUENTAS_CONFIABLES = RAIZ_INGESTA / "cuentas_confiables.json"
+
+
+def cargar_cuentas_confiables(estilo: str) -> list[str]:
+    if not RUTA_CUENTAS_CONFIABLES.exists():
+        return []
+    datos = json.loads(RUTA_CUENTAS_CONFIABLES.read_text(encoding="utf-8"))
+    return [c for c in datos.get(estilo, []) if isinstance(c, str)]
 
 TAVILY_API_KEY = os.environ.get("TAVILY_API_KEY", "")
 TAVILY_URL = "https://api.tavily.com/search"
@@ -161,9 +172,14 @@ SUFIJO_EXCLUSION = (
 )
 
 
-def consultar_tavily(consulta: str, cantidad: int) -> list[dict]:
+def consultar_tavily(consulta: str, cantidad: int, extra_query: str = "") -> list[dict]:
     """Busca de verdad en la web, acotado a x.com/twitter.com y ordenado por la relevancia que
-    calcula la propia Tavily (campo "score" de cada resultado)."""
+    calcula la propia Tavily (campo "score" de cada resultado). `extra_query` se añade tal cual
+    al final de la consulta -- se usa para acotar a cuentas de confianza (ver
+    consultar_tavily_hibrido), ya que Tavily filtra dominios por host, no por ruta, así que
+    "solo esta cuenta" solo se puede pedir dentro del propio texto de búsqueda (con "site:",
+    sintaxis estándar de buscadores web -- igual que SUFIJO_EXCLUSION, no verificado si Tavily
+    lo respeta al pie de la letra, pero no hace daño si lo trata como texto suelto)."""
     if not TAVILY_API_KEY:
         raise ErrorBusqueda(
             "Falta el secreto TAVILY_API_KEY en este repo (Settings -> Secrets -> Actions). "
@@ -175,7 +191,7 @@ def consultar_tavily(consulta: str, cantidad: int) -> list[dict]:
             TAVILY_URL,
             headers={"Authorization": f"Bearer {TAVILY_API_KEY}"},
             json={
-                "query": consulta + SUFIJO_EXCLUSION,
+                "query": consulta + SUFIJO_EXCLUSION + extra_query,
                 "include_domains": ["x.com", "twitter.com"],
                 "max_results": max_resultados,
                 "search_depth": "basic",
@@ -189,6 +205,36 @@ def consultar_tavily(consulta: str, cantidad: int) -> list[dict]:
         raise ErrorBusqueda(f"Tavily respondió {r.status_code}: {r.text[:300]}")
 
     return r.json().get("results") or []
+
+
+def consultar_tavily_hibrido(consulta: str, cantidad: int, cuentas_confiables: list[str]) -> list[dict]:
+    """Combina dos búsquedas: una acotada a las cuentas ya verificadas como fiables para este
+    estilo (si hay alguna) y la búsqueda abierta de siempre -- nunca solo la primera, para no
+    perder diversidad ni quedarse corto si esas cuentas no han publicado nada nuevo. Los
+    resultados de cuentas de confianza van primero (mayor prioridad al ordenar más tarde por
+    relevancia + filtro), sin duplicar URLs entre las dos tandas."""
+    resultados: list[dict] = []
+    vistas: set[str] = set()
+
+    if cuentas_confiables:
+        filtro_sitios = " OR ".join(f"site:x.com/{cuenta}" for cuenta in cuentas_confiables)
+        try:
+            de_confianza = consultar_tavily(consulta, cantidad, extra_query=f" ({filtro_sitios})")
+        except ErrorBusqueda:
+            de_confianza = []  # si falla esta parte, la búsqueda abierta de abajo sigue intentándolo
+        for r in de_confianza:
+            url = r.get("url", "")
+            if url and url not in vistas:
+                vistas.add(url)
+                resultados.append(r)
+
+    for r in consultar_tavily(consulta, cantidad):
+        url = r.get("url", "")
+        if url and url not in vistas:
+            vistas.add(url)
+            resultados.append(r)
+
+    return resultados
 
 
 def parece_indeseable(resultado: dict) -> bool:
@@ -262,7 +308,8 @@ def main() -> int:
         )
 
         cantidad = int(solicitud.get("cantidad", 8))
-        resultados_tavily = consultar_tavily(solicitud["texto_busqueda"], cantidad)
+        cuentas = cargar_cuentas_confiables(solicitud["estilo"])
+        resultados_tavily = consultar_tavily_hibrido(solicitud["texto_busqueda"], cantidad, cuentas)
 
         if not resultados_tavily:
             solicitud["estado"] = "completado"

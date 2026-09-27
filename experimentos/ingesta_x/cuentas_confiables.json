@@ -1,0 +1,10 @@
+{
+  "_comentario": "Cuentas de X que ya han dado resultados confirmados (revisada=true, sin corregir) para ese estilo -- verificado en clasificaciones.json, no adivinado. Se usan además de la búsqueda abierta, nunca en vez de ella. Añadir una cuenta aquí solo tras verla confirmada de verdad; nunca a partir de un nombre que suene plausible.",
+  "old_money": ["dieworkwear"],
+  "alternativo_geek": ["Painthisice"],
+  "bohemio": ["mchburton"],
+  "lujo_ostentoso": [],
+  "clasico_tradicional": [],
+  "urbano": [],
+  "convencional": []
+}

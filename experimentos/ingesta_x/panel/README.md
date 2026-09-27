@@ -32,6 +32,14 @@ ni de que esté despierto. La pestaña de automatización es solo una interfaz m
 verla y controlarla desde una URL. La galería, en cambio, sí depende de que el panel esté
 despierto (es la única forma de ver/editar las fotos ahora).
 
+**Las búsquedas de X también son automáticas, no hace falta lanzarlas a mano.** Cada vez que
+toca la ejecución programada, `lanzar_busquedas_automaticas.py` pide una búsqueda para cada uno
+de los 7 estilos (mismo texto "predeterminado" que usarías desde `/buscar-x`), antes de procesar
+la cola — así que las fotos nuevas van llegando solas. Es híbrida: si un estilo ya tiene cuentas
+de X verificadas como fiables (`experimentos/ingesta_x/cuentas_confiables.json`), busca ahí
+además de la búsqueda abierta de siempre, nunca en vez de ella. `/buscar-x` sigue disponible
+para pedir algo puntual (texto tuyo, una cuenta concreta, una ocasión) cuando quieras.
+
 ## Qué necesitas hacer tú una vez (esto no lo puede hacer Claude por ti)
 
 Desplegar en Render y generar el token de GitHub requiere tu cuenta — son credenciales tuyas,

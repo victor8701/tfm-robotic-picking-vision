@@ -36,6 +36,12 @@ jobs:
         if: steps.horario.outputs.toca == 'true'
         run: pip install -r experimentos/ingesta_x/requirements.txt
 
+      - name: Lanzar búsquedas automáticas (los 7 estilos, sin intervención manual)
+        if: steps.horario.outputs.toca == 'true'
+        env:
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+        run: python experimentos/ingesta_x/herramientas/lanzar_busquedas_automaticas.py
+
       - name: Procesar cola de URLs pendientes
         if: steps.horario.outputs.toca == 'true'
         run: python experimentos/ingesta_x/herramientas/procesar_cola.py
