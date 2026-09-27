@@ -2379,7 +2379,7 @@
   "x_2094372374321967382_4": {
     "categoria_final": "old_money",
     "categoria_ia": "old_money",
-    "eliminada": true,
+    "eliminada": false,
     "fuente": "@SizzlingStills (X)",
     "fuente_url": "https://x.com/SizzlingStills/status/2094372374321967382?launch_app_store=true&ct=engagement_generic",
     "imagen": "x_2094372374321967382_4.jpg",
