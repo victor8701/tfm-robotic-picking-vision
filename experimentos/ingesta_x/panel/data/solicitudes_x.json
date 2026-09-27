@@ -325,5 +325,20 @@
     ],
     "texto_busqueda": "techwear cyberpunk outfit tech accessories real photos",
     "urls_encontradas": 13
+  },
+  "sol_1790518846027": {
+    "cantidad": 15,
+    "creado_en": "2026-09-27T14:20:46.374364+00:00",
+    "estado": "pendiente",
+    "estilo": "urbano",
+    "modo": "personalizado",
+    "ocasion": "ninguna",
+    "pasos": [
+      {
+        "texto": "Solicitud creada, esperando a que GitHub Actions la recoja.",
+        "ts": "2026-09-27T14:20:46.374343+00:00"
+      }
+    ],
+    "texto_busqueda": "Outfit pikete shoda monkas"
   }
 }
