@@ -2335,7 +2335,7 @@
   "x_2089449343988432933_2": {
     "categoria_final": "old_money",
     "categoria_ia": "old_money",
-    "eliminada": false,
+    "eliminada": true,
     "fuente": "@oye_samia (X)",
     "fuente_url": "https://x.com/oye_samia/status/2089449343988432933",
     "imagen": "x_2089449343988432933_2.jpg",
