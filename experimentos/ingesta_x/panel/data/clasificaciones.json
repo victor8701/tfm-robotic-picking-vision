@@ -3345,7 +3345,7 @@
     "revisada": false
   },
   "x_2079241611154952352_4": {
-    "categoria_final": "convencional",
+    "categoria_final": "bohemio",
     "categoria_ia": "convencional",
     "eliminada": false,
     "fuente": "@SD_Tutorial (X)",
@@ -3353,7 +3353,7 @@
     "imagen": "x_2079241611154952352_4.jpg",
     "ocasion_final": null,
     "origen": "claude",
-    "revisada": false
+    "revisada": true
   },
   "x_2089449343988432933_1": {
     "categoria_final": "urbano",
