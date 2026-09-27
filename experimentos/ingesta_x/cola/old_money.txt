@@ -1,3 +1,23 @@
 # Una URL de X (x.com/usuario/status/ID) por linea.
 # Las lineas vacias o que empiezan por # se ignoran.
 # La Action mueve cada URL procesada a procesadas.txt automaticamente.
+https://x.com/jon_wertheim/status/2104229898110026073
+https://x.com/yoStax/status/2104276192102855167
+https://x.com/HolderStephen/status/2104266293436411915
+https://x.com/Chiefs/status/2104235535816646879/photo/3
+https://x.com/4ltedits/status/2104275554128351235/photo/1
+https://x.com/WingfieldNFL/status/2104269151132930469
+https://x.com/poddtadre/status/2104217313008374142/photo/1
+https://x.com/the_real_reason/status/2104257956732641328
+https://x.com/bobpockrass/status/2104208792514654702
+https://x.com/HolderStephen/status/2104272752521937075
+https://x.com/BenStandig/status/2104260060285489415
+https://x.com/WingfieldNFL/status/2104283157193437577
+https://x.com/MrKenen/status/2104233760195477947/photo/3
+https://x.com/BenStandig/status/2104255925343207745
+https://x.com/WingfieldNFL/status/2104267979391111673
+https://x.com/HolderStephen/status/2104282642686660825
+https://x.com/TheClemReport/status/2104218724723044841/photo/1
+https://x.com/WingfieldNFL/status/2104255866543153624
+https://x.com/_mrchaturvedi/status/2104151786236105112
+https://x.com/HolderStephen/status/2104232948140585093
