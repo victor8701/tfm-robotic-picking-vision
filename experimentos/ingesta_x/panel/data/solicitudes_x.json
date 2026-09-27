@@ -329,7 +329,7 @@
   "sol_1790518846027": {
     "cantidad": 15,
     "creado_en": "2026-09-27T14:20:46.374364+00:00",
-    "estado": "buscando",
+    "estado": "completado",
     "estilo": "urbano",
     "modo": "personalizado",
     "ocasion": "ninguna",
@@ -345,8 +345,13 @@
       {
         "texto": "Tavily encontró 20 resultado(s), aplicando filtro...",
         "ts": "2026-09-27T14:21:09.231354+00:00"
+      },
+      {
+        "texto": "Encontradas 5 URL(s) nuevas, añadidas a la cola de 'urbano'. Descartadas 15 (repetidas, no válidas, o coincidían con la lista de palabras a evitar).",
+        "ts": "2026-09-27T14:21:10.214584+00:00"
       }
     ],
-    "texto_busqueda": "Outfit pikete shoda monkas"
+    "texto_busqueda": "Outfit pikete shoda monkas",
+    "urls_encontradas": 5
   }
 }
