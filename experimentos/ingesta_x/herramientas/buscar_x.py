@@ -54,13 +54,20 @@ RE_URL_TWEET = re.compile(
 )
 
 # Red de seguridad mecánica, no tan fina como un juicio humano/LLM -- pensada para descartar los
-# tipos de ruido que más se han visto colarse en este proyecto (cosplay/personajes con copyright,
-# noticias/deporte fuera de tema) a partir del título+fragmento que devuelve Tavily. Case-
-# insensitive, coincidencia de subcadena simple.
+# tipos de ruido que más se han visto colarse en este proyecto a partir del título+fragmento que
+# devuelve Tavily. Case-insensitive, coincidencia de subcadena simple.
 PALABRAS_PROHIBIDAS = [
+    # Cosplay/personajes con copyright, noticias/deporte fuera de tema (ya estaban).
     "cosplay", "anime", "manga", "fanart", "fan art", "personaje de",
     "gol", "partido de fútbol", "resultado del partido", "liga de fútbol", "champions league",
     "elecciones", "atentado", "presidente de", "noticia de última hora",
+    # Arte digital/3D de personajes ficticios -- revisadas 48 fotos eliminadas por Víctor a mano
+    # (2026-09-27) y la mayoría eran esto: fan art (a veces con desnudez parcial), modelos 3D
+    # descargables, hojas de personaje de OCs/furries, render de IA. No son fotos de ropa real.
+    "original character", "oc ", "character design", "character sheet", "digital art",
+    "concept art", "3d model", "3d render", ".blend", " fbx", "artstation", "commission",
+    "commissions open", "vtuber", "furry", "anthro", "genshin", "honkai", "league of legends",
+    "valorant skin", "fortnite skin", "download available", "model download",
 ]
 
 
@@ -135,6 +142,15 @@ def añadir_paso(solicitud: dict, texto: str) -> None:
     solicitud.setdefault("pasos", []).append({"ts": _ahora(), "texto": texto})
 
 
+# Operadores "-palabra" añadidos a la consulta -- sintaxis estándar de motores de búsqueda web
+# para excluir; Tavily no documenta si los respeta, así que esto es un intento de mejorar en el
+# origen, no algo verificado. Si Tavily los ignora, quedan como palabras sueltas más en la
+# consulta -- no hace daño. La red de seguridad de verdad, ya probada, es PALABRAS_PROHIBIDAS.
+SUFIJO_EXCLUSION = (
+    ' -fanart -cosplay -"original character" -oc -genshin -vtuber -"3d model" -commission'
+)
+
+
 def consultar_tavily(consulta: str, cantidad: int) -> list[dict]:
     """Busca de verdad en la web, acotado a x.com/twitter.com y ordenado por la relevancia que
     calcula la propia Tavily (campo "score" de cada resultado)."""
@@ -149,7 +165,7 @@ def consultar_tavily(consulta: str, cantidad: int) -> list[dict]:
             TAVILY_URL,
             headers={"Authorization": f"Bearer {TAVILY_API_KEY}"},
             json={
-                "query": consulta,
+                "query": consulta + SUFIJO_EXCLUSION,
                 "include_domains": ["x.com", "twitter.com"],
                 "max_results": max_resultados,
                 "search_depth": "basic",

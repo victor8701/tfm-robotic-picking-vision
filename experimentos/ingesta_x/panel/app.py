@@ -75,12 +75,19 @@ TEXTO_PREDETERMINADO_ESTILO = {
     "clasico_tradicional": "cayetana style outfit spain classic preppy",
     "urbano": "moda trap español streetwear outfit real",
     "bohemio": "bohemian boho chic outfit real photos",
-    # "geek gamer streetwear" (texto original) traía sobre todo cuentas de equipos de esports
-    # (TeamLiquid, G2esports...) con merchandising de marca de equipo, no una estética geek/tech
-    # propia -- Víctor corrigió 6 de 6 resultados de esta búsqueda (revisión real, 2026-09-27).
-    # "gamer" busca una comunidad, no una estética; "techwear/cyberpunk" sí describen el look en
-    # sí, sin depender de merchandising con copyright (que de todas formas se descarta siempre).
-    "alternativo_geek": "techwear cyberpunk outfit tech accessories real photos",
+    # Dos intentos previos, los dos descartados con datos reales (Víctor revisó a mano,
+    # 2026-09-27):
+    # v1 "geek gamer streetwear": traía cuentas de equipos de esports (TeamLiquid, G2esports),
+    #   merchandising de marca de equipo, no una estética geek/tech propia (6 de 6 corregidas).
+    # v2 "techwear cyberpunk...": "cyberpunk" resultó ser un imán todavía peor -- de 48 fotos
+    #   eliminadas por Víctor, la inmensa mayoría eran arte digital/3D de personajes ficticios
+    #   (fan art, a veces con desnudez parcial; modelos 3D descargables de Genshin; hojas de
+    #   personaje de OCs/furries), porque "cyberpunk" lo usa muchísimo más la comunidad de
+    #   dibujantes/3D en X que la de moda real. "techwear" en sí SÍ es una subcultura real con
+    #   fotos de calle de verdad -- se queda, pero sin "cyberpunk" ni "tech accessories" (ese
+    #   "tech" genérico también atraía renders). "gorpcore"/"utilitarian" son términos de moda
+    #   real equivalentes que no arrastran esa comunidad.
+    "alternativo_geek": "techwear utilitarian gorpcore streetwear outfit real photos",
     "convencional": "normcore basic outfit real photos",
 }
 CALIFICADOR_OCASION = {
