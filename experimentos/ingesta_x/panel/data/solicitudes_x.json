@@ -269,5 +269,20 @@
     ],
     "texto_busqueda": "geek gamer streetwear outfit real photos",
     "urls_encontradas": 7
+  },
+  "sol_1790513187733": {
+    "cantidad": 15,
+    "creado_en": "2026-09-27T12:46:28.218269+00:00",
+    "estado": "pendiente",
+    "estilo": "urbano",
+    "modo": "automatico",
+    "ocasion": "fiesta_noche",
+    "pasos": [
+      {
+        "texto": "Solicitud creada, esperando a que GitHub Actions la recoja.",
+        "ts": "2026-09-27T12:46:28.218249+00:00"
+      }
+    ],
+    "texto_busqueda": "moda trap español streetwear outfit real night out party look"
   }
 }
