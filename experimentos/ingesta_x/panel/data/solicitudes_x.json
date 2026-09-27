@@ -777,7 +777,7 @@
   "sol_1790540455413": {
     "cantidad": 20,
     "creado_en": "2026-09-27T20:20:55.413757+00:00",
-    "estado": "buscando",
+    "estado": "error",
     "estilo": "convencional",
     "modo": "predeterminado",
     "ocasion": "ninguna",
@@ -789,6 +789,14 @@
       {
         "texto": "Buscando en la web con Tavily...",
         "ts": "2026-09-27T20:20:56.724065+00:00"
+      },
+      {
+        "texto": "Tavily encontró 20 resultado(s), aplicando filtro...",
+        "ts": "2026-09-27T20:21:01.765501+00:00"
+      },
+      {
+        "texto": "Error: No se pudo hacer push tras 5 intentos (probablemente otra búsqueda se lanzó casi a la vez y ganó la carrera cada vez)",
+        "ts": "2026-09-27T20:21:07.683023+00:00"
       }
     ],
     "texto_busqueda": "normcore basic outfit real photos"
