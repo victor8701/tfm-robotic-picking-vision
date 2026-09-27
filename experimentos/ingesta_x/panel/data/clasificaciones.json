@@ -3501,7 +3501,7 @@
   "x_2104149199256223786_1": {
     "categoria_final": "old_money",
     "categoria_ia": "old_money",
-    "eliminada": false,
+    "eliminada": true,
     "fuente": "@OggyOsbourne (X)",
     "fuente_url": "https://x.com/OggyOsbourne/status/2104149199256223786/photo/1",
     "imagen": "x_2104149199256223786_1.jpg",
@@ -3512,7 +3512,7 @@
   "x_2104151893199233189_1": {
     "categoria_final": "old_money",
     "categoria_ia": "old_money",
-    "eliminada": false,
+    "eliminada": true,
     "fuente": "@agadmator (X)",
     "fuente_url": "https://x.com/agadmator/status/2104151893199233189",
     "imagen": "x_2104151893199233189_1.jpg",
@@ -3523,7 +3523,7 @@
   "x_2104179496463278280_1": {
     "categoria_final": "old_money",
     "categoria_ia": "old_money",
-    "eliminada": false,
+    "eliminada": true,
     "fuente": "@the_real_reason (X)",
     "fuente_url": "https://x.com/the_real_reason/status/2104179496463278280",
     "imagen": "x_2104179496463278280_1.jpg",
@@ -3534,7 +3534,7 @@
   "x_2104179496463278280_2": {
     "categoria_final": "old_money",
     "categoria_ia": "old_money",
-    "eliminada": false,
+    "eliminada": true,
     "fuente": "@the_real_reason (X)",
     "fuente_url": "https://x.com/the_real_reason/status/2104179496463278280",
     "imagen": "x_2104179496463278280_2.jpg",
@@ -3545,7 +3545,7 @@
   "x_2104194345742004354_1": {
     "categoria_final": "old_money",
     "categoria_ia": "old_money",
-    "eliminada": false,
+    "eliminada": true,
     "fuente": "@LordGood_ (X)",
     "fuente_url": "https://x.com/LordGood_/status/2104194345742004354/photo/1",
     "imagen": "x_2104194345742004354_1.jpg",
@@ -3556,7 +3556,7 @@
   "x_2104206153848631587_1": {
     "categoria_final": "old_money",
     "categoria_ia": "old_money",
-    "eliminada": false,
+    "eliminada": true,
     "fuente": "@RiseNDraft (X)",
     "fuente_url": "https://x.com/RiseNDraft/status/2104206153848631587/photo/1",
     "imagen": "x_2104206153848631587_1.jpg",
@@ -3567,7 +3567,7 @@
   "x_2104206153848631587_2": {
     "categoria_final": "old_money",
     "categoria_ia": "old_money",
-    "eliminada": false,
+    "eliminada": true,
     "fuente": "@RiseNDraft (X)",
     "fuente_url": "https://x.com/RiseNDraft/status/2104206153848631587/photo/1",
     "imagen": "x_2104206153848631587_2.jpg",
