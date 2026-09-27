@@ -2511,7 +2511,7 @@
   "x_2075441520854147478_1": {
     "categoria_final": "alternativo_geek",
     "categoria_ia": "alternativo_geek",
-    "eliminada": false,
+    "eliminada": true,
     "fuente": "@MIMIC339_AI (X)",
     "fuente_url": "https://x.com/MIMIC339_AI/status/2075441520854147478",
     "imagen": "x_2075441520854147478_1.jpg",
