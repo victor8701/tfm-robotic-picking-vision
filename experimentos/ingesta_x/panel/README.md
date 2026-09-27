@@ -33,18 +33,32 @@ verla y controlarla desde una URL. La galería, en cambio, sí depende de que el
 despierto (es la única forma de ver/editar las fotos ahora).
 
 **Las búsquedas de X también son automáticas, no hace falta lanzarlas a mano.** Cada vez que
-toca la ejecución programada (**dos veces al día** por defecto, `horas_locales: [8, 20]` en
-`config.json` — antes era una vez, se subió el 2026-09-27 para llegar antes a la meta de
-[[project-ingesta-viral-clips]]), `lanzar_busquedas_automaticas.py` pide una búsqueda para cada
-uno de los 7 estilos (mismo texto "predeterminado" que usarías desde `/buscar-x`, hasta 20
-resultados válidos por estilo — el techo real de la API de Tavily, ver comentario en
-`lanzar_busquedas_automaticas.py`), antes de procesar la cola — así que las fotos nuevas van
-llegando solas, sin que nadie tenga que entrar aquí. Es híbrida: si un estilo ya tiene cuentas de
-X verificadas como fiables (`experimentos/ingesta_x/cuentas_confiables.json`), busca ahí además
-de la búsqueda abierta de siempre, nunca en vez de ella. Con dos ejecuciones al día el consumo de
-Tavily queda sobre 600-900 créditos/mes según cuántos estilos tengan ya cuentas de confianza —
-dentro del límite gratuito de 1000/mes, con margen. `/buscar-x` sigue disponible para pedir algo
-puntual (texto tuyo, una cuenta concreta, una ocasión) cuando quieras.
+toca la ejecución programada (por defecto una vez al día, `horas_locales: [2]` en `config.json`
+— hora local de Madrid, ajustable desde `/automatizacion`; el cron de GitHub la dispara "cada
+hora" en teoría pero en la práctica con huecos reales de 2.5-6.5h, no te fíes de la hora exacta),
+`lanzar_busquedas_automaticas.py` pide una búsqueda para cada uno de los 7 estilos (mismo texto
+"predeterminado" que usarías desde `/buscar-x`, hasta 8 resultados válidos por estilo), antes de
+procesar la cola — así que las fotos nuevas van llegando solas, sin que nadie tenga que entrar
+aquí. Es híbrida: si un estilo ya tiene cuentas de X verificadas como fiables
+(`experimentos/ingesta_x/cuentas_confiables.json`), busca ahí además de la búsqueda abierta de
+siempre, nunca en vez de ella. `/buscar-x` sigue disponible para pedir algo puntual (texto tuyo,
+una cuenta concreta, una ocasión) cuando quieras.
+
+**El `cantidad` (8) importa para la calidad, no solo para la cuota de Tavily.** El filtro mecánico
+ordena los resultados de Tavily por su propio "score" de relevancia y se queda con los primeros
+`cantidad` que pasen el resto del filtro — pedir más no cuesta llamadas extra a la API, pero sí
+significa aceptar resultados cada vez menos relevantes. Se probó a 20 el 2026-09-27 y se revirtió
+el mismo día al ver fotos reales completamente ajenas a moda colándose (carátulas de videojuegos,
+un anuncio de app, una gráfica de personajes de una serie). Súbelo solo si vuelves a comprobar con
+fotos reales que la calidad se mantiene, no solo por presupuesto de Tavily.
+
+**Un solo vídeo mal encajado pesa mucho más que una sola foto mal encajada.** Si el post
+resultante de una búsqueda es un vídeo (no fotos nativas), se le extraen fotogramas con `ffmpeg`
+(`descargar_x.py`) — hasta hace poco, todos los que hubiera cada 3s, así que un vídeo de 30-40s
+sin relación real con moda (confirmado con un tráiler de videojuego, vía su tarjeta de
+clasificación CERO) podía colar 10-12 fotos de ruido de una sola vez. Desde el 2026-09-27 hay un
+tope (`MAX_FOTOGRAMAS_POR_VIDEO = 4` en `descargar_x.py`) — acota el daño de un vídeo que encaje
+mal, no elimina el vídeo como fuente (sigue habiendo vídeos de moda de verdad).
 
 ## Qué necesitas hacer tú una vez (esto no lo puede hacer Claude por ti)
 

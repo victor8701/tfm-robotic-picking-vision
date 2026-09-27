@@ -51,12 +51,16 @@ def crear_solicitud_automatica(estilo: str, cantidad: int) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--estilos", default="", help="Coma-separado (p. ej. old_money,urbano); vacío = los 7")
-    # 20 = MAX_CANDIDATAS_TAVILY en buscar_x.py, el techo real de la API -- cada llamada a Tavily
-    # ya pedía hasta 20 candidatas (min(20, cantidad*3)) aunque cantidad fuera menor, así que con
-    # el valor anterior (8) se descartaban candidatas ya pagadas/recibidas solo por el límite del
-    # bucle de filtrado local, no por límite de Tavily. Subir esto a 20 no cuesta ni una llamada
-    # extra a la API (ver docstring de consultar_tavily en buscar_x.py) -- 2026-09-27.
-    parser.add_argument("--cantidad", type=int, default=20)
+    # Se probó a 20 el 2026-09-27 (no cuesta llamadas extra a Tavily, ver commit de esa fecha)
+    # y se revirtió a 8 el mismo día: el filtro solo ordena por el "score" de relevancia de
+    # Tavily y corta en `cantidad`, así que pedir más significa aceptar candidatas con
+    # relevancia cada vez más floja. Con 20 se colaron cosas totalmente ajenas a moda (carátulas
+    # de videojuegos retro, un anuncio de app de personajes 3D, una gráfica de personajes de una
+    # serie) que con 8 no habían aparecido -- confirmado viendo las fotos reales que Víctor
+    # rechazó esa misma noche, no una suposición. 8 es el valor con el que se hicieron las 5
+    # rondas de ajuste del filtro mecánico documentadas en buscar_x.py; no volver a subirlo sin
+    # relacionarlo primero con la calidad real de lo que entra, no solo con el coste de Tavily.
+    parser.add_argument("--cantidad", type=int, default=8)
     args = parser.parse_args()
 
     estilos_validos = [clave for clave, _ in CATEGORIAS]

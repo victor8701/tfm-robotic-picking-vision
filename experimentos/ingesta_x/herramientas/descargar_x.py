@@ -115,14 +115,24 @@ def descargar_video(url: str, tmp_dir: Path) -> tuple[dict, Path]:
     return info, ruta
 
 
+# Tope de fotogramas por vídeo (2026-09-27): un solo vídeo que Tavily/la búsqueda haga
+# encajar por el texto (sin serlo de verdad -- se confirmó con un tráiler de videojuego real,
+# vía CERO rating card, colado en "bohemio") inundaba la cola con 10-12 fotogramas iguales de
+# ruido, mucho peor que una sola foto suelta mal encajada. No se quita el vídeo del todo (sigue
+# habiendo vídeos de moda de verdad), solo se acota el daño de uno malo.
+MAX_FOTOGRAMAS_POR_VIDEO = 4
+
+
 def extraer_fotogramas(ruta_video: Path, out_dir: Path, prefijo: str, intervalo_seg: float) -> list[Path]:
-    """Extrae un fotograma cada `intervalo_seg` segundos con ffmpeg (fps=1/intervalo)."""
+    """Extrae hasta MAX_FOTOGRAMAS_POR_VIDEO fotogramas, uno cada `intervalo_seg` segundos
+    (fps=1/intervalo), con ffmpeg."""
     out_dir.mkdir(parents=True, exist_ok=True)
     patron = str(out_dir / f"{prefijo}_%04d.jpg")
     cmd = [
         FFMPEG, "-y", "-loglevel", "error",
         "-i", str(ruta_video),
         "-vf", f"fps=1/{intervalo_seg}",
+        "-frames:v", str(MAX_FOTOGRAMAS_POR_VIDEO),
         "-q:v", "2",
         patron,
     ]
