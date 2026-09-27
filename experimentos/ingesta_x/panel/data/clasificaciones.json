@@ -2082,7 +2082,7 @@
   "x_1691290335580971009_3": {
     "categoria_final": "old_money",
     "categoria_ia": "old_money",
-    "eliminada": false,
+    "eliminada": true,
     "fuente": "@dieworkwear (X)",
     "fuente_url": "https://x.com/dieworkwear/status/1691290335580971009",
     "imagen": "x_1691290335580971009_3.jpg",
