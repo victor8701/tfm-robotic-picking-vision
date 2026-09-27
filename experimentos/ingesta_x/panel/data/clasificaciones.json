@@ -2354,6 +2354,17 @@
     "origen": "claude",
     "revisada": false
   },
+  "x_1831414473233399876_1": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "@trapxshop (X)",
+    "fuente_url": "https://x.com/trapxshop/status/1831414473233399876",
+    "imagen": "x_1831414473233399876_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
   "x_1846599503136068067_1": {
     "categoria_final": "urbano",
     "categoria_ia": "alternativo_geek",
@@ -2992,6 +3003,17 @@
     "origen": "claude",
     "revisada": true
   },
+  "x_2013495788824117576_1": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@ChillaiKalan__ (X)",
+    "fuente_url": "https://x.com/ChillaiKalan__/status/2013495788824117576",
+    "imagen": "x_2013495788824117576_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
   "x_2017311998380474560_1": {
     "categoria_final": "alternativo_geek",
     "categoria_ia": "alternativo_geek",
@@ -3021,6 +3043,50 @@
     "fuente": "@OWCavalry (X)",
     "fuente_url": "https://x.com/OWCavalry/status/2021325191259775125",
     "imagen": "x_2021325191259775125_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2028307227052802056_1": {
+    "categoria_final": "alternativo_geek",
+    "categoria_ia": "alternativo_geek",
+    "eliminada": false,
+    "fuente": "@cherdememoire (X)",
+    "fuente_url": "https://x.com/cherdememoire/status/2028307227052802056",
+    "imagen": "x_2028307227052802056_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2028307227052802056_2": {
+    "categoria_final": "alternativo_geek",
+    "categoria_ia": "alternativo_geek",
+    "eliminada": false,
+    "fuente": "@cherdememoire (X)",
+    "fuente_url": "https://x.com/cherdememoire/status/2028307227052802056",
+    "imagen": "x_2028307227052802056_2.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2028307227052802056_3": {
+    "categoria_final": "alternativo_geek",
+    "categoria_ia": "alternativo_geek",
+    "eliminada": false,
+    "fuente": "@cherdememoire (X)",
+    "fuente_url": "https://x.com/cherdememoire/status/2028307227052802056",
+    "imagen": "x_2028307227052802056_3.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2028307227052802056_4": {
+    "categoria_final": "alternativo_geek",
+    "categoria_ia": "alternativo_geek",
+    "eliminada": false,
+    "fuente": "@cherdememoire (X)",
+    "fuente_url": "https://x.com/cherdememoire/status/2028307227052802056",
+    "imagen": "x_2028307227052802056_4.jpg",
     "ocasion_final": null,
     "origen": "claude",
     "revisada": false

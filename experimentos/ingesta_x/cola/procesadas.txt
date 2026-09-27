@@ -201,3 +201,37 @@
 2026-09-27T20:36:47.566452+00:00 | convencional | https://x.com/normalvr/status/1318628061064142849?lang=en | ok:2_video
 2026-09-27T20:36:48.256512+00:00 | convencional | https://twitter.com/normalvr/status/1318628061064142849 | ok:2_video
 2026-09-27T20:36:48.520055+00:00 | convencional | https://x.com/OCModeling/status/1976948757959983464?lang=en | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T21:10:05.463732+00:00 | old_money | https://x.com/MrKenen/status/2104233760195477947/photo/3 | fallo_temporal:404 Client Error: Not Found for url: https://pbs.twimg.com/media/HTO9S2cXAAAzwlc.png?format=jpg&name=orig
+2026-09-27T21:10:05.561942+00:00 | old_money | https://x.com/dieworkwear/status/1625240779508834304 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T21:10:05.681138+00:00 | old_money | https://x.com/dieworkwear/status/1625240779508834304?lang=en | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T21:10:05.998309+00:00 | old_money | https://x.com/ChillaiKalan__/status/2013495788824117576 | ok:1_foto
+2026-09-27T21:10:06.978852+00:00 | old_money | https://x.com/MissMixi/status/1099660676501368832 | ok:4_foto
+2026-09-27T21:10:07.098732+00:00 | old_money | https://x.com/OCModeling/status/1976948757959983464?lang=en | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T21:10:07.215286+00:00 | old_money | https://x.com/octokuro_model/status/1073263144175329285?lang=en | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T21:10:07.316989+00:00 | old_money | https://x.com/OCModeling/status/2026174504863711417?lang=en | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T21:10:07.431146+00:00 | lujo_ostentoso | https://x.com/OCModeling/status/1976948757959983464?lang=en | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T21:10:07.518961+00:00 | lujo_ostentoso | https://x.com/OCModeling/status/2026174504863711417?lang=en | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T21:10:07.920344+00:00 | clasico_tradicional | https://x.com/dieworkwear/status/2043139233079255320?lang=en | fallo_temporal:404 Client Error: Not Found for url: https://pbs.twimg.com/media/HFqu0EZbgAADngo.png?format=jpg&name=orig
+2026-09-27T21:10:08.086388+00:00 | clasico_tradicional | https://x.com/looksofaitana/status/2046964926854402242?lang=en | ok:1_foto
+2026-09-27T21:10:08.223891+00:00 | clasico_tradicional | https://x.com/elle_es/status/1967667345234567609 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T21:10:08.342827+00:00 | clasico_tradicional | https://x.com/L4DYBANSHEE/status/1904186138736128084 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T21:10:08.456637+00:00 | clasico_tradicional | https://x.com/Cosmopolitan_es/status/2061891588318543922 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T21:10:08.677644+00:00 | clasico_tradicional | https://x.com/aitanabonmatis/status/2044437222317809735 | ok:1_foto
+2026-09-27T21:10:09.128517+00:00 | clasico_tradicional | https://twitter.com/girlspontevedra/status/894917138900758528 | ok:3_foto
+2026-09-27T21:10:09.313347+00:00 | clasico_tradicional | https://x.com/HaneAme_cos2/status/2080088504097206405 | ok:1_foto
+2026-09-27T21:10:09.518372+00:00 | urbano | https://x.com/trapxshop/status/1847254070597243068 | ok:1_foto
+2026-09-27T21:10:09.738850+00:00 | urbano | https://x.com/trapxshop/status/1855966237026668977 | ok:1_foto
+2026-09-27T21:10:09.913595+00:00 | urbano | https://x.com/Complex/status/2059991253614219577 | ok:1_foto
+2026-09-27T21:10:10.132515+00:00 | urbano | https://x.com/trapxshop/status/1847586507629924618 | ok:1_foto
+2026-09-27T21:10:10.607395+00:00 | urbano | https://x.com/trapxshop/status/1831414473233399876 | ok:1_foto
+2026-09-27T21:10:11.507373+00:00 | bohemio | https://x.com/Mrs_ARockstar/status/2104232454529647007/photo/2 | ok:0_video
+2026-09-27T21:10:11.645538+00:00 | alternativo_geek | https://x.com/VictoriaFutures/status/2043329530924855589 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T21:10:11.758398+00:00 | alternativo_geek | https://x.com/voguemagazine/status/2044559905248673980 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T21:10:11.887130+00:00 | alternativo_geek | https://x.com/satyaXBT/status/2056200296263712855 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T21:10:12.126161+00:00 | alternativo_geek | https://twitter.com/707kuroyuki/status/1254438047254409217 | ok:1_foto
+2026-09-27T21:10:12.914936+00:00 | alternativo_geek | https://x.com/cherdememoire/status/2028307227052802056 | ok:4_foto
+2026-09-27T21:10:13.033420+00:00 | alternativo_geek | https://x.com/AfroZer0/status/2100257601598505314 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-27T21:10:13.340930+00:00 | alternativo_geek | https://x.com/RECXFX/status/1938646789017739367 | ok:2_foto
+2026-09-27T21:10:13.724799+00:00 | alternativo_geek | https://x.com/TechwearClub/status/1386978556736020483?lang=en | ok:4_foto
+2026-09-27T21:10:13.954562+00:00 | convencional | https://twitter.com/spmaslansky/status/992163206490714112 | ok:1_foto
+2026-09-27T21:10:14.256367+00:00 | convencional | https://x.com/ZZZAnonymously/status/2050709538417058245 | ok:1_foto
