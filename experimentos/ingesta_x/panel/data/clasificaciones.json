@@ -2707,7 +2707,7 @@
     "revisada": false
   },
   "x_2008639480568131789_1": {
-    "categoria_final": "lujo_ostentoso",
+    "categoria_final": "urbano",
     "categoria_ia": "lujo_ostentoso",
     "eliminada": false,
     "fuente": "@ComplexStyle (X)",
@@ -2715,7 +2715,7 @@
     "imagen": "x_2008639480568131789_1.jpg",
     "ocasion_final": null,
     "origen": "claude",
-    "revisada": false
+    "revisada": true
   },
   "x_2017311998380474560_1": {
     "categoria_final": "alternativo_geek",
