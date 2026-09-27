@@ -7,11 +7,11 @@ Estructura que espera/mantiene, relativa a este archivo (../):
   cola/procesadas.txt   -- log de "estilo | url | resultado", se va añadiendo, nunca se borra
   data/<estilo>/         -- fotos + metadata descargadas, mismo formato que descargar_x.py
 
-No busca URLs nuevas por sí solo (eso seguía necesitando una IA con acceso a búsqueda web real,
-que no es gratis fuera de una sesión de Claude) -- solo procesa lo que ya haya en cola/. Alguien
-(Claude en una sesión activa, o el autor a mano) añade líneas a esos ficheros; esta pieza se
-limita a descargar y comitear, y esa parte sí corre sola, en un horario o cuando se dispare a
-mano desde GitHub -- no depende de que haya nadie mirando.
+No busca URLs nuevas por sí mismo -- eso lo hace lanzar_busquedas_automaticas.py (vía Tavily),
+un paso aparte que corre justo antes que este en el mismo workflow. Esta pieza solo procesa lo
+que ya haya en cola/, venga de ahí o de una búsqueda manual desde el panel (/buscar-x). Corre
+sola, en el horario configurado en config.json o cuando se dispare a mano desde GitHub -- no
+depende de que haya nadie mirando.
 
 Uso:
     python procesar_cola.py

@@ -500,7 +500,7 @@ def contar_pendientes(estilo: str) -> int:
 @app.route("/automatizacion", methods=["GET", "POST"])
 @requiere_login
 def panel():
-    config = {"activo": True, "hora_local": 3, "zona_horaria": "Europe/Madrid"}
+    config = {"activo": True, "horas_locales": [8, 20], "zona_horaria": "Europe/Madrid"}
     config_sha = None
     resultado = leer_contenido_repo(RUTA_CONFIG)
     if resultado:
@@ -550,9 +550,13 @@ def ejecutar():
 def guardar_config():
     resultado = leer_contenido_repo(RUTA_CONFIG)
     sha_actual = resultado[1] if resultado else None
+    horas_locales = sorted({
+        int(h) for h in request.form.get("horas_locales", "").split(",")
+        if h.strip().isdigit() and 0 <= int(h) <= 23
+    }) or [3]
     nuevo_config = {
         "activo": request.form.get("activo") == "on",
-        "hora_local": int(request.form.get("hora_local", 3)),
+        "horas_locales": horas_locales,
         "zona_horaria": request.form.get("zona_horaria", "Europe/Madrid").strip(),
     }
     contenido = (json.dumps(nuevo_config, indent=2, ensure_ascii=False) + "\n").encode("utf-8")
@@ -996,8 +1000,8 @@ PLANTILLA_PANEL = """
         <input type="checkbox" name="activo" id="activo" {{ 'checked' if config.activo }}>
         <label for="activo" style="margin:0;text-transform:none;font-size:0.9rem;">Activo</label>
       </div>
-      <label for="hora_local">Hora local</label>
-      <input type="number" min="0" max="23" name="hora_local" id="hora_local" value="{{ config.hora_local }}">
+      <label for="horas_locales">Horas locales (separadas por coma)</label>
+      <input type="text" name="horas_locales" id="horas_locales" value="{{ config.horas_locales|join(', ') }}">
       <label for="zona_horaria">Zona horaria</label>
       <input type="text" name="zona_horaria" id="zona_horaria" value="{{ config.zona_horaria }}">
       <button class="btn" type="submit" style="margin-top:14px;background:#4f7a56;">Guardar</button>

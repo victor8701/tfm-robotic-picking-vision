@@ -51,7 +51,12 @@ def crear_solicitud_automatica(estilo: str, cantidad: int) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--estilos", default="", help="Coma-separado (p. ej. old_money,urbano); vacío = los 7")
-    parser.add_argument("--cantidad", type=int, default=8)
+    # 20 = MAX_CANDIDATAS_TAVILY en buscar_x.py, el techo real de la API -- cada llamada a Tavily
+    # ya pedía hasta 20 candidatas (min(20, cantidad*3)) aunque cantidad fuera menor, así que con
+    # el valor anterior (8) se descartaban candidatas ya pagadas/recibidas solo por el límite del
+    # bucle de filtrado local, no por límite de Tavily. Subir esto a 20 no cuesta ni una llamada
+    # extra a la API (ver docstring de consultar_tavily en buscar_x.py) -- 2026-09-27.
+    parser.add_argument("--cantidad", type=int, default=20)
     args = parser.parse_args()
 
     estilos_validos = [clave for clave, _ in CATEGORIAS]

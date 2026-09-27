@@ -18,7 +18,7 @@ Una sola app con una URL propia. Tres partes:
   descarta a mano con el botón ✕ de la galería. El estado de cada búsqueda
   (pendiente/buscando/completado/error) se actualiza aquí según avanza el workflow.
 - **Automatización de X (`/automatizacion`)**: ver la cola pendiente, disparar la Action ya
-  mismo, cambiar el horario (`activo`/`hora_local`/`zona_horaria`) sin entrar en GitHub a mano.
+  mismo, cambiar el horario (`activo`/`horas_locales`/`zona_horaria`) sin entrar en GitHub a mano.
 
 **De dónde vienen los datos**: no hay base de datos de verdad (el plan gratuito de Render no
 tiene disco persistente). Las clasificaciones viven en `data/clasificaciones.json` y las fotos
@@ -26,19 +26,25 @@ en `static/fotos/`, ambos dentro de este mismo repo de GitHub — el panel los l
 la API de GitHub (misma que ya usaba para `config.json`), así que cada cambio en la galería
 genera un commit real en el repo.
 
-**Importante — qué es esto y qué no es**: la ejecución programada de X (diaria/horaria, según
-`config.json`) ya corre sola dentro de GitHub Actions — eso no depende de que este panel exista
+**Importante — qué es esto y qué no es**: la ejecución programada de X (una o varias veces al
+día, horas exactas en `config.json`) ya corre sola dentro de GitHub Actions — eso no depende de que este panel exista
 ni de que esté despierto. La pestaña de automatización es solo una interfaz más cómoda para
 verla y controlarla desde una URL. La galería, en cambio, sí depende de que el panel esté
 despierto (es la única forma de ver/editar las fotos ahora).
 
 **Las búsquedas de X también son automáticas, no hace falta lanzarlas a mano.** Cada vez que
-toca la ejecución programada, `lanzar_busquedas_automaticas.py` pide una búsqueda para cada uno
-de los 7 estilos (mismo texto "predeterminado" que usarías desde `/buscar-x`), antes de procesar
-la cola — así que las fotos nuevas van llegando solas. Es híbrida: si un estilo ya tiene cuentas
-de X verificadas como fiables (`experimentos/ingesta_x/cuentas_confiables.json`), busca ahí
-además de la búsqueda abierta de siempre, nunca en vez de ella. `/buscar-x` sigue disponible
-para pedir algo puntual (texto tuyo, una cuenta concreta, una ocasión) cuando quieras.
+toca la ejecución programada (**dos veces al día** por defecto, `horas_locales: [8, 20]` en
+`config.json` — antes era una vez, se subió el 2026-09-27 para llegar antes a la meta de
+[[project-ingesta-viral-clips]]), `lanzar_busquedas_automaticas.py` pide una búsqueda para cada
+uno de los 7 estilos (mismo texto "predeterminado" que usarías desde `/buscar-x`, hasta 20
+resultados válidos por estilo — el techo real de la API de Tavily, ver comentario en
+`lanzar_busquedas_automaticas.py`), antes de procesar la cola — así que las fotos nuevas van
+llegando solas, sin que nadie tenga que entrar aquí. Es híbrida: si un estilo ya tiene cuentas de
+X verificadas como fiables (`experimentos/ingesta_x/cuentas_confiables.json`), busca ahí además
+de la búsqueda abierta de siempre, nunca en vez de ella. Con dos ejecuciones al día el consumo de
+Tavily queda sobre 600-900 créditos/mes según cuántos estilos tengan ya cuentas de confianza —
+dentro del límite gratuito de 1000/mes, con margen. `/buscar-x` sigue disponible para pedir algo
+puntual (texto tuyo, una cuenta concreta, una ocasión) cuando quieras.
 
 ## Qué necesitas hacer tú una vez (esto no lo puede hacer Claude por ti)
 
