@@ -71,7 +71,13 @@ NOMBRE_OCASION = dict(OCASIONES)
 # sigan dando resultados consistentes con las fotos ya clasificadas.
 TEXTO_PREDETERMINADO_ESTILO = {
     "old_money": "old money aesthetic outfit quiet luxury real photos",
-    "lujo_ostentoso": "logomania luxury streetwear outfit real photos",
+    # "luxury streetwear" compartía las palabras "luxury" (con old_money, que busca "quiet
+    # luxury" -- lo opuesto) y "streetwear" (con urbano y alternativo_geek) -- de las 2 fotos
+    # reales que trajo, una era un artículo genérico de tendencias streetwear (sin nada de
+    # ostentoso), Víctor la corrigió a "urbano" (revisión real, 2026-09-27). Menos solape:
+    # "logomania"/"flashy"/"designer brands" describen justo lo ostentoso, sin la palabra
+    # "streetwear" que ya usan otros dos estilos.
+    "lujo_ostentoso": "logomania flashy designer brands outfit real photos",
     "clasico_tradicional": "cayetana style outfit spain classic preppy",
     "urbano": "moda trap español streetwear outfit real",
     "bohemio": "bohemian boho chic outfit real photos",

@@ -68,6 +68,11 @@ PALABRAS_PROHIBIDAS = [
     "concept art", "3d model", "3d render", ".blend", " fbx", "artstation", "commission",
     "commissions open", "vtuber", "furry", "anthro", "genshin", "honkai", "league of legends",
     "valorant skin", "fortnite skin", "download available", "model download",
+    # Variantes en hashtag (sin espacio, se cuelan del bloque de arriba) -- encontrado en una
+    # búsqueda real de "lujo_ostentoso" (2026-09-27): una marca de lencería usando el texto
+    # "Draw your OC in this!!! #outfitprompt #ocoutfit #ocprompt #drawyouroc" como referencia
+    # para que artistas dibujen su personaje -- no es una foto de ropa real en absoluto.
+    "outfitprompt", "ocoutfit", "ocprompt", "drawyouroc",
     # Mercancía/coleccionables y mockups de producto -- encontrados en una búsqueda real de
     # "urbano" (2026-09-27): figuras coleccionables de Monster Hunter (Capcom), un mockup 3D de
     # una camiseta para software de patronaje. Ninguna es una foto de una persona vestida.
