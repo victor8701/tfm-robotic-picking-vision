@@ -2236,7 +2236,7 @@
   "x_2017311998380474560_2": {
     "categoria_final": "alternativo_geek",
     "categoria_ia": "alternativo_geek",
-    "eliminada": false,
+    "eliminada": true,
     "fuente": "@TeamLiquid (X)",
     "fuente_url": "https://x.com/TeamLiquid/status/2017311998380474560",
     "imagen": "x_2017311998380474560_2.jpg",
