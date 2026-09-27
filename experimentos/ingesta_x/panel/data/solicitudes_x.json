@@ -273,7 +273,7 @@
   "sol_1790513187733": {
     "cantidad": 15,
     "creado_en": "2026-09-27T12:46:28.218269+00:00",
-    "estado": "buscando",
+    "estado": "completado",
     "estilo": "urbano",
     "modo": "automatico",
     "ocasion": "fiesta_noche",
@@ -289,8 +289,13 @@
       {
         "texto": "Tavily encontró 1 resultado(s), aplicando filtro...",
         "ts": "2026-09-27T12:46:49.790490+00:00"
+      },
+      {
+        "texto": "Encontradas 0 URL(s) nuevas, añadidas a la cola de 'urbano'. Descartadas 1 (repetidas, no válidas, o coincidían con la lista de palabras a evitar).",
+        "ts": "2026-09-27T12:46:50.987784+00:00"
       }
     ],
-    "texto_busqueda": "moda trap español streetwear outfit real night out party look"
+    "texto_busqueda": "moda trap español streetwear outfit real night out party look",
+    "urls_encontradas": 0
   }
 }
