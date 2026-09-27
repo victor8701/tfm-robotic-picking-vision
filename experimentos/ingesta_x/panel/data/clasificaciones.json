@@ -2203,7 +2203,7 @@
   "x_1972680424812847605_1": {
     "categoria_final": "old_money",
     "categoria_ia": "old_money",
-    "eliminada": false,
+    "eliminada": true,
     "fuente": "@vantsreve (X)",
     "fuente_url": "https://x.com/vantsreve/status/1972680424812847605",
     "imagen": "x_1972680424812847605_1.jpg",
