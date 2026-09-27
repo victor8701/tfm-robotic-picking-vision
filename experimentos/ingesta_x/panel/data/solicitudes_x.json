@@ -824,7 +824,7 @@
   "sol_1790540465904": {
     "cantidad": 20,
     "creado_en": "2026-09-27T20:21:05.904512+00:00",
-    "estado": "pendiente",
+    "estado": "buscando",
     "estilo": "clasico_tradicional",
     "modo": "predeterminado",
     "ocasion": "ninguna",
@@ -832,6 +832,10 @@
       {
         "texto": "Solicitud creada automáticamente (sin intervención manual).",
         "ts": "2026-09-27T20:21:05.904530+00:00"
+      },
+      {
+        "texto": "Buscando en la web con Tavily...",
+        "ts": "2026-09-27T20:21:07.083896+00:00"
       }
     ],
     "texto_busqueda": "cayetana style outfit spain classic preppy"
