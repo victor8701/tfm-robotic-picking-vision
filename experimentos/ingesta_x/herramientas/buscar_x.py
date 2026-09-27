@@ -68,6 +68,11 @@ PALABRAS_PROHIBIDAS = [
     "concept art", "3d model", "3d render", ".blend", " fbx", "artstation", "commission",
     "commissions open", "vtuber", "furry", "anthro", "genshin", "honkai", "league of legends",
     "valorant skin", "fortnite skin", "download available", "model download",
+    # Mercancía/coleccionables y mockups de producto -- encontrados en una búsqueda real de
+    # "urbano" (2026-09-27): figuras coleccionables de Monster Hunter (Capcom), un mockup 3D de
+    # una camiseta para software de patronaje. Ninguna es una foto de una persona vestida.
+    "figure builder", "collectible figure", "action figure", "capcom",
+    "clo3d", "marvelous designer", "product mockup",
 ]
 
 
