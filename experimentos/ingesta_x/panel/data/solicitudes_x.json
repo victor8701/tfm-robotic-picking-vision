@@ -525,7 +525,7 @@
   "sol_1790522948097": {
     "cantidad": 8,
     "creado_en": "2026-09-27T15:29:08.097133+00:00",
-    "estado": "pendiente",
+    "estado": "buscando",
     "estilo": "alternativo_geek",
     "modo": "predeterminado",
     "ocasion": "ninguna",
@@ -533,6 +533,10 @@
       {
         "texto": "Solicitud creada automáticamente (sin intervención manual).",
         "ts": "2026-09-27T15:29:08.097149+00:00"
+      },
+      {
+        "texto": "Buscando en la web con Tavily...",
+        "ts": "2026-09-27T15:29:09.030900+00:00"
       }
     ],
     "texto_busqueda": "techwear utilitarian gorpcore streetwear outfit real photos"
