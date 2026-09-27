@@ -2322,7 +2322,7 @@
     "revisada": true
   },
   "x_2089449343988432933_1": {
-    "categoria_final": "old_money",
+    "categoria_final": "urbano",
     "categoria_ia": "old_money",
     "eliminada": false,
     "fuente": "@oye_samia (X)",
@@ -2330,7 +2330,7 @@
     "imagen": "x_2089449343988432933_1.jpg",
     "ocasion_final": null,
     "origen": "claude",
-    "revisada": false
+    "revisada": true
   },
   "x_2089449343988432933_2": {
     "categoria_final": "old_money",
