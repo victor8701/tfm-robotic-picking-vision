@@ -1,0 +1,16 @@
+{
+  "fuente": "x_twitter",
+  "tipo_contenido": "foto",
+  "url_original": "https://x.com/itsphotogptai/status/2064632031032811954",
+  "tweet_id": "2064632031032811954",
+  "cuenta": "itsphotogptai",
+  "cuenta_nombre": "PhotoGPT",
+  "descripcion": "ChatGPT Image 2 on @itsphotogptai \n\nPrompt:\nUltra realistic cyber-fashion street portrait of [REFERENCE PERSON], preserve the exact facial identity, facial structure, eye shape, lips, skin texture, hairstyle, makeup style, and overall likeness from the reference image with https://t.co/L5HEBLkmX4",
+  "fecha_publicacion": "2026-06-10T08:53:29.000Z",
+  "intervalo_seg": null,
+  "n_imagenes": 1,
+  "imagenes": [
+    "x_2064632031032811954_foto01.jpg"
+  ],
+  "descargado_en": "2026-09-28T00:28:05.650506+00:00"
+}

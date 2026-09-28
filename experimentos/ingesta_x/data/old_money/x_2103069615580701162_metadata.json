@@ -1,0 +1,18 @@
+{
+  "fuente": "x_twitter",
+  "tipo_contenido": "foto",
+  "url_original": "https://x.com/intrepid_p/status/2103069615580701162/photo/3",
+  "tweet_id": "2103069615580701162",
+  "cuenta": "intrepid_p",
+  "cuenta_nombre": "Intrepid",
+  "descripcion": "Liquid Amber, Scar, and Celestial Brine.   Coming to Super Real on @SuperRare: September 28, 2026 at 8:00 AM New York City (EDT) time.  Lets dig in 👇 https://t.co/PqiNb2wKvR",
+  "fecha_publicacion": "2026-09-24T10:30:44.000Z",
+  "intervalo_seg": null,
+  "n_imagenes": 3,
+  "imagenes": [
+    "x_2103069615580701162_foto01.jpg",
+    "x_2103069615580701162_foto02.jpg",
+    "x_2103069615580701162_foto03.jpg"
+  ],
+  "descargado_en": "2026-09-28T00:27:34.130001+00:00"
+}

@@ -1,0 +1,16 @@
+{
+  "fuente": "x_twitter",
+  "tipo_contenido": "foto",
+  "url_original": "https://x.com/CityOfDallas/status/2102851883777802478/photo/1",
+  "tweet_id": "2102851883777802478",
+  "cuenta": "CityOfDallas",
+  "cuenta_nombre": "City of Dallas",
+  "descripcion": "Please be aware that various City of Dallas offices and facilities will be closed or operating with modified hours on September 28, 2026, or the designated closure date. Emergency and critical services will continue operating as usual. https://t.co/xD5ab2tN0l https://t.co/qENOF8tIPw",
+  "fecha_publicacion": "2026-09-23T20:05:32.000Z",
+  "intervalo_seg": null,
+  "n_imagenes": 1,
+  "imagenes": [
+    "x_2102851883777802478_foto01.jpg"
+  ],
+  "descargado_en": "2026-09-28T00:27:42.272654+00:00"
+}
