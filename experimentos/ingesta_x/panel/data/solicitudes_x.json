@@ -1560,7 +1560,7 @@
   "sol_1790577083473": {
     "cantidad": 8,
     "creado_en": "2026-09-28T06:31:23.473288+00:00",
-    "estado": "buscando",
+    "estado": "completado",
     "estilo": "old_money",
     "modo": "predeterminado",
     "ocasion": "ninguna",
@@ -1576,8 +1576,13 @@
       {
         "texto": "Tavily encontró 25 resultado(s), aplicando filtro...",
         "ts": "2026-09-28T06:31:35.673949+00:00"
+      },
+      {
+        "texto": "Encontradas 3 URL(s) nuevas, añadidas a la cola de 'old_money'. Descartadas 22 (repetidas, no válidas, o coincidían con la lista de palabras a evitar).",
+        "ts": "2026-09-28T06:31:36.929850+00:00"
       }
     ],
-    "texto_busqueda": "old money aesthetic outfit quiet luxury real photos"
+    "texto_busqueda": "old money aesthetic outfit quiet luxury real photos",
+    "urls_encontradas": 3
   }
 }
