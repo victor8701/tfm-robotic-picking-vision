@@ -1724,5 +1724,20 @@
     ],
     "texto_busqueda": "techwear utilitarian gorpcore streetwear outfit real photos",
     "urls_encontradas": 1
+  },
+  "sol_1790577145736": {
+    "cantidad": 8,
+    "creado_en": "2026-09-28T06:32:25.736448+00:00",
+    "estado": "pendiente",
+    "estilo": "convencional",
+    "modo": "predeterminado",
+    "ocasion": "ninguna",
+    "pasos": [
+      {
+        "texto": "Solicitud creada automáticamente (sin intervención manual).",
+        "ts": "2026-09-28T06:32:25.736464+00:00"
+      }
+    ],
+    "texto_busqueda": "normcore basic outfit real photos"
   }
 }
