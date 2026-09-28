@@ -1728,7 +1728,7 @@
   "sol_1790577145736": {
     "cantidad": 8,
     "creado_en": "2026-09-28T06:32:25.736448+00:00",
-    "estado": "buscando",
+    "estado": "completado",
     "estilo": "convencional",
     "modo": "predeterminado",
     "ocasion": "ninguna",
@@ -1744,8 +1744,13 @@
       {
         "texto": "Tavily encontró 19 resultado(s), aplicando filtro...",
         "ts": "2026-09-28T06:32:33.622253+00:00"
+      },
+      {
+        "texto": "Encontradas 0 URL(s) nuevas, añadidas a la cola de 'convencional'. Descartadas 19 (repetidas, no válidas, o coincidían con la lista de palabras a evitar).",
+        "ts": "2026-09-28T06:32:34.835237+00:00"
       }
     ],
-    "texto_busqueda": "normcore basic outfit real photos"
+    "texto_busqueda": "normcore basic outfit real photos",
+    "urls_encontradas": 0
   }
 }
