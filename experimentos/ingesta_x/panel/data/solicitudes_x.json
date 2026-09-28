@@ -1616,7 +1616,7 @@
   "sol_1790577106582": {
     "cantidad": 8,
     "creado_en": "2026-09-28T06:31:46.582673+00:00",
-    "estado": "buscando",
+    "estado": "completado",
     "estilo": "clasico_tradicional",
     "modo": "predeterminado",
     "ocasion": "ninguna",
@@ -1632,8 +1632,13 @@
       {
         "texto": "Tavily encontró 20 resultado(s), aplicando filtro...",
         "ts": "2026-09-28T06:31:51.996700+00:00"
+      },
+      {
+        "texto": "Encontradas 0 URL(s) nuevas, añadidas a la cola de 'clasico_tradicional'. Descartadas 20 (repetidas, no válidas, o coincidían con la lista de palabras a evitar).",
+        "ts": "2026-09-28T06:31:53.230097+00:00"
       }
     ],
-    "texto_busqueda": "cayetana style outfit spain classic preppy"
+    "texto_busqueda": "cayetana style outfit spain classic preppy",
+    "urls_encontradas": 0
   }
 }
