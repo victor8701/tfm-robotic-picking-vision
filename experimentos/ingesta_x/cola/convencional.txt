@@ -1,3 +1,6 @@
 # Una URL de X (x.com/usuario/status/ID) por linea.
 # Las lineas vacias o que empiezan por # se ignoran.
 # La Action mueve cada URL procesada a procesadas.txt automaticamente.
+https://x.com/nc_1511/status/2103110015188099276
+https://twitter.com/spmaslansky/status/992163206490714112
+https://x.com/ZZZAnonymously/status/2050709538417058245
