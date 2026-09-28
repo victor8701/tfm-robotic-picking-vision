@@ -262,6 +262,23 @@ def urls_ya_en_cola(estilo: str) -> set[str]:
     }
 
 
+def urls_ya_procesadas(estilo: str) -> set[str]:
+    """URLs que este estilo ya descargó alguna vez (éxito o fallo permanente), según el log de
+    procesar_cola.py (cola/procesadas.txt, nunca se borra). A diferencia de urls_ya_en_cola,
+    esto SÍ cubre lo que ya se procesó y salió de la cola -- necesario porque el texto de
+    búsqueda de cada estilo es fijo y se repite automáticamente cada día: sin esto, Tavily sigue
+    devolviendo las mismas URLs ya buenas de días anteriores como si fueran nuevas."""
+    ruta = RUTA_COLA / "procesadas.txt"
+    if not ruta.exists():
+        return set()
+    vistas: set[str] = set()
+    for linea in ruta.read_text(encoding="utf-8").splitlines():
+        partes = linea.split(" | ")
+        if len(partes) >= 3 and partes[1].strip() == estilo:
+            vistas.add(partes[2].strip())
+    return vistas
+
+
 def añadir_a_cola(estilo: str, urls_nuevas: list[str]) -> None:
     ruta = RUTA_COLA / f"{estilo}.txt"
     ruta.parent.mkdir(parents=True, exist_ok=True)
@@ -341,6 +358,18 @@ def main() -> int:
         # Sin Claude (ver docstring del módulo): filtro puramente mecánico -- URL con forma de
         # publicación real, sin palabras de la lista negra, ordenado por la relevancia que ya
         # calcula Tavily, y nos quedamos con las primeras `cantidad`.
+        #
+        # El "ya vista" (en cola o ya procesada antes) se comprueba AQUÍ, antes del corte por
+        # `cantidad` -- no después. El texto de búsqueda de cada estilo es fijo y se repite cada
+        # día, así que Tavily devuelve una y otra vez las mismas URLs ya buenas de días
+        # anteriores, con la puntuación más alta. Si el corte por `cantidad` fuera ciego a esto
+        # (como era antes, 2026-09-28: se comprobaba "ya en cola" solo al final, sobre la lista
+        # ya recortada), esas repetidas se comían el hueco de `cantidad` sin dar nada nuevo, y no
+        # había forma de rellenarlo con la siguiente candidata real por debajo en la lista --
+        # cada día el resultado real era peor según se acumulaban estilos "maduros" con más
+        # historial ya encontrado. Comprobándolo aquí, el bucle sigue bajando en la lista
+        # ordenada hasta completar `cantidad` candidatas genuinamente nuevas (o agotar Tavily).
+        ya_vistas = urls_ya_en_cola(solicitud["estilo"]) | urls_ya_procesadas(solicitud["estilo"])
         ordenados = sorted(resultados_tavily, key=lambda r: r.get("score", 0), reverse=True)
         validas: list[str] = []
         descartadas = 0
@@ -348,7 +377,7 @@ def main() -> int:
             if len(validas) >= cantidad:
                 break
             url = (r.get("url") or "").strip()
-            if not RE_URL_TWEET.match(url) or url in validas or parece_indeseable(r):
+            if not RE_URL_TWEET.match(url) or url in validas or url in ya_vistas or parece_indeseable(r):
                 descartadas += 1
                 continue
             validas.append(url)
