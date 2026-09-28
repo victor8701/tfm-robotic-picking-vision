@@ -1392,7 +1392,7 @@
   "sol_1790555196874": {
     "cantidad": 8,
     "creado_en": "2026-09-28T00:26:36.874632+00:00",
-    "estado": "pendiente",
+    "estado": "buscando",
     "estilo": "lujo_ostentoso",
     "modo": "predeterminado",
     "ocasion": "ninguna",
@@ -1400,6 +1400,10 @@
       {
         "texto": "Solicitud creada automáticamente (sin intervención manual).",
         "ts": "2026-09-28T00:26:36.874654+00:00"
+      },
+      {
+        "texto": "Buscando en la web con Tavily...",
+        "ts": "2026-09-28T00:26:38.033202+00:00"
       }
     ],
     "texto_busqueda": "logomania flashy designer brands outfit real photos"
