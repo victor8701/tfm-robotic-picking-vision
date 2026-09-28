@@ -1644,7 +1644,7 @@
   "sol_1790577114449": {
     "cantidad": 8,
     "creado_en": "2026-09-28T06:31:54.449845+00:00",
-    "estado": "buscando",
+    "estado": "completado",
     "estilo": "urbano",
     "modo": "predeterminado",
     "ocasion": "ninguna",
@@ -1660,8 +1660,13 @@
       {
         "texto": "Tavily encontró 20 resultado(s), aplicando filtro...",
         "ts": "2026-09-28T06:31:59.907711+00:00"
+      },
+      {
+        "texto": "Encontradas 0 URL(s) nuevas, añadidas a la cola de 'urbano'. Descartadas 20 (repetidas, no válidas, o coincidían con la lista de palabras a evitar).",
+        "ts": "2026-09-28T06:32:01.152366+00:00"
       }
     ],
-    "texto_busqueda": "moda trap español streetwear outfit real"
+    "texto_busqueda": "moda trap español streetwear outfit real",
+    "urls_encontradas": 0
   }
 }
