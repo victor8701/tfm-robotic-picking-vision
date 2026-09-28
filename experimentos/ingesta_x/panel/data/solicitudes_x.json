@@ -1672,7 +1672,7 @@
   "sol_1790577122450": {
     "cantidad": 8,
     "creado_en": "2026-09-28T06:32:02.450089+00:00",
-    "estado": "buscando",
+    "estado": "completado",
     "estilo": "bohemio",
     "modo": "predeterminado",
     "ocasion": "ninguna",
@@ -1688,8 +1688,13 @@
       {
         "texto": "Tavily encontró 26 resultado(s), aplicando filtro...",
         "ts": "2026-09-28T06:32:11.794666+00:00"
+      },
+      {
+        "texto": "Encontradas 4 URL(s) nuevas, añadidas a la cola de 'bohemio'. Descartadas 22 (repetidas, no válidas, o coincidían con la lista de palabras a evitar).",
+        "ts": "2026-09-28T06:32:13.076944+00:00"
       }
     ],
-    "texto_busqueda": "bohemian boho chic outfit real photos"
+    "texto_busqueda": "bohemian boho chic outfit real photos",
+    "urls_encontradas": 4
   }
 }
