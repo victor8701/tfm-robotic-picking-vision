@@ -281,3 +281,15 @@
 2026-09-28T00:28:05.923247+00:00 | convencional | https://x.com/nc_1511/status/2103110015188099276 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
 2026-09-28T00:28:06.767975+00:00 | convencional | https://twitter.com/spmaslansky/status/992163206490714112 | ok:1_foto
 2026-09-28T00:28:07.446364+00:00 | convencional | https://x.com/ZZZAnonymously/status/2050709538417058245 | ok:1_foto
+2026-09-28T06:32:36.854477+00:00 | old_money | https://x.com/MrKenen/status/2104233760195477947/photo/3 | fallo_temporal:404 Client Error: Not Found for url: https://pbs.twimg.com/media/HTO9S2cXAAAzwlc.png?format=jpg&name=orig
+2026-09-28T06:32:37.414673+00:00 | old_money | https://x.com/StyleListings/status/1970454449790558606 | ok:2_foto
+2026-09-28T06:32:37.572054+00:00 | old_money | https://x.com/OCModeling/status/1968236826554167700?lang=en | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-28T06:32:38.520397+00:00 | old_money | https://x.com/lilzula_009_me/status/2013035316358037588 | ok:4_foto
+2026-09-28T06:32:39.234878+00:00 | lujo_ostentoso | https://x.com/MissMixi/status/1099660676501368832 | ok:4_foto
+2026-09-28T06:32:39.382672+00:00 | lujo_ostentoso | https://x.com/3lvcksun/status/2075844233982779814 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-28T06:32:40.099153+00:00 | clasico_tradicional | https://x.com/dieworkwear/status/2043139233079255320?lang=en | fallo_temporal:404 Client Error: Not Found for url: https://pbs.twimg.com/media/HFqu0EZbgAADngo.png?format=jpg&name=orig
+2026-09-28T06:32:40.415382+00:00 | bohemio | https://x.com/VogueSpain/status/2060287998588256369 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-28T06:32:41.493849+00:00 | bohemio | https://x.com/Ciceroni_App/status/1240176351195172865 | ok:4_foto
+2026-09-28T06:32:41.937541+00:00 | bohemio | https://twitter.com/RachelZoe/status/1839457251251421420 | ok:1_foto
+2026-09-28T06:32:42.281616+00:00 | bohemio | https://x.com/theugagency/status/563453982795137026?lang=en | ok:1_foto
+2026-09-28T06:32:42.422144+00:00 | alternativo_geek | https://x.com/ArtDeiTech/status/1970616481856598479 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)

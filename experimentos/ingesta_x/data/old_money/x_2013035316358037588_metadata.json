@@ -1,0 +1,19 @@
+{
+  "fuente": "x_twitter",
+  "tipo_contenido": "foto",
+  "url_original": "https://x.com/lilzula_009_me/status/2013035316358037588",
+  "tweet_id": "2013035316358037588",
+  "cuenta": "lilzula_009_me",
+  "cuenta_nombre": "lilzula",
+  "descripcion": "Gemini Nano Banana 3.0\n\nPrompt:\n\n{\n  \"image_request\": {\n    \"identity_lock\": {\n      \"reference_face\": \"Uploaded reference image\",\n      \"rules\": [\n        \"Preserve exact facial features\",\n        \"No facial modification or beautification\",\n        \"Maintain natural asymmetry\", https://t.co/HIQeAFRwCi",
+  "fecha_publicacion": "2026-01-18T23:46:34.000Z",
+  "intervalo_seg": null,
+  "n_imagenes": 4,
+  "imagenes": [
+    "x_2013035316358037588_foto01.jpg",
+    "x_2013035316358037588_foto02.jpg",
+    "x_2013035316358037588_foto03.jpg",
+    "x_2013035316358037588_foto04.jpg"
+  ],
+  "descargado_en": "2026-09-28T06:32:38.520132+00:00"
+}

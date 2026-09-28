@@ -1,0 +1,17 @@
+{
+  "fuente": "x_twitter",
+  "tipo_contenido": "foto",
+  "url_original": "https://x.com/StyleListings/status/1970454449790558606",
+  "tweet_id": "1970454449790558606",
+  "cuenta": "StyleListings",
+  "cuenta_nombre": "StyleListings",
+  "descripcion": "New day, New Gemini Prompts:\n\n1. Use the attached image of the model as facial reference and physical features.\nBlack and white high-fashion editorial portrait of uploaded person, wearing a loose white blouse. She poses with one arm raised, partially covering her face while https://t.co/umq4jP2BXV",
+  "fecha_publicacion": "2025-09-23T11:45:24.000Z",
+  "intervalo_seg": null,
+  "n_imagenes": 2,
+  "imagenes": [
+    "x_1970454449790558606_foto01.jpg",
+    "x_1970454449790558606_foto02.jpg"
+  ],
+  "descargado_en": "2026-09-28T06:32:37.414376+00:00"
+}

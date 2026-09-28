@@ -2046,6 +2046,50 @@
     "origen": "claude",
     "revisada": true
   },
+  "x_1240176351195172865_1": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": false,
+    "fuente": "@Ciceroni_App (X)",
+    "fuente_url": "https://x.com/Ciceroni_App/status/1240176351195172865",
+    "imagen": "x_1240176351195172865_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_1240176351195172865_2": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": false,
+    "fuente": "@Ciceroni_App (X)",
+    "fuente_url": "https://x.com/Ciceroni_App/status/1240176351195172865",
+    "imagen": "x_1240176351195172865_2.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_1240176351195172865_3": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": false,
+    "fuente": "@Ciceroni_App (X)",
+    "fuente_url": "https://x.com/Ciceroni_App/status/1240176351195172865",
+    "imagen": "x_1240176351195172865_3.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_1240176351195172865_4": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": false,
+    "fuente": "@Ciceroni_App (X)",
+    "fuente_url": "https://x.com/Ciceroni_App/status/1240176351195172865",
+    "imagen": "x_1240176351195172865_4.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
   "x_1254438047254409217_1": {
     "categoria_final": "alternativo_geek",
     "categoria_ia": "alternativo_geek",
@@ -2372,6 +2416,17 @@
     "fuente": "@trapxshop (X)",
     "fuente_url": "https://x.com/trapxshop/status/1831414473233399876",
     "imagen": "x_1831414473233399876_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_1839457251251421420_1": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": false,
+    "fuente": "@RachelZoe (X)",
+    "fuente_url": "https://twitter.com/RachelZoe/status/1839457251251421420",
+    "imagen": "x_1839457251251421420_1.jpg",
     "ocasion_final": null,
     "origen": "claude",
     "revisada": false
@@ -2970,6 +3025,28 @@
     "origen": "claude",
     "revisada": false
   },
+  "x_1970454449790558606_1": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@StyleListings (X)",
+    "fuente_url": "https://x.com/StyleListings/status/1970454449790558606",
+    "imagen": "x_1970454449790558606_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_1970454449790558606_2": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@StyleListings (X)",
+    "fuente_url": "https://x.com/StyleListings/status/1970454449790558606",
+    "imagen": "x_1970454449790558606_2.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
   "x_1972680424812847605_1": {
     "categoria_final": "old_money",
     "categoria_ia": "old_money",
@@ -3035,6 +3112,50 @@
     "ocasion_final": null,
     "origen": "claude",
     "revisada": true
+  },
+  "x_2013035316358037588_1": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@lilzula_009_me (X)",
+    "fuente_url": "https://x.com/lilzula_009_me/status/2013035316358037588",
+    "imagen": "x_2013035316358037588_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2013035316358037588_2": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@lilzula_009_me (X)",
+    "fuente_url": "https://x.com/lilzula_009_me/status/2013035316358037588",
+    "imagen": "x_2013035316358037588_2.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2013035316358037588_3": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@lilzula_009_me (X)",
+    "fuente_url": "https://x.com/lilzula_009_me/status/2013035316358037588",
+    "imagen": "x_2013035316358037588_3.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2013035316358037588_4": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@lilzula_009_me (X)",
+    "fuente_url": "https://x.com/lilzula_009_me/status/2013035316358037588",
+    "imagen": "x_2013035316358037588_4.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
   },
   "x_2013495788824117576_1": {
     "categoria_final": "old_money",
@@ -4198,6 +4319,17 @@
     "fuente": "@Moda__Adicta (X)",
     "fuente_url": "https://twitter.com/Moda__Adicta/status/557835219806732288",
     "imagen": "x_557835219806732288_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_563453982795137026_1": {
+    "categoria_final": "bohemio",
+    "categoria_ia": "bohemio",
+    "eliminada": false,
+    "fuente": "@theUGAgency (X)",
+    "fuente_url": "https://x.com/theugagency/status/563453982795137026?lang=en",
+    "imagen": "x_563453982795137026_1.jpg",
     "ocasion_final": null,
     "origen": "claude",
     "revisada": false
