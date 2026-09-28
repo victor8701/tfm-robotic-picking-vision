@@ -44,6 +44,18 @@ aquí. Es híbrida: si un estilo ya tiene cuentas de X verificadas como fiables
 siempre, nunca en vez de ella. `/buscar-x` sigue disponible para pedir algo puntual (texto tuyo,
 una cuenta concreta, una ocasión) cuando quieras.
 
+**El texto de búsqueda de cada estilo es fijo y se repite cada día — el filtro descarta lo ya
+encontrado antes de gastar el cupo, no después.** Tavily sigue devolviendo, con la puntuación
+más alta, las mismas URLs ya descargadas en días anteriores (son sus mejores resultados de
+verdad para ese texto). `buscar_x.py` comprueba `urls_ya_en_cola()` + `urls_ya_procesadas()`
+(el histórico completo, `cola/procesadas.txt`) **antes** del corte por `cantidad`, así que sigue
+bajando en la lista ordenada por relevancia hasta completar `cantidad` candidatas genuinamente
+nuevas, en vez de gastar el cupo en repetidas que `importar_a_galeria.py` acabaría descartando
+en silencio por id duplicado. Arreglado el 2026-09-28 tras confirmar con datos reales que los
+estilos con más historial (`old_money`, con 55 URLs ya procesadas frente a ~10-45 del resto)
+eran justo los que peor resultado daban cada día — no es casualidad, es el estilo que más veces
+se ha buscado con el mismo texto.
+
 **El `cantidad` (8) importa para la calidad, no solo para la cuota de Tavily.** El filtro mecánico
 ordena los resultados de Tavily por su propio "score" de relevancia y se queda con los primeros
 `cantidad` que pasen el resto del filtro — pedir más no cuesta llamadas extra a la API, pero sí
