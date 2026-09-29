@@ -1840,7 +1840,7 @@
   "sol_1790669481294": {
     "cantidad": 8,
     "creado_en": "2026-09-29T08:11:21.294287+00:00",
-    "estado": "pendiente",
+    "estado": "buscando",
     "estilo": "urbano",
     "modo": "predeterminado",
     "ocasion": "ninguna",
@@ -1848,6 +1848,10 @@
       {
         "texto": "Solicitud creada automáticamente (sin intervención manual).",
         "ts": "2026-09-29T08:11:21.294306+00:00"
+      },
+      {
+        "texto": "Buscando en la web con Tavily...",
+        "ts": "2026-09-29T08:11:22.447427+00:00"
       }
     ],
     "texto_busqueda": "moda trap español streetwear outfit real"
