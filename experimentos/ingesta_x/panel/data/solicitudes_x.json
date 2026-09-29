@@ -1784,7 +1784,7 @@
   "sol_1790669465529": {
     "cantidad": 8,
     "creado_en": "2026-09-29T08:11:05.529967+00:00",
-    "estado": "buscando",
+    "estado": "completado",
     "estilo": "lujo_ostentoso",
     "modo": "predeterminado",
     "ocasion": "ninguna",
@@ -1800,8 +1800,13 @@
       {
         "texto": "Tavily encontró 20 resultado(s), aplicando filtro...",
         "ts": "2026-09-29T08:11:11.022682+00:00"
+      },
+      {
+        "texto": "Encontradas 3 URL(s) nuevas, añadidas a la cola de 'lujo_ostentoso'. Descartadas 17 (repetidas, no válidas, o coincidían con la lista de palabras a evitar).",
+        "ts": "2026-09-29T08:11:12.194896+00:00"
       }
     ],
-    "texto_busqueda": "logomania flashy designer brands outfit real photos"
+    "texto_busqueda": "logomania flashy designer brands outfit real photos",
+    "urls_encontradas": 3
   }
 }
