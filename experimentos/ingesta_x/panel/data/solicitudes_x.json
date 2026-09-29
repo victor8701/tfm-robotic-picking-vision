@@ -1752,5 +1752,20 @@
     ],
     "texto_busqueda": "normcore basic outfit real photos",
     "urls_encontradas": 0
+  },
+  "sol_1790669452477": {
+    "cantidad": 8,
+    "creado_en": "2026-09-29T08:10:52.477212+00:00",
+    "estado": "pendiente",
+    "estilo": "old_money",
+    "modo": "predeterminado",
+    "ocasion": "ninguna",
+    "pasos": [
+      {
+        "texto": "Solicitud creada automáticamente (sin intervención manual).",
+        "ts": "2026-09-29T08:10:52.477236+00:00"
+      }
+    ],
+    "texto_busqueda": "old money aesthetic outfit quiet luxury real photos"
   }
 }
