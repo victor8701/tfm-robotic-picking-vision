@@ -1780,5 +1780,20 @@
     ],
     "texto_busqueda": "old money aesthetic outfit quiet luxury real photos",
     "urls_encontradas": 8
+  },
+  "sol_1790669465529": {
+    "cantidad": 8,
+    "creado_en": "2026-09-29T08:11:05.529967+00:00",
+    "estado": "pendiente",
+    "estilo": "lujo_ostentoso",
+    "modo": "predeterminado",
+    "ocasion": "ninguna",
+    "pasos": [
+      {
+        "texto": "Solicitud creada automáticamente (sin intervención manual).",
+        "ts": "2026-09-29T08:11:05.529986+00:00"
+      }
+    ],
+    "texto_busqueda": "logomania flashy designer brands outfit real photos"
   }
 }
