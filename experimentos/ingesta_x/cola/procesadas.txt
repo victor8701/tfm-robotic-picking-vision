@@ -293,3 +293,27 @@
 2026-09-28T06:32:41.937541+00:00 | bohemio | https://twitter.com/RachelZoe/status/1839457251251421420 | ok:1_foto
 2026-09-28T06:32:42.281616+00:00 | bohemio | https://x.com/theugagency/status/563453982795137026?lang=en | ok:1_foto
 2026-09-28T06:32:42.422144+00:00 | alternativo_geek | https://x.com/ArtDeiTech/status/1970616481856598479 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-29T08:12:01.068031+00:00 | old_money | https://x.com/MrKenen/status/2104233760195477947/photo/3 | fallo_temporal:404 Client Error: Not Found for url: https://pbs.twimg.com/media/HTO9S2cXAAAzwlc.png?format=jpg&name=orig
+2026-09-29T08:12:01.347110+00:00 | old_money | https://x.com/aaraam_pasand/status/2104772283785265429/photo/1 | ok:1_foto
+2026-09-29T08:12:01.590359+00:00 | old_money | https://x.com/RiichiCity_EN/status/2104761847975178578/photo/1 | ok:1_foto
+2026-09-29T08:12:03.614730+00:00 | old_money | https://x.com/lara_lym/status/2104679407231414692 | fallo_temporal:Command '['/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2', '-y', '-loglevel', 'error', '-i', '/home/runner/work/tfm-robotic-picking-vision/tfm-robotic-picking-vision/experimentos/ingesta_x/data/_tmp_video/2104679407231414692.NA', '-vf', 'fps=1/3.0', '-frames:v', '4', '-q:v', '2', '/home/runner/work/tfm-robotic-picking-vision/tfm-robotic-picking-vision/experimentos/ingesta_x/data/old_money/x_2104679407231414692_%04d.jpg']' returned non-zero exit status 254.
+2026-09-29T08:12:03.759195+00:00 | old_money | https://x.com/RiichiCity_EN/status/2104761847975178578 | ok:1_foto
+2026-09-29T08:12:04.612810+00:00 | old_money | https://x.com/JackCarrUSA/status/2098065443517092132 | ok:4_video
+2026-09-29T08:12:04.923461+00:00 | old_money | https://x.com/DMVFreeEvents/status/2102832308428447780/photo/1 | ok:1_foto
+2026-09-29T08:12:06.164456+00:00 | old_money | https://x.com/moseskemibaro/status/2104258211847254344 | ok:4_video
+2026-09-29T08:12:06.436817+00:00 | old_money | https://x.com/OAS_official/status/2102793963287539911/photo/1 | ok:1_foto
+2026-09-29T08:12:06.664531+00:00 | lujo_ostentoso | https://x.com/eonszyn/status/1741683570513514702?lang=en | ok:1_foto
+2026-09-29T08:12:08.240128+00:00 | lujo_ostentoso | https://x.com/Mho_23/status/2101982659190653032 | ok:4_foto
+2026-09-29T08:12:08.335286+00:00 | lujo_ostentoso | https://x.com/OCModeling/status/2056525801441657274?lang=en | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-29T08:12:08.679423+00:00 | clasico_tradicional | https://x.com/dieworkwear/status/2043139233079255320?lang=en | fallo_temporal:404 Client Error: Not Found for url: https://pbs.twimg.com/media/HFqu0EZbgAADngo.png?format=jpg&name=orig
+2026-09-29T08:12:08.792653+00:00 | clasico_tradicional | https://x.com/voguemagazine/status/2076609376044171299 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-29T08:12:09.085410+00:00 | clasico_tradicional | https://twitter.com/_LOVELYSPAIN_/status/1586791200144621570 | ok:1_foto
+2026-09-29T08:12:09.196091+00:00 | clasico_tradicional | https://x.com/voguemagazine/status/2043277300536639700 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-29T08:12:09.311866+00:00 | clasico_tradicional | https://x.com/voguemagazine/status/2040733652775297039 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-29T08:12:09.424579+00:00 | urbano | https://x.com/outfit37110/status/2060935128201965801 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-29T08:12:09.517877+00:00 | urbano | https://x.com/momomi_19/status/2094256286645076276 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-29T08:12:10.003579+00:00 | urbano | https://x.com/Shtreetwear/status/2067421406208446634/photo/3 | ok:3_foto
+2026-09-29T08:12:10.316327+00:00 | alternativo_geek | https://x.com/ComplexStyle/status/2008639480568131789 | ok:1_foto
+2026-09-29T08:12:10.553624+00:00 | alternativo_geek | https://x.com/geddo_art/status/2035525169465196640 | ok:1_foto
+2026-09-29T08:12:11.057447+00:00 | convencional | https://x.com/normalvr/status/1125797808680964096?lang=en | ok:1_video
+2026-09-29T08:12:11.769782+00:00 | convencional | https://x.com/Yoolies/status/2101104204643508561 | ok:4_video

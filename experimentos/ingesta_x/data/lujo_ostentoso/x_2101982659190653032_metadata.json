@@ -1,0 +1,19 @@
+{
+  "fuente": "x_twitter",
+  "tipo_contenido": "foto",
+  "url_original": "https://x.com/Mho_23/status/2101982659190653032",
+  "tweet_id": "2101982659190653032",
+  "cuenta": "Mho_23",
+  "cuenta_nombre": "Miko",
+  "descripcion": "here's my EXACT process for making realistic AI images in 2026:\n\nthere's a lot of misconceptions going around and i haven't seen anyone really talk about this properly\n\nthe model you want to use is GPT Images 2.5 Sunburst. GPT Images has two models but Sunburst is the one you https://t.co/4O18q0pikq",
+  "fecha_publicacion": "2026-09-21T10:31:33.000Z",
+  "intervalo_seg": null,
+  "n_imagenes": 4,
+  "imagenes": [
+    "x_2101982659190653032_foto01.jpg",
+    "x_2101982659190653032_foto02.jpg",
+    "x_2101982659190653032_foto03.jpg",
+    "x_2101982659190653032_foto04.jpg"
+  ],
+  "descargado_en": "2026-09-29T08:12:08.239714+00:00"
+}

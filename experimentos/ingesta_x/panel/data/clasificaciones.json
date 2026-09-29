@@ -2046,6 +2046,17 @@
     "origen": "claude",
     "revisada": true
   },
+  "x_1125797808680964096_1": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "@normalvr (X)",
+    "fuente_url": "https://x.com/normalvr/status/1125797808680964096?lang=en",
+    "imagen": "x_1125797808680964096_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
   "x_1240176351195172865_1": {
     "categoria_final": "bohemio",
     "categoria_ia": "bohemio",
@@ -2255,6 +2266,17 @@
     "origen": "claude",
     "revisada": false
   },
+  "x_1586791200144621570_1": {
+    "categoria_final": "clasico_tradicional",
+    "categoria_ia": "clasico_tradicional",
+    "eliminada": false,
+    "fuente": "@_LOVELYSPAIN_ (X)",
+    "fuente_url": "https://twitter.com/_LOVELYSPAIN_/status/1586791200144621570",
+    "imagen": "x_1586791200144621570_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
   "x_1611032049363869697_1": {
     "categoria_final": "alternativo_geek",
     "categoria_ia": "alternativo_geek",
@@ -2350,6 +2372,17 @@
     "fuente": "@dieworkwear (X)",
     "fuente_url": "https://x.com/dieworkwear/status/1691290335580971009",
     "imagen": "x_1691290335580971009_4.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_1741683570513514702_1": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "fuente": "@eonszyn (X)",
+    "fuente_url": "https://x.com/eonszyn/status/1741683570513514702?lang=en",
+    "imagen": "x_1741683570513514702_1.jpg",
     "ocasion_final": null,
     "origen": "claude",
     "revisada": false
@@ -3344,6 +3377,17 @@
     "origen": "claude",
     "revisada": false
   },
+  "x_2035525169465196640_1": {
+    "categoria_final": "alternativo_geek",
+    "categoria_ia": "alternativo_geek",
+    "eliminada": false,
+    "fuente": "@geddo_art (X)",
+    "fuente_url": "https://x.com/geddo_art/status/2035525169465196640",
+    "imagen": "x_2035525169465196640_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
   "x_2039711480782995733_1": {
     "categoria_final": "urbano",
     "categoria_ia": "urbano",
@@ -3762,6 +3806,39 @@
     "origen": "claude",
     "revisada": false
   },
+  "x_2067421406208446634_1": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "@Shtreetwear (X)",
+    "fuente_url": "https://x.com/Shtreetwear/status/2067421406208446634/photo/3",
+    "imagen": "x_2067421406208446634_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2067421406208446634_2": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "@Shtreetwear (X)",
+    "fuente_url": "https://x.com/Shtreetwear/status/2067421406208446634/photo/3",
+    "imagen": "x_2067421406208446634_2.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2067421406208446634_3": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "@Shtreetwear (X)",
+    "fuente_url": "https://x.com/Shtreetwear/status/2067421406208446634/photo/3",
+    "imagen": "x_2067421406208446634_3.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
   "x_2069299331065344316_1": {
     "categoria_final": "old_money",
     "categoria_ia": "old_money",
@@ -4048,6 +4125,138 @@
     "origen": "claude",
     "revisada": true
   },
+  "x_2098065443517092132_1": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@JackCarrUSA (X)",
+    "fuente_url": "https://x.com/JackCarrUSA/status/2098065443517092132",
+    "imagen": "x_2098065443517092132_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2098065443517092132_2": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@JackCarrUSA (X)",
+    "fuente_url": "https://x.com/JackCarrUSA/status/2098065443517092132",
+    "imagen": "x_2098065443517092132_2.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2098065443517092132_3": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@JackCarrUSA (X)",
+    "fuente_url": "https://x.com/JackCarrUSA/status/2098065443517092132",
+    "imagen": "x_2098065443517092132_3.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2098065443517092132_4": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@JackCarrUSA (X)",
+    "fuente_url": "https://x.com/JackCarrUSA/status/2098065443517092132",
+    "imagen": "x_2098065443517092132_4.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2101104204643508561_1": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "@Yoolies (X)",
+    "fuente_url": "https://x.com/Yoolies/status/2101104204643508561",
+    "imagen": "x_2101104204643508561_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2101104204643508561_2": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "@Yoolies (X)",
+    "fuente_url": "https://x.com/Yoolies/status/2101104204643508561",
+    "imagen": "x_2101104204643508561_2.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2101104204643508561_3": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "@Yoolies (X)",
+    "fuente_url": "https://x.com/Yoolies/status/2101104204643508561",
+    "imagen": "x_2101104204643508561_3.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2101104204643508561_4": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "@Yoolies (X)",
+    "fuente_url": "https://x.com/Yoolies/status/2101104204643508561",
+    "imagen": "x_2101104204643508561_4.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2101982659190653032_1": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "fuente": "@Mho_23 (X)",
+    "fuente_url": "https://x.com/Mho_23/status/2101982659190653032",
+    "imagen": "x_2101982659190653032_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2101982659190653032_2": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "fuente": "@Mho_23 (X)",
+    "fuente_url": "https://x.com/Mho_23/status/2101982659190653032",
+    "imagen": "x_2101982659190653032_2.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2101982659190653032_3": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "fuente": "@Mho_23 (X)",
+    "fuente_url": "https://x.com/Mho_23/status/2101982659190653032",
+    "imagen": "x_2101982659190653032_3.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2101982659190653032_4": {
+    "categoria_final": "lujo_ostentoso",
+    "categoria_ia": "lujo_ostentoso",
+    "eliminada": false,
+    "fuente": "@Mho_23 (X)",
+    "fuente_url": "https://x.com/Mho_23/status/2101982659190653032",
+    "imagen": "x_2101982659190653032_4.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
   "x_2102035123298333152_1": {
     "categoria_final": "old_money",
     "categoria_ia": "old_money",
@@ -4110,6 +4319,28 @@
     "fuente": "@HYBE_MERCH (X)",
     "fuente_url": "https://x.com/HYBE_MERCH/status/2102216381404238207/photo/2",
     "imagen": "x_2102216381404238207_4.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2102793963287539911_1": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@OAS_official (X)",
+    "fuente_url": "https://x.com/OAS_official/status/2102793963287539911/photo/1",
+    "imagen": "x_2102793963287539911_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2102832308428447780_1": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@DMVFreeEvents (X)",
+    "fuente_url": "https://x.com/DMVFreeEvents/status/2102832308428447780/photo/1",
+    "imagen": "x_2102832308428447780_1.jpg",
     "ocasion_final": null,
     "origen": "claude",
     "revisada": false
@@ -4301,6 +4532,50 @@
     "origen": "claude",
     "revisada": false
   },
+  "x_2104258211847254344_1": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@moseskemibaro (X)",
+    "fuente_url": "https://x.com/moseskemibaro/status/2104258211847254344",
+    "imagen": "x_2104258211847254344_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2104258211847254344_2": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@moseskemibaro (X)",
+    "fuente_url": "https://x.com/moseskemibaro/status/2104258211847254344",
+    "imagen": "x_2104258211847254344_2.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2104258211847254344_3": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@moseskemibaro (X)",
+    "fuente_url": "https://x.com/moseskemibaro/status/2104258211847254344",
+    "imagen": "x_2104258211847254344_3.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2104258211847254344_4": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@moseskemibaro (X)",
+    "fuente_url": "https://x.com/moseskemibaro/status/2104258211847254344",
+    "imagen": "x_2104258211847254344_4.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
   "x_2104275554128351235_1": {
     "categoria_final": "old_money",
     "categoria_ia": "old_money",
@@ -4308,6 +4583,28 @@
     "fuente": "@4ltedits (X)",
     "fuente_url": "https://x.com/4ltedits/status/2104275554128351235/photo/1",
     "imagen": "x_2104275554128351235_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2104761847975178578_1": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@RiichiCity_EN (X)",
+    "fuente_url": "https://x.com/RiichiCity_EN/status/2104761847975178578",
+    "imagen": "x_2104761847975178578_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2104772283785265429_1": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@aaraam_pasand (X)",
+    "fuente_url": "https://x.com/aaraam_pasand/status/2104772283785265429/photo/1",
+    "imagen": "x_2104772283785265429_1.jpg",
     "ocasion_final": null,
     "origen": "claude",
     "revisada": false
