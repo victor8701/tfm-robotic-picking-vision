@@ -2120,7 +2120,7 @@
   "sol_1790727216144": {
     "cantidad": 8,
     "creado_en": "2026-09-30T00:13:36.144440+00:00",
-    "estado": "pendiente",
+    "estado": "buscando",
     "estilo": "convencional",
     "modo": "predeterminado",
     "ocasion": "ninguna",
@@ -2128,6 +2128,10 @@
       {
         "texto": "Solicitud creada automáticamente (sin intervención manual).",
         "ts": "2026-09-30T00:13:36.144458+00:00"
+      },
+      {
+        "texto": "Buscando en la web con Tavily...",
+        "ts": "2026-09-30T00:13:37.351363+00:00"
       }
     ],
     "texto_busqueda": "normcore basic outfit real photos"
