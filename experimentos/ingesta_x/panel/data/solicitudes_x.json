@@ -2064,7 +2064,7 @@
   "sol_1790727181984": {
     "cantidad": 8,
     "creado_en": "2026-09-30T00:13:01.984195+00:00",
-    "estado": "pendiente",
+    "estado": "buscando",
     "estilo": "bohemio",
     "modo": "predeterminado",
     "ocasion": "ninguna",
@@ -2072,6 +2072,10 @@
       {
         "texto": "Solicitud creada automáticamente (sin intervención manual).",
         "ts": "2026-09-30T00:13:01.984212+00:00"
+      },
+      {
+        "texto": "Buscando en la web con Tavily...",
+        "ts": "2026-09-30T00:13:03.209685+00:00"
       }
     ],
     "texto_busqueda": "bohemian boho chic outfit real photos"
