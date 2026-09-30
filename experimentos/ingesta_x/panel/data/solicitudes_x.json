@@ -2088,5 +2088,20 @@
     ],
     "texto_busqueda": "bohemian boho chic outfit real photos",
     "urls_encontradas": 1
+  },
+  "sol_1790727194983": {
+    "cantidad": 8,
+    "creado_en": "2026-09-30T00:13:14.983388+00:00",
+    "estado": "pendiente",
+    "estilo": "alternativo_geek",
+    "modo": "predeterminado",
+    "ocasion": "ninguna",
+    "pasos": [
+      {
+        "texto": "Solicitud creada automáticamente (sin intervención manual).",
+        "ts": "2026-09-30T00:13:14.983404+00:00"
+      }
+    ],
+    "texto_busqueda": "techwear utilitarian gorpcore streetwear outfit real photos"
   }
 }
