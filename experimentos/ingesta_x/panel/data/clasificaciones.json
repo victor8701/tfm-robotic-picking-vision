@@ -2376,6 +2376,39 @@
     "origen": "claude",
     "revisada": false
   },
+  "x_1717085364727492897_1": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "@Nornium_main (X)",
+    "fuente_url": "https://x.com/Nornium_main/status/1717085364727492897",
+    "imagen": "x_1717085364727492897_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_1717085364727492897_2": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "@Nornium_main (X)",
+    "fuente_url": "https://x.com/Nornium_main/status/1717085364727492897",
+    "imagen": "x_1717085364727492897_2.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_1717085364727492897_3": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "@Nornium_main (X)",
+    "fuente_url": "https://x.com/Nornium_main/status/1717085364727492897",
+    "imagen": "x_1717085364727492897_3.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
   "x_1741683570513514702_1": {
     "categoria_final": "lujo_ostentoso",
     "categoria_ia": "lujo_ostentoso",
@@ -3773,6 +3806,17 @@
     "origen": "claude",
     "revisada": false
   },
+  "x_2061454011618795623_1": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "@KINGTHEREALFIII (X)",
+    "fuente_url": "https://x.com/KINGTHEREALFIII/status/2061454011618795623",
+    "imagen": "x_2061454011618795623_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
   "x_2062468123178271007_1": {
     "categoria_final": "bohemio",
     "categoria_ia": "bohemio",
@@ -3783,6 +3827,17 @@
     "ocasion_final": null,
     "origen": "claude",
     "revisada": true
+  },
+  "x_2063155289596338630_1": {
+    "categoria_final": "convencional",
+    "categoria_ia": "convencional",
+    "eliminada": false,
+    "fuente": "@Xun89341809 (X)",
+    "fuente_url": "https://x.com/Xun89341809/status/2063155289596338630",
+    "imagen": "x_2063155289596338630_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
   },
   "x_2064632031032811954_1": {
     "categoria_final": "alternativo_geek",
@@ -4605,6 +4660,94 @@
     "fuente": "@aaraam_pasand (X)",
     "fuente_url": "https://x.com/aaraam_pasand/status/2104772283785265429/photo/1",
     "imagen": "x_2104772283785265429_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2104925648603287692_1": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@chowfur (X)",
+    "fuente_url": "https://x.com/chowfur/status/2104925648603287692",
+    "imagen": "x_2104925648603287692_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2104925648603287692_2": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@chowfur (X)",
+    "fuente_url": "https://x.com/chowfur/status/2104925648603287692",
+    "imagen": "x_2104925648603287692_2.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2104925648603287692_3": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@chowfur (X)",
+    "fuente_url": "https://x.com/chowfur/status/2104925648603287692",
+    "imagen": "x_2104925648603287692_3.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2104925648603287692_4": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@chowfur (X)",
+    "fuente_url": "https://x.com/chowfur/status/2104925648603287692",
+    "imagen": "x_2104925648603287692_4.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2104938544020213974_1": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@iamrealsnow (X)",
+    "fuente_url": "https://x.com/iamrealsnow/status/2104938544020213974",
+    "imagen": "x_2104938544020213974_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2104938544020213974_2": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@iamrealsnow (X)",
+    "fuente_url": "https://x.com/iamrealsnow/status/2104938544020213974",
+    "imagen": "x_2104938544020213974_2.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2104938544020213974_3": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@iamrealsnow (X)",
+    "fuente_url": "https://x.com/iamrealsnow/status/2104938544020213974",
+    "imagen": "x_2104938544020213974_3.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2104938544020213974_4": {
+    "categoria_final": "old_money",
+    "categoria_ia": "old_money",
+    "eliminada": false,
+    "fuente": "@iamrealsnow (X)",
+    "fuente_url": "https://x.com/iamrealsnow/status/2104938544020213974",
+    "imagen": "x_2104938544020213974_4.jpg",
     "ocasion_final": null,
     "origen": "claude",
     "revisada": false

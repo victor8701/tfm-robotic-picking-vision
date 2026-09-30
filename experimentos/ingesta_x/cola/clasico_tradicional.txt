@@ -2,4 +2,3 @@
 # Las lineas vacias o que empiezan por # se ignoran.
 # La Action mueve cada URL procesada a procesadas.txt automaticamente.
 https://x.com/dieworkwear/status/2043139233079255320?lang=en
-https://x.com/DANBARCAN1/status/2047906125631074403

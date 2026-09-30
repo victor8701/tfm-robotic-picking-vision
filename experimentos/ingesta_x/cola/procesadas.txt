@@ -317,3 +317,19 @@
 2026-09-29T08:12:10.553624+00:00 | alternativo_geek | https://x.com/geddo_art/status/2035525169465196640 | ok:1_foto
 2026-09-29T08:12:11.057447+00:00 | convencional | https://x.com/normalvr/status/1125797808680964096?lang=en | ok:1_video
 2026-09-29T08:12:11.769782+00:00 | convencional | https://x.com/Yoolies/status/2101104204643508561 | ok:4_video
+2026-09-30T00:13:45.967774+00:00 | old_money | https://x.com/MrKenen/status/2104233760195477947/photo/3 | fallo_temporal:404 Client Error: Not Found for url: https://pbs.twimg.com/media/HTO9S2cXAAAzwlc.png?format=jpg&name=orig
+2026-09-30T00:13:48.375735+00:00 | old_money | https://x.com/lara_lym/status/2104679407231414692 | fallo_temporal:Command '['/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2', '-y', '-loglevel', 'error', '-i', '/home/runner/work/tfm-robotic-picking-vision/tfm-robotic-picking-vision/experimentos/ingesta_x/data/_tmp_video/2104679407231414692.NA', '-vf', 'fps=1/3.0', '-frames:v', '4', '-q:v', '2', '/home/runner/work/tfm-robotic-picking-vision/tfm-robotic-picking-vision/experimentos/ingesta_x/data/old_money/x_2104679407231414692_%04d.jpg']' returned non-zero exit status 254.
+2026-09-30T00:13:49.147691+00:00 | old_money | https://x.com/iamrealsnow/status/2104938544020213974 | ok:4_foto
+2026-09-30T00:13:49.362061+00:00 | old_money | https://x.com/OnModel3d/status/1837877011895013550 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-30T00:13:49.579350+00:00 | old_money | https://x.com/NORMALLIF3STYLE/status/2104673619771113480 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-30T00:13:50.443508+00:00 | old_money | https://x.com/chowfur/status/2104925648603287692 | ok:4_foto
+2026-09-30T00:13:50.656925+00:00 | old_money | https://x.com/sPRAQ9t7TLQpKuE/status/2104664606119743652 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-30T00:13:50.857541+00:00 | old_money | https://x.com/ocmodeling/status/1080956663996112896?lang=en | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-30T00:13:51.082464+00:00 | old_money | https://x.com/Rinartts/status/2101417195406332321 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-30T00:13:51.300787+00:00 | lujo_ostentoso | https://x.com/OCModeling/status/1192928066210693120 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-30T00:13:51.967840+00:00 | clasico_tradicional | https://x.com/dieworkwear/status/2043139233079255320?lang=en | fallo_temporal:404 Client Error: Not Found for url: https://pbs.twimg.com/media/HFqu0EZbgAADngo.png?format=jpg&name=orig
+2026-09-30T00:13:52.193704+00:00 | clasico_tradicional | https://x.com/DANBARCAN1/status/2047906125631074403 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-30T00:13:54.151775+00:00 | urbano | https://x.com/KINGTHEREALFIII/status/2061454011618795623 | ok:1_video
+2026-09-30T00:13:54.383608+00:00 | bohemio | https://x.com/ELLEmagazine/status/1899075394084409760 | fallo_permanente:sin vídeo ni foto nativa (solo texto o solo tarjeta de enlace)
+2026-09-30T00:13:54.776509+00:00 | convencional | https://x.com/Xun89341809/status/2063155289596338630 | ok:1_foto
+2026-09-30T00:13:55.452408+00:00 | convencional | https://x.com/Nornium_main/status/1717085364727492897 | ok:3_foto

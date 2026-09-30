@@ -1,0 +1,19 @@
+{
+  "fuente": "x_twitter",
+  "tipo_contenido": "foto",
+  "url_original": "https://x.com/iamrealsnow/status/2104938544020213974",
+  "tweet_id": "2104938544020213974",
+  "cuenta": "iamrealsnow",
+  "cuenta_nombre": "Snow",
+  "descripcion": "Nano Banana 2 on ImagineArt\n\nPrompt:\n\nUse my male face as the strict identity reference. Preserve my exact facial identity, facial structure, skin tone, eyes, eyebrows, nose, lips, jawline, beard, hairline, and natural facial proportions. Do not feminize, beautify, or alter my https://t.co/NR8e7JnR2Q",
+  "fecha_publicacion": "2026-09-29T14:17:11.000Z",
+  "intervalo_seg": null,
+  "n_imagenes": 4,
+  "imagenes": [
+    "x_2104938544020213974_foto01.jpg",
+    "x_2104938544020213974_foto02.jpg",
+    "x_2104938544020213974_foto03.jpg",
+    "x_2104938544020213974_foto04.jpg"
+  ],
+  "descargado_en": "2026-09-30T00:13:49.147387+00:00"
+}

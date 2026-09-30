@@ -3,10 +3,3 @@
 # La Action mueve cada URL procesada a procesadas.txt automaticamente.
 https://x.com/MrKenen/status/2104233760195477947/photo/3
 https://x.com/lara_lym/status/2104679407231414692
-https://x.com/iamrealsnow/status/2104938544020213974
-https://x.com/OnModel3d/status/1837877011895013550
-https://x.com/NORMALLIF3STYLE/status/2104673619771113480
-https://x.com/chowfur/status/2104925648603287692
-https://x.com/sPRAQ9t7TLQpKuE/status/2104664606119743652
-https://x.com/ocmodeling/status/1080956663996112896?lang=en
-https://x.com/Rinartts/status/2101417195406332321
