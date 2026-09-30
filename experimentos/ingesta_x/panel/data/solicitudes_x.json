@@ -2104,6 +2104,10 @@
       {
         "texto": "Buscando en la web con Tavily...",
         "ts": "2026-09-30T00:13:16.232870+00:00"
+      },
+      {
+        "texto": "Tavily encontró 30 resultado(s), aplicando filtro...",
+        "ts": "2026-09-30T00:13:33.635337+00:00"
       }
     ],
     "texto_busqueda": "techwear utilitarian gorpcore streetwear outfit real photos"
