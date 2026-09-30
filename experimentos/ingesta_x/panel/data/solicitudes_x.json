@@ -2216,6 +2216,10 @@
       {
         "texto": "Buscando en la web con Tavily...",
         "ts": "2026-09-30T06:29:37.487430+00:00"
+      },
+      {
+        "texto": "Tavily encontró 17 resultado(s), aplicando filtro...",
+        "ts": "2026-09-30T06:29:41.792429+00:00"
       }
     ],
     "texto_busqueda": "cayetana style outfit spain classic preppy"
