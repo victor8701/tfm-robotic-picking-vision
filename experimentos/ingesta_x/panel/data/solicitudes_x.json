@@ -2328,6 +2328,10 @@
       {
         "texto": "Buscando en la web con Tavily...",
         "ts": "2026-09-30T06:30:23.625473+00:00"
+      },
+      {
+        "texto": "Tavily encontró 20 resultado(s), aplicando filtro...",
+        "ts": "2026-09-30T06:30:28.674020+00:00"
       }
     ],
     "texto_busqueda": "normcore basic outfit real photos"
