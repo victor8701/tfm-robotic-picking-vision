@@ -2272,6 +2272,10 @@
       {
         "texto": "Buscando en la web con Tavily...",
         "ts": "2026-09-30T06:29:56.066973+00:00"
+      },
+      {
+        "texto": "Tavily encontró 20 resultado(s), aplicando filtro...",
+        "ts": "2026-09-30T06:30:05.361870+00:00"
       }
     ],
     "texto_busqueda": "bohemian boho chic outfit real photos"
