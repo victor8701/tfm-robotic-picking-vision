@@ -2057,6 +2057,50 @@
     "origen": "claude",
     "revisada": false
   },
+  "x_1179451115307319296_1": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "@CworthDynamics (X)",
+    "fuente_url": "https://twitter.com/CworthDynamics/status/1179451115307319296?lang=en",
+    "imagen": "x_1179451115307319296_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_1179451115307319296_2": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "@CworthDynamics (X)",
+    "fuente_url": "https://twitter.com/CworthDynamics/status/1179451115307319296?lang=en",
+    "imagen": "x_1179451115307319296_2.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_1179451115307319296_3": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "@CworthDynamics (X)",
+    "fuente_url": "https://twitter.com/CworthDynamics/status/1179451115307319296?lang=en",
+    "imagen": "x_1179451115307319296_3.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_1179451115307319296_4": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "@CworthDynamics (X)",
+    "fuente_url": "https://twitter.com/CworthDynamics/status/1179451115307319296?lang=en",
+    "imagen": "x_1179451115307319296_4.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
   "x_1240176351195172865_1": {
     "categoria_final": "bohemio",
     "categoria_ia": "bohemio",
@@ -4066,6 +4110,28 @@
     "fuente": "@Fenyr_0nx (X)",
     "fuente_url": "https://x.com/Fenyr_0nx/status/2090441842114621660",
     "imagen": "x_2090441842114621660_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2093480749219594523_1": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "@TheMandyFoXXX (X)",
+    "fuente_url": "https://x.com/TheMandyFoXXX/status/2093480749219594523",
+    "imagen": "x_2093480749219594523_1.jpg",
+    "ocasion_final": null,
+    "origen": "claude",
+    "revisada": false
+  },
+  "x_2093480749219594523_2": {
+    "categoria_final": "urbano",
+    "categoria_ia": "urbano",
+    "eliminada": false,
+    "fuente": "@TheMandyFoXXX (X)",
+    "fuente_url": "https://x.com/TheMandyFoXXX/status/2093480749219594523",
+    "imagen": "x_2093480749219594523_2.jpg",
     "ocasion_final": null,
     "origen": "claude",
     "revisada": false
