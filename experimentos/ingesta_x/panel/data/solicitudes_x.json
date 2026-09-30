@@ -2188,6 +2188,10 @@
       {
         "texto": "Buscando en la web con Tavily...",
         "ts": "2026-09-30T06:29:28.469055+00:00"
+      },
+      {
+        "texto": "Tavily encontró 20 resultado(s), aplicando filtro...",
+        "ts": "2026-09-30T06:29:33.006117+00:00"
       }
     ],
     "texto_busqueda": "logomania flashy designer brands outfit real photos"
