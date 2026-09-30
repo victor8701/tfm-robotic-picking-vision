@@ -2244,6 +2244,10 @@
       {
         "texto": "Buscando en la web con Tavily...",
         "ts": "2026-09-30T06:29:46.262016+00:00"
+      },
+      {
+        "texto": "Tavily encontró 20 resultado(s), aplicando filtro...",
+        "ts": "2026-09-30T06:29:51.447349+00:00"
       }
     ],
     "texto_busqueda": "moda trap español streetwear outfit real"
