@@ -2032,5 +2032,20 @@
     ],
     "texto_busqueda": "cayetana style outfit spain classic preppy",
     "urls_encontradas": 1
+  },
+  "sol_1790727163461": {
+    "cantidad": 8,
+    "creado_en": "2026-09-30T00:12:43.461734+00:00",
+    "estado": "pendiente",
+    "estilo": "urbano",
+    "modo": "predeterminado",
+    "ocasion": "ninguna",
+    "pasos": [
+      {
+        "texto": "Solicitud creada automáticamente (sin intervención manual).",
+        "ts": "2026-09-30T00:12:43.461751+00:00"
+      }
+    ],
+    "texto_busqueda": "moda trap español streetwear outfit real"
   }
 }
