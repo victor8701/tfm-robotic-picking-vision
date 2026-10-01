@@ -2344,7 +2344,7 @@
   "sol_1790844427677": {
     "cantidad": 8,
     "creado_en": "2026-10-01T08:47:07.677987+00:00",
-    "estado": "pendiente",
+    "estado": "buscando",
     "estilo": "old_money",
     "modo": "predeterminado",
     "ocasion": "ninguna",
@@ -2352,6 +2352,10 @@
       {
         "texto": "Solicitud creada automáticamente (sin intervención manual).",
         "ts": "2026-10-01T08:47:07.678000+00:00"
+      },
+      {
+        "texto": "Buscando en la web con Tavily...",
+        "ts": "2026-10-01T08:47:09.011930+00:00"
       }
     ],
     "texto_busqueda": "old money aesthetic outfit quiet luxury real photos"
