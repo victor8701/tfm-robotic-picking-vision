@@ -2492,7 +2492,7 @@
   "sol_1790844477322": {
     "cantidad": 8,
     "creado_en": "2026-10-01T08:47:57.322206+00:00",
-    "estado": "buscando",
+    "estado": "completado",
     "estilo": "convencional",
     "modo": "predeterminado",
     "ocasion": "ninguna",
@@ -2504,8 +2504,13 @@
       {
         "texto": "Buscando en la web con Tavily...",
         "ts": "2026-10-01T08:47:58.587879+00:00"
+      },
+      {
+        "texto": "Tavily no encontró ningún resultado en x.com/twitter.com para este texto.",
+        "ts": "2026-10-01T08:48:01.957696+00:00"
       }
     ],
-    "texto_busqueda": "normcore basic outfit real photos"
+    "texto_busqueda": "normcore basic outfit real photos",
+    "urls_encontradas": 0
   }
 }
