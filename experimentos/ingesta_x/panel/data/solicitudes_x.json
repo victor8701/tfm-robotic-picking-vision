@@ -2640,7 +2640,7 @@
   "sol_1790928829226": {
     "cantidad": 8,
     "creado_en": "2026-10-02T08:13:49.226713+00:00",
-    "estado": "buscando",
+    "estado": "completado",
     "estilo": "alternativo_geek",
     "modo": "predeterminado",
     "ocasion": "ninguna",
@@ -2656,8 +2656,13 @@
       {
         "texto": "Tavily encontró 2 resultado(s), aplicando filtro...",
         "ts": "2026-10-02T08:13:58.192653+00:00"
+      },
+      {
+        "texto": "Encontradas 0 URL(s) nuevas, añadidas a la cola de 'alternativo_geek'. Descartadas 2 (repetidas, no válidas, o coincidían con la lista de palabras a evitar).",
+        "ts": "2026-10-02T08:13:59.095852+00:00"
       }
     ],
-    "texto_busqueda": "techwear utilitarian gorpcore streetwear outfit real photos"
+    "texto_busqueda": "techwear utilitarian gorpcore streetwear outfit real photos",
+    "urls_encontradas": 0
   }
 }
