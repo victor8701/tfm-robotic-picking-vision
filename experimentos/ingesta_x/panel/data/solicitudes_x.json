@@ -2592,7 +2592,7 @@
   "sol_1790928812444": {
     "cantidad": 8,
     "creado_en": "2026-10-02T08:13:32.444149+00:00",
-    "estado": "buscando",
+    "estado": "completado",
     "estilo": "urbano",
     "modo": "predeterminado",
     "ocasion": "ninguna",
@@ -2604,8 +2604,13 @@
       {
         "texto": "Buscando en la web con Tavily...",
         "ts": "2026-10-02T08:13:33.519012+00:00"
+      },
+      {
+        "texto": "Tavily no encontró ningún resultado en x.com/twitter.com para este texto.",
+        "ts": "2026-10-02T08:13:37.541134+00:00"
       }
     ],
-    "texto_busqueda": "moda trap español streetwear outfit real"
+    "texto_busqueda": "moda trap español streetwear outfit real",
+    "urls_encontradas": 0
   }
 }
