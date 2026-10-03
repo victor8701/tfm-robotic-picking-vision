@@ -2908,5 +2908,20 @@
     ],
     "texto_busqueda": "logomania flashy designer brands outfit real photos",
     "urls_encontradas": 0
+  },
+  "sol_1791008113092": {
+    "cantidad": 8,
+    "creado_en": "2026-10-03T06:15:13.092695+00:00",
+    "estado": "pendiente",
+    "estilo": "clasico_tradicional",
+    "modo": "predeterminado",
+    "ocasion": "ninguna",
+    "pasos": [
+      {
+        "texto": "Solicitud creada automáticamente (sin intervención manual).",
+        "ts": "2026-10-03T06:15:13.092715+00:00"
+      }
+    ],
+    "texto_busqueda": "cayetana style outfit spain classic preppy"
   }
 }
