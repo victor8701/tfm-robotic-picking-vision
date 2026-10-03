@@ -1,0 +1,19 @@
+{
+  "fuente": "x_twitter",
+  "tipo_contenido": "video",
+  "url_original": "https://x.com/CENTCOM/status/2031489675760640370",
+  "tweet_id": "2031489675760640370",
+  "cuenta": "CENTCOM",
+  "cuenta_nombre": "U.S. Central Command",
+  "descripcion": "U.S. forces eliminated multiple Iranian naval vessels, March 10, including 16 minelayers near the Strait of Hormuz. https://t.co/371unKYiJs",
+  "fecha_publicacion": "2026-03-10T21:57:36+00:00",
+  "intervalo_seg": 3.0,
+  "n_imagenes": 4,
+  "imagenes": [
+    "x_2031489675760640370_0001.jpg",
+    "x_2031489675760640370_0002.jpg",
+    "x_2031489675760640370_0003.jpg",
+    "x_2031489675760640370_0004.jpg"
+  ],
+  "descargado_en": "2026-10-03T06:16:14.507390+00:00"
+}
