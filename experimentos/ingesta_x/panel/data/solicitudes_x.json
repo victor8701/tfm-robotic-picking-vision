@@ -2784,5 +2784,20 @@
     ],
     "texto_busqueda": "moda trap español streetwear outfit real",
     "urls_encontradas": 0
+  },
+  "sol_1790986727092": {
+    "cantidad": 8,
+    "creado_en": "2026-10-03T00:18:47.092984+00:00",
+    "estado": "pendiente",
+    "estilo": "bohemio",
+    "modo": "predeterminado",
+    "ocasion": "ninguna",
+    "pasos": [
+      {
+        "texto": "Solicitud creada automáticamente (sin intervención manual).",
+        "ts": "2026-10-03T00:18:47.093004+00:00"
+      }
+    ],
+    "texto_busqueda": "bohemian boho chic outfit real photos"
   }
 }
