@@ -1,0 +1,978 @@
+{
+ "alternativo_geek|casual/jeans_14.jpg": {
+  "F_ciego": 3,
+  "F_corto": 10,
+  "V": 2
+ },
+ "alternativo_geek|casual/jeans_24.jpg": {
+  "V": 9
+ },
+ "alternativo_geek|casual/sweaters_15.jpg": {
+  "T_corto_ciego_en": 8
+ },
+ "alternativo_geek|casual/sweaters_31.jpg": {
+  "F_oraculo": 4
+ },
+ "alternativo_geek|casual/sweaters_36.jpg": {
+  "F_corto": 8,
+  "T_ciego_en": 5,
+  "T_corto_ciego_en": 2
+ },
+ "alternativo_geek|casual/sweaters_7.jpg": {
+  "T_ciego_en": 3,
+  "T_corto_ciego_en": 4
+ },
+ "alternativo_geek|casual/tops_35.jpg": {
+  "T_ciego_en": 7,
+  "T_corto_ciego_en": 9
+ },
+ "alternativo_geek|casual/tshirts_27.jpg": {
+  "T_oraculo_en": 5
+ },
+ "alternativo_geek|de_vestir/ties_1.jpg": {
+  "T_ciego_es": 1
+ },
+ "alternativo_geek|de_vestir/ties_16.jpg": {
+  "T_ciego_es": 3
+ },
+ "alternativo_geek|de_vestir/ties_19.jpg": {
+  "T_ciego_es": 8
+ },
+ "alternativo_geek|de_vestir/ties_20.jpg": {
+  "T_ciego_es": 7
+ },
+ "alternativo_geek|de_vestir/ties_31.jpg": {
+  "T_ciego_es": 4
+ },
+ "alternativo_geek|de_vestir/ties_33.jpg": {
+  "T_ciego_es": 9
+ },
+ "alternativo_geek|de_vestir/ties_34.jpg": {
+  "T_ciego_es": 5
+ },
+ "alternativo_geek|de_vestir/ties_35.jpg": {
+  "T_ciego_es": 10
+ },
+ "alternativo_geek|de_vestir/ties_39.jpg": {
+  "T_ciego_es": 6
+ },
+ "alternativo_geek|de_vestir/ties_4.jpg": {
+  "T_ciego_es": 2
+ },
+ "alternativo_geek|de_vestir/ties_8.jpg": {
+  "T_ciego_en": 8
+ },
+ "alternativo_geek|de_vestir/waistcoat_13.jpg": {
+  "T_ciego_en": 9
+ },
+ "alternativo_geek|deportivo/leggings_1.jpg": {
+  "F_ciego": 10,
+  "T_ciego_en": 6
+ },
+ "alternativo_geek|deportivo/leggings_24.jpg": {
+  "F_ciego": 2,
+  "F_corto": 2,
+  "T_ciego_en": 2,
+  "T_corto_ciego_en": 1
+ },
+ "alternativo_geek|deportivo/leggings_25.jpg": {
+  "T_ciego_en": 4,
+  "T_corto_ciego_en": 5
+ },
+ "alternativo_geek|deportivo/leggings_27.jpg": {
+  "F_corto": 6,
+  "T_corto_ciego_en": 7
+ },
+ "alternativo_geek|deportivo/leggings_32.jpg": {
+  "F_ciego": 7,
+  "F_corto": 7
+ },
+ "alternativo_geek|deportivo/leggings_34.jpg": {
+  "T_corto_ciego_en": 10
+ },
+ "alternativo_geek|deportivo/leggings_37.jpg": {
+  "F_ciego": 1,
+  "F_corto": 1,
+  "F_oraculo": 10,
+  "T_ciego_en": 1,
+  "T_corto_ciego_en": 6,
+  "V": 6
+ },
+ "alternativo_geek|deportivo/track_pants_20.jpg": {
+  "F_ciego": 6,
+  "F_oraculo": 5,
+  "V": 5
+ },
+ "alternativo_geek|deportivo/track_pants_4.jpg": {
+  "F_oraculo": 6,
+  "V": 7
+ },
+ "alternativo_geek|experimento_b/inventario_extra/geek/tshirts_37287.jpg": {
+  "T_oraculo_en": 8
+ },
+ "alternativo_geek|experimento_b/inventario_extra/geek/tshirts_39113.jpg": {
+  "T_oraculo_en": 6
+ },
+ "alternativo_geek|experimento_b/inventario_extra/geek/tshirts_4408.jpg": {
+  "T_oraculo_en": 3
+ },
+ "alternativo_geek|experimento_b/inventario_extra/geek/tshirts_4409.jpg": {
+  "T_oraculo_en": 9
+ },
+ "alternativo_geek|experimento_b/inventario_extra/geek/tshirts_5208.jpg": {
+  "F_oraculo": 9
+ },
+ "alternativo_geek|experimento_b/inventario_extra/geek/tshirts_5209.jpg": {
+  "T_oraculo_en": 7
+ },
+ "alternativo_geek|experimento_b/inventario_extra/geek/tshirts_57420.jpg": {
+  "F_oraculo": 2
+ },
+ "alternativo_geek|experimento_b/inventario_extra/geek/tshirts_57427.jpg": {
+  "T_oraculo_en": 4
+ },
+ "alternativo_geek|experimento_b/inventario_extra/geek/tshirts_57429.jpg": {
+  "T_oraculo_en": 2
+ },
+ "alternativo_geek|experimento_b/inventario_extra/geek/tshirts_57434.jpg": {
+  "T_oraculo_en": 1
+ },
+ "alternativo_geek|experimento_b/inventario_extra/geek/tshirts_57446.jpg": {
+  "F_oraculo": 1,
+  "V": 8
+ },
+ "alternativo_geek|experimento_b/inventario_extra/geek/tshirts_57450.jpg": {
+  "T_oraculo_en": 10
+ },
+ "alternativo_geek|playa_resort/shorts_3.jpg": {
+  "F_ciego": 9,
+  "F_corto": 4,
+  "V": 4
+ },
+ "alternativo_geek|playa_resort/skirts_11.jpg": {
+  "F_ciego": 5,
+  "F_corto": 3,
+  "T_ciego_en": 10,
+  "T_corto_ciego_en": 3
+ },
+ "alternativo_geek|playa_resort/skirts_29.jpg": {
+  "F_ciego": 8,
+  "F_corto": 9,
+  "V": 10
+ },
+ "alternativo_geek|streetwear/sweatshirts_37.jpg": {
+  "F_oraculo": 8
+ },
+ "alternativo_geek|streetwear/sweatshirts_5.jpg": {
+  "F_ciego": 4,
+  "F_corto": 5,
+  "F_oraculo": 3,
+  "V": 1
+ },
+ "alternativo_geek|streetwear/track_pants_9.jpg": {
+  "F_oraculo": 7,
+  "V": 3
+ },
+ "bohemio|casual/jeans_14.jpg": {
+  "V": 8
+ },
+ "bohemio|casual/jeans_27.jpg": {
+  "F_ciego": 10,
+  "F_corto": 6,
+  "F_oraculo": 7,
+  "T_corto_ciego_en": 9,
+  "V": 4
+ },
+ "bohemio|casual/shirts_28.jpg": {
+  "T_ciego_es": 8
+ },
+ "bohemio|casual/tops_20.jpg": {
+  "T_oraculo_en": 7
+ },
+ "bohemio|casual/tops_30.jpg": {
+  "T_ciego_es": 9
+ },
+ "bohemio|de_vestir/trousers_4.jpg": {
+  "F_ciego": 9,
+  "F_corto": 5,
+  "F_oraculo": 3,
+  "T_corto_ciego_en": 3,
+  "T_oraculo_en": 1
+ },
+ "bohemio|de_vestir/waistcoat_5.jpg": {
+  "T_corto_ciego_en": 8
+ },
+ "bohemio|deportivo/leggings_24.jpg": {
+  "F_ciego": 6,
+  "F_corto": 4,
+  "F_oraculo": 4,
+  "T_corto_ciego_en": 5,
+  "T_oraculo_en": 8,
+  "V": 2
+ },
+ "bohemio|deportivo/leggings_25.jpg": {
+  "F_ciego": 8,
+  "F_oraculo": 9,
+  "T_oraculo_en": 9
+ },
+ "bohemio|deportivo/leggings_32.jpg": {
+  "F_oraculo": 10
+ },
+ "bohemio|deportivo/leggings_37.jpg": {
+  "F_ciego": 1,
+  "F_corto": 2,
+  "F_oraculo": 1,
+  "T_corto_ciego_en": 10,
+  "T_oraculo_en": 6,
+  "V": 1
+ },
+ "bohemio|experimento_b/inventario_extra/geek/tshirts_57420.jpg": {
+  "V": 7
+ },
+ "bohemio|experimento_b/inventario_extra/geek/tshirts_57432.jpg": {
+  "T_ciego_es": 1
+ },
+ "bohemio|fiesta_noche/clutches_13.jpg": {
+  "T_ciego_es": 5
+ },
+ "bohemio|fiesta_noche/dresses_12.jpg": {
+  "T_ciego_es": 7
+ },
+ "bohemio|fiesta_noche/dresses_18.jpg": {
+  "T_ciego_es": 3
+ },
+ "bohemio|fiesta_noche/dresses_21.jpg": {
+  "T_corto_ciego_en": 4
+ },
+ "bohemio|fiesta_noche/dresses_39.jpg": {
+  "T_ciego_en": 5,
+  "T_corto_ciego_en": 6
+ },
+ "bohemio|fiesta_noche/dresses_7.jpg": {
+  "F_ciego": 4,
+  "F_corto": 8,
+  "T_ciego_en": 3,
+  "T_corto_ciego_en": 7
+ },
+ "bohemio|fiesta_noche/dresses_9.jpg": {
+  "T_ciego_en": 6
+ },
+ "bohemio|fiesta_noche/jumpsuit_1.jpg": {
+  "T_ciego_en": 8,
+  "T_oraculo_en": 3
+ },
+ "bohemio|fiesta_noche/jumpsuit_12.jpg": {
+  "T_ciego_es": 10
+ },
+ "bohemio|fiesta_noche/jumpsuit_16.jpg": {
+  "T_ciego_en": 7
+ },
+ "bohemio|fiesta_noche/jumpsuit_4.jpg": {
+  "T_ciego_en": 4
+ },
+ "bohemio|playa_resort/flip_flops_21.jpg": {
+  "T_ciego_es": 4
+ },
+ "bohemio|playa_resort/skirts_10.jpg": {
+  "T_ciego_es": 6
+ },
+ "bohemio|playa_resort/skirts_11.jpg": {
+  "V": 3
+ },
+ "bohemio|playa_resort/skirts_18.jpg": {
+  "F_ciego": 2,
+  "F_corto": 1,
+  "F_oraculo": 2,
+  "T_ciego_en": 2,
+  "T_corto_ciego_en": 1,
+  "T_oraculo_en": 4,
+  "V": 5
+ },
+ "bohemio|playa_resort/skirts_19.jpg": {
+  "F_ciego": 3,
+  "F_corto": 3,
+  "F_oraculo": 5,
+  "T_ciego_en": 1,
+  "T_corto_ciego_en": 2,
+  "T_oraculo_en": 2
+ },
+ "bohemio|playa_resort/skirts_23.jpg": {
+  "F_ciego": 5,
+  "F_corto": 7,
+  "F_oraculo": 6,
+  "T_ciego_en": 10,
+  "T_oraculo_en": 5,
+  "V": 9
+ },
+ "bohemio|playa_resort/skirts_24.jpg": {
+  "T_ciego_en": 9
+ },
+ "bohemio|playa_resort/skirts_29.jpg": {
+  "F_corto": 9,
+  "F_oraculo": 8,
+  "V": 6
+ },
+ "bohemio|playa_resort/skirts_7.jpg": {
+  "T_ciego_es": 2
+ },
+ "bohemio|streetwear/jackets_1.jpg": {
+  "F_ciego": 7,
+  "F_corto": 10,
+  "V": 10
+ },
+ "bohemio|streetwear/jackets_2.jpg": {
+  "T_oraculo_en": 10
+ },
+ "clasico_tradicional|casual/jeans_27.jpg": {
+  "F_corto": 10
+ },
+ "clasico_tradicional|casual/sweaters_12.jpg": {
+  "T_ciego_es": 1
+ },
+ "clasico_tradicional|casual/sweaters_33.jpg": {
+  "T_ciego_es": 10
+ },
+ "clasico_tradicional|casual/tops_10.jpg": {
+  "T_ciego_es": 7
+ },
+ "clasico_tradicional|casual/tops_5.jpg": {
+  "T_ciego_es": 8
+ },
+ "clasico_tradicional|casual/tops_7.jpg": {
+  "T_ciego_es": 4
+ },
+ "clasico_tradicional|de_vestir/shirts_10.jpg": {
+  "T_oraculo_en": 10
+ },
+ "clasico_tradicional|de_vestir/shirts_16.jpg": {
+  "T_oraculo_en": 7
+ },
+ "clasico_tradicional|de_vestir/shirts_27.jpg": {
+  "T_oraculo_en": 9
+ },
+ "clasico_tradicional|de_vestir/shirts_32.jpg": {
+  "T_ciego_es": 3
+ },
+ "clasico_tradicional|de_vestir/ties_15.jpg": {
+  "T_ciego_en": 2
+ },
+ "clasico_tradicional|de_vestir/ties_22.jpg": {
+  "T_ciego_en": 10
+ },
+ "clasico_tradicional|de_vestir/ties_36.jpg": {
+  "T_ciego_en": 8
+ },
+ "clasico_tradicional|de_vestir/ties_8.jpg": {
+  "T_ciego_en": 4
+ },
+ "clasico_tradicional|de_vestir/trousers_23.jpg": {
+  "T_oraculo_en": 5
+ },
+ "clasico_tradicional|de_vestir/trousers_27.jpg": {
+  "T_ciego_en": 9
+ },
+ "clasico_tradicional|de_vestir/trousers_30.jpg": {
+  "T_oraculo_en": 8
+ },
+ "clasico_tradicional|de_vestir/trousers_32.jpg": {
+  "T_ciego_en": 3
+ },
+ "clasico_tradicional|de_vestir/trousers_39.jpg": {
+  "T_ciego_en": 5
+ },
+ "clasico_tradicional|de_vestir/waistcoat_1.jpg": {
+  "T_oraculo_en": 3
+ },
+ "clasico_tradicional|de_vestir/waistcoat_10.jpg": {
+  "T_oraculo_en": 4
+ },
+ "clasico_tradicional|de_vestir/waistcoat_12.jpg": {
+  "T_oraculo_en": 1
+ },
+ "clasico_tradicional|de_vestir/waistcoat_14.jpg": {
+  "T_oraculo_en": 6
+ },
+ "clasico_tradicional|de_vestir/waistcoat_3.jpg": {
+  "T_oraculo_en": 2
+ },
+ "clasico_tradicional|deportivo/leggings_17.jpg": {
+  "F_ciego": 7,
+  "F_corto": 8,
+  "T_corto_ciego_en": 10
+ },
+ "clasico_tradicional|deportivo/leggings_24.jpg": {
+  "F_ciego": 4,
+  "F_corto": 5,
+  "F_oraculo": 7,
+  "T_ciego_en": 7,
+  "T_corto_ciego_en": 5
+ },
+ "clasico_tradicional|deportivo/leggings_25.jpg": {
+  "F_ciego": 1,
+  "F_corto": 1,
+  "F_oraculo": 5,
+  "T_ciego_en": 6,
+  "T_corto_ciego_en": 1,
+  "V": 3
+ },
+ "clasico_tradicional|deportivo/leggings_27.jpg": {
+  "T_ciego_es": 9
+ },
+ "clasico_tradicional|deportivo/leggings_3.jpg": {
+  "F_ciego": 5,
+  "F_corto": 7,
+  "F_oraculo": 1,
+  "V": 1
+ },
+ "clasico_tradicional|deportivo/leggings_31.jpg": {
+  "F_ciego": 8,
+  "F_corto": 9,
+  "T_corto_ciego_en": 9
+ },
+ "clasico_tradicional|deportivo/leggings_32.jpg": {
+  "F_oraculo": 8,
+  "V": 6
+ },
+ "clasico_tradicional|deportivo/leggings_33.jpg": {
+  "V": 7
+ },
+ "clasico_tradicional|deportivo/leggings_37.jpg": {
+  "F_ciego": 3,
+  "F_corto": 3,
+  "F_oraculo": 3,
+  "T_corto_ciego_en": 7,
+  "V": 5
+ },
+ "clasico_tradicional|fiesta_noche/dresses_4.jpg": {
+  "F_ciego": 10,
+  "F_oraculo": 6
+ },
+ "clasico_tradicional|fiesta_noche/jumpsuit_10.jpg": {
+  "F_oraculo": 9,
+  "V": 4
+ },
+ "clasico_tradicional|fiesta_noche/jumpsuit_14.jpg": {
+  "F_ciego": 6,
+  "F_oraculo": 2,
+  "V": 9
+ },
+ "clasico_tradicional|playa_resort/skirts_11.jpg": {
+  "F_corto": 2,
+  "T_corto_ciego_en": 3,
+  "V": 10
+ },
+ "clasico_tradicional|playa_resort/skirts_22.jpg": {
+  "F_ciego": 9,
+  "F_corto": 6,
+  "F_oraculo": 4,
+  "T_corto_ciego_en": 8
+ },
+ "clasico_tradicional|playa_resort/skirts_32.jpg": {
+  "F_oraculo": 10,
+  "V": 8
+ },
+ "clasico_tradicional|streetwear/caps_26.jpg": {
+  "T_ciego_es": 2
+ },
+ "clasico_tradicional|streetwear/jackets_1.jpg": {
+  "F_ciego": 2,
+  "F_corto": 4,
+  "T_ciego_en": 1,
+  "T_corto_ciego_en": 2
+ },
+ "clasico_tradicional|streetwear/jackets_14.jpg": {
+  "T_corto_ciego_en": 6
+ },
+ "clasico_tradicional|streetwear/jackets_31.jpg": {
+  "V": 2
+ },
+ "clasico_tradicional|streetwear/jackets_6.jpg": {
+  "T_corto_ciego_en": 4
+ },
+ "clasico_tradicional|streetwear/sweatshirts_20.jpg": {
+  "T_ciego_es": 5
+ },
+ "clasico_tradicional|streetwear/sweatshirts_7.jpg": {
+  "T_ciego_es": 6
+ },
+ "convencional|casual/capris_7.jpg": {
+  "V": 7
+ },
+ "convencional|casual/jeans_14.jpg": {
+  "F_ciego": 6,
+  "F_corto": 3,
+  "F_oraculo": 5,
+  "T_corto_ciego_en": 4,
+  "T_oraculo_en": 9,
+  "V": 8
+ },
+ "convencional|casual/jeans_19.jpg": {
+  "T_oraculo_en": 1
+ },
+ "convencional|casual/jeans_21.jpg": {
+  "F_oraculo": 7,
+  "T_oraculo_en": 8
+ },
+ "convencional|casual/jeans_27.jpg": {
+  "F_ciego": 7,
+  "F_oraculo": 9,
+  "V": 9
+ },
+ "convencional|casual/tops_7.jpg": {
+  "T_ciego_es": 4
+ },
+ "convencional|casual/tshirts_21.jpg": {
+  "T_ciego_es": 10
+ },
+ "convencional|de_vestir/ties_15.jpg": {
+  "T_ciego_en": 1
+ },
+ "convencional|de_vestir/ties_21.jpg": {
+  "T_ciego_en": 4
+ },
+ "convencional|de_vestir/ties_36.jpg": {
+  "T_ciego_en": 10
+ },
+ "convencional|de_vestir/ties_8.jpg": {
+  "T_ciego_en": 5
+ },
+ "convencional|de_vestir/trousers_28.jpg": {
+  "T_ciego_en": 9
+ },
+ "convencional|de_vestir/trousers_29.jpg": {
+  "T_corto_ciego_en": 3,
+  "T_oraculo_en": 5
+ },
+ "convencional|de_vestir/trousers_30.jpg": {
+  "T_ciego_en": 7
+ },
+ "convencional|de_vestir/trousers_32.jpg": {
+  "T_ciego_en": 2
+ },
+ "convencional|de_vestir/trousers_39.jpg": {
+  "T_ciego_en": 8,
+  "T_corto_ciego_en": 8,
+  "T_oraculo_en": 2
+ },
+ "convencional|de_vestir/trousers_7.jpg": {
+  "T_corto_ciego_en": 10
+ },
+ "convencional|de_vestir/trousers_8.jpg": {
+  "T_ciego_en": 3
+ },
+ "convencional|deportivo/leggings_11.jpg": {
+  "T_oraculo_en": 10
+ },
+ "convencional|deportivo/leggings_24.jpg": {
+  "F_ciego": 5,
+  "F_corto": 6,
+  "F_oraculo": 8,
+  "T_corto_ciego_en": 9,
+  "V": 10
+ },
+ "convencional|deportivo/leggings_25.jpg": {
+  "F_ciego": 3,
+  "F_corto": 2,
+  "T_corto_ciego_en": 2
+ },
+ "convencional|deportivo/leggings_27.jpg": {
+  "F_corto": 8,
+  "F_oraculo": 4,
+  "T_oraculo_en": 4,
+  "V": 6
+ },
+ "convencional|deportivo/leggings_3.jpg": {
+  "F_ciego": 2,
+  "F_corto": 1,
+  "F_oraculo": 1,
+  "T_corto_ciego_en": 6,
+  "V": 1
+ },
+ "convencional|deportivo/leggings_31.jpg": {
+  "F_ciego": 10
+ },
+ "convencional|deportivo/leggings_32.jpg": {
+  "F_corto": 7,
+  "F_oraculo": 3,
+  "V": 3
+ },
+ "convencional|deportivo/leggings_37.jpg": {
+  "F_ciego": 1,
+  "F_corto": 4,
+  "F_oraculo": 6,
+  "V": 4
+ },
+ "convencional|deportivo/track_pants_12.jpg": {
+  "T_oraculo_en": 3
+ },
+ "convencional|deportivo/track_pants_8.jpg": {
+  "T_corto_ciego_en": 5
+ },
+ "convencional|deportivo/tracksuits_24.jpg": {
+  "F_oraculo": 10,
+  "T_oraculo_en": 6
+ },
+ "convencional|fiesta_noche/jumpsuit_14.jpg": {
+  "F_ciego": 8
+ },
+ "convencional|fiesta_noche/jumpsuit_8.jpg": {
+  "F_oraculo": 2,
+  "V": 2
+ },
+ "convencional|playa_resort/shorts_10.jpg": {
+  "T_ciego_es": 9
+ },
+ "convencional|playa_resort/shorts_21.jpg": {
+  "T_ciego_es": 1
+ },
+ "convencional|playa_resort/skirts_15.jpg": {
+  "T_ciego_es": 6
+ },
+ "convencional|playa_resort/skirts_22.jpg": {
+  "F_ciego": 9
+ },
+ "convencional|streetwear/backpacks_22.jpg": {
+  "T_ciego_es": 3
+ },
+ "convencional|streetwear/caps_26.jpg": {
+  "T_ciego_es": 7
+ },
+ "convencional|streetwear/jackets_1.jpg": {
+  "F_ciego": 4,
+  "F_corto": 5,
+  "T_ciego_en": 6,
+  "T_corto_ciego_en": 1
+ },
+ "convencional|streetwear/jackets_12.jpg": {
+  "T_oraculo_en": 7
+ },
+ "convencional|streetwear/jackets_31.jpg": {
+  "F_corto": 10,
+  "V": 5
+ },
+ "convencional|streetwear/sweatshirts_1.jpg": {
+  "T_ciego_es": 8
+ },
+ "convencional|streetwear/sweatshirts_20.jpg": {
+  "T_ciego_es": 5
+ },
+ "convencional|streetwear/sweatshirts_7.jpg": {
+  "T_ciego_es": 2
+ },
+ "convencional|streetwear/track_pants_11.jpg": {
+  "F_corto": 9,
+  "T_corto_ciego_en": 7
+ },
+ "old_money|casual/capris_2.jpg": {
+  "T_ciego_es": 3
+ },
+ "old_money|casual/capris_8.jpg": {
+  "T_ciego_es": 4
+ },
+ "old_money|casual/jeans_14.jpg": {
+  "F_ciego": 1,
+  "F_corto": 2,
+  "F_oraculo": 2,
+  "T_ciego_en": 7,
+  "T_corto_ciego_en": 9,
+  "T_oraculo_en": 8,
+  "V": 3
+ },
+ "old_money|casual/jeans_24.jpg": {
+  "V": 4
+ },
+ "old_money|de_vestir/shirts_17.jpg": {
+  "F_oraculo": 9,
+  "V": 7
+ },
+ "old_money|de_vestir/shirts_22.jpg": {
+  "T_oraculo_en": 5
+ },
+ "old_money|de_vestir/shirts_33.jpg": {
+  "F_oraculo": 4,
+  "V": 1
+ },
+ "old_money|de_vestir/shirts_8.jpg": {
+  "F_oraculo": 5,
+  "T_oraculo_en": 6
+ },
+ "old_money|de_vestir/ties_1.jpg": {
+  "T_ciego_es": 5
+ },
+ "old_money|de_vestir/ties_15.jpg": {
+  "F_ciego": 4,
+  "T_ciego_en": 9,
+  "V": 10
+ },
+ "old_money|de_vestir/ties_16.jpg": {
+  "T_ciego_es": 2
+ },
+ "old_money|de_vestir/ties_2.jpg": {
+  "T_ciego_es": 9
+ },
+ "old_money|de_vestir/ties_20.jpg": {
+  "T_ciego_es": 10
+ },
+ "old_money|de_vestir/ties_31.jpg": {
+  "T_ciego_es": 7
+ },
+ "old_money|de_vestir/ties_39.jpg": {
+  "T_ciego_es": 1
+ },
+ "old_money|de_vestir/ties_4.jpg": {
+  "T_ciego_es": 6
+ },
+ "old_money|de_vestir/ties_5.jpg": {
+  "T_ciego_es": 8
+ },
+ "old_money|de_vestir/trousers_32.jpg": {
+  "F_ciego": 10,
+  "T_ciego_en": 2,
+  "T_oraculo_en": 10
+ },
+ "old_money|de_vestir/trousers_37.jpg": {
+  "T_corto_ciego_en": 6
+ },
+ "old_money|de_vestir/trousers_39.jpg": {
+  "F_ciego": 2,
+  "F_corto": 6,
+  "F_oraculo": 10,
+  "T_ciego_en": 6,
+  "V": 9
+ },
+ "old_money|de_vestir/trousers_4.jpg": {
+  "T_corto_ciego_en": 8
+ },
+ "old_money|de_vestir/trousers_7.jpg": {
+  "F_ciego": 9,
+  "F_corto": 4,
+  "F_oraculo": 3,
+  "T_corto_ciego_en": 4,
+  "T_oraculo_en": 3
+ },
+ "old_money|de_vestir/trousers_8.jpg": {
+  "F_corto": 8,
+  "T_oraculo_en": 7
+ },
+ "old_money|de_vestir/waistcoat_1.jpg": {
+  "V": 8
+ },
+ "old_money|de_vestir/waistcoat_12.jpg": {
+  "F_ciego": 7,
+  "F_oraculo": 6,
+  "V": 5
+ },
+ "old_money|deportivo/leggings_24.jpg": {
+  "F_corto": 5,
+  "T_ciego_en": 5,
+  "T_corto_ciego_en": 2,
+  "T_oraculo_en": 2
+ },
+ "old_money|deportivo/leggings_25.jpg": {
+  "T_ciego_en": 1,
+  "T_corto_ciego_en": 5
+ },
+ "old_money|deportivo/leggings_27.jpg": {
+  "T_corto_ciego_en": 10
+ },
+ "old_money|deportivo/leggings_3.jpg": {
+  "F_corto": 10,
+  "T_oraculo_en": 4
+ },
+ "old_money|deportivo/leggings_37.jpg": {
+  "F_ciego": 6,
+  "F_corto": 7,
+  "T_ciego_en": 4,
+  "T_corto_ciego_en": 7
+ },
+ "old_money|deportivo/track_pants_12.jpg": {
+  "T_ciego_en": 10
+ },
+ "old_money|deportivo/track_pants_8.jpg": {
+  "F_ciego": 3,
+  "F_corto": 1,
+  "F_oraculo": 1,
+  "T_ciego_en": 8,
+  "T_corto_ciego_en": 1,
+  "T_oraculo_en": 1,
+  "V": 6
+ },
+ "old_money|deportivo/tracksuits_24.jpg": {
+  "F_ciego": 5,
+  "F_corto": 9,
+  "F_oraculo": 7,
+  "V": 2
+ },
+ "old_money|streetwear/jackets_1.jpg": {
+  "T_ciego_en": 3
+ },
+ "old_money|streetwear/track_pants_11.jpg": {
+  "F_ciego": 8,
+  "F_corto": 3,
+  "F_oraculo": 8,
+  "T_corto_ciego_en": 3,
+  "T_oraculo_en": 9
+ },
+ "urbano|casual/capris_8.jpg": {
+  "T_ciego_es": 2
+ },
+ "urbano|casual/jeans_14.jpg": {
+  "F_ciego": 2,
+  "F_corto": 2,
+  "F_oraculo": 3,
+  "V": 2
+ },
+ "urbano|casual/jeans_16.jpg": {
+  "T_ciego_es": 6
+ },
+ "urbano|casual/jeans_19.jpg": {
+  "T_ciego_en": 3
+ },
+ "urbano|casual/sweaters_12.jpg": {
+  "T_ciego_es": 5
+ },
+ "urbano|casual/sweaters_29.jpg": {
+  "T_ciego_es": 1
+ },
+ "urbano|casual/sweaters_31.jpg": {
+  "F_corto": 8,
+  "F_oraculo": 8,
+  "V": 6
+ },
+ "urbano|casual/tops_35.jpg": {
+  "T_ciego_en": 6
+ },
+ "urbano|de_vestir/trousers_18.jpg": {
+  "T_ciego_es": 9
+ },
+ "urbano|de_vestir/trousers_26.jpg": {
+  "T_ciego_es": 7
+ },
+ "urbano|de_vestir/trousers_37.jpg": {
+  "T_corto_ciego_en": 4
+ },
+ "urbano|deportivo/leggings_10.jpg": {
+  "F_corto": 6,
+  "V": 7
+ },
+ "urbano|deportivo/leggings_27.jpg": {
+  "F_corto": 9,
+  "T_corto_ciego_en": 10
+ },
+ "urbano|deportivo/leggings_37.jpg": {
+  "F_ciego": 4,
+  "F_corto": 7,
+  "F_oraculo": 4,
+  "V": 3
+ },
+ "urbano|deportivo/track_pants_24.jpg": {
+  "T_corto_ciego_en": 6
+ },
+ "urbano|deportivo/track_pants_7.jpg": {
+  "T_ciego_es": 8
+ },
+ "urbano|deportivo/tracksuits_15.jpg": {
+  "F_ciego": 6,
+  "F_corto": 4,
+  "F_oraculo": 7,
+  "T_corto_ciego_en": 2,
+  "V": 8
+ },
+ "urbano|deportivo/tracksuits_18.jpg": {
+  "T_corto_ciego_en": 9
+ },
+ "urbano|deportivo/tracksuits_4.jpg": {
+  "T_oraculo_en": 9
+ },
+ "urbano|experimento_b/inventario_extra/geek/sweatshirts_16281.jpg": {
+  "T_ciego_en": 4,
+  "T_corto_ciego_en": 1,
+  "T_oraculo_en": 3
+ },
+ "urbano|experimento_b/inventario_extra/geek/tshirts_5201.jpg": {
+  "V": 9
+ },
+ "urbano|experimento_b/inventario_extra/geek/tshirts_57446.jpg": {
+  "V": 10
+ },
+ "urbano|fiesta_noche/jumpsuit_8.jpg": {
+  "F_corto": 5,
+  "T_corto_ciego_en": 7
+ },
+ "urbano|playa_resort/skirts_1.jpg": {
+  "T_ciego_es": 3
+ },
+ "urbano|streetwear/jackets_1.jpg": {
+  "T_ciego_en": 10
+ },
+ "urbano|streetwear/jackets_34.jpg": {
+  "T_corto_ciego_en": 8,
+  "T_oraculo_en": 10
+ },
+ "urbano|streetwear/jackets_37.jpg": {
+  "F_ciego": 8,
+  "T_ciego_en": 5
+ },
+ "urbano|streetwear/jackets_40.jpg": {
+  "F_ciego": 5,
+  "F_oraculo": 10,
+  "T_ciego_en": 2
+ },
+ "urbano|streetwear/sweatshirts_15.jpg": {
+  "F_ciego": 3,
+  "F_corto": 3,
+  "F_oraculo": 2,
+  "T_ciego_en": 1,
+  "T_corto_ciego_en": 5,
+  "T_oraculo_en": 1,
+  "V": 4
+ },
+ "urbano|streetwear/sweatshirts_21.jpg": {
+  "T_oraculo_en": 4
+ },
+ "urbano|streetwear/sweatshirts_25.jpg": {
+  "F_ciego": 10,
+  "F_corto": 10,
+  "F_oraculo": 5,
+  "T_oraculo_en": 8
+ },
+ "urbano|streetwear/sweatshirts_32.jpg": {
+  "T_ciego_en": 9
+ },
+ "urbano|streetwear/sweatshirts_36.jpg": {
+  "T_oraculo_en": 5
+ },
+ "urbano|streetwear/sweatshirts_37.jpg": {
+  "F_ciego": 7,
+  "F_oraculo": 6,
+  "T_oraculo_en": 6
+ },
+ "urbano|streetwear/sweatshirts_5.jpg": {
+  "F_ciego": 1,
+  "F_corto": 1,
+  "F_oraculo": 1,
+  "T_ciego_en": 7,
+  "T_oraculo_en": 7,
+  "V": 1
+ },
+ "urbano|streetwear/sweatshirts_6.jpg": {
+  "F_oraculo": 9,
+  "T_oraculo_en": 2
+ },
+ "urbano|streetwear/track_pants_29.jpg": {
+  "T_ciego_en": 8
+ },
+ "urbano|streetwear/track_pants_32.jpg": {
+  "T_ciego_es": 4
+ },
+ "urbano|streetwear/track_pants_7.jpg": {
+  "T_corto_ciego_en": 3
+ },
+ "urbano|streetwear/track_pants_8.jpg": {
+  "T_ciego_es": 10
+ },
+ "urbano|streetwear/track_pants_9.jpg": {
+  "F_ciego": 9,
+  "V": 5
+ }
+}

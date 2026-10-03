@@ -1,0 +1,62 @@
+{
+  "modelo": "gemini-3.5-flash-lite",
+  "fecha": "2026-10-03",
+  "temperatura": 0,
+  "prompt_es": "Eres el Trend Intelligence Agent de un sistema de gestión de moda. Te doy el nombre de una tendencia de moda tal y como aparece en redes sociales. Redacta el campo `descripcion` de tu informe: 2 o 3 frases, en español, que describan las prendas, colores, siluetas, materiales y el contexto de uso típicos de esa tendencia. No repitas el nombre de la tendencia ni uses listas. Responde SOLO con la descripción.\n\nTendencia: {nombre}",
+  "prompt_en": "Traduce al inglés el siguiente texto de moda manteniendo todo su contenido, con un tono descriptivo apto para un modelo imagen-texto. Responde SOLO con la traducción.\n\n{texto}",
+  "aviso": "descripcion_es/en son ciegas (solo el nombre); oraculo_en NO es ciego (cota superior optimista).",
+  "tendencias": {
+    "old_money": {
+      "nombre": "Old Money",
+      "descripcion_es": "Esta estética se caracteriza por prendas clásicas y atemporales como blazers estructurados, jerséis de punto trenzado y pantalones de sastre, confeccionadas en materiales nobles como la lana, el lino y el cachemir. Predomina una paleta cromática sobria de tonos neutros, marrones, azul marino y blanco, con siluetas pulcras y relajadas que evocan la elegancia aristocrática. El contexto de uso habitual gira en torno a entornos exclusivos, clubes náuticos, eventos hípicos y el estilo de vida académico de la alta sociedad.",
+      "descripcion_en": "This aesthetic features classic and timeless garments such as structured blazers, cable-knit sweaters, and tailored trousers, crafted from noble materials like wool, linen, and cashmere. A restrained color palette of neutrals, browns, navy blue, and white predominates, featuring clean and relaxed silhouettes that evoke aristocratic elegance. The usual context of use revolves around exclusive environments, yacht clubs, equestrian events, and the high-society academic lifestyle.",
+      "oraculo_en": "an old money quiet luxury outfit, tailored classic preppy clothes in neutral colors",
+      "prompt_corto_en": "Cream cable-knit sweater, pleated beige trousers, brown leather loafers, structured blazer."
+    },
+    "lujo_ostentoso": {
+      "nombre": "Lujo ostentoso",
+      "descripcion_es": "Esta estética se caracteriza por prendas de alta costura con logotipos visibles, pieles exóticas y joyería llamativa que proyectan un estatus económico elevado. Predominan los colores sólidos, los tonos metálicos intensos y los contrastes dramáticos en siluetas estructuradas y entalladas que realzan la figura. Se confecciona con materiales opulentos como seda, terciopelo y cuero genuino, pensados para destacar en eventos nocturnos exclusivos, alfombras rojas y contextos urbanos de máxima exclusividad.",
+      "descripcion_en": "This aesthetic is characterized by haute couture garments with visible logos, exotic furs, and statement jewelry that project a high economic status. Solid colors, intense metallic tones, and dramatic contrasts predominate in structured and tailored silhouettes that enhance the figure. It is crafted with opulent materials such as silk, velvet, and genuine leather, designed to stand out at exclusive evening events, red carpets, and urban contexts of utmost exclusivity.",
+      "oraculo_en": "a flashy ostentatious luxury outfit with designer logos and bling",
+      "prompt_corto_en": "Gold-embellished silk corset, floor-length velvet gown, oversized crystal earrings, metallic stiletto heels."
+    },
+    "clasico_tradicional": {
+      "nombre": "Clásico tradicional",
+      "descripcion_es": "Esta estética se caracteriza por prendas de sastrería impecable, abrigos de lana estructurados, camisas de cuello almidonado y mocasines de piel, predominando una paleta cromática sobria de tonos neutros como azul marino, beige, gris y blanco. Las siluetas son de corte recto, líneas limpias y proporciones tradicionales que priorizan la elegancia atemporal mediante el uso de tweed, cachemira, algodón y lino de alta calidad. Su contexto de uso ideal abarca entornos corporativos formales, eventos académicos prestigiosos, reuniones sociales diurnas y ocasiones que requieren un código de vestimenta refinado y discreto.",
+      "descripcion_en": "This aesthetic is characterized by impeccably tailored garments, structured wool coats, starched-collar shirts, and leather loafers, dominated by a subdued color palette of neutral tones such as navy blue, beige, grey, and white. The silhouettes feature straight cuts, clean lines, and traditional proportions that prioritize timeless elegance through the use of high-quality tweed, cashmere, cotton, and linen. Its ideal usage context encompasses formal corporate environments, prestigious academic events, daytime social gatherings, and occasions requiring a refined and understated dress code.",
+      "oraculo_en": "a classic traditional conservative elegant formal outfit",
+      "prompt_corto_en": "Beige trench coat, navy blazer, pleated plaid wool midi skirt, leather loafers."
+    },
+    "urbano": {
+      "nombre": "Urbano",
+      "descripcion_es": "Esta estética apuesta por prendas holgadas y funcionales como sudaderas oversize, pantalones cargo y zapatillas robustas, complementadas con tejidos técnicos y denim desgastado. Su paleta cromática se concentra en tonos neutros y oscuros con sutiles acentos fluorescentes, definiendo siluetas relajadas de inspiración athleisure. Está pensada para el dinamismo de la vida metropolitana, integrando comodidad y actitud contemporánea en el asfalto.",
+      "descripcion_en": "This aesthetic embraces loose and functional garments such as oversize hoodies, cargo pants, and chunky sneakers, complemented by technical fabrics and distressed denim. Its color palette focuses on neutral and dark tones with subtle fluorescent accents, defining relaxed, athleisure-inspired silhouettes. It is designed for the dynamism of metropolitan life, integrating comfort and contemporary attitude on the asphalt.",
+      "oraculo_en": "an urban streetwear outfit with hoodie and sneakers",
+      "prompt_corto_en": "Oversized black hoodie, baggy cargo pants, chunky white sneakers, streetwear style."
+    },
+    "bohemio": {
+      "nombre": "Bohemio",
+      "descripcion_es": "Predominan los vestidos largos y fluidos con estampados paisley, las blusas de croché y las chaquetas de ante con flecos, acompañadas de una paleta cromática terrosa y cálida donde destacan los tonos tostados, el verde oliva y el marfil. Las siluetas son relajadas y vaporosas, confeccionadas en tejidos naturales como el lino, el algodón y la lana ligera, ideadas para un uso cotidiano y veraniego que encaja a la perfección en festivales de música al aire libre y escapadas estivales.",
+      "descripcion_en": "Long, fluid maxi dresses with paisley prints, crochet blouses, and fringed suede jackets predominate, accompanied by a warm, earthy color palette highlighting tan, olive green, and ivory tones. The silhouettes are relaxed and airy, crafted from natural fabrics such as linen, cotton, and lightweight wool, designed for everyday summer wear that fits perfectly at outdoor music festivals and summer getaways.",
+      "oraculo_en": "a bohemian boho outfit with flowy fabrics and earthy tones",
+      "prompt_corto_en": "Flowery maxi dress, fringe brown leather vest, layered silver necklaces, slouchy suede boots."
+    },
+    "alternativo_geek": {
+      "nombre": "Alternativo geek",
+      "descripcion_es": "Esta estética combina prendas de sastrería clásica y retro como cárdigans de punto ochocado, faldas de tablas y camisas abotonadas con elementos de la cultura pop y tecnológica, destacando el uso de gafas de montura gruesa y mocasines con calcetines altos. Su paleta cromática se centra en tonos neutros, marrones, burdeos y cuadros tartán, sobre siluetas relajadas y estructuradas en materiales como lana, algodón y pana. Es ideal para entornos académicos, espacios de trabajo creativos y el uso diario urbano que busca un equilibrio entre la nostalgia intelectual y la comodidad moderna.",
+      "descripcion_en": "This aesthetic combines classic and retro tailoring pieces such as cable-knit cardigans, pleated skirts, and button-up shirts with pop culture and tech elements, highlighting the use of thick-framed glasses and loafers with high socks. Its color palette focuses on neutral tones, browns, burgundy, and tartan plaids, set against relaxed and structured silhouettes in materials like wool, cotton, and corduroy. It is ideal for academic environments, creative workspaces, and urban daily wear that seeks a balance between intellectual nostalgia and modern comfort.",
+      "oraculo_en": "an alternative geek outfit, techwear, goth or punk style",
+      "prompt_corto_en": "Oversized graphic sweater, pleated plaid mini skirt, thick-rimmed glasses, loafers, neutral tones.",
+      "oraculo_en_v2": "a geek fandom outfit, graphic t-shirt or hoodie with anime, video game or comic print"
+    },
+    "convencional": {
+      "nombre": "Convencional",
+      "descripcion_es": "Esta estética se caracteriza por siluetas clásicas y estructuradas, destacando trajes sastre, camisas de cuello impecable y abrigos rectos en una paleta cromática neutra compuesta por tonos marino, gris, beige y blanco. Los materiales predominantes son la lana fría, el algodón estructurado y la seda, diseñados para proyectar una imagen pulida y profesional en entornos corporativos, reuniones formales y ocasiones diurnas de carácter sofisticado.",
+      "descripcion_en": "This aesthetic is characterized by classic, structured silhouettes, highlighting tailored suits, crisp-collared shirts, and straight coats in a neutral color palette composed of navy, grey, beige, and white tones. The predominant materials are tropical wool, structured cotton, and silk, designed to project a polished and professional image in corporate environments, formal meetings, and sophisticated daytime occasions.",
+      "oraculo_en": "a plain everyday casual conventional outfit",
+      "prompt_corto_en": "Beige trench coat, white cotton button-down shirt, straight-leg blue jeans, brown leather loafers."
+    }
+  },
+  "prompt_corto": "Eres un experto en moda. Te doy el nombre de una tendencia de moda. Escribe un prompt CORTO en inglés (máximo 15 palabras) que describa un look típico de esa tendencia, nombrando prendas concretas, colores o siluetas, pensado para buscar prendas por similitud imagen-texto en un catálogo. No repitas el nombre de la tendencia. Responde SOLO con el prompt.\n\nTendencia: {nombre}",
+  "aviso_v2": "prompt_corto_en: ciego (solo el nombre), añadido tras ver la v1. oraculo_en_v2: corrección del oráculo de alternativo_geek según la definición de la taxonomía."
+}
