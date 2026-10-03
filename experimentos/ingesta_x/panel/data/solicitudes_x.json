@@ -2984,7 +2984,7 @@
   "sol_1791008135907": {
     "cantidad": 8,
     "creado_en": "2026-10-03T06:15:35.907436+00:00",
-    "estado": "buscando",
+    "estado": "completado",
     "estilo": "alternativo_geek",
     "modo": "predeterminado",
     "ocasion": "ninguna",
@@ -2996,8 +2996,13 @@
       {
         "texto": "Buscando en la web con Tavily...",
         "ts": "2026-10-03T06:15:47.936195+00:00"
+      },
+      {
+        "texto": "Tavily no encontró ningún resultado en x.com/twitter.com para este texto.",
+        "ts": "2026-10-03T06:15:56.512707+00:00"
       }
     ],
-    "texto_busqueda": "techwear utilitarian gorpcore streetwear outfit real photos"
+    "texto_busqueda": "techwear utilitarian gorpcore streetwear outfit real photos",
+    "urls_encontradas": 0
   }
 }
