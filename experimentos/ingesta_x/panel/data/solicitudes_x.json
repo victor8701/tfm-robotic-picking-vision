@@ -2692,7 +2692,7 @@
   "sol_1790986686421": {
     "cantidad": 8,
     "creado_en": "2026-10-03T00:18:06.421461+00:00",
-    "estado": "buscando",
+    "estado": "completado",
     "estilo": "old_money",
     "modo": "predeterminado",
     "ocasion": "ninguna",
@@ -2704,8 +2704,13 @@
       {
         "texto": "Buscando en la web con Tavily...",
         "ts": "2026-10-03T00:18:07.753127+00:00"
+      },
+      {
+        "texto": "Tavily no encontró ningún resultado en x.com/twitter.com para este texto.",
+        "ts": "2026-10-03T00:18:19.734162+00:00"
       }
     ],
-    "texto_busqueda": "old money aesthetic outfit quiet luxury real photos"
+    "texto_busqueda": "old money aesthetic outfit quiet luxury real photos",
+    "urls_encontradas": 0
   }
 }
