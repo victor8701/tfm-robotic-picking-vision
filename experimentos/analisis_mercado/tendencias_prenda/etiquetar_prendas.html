@@ -75,10 +75,7 @@ h1{margin:0;font:700 26px/1.05 var(--f-display);letter-spacing:-.02em}
 .tabs2{display:flex;gap:6px;flex-wrap:wrap}
 .tab2{min-height:38px;padding:0 14px;border-radius:10px;border:1px solid var(--line-2);background:var(--surface);font:600 14px/1 var(--f-body)}
 .tab2[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:transparent}
-.bar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--bg);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));display:flex;gap:8px;justify-content:center}
-.bar>*{flex:0 0 auto}
-.bar #sig{flex:1 1 auto;max-width:260px}
-.bar:empty{display:none}
+.actions{display:grid;grid-template-columns:auto 1fr 1.6fr;gap:8px;align-items:center}
 .btn.pri.listo{box-shadow:0 0 0 3px var(--accent-soft)}
 .btn.link{border:0;background:transparent;min-height:36px;padding:0 6px;color:var(--ink-3);text-decoration:underline;text-underline-offset:2px;font-weight:500;font-size:14px}
 .btn{min-height:46px;padding:0 16px;border-radius:12px;border:1px solid var(--line-2);background:var(--surface);font:600 15px/1 var(--f-body)}
@@ -107,10 +104,9 @@ h1{margin:0;font:700 26px/1.05 var(--f-display);letter-spacing:-.02em}
   </header>
   <div class="wrap prog"><div class="txt"><span id="ptxt">0 de 0</span><span id="pflt"></span></div><div class="meter"><i id="pbar" style="width:0%"></i></div></div>
   <main class="wrap" id="view"></main>
-  <div class="wrap" style="padding-block:20px 120px"><p class="note">Cada toque se guarda solo. Un recorte cuenta como hecho con los cuatro campos de cada prenda; con borde discontinuo, a medias. Si hay más de una prenda, toca «+ Otra prenda». No te enseño lo que predice el modelo para no influirte.</p></div>
+  <div class="wrap" style="padding-block:20px 60px"><p class="note">Cada toque se guarda solo. Un recorte cuenta como hecho con los cuatro campos de cada prenda; con borde discontinuo, a medias. Si en un recorte hay varias prendas, elige todos los tipos. No te enseño lo que predice el modelo para no influirte.</p></div>
 </div>
 
-<div class="bar" id="bar"></div>
 <script type="application/json" id="crops">__CROPS__</script>
 <script>
 (function(){
@@ -172,17 +168,15 @@ function onSnap(snap){
 
 /* ---------- pintado ---------- */
 function chips(campo,valores,sel){
-  return '<div class="chips">'+valores.map(function(v){var val=Array.isArray(v)?v[0]:v,et=Array.isArray(v)?v[1]:v;return '<button class="chip" data-c="'+campo+'" data-v="'+esc(val)+'" aria-pressed="'+(sel===val)+'">'+esc(et)+'</button>'}).join('')+'</div>';
+  return '<div class="chips">'+valores.map(function(v){var val=Array.isArray(v)?v[0]:v,et=Array.isArray(v)?v[1]:v,on=Array.isArray(sel)?sel.indexOf(val)>=0:sel===val;return '<button class="chip" data-c="'+campo+'" data-v="'+esc(val)+'" aria-pressed="'+on+'">'+esc(et)+'</button>'}).join('')+'</div>';
 }
-function bar(inner){var b=$('#bar');if(b)b.innerHTML=inner}
 function render(){
   var n=nDone(),tot=CROPS.length;
   $('#ptxt').textContent=n+' de '+tot;$('#pbar').style.width=(tot?100*n/tot:0)+'%';
   var v=$('#view');
-  if(!tot){bar('');v.innerHTML='<section class="card empty"><h2 style="margin:0;font:700 20px var(--f-display)">No hay recortes</h2><p class="note">Claude los carga aquí al preparar cada tanda.</p></section>';return}
-  if(S.absent){bar('');v.innerHTML='<section class="card empty"><h2 style="margin:0;font:700 20px var(--f-display)">Aquí no se puede guardar</h2><p class="note">Esta página guarda tus respuestas en claude.ai. Ábrela desde allí.</p></section>';return}
+  if(!tot){v.innerHTML='<section class="card empty"><h2 style="margin:0;font:700 20px var(--f-display)">No hay recortes</h2><p class="note">Claude los carga aquí al preparar cada tanda.</p></section>';return}
+  if(S.absent){v.innerHTML='<section class="card empty"><h2 style="margin:0;font:700 20px var(--f-display)">Aquí no se puede guardar</h2><p class="note">Esta página guarda tus respuestas en claude.ai. Ábrela desde allí.</p></section>';return}
   if(n===tot&&S.fin!==false){
-    bar('');
     v.innerHTML='<section class="card fin"><h2>Hecho: '+tot+' de '+tot+'</h2><p class="note">Ya puedes decírmelo en el chat y entreno con tus etiquetas.</p><button class="btn" id="rev">Repasar</button></section>'+grid();
     var r=$('#rev');if(r)r.onclick=function(){S.fin=false;S.i=0;S.g=0;render()};
     wireGrid();return;
@@ -190,26 +184,25 @@ function render(){
   var c=CROPS[S.i],l=lab(c.id);
   if(S.g>=l.prendas.length)S.g=l.prendas.length-1;
   var p=l.prendas[S.g];
-  var tip=TIPOS.map(function(g){return '<div class="sub">'+esc(g[0])+'</div>'+chips('tipo',g[1],p.tipo)}).join('');
-  var tabs=l.prendas.length>1?'<div class="tabs2">'+l.prendas.map(function(q,k){return '<button class="tab2" data-g="'+k+'" aria-pressed="'+(k===S.g)+'">Prenda '+(k+1)+(completa(q)?' ✓':'')+'</button>'}).join('')+'</div>':'';
+  var elegidos=l.prendas.map(function(q){return q.tipo}).filter(Boolean);
+  var tip=TIPOS.map(function(g){return '<div class="sub">'+esc(g[0])+'</div>'+chips('tipo',g[1],elegidos)}).join('');
+  var multi=l.prendas.length>1;
+  var tabs=multi?'<div class="tabs2">'+l.prendas.map(function(q,k){return '<button class="tab2" data-g="'+k+'" aria-pressed="'+(k===S.g)+'">'+esc(q.tipo||('Prenda '+(k+1)))+(completa(q)?' ✓':'')+'</button>'}).join('')+'</div>':'';
+  var cab=multi?'<p class="note">Varias prendas: el estampado, el tejido y la forma de abajo son de <b>'+esc(p.tipo||('la prenda '+(S.g+1)))+'</b>. Cambia de pestaña para etiquetar las demás.</p>':'';
+  var listo=done(c.id);
   v.innerHTML=
-   '<div class="stage"><img src="'+c.src+'" alt="Recorte '+esc(c.id)+'"><span class="num">'+(S.i+1)+' / '+tot+'</span>'+(done(c.id)?'<span class="st">'+(l.x?'no sirve':'hecho')+'</span>':'')+'</div>'+
-   '<section class="card">'+tabs+
-   (l.prendas.length>1?'<p class="note">Este recorte tiene varias prendas: etiqueta cada una en su pestaña.</p>':'')+
-   '<div class="grp"><div class="lab"><span>Tipo de prenda</span><b>'+esc(p.tipo||'')+'</b></div>'+tip+'</div>'+
+   '<div class="stage"><img src="'+c.src+'" alt="Recorte '+esc(c.id)+'"><span class="num">'+(S.i+1)+' / '+tot+'</span>'+(listo?'<span class="st">'+(l.x?'no sirve':'hecho')+'</span>':'')+'</div>'+
+   '<section class="card">'+
+   '<div class="grp"><div class="lab"><span>Tipo de prenda · puedes elegir varios</span><b>'+esc(elegidos.join(' + '))+'</b></div>'+tip+'</div>'+tabs+cab+
    '<div class="grp"><div class="lab"><span>Estampado</span><b>'+esc(p.estampado||'')+'</b></div>'+chips('estampado',ESTAMP,p.estampado)+'</div>'+
    '<div class="grp"><div class="lab"><span>Tejido</span><b>'+esc(p.tejido||'')+'</b></div>'+chips('tejido',TEJIDOS,p.tejido)+'</div>'+
    '<div class="grp"><div class="lab"><span>Forma</span><b>'+esc(p.forma||'')+'</b></div>'+chips('forma',FORMAS,p.forma)+'</div>'+
-   '<div class="actions2"><button class="btn no" id="nos" aria-pressed="'+(l.x===true)+'">No sirve este recorte</button>'+(l.prendas.length>1?'<button class="btn link" id="quitar">Quitar esta prenda</button>':'')+'</div>'+
+   '<div class="actions">'+'<button class="btn" id="ant"'+(S.i===0?' disabled':'')+' aria-label="Anterior">←</button><button class="btn no" id="nos" aria-pressed="'+(l.x===true)+'">No sirve</button><button class="btn pri'+(listo?' listo':'')+'" id="sig">Siguiente →</button></div>'+
    '</section>'+
    '<section class="card"><div class="lab"><span>Todos los recortes</span></div>'+grid()+'</section>';
-  var listo=done(c.id);
-  bar('<button class="btn" id="ant"'+(S.i===0?' disabled':'')+' aria-label="Anterior">←</button><button class="btn" id="otra">+ Otra prenda</button><button class="btn pri'+(listo?' listo':'')+'" id="sig">Siguiente →</button>');
   $('#ant').onclick=function(){go(S.i-1)};
   $('#sig').onclick=function(){siguiente()};
-  $('#otra').onclick=function(){var l2=lab(CROPS[S.i].id);l2.x=false;l2.prendas.push(vacia());S.g=l2.prendas.length-1;queue(CROPS[S.i].id);render();window.scrollTo(0,0)};
   $('#nos').onclick=function(){var id=CROPS[S.i].id,l2=lab(id),x=!l2.x;S.lab[id]={x:x,prendas:[vacia()]};S.g=0;queue(id);render();if(x)setTimeout(siguiente,260)};
-  var q=$('#quitar');if(q)q.onclick=function(){var id=CROPS[S.i].id,l2=lab(id);l2.prendas.splice(S.g,1);if(!l2.prendas.length)l2.prendas.push(vacia());S.g=Math.max(0,S.g-1);queue(id);render()};
   Array.prototype.forEach.call(document.querySelectorAll('.chip'),function(b){b.onclick=function(){pick(b.getAttribute('data-c'),b.getAttribute('data-v'))}});
   Array.prototype.forEach.call(document.querySelectorAll('.tab2'),function(b){b.onclick=function(){S.g=+b.getAttribute('data-g');render()}});
   wireGrid();
@@ -221,8 +214,20 @@ function wireGrid(){Array.prototype.forEach.call(document.querySelectorAll('.cel
 function go(k){if(k<0||k>=CROPS.length)return;S.i=k;S.g=0;render();window.scrollTo(0,0)}
 function siguiente(){var p=firstPending(S.i+1);if(p>=0&&p!==S.i)go(p);else if(nDone()===CROPS.length){S.fin=true;render();window.scrollTo(0,0)}else if(S.i+1<CROPS.length)go(S.i+1);else render()}
 function pick(campo,valor){
-  var id=CROPS[S.i].id,l=lab(id),p=l.prendas[S.g];
-  l.x=false;p[campo]=(p[campo]===valor)?'':valor;
+  var id=CROPS[S.i].id,l=lab(id);l.x=false;
+  if(campo==='tipo'){
+    var k=-1;l.prendas.forEach(function(q,n){if(q.tipo===valor)k=n});
+    if(k>=0){                       // volver a tocar un tipo elegido lo quita
+      l.prendas.splice(k,1);if(!l.prendas.length)l.prendas.push(vacia());
+      if(S.g>k)S.g--;if(S.g>=l.prendas.length)S.g=l.prendas.length-1;
+    }else{
+      var e=-1;l.prendas.forEach(function(q,n){if(!q.tipo&&e<0)e=n});
+      if(e>=0){l.prendas[e].tipo=valor;S.g=e}
+      else{l.prendas.push({tipo:valor,estampado:'',tejido:'',forma:''});S.g=l.prendas.length-1}
+    }
+  }else{
+    var p=l.prendas[S.g];p[campo]=(p[campo]===valor)?'':valor;
+  }
   queue(id);render();
 }
 
