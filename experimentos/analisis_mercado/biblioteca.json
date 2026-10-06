@@ -457,6 +457,94 @@
    },
    "origen": "asistente",
    "mercado": "ES"
+  },
+  {
+   "id": "38389940ca",
+   "tipo": "pagina",
+   "valor": "https://www.neo2.com/hoke-rapero-misterioso-conciertos-gira-tres-creus/",
+   "estilo": "urbano",
+   "anadida": "2026-10-06T11:00:57+00:00",
+   "estado": {
+    "ultima": "2026-10-06T11:01:14+00:00",
+    "fotos": 2,
+    "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/ubuntu22/repos/tfm-robotic-picking-vision/experimentos/analisis_mercado/cache/img/pg_a6ebe3f4e3.jpg'"
+   },
+   "origen": "asistente"
+  },
+  {
+   "id": "dce6f0ab71",
+   "tipo": "pagina",
+   "valor": "https://highxtar.com/en/israel-b-brings-the-spanish-drill-into-focus/",
+   "estilo": "urbano",
+   "anadida": "2026-10-06T11:00:57+00:00",
+   "estado": {
+    "ultima": "2026-10-06T11:01:35+00:00",
+    "fotos": 4
+   },
+   "origen": "asistente"
+  },
+  {
+   "id": "a8367afa5d",
+   "tipo": "pagina",
+   "valor": "https://www.que.es/2021/07/26/c-tangana-tranquilisimo-israel-b/",
+   "estilo": "urbano",
+   "anadida": "2026-10-06T11:00:57+00:00",
+   "estado": {
+    "ultima": "2026-10-06T11:01:56+00:00",
+    "fotos": 3,
+    "error": "FileNotFoundError: [Errno 2] No such file or directory: '/home/ubuntu22/repos/tfm-robotic-picking-vision/experimentos/analisis_mercado/cache/img/pg_e2a117d150.jpg'"
+   },
+   "origen": "asistente"
+  },
+  {
+   "id": "0080d56d3d",
+   "tipo": "pagina",
+   "valor": "https://www.timeout.es/madrid/es/musica/hoke",
+   "estilo": "urbano",
+   "anadida": "2026-10-06T11:00:57+00:00",
+   "estado": {
+    "ultima": "2026-10-06T11:02:01+00:00",
+    "fotos": 2,
+    "repetidas": 2
+   },
+   "origen": "asistente"
+  },
+  {
+   "id": "593361da96",
+   "tipo": "pagina",
+   "valor": "https://en.wikipedia.org/wiki/Cruz_Cafun%C3%A9",
+   "estilo": "urbano",
+   "anadida": "2026-10-06T11:01:07+00:00",
+   "estado": {
+    "ultima": "2026-10-06T11:02:07+00:00",
+    "fotos": 0,
+    "repetidas": 2
+   },
+   "origen": "asistente"
+  },
+  {
+   "id": "afa161e0b5",
+   "tipo": "pagina",
+   "valor": "https://diariodeavisos.elespanol.com/2023/05/cruz-cafune-en-tenerife/",
+   "estilo": "urbano",
+   "anadida": "2026-10-06T11:01:07+00:00",
+   "estado": {
+    "ultima": "2026-10-06T11:02:16+00:00",
+    "fotos": 1
+   },
+   "origen": "asistente"
+  },
+  {
+   "id": "69a038a5f9",
+   "tipo": "pagina",
+   "valor": "https://www.laganzua.net/noticias/27939-cruz-cafune-dara-conciertos-en-tenerife-aviles-y-el-concert-music-festival-2024-de-cadiz",
+   "estilo": "urbano",
+   "anadida": "2026-10-06T11:01:07+00:00",
+   "estado": {
+    "ultima": "2026-10-06T11:02:19+00:00",
+    "fotos": 0
+   },
+   "origen": "asistente"
   }
  ]
 }

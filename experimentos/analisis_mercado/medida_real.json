@@ -1,0 +1,32 @@
+{
+ "medidas": [
+  {
+   "fecha": "2026-10-06T10:59:00+00:00",
+   "fotos": 10,
+   "aciertos": 2,
+   "descartadas": 8,
+   "por_estilo": {
+    "lujo_ostentoso": [
+     0,
+     3
+    ],
+    "clasico_tradicional": [
+     0,
+     3
+    ],
+    "bohemio": [
+     1,
+     1
+    ],
+    "alternativo_geek": [
+     0,
+     1
+    ],
+    "convencional": [
+     1,
+     2
+    ]
+   }
+  }
+ ]
+}
