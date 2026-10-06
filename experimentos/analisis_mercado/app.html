@@ -101,7 +101,7 @@ code{background:var(--sug);border-radius:4px;padding:0 4px}
     <div class="tarjeta"><b id="n-acierto">–</b><span id="t-acierto">acierto del modelo contigo</span></div>
   </div>
   <button class="grande" id="b-analizar">Analizar mercado</button>
-  <p class="nota">Reentrena el modelo si has cambiado la Biblioteca o confirmado fotos, descarga fotos nuevas (Reddit y las cuentas, comunidades y enlaces de tu Biblioteca), las clasifica y prepara el informe. <b>Tarda varios minutos</b> (Reddit limita las peticiones); puedes dejar esta pestaña abierta.</p>
+  <p class="nota">Reentrena el modelo si has cambiado la Biblioteca o confirmado fotos, descarga fotos nuevas (Reddit y las cuentas, comunidades y enlaces de tu Biblioteca, incluidas las fuentes de mercado), las clasifica y prepara el informe por mercado. <b>Tarda varios minutos</b> (Reddit limita las peticiones); puedes dejar esta pestaña abierta.</p>
   <div class="fila-btn">
     <button class="sec" id="b-informe">Solo actualizar el informe (sin descargar)</button>
     <button class="sec" id="b-ver-informe">Ver el informe</button>
@@ -171,6 +171,18 @@ code{background:var(--sug);border-radius:4px;padding:0 4px}
       <p class="nota" id="b-msg-fuentes"></p>
       <ul class="fuentes" id="b-lista-fuentes"></ul>
     </div>
+  </div>
+
+  <div class="bloque" id="b-mercado">
+    <h4>Fuentes de mercado <span class="etiq">informe</span></h4>
+    <p class="nota">Cuentas de X cuyas fotos recientes alimentan el informe «qué está de moda» de un <b>mercado</b>: el que tú les asignas, que es lo que responde a «de dónde es».
+      No entrenan el clasificador ni salen en «Clasificar». Cada foto pesa por sus interacciones (frente a los seguidores de la cuenta) y por lo reciente que es, y en el informe se ve su idioma, su ubicación y su popularidad.</p>
+    <textarea id="m-fuentes" rows="2" spellcheck="false" placeholder="@Telva   @Mango   @ZARA"></textarea>
+    <div class="fila-btn"><label for="m-mercado" style="margin:0">Mercado de estas cuentas</label>
+      <select id="m-mercado" style="width:auto"></select>
+      <button class="sec" id="m-anadir">Añadir</button></div>
+    <p class="nota" id="m-msg"></p>
+    <ul class="fuentes" id="m-lista"></ul>
   </div>
 
   <div class="acciones">
@@ -257,6 +269,7 @@ async function refrescar() {
   else if (E.candidatas === 0) c = 'Aún no hay fotos. Pulsa «Analizar mercado» para descargar las primeras (tarda unos minutos).';
   else if (E.propuestas_pendientes > 0) c = 'Tienes ' + E.propuestas_pendientes + ' fotos que has propuesto desde la Biblioteca esperando tu confirmación: ve a «Clasificar» (salen primero; Enter confirma el estilo que indicaste).';
   else if (E.biblioteca_cambiada) c = 'Has cambiado la Biblioteca desde el último entrenamiento: pulsa «Reentrenar» (en «Biblioteca» o «Ajustes») para que el modelo la use.';
+  else if (!E.fotos_mercado) c = 'Para el informe de mercado (qué está de moda en España, por ejemplo) añade cuentas de X en «Biblioteca», abajo del todo, en «Fuentes de mercado».';
   else if (E.coincide.n < 20 && E.pendientes > 0) c = 'Siguiente paso: clasifica unas 40 fotos en «Clasificar» (5 minutos). Así sabremos cuánto acierta el modelo con fotos nuevas.';
   else if (E.etiquetas_desde_modelo >= 15) c = 'Has clasificado ' + E.etiquetas_desde_modelo + ' fotos desde el último entrenamiento: pulsa «Reentrenar» para que el modelo aprenda de ellas.';
   else c = 'Todo al día. Modelo entrenado con ' + E.modelo.n + ' fotos (acierto en validación cruzada ' + Math.round(100 * E.modelo.cv_acc) + ' %, optimista: manda lo que midas tú).';
@@ -295,8 +308,8 @@ async function cargarBiblioteca(forzar) {
   const primera = B === null;
   B = nuevo; $('#b-meta').textContent = B.meta;
   if (!estiloSel) estiloSel = B.estilos.find(s => s.id === 'clasico_tradicional') ? 'clasico_tradicional' : B.estilos[0].id;
-  if (forzar || primera) { pintarChips(); pintarEstilo(true); }
-  else if (firma !== firmaB) { pintarChips(); pintarEstilo(false); }
+  if (forzar || primera) { pintarChips(); pintarEstilo(true); pintarMercado(); }
+  else if (firma !== firmaB) { pintarChips(); pintarEstilo(false); pintarMercado(); }
   firmaB = firma;
   pintarEstadoBiblioteca();
 }
@@ -336,19 +349,46 @@ function pintarEstilo(rellenarCampos) {
   const lista = $('#b-lista-fuentes'); lista.replaceChildren();
   const fs = B.fuentes.filter(f => f.estilo === s.id);
   if (!fs.length) lista.append(el('li', {className: 'nota', textContent: 'Aún no has añadido cuentas ni enlaces a este estilo.'}));
-  fs.forEach(f => {
-    const e = f.estado || {};
-    let txt;
-    if (e.error) txt = '⚠ ' + e.error;
-    else if (!f.descarga) txt = f.tipo === 'red' ? 'Guardada, pero no se descarga sola: pega el enlace de la imagen o abre la publicación.' : 'Guardada. No se puede leer sola: abre el perfil y pega aquí los enlaces de las fotos que te gusten.';
-    else if (!e.ultima) txt = 'Pendiente de descargar: pulsa «Buscar fotos con la Biblioteca».';
-    else txt = '✔ ' + (e.fotos || 0) + ' fotos nuevas · ' + fecha(e.ultima);
-    const x = el('button', {textContent: '✕', title: 'Quitar', type: 'button'}); x.setAttribute('aria-label', 'Quitar ' + f.texto);
-    x.onclick = async () => { try { await api('/api/biblioteca/borrar_fuente', {id: f.id}); cargarBiblioteca(false); } catch (er) { alert(er.message); } };
-    lista.append(el('li', {}, el('div', {className: 'quien'}, el('span', {className: 'tipo', textContent: f.tipo_nombre}), el('a', {href: f.url, target: '_blank', rel: 'noopener noreferrer', textContent: f.texto}), f.nombre ? el('span', {className: 'tipo', textContent: ' · ' + f.nombre}) : ''), x,
-      el('div', {className: 'est' + (e.error ? ' estado-mal' : ''), textContent: txt})));
-  });
+  fs.forEach(f => lista.append(liFuente(f)));
 }
+
+function liFuente(f) {
+  const e = f.estado || {};
+  let txt;
+  if (e.error) txt = '⚠ ' + e.error;
+  else if (!f.descarga) txt = f.tipo === 'red' ? 'Guardada, pero no se descarga sola: pega el enlace de la imagen o abre la publicación.' : 'Guardada. No se puede leer sola: abre el perfil y pega aquí los enlaces de las fotos que te gusten.';
+  else if (!e.ultima) txt = 'Pendiente de descargar: pulsa «Buscar fotos con la Biblioteca».';
+  else txt = '✔ ' + (e.fotos || 0) + ' fotos nuevas · ' + fecha(e.ultima) + (e.ultima_foto_hace_dias != null ? ' · su última foto es de hace ' + e.ultima_foto_hace_dias + ' días' + (e.ultima_foto_hace_dias > 60 ? ' ⚠ cuenta inactiva: no sirve para el informe' : '') : '');
+  const x = el('button', {textContent: '✕', title: 'Quitar', type: 'button'}); x.setAttribute('aria-label', 'Quitar ' + f.texto);
+  x.onclick = async () => { try { await api('/api/biblioteca/borrar_fuente', {id: f.id}); cargarBiblioteca(false); } catch (er) { alert(er.message); } };
+  return el('li', {}, el('div', {className: 'quien'}, el('span', {className: 'tipo', textContent: f.estilo === 'mercado' ? 'Mercado ' + ((B.mercados || {})[f.mercado] || f.mercado) : f.tipo_nombre}),
+    el('a', {href: f.url, target: '_blank', rel: 'noopener noreferrer', textContent: f.texto}), f.nombre ? el('span', {className: 'tipo', textContent: ' · ' + f.nombre}) : ''), x,
+    el('div', {className: 'est' + (e.error ? ' estado-mal' : ''), textContent: txt}));
+}
+
+function pintarMercado() {
+  const sel = $('#m-mercado');
+  if (!sel.options.length) Object.entries(B.mercados || {}).forEach(([k, v]) => sel.append(el('option', {value: k, textContent: v})));
+  const lista = $('#m-lista'); lista.replaceChildren();
+  const fs = B.fuentes.filter(f => f.estilo === 'mercado').sort((a, b) => (a.mercado || '').localeCompare(b.mercado || ''));
+  if (!fs.length) lista.append(el('li', {className: 'nota', textContent: 'Aún no hay fuentes de mercado: sin ellas, el informe solo usa las comunidades de Reddit de «Ajustes» (EEUU).'}));
+  fs.forEach(f => lista.append(liFuente(f)));
+}
+$('#m-anadir').onclick = async () => {
+  const btn = $('#m-anadir'); btn.disabled = true; $('#m-msg').textContent = 'Comprobando las cuentas… (puede tardar unos segundos)';
+  try {
+    const r = await api('/api/biblioteca/fuentes', {estilo: 'mercado', texto: $('#m-fuentes').value, plataforma: 'x', mercado: $('#m-mercado').value});
+    const m = [r.nuevas + ' añadidas'];
+    if (r.repetidas) m.push(r.repetidas + ' ya estaban');
+    if ((r.no_entendidas || []).length) m.push('no entendidas: ' + r.no_entendidas.join(', '));
+    if ((r.no_existen || []).length) m.push('no existen en X (¿mal escritas?): ' + r.no_existen.join(', '));
+    if (r.nuevas) m.push('sus fotos se bajan al pulsar «Buscar fotos con la Biblioteca» o «Analizar mercado»');
+    $('#m-msg').textContent = (r.nuevas ? '✔ ' : '⚠ ') + m.join(' · ') + '.';
+    if (r.nuevas) $('#m-fuentes').value = '';
+    cargarBiblioteca(false);
+  } catch (e) { $('#m-msg').textContent = '⚠ ' + e.message; }
+  btn.disabled = false;
+};
 
 function pintarEstadoBiblioteca() {
   if (!B || !E) return;

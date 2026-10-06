@@ -49,7 +49,7 @@ import time
 import urllib.error
 import urllib.request
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from html.parser import HTMLParser
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -69,6 +69,7 @@ CACHE = DATOS / "cache"
 IMG = CACHE / "img"
 BIB_IMG = CACHE / "biblioteca"   # fotos que subes a la Biblioteca, una carpeta por estilo (fuera de git: son personas reales)
 HUELLAS = CACHE / "huellas.json"  # huella de cada foto de entrenamiento, para avisarte de las repetidas al subirlas
+HISTORIAL = DATOS / "informes_historial.json"   # cuota de cada estilo en cada informe (para decir «sube / baja»)
 CANDIDATOS = DATOS / "candidatos.json"
 ETIQUETAS = DATOS / "etiquetas_mercado.json"
 BIBLIOTECA = DATOS / "biblioteca.json"   # descripciones, frases, cuentas y enlaces (texto: va a git)
@@ -250,7 +251,15 @@ FXTWITTER = "https://api.fxtwitter.com"   # servicio público de terceros (FixTw
 TIPOS = {"reddit_sub": ("Comunidad de Reddit", True), "reddit_user": ("Usuario de Reddit", True),
          "tuit": ("Tuit con fotos", True), "pagina": ("Página web", True), "imagen": ("Imagen suelta", True),
          "x": ("Cuenta de X", True), "instagram": ("Instagram", False), "tiktok": ("TikTok", False),
-         "red": ("Publicación de red social", False)}
+         "red": ("Publicación de red social", False), "rss": ("Feed RSS de un medio", True)}
+ESTILO_MERCADO = "mercado"   # «estilo» de las fuentes que no entrenan: alimentan el informe «qué está de moda» de un mercado
+MERCADOS = {"ES": "España", "US": "EEUU", "UK": "Reino Unido", "FR": "Francia", "IT": "Italia", "LATAM": "Latinoamérica", "OTRO": "Otro"}
+MERCADO_REDDIT = "US"        # las comunidades de Reddit que se descargan por defecto son de habla inglesa
+DIAS_MAX_MERCADO = 60        # de una fuente de mercado no se bajan fotos de posts más viejos (el informe no las usa)
+# Idiomas que cuentan para cada mercado: una cuenta de «España» que publica en inglés (p. ej. una marca global) no es contenido del mercado español
+MERCADO_IDIOMAS = {"ES": {"es"}, "US": {"en"}, "UK": {"en"}, "FR": {"fr"}, "IT": {"it"}, "LATAM": {"es"}}
+_PALABRAS = {"es": set("el la los las de del y en que un una para con por su sus se al más lo como es este esta así tu tus muy ya sin sobre entre desde también".split()),
+             "en": set("the of and to in for with is on your you that this are new at by from our it its be as".split())}
 RE_REDDIT = re.compile(r"(?:https?://(?:[a-z]+\.)?reddit\.com)?/?(r|u|user)/([A-Za-z0-9_\-]{2,30})(?:/(?:top|new|hot|submitted)?/?)?(?:[?#].*)?", re.I)
 RE_X_TUIT = re.compile(r"(?:x|twitter)\.com/([A-Za-z0-9_]{1,15})/status/(\d+)", re.I)
 RE_X_PERFIL = re.compile(r"https?://(?:www\.|mobile\.)?(?:x|twitter)\.com/([A-Za-z0-9_]{1,15})/?(?:[?#].*)?", re.I)
@@ -259,13 +268,15 @@ RE_IG_PERFIL = re.compile(r"https?://(?:www\.)?instagram\.com/([A-Za-z0-9_.]{1,3
 RESERVADAS_IG = {"p", "reel", "reels", "explore", "stories", "accounts", "tv", "direct"}
 RE_TT_PERFIL = re.compile(r"https?://(?:www\.)?tiktok\.com/@([A-Za-z0-9_.]{2,24})/?(?:[?#].*)?", re.I)
 RE_IMAGEN = re.compile(r"\.(jpe?g|png|webp)(\?.*)?$", re.I)
+RE_FEED = re.compile(r"(/(feed|rss|atom)(/|\.xml|\.rss)?$)|(\.(xml|rss)$)|(/(feed|rss)/)", re.I)
 
 
 def leer_biblioteca() -> dict:
     """biblioteca.json completado con los textos de partida (por si falta el fichero o alguna clave)."""
     b = leer_json(BIBLIOTECA) or {}
     salida = {"version": 1, "estilos": {}, "fuentes": [{**s, "estado": s.get("estado") or {}} for s in b.get("fuentes", [])
-                                                        if s.get("tipo") in TIPOS and s.get("estilo") in ESTILOS and s.get("id") and s.get("valor")]}
+                                                        if s.get("tipo") in TIPOS and (s.get("estilo") in ESTILOS or s.get("estilo") == ESTILO_MERCADO)
+                                                        and s.get("id") and s.get("valor")]}
     for e in ESTILOS:
         d = (b.get("estilos") or {}).get(e, {})
         salida["estilos"][e] = {"descripcion": d.get("descripcion", DESCRIPCION_DEFECTO[e]),
@@ -449,6 +460,8 @@ def interpretar_token(t: str, plataforma: str) -> dict:
             return {"tipo": "red", "valor": u}
         if RE_IMAGEN.search(u):
             return {"tipo": "imagen", "valor": u}
+        if RE_FEED.search(urlparse(u).path):
+            return {"tipo": "rss", "valor": u}
         return {"tipo": "pagina", "valor": u}
     raise ValueError("no lo entiendo")
 
@@ -461,13 +474,21 @@ def url_fuente(s: dict) -> str:
 
 def texto_fuente(s: dict) -> str:
     v = s["valor"]
+    if s["tipo"] == "rss":
+        p = urlparse(v)
+        return (p.netloc.removeprefix("www.") + p.path)[:60]
     return {"reddit_sub": f"r/{v}", "reddit_user": f"u/{v}", "x": f"@{v}", "instagram": f"@{v}", "tiktok": f"@{v}"}.get(s["tipo"], v)
 
 
-def anadir_fuentes(estilo: str, texto: str, plataforma: str = "x", origen: str = "usuario") -> dict:
-    """Cuentas y enlaces pegados (separados por espacios, comas o líneas) → Biblioteca. Las cuentas de X se copian a la búsqueda de X."""
-    if estilo not in ESTILOS:
+def anadir_fuentes(estilo: str, texto: str, plataforma: str = "x", origen: str = "usuario", mercado: str | None = None) -> dict:
+    """Cuentas y enlaces pegados (separados por espacios, comas o líneas) → Biblioteca. Las cuentas de X se copian a la búsqueda de X.
+    Con estilo «mercado» no entrenan: sus fotos alimentan el informe del `mercado` indicado (España, EEUU…)."""
+    if estilo not in ESTILOS and estilo != ESTILO_MERCADO:
         raise ValueError("estilo no válido")
+    if estilo == ESTILO_MERCADO:
+        mercado = mercado or "ES"
+        if mercado not in MERCADOS:
+            raise ValueError("mercado no válido")
     if plataforma not in ("x", "instagram", "tiktok"):
         raise ValueError("plataforma no válida")
     tokens = [t for t in re.split(r"[\s,;]+", texto or "") if t and not t.startswith("#")][:300]
@@ -501,10 +522,11 @@ def anadir_fuentes(estilo: str, texto: str, plataforma: str = "x", origen: str =
                 continue
             ids.add(sid)
             b["fuentes"].append({"id": sid, "tipo": r["tipo"], "valor": r["valor"], "estilo": estilo, "anadida": ahora(), "estado": {},
-                                 **({"nombre": info["name"]} if info and info.get("name") else {}), **({"origen": origen} if origen != "usuario" else {})})
+                                 **({"nombre": info["name"]} if info and info.get("name") else {}), **({"origen": origen} if origen != "usuario" else {}),
+                                 **({"mercado": mercado} if estilo == ESTILO_MERCADO else {})})
             res["nuevas"] += 1
             res["por_descargar"] += int(r["tipo"] in ("tuit", "pagina", "imagen"))
-            res["hay_x"] |= r["tipo"] == "x"
+            res["hay_x"] |= r["tipo"] == "x" and estilo != ESTILO_MERCADO
     modificar_biblioteca(cambio)
     if res["hay_x"] and origen == "usuario":
         sincronizar_cuentas_x()
@@ -850,7 +872,8 @@ def descargar_imagen(url: str, destino: Path, max_lado: int = 1024, min_lado: in
     return True
 
 
-def nueva_candidata(cid, fuente, comunidad, titulo, imagen_url, permalink, fecha=None, rank=None, estilo=None, fuente_id=None, solo_entrenamiento=False) -> dict:
+def nueva_candidata(cid, fuente, comunidad, titulo, imagen_url, permalink, fecha=None, rank=None, estilo=None, fuente_id=None, solo_entrenamiento=False,
+                    mercado=None, extra=None) -> dict:
     """`estilo` = el que indicaste en la Biblioteca. Lo que viene de ahí solo cuenta como «moda de ahora» en el informe cuando lo confirmas tú."""
     c = {"id": cid, "fuente": fuente, "comunidad": comunidad, "titulo": titulo, "imagen_url": imagen_url, "permalink": permalink,
          "fecha": fecha or ahora(), "rank": rank, "capturado": ahora()}
@@ -861,6 +884,9 @@ def nueva_candidata(cid, fuente, comunidad, titulo, imagen_url, permalink, fecha
         c["fuente_biblioteca"] = fuente_id
     if solo_entrenamiento:
         c["solo_entrenamiento"] = True       # páginas e imágenes sueltas: sirven para entrenar, no cuentan como «moda de ahora» en el informe
+    if mercado:
+        c["mercado"], c["solo_mercado"] = mercado, True   # de una fuente de mercado: cuenta en el informe y no sale en «Clasificar»
+    c.update({k: v for k, v in (extra or {}).items() if v is not None})
     return c
 
 
@@ -1043,8 +1069,20 @@ def cuenta_x(handle: str):
     return None
 
 
-def cosechar_cuenta_x(handle: str, estilo: str | None, fuente_id: str | None, existentes: dict) -> dict:
-    """Fotos de los últimos ~20 posts propios (sin reposts) de una cuenta de X, a través del servicio público FxTwitter."""
+def actualizar_candidatas(cambios: dict) -> None:
+    """Pone al día (likes, vistas…) candidatas ya descargadas; no toca nada más."""
+    def cambio(actual):
+        for cid, meta in cambios.items():
+            if cid in actual:
+                actual[cid].update({k: v for k, v in meta.items() if v is not None})
+    if cambios:
+        modificar_json(CANDIDATOS, cambio)
+
+
+def cosechar_cuenta_x(handle: str, estilo: str | None, fuente_id: str | None, existentes: dict, mercado: str | None = None):
+    """Fotos de los últimos ~20 posts propios (sin reposts) de una cuenta de X, a través del servicio público FxTwitter. Cada foto guarda de dónde es
+    (autor, idioma del post, ubicación declarada del autor) y su popularidad (likes, reposts, vistas, seguidores del autor).
+    Devuelve (candidatas nuevas, datos puestos al día de las que ya estaban, {"ultima_foto_hace_dias": …} para avisar de cuentas inactivas)."""
     d = None
     for espera in (0, 4, 8, 12):   # FxTwitter responde 404 a veces la primera vez que se pide una cuenta y 200 unos segundos después
         time.sleep(espera)
@@ -1056,24 +1094,109 @@ def cosechar_cuenta_x(handle: str, estilo: str | None, fuente_id: str | None, ex
             raise ValueError("la cuenta no existe en X (o es privada): ¿está bien escrita?")
         raise ValueError("el servicio FxTwitter no devolvió los posts de esta cuenta (a veces falla): inténtalo de nuevo en unos minutos")
     posts = [p for p in d.get("results") or [] if not p.get("reposted_by")]
-    nuevas, con_foto = {}, 0
+    nuevas, puestas_al_dia, con_foto, edades = {}, {}, 0, []
     for p in posts:
         fotos = (p.get("media") or {}).get("photos") or []
         con_foto += bool(fotos)
+        edad = (time.time() - p["created_timestamp"]) / 86400 if p.get("created_timestamp") else None
+        if fotos and edad is not None:
+            edades.append(edad)
+        if mercado and edad is not None and edad > DIAS_MAX_MERCADO:
+            continue
+        a = p.get("author") or {}
+        meta = {"autor": "@" + handle, "idioma": p.get("lang"), "ubicacion_autor": a.get("location") or None, "seguidores_autor": a.get("followers"),
+                "likes": p.get("likes"), "reposts": p.get("reposts"), "vistas": p.get("views"), "respuestas": p.get("replies")}
         for n, ft in enumerate(fotos, 1):
             cid = f"tw_{p['id']}_{n}"
-            if cid in existentes or cid in nuevas or not ft.get("url"):
+            if cid in existentes:
+                puestas_al_dia[cid] = meta
+                continue
+            if cid in nuevas or not ft.get("url"):
                 continue
             try:
                 if descargar_imagen(ft["url"], IMG / f"{cid}.jpg"):
                     ts = p.get("created_timestamp")
                     nuevas[cid] = nueva_candidata(cid, "x", "@" + handle, (p.get("text") or "")[:120], ft["url"], p.get("url") or f"https://x.com/{handle}/status/{p['id']}",
                                                   fecha=datetime.fromtimestamp(ts, timezone.utc).isoformat(timespec="seconds") if ts else None,
-                                                  estilo=estilo, fuente_id=fuente_id)
+                                                  estilo=estilo, fuente_id=fuente_id, mercado=mercado, extra=meta)
             except Exception as e:  # noqa: BLE001
                 print(f"  foto no descargada ({ft['url'][-30:]}): {e}")
-    print(f"  {len(posts)} posts propios, {con_foto} con foto", flush=True)
-    return nuevas
+    print(f"  {len(posts)} posts propios, {con_foto} con foto" + (f"; la última foto es de hace {min(edades):.0f} días" if edades else ""), flush=True)
+    return nuevas, puestas_al_dia, {"ultima_foto_hace_dias": round(min(edades)) if edades else None}
+
+
+def _local(etiqueta: str) -> str:
+    return etiqueta.rsplit("}", 1)[-1].lower()
+
+
+def imagenes_de_item(item) -> list[str]:
+    """Direcciones de imagen de una entrada de feed (media:content / media:thumbnail / enclosure / <img> del contenido), las más grandes primero."""
+    encontradas = []
+    for e in item.iter():
+        t = _local(e.tag)
+        tipo, medio = (e.get("type") or "").lower(), (e.get("medium") or "").lower()
+        if t in ("content", "thumbnail") and e.get("url") and medio != "video" and not tipo.startswith("video"):
+            encontradas.append((int(re.sub(r"\D", "", e.get("width") or "0") or 0), e.get("url")))
+        elif t == "enclosure" and tipo.startswith("image") and e.get("url"):
+            encontradas.append((0, e.get("url")))
+        elif t in ("encoded", "description", "summary") and e.text:
+            for m in re.finditer(r"<img[^>]+src=[\"']([^\"']+)", html.unescape(e.text)):
+                encontradas.append((0, m.group(1)))
+    vistas, salida = set(), []
+    for _, u in sorted(encontradas, key=lambda x: -x[0]):
+        u = html.unescape(u).strip()
+        if u.startswith("http") and u not in vistas and not RE_BASURA.search(urlparse(u).path):
+            vistas.add(u)
+            salida.append(u)
+    return salida
+
+
+def cosechar_rss(url: str, estilo: str | None, fuente_id: str | None, existentes: dict, mercado: str | None = None):
+    """Un feed RSS/Atom de un medio: una foto por entrada (la mayor), con su título, enlace y fecha. Para fuentes de mercado solo las de los últimos DIAS_MAX_MERCADO días.
+    Devuelve (candidatas nuevas, {}, {"ultima_foto_hace_dias": …}) como `cosechar_cuenta_x`."""
+    import xml.etree.ElementTree as ET
+    from email.utils import parsedate_to_datetime
+    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "application/rss+xml, application/atom+xml, application/xml, text/xml"})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        datos = r.read(5_000_000)
+    raiz = ET.fromstring(datos)
+    host = urlparse(url).netloc.removeprefix("www.")
+    entradas = [e for e in raiz.iter() if _local(e.tag) in ("item", "entry")]
+    nuevas, edades = {}, []
+    for it in entradas:
+        hijos = {_local(e.tag): e for e in it}
+        titulo = html.unescape((hijos["title"].text or "") if "title" in hijos else "").strip()
+        enlace = (hijos["link"].text or hijos["link"].get("href") or "").strip() if "link" in hijos else ""
+        crudo = next((hijos[k].text for k in ("pubdate", "published", "updated", "date") if k in hijos and hijos[k].text), None)
+        fecha = None
+        if crudo:
+            try:
+                fecha = parsedate_to_datetime(crudo)
+            except Exception:  # noqa: BLE001
+                try:
+                    fecha = datetime.fromisoformat(crudo.strip().replace("Z", "+00:00"))
+                except Exception:  # noqa: BLE001
+                    fecha = None
+        if fecha is not None and fecha.tzinfo is None:
+            fecha = fecha.replace(tzinfo=timezone.utc)
+        edad = (datetime.now(timezone.utc) - fecha).total_seconds() / 86400 if fecha else None
+        if edad is not None:
+            edades.append(edad)
+        if mercado and edad is not None and edad > DIAS_MAX_MERCADO:
+            continue
+        for img in imagenes_de_item(it)[:2]:
+            cid = "rs_" + hashlib.sha1(img.encode()).hexdigest()[:10]
+            if cid in existentes or cid in nuevas:
+                break
+            try:
+                if descargar_imagen(img, IMG / f"{cid}.jpg", min_lado=400, referer=enlace or url, proporcion=(0.4, 2.5)):
+                    nuevas[cid] = nueva_candidata(cid, "rss", host, titulo[:140], img, enlace or url, fecha=fecha.isoformat(timespec="seconds") if fecha else None,
+                                                  estilo=estilo, fuente_id=fuente_id, mercado=mercado, extra={"autor": host})
+                    break
+            except Exception:  # noqa: BLE001 -- una imagen rota no impide probar la siguiente
+                continue
+    print(f"  {len(entradas)} entradas en el feed" + (f"; la más reciente es de hace {min(edades):.0f} días" if edades else ""), flush=True)
+    return nuevas, {}, {"ultima_foto_hace_dias": round(min(edades)) if edades else None}
 
 
 def cosechar_imagen(url: str, estilo: str | None, fuente_id: str | None, existentes: dict) -> dict:
@@ -1161,13 +1284,13 @@ def cosechar_biblioteca(existentes: dict, periodo: str, solo_enlaces: bool = Fal
     if solo_x:
         enlaces = []
     feeds = [] if (solo_enlaces or solo_x) else [s for s in fuentes if s["tipo"] in ("reddit_sub", "reddit_user")]
-    cuentas = [] if solo_enlaces else [s for s in fuentes if s["tipo"] == "x"]
+    cuentas = [] if solo_enlaces else [s for s in fuentes if s["tipo"] in ("x", "rss")]
     if not enlaces and not feeds and not cuentas:
         print("En la Biblioteca no hay nada que descargar: añade cuentas de X, comunidades de Reddit, tuits, páginas o imágenes (Instagram y TikTok no se leen solos).")
         return 0
     total = 0
     for k, s in enumerate(enlaces, 1):
-        print(f"[enlace {k}/{len(enlaces)}] {texto_fuente(s)[:90]}  → {NOMBRE[s['estilo']]}", flush=True)
+        print(f"[enlace {k}/{len(enlaces)}] {texto_fuente(s)[:90]}  → {NOMBRE.get(s['estilo'], 'mercado')}", flush=True)
         try:
             nuevas = COSECHA_ENLACE[s["tipo"]](s["valor"], s["estilo"], s["id"], existentes)
             estado = {"ultima": ahora(), "fotos": len(nuevas)}
@@ -1180,10 +1303,13 @@ def cosechar_biblioteca(existentes: dict, periodo: str, solo_enlaces: bool = Fal
         existentes.update(nuevas)
         total += len(nuevas)
     for k, s in enumerate(cuentas, 1):
-        print(f"[X {k}/{len(cuentas)}] {texto_fuente(s)}  → {NOMBRE[s['estilo']]}", flush=True)
+        es_mercado = s["estilo"] == ESTILO_MERCADO
+        print(f"[{'X' if s['tipo'] == 'x' else 'RSS'} {k}/{len(cuentas)}] {texto_fuente(s)}  → " + (f"mercado {MERCADOS.get(s.get('mercado'), '?')}" if es_mercado else NOMBRE[s["estilo"]]), flush=True)
         try:
-            nuevas = cosechar_cuenta_x(s["valor"], s["estilo"], s["id"], existentes)
-            estado = {"ultima": ahora(), "fotos": len(nuevas)}
+            recoger = cosechar_cuenta_x if s["tipo"] == "x" else cosechar_rss
+            nuevas, al_dia, info = recoger(s["valor"], None if es_mercado else s["estilo"], s["id"], existentes, s.get("mercado") if es_mercado else None)
+            actualizar_candidatas(al_dia)
+            estado = {"ultima": ahora(), "fotos": len(nuevas), **info}
             print(f"  {len(nuevas)} fotos nuevas", flush=True)
         except Exception as e:  # noqa: BLE001
             nuevas, estado = {}, {"error": f"{type(e).__name__}: {e}"[:200]}
@@ -1196,7 +1322,7 @@ def cosechar_biblioteca(existentes: dict, periodo: str, solo_enlaces: bool = Fal
     for k, s in enumerate(feeds, 1):
         sub = s["tipo"] == "reddit_sub"
         etiqueta = f"r/{s['valor']}" if sub else f"u/{s['valor']}"
-        print(f"[Reddit {k}/{len(feeds)}] {etiqueta}  → {NOMBRE[s['estilo']]}" + (f" (top {periodo})" if sub else " (sus publicaciones recientes)"), flush=True)
+        print(f"[Reddit {k}/{len(feeds)}] {etiqueta}  → {NOMBRE.get(s['estilo'], 'mercado')}" + (f" (top {periodo})" if sub else " (sus publicaciones recientes)"), flush=True)
         url = (f"https://www.reddit.com/r/{s['valor']}/top/.rss?t={periodo}&limit=100" if sub
                else f"https://www.reddit.com/user/{s['valor']}/submitted/.rss?limit=100")
         r = cosechar_feed_reddit(url, etiqueta, periodo, sub, s["estilo"], s["id"], existentes)
@@ -1252,7 +1378,7 @@ def construir_cola(maximo: int = 0) -> list[dict]:
     completar_predicciones(cands)
     cands = leer_json(CANDIDATOS)
     et = leer_json(ETIQUETAS)
-    pend = [c for c in cands.values() if "pred" in c and c["id"] not in et]
+    pend = [c for c in cands.values() if "pred" in c and c["id"] not in et and not c.get("solo_mercado")]
     random.Random(1).shuffle(pend)
     pend.sort(key=lambda c: c.get("estilo_propuesto") not in ESTILOS)   # estable: las propuestas primero
     if maximo:
@@ -1302,7 +1428,8 @@ def resumen_estado() -> dict:
     desde = [e for e in ok if modelo and e.get("t", "") > modelo["fecha"]]
     return {"estilos": [[e, NOMBRE[e], RASGOS[e]] for e in ESTILOS], "subs_por_defecto": SUBS_POR_DEFECTO,
             "candidatas": len(cands), "etiquetadas": len(ok), "descartadas": len(et) - len(ok),
-            "pendientes": sum(1 for k in cands if k not in et),
+            "pendientes": sum(1 for k, c in cands.items() if k not in et and not c.get("solo_mercado")),
+            "fotos_mercado": sum(1 for c in cands.values() if c.get("solo_mercado")),
             "propuestas_pendientes": sum(1 for k, c in cands.items() if c.get("estilo_propuesto") and k not in et),
             "coincide": {"n": len(medibles), "k": sum(1 for e in medibles if e.get("sugerido") == e.get("estilo"))},
             "etiquetas_desde_modelo": len(desde), "modelo": modelo, "biblioteca_cambiada": cambiada, "tarea": estado_tarea(),
@@ -1355,8 +1482,8 @@ def estado_biblioteca() -> dict:
                         "recall": (modelo.recall or {}).get(e) if modelo else None, "recall_fotos": (modelo.recall_fotos or {}).get(e) if modelo else None,
                         "n_modelo": (modelo.n_clase or {}).get(e) if modelo else None, "fotos": [p.stem for p in fotos_biblioteca(e)]})
     fuentes = [{"id": s["id"], "estilo": s["estilo"], "tipo": s["tipo"], "tipo_nombre": TIPOS[s["tipo"]][0], "descarga": TIPOS[s["tipo"]][1],
-                "texto": texto_fuente(s), "url": url_fuente(s), "nombre": s.get("nombre"), "estado": s.get("estado", {})} for s in b["fuentes"]]
-    return {"estilos": estilos, "fuentes": fuentes, "meta": META_FOTOS, "cambiada": bool(modelo) and modelo.bib != hash_biblioteca(),
+                "texto": texto_fuente(s), "url": url_fuente(s), "nombre": s.get("nombre"), "mercado": s.get("mercado"), "estado": s.get("estado", {})} for s in b["fuentes"]]
+    return {"estilos": estilos, "fuentes": fuentes, "mercados": MERCADOS, "meta": META_FOTOS, "cambiada": bool(modelo) and modelo.bib != hash_biblioteca(),
             "modelo": {"lam": modelo.lam, "fecha": modelo.fecha, "cv_acc": modelo.cv_acc, "cv_acc_fotos": modelo.cv_acc_fotos} if modelo else None}
 
 
@@ -1464,7 +1591,7 @@ class ManejadorApp(BaseHTTPRequestHandler):
             if ruta == "/api/biblioteca/borrar_foto":
                 return self._json({"ok": borrar_foto_biblioteca(d["estilo"], d["id"])})
             if ruta == "/api/biblioteca/fuentes":
-                res = anadir_fuentes(d["estilo"], d.get("texto", ""), d.get("plataforma", "x"))
+                res = anadir_fuentes(d["estilo"], d.get("texto", ""), d.get("plataforma", "x"), mercado=d.get("mercado"))
                 res["descarga"] = bool(res["por_descargar"]) and lanzar_tarea(f"Descargar fotos de {res['por_descargar']} enlaces nuevos", ["cosechar", "--biblioteca", "--solo-enlaces"])
                 return self._json({"ok": True, **res})
             if ruta == "/api/biblioteca/borrar_fuente":
@@ -1507,27 +1634,71 @@ def cmd_reentrenar(args):
 
 
 # ---------------------------------------------------------------- informe («¿qué está de moda ahora mismo?»)
+def detectar_idioma(texto: str | None) -> str | None:
+    """«es» o «en» según las palabras de un título (los feeds RSS dicen un idioma que no siempre es el real); None si no hay pistas suficientes."""
+    if not texto:
+        return None
+    palabras = re.findall(r"[a-záéíóúüñ]+", texto.lower())
+    es, en = sum(p in _PALABRAS["es"] for p in palabras), sum(p in _PALABRAS["en"] for p in palabras)
+    es += 2 * len(re.findall(r"[áéíóúñ¿¡]", texto.lower()))
+    if max(es, en) < 2 or es == en:
+        return None
+    return "es" if es > en else "en"
+
+
+def idioma_de(c: dict) -> str | None:
+    return detectar_idioma(c.get("titulo")) if c.get("fuente") == "rss" else c.get("idioma")
+
+
+def mercado_de(c: dict) -> str | None:
+    """A qué mercado pertenece una candidata: el de su fuente (cuentas con etiqueta) o, en las comunidades de Reddit, el de habla inglesa."""
+    return c.get("mercado") or (MERCADO_REDDIT if c.get("fuente") == "reddit" else None)
+
+
+def peso_foto(c: dict, ahora_dt: datetime, vida_media: float) -> float:
+    """Cuánto pesa una foto en el informe: popularidad × recencia. Popularidad: en X, la tasa de interacción del post (likes + 2·reposts frente a los
+    seguidores del autor, para que una cuenta enorme no tape a una pequeña); en Reddit, el puesto en el «top»."""
+    try:
+        edad = max(0.0, (ahora_dt - datetime.fromisoformat(c["fecha"].replace("Z", "+00:00"))).total_seconds() / 86400)
+    except Exception:  # noqa: BLE001
+        edad = 0.0
+    if c.get("likes") is not None:
+        tasa = ((c.get("likes") or 0) + 2 * (c.get("reposts") or 0)) / max(c.get("seguidores_autor") or 0, 1000)
+        popularidad = 0.3 + 0.7 * min(1.0, 100.0 * tasa)
+    else:
+        popularidad = 1.0 / (1.0 + math.log2(c["rank"])) if c.get("rank") else 0.6
+    return popularidad * 0.5 ** (edad / vida_media)
+
+
 def calcular_informe(args):
+    """«¿Qué está de moda ahora?» por mercado. Una foto cuenta si es de una fuente de mercado (o de Reddit) y tiene estilo confirmado por ti o, sin
+    revisar, parece una persona con ropa (la puerta CLIP); las propuestas de la Biblioteca solo si las confirmas. (El filtro «sirve / no sirve» aprendido
+    de tus decisiones NO se usa aquí: sale de fotos de Reddit y de páginas y está mal calibrado para fotos de marcas y medios; solo ordena las hojas.)"""
     cands = leer_json(CANDIDATOS)
     completar_predicciones(cands)
     cands = leer_json(CANDIDATOS)
     et = leer_json(ETIQUETAS)
     modelo = cargar_modelo_estilos()
     ahora_dt = datetime.now(timezone.utc)
-    peso_est = {e: 0.0 for e in ESTILOS}
-    n_est = {e: 0 for e in ESTILOS}
-    rev_est = {e: 0 for e in ESTILOS}
-    ejemplos = {e: [] for e in ESTILOS}
-    fuentes = {}
-    usadas = descartadas = 0
+    dias = getattr(args, "dias", 45)
+    grupos: dict = {}
+    descartadas, fuera_idioma = 0, {}
     for c in cands.values():
+        mercado = mercado_de(c)
         lab = et.get(c["id"])
-        if "pred" not in c or c.get("solo_entrenamiento"):   # páginas/imágenes sueltas de la Biblioteca: sirven para entrenar, no son «moda de ahora»
+        if "pred" not in c or not mercado or c.get("solo_entrenamiento") or (c.get("solo_si_confirmada") and not lab):
             continue
-        if c.get("solo_si_confirmada") and not lab:         # propuestas de la Biblioteca: cuentan cuando las confirmas, no con la suposición del modelo
-            continue
+        try:
+            if (ahora_dt - datetime.fromisoformat(c["fecha"].replace("Z", "+00:00"))).days > dias:
+                continue
+        except Exception:  # noqa: BLE001
+            pass
         if lab and lab["decision"] == "descartada":
             descartadas += 1
+            continue
+        idioma = idioma_de(c)
+        if idioma and MERCADO_IDIOMAS.get(mercado) and idioma not in MERCADO_IDIOMAS[mercado]:
+            fuera_idioma[mercado] = fuera_idioma.get(mercado, 0) + 1   # p. ej. un post en inglés de una cuenta asignada a España
             continue
         if lab:
             estilo, conf, revisada = lab["estilo"], 1.0, True
@@ -1536,90 +1707,152 @@ def calcular_informe(args):
                 descartadas += 1
                 continue
             estilo, conf, revisada = c["pred"][0][0], c["pred"][0][1], False
-        try:
-            edad = max(0.0, (ahora_dt - datetime.fromisoformat(c["fecha"].replace("Z", "+00:00"))).total_seconds() / 86400)
-        except Exception:
-            edad = 0.0
-        w_rank = 1.0 / (1.0 + math.log2(c["rank"])) if c.get("rank") else 0.6
-        w = w_rank * 0.5 ** (edad / args.vida_media)
-        peso_est[estilo] += w
-        n_est[estilo] += 1
-        rev_est[estilo] += int(revisada)
-        ejemplos[estilo].append((w * conf, c["id"], c.get("comunidad", ""), c.get("rank"), conf, revisada))
-        fuentes[c.get("comunidad", "?")] = fuentes.get(c.get("comunidad", "?"), 0) + 1
-        usadas += 1
-    total = sum(peso_est.values()) or 1.0
-    tendencias = []
-    maximo = max(peso_est.values()) or 1.0
-    for e in sorted(ESTILOS, key=lambda k: -peso_est[k]):
-        ej = sorted(ejemplos[e], reverse=True)[:4]
-        tendencias.append({
-            "estilo": e, "nombre": NOMBRE[e], "cuota": round(peso_est[e] / total, 4),
-            "intensidad": round(peso_est[e] / maximo, 3), "n_fotos": n_est[e], "n_revisadas_por_ti": rev_est[e],
-            "grupo_estilo_detectado": GRUPOS_ERP[e],
-            "descripcion": "",   # la redacta el LLM con las definiciones del estilo (Experimento B, §6.2); pendiente
-            "ejemplos": [{"id": x[1], "comunidad": x[2], "puesto": x[3], "confianza": round(x[4], 2), "revisada": x[5]} for x in ej]})
-    informe = {"fecha_analisis": ahora(), "mercado": "EEUU (r/streetwear y similares) — NO es Europa", "fuentes": fuentes,
-               "fotos_usadas": usadas, "fotos_descartadas": descartadas, "vida_media_dias": args.vida_media,
-               "acierto_modelo_validacion_cruzada": round(modelo.cv_acc, 3), "modelo_fecha": modelo.fecha, "tendencias": tendencias,
-               "aviso": "La fuente actual es Reddit (EEUU) y la taxonomía de 7 estilos es de la cultura española: "
-                        "úsese para probar la herramienta, no como análisis de mercado europeo."}
-    return informe
+        g = grupos.setdefault(mercado, {"peso": {e: 0.0 for e in ESTILOS}, "n": {e: 0 for e in ESTILOS}, "rev": {e: 0 for e in ESTILOS}, "ej": {e: [] for e in ESTILOS},
+                                        "fuentes": {}, "idiomas": {}, "ubicaciones": {}, "usadas": 0})
+        w = peso_foto(c, ahora_dt, args.vida_media)
+        g["peso"][estilo] += w
+        g["n"][estilo] += 1
+        g["rev"][estilo] += int(revisada)
+        g["ej"][estilo].append((w * conf, c["id"], conf, revisada))
+        g["fuentes"][c.get("comunidad", "?")] = g["fuentes"].get(c.get("comunidad", "?"), 0) + 1
+        if idioma:
+            g["idiomas"][idioma] = g["idiomas"].get(idioma, 0) + 1
+        if c.get("ubicacion_autor"):
+            g["ubicaciones"][c["ubicacion_autor"]] = g["ubicaciones"].get(c["ubicacion_autor"], 0) + 1
+        g["usadas"] += 1
+    historial = leer_json(HISTORIAL)
+    hoy = ahora_dt.date().isoformat()
+    previo = max((f for f in historial if f <= (ahora_dt.date() - timedelta(days=3)).isoformat()), default=None)   # el último informe de hace ≥ 3 días
+    mercados = {}
+    for mercado, g in sorted(grupos.items(), key=lambda kv: -kv[1]["usadas"]):
+        total = sum(g["peso"].values()) or 1.0
+        maximo = max(g["peso"].values()) or 1.0
+        antes = (historial.get(previo) or {}).get(mercado) if previo else None
+        tendencias = []
+        for e in sorted(ESTILOS, key=lambda k: -g["peso"][k]):
+            cuota = g["peso"][e] / total
+            ej = []
+            for _, cid, conf, revisada in sorted(g["ej"][e], reverse=True)[:4]:
+                c = cands[cid]
+                ej.append({"id": cid, "comunidad": c.get("comunidad", ""), "puesto": c.get("rank"), "confianza": round(conf, 2), "revisada": revisada,
+                           "autor": c.get("autor"), "idioma": c.get("idioma"), "likes": c.get("likes"), "fecha": c.get("fecha"), "enlace": c.get("permalink")})
+            tendencias.append({
+                "estilo": e, "nombre": NOMBRE[e], "cuota": round(cuota, 4), "intensidad": round(g["peso"][e] / maximo, 3), "n_fotos": g["n"][e],
+                "n_revisadas_por_ti": g["rev"][e], "grupo_estilo_detectado": GRUPOS_ERP[e],
+                "cambio_pp": round(100 * (cuota - antes[e]), 1) if antes and e in antes else None,
+                "descripcion": "",   # la redacta el LLM con las definiciones del estilo (Experimento B, §6.2); pendiente
+                "ejemplos": ej})
+        mercados[mercado] = {"nombre": MERCADOS.get(mercado, mercado), "fotos_usadas": g["usadas"], "fuentes": g["fuentes"], "idiomas": g["idiomas"],
+                             "fuera_de_idioma": fuera_idioma.get(mercado, 0),
+                             "ubicaciones": dict(sorted(g["ubicaciones"].items(), key=lambda kv: -kv[1])[:5]), "comparado_con": previo if antes else None,
+                             "tendencias": tendencias}
+    historial[hoy] = {m: {t["estilo"]: t["cuota"] for t in v["tendencias"]} for m, v in mercados.items()}
+    guardar_json(HISTORIAL, {f: historial[f] for f in sorted(historial)[-60:]})
+    principal = "ES" if "ES" in mercados else (next(iter(mercados)) if mercados else None)
+    return {"fecha_analisis": ahora(), "principal": principal, "mercados": mercados, "dias": dias, "vida_media_dias": args.vida_media,
+            "fotos_usadas": sum(v["fotos_usadas"] for v in mercados.values()), "fotos_descartadas": descartadas,
+            "acierto_modelo_validacion_cruzada": round(modelo.cv_acc, 3), "modelo_fecha": modelo.fecha,
+            "tendencias": mercados[principal]["tendencias"] if principal else [], "fuentes": mercados[principal]["fuentes"] if principal else {},
+            "aviso": "El mercado de cada foto es el que asignas a su fuente (cuenta de X o comunidad); idioma y ubicación se muestran para comprobarlo. "
+                     "Son cuentas concretas, no el mercado entero."}
+
+
+def fmt_n(n) -> str:
+    """1234 → 1,2 K."""
+    if n is None:
+        return "–"
+    return f"{n / 1000:.1f} K".replace(".", ",") if n >= 1000 else str(n)
 
 
 def html_informe(inf: dict) -> str:
     esc = lambda s: html.escape(str(s))  # noqa: E731
-    filas = inf["tendencias"]
-    barras = "".join(
-        f'<div class="fila" tabindex="0" role="img" data-n="{esc(t["nombre"])}" data-c="{100 * t["cuota"]:.0f}" data-f="{t["n_fotos"]}" data-r="{t["n_revisadas_por_ti"]}" '
-        f'aria-label="{esc(t["nombre"])}: {100 * t["cuota"]:.0f} % del total, {t["n_fotos"]} fotos">'
-        f'<span class="et">{esc(t["nombre"])}</span><span class="pista"><span class="barra" style="width:{(0.9 * 100 * t["intensidad"]) if t["n_fotos"] else 0:.1f}%"></span>'
-        f'<span class="val">{100 * t["cuota"]:.0f} %</span></span></div>' for t in filas)
-    tabla = "".join(f'<tr><td>{esc(t["nombre"])}</td><td>{100 * t["cuota"]:.1f} %</td><td>{t["n_fotos"]}</td><td>{t["n_revisadas_por_ti"]}</td>'
-                    f'<td>{esc(", ".join(t["grupo_estilo_detectado"]))}</td></tr>' for t in filas)
-    ejemplos = ""
-    for t in filas:
-        if not t["ejemplos"]:
-            continue
-        miniaturas = "".join(f'<figure><img src="cache/img/{esc(x["id"])}.jpg" alt="ejemplo de {esc(t["nombre"])}">'
-                             f'<figcaption>{esc(x["comunidad"])}{" · puesto " + str(x["puesto"]) if x["puesto"] else ""}{" · revisada" if x["revisada"] else " · sugerida " + str(round(100 * x["confianza"])) + " %"}</figcaption></figure>'
-                             for x in t["ejemplos"])
-        ejemplos += f'<section><h3>{esc(t["nombre"])} <small>{100 * t["cuota"]:.0f} % · {t["n_fotos"]} fotos</small></h3><div class="gal">{miniaturas}</div></section>'
+    mercados = inf["mercados"]
+    ahora_dt = datetime.now(timezone.utc)
+
+    def edad_texto(iso):
+        try:
+            d = (ahora_dt - datetime.fromisoformat(iso.replace("Z", "+00:00"))).days
+            return "hoy" if d <= 0 else f"hace {d} d"
+        except Exception:  # noqa: BLE001
+            return ""
+
+    def seccion(clave, mk):
+        filas = mk["tendencias"]
+        barras = "".join(
+            f'<div class="fila" tabindex="0" role="img" data-n="{esc(t["nombre"])}" data-c="{100 * t["cuota"]:.0f}" data-f="{t["n_fotos"]}" data-r="{t["n_revisadas_por_ti"]}" '
+            f'aria-label="{esc(t["nombre"])}: {100 * t["cuota"]:.0f} % del total, {t["n_fotos"]} fotos">'
+            f'<span class="et">{esc(t["nombre"])}</span><span class="pista"><span class="barra" style="width:{(0.9 * 100 * t["intensidad"]) if t["n_fotos"] else 0:.1f}%"></span>'
+            f'<span class="val">{100 * t["cuota"]:.0f} %</span>'
+            + (f'<span class="cambio {"sube" if t["cambio_pp"] > 0 else "baja" if t["cambio_pp"] < 0 else ""}">{"▲" if t["cambio_pp"] > 0 else "▼" if t["cambio_pp"] < 0 else "="} {abs(t["cambio_pp"]):.1f} pp</span>'
+               if t["cambio_pp"] is not None else "") + '</span></div>' for t in filas)
+        def cambio_txt(t):
+            return "" if t["cambio_pp"] is None else "%+.1f pp" % t["cambio_pp"]
+        tabla = "".join(f'<tr><td>{esc(t["nombre"])}</td><td>{100 * t["cuota"]:.1f} %</td><td>{cambio_txt(t)}</td><td>{t["n_fotos"]}</td>'
+                        f'<td>{t["n_revisadas_por_ti"]}</td><td>{esc(", ".join(t["grupo_estilo_detectado"]))}</td></tr>' for t in filas)
+        ejemplos = ""
+        for t in filas:
+            if not t["ejemplos"]:
+                continue
+            miniaturas = "".join(
+                f'<figure><img src="cache/img/{esc(x["id"])}.jpg" alt="ejemplo de {esc(t["nombre"])}"><figcaption>'
+                + (f'{esc(x["autor"])} · {esc(x["idioma"] or "?")} · ♥ {fmt_n(x["likes"])} · {edad_texto(x["fecha"])}' if x.get("autor") else
+                   f'{esc(x["comunidad"])}{" · puesto " + str(x["puesto"]) if x["puesto"] else ""}')
+                + (" · revisada" if x["revisada"] else f' · sugerida {round(100 * x["confianza"])} %') + '</figcaption></figure>' for x in t["ejemplos"])
+            ejemplos += f'<h3>{esc(t["nombre"])} <small>{100 * t["cuota"]:.0f} % · {t["n_fotos"]} fotos</small></h3><div class="gal">{miniaturas}</div>'
+        idiomas = mk["idiomas"]
+        total_i = sum(idiomas.values()) or 1
+        donde = (f'<p class="donde"><b>De dónde:</b> {esc(mk["nombre"])} · {mk["fotos_usadas"]} fotos de {len(mk["fuentes"])} fuentes'
+                 + (f' · idioma de los posts: {", ".join(f"{esc(i)} {100 * n / total_i:.0f} %" for i, n in sorted(idiomas.items(), key=lambda kv: -kv[1])[:3])}' if idiomas else "")
+                 + (f' · ubicación declarada de las cuentas: {", ".join(esc(u) for u in mk["ubicaciones"])}' if mk["ubicaciones"] else "")
+                 + (f' · {mk["fuera_de_idioma"]} fotos descartadas por estar en otro idioma ({esc(", ".join(sorted(MERCADO_IDIOMAS.get(clave, set()))))} es lo que cuenta aquí)' if mk.get("fuera_de_idioma") else "")
+                 + (f' · cambios frente al informe del {esc(mk["comparado_con"])}' if mk["comparado_con"] else " · aún sin informe anterior con el que comparar («sube / baja» aparece en cuanto haya uno de hace ≥ 3 días)")
+                 + '</p>')
+        return (f'<section class="mercado" id="m-{esc(clave)}" data-m="{esc(clave)}"{"" if clave == inf["principal"] else " hidden"}>{donde}'
+                f'<figure class="graf"><h2>Cuota de cada estilo (% del total ponderado por popularidad y recencia)</h2>{barras}'
+                f'<p style="margin:10px 0 0"><button class="conmuta" aria-expanded="false">Ver como tabla</button></p>'
+                f'<table><thead><tr><th>Estilo</th><th>Cuota</th><th>Cambio</th><th>Fotos</th><th>Revisadas por ti</th><th>Grupo(s) del ERP</th></tr></thead><tbody>{tabla}</tbody></table></figure>'
+                f'{ejemplos}<p class="pie">Fuentes: {esc(", ".join(f"{k} ({v})" for k, v in list(mk["fuentes"].items())[:14]))}.</p></section>')
+
+    pestanas = "".join(f'<button role="tab" data-m="{esc(k)}" aria-selected="{"true" if k == inf["principal"] else "false"}">{esc(v["nombre"])} <small>{v["fotos_usadas"]}</small></button>'
+                       for k, v in mercados.items())
+    secciones = "".join(seccion(k, v) for k, v in mercados.items()) or '<p class="aviso">Todavía no hay fotos de fuentes de mercado: añade cuentas en la Biblioteca y pulsa «Analizar mercado».</p>'
     return f"""<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Qué está de moda ahora</title>
 <style>
-:root{{--superficie:#fcfcfb;--plano:#f9f9f7;--tinta:#0b0b0b;--tinta2:#52514e;--apagado:#898781;--linea:#e1e0d9;--base:#c3c2b7;--serie:#2a78d6;--aviso:#f3ede0}}
-@media (prefers-color-scheme:dark){{:root:not([data-theme="light"]){{--superficie:#1a1a19;--plano:#0d0d0d;--tinta:#fff;--tinta2:#c3c2b7;--linea:#2c2c2a;--base:#383835;--serie:#3987e5;--aviso:#2a2620}}}}
-:root[data-theme="dark"]{{--superficie:#1a1a19;--plano:#0d0d0d;--tinta:#fff;--tinta2:#c3c2b7;--linea:#2c2c2a;--base:#383835;--serie:#3987e5;--aviso:#2a2620}}
+:root{{--superficie:#fcfcfb;--plano:#f9f9f7;--tinta:#0b0b0b;--tinta2:#52514e;--apagado:#898781;--linea:#e1e0d9;--base:#c3c2b7;--serie:#2a78d6;--aviso:#f3ede0;--sube:#1d7a46;--baja:#b3402f}}
+@media (prefers-color-scheme:dark){{:root:not([data-theme="light"]){{--superficie:#1a1a19;--plano:#0d0d0d;--tinta:#fff;--tinta2:#c3c2b7;--linea:#2c2c2a;--base:#383835;--serie:#3987e5;--aviso:#2a2620;--sube:#58c486;--baja:#f08070}}}}
+:root[data-theme="dark"]{{--superficie:#1a1a19;--plano:#0d0d0d;--tinta:#fff;--tinta2:#c3c2b7;--linea:#2c2c2a;--base:#383835;--serie:#3987e5;--aviso:#2a2620;--sube:#58c486;--baja:#f08070}}
 body{{margin:0;background:var(--plano);color:var(--tinta);font:15px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}}
 main{{max-width:760px;margin:0 auto;padding:20px 16px 48px}}
 h1{{font-size:1.35rem;margin:0}}h2{{font-size:1rem;margin:0 0 2px}}h3{{font-size:.95rem;margin:18px 0 6px}}h3 small{{color:var(--tinta2);font-weight:400}}
-.sub{{color:var(--tinta2);margin:4px 0 14px}}.aviso{{background:var(--aviso);border-radius:10px;padding:10px 12px;font-size:.85rem;color:var(--tinta2);margin:0 0 16px}}
+.sub{{color:var(--tinta2);margin:4px 0 12px}}.aviso{{background:var(--aviso);border-radius:10px;padding:10px 12px;font-size:.85rem;color:var(--tinta2);margin:0 0 14px}}
+.pestanas{{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 12px}}
+.pestanas button{{font:inherit;font-size:.88rem;background:var(--superficie);border:1px solid var(--linea);color:var(--tinta2);border-radius:999px;padding:5px 12px;cursor:pointer}}
+.pestanas button[aria-selected="true"]{{border-color:var(--serie);color:var(--tinta);font-weight:600}}.pestanas small{{color:var(--apagado)}}
+.donde{{font-size:.84rem;color:var(--tinta2);margin:0 0 10px}}
 figure.graf{{background:var(--superficie);border:1px solid var(--linea);border-radius:12px;padding:14px 16px;margin:0 0 8px}}
-.fila{{display:grid;grid-template-columns:152px 1fr;align-items:center;gap:10px;height:30px;outline-offset:2px;border-radius:6px}}
+.fila{{display:grid;grid-template-columns:130px 1fr;align-items:center;gap:10px;height:30px;outline-offset:2px;border-radius:6px}}
 .et{{color:var(--tinta2);font-size:.86rem;white-space:nowrap}}.val{{font-weight:600;margin-left:8px;white-space:nowrap}}
+.cambio{{margin-left:8px;font-size:.76rem;color:var(--tinta2);white-space:nowrap}}.cambio.sube{{color:var(--sube)}}.cambio.baja{{color:var(--baja)}}
 .pista{{border-left:1px solid var(--base);height:20px;display:flex;align-items:center}}
 .barra{{display:block;height:20px;background:var(--serie);border-radius:0 4px 4px 0;transition:filter .1s}}
 .fila:hover .barra,.fila:focus-visible .barra{{filter:brightness(1.12)}}
 .conmuta{{font:inherit;font-size:.82rem;background:none;border:1px solid var(--linea);color:var(--tinta2);border-radius:8px;padding:3px 10px;cursor:pointer}}
-table{{width:100%;border-collapse:collapse;font-size:.88rem;display:none;margin-top:10px}}table.ver{{display:table}}
-th,td{{text-align:left;padding:5px 8px;border-bottom:1px solid var(--linea)}}td:nth-child(n+2):nth-child(-n+4){{font-variant-numeric:tabular-nums}}
+table{{width:100%;border-collapse:collapse;font-size:.86rem;display:none;margin-top:10px}}table.ver{{display:table}}
+th,td{{text-align:left;padding:5px 6px;border-bottom:1px solid var(--linea)}}td:nth-child(n+2):nth-child(-n+5){{font-variant-numeric:tabular-nums}}
 .gal{{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}}figure{{margin:0}}.gal img{{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:8px;background:var(--linea)}}
-figcaption{{font-size:.74rem;color:var(--tinta2);margin-top:2px}}
+figcaption{{font-size:.72rem;color:var(--tinta2);margin-top:2px;overflow-wrap:anywhere}}
 #tip{{position:fixed;pointer-events:none;background:var(--superficie);border:1px solid var(--linea);border-radius:8px;padding:6px 9px;font-size:.8rem;box-shadow:0 4px 14px rgba(0,0,0,.15);display:none;z-index:5}}
 #tip b{{font-size:.95rem;display:block}}
-.pie{{color:var(--apagado);font-size:.78rem;margin-top:22px}}
+.pie{{color:var(--apagado);font-size:.78rem;margin-top:18px}}
 </style><main>
 <h1>Qué está de moda ahora mismo</h1>
-<p class="sub">Análisis de {inf["fotos_usadas"]} fotos recientes · {esc(inf["fecha_analisis"][:10])} · prototipo</p>
-<p class="aviso"><b>Prototipo, no un análisis de mercado.</b> {esc(inf["aviso"])} Las cuotas son pesos por posición en el «top» y recencia; las fotos sin tu revisión usan la sugerencia del modelo
-(acierto del modelo {100 * inf["acierto_modelo_validacion_cruzada"]:.0f} % en validación cruzada sobre las fotos de la galería; en una fuente nueva será menor: mídelo con <code>revisar</code>).</p>
-<figure class="graf"><h2>Cuota de cada estilo (% del total ponderado)</h2>{barras}
-<p style="margin:10px 0 0"><button class="conmuta" id="conmuta" aria-expanded="false">Ver como tabla</button></p>
-<table id="tabla"><thead><tr><th>Estilo</th><th>Cuota</th><th>Fotos</th><th>Revisadas por ti</th><th>Grupo(s) del ERP</th></tr></thead><tbody>{tabla}</tbody></table></figure>
-{ejemplos}
-<p class="pie">Fuentes: {esc(", ".join(f"{k} ({v})" for k, v in inf["fuentes"].items()))}. Vida media de la recencia: {inf["vida_media_dias"]} días. Descartadas por no ser un outfit o por ti: {inf["fotos_descartadas"]}.
-Las imágenes son de personas reales y se quedan en tu equipo (no las publiques).</p></main><div id="tip"></div>
+<p class="sub">{inf["fotos_usadas"]} fotos de los últimos {inf["dias"]} días · {esc(inf["fecha_analisis"][:10])} · prototipo</p>
+<div class="pestanas" role="tablist" aria-label="Mercado">{pestanas}</div>
+<p class="aviso"><b>Prototipo.</b> {esc(inf["aviso"])} Cada foto pesa por su popularidad (X: interacciones frente a seguidores; Reddit: puesto en el «top») y lo reciente que es.
+Sin revisar, el estilo es la predicción del modelo ({100 * inf["acierto_modelo_validacion_cruzada"]:.0f} % en validación cruzada; con fotos nuevas será menor); se ignoran las que no parecen una persona con ropa.</p>
+{secciones}
+<p class="pie">Vida media de la recencia: {inf["vida_media_dias"]} días. Descartadas por no ser un outfit o por ti: {inf["fotos_descartadas"]}. Las imágenes son de personas reales y se quedan en tu equipo (no las publiques).</p></main><div id="tip"></div>
 <script>
 const tip=document.getElementById('tip');
 function mostrar(f,x,y){{tip.replaceChildren();const b=document.createElement('b');b.textContent=f.dataset.c+' %';const s=document.createElement('span');
@@ -1627,8 +1860,11 @@ function mostrar(f,x,y){{tip.replaceChildren();const b=document.createElement('b
   tip.style.left=Math.min(x+12,innerWidth-tip.offsetWidth-8)+'px';tip.style.top=(y+12)+'px'}}
 document.querySelectorAll('.fila').forEach(f=>{{f.addEventListener('pointermove',e=>mostrar(f,e.clientX,e.clientY));f.addEventListener('pointerleave',()=>tip.style.display='none');
   f.addEventListener('focus',()=>{{const r=f.getBoundingClientRect();mostrar(f,r.left+r.width/2,r.top)}});f.addEventListener('blur',()=>tip.style.display='none')}});
-const bt=document.getElementById('conmuta'),tb=document.getElementById('tabla');
-bt.addEventListener('click',()=>{{const v=tb.classList.toggle('ver');bt.textContent=v?'Ocultar tabla':'Ver como tabla';bt.setAttribute('aria-expanded',v)}});
+document.querySelectorAll('.conmuta').forEach(bt=>bt.addEventListener('click',()=>{{const tb=bt.closest('figure').querySelector('table');
+  const v=tb.classList.toggle('ver');bt.textContent=v?'Ocultar tabla':'Ver como tabla';bt.setAttribute('aria-expanded',v)}}));
+document.querySelectorAll('.pestanas button').forEach(b=>b.addEventListener('click',()=>{{
+  document.querySelectorAll('.pestanas button').forEach(x=>x.setAttribute('aria-selected',x===b));
+  document.querySelectorAll('section.mercado').forEach(s=>s.hidden=s.dataset.m!==b.dataset.m)}}));
 </script></html>"""
 
 
@@ -1637,8 +1873,11 @@ def cmd_informe(args):
     guardar_json(INFORME_JSON, inf)
     INFORME_HTML.write_text(html_informe(inf), encoding="utf-8")
     print(f"\nQué está de moda (de {inf['fotos_usadas']} fotos; {inf['fotos_descartadas']} descartadas):")
-    for t in inf["tendencias"]:
-        print(f"  {t['nombre']:20s} {100 * t['cuota']:4.0f} %  {'█' * int(30 * t['intensidad']):30s} {t['n_fotos']:3d} fotos ({t['n_revisadas_por_ti']} revisadas)")
+    for clave, mk in inf["mercados"].items():
+        print(f"\n  === {mk['nombre']}: {mk['fotos_usadas']} fotos de {len(mk['fuentes'])} fuentes ===")
+        for t in mk["tendencias"]:
+            cambio = "" if t["cambio_pp"] is None else f" ({t['cambio_pp']:+.1f} pp)"
+            print(f"  {t['nombre']:20s} {100 * t['cuota']:4.0f} %{cambio:11s} {'█' * int(30 * t['intensidad']):30s} {t['n_fotos']:3d} fotos ({t['n_revisadas_por_ti']} revisadas)")
     print(f"\nInforme: {INFORME_HTML}\n         {INFORME_JSON}")
 
 
@@ -1693,18 +1932,43 @@ def puntuar_sirve(candidatas: list[dict]) -> dict:
     return dict(zip([c["id"] for c in candidatas], clf.predict_proba(Xc)[:, 1].tolist()))
 
 
+def muestra_de_mercado(cands: dict, et: dict, vistas: set, mercado: str, maximo: int) -> list:
+    """Fotos de un mercado, al azar, que aún no has juzgado ni visto y que contarían en el informe (persona con ropa, idioma del mercado, recientes)."""
+    ahora_dt = datetime.now(timezone.utc)
+    pool = []
+    for c in sorted(cands.values(), key=lambda c: c["id"]):
+        if mercado_de(c) != mercado or "pred" not in c or c["id"] in et or c["id"] in vistas or c.get("solo_entrenamiento") or c["gate"] < UMBRAL_PUERTA:
+            continue
+        idioma = idioma_de(c)
+        if idioma and MERCADO_IDIOMAS.get(mercado) and idioma not in MERCADO_IDIOMAS[mercado]:
+            continue
+        try:
+            if (ahora_dt - datetime.fromisoformat(c["fecha"].replace("Z", "+00:00"))).days > DIAS_MAX_MERCADO:
+                continue
+        except Exception:  # noqa: BLE001
+            pass
+        pool.append(c)
+    random.Random(11).shuffle(pool)
+    return pool[:maximo]
+
+
 def cmd_hojas(args):
     """Hojas de contactos (3×3, fotos grandes, cada una con su código C07, L12…) de las propuestas de un estilo que aún no has visto, para
-    enseñártelas por el chat desde el móvil. Se reparten entre las fuentes para que una hoja no sea toda de la misma."""
+    enseñártelas por el chat desde el móvil. Se reparten entre las fuentes para que una hoja no sea toda de la misma.
+    Con --mercado ES: una muestra AL AZAR de fotos de ese mercado (códigos M01…) sin enseñar lo que predice el modelo, para medir su acierto real con `medir`."""
     from PIL import ImageDraw
-    estilo, letra = args.estilo, LETRA[args.estilo]
+    if bool(args.estilo) == bool(args.mercado):
+        raise SystemExit("ERROR: indica --estilo (propuestas de un estilo) o --mercado (muestra para medir el acierto del modelo)")
+    estilo, letra = args.estilo, ("M" if args.mercado else LETRA[args.estilo])
     cands = leer_json(CANDIDATOS)
     completar_predicciones(cands)
     cands, et, rev = leer_json(CANDIDATOS), leer_json(ETIQUETAS), leer_json(REVISION)
     vistas = {v["id"] for v in rev.values()}
-    por = {}
+    por, p_sirve, elegidas = {}, {}, []
+    if args.mercado:
+        elegidas = muestra_de_mercado(cands, et, vistas, args.mercado, args.max)
     for c in sorted(cands.values(), key=lambda c: c["id"]):
-        if c.get("estilo_propuesto") == estilo and "pred" in c and c["id"] not in et and c["id"] not in vistas:
+        if not args.mercado and c.get("estilo_propuesto") == estilo and "pred" in c and c["id"] not in et and c["id"] not in vistas:
             por.setdefault(c.get("comunidad") or "?", []).append(c)
     # lo que ya has contestado orienta lo siguiente: (a) la tasa de aciertos de cada fuente (suavizada: una fuente sin probar vale 0,5) y
     # (b) un filtro aprendido de tus decisiones. Puntuación = media de ambas; tope por fuente para que una hoja no sea toda de la misma.
@@ -1716,12 +1980,12 @@ def cmd_hojas(args):
             a[1] += 1
     tasa = {fuente: (juzgadas.get(fuente, [0, 0])[0] + 1.0) / (juzgadas.get(fuente, [0, 0])[1] + 2.0) for fuente in por}
     todas = [c for lista in por.values() for c in lista]
-    p_sirve = puntuar_sirve(todas)
+    p_sirve = puntuar_sirve(todas) if not args.mercado else {}
     puntuacion = {c["id"]: 0.5 * tasa[c.get("comunidad") or "?"] + 0.5 * p_sirve.get(c["id"], 0.5) for c in todas}
     todas.sort(key=lambda c: (-puntuacion[c["id"]], c["id"]))
-    tope, usadas, elegidas = max(4, math.ceil(0.6 * args.max)), {}, []
+    tope, usadas = max(4, math.ceil(0.6 * args.max)), {}
     # exploración: un tercio de la tanda sale de fuentes con menos de 4 respuestas tuyas (si no, siempre ganarían las ya probadas y no veríamos nada nuevo)
-    nuevas_fuentes = [c for c in todas if juzgadas.get(c.get("comunidad") or "?", [0, 0])[1] < 4]
+    nuevas_fuentes = [c for c in todas if juzgadas.get(c.get("comunidad") or "?", [0, 0])[1] < 4] if not args.mercado else []
     cupo = math.ceil(args.max / 3) if nuevas_fuentes else 0
     por_fuente_explorada = {}
     for c in nuevas_fuentes:
@@ -1740,7 +2004,7 @@ def cmd_hojas(args):
         print(f"Filtro aprendido de tus decisiones: probabilidad media de que te sirvan {100 * np.mean([p_sirve[c['id']] for c in elegidas]):.0f} % en las elegidas "
               f"(frente a {100 * np.mean(list(p_sirve.values())):.0f} % en todo lo pendiente)")
     if not elegidas:
-        print(f"No hay propuestas nuevas de {NOMBRE[estilo]} para enseñar.")
+        print("No hay fotos nuevas para enseñar." if args.mercado else f"No hay propuestas nuevas de {NOMBRE[estilo]} para enseñar.")
         return
     n = max([int(k[len(letra):]) for k in rev if k.startswith(letra)] or [0])
     HOJAS.mkdir(parents=True, exist_ok=True)
@@ -1805,6 +2069,59 @@ def cmd_resolver(args):
     print(f"Aplicado: {cuenta['ok']} confirmadas con su estilo y {cuenta['descartada']} descartadas.")
 
 
+MEDIDAS = DATOS / "medida_real.json"   # historial de «acierto real del modelo con fotos nuevas de mercado juzgadas por ti»
+
+
+def cmd_medir(args):
+    """Aplica tus respuestas a las hojas de mercado y calcula el ACIERTO REAL del modelo con esas fotos nuevas. Respuestas: `1C 2V 3x`: número de la foto y
+    letra del estilo (O Old Money, L Lujo, C Clásico, U Urbano, B Bohemio, G Geek, V Convencional) o `x` = no sirve / no es un outfit. Lo no nombrado se ignora."""
+    rev, cands = leer_json(REVISION), leer_json(CANDIDATOS)
+    por_letra = {v: k for k, v in LETRA.items()}
+    respuestas = re.findall(r"(?:M)?0*(\d+)\s*[=:]?\s*([A-Za-z])(?![A-Za-z])", args.respuestas.replace(",", " "))
+    if not respuestas:
+        raise SystemExit("ERROR: no entiendo las respuestas; usa p. ej.  1C 2V 3x 4O")
+    filas, saltadas = [], []
+    for n, letra in respuestas:
+        codigo, letra = f"M{int(n):02d}", letra.upper()
+        if codigo not in rev or rev[codigo]["estado"] != "mostrada" or (letra != "X" and letra not in por_letra):
+            saltadas.append(f"{n}{letra}")
+            continue
+        cid = rev[codigo]["id"]
+        sugerido = (cands.get(cid) or {}).get("pred", [[None]])[0][0]
+        if letra == "X":
+            ok = poner_etiqueta(cid, "descartada")
+            estilo_real = None
+        else:
+            estilo_real = por_letra[letra]
+            ok = poner_etiqueta(cid, "ok", estilo_real)
+        if not ok:
+            saltadas.append(f"{n}{letra}")
+            continue
+        rev[codigo]["estado"] = "descartada" if letra == "X" else "ok"
+        filas.append((sugerido, estilo_real))
+    guardar_json(REVISION, rev)
+    juzgadas = [(p, r) for p, r in filas if r]
+    aciertos = sum(1 for p, r in juzgadas if p == r)
+    print(f"Aplicado: {len(juzgadas)} con estilo, {len(filas) - len(juzgadas)} descartadas (no eran un outfit)" + (f"; sin aplicar: {', '.join(saltadas)}" if saltadas else ""))
+    if not juzgadas:
+        return
+    print(f"\nACIERTO REAL del modelo con fotos nuevas de mercado: {aciertos} de {len(juzgadas)} = {100 * aciertos / len(juzgadas):.0f} %   (azar ≈ 14 %)")
+    print("Por estilo real (fotos · acierta · lo que más pone en su lugar):")
+    for e in ESTILOS:
+        propios = [p for p, r in juzgadas if r == e]
+        if propios:
+            mal = {}
+            for p in propios:
+                if p != e:
+                    mal[p] = mal.get(p, 0) + 1
+            peor = max(mal, key=mal.get) if mal else None
+            print(f"   {NOMBRE[e]:20s} {len(propios):3d} fotos · acierta {sum(1 for p in propios if p == e):3d} ({100 * sum(1 for p in propios if p == e) / len(propios):3.0f} %)" + (f"   confunde con {NOMBRE[peor]} ({mal[peor]})" if peor else ""))
+    historial = leer_json(MEDIDAS) or {"medidas": []}
+    historial["medidas"].append({"fecha": ahora(), "fotos": len(juzgadas), "aciertos": aciertos, "descartadas": len(filas) - len(juzgadas),
+                                 "por_estilo": {e: [sum(1 for p, r in juzgadas if r == e and p == e), sum(1 for p, r in juzgadas if r == e)] for e in ESTILOS if any(r == e for _, r in juzgadas)}})
+    guardar_json(MEDIDAS, historial)
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -1815,7 +2132,7 @@ def main():
     c.add_argument("--urls", default="", help="fichero de texto con enlaces de tuits, imágenes o páginas (uno por línea)")
     c.add_argument("--biblioteca", action="store_true", help="descargar lo que hay en la Biblioteca (comunidades/usuarios de Reddit, tuits, páginas, imágenes)")
     c.add_argument("--solo-enlaces", action="store_true", dest="solo_enlaces", help="con --biblioteca: solo los enlaces sin procesar (no las comunidades de Reddit)")
-    c.add_argument("--solo-x", action="store_true", dest="solo_x", help="con --biblioteca: solo las cuentas de X (no Reddit ni enlaces)")
+    c.add_argument("--solo-x", action="store_true", dest="solo_x", help="con --biblioteca: solo las cuentas de X y los feeds RSS (no Reddit ni enlaces sueltos)")
     c.set_defaults(f=cmd_cosechar)
     for nombre, ayuda in (("app", "abre la app en el navegador (la forma normal de usarlo, sin terminal)"),
                           ("revisar", "igual que `app` (la clasificación está en su pestaña «Clasificar»)")):
@@ -1824,7 +2141,8 @@ def main():
         r.add_argument("--abrir", action="store_true", help="abrir el navegador desde aquí (el lanzador de Windows ya lo hace)")
         r.set_defaults(f=cmd_app)
     h = sub.add_parser("hojas", help="hojas de fotos numeradas de las propuestas de un estilo (para revisarlas desde el móvil)")
-    h.add_argument("--estilo", required=True, choices=ESTILOS)
+    h.add_argument("--estilo", choices=ESTILOS)
+    h.add_argument("--mercado", choices=list(MERCADOS), help="muestra al azar de fotos de ese mercado (para medir el acierto real con `medir`)")
     h.add_argument("--max", type=int, default=18, help="cuántas fotos nuevas enseñar")
     h.add_argument("--por-hoja", type=int, default=9, dest="por_hoja")
     h.set_defaults(f=cmd_hojas)
@@ -1832,11 +2150,15 @@ def main():
     rs.add_argument("--revisadas", required=True, help="códigos que has visto (rangos con guion)")
     rs.add_argument("--buenas", default="", help="los que sirven con su estilo; el resto de las revisadas se descarta")
     rs.set_defaults(f=cmd_resolver)
+    me = sub.add_parser("medir", help="aplicar tus respuestas a las hojas de mercado (M01…) y calcular el acierto REAL del modelo: --respuestas \"1C 2V 3x\"")
+    me.add_argument("--respuestas", required=True)
+    me.set_defaults(f=cmd_medir)
     rt = sub.add_parser("reentrenar", help="entrenar con las etiquetas nuevas y regenerar el informe")
     rt.add_argument("--vida-media", type=float, default=10.0, dest="vida_media")
     rt.set_defaults(f=cmd_reentrenar)
     i = sub.add_parser("informe", help="genera el informe de mercado")
     i.add_argument("--vida-media", type=float, default=10.0, dest="vida_media", help="días en que una foto pierde la mitad de su peso")
+    i.add_argument("--dias", type=int, default=45, help="solo cuentan las fotos de los últimos N días")
     i.set_defaults(f=cmd_informe)
     a = sub.add_parser("analizar", help="el «botón»: [cosechar] + clasificar + informe")
     a.add_argument("--cosechar", action="store_true")

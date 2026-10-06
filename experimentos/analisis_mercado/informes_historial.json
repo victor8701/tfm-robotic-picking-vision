@@ -1,0 +1,22 @@
+{
+ "2026-10-06": {
+  "US": {
+   "old_money": 0.2844,
+   "lujo_ostentoso": 0.2664,
+   "convencional": 0.177,
+   "clasico_tradicional": 0.0925,
+   "alternativo_geek": 0.082,
+   "bohemio": 0.062,
+   "urbano": 0.0357
+  },
+  "ES": {
+   "convencional": 0.3705,
+   "lujo_ostentoso": 0.1836,
+   "bohemio": 0.1629,
+   "old_money": 0.1185,
+   "clasico_tradicional": 0.0997,
+   "urbano": 0.0649,
+   "alternativo_geek": 0.0
+  }
+ }
+}
