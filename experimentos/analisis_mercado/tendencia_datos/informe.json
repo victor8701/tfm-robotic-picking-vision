@@ -1,0 +1,666 @@
+{
+ "generado": "2026-10-06T19:38:07+00:00",
+ "min_fotos": 5,
+ "vida_media_dias": 10.0,
+ "grupos": [
+  {
+   "estilo": "geek",
+   "mercado": "Biblioteca",
+   "temporada": "muestra",
+   "fotos": 42,
+   "fotos_con_prenda": 42,
+   "prendas": [
+    {
+     "tipo": "Falda",
+     "fotos": 13,
+     "cuota": 0.31,
+     "pocos_datos": false
+    },
+    {
+     "tipo": "Pantalón",
+     "fotos": 12,
+     "cuota": 0.286,
+     "pocos_datos": false
+    },
+    {
+     "tipo": "Chaqueta",
+     "fotos": 9,
+     "cuota": 0.214,
+     "pocos_datos": false
+    },
+    {
+     "tipo": "Botas",
+     "fotos": 7,
+     "cuota": 0.167,
+     "pocos_datos": false
+    },
+    {
+     "tipo": "Jersey",
+     "fotos": 7,
+     "cuota": 0.167,
+     "pocos_datos": false
+    },
+    {
+     "tipo": "Top",
+     "fotos": 6,
+     "cuota": 0.143,
+     "pocos_datos": false
+    },
+    {
+     "tipo": "Short",
+     "fotos": 5,
+     "cuota": 0.119,
+     "pocos_datos": false
+    },
+    {
+     "tipo": "Sudadera",
+     "fotos": 4,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Camiseta manga larga",
+     "fotos": 4,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Chaleco sin mangas",
+     "fotos": 3,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Vestido",
+     "fotos": 3,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Camiseta manga corta",
+     "fotos": 2,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Zapatillas casual/lifestyle",
+     "fotos": 2,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Mono",
+     "fotos": 2,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Camiseta de tirantes",
+     "fotos": 2,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Legging/Malla",
+     "fotos": 2,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Zapatos planos de vestir",
+     "fotos": 2,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Zapatillas deportivas",
+     "fotos": 2,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Camisa",
+     "fotos": 2,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Polo",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Sandalias",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Plumas",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    }
+   ],
+   "colores": {
+    "negro": 64,
+    "azul": 6,
+    "rojo": 6,
+    "camel": 5,
+    "blanco": 4,
+    "gris": 3,
+    "beige": 3,
+    "verde": 2
+   },
+   "fuentes": {
+    "Biblioteca": 42
+   }
+  },
+  {
+   "estilo": "geek",
+   "mercado": "ES",
+   "temporada": "OI 2026/27",
+   "fotos": 2,
+   "fotos_con_prenda": 2,
+   "prendas": [
+    {
+     "tipo": "Camisa",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Short",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Camiseta de tirantes",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    }
+   ],
+   "colores": {
+    "negro": 3
+   },
+   "fuentes": {
+    "Rojuu": 2
+   }
+  },
+  {
+   "estilo": "urbano",
+   "mercado": "Biblioteca",
+   "temporada": "muestra",
+   "fotos": 40,
+   "fotos_con_prenda": 40,
+   "prendas": [
+    {
+     "tipo": "Chaqueta",
+     "fotos": 14,
+     "cuota": 0.35,
+     "pocos_datos": false
+    },
+    {
+     "tipo": "Pantalón",
+     "fotos": 13,
+     "cuota": 0.325,
+     "pocos_datos": false
+    },
+    {
+     "tipo": "Short",
+     "fotos": 8,
+     "cuota": 0.2,
+     "pocos_datos": false
+    },
+    {
+     "tipo": "Camiseta manga corta",
+     "fotos": 5,
+     "cuota": 0.125,
+     "pocos_datos": false
+    },
+    {
+     "tipo": "Sudadera",
+     "fotos": 5,
+     "cuota": 0.125,
+     "pocos_datos": false
+    },
+    {
+     "tipo": "Chaleco sin mangas",
+     "fotos": 4,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Camiseta manga larga",
+     "fotos": 4,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Camisa",
+     "fotos": 4,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Falda",
+     "fotos": 4,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Zapatillas casual/lifestyle",
+     "fotos": 4,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Polo",
+     "fotos": 2,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Abrigo",
+     "fotos": 2,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Botas",
+     "fotos": 2,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Plumas",
+     "fotos": 2,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Zapatos planos de vestir",
+     "fotos": 2,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Camiseta de tirantes",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Mono",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Top",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Legging/Malla",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Zapatillas deportivas",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Americana",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Vestido",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    }
+   ],
+   "colores": {
+    "negro": 38,
+    "blanco": 17,
+    "camel": 8,
+    "gris": 7,
+    "azul": 7,
+    "beige": 3,
+    "navy": 2,
+    "verde": 1
+   },
+   "fuentes": {
+    "Biblioteca": 40
+   }
+  },
+  {
+   "estilo": "urbano",
+   "mercado": "ES",
+   "temporada": "OI 2026/27",
+   "fotos": 23,
+   "fotos_con_prenda": 23,
+   "prendas": [
+    {
+     "tipo": "Camiseta manga corta",
+     "fotos": 11,
+     "cuota": 0.383,
+     "pocos_datos": false
+    },
+    {
+     "tipo": "Short",
+     "fotos": 5,
+     "cuota": 0.294,
+     "pocos_datos": false
+    },
+    {
+     "tipo": "Chaqueta",
+     "fotos": 3,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Vestido",
+     "fotos": 2,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Pantalón",
+     "fotos": 5,
+     "cuota": 0.139,
+     "pocos_datos": false
+    },
+    {
+     "tipo": "Camisa",
+     "fotos": 2,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Americana",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Top",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Mono",
+     "fotos": 2,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Polo",
+     "fotos": 2,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Camiseta manga larga",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Sandalias",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    }
+   ],
+   "colores": {
+    "negro": 22,
+    "blanco": 5,
+    "gris": 5,
+    "azul": 2,
+    "camel": 2
+   },
+   "fuentes": {
+    "Morad": 12,
+    "Quevedo": 8,
+    "bycalitos": 3
+   }
+  },
+  {
+   "estilo": "urbano",
+   "mercado": "ES",
+   "temporada": "PV 2026",
+   "fotos": 9,
+   "fotos_con_prenda": 9,
+   "prendas": [
+    {
+     "tipo": "Polo",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Short",
+     "fotos": 4,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Camiseta manga larga",
+     "fotos": 2,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Camiseta manga corta",
+     "fotos": 2,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Pantalón",
+     "fotos": 2,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Chaqueta",
+     "fotos": 2,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Zapatillas deportivas",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Zapatillas casual/lifestyle",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Chaleco sin mangas",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Americana",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Mono",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Botas",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Plumas",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    }
+   ],
+   "colores": {
+    "negro": 10,
+    "blanco": 6,
+    "navy": 1,
+    "gris": 1,
+    "camel": 1,
+    "azul": 1
+   },
+   "fuentes": {
+    "bycalitos": 4,
+    "Quevedo": 4,
+    "Israel B": 1
+   }
+  },
+  {
+   "estilo": "urbano",
+   "mercado": "US",
+   "temporada": "OI 2025/26",
+   "fotos": 1,
+   "fotos_con_prenda": 1,
+   "prendas": [
+    {
+     "tipo": "Polo",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    }
+   ],
+   "colores": {
+    "blanco": 1
+   },
+   "fuentes": {
+    "Travis Scott": 1
+   }
+  },
+  {
+   "estilo": "urbano",
+   "mercado": "US",
+   "temporada": "OI 2026/27",
+   "fotos": 10,
+   "fotos_con_prenda": 10,
+   "prendas": [
+    {
+     "tipo": "Pantalón",
+     "fotos": 10,
+     "cuota": 1.0,
+     "pocos_datos": false
+    },
+    {
+     "tipo": "Chaqueta",
+     "fotos": 5,
+     "cuota": 0.56,
+     "pocos_datos": false
+    },
+    {
+     "tipo": "Zapatos planos de vestir",
+     "fotos": 3,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Camisa",
+     "fotos": 2,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Botas",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Zapatillas casual/lifestyle",
+     "fotos": 3,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Camiseta manga larga",
+     "fotos": 2,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Polo",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    }
+   ],
+   "colores": {
+    "negro": 7,
+    "beige": 5,
+    "gris": 4,
+    "camel": 3,
+    "azul": 2,
+    "blanco": 2,
+    "verde": 2,
+    "amarillo": 1
+   },
+   "fuentes": {
+    "r/streetwear": 10
+   }
+  },
+  {
+   "estilo": "urbano",
+   "mercado": "US",
+   "temporada": "PV 2026",
+   "fotos": 4,
+   "fotos_con_prenda": 4,
+   "prendas": [
+    {
+     "tipo": "Chaqueta",
+     "fotos": 3,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Pantalón",
+     "fotos": 2,
+     "cuota": null,
+     "pocos_datos": true
+    },
+    {
+     "tipo": "Plumas",
+     "fotos": 1,
+     "cuota": null,
+     "pocos_datos": true
+    }
+   ],
+   "colores": {
+    "negro": 7
+   },
+   "fuentes": {
+    "Playboi Carti": 2,
+    "A$AP Rocky": 2
+   }
+  }
+ ]
+}

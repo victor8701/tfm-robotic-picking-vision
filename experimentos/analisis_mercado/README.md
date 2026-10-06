@@ -124,6 +124,11 @@ El estilo lo da la **persona de referencia**, no la foto. Se empieza por **geek 
 `tendencias_prenda/tendencias_prenda.html` (la página) y `tendencias_prenda/semillas/*.json` (el contenido inicial de la base: `general`, `geek`, `urbano`, `pruebas`; después las ediciones de Víctor viven solo en esa base).
 Primeras pruebas (volumen de fotos por referente, detector de prendas en 28 fotos, CLIP zero-shot sobre 36 recortes) en `memoria/TFM_tendencias_de_prenda.md`; la última, con su script y la revisión a ojo, en `../vlm_atributos_prenda/`.
 
+**Flujo v0 (`tendencia_prenda.py`)**, aparte de los datos de la app (todo en `tendencia_datos/`, solo `fotos.json`, `prendas.json` e `informe.json` van a git; las fotos no):
+`cosechar` (fuentes de `tendencia_fuentes.json`: X vía FxTwitter, prensa por nombre vía Bing Noticias, comunidades de Reddit) → `biblioteca` (tus fotos aprobadas como urbano/geek, como muestra de referencia) →
+`analizar` (detector de prendas de `vlm_atributos_prenda` + tipo fino con CLIP sobre el recorte) → `informe` (cuota de fotos por prenda, por estilo × mercado × temporada de 6 meses; mínimo 5 fotos por cifra). `python3 tendencia_prenda.py todo` hace las cuatro.
+Todavía NO estima estampado ni forma (CLIP sin entrenar no sirve) y la visibilidad de la prenda es una heurística de caja pegada al borde.
+
 ## Privacidad y licencias
 
 Las fotos son de **personas reales** que las subieron a Reddit/X o salen en prensa. Se guardan **solo en `cache/`** (fuera de git); al repositorio van el
@@ -141,6 +146,8 @@ universidad antes de difundir un dataset con fotos de terceros (RGPD). Las pági
 | `etiquetas_mercado.json` | tus clasificaciones de la pestaña «Clasificar» (datos de la tesis) | sí |
 | `biblioteca.json` | descripciones, frases, personas de referencia, cuentas y enlaces por estilo | sí |
 | `tendencias_prenda/` | la página editable de «tendencia por prenda» y el contenido inicial de su base | sí |
+| `tendencia_prenda.py` · `tendencia_fuentes.json` · `sonda_prensa.py` | flujo de tendencia por prenda (v0), sus fuentes y la sonda de prensa por nombre | sí |
+| `tendencia_datos/` | fotos (`cache/`) y análisis del flujo de tendencia; `fotos.json`, `prendas.json`, `informe.json` sí van a git | parcial |
 | `cache/` (`img/`, `biblioteca/`) · `candidatos.json` · `informe_mercado.*` | imágenes y trabajo local | no |
 
 Pruebas sin tocar tus datos: `MERCADO_DATOS=/ruta/copia python3 mercado.py app --puerto 8777` (y `MERCADO_CUENTAS_X=/ruta/cuentas.json` para no escribir en `ingesta_x`).

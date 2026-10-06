@@ -199,7 +199,7 @@ h1{margin:0;font:700 clamp(30px,8.4vw,44px)/1.02 var(--f-display);letter-spacing
 .pill{font:500 10px/1 var(--f-mono);letter-spacing:.08em;padding:6px 0;text-align:center;border-radius:6px;border:1px solid currentColor}
 .t-ok{color:var(--ok)} .t-aviso{color:var(--warn)} .t-no{color:var(--no)} .t-info{color:var(--ink-2)}
 .hb{display:grid;gap:12px}
-.hb-row{display:grid;grid-template-columns:minmax(0,9.5em) minmax(0,1fr) 2.2em;gap:10px;align-items:center}
+.hb-row{display:grid;grid-template-columns:minmax(0,9.5em) minmax(0,1fr) 3.4em;gap:10px;align-items:center}
 .hb-l{display:grid;gap:2px;min-width:0;font-size:14px;line-height:1.25}
 .hb-l small{font-size:12px;color:var(--ink-3)}
 .hb-bar{height:10px;border-radius:5px;background:var(--surface-2);position:relative;overflow:hidden}
@@ -604,7 +604,7 @@ function blk(b){
     h+='<ul class="finds">'+(b.items||[]).map(function(it){var t=it.tono||'info';return '<li><span class="pill t-'+t+'">'+(TONO[t]||'DATO')+'</span><div><b>'+esc(it.titulo)+'</b><div class="tx">'+md(it.texto)+'</div></div></li>'}).join('')+'</ul>';
   }else if(b.tipo==='barras'){
     var fs=b.filas||[],max=b.max||Math.max.apply(null,fs.map(function(f){return f.valor||0}).concat([1]));
-    h+='<div class="hb">'+fs.map(function(f){return '<div class="hb-row"><div class="hb-l"><span>'+esc(f.etiqueta)+'</span>'+(f.nota?'<small>'+esc(f.nota)+'</small>':'')+'</div><div class="hb-bar"><i style="width:'+Math.max(0,Math.min(100,(f.valor||0)/max*100))+'%"></i></div><div class="hb-n">'+esc(f.valor)+'</div></div>'}).join('')+'</div>';
+    h+='<div class="hb">'+fs.map(function(f){return '<div class="hb-row"><div class="hb-l"><span>'+esc(f.etiqueta)+'</span>'+(f.nota?'<small>'+esc(f.nota)+'</small>':'')+'</div><div class="hb-bar"><i style="width:'+Math.max(0,Math.min(100,(f.valor||0)/max*100))+'%"></i></div><div class="hb-n">'+esc(f.valor)+(b.unidad==='%'?' %':'')+'</div></div>'}).join('')+'</div>';
   }else if(b.tipo==='barra'){
     var sg=b.segmentos||[],lab=sg.map(function(s){return s.etiqueta+' '+s.valor}).join(', ');
     h+='<div class="stk" role="img" aria-label="'+esc(lab)+'">'+sg.filter(function(s){return s.valor>0}).map(function(s){return '<span class="bg-'+(s.tono||'na')+'" style="flex:'+s.valor+' 1 0">'+esc(s.valor)+'</span>'}).join('')+'</div>'+

@@ -65,9 +65,169 @@
     {
      "q": "Referentes",
      "resp": "Descartados: Rubius, TheGrefg, AuronPlay y La Isla de las Tentaciones. Aceptados: TechwearClub, Quevedo, Morad y Beny Jr.",
-     "efecto": "Los streamers famosos no encajan con tu geek, así que para EEUU no propongo ninguno. Geek en España se queda con un solo referente con X (orslok, parado desde hace unos 600 días): necesito más nombres, y en Preguntas sigue sin respuesta quién más."
+     "efecto": "Los streamers famosos no encajan con tu geek, así que para EEUU no propongo ninguno."
+    },
+    {
+     "q": "Salen muy pocas fotos de los referentes: ¿qué hago?",
+     "resp": "Las dos cosas a la vez (medir solo prenda y acumular cada semana, y añadir fuentes con más fotos)",
+     "igual": true,
+     "efecto": "Medí las fuentes nuevas y ninguna resuelve el volumen (mira Fotos útiles). Monté la recogida semanal con lo que hay: X, prensa por nombre y Reddit. Las miniaturas de YouTube quedan fuera de momento (1 de cada 5 enseña ropa) y las fotos libres de Wikimedia Commons, para después."
+    },
+    {
+     "q": "¿A quién más metes como referente?",
+     "resp": "orslok, rojuu y soyunapringada; no tienes más ejemplos por ahora (por el chat)",
+     "efecto": "Geek España pasa de 1 a 3 referentes. Rojuu y SoyUnaPringada tienen canal de YouTube; sus cuentas de X no sirven (el @rojuu de X es de otra persona)."
+    },
+    {
+     "q": "¿Te valen Travis Scott, Playboi Carti, Kid Cudi y A$AP Rocky para urbano EEUU?",
+     "resp": "Confirmados (por el chat)",
+     "efecto": "Quedan como referentes de urbano en EEUU. Sin las respuestas a «sube / baja» y «geek en EEUU» sigo con mi propuesta (sin flechas hasta tener dos temporadas; cuentas y comunidades): dime si prefieres otra cosa."
     }
    ]
+  },
+  {
+   "tipo": "texto",
+   "titulo": "Primer informe por prenda (v0)",
+   "texto": "Calculado el 2026-10-06 con 175 fotos de 24 fuentes (X, prensa por nombre y Reddit) y tus 82 fotos aprobadas como muestra de referencia. Solo tipo de prenda: estampado y forma todavía no se estiman. El filtro automático deja pasar fotos de otras personas, portadas y detenciones (a ojo, la mitad de las de prensa), el tipo de prenda acierta alrededor del 85 % y la temporada actual solo lleva cinco semanas: con tan pocas fotos esto ilustra el método, no es una tendencia."
+  },
+  {
+   "tipo": "barras",
+   "titulo": "Urbano · España · OI 2026/27",
+   "texto": "23 fotos, 23 con alguna prenda visible. Cuota = % de fotos (con más peso las populares y recientes) en que sale la prenda. Fuentes: Morad 12, Quevedo 8, bycalitos 3.",
+   "unidad": "%",
+   "max": 100,
+   "filas": [
+    {
+     "etiqueta": "Camiseta manga corta",
+     "valor": 38,
+     "nota": "11 fotos"
+    },
+    {
+     "etiqueta": "Short",
+     "valor": 29,
+     "nota": "5 fotos"
+    },
+    {
+     "etiqueta": "Pantalón",
+     "valor": 14,
+     "nota": "5 fotos"
+    }
+   ],
+   "nota": "Sin cifra por tener menos de 5 fotos: Chaqueta (3), Vestido (2), Camisa (2), Americana (1), Top (1), Mono (2), Polo (2), Camiseta manga larga (1), Sandalias (1)."
+  },
+  {
+   "tipo": "barras",
+   "titulo": "Urbano · España · PV 2026",
+   "texto": "9 fotos, 9 con alguna prenda visible. Cuota = % de fotos (con más peso las populares y recientes) en que sale la prenda. Fuentes: bycalitos 4, Quevedo 4, Israel B 1. Ninguna prenda llega a 5 fotos: no hay cifras.",
+   "unidad": "%",
+   "max": 100,
+   "filas": [],
+   "nota": "Sin cifra por tener menos de 5 fotos: Polo (1), Short (4), Camiseta manga larga (2), Camiseta manga corta (2), Pantalón (2), Chaqueta (2), Zapatillas deportivas (1), Zapatillas casual/lifestyle (1), Chaleco sin mangas (1), Americana (1)."
+  },
+  {
+   "tipo": "barras",
+   "titulo": "Urbano · EEUU · OI 2026/27",
+   "texto": "10 fotos, 10 con alguna prenda visible. Cuota = % de fotos (con más peso las populares y recientes) en que sale la prenda. Fuentes: r/streetwear 10.",
+   "unidad": "%",
+   "max": 100,
+   "filas": [
+    {
+     "etiqueta": "Pantalón",
+     "valor": 100,
+     "nota": "10 fotos"
+    },
+    {
+     "etiqueta": "Chaqueta",
+     "valor": 56,
+     "nota": "5 fotos"
+    }
+   ],
+   "nota": "Sin cifra por tener menos de 5 fotos: Zapatos planos de vestir (3), Camisa (2), Botas (1), Zapatillas casual/lifestyle (3), Camiseta manga larga (2), Polo (1)."
+  },
+  {
+   "tipo": "barras",
+   "titulo": "Geek · tus fotos aprobadas · muestra de referencia",
+   "texto": "42 fotos, 42 con alguna prenda visible. Cuota = % de fotos (con más peso las populares y recientes) en que sale la prenda. Fuentes: Biblioteca 42.",
+   "unidad": "%",
+   "max": 100,
+   "filas": [
+    {
+     "etiqueta": "Falda",
+     "valor": 31,
+     "nota": "13 fotos"
+    },
+    {
+     "etiqueta": "Pantalón",
+     "valor": 29,
+     "nota": "12 fotos"
+    },
+    {
+     "etiqueta": "Chaqueta",
+     "valor": 21,
+     "nota": "9 fotos"
+    },
+    {
+     "etiqueta": "Botas",
+     "valor": 17,
+     "nota": "7 fotos"
+    },
+    {
+     "etiqueta": "Jersey",
+     "valor": 17,
+     "nota": "7 fotos"
+    },
+    {
+     "etiqueta": "Top",
+     "valor": 14,
+     "nota": "6 fotos"
+    },
+    {
+     "etiqueta": "Short",
+     "valor": 12,
+     "nota": "5 fotos"
+    }
+   ],
+   "nota": "Sin cifra por tener menos de 5 fotos: Sudadera (4), Camiseta manga larga (4), Chaleco sin mangas (3), Vestido (3), Camiseta manga corta (2), Zapatillas casual/lifestyle (2), Mono (2), Camiseta de tirantes (2), Legging/Malla (2), Zapatos planos de vestir (2)."
+  },
+  {
+   "tipo": "barras",
+   "titulo": "Urbano · tus fotos aprobadas · muestra de referencia",
+   "texto": "40 fotos, 40 con alguna prenda visible. Cuota = % de fotos (con más peso las populares y recientes) en que sale la prenda. Fuentes: Biblioteca 40.",
+   "unidad": "%",
+   "max": 100,
+   "filas": [
+    {
+     "etiqueta": "Chaqueta",
+     "valor": 35,
+     "nota": "14 fotos"
+    },
+    {
+     "etiqueta": "Pantalón",
+     "valor": 32,
+     "nota": "13 fotos"
+    },
+    {
+     "etiqueta": "Short",
+     "valor": 20,
+     "nota": "8 fotos"
+    },
+    {
+     "etiqueta": "Camiseta manga corta",
+     "valor": 12,
+     "nota": "5 fotos"
+    },
+    {
+     "etiqueta": "Sudadera",
+     "valor": 12,
+     "nota": "5 fotos"
+    }
+   ],
+   "nota": "Sin cifra por tener menos de 5 fotos: Chaleco sin mangas (4), Camiseta manga larga (4), Camisa (4), Falda (4), Zapatillas casual/lifestyle (4), Polo (2), Abrigo (2), Botas (2), Plumas (2), Zapatos planos de vestir (2)."
+  },
+  {
+   "tipo": "texto",
+   "titulo": "Grupos con menos de 5 fotos",
+   "texto": "Sin informe por tener muy pocas fotos: Geek · España · OI 2026/27 (2); Urbano · EEUU · OI 2025/26 (1); Urbano · EEUU · PV 2026 (4)."
   },
   {
    "tipo": "hallazgos",
@@ -328,8 +488,8 @@
    "tipo": "pasos",
    "titulo": "Lo que sigue, en paralelo",
    "items": [
-    "Fotos: según lo que decidas en Preguntas, añadir miniaturas de YouTube de los referentes y comunidades de Reddit de EEUU, y revisar las fotos libres de Wikimedia Commons para la temporada pasada.",
-    "Método: probar un CLIP más grande con los mismos 36 recortes (hoy la descarga va a 0,2 MB/s y la he parado), y mandarte hojas de recortes con número para que corrijas tipo y estampado desde el móvil.",
+    "Fotos: cada lunes de madrugada se recogen solas las fuentes (X, prensa por nombre y Reddit), se analizan y se recalcula el informe. Falta decidir si merece la pena añadir miniaturas de YouTube (1 de cada 5 enseña ropa) y fotos libres de Wikimedia Commons para la temporada pasada.",
+    "Método: mandarte hojas de recortes con número, como las M y las U, para que corrijas tipo y estampado desde el móvil y entrenar con eso una capa pequeña sobre CLIP. Los CLIP más grandes se descargan a 0,2 MB/s: los dejo para otro momento.",
     "Medir con recortes que no haya visto y decidir qué se puede contar de verdad: seguramente el tipo y algunos estampados; la forma depende de lo que salga."
    ]
   }

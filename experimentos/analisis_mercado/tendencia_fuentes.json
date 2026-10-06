@@ -1,0 +1,263 @@
+{
+ "version": 1,
+ "nota": "Referentes con estado «ok» en el Artifact «Tendencias de prenda» (2026-10-06) y dónde se leen sus fotos. `noticias`: Bing Noticias por nombre; la foto cuenta si el texto nombra a la persona.",
+ "fuentes": [
+  {
+   "referente": "bycalitos",
+   "estilo": "urbano",
+   "mercado": "ES",
+   "tipo": "x",
+   "valor": "byCaLiTosYT"
+  },
+  {
+   "referente": "Shoda Monkas",
+   "estilo": "urbano",
+   "mercado": "ES",
+   "tipo": "x",
+   "valor": "shodamonkas"
+  },
+  {
+   "referente": "Hoke",
+   "estilo": "urbano",
+   "mercado": "ES",
+   "tipo": "x",
+   "valor": "HokeBBO"
+  },
+  {
+   "referente": "Quevedo",
+   "estilo": "urbano",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "\"Quevedo\" cantante",
+   "consultas": [
+    "\"Quevedo\" cantante",
+    "\"Quevedo\" cantante concierto",
+    "\"Quevedo\" look"
+   ],
+   "nombre": "\\bquevedo\\b",
+   "contexto": "musica",
+   "excluir": [
+    "euge quevedo",
+    "francisco de quevedo"
+   ]
+  },
+  {
+   "referente": "Morad",
+   "estilo": "urbano",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "\"Morad\" rapero",
+   "consultas": [
+    "\"Morad\" rapero",
+    "\"Morad\" rapero concierto"
+   ],
+   "nombre": "\\bmorad\\b",
+   "contexto": "musica",
+   "excluir": [
+    "morad stern"
+   ]
+  },
+  {
+   "referente": "Beny Jr",
+   "estilo": "urbano",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "\"Beny Jr\" rapero",
+   "consultas": [
+    "\"Beny Jr\" rapero",
+    "\"Beny Jr\" concierto"
+   ],
+   "nombre": "\\bbeny jr\\b",
+   "contexto": "musica"
+  },
+  {
+   "referente": "Israel B",
+   "estilo": "urbano",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "\"Israel B\" rapero",
+   "consultas": [
+    "\"Israel B\" rapero",
+    "\"Israel B\" concierto"
+   ],
+   "nombre": "\\bisrael b\\b",
+   "contexto": "musica"
+  },
+  {
+   "referente": "Hoke",
+   "estilo": "urbano",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "\"Hoke\" rapero",
+   "consultas": [
+    "\"Hoke\" rapero",
+    "\"Hoke\" \"Tres Creus\""
+   ],
+   "nombre": "\\bhoke\\b",
+   "contexto": "musica",
+   "contexto_extra": [
+    "tres creus",
+    "valencia"
+   ]
+  },
+  {
+   "referente": "Cruz Cafuné",
+   "estilo": "urbano",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "\"Cruz Cafuné\"",
+   "consultas": [
+    "\"Cruz Cafuné\""
+   ],
+   "nombre": "cruz cafune",
+   "contexto": "musica"
+  },
+  {
+   "referente": "orslok",
+   "estilo": "geek",
+   "mercado": "ES",
+   "tipo": "x",
+   "valor": "orslok"
+  },
+  {
+   "referente": "orslok",
+   "estilo": "geek",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "\"Orslok\"",
+   "consultas": [
+    "\"Orslok\"",
+    "\"Orslok\" streamer"
+   ],
+   "nombre": "\\borslok\\b",
+   "contexto": "streamer"
+  },
+  {
+   "referente": "Rojuu",
+   "estilo": "geek",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "\"Rojuu\"",
+   "consultas": [
+    "\"Rojuu\"",
+    "\"Rojuu\" cantante"
+   ],
+   "nombre": "\\brojuu\\b",
+   "contexto": "musica"
+  },
+  {
+   "referente": "SoyUnaPringada",
+   "estilo": "geek",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "\"Soy una pringada\"",
+   "consultas": [
+    "\"Soy una pringada\"",
+    "\"SoyUnaPringada\""
+   ],
+   "nombre": "soy una pringada|soyunapringada",
+   "contexto": "streamer"
+  },
+  {
+   "referente": "Travis Scott",
+   "estilo": "urbano",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "trvisXX"
+  },
+  {
+   "referente": "Playboi Carti",
+   "estilo": "urbano",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "playboicarti"
+  },
+  {
+   "referente": "Kid Cudi",
+   "estilo": "urbano",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "kidcudi"
+  },
+  {
+   "referente": "Travis Scott",
+   "estilo": "urbano",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"Travis Scott\" outfit",
+   "consultas": [
+    "\"Travis Scott\" outfit",
+    "\"Travis Scott\" style"
+   ],
+   "nombre": "travis scott",
+   "contexto": "music_en"
+  },
+  {
+   "referente": "Playboi Carti",
+   "estilo": "urbano",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"Playboi Carti\" outfit",
+   "consultas": [
+    "\"Playboi Carti\" outfit",
+    "\"Playboi Carti\" style"
+   ],
+   "nombre": "playboi carti",
+   "contexto": "music_en"
+  },
+  {
+   "referente": "Kid Cudi",
+   "estilo": "urbano",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"Kid Cudi\" outfit",
+   "consultas": [
+    "\"Kid Cudi\" outfit",
+    "\"Kid Cudi\" style"
+   ],
+   "nombre": "kid cudi",
+   "contexto": "music_en"
+  },
+  {
+   "referente": "A$AP Rocky",
+   "estilo": "urbano",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"ASAP Rocky\" outfit",
+   "consultas": [
+    "\"ASAP Rocky\" outfit",
+    "\"A$AP Rocky\" style"
+   ],
+   "nombre": "a\\$?ap rocky",
+   "contexto": "music_en"
+  },
+  {
+   "referente": "r/streetwear",
+   "estilo": "urbano",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "streetwear"
+  },
+  {
+   "referente": "Painthisice",
+   "estilo": "geek",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "Painthisice"
+  },
+  {
+   "referente": "TechwearClub",
+   "estilo": "geek",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "TechwearClub"
+  },
+  {
+   "referente": "r/techwearclothing",
+   "estilo": "geek",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "techwearclothing"
+  }
+ ]
+}

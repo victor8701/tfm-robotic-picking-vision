@@ -70,3 +70,19 @@ Los modelos mayores de open_clip (ViT-L-14 OpenAI/DFN, SigLIP SO400M) no se pudi
   y/o añadir fuentes con más fotos aunque no sean personas (miniaturas de YouTube de los referentes, comunidades de Reddit en EEUU) y fotos libres de Commons para la temporada pasada.
 - Con el estilo dado por la persona, el clasificador de estilo (acierto real 2 de 10 en prensa, 8 de 18 fotos sin look) deja de ser el cuello de botella del método; queda para fotos sin referente.
 - Pendiente de Víctor (preguntas del Artifact): cómo hacer el «sube/baja» con ventana de temporada, quién da el estilo geek en EEUU, qué hacer con el volumen, más referentes de geek en España, y confirmar las sugerencias de EEUU para urbano (Travis Scott, Playboi Carti, Kid Cudi, A$AP Rocky).
+
+## 5. Flujo v0 (`experimentos/analisis_mercado/tendencia_prenda.py`, 2026-10-06 noche)
+
+Víctor eligió «las dos cosas a la vez»: aceptar un volumen pequeño (medir solo prenda, y prenda + forma si hay 5 fotos) acumulando cada semana, y añadir fuentes con más fotos. Se midieron las fuentes nuevas antes de integrarlas:
+
+| Fuente | Resultado (6 de octubre de 2026) |
+|---|---|
+| Miniaturas de vídeos de YouTube (feeds RSS por canal) | 34 miniaturas de 12 canales: sobre todo portadas de disco, memes y caras; ~1 de cada 5 enseña ropa. Los fotogramas `hq1-3.jpg` de cada vídeo no se probaron. |
+| X de famosos de EEUU (Travis Scott, Playboi Carti, Kid Cudi) | 1 foto en 60 días y 0 con persona y ropa; TechwearClub, última foto hace 1949 días; Painthisice, 9 fotos y 0 con persona y ropa según el filtro |
+| Reddit por RSS (top del mes) | r/streetwear: 12 posts con imagen; r/techwearclothing: 0; el RSS limita a ~1 petición por minuto |
+| Prensa por nombre (Bing Noticias) | ver §3a: ~13 fotos útiles por temporada para todos los referentes de urbano España |
+
+Conclusión: **el cuello de botella es el acceso a los datos, no el modelo**. Instagram y TikTok (donde publican los referentes) no se pueden leer sin API de pago o aprobada; con las fuentes abiertas salen decenas de fotos por temporada.
+El flujo (`cosechar → biblioteca → analizar → informe`, datos aparte en `tendencia_datos/`) está pensado para acumular: cada semana añade las fotos nuevas de cada fuente, las analiza (detector DeepFashion2 + Florence, tipo fino con CLIP sobre el recorte) y recalcula la cuota de fotos por prenda para cada estilo × mercado × temporada de 6 meses (PV marzo-agosto, OI septiembre-febrero), con mínimo de 5 fotos por cifra.
+Mientras no haya dos temporadas no hay «sube / baja»; las fotos antiguas que devuelven las cuentas con pocos posts (p. ej. 566 días) se conservan con su fecha y servirán de temporada pasada.
+La muestra de referencia son las 82 fotos que Víctor aprobó en la app como urbano (40) y geek (42): no tienen fecha ni mercado, así que se informan aparte.
