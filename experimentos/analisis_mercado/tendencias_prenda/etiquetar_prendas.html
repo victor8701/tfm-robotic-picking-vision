@@ -70,7 +70,17 @@ h1{margin:0;font:700 26px/1.05 var(--f-display);letter-spacing:-.02em}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 .chip{min-height:40px;padding:0 13px;border-radius:999px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);font:500 14px/1 var(--f-body)}
 .chip[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:transparent}
-.actions{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center}
+.actions2{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.actions2 .no{flex:1;min-width:0}
+.tabs2{display:flex;gap:6px;flex-wrap:wrap}
+.tab2{min-height:38px;padding:0 14px;border-radius:10px;border:1px solid var(--line-2);background:var(--surface);font:600 14px/1 var(--f-body)}
+.tab2[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:transparent}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--bg);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));display:flex;gap:8px;justify-content:center}
+.bar>*{flex:0 0 auto}
+.bar #sig{flex:1 1 auto;max-width:260px}
+.bar:empty{display:none}
+.btn.pri.listo{box-shadow:0 0 0 3px var(--accent-soft)}
+.btn.link{border:0;background:transparent;min-height:36px;padding:0 6px;color:var(--ink-3);text-decoration:underline;text-underline-offset:2px;font-weight:500;font-size:14px}
 .btn{min-height:46px;padding:0 16px;border-radius:12px;border:1px solid var(--line-2);background:var(--surface);font:600 15px/1 var(--f-body)}
 .btn.pri{background:var(--accent);color:var(--on-accent);border-color:transparent}
 .btn.no{color:var(--no);border-color:var(--no)}
@@ -97,9 +107,10 @@ h1{margin:0;font:700 26px/1.05 var(--f-display);letter-spacing:-.02em}
   </header>
   <div class="wrap prog"><div class="txt"><span id="ptxt">0 de 0</span><span id="pflt"></span></div><div class="meter"><i id="pbar" style="width:0%"></i></div></div>
   <main class="wrap" id="view"></main>
-  <div class="wrap" style="padding-block:20px 80px"><p class="note">Cada toque se guarda solo. Un recorte cuenta como hecho con los cuatro campos; con borde discontinuo, a medias. No te enseño lo que predice el modelo para no influirte.</p></div>
+  <div class="wrap" style="padding-block:20px 120px"><p class="note">Cada toque se guarda solo. Un recorte cuenta como hecho con los cuatro campos de cada prenda; con borde discontinuo, a medias. Si hay más de una prenda, toca «+ Otra prenda». No te enseño lo que predice el modelo para no influirte.</p></div>
 </div>
 
+<div class="bar" id="bar"></div>
 <script type="application/json" id="crops">__CROPS__</script>
 <script>
 (function(){
@@ -113,16 +124,21 @@ var TIPOS=[
  ['Calzado',['Zapatillas deportivas','Zapatillas casual/lifestyle','Zapatos de vestir','Zapatos de tacón','Sandalias','Botas']],
  ['Accesorio',['Bolso','Riñonera','Gorra/Gorro/Sombrero']]
 ];
-var ESTAMP=['liso','rayas','cuadros / tartán','gráfico / dibujo','texto / logo','camuflaje','otro'];
-var TEJIDOS=['denim (vaquero)','cuero / vinilo','algodón','punto','felpa / polar','técnico / impermeable','pana','terciopelo','seda / satén','tul / encaje','tweed / bouclé','lino','no se distingue'];
+var ESTAMP=['liso','rayas','cuadros','gráfico / dibujo','texto / logo','camuflaje','otro'];
+var TEJIDOS=['denim (vaquero)','cuero / vinilo','algodón','punto','felpa / polar','técnico / impermeable','pana','terciopelo','seda / satén','tul / encaje','lino','no se distingue'];
 var FORMAS=['oversized / baggy','regular','ajustada','corta / cropped','no aplica'];
-var S={db:null,absent:false,lab:{},i:0,loaded:false,inflight:{},dirty:{},timers:{}};
+var CAMPOS=['tipo','estampado','tejido','forma'];
+var S={db:null,absent:false,lab:{},i:0,g:0,loaded:false,inflight:{},dirty:{},timers:{},fin:true};
 var $=function(s){return document.querySelector(s)};
 var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
 var SAVE={load:'Cargando…',saved:'Guardado',saving:'Guardando…',error:'No se pudo guardar',off:'Sin base de datos'};
 function setSave(s,msg){var el=$('#save');el.setAttribute('data-s',s);el.querySelector('span').textContent=SAVE[s]||s;if(msg)el.title=msg;else el.removeAttribute('title')}
-function done(id){var l=S.lab[id];return !!l&&(l.x===true||(!!l.tipo&&!!l.estampado&&!!l.tejido&&!!l.forma))}
-function partial(id){var l=S.lab[id];return !!l&&!l.x&&!done(id)&&!!(l.tipo||l.estampado||l.tejido||l.forma)}
+function vacia(){return {tipo:'',estampado:'',tejido:'',forma:''}}
+function lab(id){return S.lab[id]||(S.lab[id]={x:false,prendas:[vacia()]})}
+function completa(p){return !!(p.tipo&&p.estampado&&p.tejido&&p.forma)}
+function alguna(p){return !!(p.tipo||p.estampado||p.tejido||p.forma)}
+function done(id){var l=S.lab[id];return !!l&&(l.x===true||(l.prendas.length>0&&l.prendas.every(completa)))}
+function partial(id){var l=S.lab[id];return !!l&&!l.x&&!done(id)&&l.prendas.some(alguna)}
 function nDone(){var n=0;CROPS.forEach(function(c){if(done(c.id))n++});return n}
 function firstPending(from){for(var k=0;k<CROPS.length;k++){var j=(from+k)%CROPS.length;if(!done(CROPS[j].id))return j}return -1}
 
@@ -131,23 +147,26 @@ function queue(id){S.dirty[id]=true;setSave('saving');clearTimeout(S.timers[id])
 function flush(id){
   if(!S.db||S.inflight[id]||!S.dirty[id])return;
   S.dirty[id]=false;S.inflight[id]=true;
-  var l=S.lab[id]||{};
-  var body={tipo:l.tipo||'',estampado:l.estampado||'',tejido:l.tejido||'',forma:l.forma||'',x:!!l.x,t:new Date().toISOString()};
+  var l=lab(id),p0=l.prendas[0]||vacia();
+  var body={prendas:l.prendas.map(function(p){return {tipo:p.tipo||'',estampado:p.estampado||'',tejido:p.tejido||'',forma:p.forma||''}}),tipo:p0.tipo||'',estampado:p0.estampado||'',tejido:p0.tejido||'',forma:p0.forma||'',x:!!l.x,t:new Date().toISOString()};
   S.db.doc('etiquetas/c'+id).set(body).then(function(){
     S.inflight[id]=false;
     if(S.dirty[id])flush(id);else if(!busy())setSave('saved');
   },function(e){S.inflight[id]=false;S.dirty[id]=true;setSave('error',e&&e.message)});
 }
 function busy(){var k;for(k in S.dirty)if(S.dirty[k])return true;for(k in S.inflight)if(S.inflight[k])return true;return false}
+function leer(v){
+  var ps=Array.isArray(v.prendas)&&v.prendas.length?v.prendas.map(function(p){return {tipo:p.tipo||'',estampado:p.estampado||'',tejido:p.tejido||'',forma:p.forma||''}}):[{tipo:v.tipo||'',estampado:v.estampado||'',tejido:v.tejido||'',forma:v.forma||''}];
+  return {x:v.x===true,prendas:ps};
+}
 function onSnap(snap){
   snap.docs.forEach(function(d){
     var id=d.id.replace(/^c/,'');
     if(S.dirty[id]||S.inflight[id])return;
-    var v=d.data()||{};
-    S.lab[id]={tipo:v.tipo||'',estampado:v.estampado||'',tejido:v.tejido||'',forma:v.forma||'',x:v.x===true};
+    S.lab[id]=leer(d.data()||{});
   });
   var first=!S.loaded;S.loaded=true;
-  if(first){var p=firstPending(0);S.i=p<0?0:p;setSave('saved')}
+  if(first){var p=firstPending(0);S.i=p<0?0:p;S.g=0;S.fin=true;setSave('saved')}
   render();
 }
 
@@ -155,46 +174,56 @@ function onSnap(snap){
 function chips(campo,valores,sel){
   return '<div class="chips">'+valores.map(function(v){var val=Array.isArray(v)?v[0]:v,et=Array.isArray(v)?v[1]:v;return '<button class="chip" data-c="'+campo+'" data-v="'+esc(val)+'" aria-pressed="'+(sel===val)+'">'+esc(et)+'</button>'}).join('')+'</div>';
 }
+function bar(inner){var b=$('#bar');if(b)b.innerHTML=inner}
 function render(){
   var n=nDone(),tot=CROPS.length;
   $('#ptxt').textContent=n+' de '+tot;$('#pbar').style.width=(tot?100*n/tot:0)+'%';
   var v=$('#view');
-  if(!tot){v.innerHTML='<section class="card empty"><h2 style="margin:0;font:700 20px var(--f-display)">No hay recortes</h2><p class="note">Claude los carga aquí al preparar cada tanda.</p></section>';return}
-  if(S.absent){v.innerHTML='<section class="card empty"><h2 style="margin:0;font:700 20px var(--f-display)">Aquí no se puede guardar</h2><p class="note">Esta página guarda tus respuestas en claude.ai. Ábrela desde allí.</p></section>';return}
+  if(!tot){bar('');v.innerHTML='<section class="card empty"><h2 style="margin:0;font:700 20px var(--f-display)">No hay recortes</h2><p class="note">Claude los carga aquí al preparar cada tanda.</p></section>';return}
+  if(S.absent){bar('');v.innerHTML='<section class="card empty"><h2 style="margin:0;font:700 20px var(--f-display)">Aquí no se puede guardar</h2><p class="note">Esta página guarda tus respuestas en claude.ai. Ábrela desde allí.</p></section>';return}
   if(n===tot&&S.fin!==false){
+    bar('');
     v.innerHTML='<section class="card fin"><h2>Hecho: '+tot+' de '+tot+'</h2><p class="note">Ya puedes decírmelo en el chat y entreno con tus etiquetas.</p><button class="btn" id="rev">Repasar</button></section>'+grid();
-    var r=$('#rev');if(r)r.onclick=function(){S.fin=false;S.i=0;render()};
+    var r=$('#rev');if(r)r.onclick=function(){S.fin=false;S.i=0;S.g=0;render()};
     wireGrid();return;
   }
-  var c=CROPS[S.i],l=S.lab[c.id]||{};
-  var tip=TIPOS.map(function(g){return '<div class="sub">'+esc(g[0])+'</div>'+chips('tipo',g[1],l.tipo)}).join('');
+  var c=CROPS[S.i],l=lab(c.id);
+  if(S.g>=l.prendas.length)S.g=l.prendas.length-1;
+  var p=l.prendas[S.g];
+  var tip=TIPOS.map(function(g){return '<div class="sub">'+esc(g[0])+'</div>'+chips('tipo',g[1],p.tipo)}).join('');
+  var tabs=l.prendas.length>1?'<div class="tabs2">'+l.prendas.map(function(q,k){return '<button class="tab2" data-g="'+k+'" aria-pressed="'+(k===S.g)+'">Prenda '+(k+1)+(completa(q)?' ✓':'')+'</button>'}).join('')+'</div>':'';
   v.innerHTML=
    '<div class="stage"><img src="'+c.src+'" alt="Recorte '+esc(c.id)+'"><span class="num">'+(S.i+1)+' / '+tot+'</span>'+(done(c.id)?'<span class="st">'+(l.x?'no sirve':'hecho')+'</span>':'')+'</div>'+
-   '<section class="card">'+
-   '<div class="grp"><div class="lab"><span>Tipo de prenda</span><b>'+esc(l.tipo||'')+'</b></div>'+tip+'</div>'+
-   '<div class="grp"><div class="lab"><span>Estampado</span><b>'+esc(l.estampado||'')+'</b></div>'+chips('estampado',ESTAMP,l.estampado)+'</div>'+
-   '<div class="grp"><div class="lab"><span>Tejido</span><b>'+esc(l.tejido||'')+'</b></div>'+chips('tejido',TEJIDOS,l.tejido)+'</div>'+
-   '<div class="grp"><div class="lab"><span>Forma</span><b>'+esc(l.forma||'')+'</b></div>'+chips('forma',FORMAS,l.forma)+'</div>'+
-   '<div class="actions"><button class="btn" id="ant"'+(S.i===0?' disabled':'')+'>←</button><button class="btn no" id="nos" aria-pressed="'+(l.x===true)+'">No sirve este recorte</button><button class="btn pri" id="sig">→</button></div>'+
+   '<section class="card">'+tabs+
+   (l.prendas.length>1?'<p class="note">Este recorte tiene varias prendas: etiqueta cada una en su pestaña.</p>':'')+
+   '<div class="grp"><div class="lab"><span>Tipo de prenda</span><b>'+esc(p.tipo||'')+'</b></div>'+tip+'</div>'+
+   '<div class="grp"><div class="lab"><span>Estampado</span><b>'+esc(p.estampado||'')+'</b></div>'+chips('estampado',ESTAMP,p.estampado)+'</div>'+
+   '<div class="grp"><div class="lab"><span>Tejido</span><b>'+esc(p.tejido||'')+'</b></div>'+chips('tejido',TEJIDOS,p.tejido)+'</div>'+
+   '<div class="grp"><div class="lab"><span>Forma</span><b>'+esc(p.forma||'')+'</b></div>'+chips('forma',FORMAS,p.forma)+'</div>'+
+   '<div class="actions2"><button class="btn no" id="nos" aria-pressed="'+(l.x===true)+'">No sirve este recorte</button>'+(l.prendas.length>1?'<button class="btn link" id="quitar">Quitar esta prenda</button>':'')+'</div>'+
    '</section>'+
    '<section class="card"><div class="lab"><span>Todos los recortes</span></div>'+grid()+'</section>';
+  var listo=done(c.id);
+  bar('<button class="btn" id="ant"'+(S.i===0?' disabled':'')+' aria-label="Anterior">←</button><button class="btn" id="otra">+ Otra prenda</button><button class="btn pri'+(listo?' listo':'')+'" id="sig">Siguiente →</button>');
   $('#ant').onclick=function(){go(S.i-1)};
-  $('#sig').onclick=function(){go(S.i+1)};
-  $('#nos').onclick=function(){var id=CROPS[S.i].id,x=!(S.lab[id]&&S.lab[id].x);S.lab[id]={tipo:'',estampado:'',tejido:'',forma:'',x:x};queue(id);render();if(x)advance()};
+  $('#sig').onclick=function(){siguiente()};
+  $('#otra').onclick=function(){var l2=lab(CROPS[S.i].id);l2.x=false;l2.prendas.push(vacia());S.g=l2.prendas.length-1;queue(CROPS[S.i].id);render();window.scrollTo(0,0)};
+  $('#nos').onclick=function(){var id=CROPS[S.i].id,l2=lab(id),x=!l2.x;S.lab[id]={x:x,prendas:[vacia()]};S.g=0;queue(id);render();if(x)setTimeout(siguiente,260)};
+  var q=$('#quitar');if(q)q.onclick=function(){var id=CROPS[S.i].id,l2=lab(id);l2.prendas.splice(S.g,1);if(!l2.prendas.length)l2.prendas.push(vacia());S.g=Math.max(0,S.g-1);queue(id);render()};
   Array.prototype.forEach.call(document.querySelectorAll('.chip'),function(b){b.onclick=function(){pick(b.getAttribute('data-c'),b.getAttribute('data-v'))}});
+  Array.prototype.forEach.call(document.querySelectorAll('.tab2'),function(b){b.onclick=function(){S.g=+b.getAttribute('data-g');render()}});
   wireGrid();
 }
 function grid(){
   return '<div class="grid">'+CROPS.map(function(c,k){var cls=(S.lab[c.id]&&S.lab[c.id].x)?' skip':(done(c.id)?' done':(partial(c.id)?' part':''));return '<button class="cell'+cls+(k===S.i?' now':'')+'" data-k="'+k+'" aria-label="Recorte '+(k+1)+'">'+(k+1)+'</button>'}).join('')+'</div>';
 }
 function wireGrid(){Array.prototype.forEach.call(document.querySelectorAll('.cell'),function(b){b.onclick=function(){S.fin=false;go(+b.getAttribute('data-k'))}})}
-function go(k){if(k<0||k>=CROPS.length)return;S.i=k;render();window.scrollTo(0,0)}
-function advance(){setTimeout(function(){var p=firstPending(S.i+1);if(p>=0&&p!==S.i)go(p);else render()},260)}
+function go(k){if(k<0||k>=CROPS.length)return;S.i=k;S.g=0;render();window.scrollTo(0,0)}
+function siguiente(){var p=firstPending(S.i+1);if(p>=0&&p!==S.i)go(p);else if(nDone()===CROPS.length){S.fin=true;render();window.scrollTo(0,0)}else if(S.i+1<CROPS.length)go(S.i+1);else render()}
 function pick(campo,valor){
-  var id=CROPS[S.i].id,l=S.lab[id]||(S.lab[id]={tipo:'',estampado:'',tejido:'',forma:'',x:false});
-  l.x=false;l[campo]=(l[campo]===valor)?'':valor;
+  var id=CROPS[S.i].id,l=lab(id),p=l.prendas[S.g];
+  l.x=false;p[campo]=(p[campo]===valor)?'':valor;
   queue(id);render();
-  if(l.tipo&&l.estampado&&l.tejido&&l.forma)advance();
 }
 
 /* ---------- arranque ---------- */

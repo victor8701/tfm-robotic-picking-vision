@@ -33,7 +33,7 @@ ETIQ = TD / "etiquetas_prendas.json"
 TIPOS = ["Camiseta manga corta", "Camiseta de tirantes", "Camiseta manga larga", "Top", "Camisa", "Polo", "Sudadera", "Hoodie", "Jersey", "Chaleco sin mangas", "Chaqueta", "Americana",
          "Abrigo", "Plumas", "Pantalón", "Falda", "Short", "Legging/Malla", "Vestido", "Mono", "Zapatillas deportivas", "Zapatillas casual/lifestyle", "Zapatos de vestir",
          "Zapatos de tacón", "Sandalias", "Botas", "Bolso", "Riñonera", "Gorra/Gorro/Sombrero"]
-ESTAMPADOS = {"L": "liso", "R": "rayas", "C": "cuadros / tartán", "G": "gráfico / dibujo", "T": "texto / logo", "K": "camuflaje", "O": "otro"}
+ESTAMPADOS = {"L": "liso", "R": "rayas", "C": "cuadros", "G": "gráfico / dibujo", "T": "texto / logo", "K": "camuflaje", "O": "otro"}
 FORMAS = {"O": "oversized / baggy", "R": "regular", "S": "ajustada", "C": "corta / cropped", "N": "no aplica"}
 # prioridad de cobertura (n recortes por tipo que predijo el modelo) en una tanda de 36
 CUPO = {"Sudadera": 5, "Camiseta manga corta": 4, "Camiseta manga larga": 2, "Jersey": 3, "Chaqueta": 4, "Pantalón": 5, "Falda": 3, "Short": 2, "Vestido": 1,
@@ -205,10 +205,13 @@ def cmd_importar(a):
         if not e:
             continue
         clave = f"{e['foto']}#{e['idx']}"
+        ps = d.get("prendas") or [d]   # la página guarda una lista de prendas por recorte (y los campos de la primera sueltos, por compatibilidad)
+        ps = [q for q in ps if q.get("tipo") and q.get("estampado") and q.get("forma")]
         if d.get("x"):
             etiq[clave] = {"inservible": True, "caja": e["caja"], "tipo_modelo": e["tipo_modelo"], "estilo": e["estilo"]}
-        elif d.get("tipo") and d.get("estampado") and d.get("forma"):
-            etiq[clave] = {"tipo": d["tipo"], "estampado": d["estampado"], "tejido": d.get("tejido") or None, "forma": d["forma"], "caja": e["caja"], "tipo_modelo": e["tipo_modelo"], "estilo": e["estilo"], "mercado": e["mercado"]}
+        elif ps:
+            etiq[clave] = {"prendas": [{"tipo": q["tipo"], "estampado": q["estampado"], "tejido": q.get("tejido") or None, "forma": q["forma"]} for q in ps],
+                           "caja": e["caja"], "tipo_modelo": e["tipo_modelo"], "estilo": e["estilo"], "mercado": e["mercado"]}
         else:
             sin += 1
             continue

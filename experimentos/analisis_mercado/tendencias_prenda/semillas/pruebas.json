@@ -95,6 +95,12 @@
      "efecto": "En «Etiquetar prendas» ya hay «Hoodie (con capucha)» aparte de «Sudadera», y un campo «Tejido» (denim, cuero, punto, felpa…). Aquí también: el tejido es una pieza más de la celda y Hoodie es una prenda de las listas."
     },
     {
+     "q": "Vocabulario común: lo que has quitado y unido",
+     "resp": "Quitaste «maxi», «jogger», «mini», «plisada» y «tweed / bouclé», y uniste los cuadros en «cuadros» (por la página)",
+     "igual": false,
+     "efecto": "Lo quité también de las listas de cada prenda y de «Etiquetar prendas»: «cuadros» sustituye a «cuadros vichy» y a «tartán». Dime si falta algo más."
+    },
+    {
      "q": "¿Cuándo quieres ver si una prenda sube o baja?",
      "resp": "De momento no te preocupa la temporada, solo si es verano, invierno, etc. (por el chat)",
      "igual": true,
