@@ -1,36 +1,6 @@
 {
  "fecha": "2026-10-06",
  "que_es": "Revisión A OJO (mía, no de Víctor) de 36 recortes de prendas de 28 fotos de la Biblioteca (14 geek + 14 urbano), con la predicción de CLIP ViT-B/32 zero-shot (herramientas/prueba_recortes_clip.py, semilla 11). Sirve para decidir el siguiente paso, no para medir fino.",
- "tipo_fino": {
-  "aciertos": 26,
-  "fallos": 9,
-  "dudosos": 1,
-  "acierto": 0.743,
-  "arriba_y_abrigo": {
-   "aciertos": 9,
-   "fallos": 6,
-   "dudosos": 1,
-   "acierto": 0.6
-  },
-  "abajo": {
-   "aciertos": 12,
-   "fallos": 1,
-   "dudosos": 0,
-   "acierto": 0.923
-  },
-  "calzado": {
-   "aciertos": 3,
-   "fallos": 1,
-   "dudosos": 0,
-   "acierto": 0.75
-  },
-  "cuerpo_entero": {
-   "aciertos": 2,
-   "fallos": 1,
-   "dudosos": 0,
-   "acierto": 0.667
-  }
- },
  "estampado": {
   "aciertos": 10,
   "fallos": 21,
@@ -519,5 +489,58 @@
    "estampado_verdad": "liso",
    "forma_ok": 1
   }
- ]
+ ],
+ "protocolo_v1": {
+  "que_es": "Primera pasada: el tipo se elegía entre las listas separadas de «ropa_superior» y «abrigo» (script antiguo).",
+  "tipo_fino": {
+   "aciertos": 26,
+   "fallos": 9,
+   "dudosos": 1,
+   "acierto": 0.743,
+   "arriba_y_abrigo": {
+    "aciertos": 9,
+    "fallos": 6,
+    "dudosos": 1,
+    "acierto": 0.6
+   },
+   "abajo": {
+    "aciertos": 12,
+    "fallos": 1,
+    "dudosos": 0,
+    "acierto": 0.923
+   },
+   "calzado": {
+    "aciertos": 3,
+    "fallos": 1,
+    "dudosos": 0,
+    "acierto": 0.75
+   },
+   "cuerpo_entero": {
+    "aciertos": 2,
+    "fallos": 1,
+    "dudosos": 0,
+    "acierto": 0.667
+   }
+  }
+ },
+ "protocolo_v2": {
+  "que_es": "Segunda pasada (herramientas/prueba_recortes_clip.py + evaluar_recortes.py y recortes_verdad_a_ojo_2026-10-06.json): arriba y abrigo comparten lista porque el detector llama «camisa» a casi todo lo de arriba; la verdad admite respuestas alternativas razonables (sudadera o chaqueta con capucha abierta, pantalón o legging negro ajustado…).",
+  "modelo": "ViT-B-32 OpenAI (el del clasificador de estilo)",
+  "tipo_fino": {
+   "aciertos": 29,
+   "n": 34,
+   "acierto": 0.853,
+   "arriba_y_abrigo": "12/15",
+   "pantalones_y_faldas": "12/13",
+   "calzado": "3/4",
+   "cuerpo_entero": "2/2",
+   "fallos": [
+    "R05 sudadera→chaqueta",
+    "R10 botas→zapatillas casual",
+    "R15 pantalón cargo→legging",
+    "R17 chaqueta de camuflaje→plumas",
+    "R30 camisa→chaleco"
+   ]
+  }
+ }
 }

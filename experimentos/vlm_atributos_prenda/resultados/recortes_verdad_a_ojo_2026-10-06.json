@@ -1,0 +1,166 @@
+{
+ "que_es": "Verdad A OJO (mía, no de Víctor) de los recortes R01-R36 (semilla 11) de la prueba 2. Tipo: conjunto de respuestas aceptables. Ausente = dudoso o no aplica (calzado/faldas/vestidos/shorts en forma; calzado en estampado). R34 y R13 no tienen verdad de tipo (varias prendas en un recorte / dudoso).",
+ "tipo": {
+  "R01": [
+   "Sudadera",
+   "Chaqueta"
+  ],
+  "R02": [
+   "Falda"
+  ],
+  "R03": [
+   "Chaqueta"
+  ],
+  "R04": [
+   "Falda"
+  ],
+  "R05": [
+   "Sudadera"
+  ],
+  "R06": [
+   "Jersey",
+   "Chaqueta"
+  ],
+  "R07": [
+   "Chaqueta"
+  ],
+  "R08": [
+   "Pantalón",
+   "Legging/Malla"
+  ],
+  "R09": [
+   "Zapatillas casual/lifestyle"
+  ],
+  "R10": [
+   "Botas"
+  ],
+  "R11": [
+   "Camiseta manga corta"
+  ],
+  "R12": [
+   "Falda"
+  ],
+  "R14": [
+   "Sudadera",
+   "Chaqueta"
+  ],
+  "R15": [
+   "Pantalón"
+  ],
+  "R16": [
+   "Pantalón"
+  ],
+  "R17": [
+   "Chaqueta"
+  ],
+  "R18": [
+   "Falda"
+  ],
+  "R19": [
+   "Camiseta manga larga",
+   "Jersey"
+  ],
+  "R20": [
+   "Sudadera"
+  ],
+  "R21": [
+   "Vestido"
+  ],
+  "R22": [
+   "Vestido"
+  ],
+  "R23": [
+   "Botas"
+  ],
+  "R24": [
+   "Falda"
+  ],
+  "R25": [
+   "Pantalón"
+  ],
+  "R26": [
+   "Zapatillas deportivas"
+  ],
+  "R27": [
+   "Short"
+  ],
+  "R28": [
+   "Chaqueta"
+  ],
+  "R29": [
+   "Falda"
+  ],
+  "R30": [
+   "Camisa"
+  ],
+  "R31": [
+   "Chaqueta",
+   "Sudadera"
+  ],
+  "R32": [
+   "Pantalón"
+  ],
+  "R33": [
+   "Pantalón"
+  ],
+  "R35": [
+   "Jersey"
+  ],
+  "R36": [
+   "Camiseta de tirantes"
+  ]
+ },
+ "estampado": {
+  "R01": "liso",
+  "R02": "cuadros / tartán",
+  "R03": "liso",
+  "R04": "liso",
+  "R05": "gráfico / personaje",
+  "R06": "liso",
+  "R08": "liso",
+  "R11": "logo / lettering",
+  "R12": "liso",
+  "R13": "liso",
+  "R14": "liso",
+  "R15": "liso",
+  "R16": "liso",
+  "R17": "camuflaje",
+  "R18": "cuadros / tartán",
+  "R19": "gráfico / personaje",
+  "R20": "logo / lettering",
+  "R21": "cuadros / tartán",
+  "R22": "liso",
+  "R24": "liso",
+  "R25": "liso",
+  "R27": "liso",
+  "R28": "liso",
+  "R29": "cuadros / tartán",
+  "R30": "liso",
+  "R31": "liso",
+  "R32": "liso",
+  "R33": "camuflaje",
+  "R34": "liso",
+  "R35": "rayas",
+  "R36": "liso"
+ },
+ "forma": {
+  "R01": "oversized / baggy",
+  "R03": "oversized / baggy",
+  "R05": "regular",
+  "R06": "cropped",
+  "R08": "slim",
+  "R13": "slim",
+  "R14": "oversized / baggy",
+  "R15": "oversized / baggy",
+  "R16": "oversized / baggy",
+  "R20": "oversized / baggy",
+  "R28": "oversized / baggy",
+  "R30": "regular",
+  "R31": "oversized / baggy",
+  "R32": "oversized / baggy",
+  "R33": "oversized / baggy",
+  "R34": "oversized / baggy",
+  "R35": "oversized / baggy",
+  "R36": "oversized / baggy"
+ }
+}

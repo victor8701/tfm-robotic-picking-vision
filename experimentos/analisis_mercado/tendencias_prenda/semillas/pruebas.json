@@ -1,21 +1,87 @@
 {
  "v": 1,
  "fecha": "2026-10-06",
- "intro": "Lo que he podido medir hoy con lo que ya existe. Son pruebas pequeñas: sirven para decidir por dónde seguir, no para sacar conclusiones.",
+ "intro": "Lo que has decidido, lo que he medido con lo que ya existe y lo que sigue. Las pruebas son pequeñas: sirven para decidir por dónde seguir, no para sacar conclusiones.",
  "bloques": [
+  {
+   "tipo": "decisiones",
+   "titulo": "Tus respuestas y lo que cambian",
+   "texto": "Leídas el 6 de octubre. Si algo no es lo que querías decir, cámbialo en Preguntas y lo releo.",
+   "items": [
+    {
+     "q": "¿El streetwear entra en urbano?",
+     "resp": "Sí, también streetwear (skate, baggy, marcas americanas)",
+     "igual": false,
+     "efecto": "Queda activo el subestilo «Streetwear baggy / skate», igual que «Drill / calle». Las fuentes de EEUU de streetwear pueden alimentar urbano. U01–U09 siguen como urbano y U10–U11 como descartadas."
+    },
+    {
+     "q": "¿Qué hago primero?",
+     "resp": "Las dos a la vez, más despacio",
+     "igual": false,
+     "efecto": "Voy en paralelo con las fotos de los referentes y con el reconocimiento de tipo, estampado y forma. Lo de hoy está más abajo."
+    },
+    {
+     "q": "¿Geek incluye lo alternativo, techwear y e-girl?",
+     "resp": "Sí, todo eso es geek",
+     "igual": true,
+     "efecto": "Mis 14 fotos geek de prueba valen tal cual. Has encendido también «Informática / dev»."
+    },
+    {
+     "q": "¿Cuento calzado y accesorios?",
+     "resp": "Ropa y calzado; accesorios fuera por ahora",
+     "igual": true,
+     "efecto": "En urbano has encendido gorra/gorro y riñonera, y apagado camisa. Tomo lo que marcaste en la lista: en urbano cuentan esos dos accesorios; en geek, ninguno."
+    },
+    {
+     "q": "Si una prenda sale cortada o tapada",
+     "resp": "La cuento si se ve más de la mitad",
+     "igual": false,
+     "efecto": "El detector tendrá que estimar cuánto se ve de cada prenda (caja pegada al borde de la foto, persona cortada). Queda como tarea."
+    },
+    {
+     "q": "¿Con qué ventana comparo?",
+     "resp": "Por temporada (6 meses)",
+     "igual": false,
+     "efecto": "Todavía no hay dos temporadas de fotos: la primera comparación sería hacia abril de 2027. Mientras tanto el informe enseñaría la cuota de la temporada actual, sin flechas, y guardaría una instantánea por semana. Cómo conseguir flechas antes te lo pregunto en Preguntas."
+    },
+    {
+     "q": "¿Cuántas fotos mínimo para enseñar una cifra?",
+     "resp": "5 fotos",
+     "igual": true,
+     "efecto": "Por debajo de 5 sale «pocos datos» y se baja a prenda + forma, o solo prenda."
+    },
+    {
+     "q": "¿Cuento fotos de prensa donde sale un referente?",
+     "resp": "Sí, si el texto lo nombra",
+     "igual": true,
+     "efecto": "Es la vía para Quevedo, Morad, Beny Jr e Israel B: no encuentro una cuenta de X propia de ninguno. Puede colarse alguien con el mismo nombre."
+    },
+    {
+     "q": "¿Para qué mercado miro geek y urbano?",
+     "resp": "España y EEUU, por separado",
+     "igual": false,
+     "efecto": "Faltan referentes de EEUU. En Urbano te propongo cuatro (marcados como sugerencia mía) y en Preguntas hay una pregunta nueva para geek."
+    },
+    {
+     "q": "Referentes",
+     "resp": "Descartados: Rubius, TheGrefg, AuronPlay y La Isla de las Tentaciones. Aceptados: TechwearClub, Quevedo, Morad y Beny Jr.",
+     "efecto": "Los streamers famosos no encajan con tu geek, así que para EEUU no propongo ninguno. Geek en España se queda con un solo referente con X (orslok, parado desde hace unos 600 días): necesito más nombres, y en Preguntas sigue sin respuesta quién más."
+    }
+   ]
+  },
   {
    "tipo": "hallazgos",
    "titulo": "Lo más importante hasta ahora",
    "items": [
     {
      "tono": "aviso",
-     "titulo": "Casi no hay fotos de estos dos estilos con las fuentes de hoy",
-     "texto": "En el último informe de España (45 días, 116 fotos) urbano pesa un **6 %** y geek un **0 %**. De tus referentes solo @byCaLiTosYT publica fotos con regularidad: 12 descargadas, de las que 4 pasaron los filtros del informe. @orslok lleva unos 600 días sin publicar."
+     "titulo": "Con las fuentes que se pueden leer hoy salen unas 26 fotos útiles por temporada en urbano España, y ninguna en geek España",
+     "texto": "bycalitos da 12 en X; la prensa que nombra a la persona, otras 13 (Quevedo 8, Morad 4, Israel B 1); Shoda Monkas, 1. Beny Jr, Cruz Cafuné, Hoke y orslok no dan nada en 6 meses. Instagram y TikTok, donde publican, no se pueden leer. Con ese volumen el informe llegaría a «prenda» y alguna vez a «prenda + forma», no a la celda completa. En el último informe de España (45 días, 116 fotos) urbano pesaba un **6 %** y geek un **0 %**."
     },
     {
      "tono": "no",
      "titulo": "El detector no distingue una sudadera de una camiseta de manga larga",
-     "texto": "Casi todo lo de arriba sale como «camisa de manga larga»: **8 de 11** prendas en geek y **8 de 10** en urbano, sudaderas incluidas. Si recorto cada prenda y la comparo con tu lista, el tipo mejora (**74 %** en total), pero arriba solo acierta 9 de 15: confunde sudadera, chaqueta y camisa."
+     "texto": "Casi todo lo de arriba sale como «camisa de manga larga»: **8 de 11** prendas en geek y **8 de 10** en urbano, sudaderas incluidas. Si recorto cada prenda y la comparo con tu lista, juntando arriba y abrigo, el tipo sale bien en **29 de 34 (85 %)**. Los fallos están entre sudadera, chaqueta y camisa."
     },
     {
      "tono": "no",
@@ -41,24 +107,29 @@
   },
   {
    "tipo": "barras",
-   "titulo": "Fotos que hay hoy de tus referentes",
-   "texto": "Fotos descargadas de cada fuente, antes de que tú las revises. La prensa son páginas sueltas que no se renuevan.",
+   "titulo": "Fotos útiles de tus referentes en 6 meses (España)",
+   "texto": "X: fotos descargadas de sus últimos posts. Prensa: noticias de los últimos 180 días que nombran a la persona (Bing Noticias), con persona y ropa según el filtro automático y revisadas por mí a ojo: quito otras personas, portadas, detenciones y la misma foto recortada de otra forma.",
    "unidad": "fotos",
    "filas": [
     {
      "etiqueta": "bycalitos · X",
      "valor": 12,
-     "nota": "la última, hace 2 días"
+     "nota": "la última, hace 2 días; 4 pasaron el filtro del informe"
+    },
+    {
+     "etiqueta": "Quevedo · prensa",
+     "valor": 8,
+     "nota": "de 12 con persona; alfombra roja, escenario y podcast"
+    },
+    {
+     "etiqueta": "Morad · prensa",
+     "valor": 4,
+     "nota": "de 12 con persona; escenario sobre todo"
     },
     {
      "etiqueta": "Israel B · prensa",
-     "valor": 7,
-     "nota": "2 páginas"
-    },
-    {
-     "etiqueta": "Hoke · prensa",
-     "valor": 4,
-     "nota": "2 páginas"
+     "valor": 1,
+     "nota": "una sola noticia en 6 meses"
     },
     {
      "etiqueta": "Shoda Monkas · X",
@@ -66,21 +137,27 @@
      "nota": "la última, hace 14 días"
     },
     {
+     "etiqueta": "Hoke · prensa",
+     "valor": 0,
+     "nota": "su X (@HokeBBO) es de su gestión"
+    },
+    {
+     "etiqueta": "Beny Jr · prensa",
+     "valor": 0,
+     "nota": "ninguna noticia en 6 meses"
+    },
+    {
      "etiqueta": "Cruz Cafuné · prensa",
-     "valor": 1,
-     "nota": "3 páginas"
+     "valor": 0,
+     "nota": "ninguna noticia que lo nombre"
     },
     {
-     "etiqueta": "orslok · X",
+     "etiqueta": "orslok · X y prensa",
      "valor": 0,
-     "nota": "sin publicar desde hace unos 600 días"
-    },
-    {
-     "etiqueta": "La Isla de las Tentaciones",
-     "valor": 0,
-     "nota": "sin fuente todavía"
+     "nota": "X parado desde hace unos 600 días"
     }
-   ]
+   ],
+   "nota": "Wikimedia Commons tiene fotos con licencia libre y fecha de Quevedo, Morad y Cruz Cafuné (también de Travis Scott, Playboi Carti y A$AP Rocky): sirven para la temporada pasada, aún sin revisar."
   },
   {
    "tipo": "semaforo",
@@ -94,7 +171,7 @@
     {
      "que": "Tipo de prenda",
      "estado": "parcial",
-     "texto": "El detector tiene 13 clases (camisa de manga larga o corta, chaqueta, pantalón, falda, vestido…). No existe «sudadera», «jersey» ni «polo». Con CLIP sobre el recorte: 74 %, pero solo 60 % en prendas de arriba."
+     "texto": "El detector tiene 13 clases (camisa de manga larga o corta, chaqueta, pantalón, falda, vestido…). No existe «sudadera», «jersey» ni «polo». Con CLIP sobre el recorte, juntando arriba y abrigo: 85 %."
     },
     {
      "que": "Color",
@@ -207,9 +284,9 @@
    "texto": "36 recortes al azar de las 28 fotos, revisados por mí a ojo (no por ti). CLIP elige entre tu lista de tipos, estampados y formas sin entrenar nada.",
    "filas": [
     {
-     "que": "Tipo de prenda: 26 de 35 (74 %)",
+     "que": "Tipo de prenda: 29 de 34 (85 %)",
      "estado": "parcial",
-     "texto": "Abajo y calzado van bien: 12 de 13 pantalones y faldas, 3 de 4 zapatos. Arriba falla: 9 de 15. Una chaqueta salió «sudadera», una camisa salió «chaleco» y unos pantalones cargo salieron «leggings»."
+     "texto": "Arriba y abrigo 12 de 15, pantalones y faldas 12 de 13, zapatos 3 de 4, vestidos 2 de 2. Fallos: una sudadera salió «chaqueta», una chaqueta de camuflaje salió «plumas», una camisa salió «chaleco» y unos cargo salieron «leggings». Con las listas de arriba y abrigo por separado daba 74 %: el detector llama «camisa» a casi todo lo de arriba, así que no hay que fiarse de su categoría."
     },
     {
      "que": "Estampado: 10 de 31 (32 %)",
@@ -249,11 +326,11 @@
   },
   {
    "tipo": "pasos",
-   "titulo": "Siguiente prueba que propongo",
+   "titulo": "Lo que sigue, en paralelo",
    "items": [
-    "Probar un CLIP más grande, también de pesos abiertos, con los mismos 36 recortes, por si basta con eso. No hace falta que hagas nada.",
-    "Si no basta, mandarte hojas de recortes con número, como las M y las U, para que corrijas tipo y estampado desde el móvil, y entrenar con eso una capa pequeña encima de CLIP.",
-    "Medir con recortes que no haya visto y decidir qué se puede contar de verdad: seguramente el tipo y algunos estampados, la forma depende de lo que salga."
+    "Fotos: según lo que decidas en Preguntas, añadir miniaturas de YouTube de los referentes y comunidades de Reddit de EEUU, y revisar las fotos libres de Wikimedia Commons para la temporada pasada.",
+    "Método: probar un CLIP más grande con los mismos 36 recortes (hoy la descarga va a 0,2 MB/s y la he parado), y mandarte hojas de recortes con número para que corrijas tipo y estampado desde el móvil.",
+    "Medir con recortes que no haya visto y decidir qué se puede contar de verdad: seguramente el tipo y algunos estampados; la forma depende de lo que salga."
    ]
   }
  ]

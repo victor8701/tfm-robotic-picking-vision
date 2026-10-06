@@ -222,6 +222,12 @@ tr.tot td{font-weight:650;border-top:1.5px solid var(--ink)}
 .sem .tx{font-size:14px;color:var(--ink-2);margin-top:2px}
 .st{font:500 11px/1 var(--f-mono);padding:6px 0;text-align:center;border-radius:6px;border:1px solid currentColor}
 .st-ok{color:var(--ok)} .st-parcial{color:var(--warn)} .st-no{color:var(--no)}
+.dec{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+.dec li{display:grid;gap:5px;min-width:0}
+.dq{font:500 11px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.da{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:16px;line-height:1.3}
+.dec .tx{font-size:14px;color:var(--ink-2)}
+.dec .tx p+p{margin-top:6px}
 .steps.small{gap:0}
 .stamp{font:500 12px/1 var(--f-mono);color:var(--ink-3)}
 
@@ -271,7 +277,7 @@ function lsGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function lsSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 
 var S={data:{},loaded:false,db:null,dbAbsent:false,ro:false,tab:'idea',open:{},confirm:null,dirty:{},inflight:{},timers:{},retry:{}};
-var TABS=[['idea','Idea'],['geek','Geek'],['urbano','Urbano'],['preguntas','Preguntas'],['pruebas','Pruebas']];
+var TABS=[['idea','Idea'],['geek','Geek'],['urbano','Urbano'],['preguntas','Preguntas'],['pruebas','Cómo vamos']];
 var ERP={
   ropa:['Camiseta manga corta','Camiseta de tirantes','Camiseta manga larga','Top','Camisa','Polo','Sudadera','Jersey','Chaleco sin mangas','Pantalón','Falda','Legging/Malla','Vestido','Mono','Chaqueta','Americana','Abrigo','Plumas'],
   calzado:['Zapatillas deportivas','Zapatillas casual/lifestyle','Zapatos planos de vestir','Zapatos de tacón','Sandalias','Botas'],
@@ -389,6 +395,7 @@ var ICON='<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-widt
 function emptyCard(t,p){return '<div class="stack"><section class="card empty">'+ICON+'<h2>'+esc(t)+'</h2><p class="hint">'+esc(p)+'</p></section></div>'}
 function vLoading(){return emptyCard('Cargando la propuesta…','Un momento: la leo de la base de esta página.')}
 function vAbsent(){return emptyCard('Aquí no puedo leer los datos','Esta página guarda y lee su contenido en claude.ai. Ábrela desde allí para ver y editar la propuesta.')}
+function tagMerc(m){var x={ES:'España',US:'EEUU',ambos:'ES + EEUU'}[m];return x?'<span class="tag">'+x+'</span>':''}
 function tagOrigen(o){
   var m={victor:['tuyo',''],claude:['sugerencia mía','sug'],fotos:['visto en tus fotos','foto'],ingesta:['ya confirmado','ok']};
   var x=m[o]; return x?'<span class="tag '+x[1]+'">'+x[0]+'</span>':'';
@@ -435,7 +442,7 @@ function vIdea(){
   '<section class="card"><h2>Qué te pido <span class="count">unos 5 minutos</span></h2><ul class="rules">'+
   '<li><b>Contesta las preguntas importantes.</b> Una pulsación cada una. <button class="lnk" data-act="tab" data-t="preguntas">Ir a Preguntas</button></li>'+
   '<li><b>En Geek y Urbano</b>, confirma o descarta los referentes (✓ ? ✕), enciende o apaga prendas y subestilos, y toca una prenda para ajustar su forma y estampado.</li>'+
-  '<li><b>Mira Pruebas</b> para ver qué funciona hoy y qué no. Ahí no hay nada que responder.</li>'+
+  '<li><b>Mira Cómo vamos</b> para ver qué has decidido, qué funciona hoy y qué no. Ahí no hay nada que responder.</li>'+
   '</ul></section>'+
   '<section class="card"><h2>Qué se mide</h2>'+
   '<p>Hasta ahora el informe decía <b>qué estilo</b> aparece más en las fotos. Esto es otra cosa: dentro de cada estilo, <b>qué prendas se llevan, con qué forma y estampado, y si suben o bajan</b> frente al periodo anterior.</p>'+
@@ -470,9 +477,9 @@ function itemRef(sid,r){
   return '<div class="item'+(est==='no'?' is-off is-no':'')+'">'+
     '<div class="item-head"><button class="item-main" data-act="open" data-id="'+esc(r.id)+'" aria-expanded="'+open+'">'+
     '<span class="nmrow"><span class="nm">'+esc(r.nombre||'Sin nombre')+'</span><span class="car" aria-hidden="true">▾</span></span>'+
-    '<span class="sub">'+esc(r.canal||'canal por confirmar')+'</span><span class="tags">'+tagOrigen(r.origen)+'</span></button>'+
+    '<span class="sub">'+esc(r.canal||'canal por confirmar')+'</span><span class="tags">'+tagMerc(r.mercado)+tagOrigen(r.origen)+'</span></button>'+
     '<div class="seg" role="group" aria-label="¿Es referente?">'+seg+'</div></div>'+
-    (open?'<div class="panel">'+inp(sid,'referentes',r.id,'nombre',r.nombre,'Nombre')+inp(sid,'referentes',r.id,'canal',r.canal,'Dónde publica','X, Instagram, prensa…')+area(sid,'referentes',r.id,'nota',r.nota,'Nota','Lo que sepas de esta persona',2)+delRow(sid,'referentes',r.id,'este referente')+'</div>':'')+
+    (open?'<div class="panel">'+inp(sid,'referentes',r.id,'nombre',r.nombre,'Nombre')+inp(sid,'referentes',r.id,'canal',r.canal,'Dónde publica','X, Instagram, prensa…')+'<div class="grp"><div class="lab">Mercado</div><div class="chips">'+[['ES','España'],['US','EEUU'],['ambos','Los dos']].map(function(m){return '<button class="chip'+((r.mercado||'ES')===m[0]?'':' sug')+'" data-act="r-merc" data-doc="'+sid+'" data-id="'+esc(r.id)+'" data-v="'+m[0]+'" aria-pressed="'+((r.mercado||'ES')===m[0])+'"'+dis()+'>'+m[1]+'</button>'}).join('')+'</div></div>'+area(sid,'referentes',r.id,'nota',r.nota,'Nota','Lo que sepas de esta persona',2)+delRow(sid,'referentes',r.id,'este referente')+'</div>':'')+
     '</div>';
 }
 function secReferentes(sid,d){
@@ -608,6 +615,8 @@ function blk(b){
       (b.filas||[]).map(function(r){return '<tr'+(/^total/i.test(r[0]||'')?' class="tot"':'')+'>'+r.map(function(c,i){return '<td'+(al[i]==='r'?' class="r"':'')+'>'+esc(c)+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table></div>';
   }else if(b.tipo==='semaforo'){
     h+='<ul class="sem">'+(b.filas||[]).map(function(f){var e=f.estado||'parcial';return '<li><span class="st st-'+e+'">'+(SEM[e]||e)+'</span><div><b>'+esc(f.que)+'</b><div class="tx">'+esc(f.texto)+'</div></div></li>'}).join('')+'</ul>';
+  }else if(b.tipo==='decisiones'){
+    h+='<ul class="dec">'+(b.items||[]).map(function(it){return '<li><div class="dq">'+esc(it.q)+'</div><div class="da"><b>'+esc(it.resp)+'</b>'+(it.igual===false?'<span class="tag foto">distinto a mi propuesta</span>':'')+'</div>'+(it.efecto?'<div class="tx">'+md(it.efecto)+'</div>':'')+'</li>'}).join('')+'</ul>';
   }else if(b.tipo==='pasos'){
     h+='<ol class="steps small">'+(b.items||[]).map(function(t,i){return '<li><span class="n">'+(i+1)+'</span><div><p style="margin:0;color:var(--ink)">'+esc(t)+'</p></div></li>'}).join('')+'</ol>';
   }
@@ -616,8 +625,8 @@ function blk(b){
 }
 function vPruebas(){
   var p=S.data.pruebas;
-  if(!p)return emptyCard('Todavía no hay pruebas','Claude las escribe en esta página cuando las hace. Si acabas de abrirla, espera unos segundos.');
-  return '<div class="stack"><section class="card"><h2>Primeras pruebas</h2>'+(p.intro?'<p class="hint">'+esc(p.intro)+'</p>':'')+'<div class="stamp">Actualizado el '+esc(fmtFecha(p.fecha))+'</div></section>'+(p.bloques||[]).map(blk).join('')+'</div>';
+  if(!p)return emptyCard('Todavía no hay nada aquí','Claude lo escribe en esta página según avanza. Si acabas de abrirla, espera unos segundos.');
+  return '<div class="stack"><section class="card"><h2>Cómo vamos</h2>'+(p.intro?'<p class="hint">'+esc(p.intro)+'</p>':'')+'<div class="stamp">Actualizado el '+esc(fmtFecha(p.fecha))+'</div></section>'+(p.bloques||[]).map(blk).join('')+'</div>';
 }
 
 /* ---------- acciones ---------- */
@@ -635,13 +644,14 @@ var ACT={
   'ask-del':function(el){S.confirm=el.getAttribute('data-id');paint()},
   'no-del':function(){S.confirm=null;paint()},
   'yes-del':function(el){var c=el.getAttribute('data-coll'),id=el.getAttribute('data-id');S.confirm=null;delete S.open[ok(id)];mutate(el.getAttribute('data-doc'),function(d){d[c]=(d[c]||[]).filter(function(x){return x.id!==id})})},
-  'add-ref':function(el){var v=inputVal(el.getAttribute('data-for'));if(!v)return;var id='r-'+uid();S.open[ok(id)]=true;mutate(el.getAttribute('data-doc'),function(d){(d.referentes=d.referentes||[]).push({id:id,nombre:v,canal:'',estado:'ok',origen:'victor',nota:''})})},
+  'add-ref':function(el){var v=inputVal(el.getAttribute('data-for'));if(!v)return;var id='r-'+uid();S.open[ok(id)]=true;mutate(el.getAttribute('data-doc'),function(d){(d.referentes=d.referentes||[]).push({id:id,nombre:v,canal:'',estado:'ok',origen:'victor',mercado:'ES',nota:''})})},
   'add-pren':function(el){var v=inputVal(el.getAttribute('data-for'));if(!v)return;var id='p-'+uid();S.open[ok(id)]=true;mutate(el.getAttribute('data-doc'),function(d){(d.prendas=d.prendas||[]).push({id:id,nombre:v,tipo:tipoDe(v),cuenta:true,formas:[],estampados:[],detalles:[],nota:''})})},
   'add-erp':function(el){var v=el.getAttribute('data-v'),t=el.getAttribute('data-t'),id='p-'+uid();S.open[ok(id)]=true;mutate(el.getAttribute('data-doc'),function(d){(d.prendas=d.prendas||[]).push({id:id,nombre:v,tipo:t,cuenta:t!=='accesorio',formas:[],estampados:[],detalles:[],nota:''})})},
   'add-sub':function(el){var v=inputVal(el.getAttribute('data-for'));if(!v)return;var id='s-'+uid();S.open[ok(id)]=true;mutate(el.getAttribute('data-doc'),function(d){(d.subestilos=d.subestilos||[]).push({id:id,nombre:v,descripcion:'',activo:true,origen:'victor'})})},
   'chip-del':function(el){var f=el.getAttribute('data-f'),i=+el.getAttribute('data-i');mutate(el.getAttribute('data-doc'),function(d){var p=find(d.prendas,el.getAttribute('data-id'));if(p&&p[f])p[f].splice(i,1)})},
   'chip-sug':function(el){var f=el.getAttribute('data-f'),v=el.getAttribute('data-v');mutate(el.getAttribute('data-doc'),function(d){var p=find(d.prendas,el.getAttribute('data-id'));if(p)addChips(p[f]=p[f]||[],v)})},
   'chip-add':function(el){var f=el.getAttribute('data-f'),v=inputVal(el.getAttribute('data-for'));if(!v)return;mutate(el.getAttribute('data-doc'),function(d){var p=find(d.prendas,el.getAttribute('data-id'));if(p)addChips(p[f]=p[f]||[],v)})},
+  'r-merc':function(el){mutate(el.getAttribute('data-doc'),function(d){var r=find(d.referentes,el.getAttribute('data-id'));if(r)r.mercado=el.getAttribute('data-v')})},
   'p-tipo':function(el){mutate(el.getAttribute('data-doc'),function(d){var p=find(d.prendas,el.getAttribute('data-id'));if(p)p.tipo=el.getAttribute('data-v')})},
   'vchip-del':function(el){var g=el.getAttribute('data-g'),i=+el.getAttribute('data-i');mutate('general',function(d){if(d[g])d[g].splice(i,1)})},
   'vchip-add':function(el){var fk=el.getAttribute('data-for'),g=fk.split(':')[1],v=inputVal(fk);if(!v)return;mutate('general',function(d){addChips(d[g]=d[g]||[],v)})},

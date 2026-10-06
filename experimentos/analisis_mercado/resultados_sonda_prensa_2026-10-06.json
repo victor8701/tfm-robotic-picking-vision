@@ -1,0 +1,246 @@
+{
+ "fecha": "2026-10-06",
+ "ventana_dias": 180,
+ "fuente": "Bing Noticias RSS (mkt es-ES), 1-3 consultas por referente (~10 noticias cada una)",
+ "resumen": {
+  "Quevedo": {
+   "noticias": 19,
+   "en_ventana": 8,
+   "nombran": 4,
+   "imagenes": 14,
+   "persona_con_ropa_distintas": 12
+  },
+  "Morad": {
+   "noticias": 14,
+   "en_ventana": 7,
+   "nombran": 6,
+   "imagenes": 28,
+   "persona_con_ropa_distintas": 12
+  },
+  "Beny Jr": {
+   "noticias": 7,
+   "en_ventana": 0,
+   "nombran": 0,
+   "imagenes": 0,
+   "persona_con_ropa_distintas": 0
+  },
+  "Israel B": {
+   "noticias": 6,
+   "en_ventana": 1,
+   "nombran": 1,
+   "imagenes": 1,
+   "persona_con_ropa_distintas": 1
+  },
+  "Hoke": {
+   "noticias": 17,
+   "en_ventana": 1,
+   "nombran": 1,
+   "imagenes": 3,
+   "persona_con_ropa_distintas": 0
+  },
+  "Cruz Cafuné": {
+   "noticias": 11,
+   "en_ventana": 1,
+   "nombran": 0,
+   "imagenes": 0,
+   "persona_con_ropa_distintas": 0
+  },
+  "orslok": {
+   "noticias": 14,
+   "en_ventana": 1,
+   "nombran": 0,
+   "imagenes": 0,
+   "persona_con_ropa_distintas": 0
+  },
+  "Shoda Monkas": {
+   "noticias": 21,
+   "en_ventana": 4,
+   "nombran": 2,
+   "imagenes": 0,
+   "persona_con_ropa_distintas": 0
+  }
+ },
+ "revision_a_ojo": {
+  "quevedo": "8 útiles de 12 (alfombra roja, escenario, podcast); sobran 2 de Shakira, 1 portada de revista, 1 recorte repetido",
+  "morad": "4 útiles distintas de 12 (escenario y una chaqueta Lacoste); sobran 2 detenciones, 1 grupo, 1 mujer de otra noticia y recortes repetidos",
+  "israel_b": "1 útil (chaqueta de plumas en un templo japonés)"
+ },
+ "limites": "Bing devuelve ~10 noticias por consulta, así que la cifra es un suelo; la atribución es solo por texto (puede colarse otra persona con el mismo nombre); el filtro de repetidas (cos >= 0.97) no une recortes distintos de la misma foto.",
+ "fotos": [
+  {
+   "ref": "Quevedo",
+   "url_art": "https://www.lecturas.com/actualidad/quevedo-cantante-no-tengo-recuerdos-cuando-vivia-brasil-pero-si-recuerdo-a-mi-padre-leyendo-periodico-y-comiendo-frutos-secos-sillon_199252",
+   "titulo": "Quevedo, cantante: “No tengo recuerdos de cuando vivía en Brasil, pero sí recuerdo a mi padre leyend",
+   "fecha": "2026-10-06T08:00:00+00:00",
+   "gate": 0.989
+  },
+  {
+   "ref": "Quevedo",
+   "url_art": "https://www.lecturas.com/actualidad/quevedo-cantante-no-tengo-recuerdos-cuando-vivia-brasil-pero-si-recuerdo-a-mi-padre-leyendo-periodico-y-comiendo-frutos-secos-sillon_199252",
+   "titulo": "Quevedo, cantante: “No tengo recuerdos de cuando vivía en Brasil, pero sí recuerdo a mi padre leyend",
+   "fecha": "2026-10-06T08:00:00+00:00",
+   "gate": 0.988
+  },
+  {
+   "ref": "Quevedo",
+   "url_art": "https://www.lavanguardia.com/clic/20260727/11601937/quevedo-cantante-24-anos-me-ponia-malo-4-dias-ansiedad-dormia-poco-sabia-eligiendo-mi-vida-epm.html",
+   "titulo": "Quevedo, cantante de 24 años: “Me ponía malo cada 4 días por ansiedad y dormía muy poco; ya no sabía",
+   "fecha": "2026-07-27T08:09:00+00:00",
+   "gate": 0.965
+  },
+  {
+   "ref": "Quevedo",
+   "url_art": "https://www.lecturas.com/actualidad/quevedo-cantante-no-tengo-recuerdos-cuando-vivia-brasil-pero-si-recuerdo-a-mi-padre-leyendo-periodico-y-comiendo-frutos-secos-sillon_199252",
+   "titulo": "Quevedo, cantante: “No tengo recuerdos de cuando vivía en Brasil, pero sí recuerdo a mi padre leyend",
+   "fecha": "2026-10-06T08:00:00+00:00",
+   "gate": 0.804
+  },
+  {
+   "ref": "Quevedo",
+   "url_art": "https://www.lavanguardia.com/clic/20260727/11601937/quevedo-cantante-24-anos-me-ponia-malo-4-dias-ansiedad-dormia-poco-sabia-eligiendo-mi-vida-epm.html",
+   "titulo": "Quevedo, cantante de 24 años: “Me ponía malo cada 4 días por ansiedad y dormía muy poco; ya no sabía",
+   "fecha": "2026-07-27T08:09:00+00:00",
+   "gate": 0.792
+  },
+  {
+   "ref": "Quevedo",
+   "url_art": "https://www.lecturas.com/actualidad/quevedo-cantante-no-tengo-recuerdos-cuando-vivia-brasil-pero-si-recuerdo-a-mi-padre-leyendo-periodico-y-comiendo-frutos-secos-sillon_199252",
+   "titulo": "Quevedo, cantante: “No tengo recuerdos de cuando vivía en Brasil, pero sí recuerdo a mi padre leyend",
+   "fecha": "2026-10-06T08:00:00+00:00",
+   "gate": 0.677
+  },
+  {
+   "ref": "Quevedo",
+   "url_art": "https://www.lavanguardia.com/clic/20260727/11601937/quevedo-cantante-24-anos-me-ponia-malo-4-dias-ansiedad-dormia-poco-sabia-eligiendo-mi-vida-epm.html",
+   "titulo": "Quevedo, cantante de 24 años: “Me ponía malo cada 4 días por ansiedad y dormía muy poco; ya no sabía",
+   "fecha": "2026-07-27T08:09:00+00:00",
+   "gate": 0.656
+  },
+  {
+   "ref": "Quevedo",
+   "url_art": "https://www.lecturas.com/actualidad/quevedo-cantante-no-tengo-recuerdos-cuando-vivia-brasil-pero-si-recuerdo-a-mi-padre-leyendo-periodico-y-comiendo-frutos-secos-sillon_199252",
+   "titulo": "Quevedo, cantante: “No tengo recuerdos de cuando vivía en Brasil, pero sí recuerdo a mi padre leyend",
+   "fecha": "2026-10-06T08:00:00+00:00",
+   "gate": 0.613
+  },
+  {
+   "ref": "Quevedo",
+   "url_art": "https://www.lecturas.com/actualidad/quevedo-cantante-no-tengo-recuerdos-cuando-vivia-brasil-pero-si-recuerdo-a-mi-padre-leyendo-periodico-y-comiendo-frutos-secos-sillon_199252",
+   "titulo": "Quevedo, cantante: “No tengo recuerdos de cuando vivía en Brasil, pero sí recuerdo a mi padre leyend",
+   "fecha": "2026-10-06T08:00:00+00:00",
+   "gate": 0.598
+  },
+  {
+   "ref": "Quevedo",
+   "url_art": "https://www.lecturas.com/actualidad/quevedo-cantante-no-tengo-recuerdos-cuando-vivia-brasil-pero-si-recuerdo-a-mi-padre-leyendo-periodico-y-comiendo-frutos-secos-sillon_199252",
+   "titulo": "Quevedo, cantante: “No tengo recuerdos de cuando vivía en Brasil, pero sí recuerdo a mi padre leyend",
+   "fecha": "2026-10-06T08:00:00+00:00",
+   "gate": 0.406
+  },
+  {
+   "ref": "Quevedo",
+   "url_art": "https://www.lecturas.com/actualidad/quevedo-cantante-no-tengo-recuerdos-cuando-vivia-brasil-pero-si-recuerdo-a-mi-padre-leyendo-periodico-y-comiendo-frutos-secos-sillon_199252",
+   "titulo": "Quevedo, cantante: “No tengo recuerdos de cuando vivía en Brasil, pero sí recuerdo a mi padre leyend",
+   "fecha": "2026-10-06T08:00:00+00:00",
+   "gate": 0.403
+  },
+  {
+   "ref": "Quevedo",
+   "url_art": "https://www.lavanguardia.com/clic/20260727/11601937/quevedo-cantante-24-anos-me-ponia-malo-4-dias-ansiedad-dormia-poco-sabia-eligiendo-mi-vida-epm.html",
+   "titulo": "Quevedo, cantante de 24 años: “Me ponía malo cada 4 días por ansiedad y dormía muy poco; ya no sabía",
+   "fecha": "2026-07-27T08:09:00+00:00",
+   "gate": 0.393
+  },
+  {
+   "ref": "Morad",
+   "url_art": "https://es.ara.cat/sociedad/sucesos/detienen-rapero-morad-barcelona-delito-atentado-autoridad_25_5856977.html",
+   "titulo": "Detienen al rapero Morad en Barcelona por un delito de atentado a la autoridad",
+   "fecha": "2026-09-21T15:26:00+00:00",
+   "gate": 0.997
+  },
+  {
+   "ref": "Morad",
+   "url_art": "https://metropoliabierta.elespanol.com/eixample/20260921/guardia-urbana-detiene-rapero-morad-golpear-brazo-agente-centro-barcelona/1003742796057_0.html",
+   "titulo": "La Guardia Urbana detiene al rapero Morad tras golpear el brazo de un agente en el centro de Barcelo",
+   "fecha": "2026-09-21T04:02:00+00:00",
+   "gate": 0.993
+  },
+  {
+   "ref": "Morad",
+   "url_art": "https://es.ara.cat/sociedad/sucesos/detienen-rapero-morad-barcelona-delito-atentado-autoridad_25_5856977.html",
+   "titulo": "Detienen al rapero Morad en Barcelona por un delito de atentado a la autoridad",
+   "fecha": "2026-09-21T15:26:00+00:00",
+   "gate": 0.962
+  },
+  {
+   "ref": "Morad",
+   "url_art": "https://es.ara.cat/sociedad/sucesos/detienen-rapero-morad-barcelona-delito-atentado-autoridad_25_5856977.html",
+   "titulo": "Detienen al rapero Morad en Barcelona por un delito de atentado a la autoridad",
+   "fecha": "2026-09-21T15:26:00+00:00",
+   "gate": 0.943
+  },
+  {
+   "ref": "Morad",
+   "url_art": "https://es.ara.cat/sociedad/sucesos/detienen-rapero-morad-barcelona-delito-atentado-autoridad_25_5856977.html",
+   "titulo": "Detienen al rapero Morad en Barcelona por un delito de atentado a la autoridad",
+   "fecha": "2026-09-21T15:26:00+00:00",
+   "gate": 0.889
+  },
+  {
+   "ref": "Morad",
+   "url_art": "https://es.ara.cat/sociedad/sucesos/detienen-rapero-morad-barcelona-delito-atentado-autoridad_25_5856977.html",
+   "titulo": "Detienen al rapero Morad en Barcelona por un delito de atentado a la autoridad",
+   "fecha": "2026-09-21T15:26:00+00:00",
+   "gate": 0.882
+  },
+  {
+   "ref": "Morad",
+   "url_art": "https://www.telecinco.es/noticias/sucesos/20260922/rapero-morad-detenido-barcelona-agredir-policia_18_020230961.html",
+   "titulo": "El rapero Morad, detenido en Barcelona acusado de agredir a un agente de la Policía",
+   "fecha": "2026-09-22T00:13:00+00:00",
+   "gate": 0.847
+  },
+  {
+   "ref": "Morad",
+   "url_art": "https://metropoliabierta.elespanol.com/eixample/20260921/guardia-urbana-detiene-rapero-morad-golpear-brazo-agente-centro-barcelona/1003742796057_0.html",
+   "titulo": "La Guardia Urbana detiene al rapero Morad tras golpear el brazo de un agente en el centro de Barcelo",
+   "fecha": "2026-09-21T04:02:00+00:00",
+   "gate": 0.768
+  },
+  {
+   "ref": "Morad",
+   "url_art": "https://www.eldebate.com/espana/cataluna/20260922/rapero-morad-detenido-nuevo-acusado-agresion-policial_461282.html",
+   "titulo": "El rapero Morad, detenido de nuevo acusado de agresión policial",
+   "fecha": "2026-09-22T05:22:00+00:00",
+   "gate": 0.725
+  },
+  {
+   "ref": "Morad",
+   "url_art": "https://www.eldebate.com/espana/cataluna/20260922/rapero-morad-detenido-nuevo-acusado-agresion-policial_461282.html",
+   "titulo": "El rapero Morad, detenido de nuevo acusado de agresión policial",
+   "fecha": "2026-09-22T05:22:00+00:00",
+   "gate": 0.701
+  },
+  {
+   "ref": "Morad",
+   "url_art": "https://es.ara.cat/sociedad/sucesos/detienen-rapero-morad-barcelona-delito-atentado-autoridad_25_5856977.html",
+   "titulo": "Detienen al rapero Morad en Barcelona por un delito de atentado a la autoridad",
+   "fecha": "2026-09-21T15:26:00+00:00",
+   "gate": 0.615
+  },
+  {
+   "ref": "Morad",
+   "url_art": "https://metropoliabierta.elespanol.com/eixample/20260921/guardia-urbana-detiene-rapero-morad-golpear-brazo-agente-centro-barcelona/1003742796057_0.html",
+   "titulo": "La Guardia Urbana detiene al rapero Morad tras golpear el brazo de un agente en el centro de Barcelo",
+   "fecha": "2026-09-21T04:02:00+00:00",
+   "gate": 0.541
+  },
+  {
+   "ref": "Israel B",
+   "url_art": "https://www.europapress.es/galicia/noticia-israel-santa-salut-silee-suman-conciertos-gratuitos-gaias-atardecer-fest-20260717154927.html",
+   "titulo": "Israel B, Santa Salut y Silee se suman a los conciertos gratuitos del Gaiás para el 'Atardecer Fest'",
+   "fecha": "2026-07-17T08:49:00+00:00",
+   "gate": 0.946
+  }
+ ]
+}
