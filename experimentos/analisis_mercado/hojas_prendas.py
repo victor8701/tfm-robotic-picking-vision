@@ -30,7 +30,7 @@ TD = AQUI / "tendencia_datos"
 CACHE = TD / "cache"
 SALIDA = CACHE / "hojas_prendas"
 ETIQ = TD / "etiquetas_prendas.json"
-TIPOS = ["Camiseta manga corta", "Camiseta de tirantes", "Camiseta manga larga", "Top", "Camisa", "Polo", "Sudadera", "Jersey", "Chaleco sin mangas", "Chaqueta", "Americana",
+TIPOS = ["Camiseta manga corta", "Camiseta de tirantes", "Camiseta manga larga", "Top", "Camisa", "Polo", "Sudadera", "Hoodie", "Jersey", "Chaleco sin mangas", "Chaqueta", "Americana",
          "Abrigo", "Plumas", "Pantalón", "Falda", "Short", "Legging/Malla", "Vestido", "Mono", "Zapatillas deportivas", "Zapatillas casual/lifestyle", "Zapatos de vestir",
          "Zapatos de tacón", "Sandalias", "Botas", "Bolso", "Riñonera", "Gorra/Gorro/Sombrero"]
 ESTAMPADOS = {"L": "liso", "R": "rayas", "C": "cuadros / tartán", "G": "gráfico / dibujo", "T": "texto / logo", "K": "camuflaje", "O": "otro"}
@@ -208,7 +208,7 @@ def cmd_importar(a):
         if d.get("x"):
             etiq[clave] = {"inservible": True, "caja": e["caja"], "tipo_modelo": e["tipo_modelo"], "estilo": e["estilo"]}
         elif d.get("tipo") and d.get("estampado") and d.get("forma"):
-            etiq[clave] = {"tipo": d["tipo"], "estampado": d["estampado"], "forma": d["forma"], "caja": e["caja"], "tipo_modelo": e["tipo_modelo"], "estilo": e["estilo"], "mercado": e["mercado"]}
+            etiq[clave] = {"tipo": d["tipo"], "estampado": d["estampado"], "tejido": d.get("tejido") or None, "forma": d["forma"], "caja": e["caja"], "tipo_modelo": e["tipo_modelo"], "estilo": e["estilo"], "mercado": e["mercado"]}
         else:
             sin += 1
             continue

@@ -92,7 +92,8 @@ h1{margin:0;font:700 clamp(30px,8.4vw,44px)/1.02 var(--f-display);letter-spacing
 .cellfig>div{background:var(--surface);padding:10px 12px;display:grid;gap:4px;min-width:0}
 .cellfig small{font:500 10px/1 var(--f-mono);letter-spacing:.14em;color:var(--ink-3)}
 .cellfig b{font:650 18px/1.1 var(--f-display);overflow-wrap:anywhere}
-@media (min-width:560px){.cellfig{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.cellfig>div:last-child:nth-child(odd){grid-column:1/-1}
+@media (min-width:560px){.cellfig{grid-template-columns:repeat(5,minmax(0,1fr))}.cellfig>div:last-child:nth-child(odd){grid-column:auto}}
 .steps{list-style:none;margin:0;padding:0;display:grid}
 .steps>li{display:grid;grid-template-columns:32px minmax(0,1fr);gap:12px;padding-bottom:16px;position:relative}
 .steps>li:last-child{padding-bottom:0}
@@ -436,23 +437,24 @@ function vIdea(){
     vocab(g,'colores','Color','Los 18 del ERP.')+
     vocab(g,'formas','Forma','Los 8 primeros son los del ERP; el resto, añadidos míos.')+
     vocab(g,'estampados','Estampado','Los 8 primeros son los del ERP; el resto, añadidos míos.')+
+    vocab(g,'materiales','Tejido','Salen del Material del ERP (técnico e impermeable van juntos); felpa / polar es un añadido mío.')+
     vocab(g,'detalles','Detalle','Cosas que cambian cómo se lleva una prenda (capucha, cargo, mini…). Todo mío.')
   ):'<p class="hint">'+(S.dbAbsent?'Ábrela desde claude.ai para ver y editar el vocabulario.':(S.loaded?'Todavía no hay vocabulario cargado.':'Cargando…'))+'</p>';
   return '<div class="stack">'+
-  '<section class="card"><h2>Qué te pido <span class="count">unos 5 minutos</span></h2><ul class="rules">'+
-  '<li><b>Contesta las preguntas importantes.</b> Una pulsación cada una. <button class="lnk" data-act="tab" data-t="preguntas">Ir a Preguntas</button></li>'+
-  '<li><b>En Geek y Urbano</b>, confirma o descarta los referentes (✓ ? ✕), enciende o apaga prendas y subestilos, y toca una prenda para ajustar su forma y estampado.</li>'+
+  '<section class="card"><h2>Qué te pido ahora <span class="count">unos 10 minutos</span></h2><ul class="rules">'+
+  '<li><b>Etiqueta los 36 recortes</b> en <a class="lnk" href="https://claude.ai/artifact/3GxbfSASBPF5fnazA2z5ge" target="_blank" rel="noopener">Etiquetar prendas</a>: tipo, estampado, tejido y forma, a toques. Con eso entreno al modelo.</li>'+
+  '<li><b>Cuando quieras</b>, corrige en Geek y Urbano los referentes, las prendas (forma, estampado y tejido de cada una) y los subestilos.</li>'+
   '<li><b>Mira Cómo vamos</b> para ver qué has decidido, qué funciona hoy y qué no. Ahí no hay nada que responder.</li>'+
   '</ul></section>'+
   '<section class="card"><h2>Qué se mide</h2>'+
-  '<p>Hasta ahora el informe decía <b>qué estilo</b> aparece más en las fotos. Esto es otra cosa: dentro de cada estilo, <b>qué prendas se llevan, con qué forma y estampado, y si suben o bajan</b> frente al periodo anterior.</p>'+
-  '<div class="cellfig" role="img" aria-label="Una celda combina prenda, forma, estampado y color"><div><small>PRENDA</small><b>Sudadera</b></div><div><small>FORMA</small><b>oversized</b></div><div><small>ESTAMPADO</small><b>gráfico</b></div><div><small>COLOR</small><b>negro</b></div></div>'+
+  '<p>Hasta ahora el informe decía <b>qué estilo</b> aparece más en las fotos. Esto es otra cosa: dentro de cada estilo, <b>qué prendas se llevan, con qué forma, estampado y tejido, y si suben o bajan</b> frente al periodo anterior.</p>'+
+  '<div class="cellfig" role="img" aria-label="Una celda combina prenda, forma, estampado y color"><div><small>PRENDA</small><b>Sudadera</b></div><div><small>FORMA</small><b>oversized</b></div><div><small>ESTAMPADO</small><b>gráfico</b></div><div><small>TEJIDO</small><b>felpa</b></div><div><small>COLOR</small><b>negro</b></div></div>'+
   '<p class="note">Así se lee una <b>celda</b>. Es un ejemplo de formato, sin datos reales.</p></section>'+
   '<section class="card"><h2>Cinco pasos</h2><ol class="steps">'+
   '<li><span class="n">1</span><div><b>Referente</b><p>Cada estilo tiene sus personas. El estilo lo da la persona, no la ropa. Las tienes en las pestañas Geek y Urbano.</p></div></li>'+
   '<li><span class="n">2</span><div><b>Foto</b><p>Se leen las fotos públicas de sus cuentas, y las de prensa que nombran a la persona en el titular o el pie. No se reconoce a nadie por la cara.</p></div></li>'+
   '<li><span class="n">3</span><div><b>Prendas</b><p>En cada foto se detecta qué lleva puesto (sudadera, pantalón, zapatillas…) y dónde está cada prenda.</p></div></li>'+
-  '<li><span class="n">4</span><div><b>Forma, estampado y color</b><p>De cada prenda se anota cómo es: oversized o ajustada, lisa o con gráfico, de qué color.</p></div></li>'+
+  '<li><span class="n">4</span><div><b>Forma, estampado, tejido y color</b><p>De cada prenda se anota cómo es: oversized o ajustada, lisa o con gráfico, de vaquero o de cuero, de qué color.</p></div></li>'+
   '<li><span class="n">5</span><div><b>Tendencia</b><p>Se cuentan las fotos de cada celda, con más peso las populares y recientes, y se compara con el periodo anterior: sube, baja o igual.</p></div></li>'+
   '</ol></section>'+
   '<section class="card"><h2>Reglas que he asumido</h2><ul class="rules">'+
@@ -491,7 +493,7 @@ function secReferentes(sid,d){
 }
 function resumenP(p){
   function lst(a){return a&&a.length?esc(a.slice(0,3).join(' · '))+(a.length>3?' +'+(a.length-3):''):'—'}
-  return '<span class="sub"><span><i>forma</i>'+lst(p.formas)+'</span><span><i>estampado</i>'+lst(p.estampados)+'</span></span>';
+  return '<span class="sub"><span><i>forma</i>'+lst(p.formas)+'</span><span><i>estampado</i>'+lst(p.estampados)+'</span><span><i>tejido</i>'+lst(p.tejidos)+'</span></span>';
 }
 function usoDe(f){
   var u={};
@@ -521,7 +523,7 @@ function itemPrenda(sid,p,g){
     '<span class="nmrow"><span class="nm">'+esc(p.nombre||'Sin nombre')+'</span><span class="car" aria-hidden="true">▾</span></span>'+resumenP(p)+'</button>'+
     swtch(p.cuenta,'data-act="toggle" data-doc="'+sid+'" data-coll="prendas" data-f="cuenta" data-id="'+esc(p.id)+'"','Cuenta en la tendencia',p.cuenta?'cuenta':'no cuenta')+'</div>'+
     (open?'<div class="panel">'+
-      chipGroup(sid,p,'formas','Forma',g&&g.formas)+chipGroup(sid,p,'estampados','Estampado',g&&g.estampados)+chipGroup(sid,p,'detalles','Detalle',g&&g.detalles)+
+      chipGroup(sid,p,'formas','Forma',g&&g.formas)+chipGroup(sid,p,'estampados','Estampado',g&&g.estampados)+chipGroup(sid,p,'tejidos','Tejido',g&&g.materiales)+chipGroup(sid,p,'detalles','Detalle',g&&g.detalles)+
       '<div class="grp"><div class="lab">Tipo</div><div class="chips">'+tipos+'</div></div>'+
       area(sid,'prendas',p.id,'nota',p.nota,'Nota','Lo que quieras apuntar de esta prenda',2)+delRow(sid,'prendas',p.id,'esta prenda')+'</div>':'')+
     '</div>';
@@ -645,8 +647,8 @@ var ACT={
   'no-del':function(){S.confirm=null;paint()},
   'yes-del':function(el){var c=el.getAttribute('data-coll'),id=el.getAttribute('data-id');S.confirm=null;delete S.open[ok(id)];mutate(el.getAttribute('data-doc'),function(d){d[c]=(d[c]||[]).filter(function(x){return x.id!==id})})},
   'add-ref':function(el){var v=inputVal(el.getAttribute('data-for'));if(!v)return;var id='r-'+uid();S.open[ok(id)]=true;mutate(el.getAttribute('data-doc'),function(d){(d.referentes=d.referentes||[]).push({id:id,nombre:v,canal:'',estado:'ok',origen:'victor',mercado:'ES',nota:''})})},
-  'add-pren':function(el){var v=inputVal(el.getAttribute('data-for'));if(!v)return;var id='p-'+uid();S.open[ok(id)]=true;mutate(el.getAttribute('data-doc'),function(d){(d.prendas=d.prendas||[]).push({id:id,nombre:v,tipo:tipoDe(v),cuenta:true,formas:[],estampados:[],detalles:[],nota:''})})},
-  'add-erp':function(el){var v=el.getAttribute('data-v'),t=el.getAttribute('data-t'),id='p-'+uid();S.open[ok(id)]=true;mutate(el.getAttribute('data-doc'),function(d){(d.prendas=d.prendas||[]).push({id:id,nombre:v,tipo:t,cuenta:t!=='accesorio',formas:[],estampados:[],detalles:[],nota:''})})},
+  'add-pren':function(el){var v=inputVal(el.getAttribute('data-for'));if(!v)return;var id='p-'+uid();S.open[ok(id)]=true;mutate(el.getAttribute('data-doc'),function(d){(d.prendas=d.prendas||[]).push({id:id,nombre:v,tipo:tipoDe(v),cuenta:true,formas:[],estampados:[],tejidos:[],detalles:[],nota:''})})},
+  'add-erp':function(el){var v=el.getAttribute('data-v'),t=el.getAttribute('data-t'),id='p-'+uid();S.open[ok(id)]=true;mutate(el.getAttribute('data-doc'),function(d){(d.prendas=d.prendas||[]).push({id:id,nombre:v,tipo:t,cuenta:t!=='accesorio',formas:[],estampados:[],tejidos:[],detalles:[],nota:''})})},
   'add-sub':function(el){var v=inputVal(el.getAttribute('data-for'));if(!v)return;var id='s-'+uid();S.open[ok(id)]=true;mutate(el.getAttribute('data-doc'),function(d){(d.subestilos=d.subestilos||[]).push({id:id,nombre:v,descripcion:'',activo:true,origen:'victor'})})},
   'chip-del':function(el){var f=el.getAttribute('data-f'),i=+el.getAttribute('data-i');mutate(el.getAttribute('data-doc'),function(d){var p=find(d.prendas,el.getAttribute('data-id'));if(p&&p[f])p[f].splice(i,1)})},
   'chip-sug':function(el){var f=el.getAttribute('data-f'),v=el.getAttribute('data-v');mutate(el.getAttribute('data-doc'),function(d){var p=find(d.prendas,el.getAttribute('data-id'));if(p)addChips(p[f]=p[f]||[],v)})},

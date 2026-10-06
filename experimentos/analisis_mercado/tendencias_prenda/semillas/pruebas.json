@@ -81,7 +81,24 @@
     {
      "q": "¿Te valen Travis Scott, Playboi Carti, Kid Cudi y A$AP Rocky para urbano EEUU?",
      "resp": "Confirmados (por el chat)",
-     "efecto": "Quedan como referentes de urbano en EEUU. Sin las respuestas a «sube / baja» y «geek en EEUU» sigo con mi propuesta (sin flechas hasta tener dos temporadas; cuentas y comunidades): dime si prefieres otra cosa."
+     "efecto": "Quedan como referentes de urbano en EEUU."
+    },
+    {
+     "q": "¿Quién da el estilo geek en EEUU?",
+     "resp": "Lil Peep y Lil Xan, ese estilo (por el chat)",
+     "efecto": "Lil Peep murió en 2017 y su cuenta la lleva su herencia: sus fotos cuentan como muestra de referencia del estilo, sin fecha. De Lil Xan no encuentro su X: solo prensa por nombre."
+    },
+    {
+     "q": "Etiquetado de recortes: lo que faltaba",
+     "resp": "En sudadera falta Hoodie; añadir tipo de tejido (vaquero, cuero…) (por el chat)",
+     "igual": false,
+     "efecto": "En «Etiquetar prendas» ya hay «Hoodie (con capucha)» aparte de «Sudadera», y un campo «Tejido» (denim, cuero, punto, felpa…). Aquí también: el tejido es una pieza más de la celda y Hoodie es una prenda de las listas."
+    },
+    {
+     "q": "¿Cuándo quieres ver si una prenda sube o baja?",
+     "resp": "De momento no te preocupa la temporada, solo si es verano, invierno, etc. (por el chat)",
+     "igual": true,
+     "efecto": "El informe se agrupa por verano (marzo a agosto) e invierno (septiembre a febrero) y no enseña flechas de sube / baja por ahora. Las fotos se siguen guardando con su fecha."
     }
    ]
   },
@@ -339,6 +356,11 @@
      "texto": "Plausible, pero domina el negro (62 % en geek, 41 % en urbano) y no separa el color del estampado: un jersey de rayas rojas y negras salió «negro»."
     },
     {
+     "que": "Tejido (denim, cuero, punto…)",
+     "estado": "no",
+     "texto": "No existe en ningún modelo mío. Lo estás etiquetando ahora en «Etiquetar prendas»."
+    },
+    {
      "que": "Forma (oversized, baggy…)",
      "estado": "no",
      "texto": "No existe en ningún modelo mío. Con CLIP sobre el recorte no mejora a contestar siempre «oversized»."
@@ -489,7 +511,7 @@
    "titulo": "Lo que sigue, en paralelo",
    "items": [
     "Fotos: cada lunes de madrugada se recogen solas las fuentes (X, prensa por nombre y Reddit), se analizan y se recalcula el informe. Falta decidir si merece la pena añadir miniaturas de YouTube (1 de cada 5 enseña ropa) y fotos libres de Wikimedia Commons para la temporada pasada.",
-    "Método: mandarte hojas de recortes con número, como las M y las U, para que corrijas tipo y estampado desde el móvil y entrenar con eso una capa pequeña sobre CLIP. Los CLIP más grandes se descargan a 0,2 MB/s: los dejo para otro momento.",
+    "Método: etiquetar a toques en la página «Etiquetar prendas» (36 recortes) tipo, estampado y forma, y entrenar con eso una capa pequeña sobre CLIP. Los CLIP más grandes se descargan a 0,2 MB/s: los dejo para otro momento.",
     "Medir con recortes que no haya visto y decidir qué se puede contar de verdad: seguramente el tipo y algunos estampados; la forma depende de lo que salga."
    ]
   }
