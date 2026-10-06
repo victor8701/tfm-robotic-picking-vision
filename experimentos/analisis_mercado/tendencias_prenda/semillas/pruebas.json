@@ -1,0 +1,260 @@
+{
+ "v": 1,
+ "fecha": "2026-10-06",
+ "intro": "Lo que he podido medir hoy con lo que ya existe. Son pruebas pequeñas: sirven para decidir por dónde seguir, no para sacar conclusiones.",
+ "bloques": [
+  {
+   "tipo": "hallazgos",
+   "titulo": "Lo más importante hasta ahora",
+   "items": [
+    {
+     "tono": "aviso",
+     "titulo": "Casi no hay fotos de estos dos estilos con las fuentes de hoy",
+     "texto": "En el último informe de España (45 días, 116 fotos) urbano pesa un **6 %** y geek un **0 %**. De tus referentes solo @byCaLiTosYT publica fotos con regularidad: 12 descargadas, de las que 4 pasaron los filtros del informe. @orslok lleva unos 600 días sin publicar."
+    },
+    {
+     "tono": "no",
+     "titulo": "El detector no distingue una sudadera de una camiseta de manga larga",
+     "texto": "Casi todo lo de arriba sale como «camisa de manga larga»: **8 de 11** prendas en geek y **8 de 10** en urbano, sudaderas incluidas. Si recorto cada prenda y la comparo con tu lista, el tipo mejora (**74 %** en total), pero arriba solo acierta 9 de 15: confunde sudadera, chaqueta y camisa."
+    },
+    {
+     "tono": "no",
+     "titulo": "Forma y estampado no existen todavía",
+     "texto": "El modelo de color y categoría se entrenó con fotos de catálogo. Sobre recortes de calle coincide con el detector solo el **64 %** de las veces en geek y el **56 %** en urbano (por ejemplo, unos shorts clasificados como «accesorio»). Forma y estampado se descartaron al entrenarlo. Sin entrenar nada, CLIP sobre el recorte acierta el estampado en **32 %** y la forma no mejora a contestar siempre «oversized»."
+    },
+    {
+     "tono": "ok",
+     "titulo": "Dónde está cada prenda sí se detecta bien",
+     "texto": "Las 28 fotos tenían persona y salen **3,0** prendas por foto en geek y **2,4** en urbano. A ojo falla en 6 de 28: capturas de pantalla, primeros planos de cara, una infografía y una persona diminuta."
+    },
+    {
+     "tono": "aviso",
+     "titulo": "Tu muestra geek es más «alternativo / techwear» que «fandom»",
+     "texto": "En las 14 fotos geek, a ojo: 6 alternativo / e-girl, 3 techwear, 2 kawaii / Harajuku y solo 1 de fandom explícito (un jersey de Pokémon). Por eso propongo esos subestilos y te pregunto si cuentan como geek."
+    },
+    {
+     "tono": "info",
+     "titulo": "Con el estilo dado por la persona, el clasificador de estilo pesa menos",
+     "texto": "En fotos de prensa acertó 2 de 10, y en 8 de 18 ni siquiera había un look. Seguirá sirviendo para fotos sin referente, pero ya no decide el estilo de las que sí lo tienen."
+    }
+   ]
+  },
+  {
+   "tipo": "barras",
+   "titulo": "Fotos que hay hoy de tus referentes",
+   "texto": "Fotos descargadas de cada fuente, antes de que tú las revises. La prensa son páginas sueltas que no se renuevan.",
+   "unidad": "fotos",
+   "filas": [
+    {
+     "etiqueta": "bycalitos · X",
+     "valor": 12,
+     "nota": "la última, hace 2 días"
+    },
+    {
+     "etiqueta": "Israel B · prensa",
+     "valor": 7,
+     "nota": "2 páginas"
+    },
+    {
+     "etiqueta": "Hoke · prensa",
+     "valor": 4,
+     "nota": "2 páginas"
+    },
+    {
+     "etiqueta": "Shoda Monkas · X",
+     "valor": 1,
+     "nota": "la última, hace 14 días"
+    },
+    {
+     "etiqueta": "Cruz Cafuné · prensa",
+     "valor": 1,
+     "nota": "3 páginas"
+    },
+    {
+     "etiqueta": "orslok · X",
+     "valor": 0,
+     "nota": "sin publicar desde hace unos 600 días"
+    },
+    {
+     "etiqueta": "La Isla de las Tentaciones",
+     "valor": 0,
+     "nota": "sin fuente todavía"
+    }
+   ]
+  },
+  {
+   "tipo": "semaforo",
+   "titulo": "Qué ve hoy el sistema en una foto",
+   "filas": [
+    {
+     "que": "Dónde está cada prenda",
+     "estado": "ok",
+     "texto": "Bien en foto de cuerpo entero. Falla en primeros planos, capturas y collages."
+    },
+    {
+     "que": "Tipo de prenda",
+     "estado": "parcial",
+     "texto": "El detector tiene 13 clases (camisa de manga larga o corta, chaqueta, pantalón, falda, vestido…). No existe «sudadera», «jersey» ni «polo». Con CLIP sobre el recorte: 74 %, pero solo 60 % en prendas de arriba."
+    },
+    {
+     "que": "Color",
+     "estado": "parcial",
+     "texto": "Plausible, pero domina el negro (62 % en geek, 41 % en urbano) y no separa el color del estampado: un jersey de rayas rojas y negras salió «negro»."
+    },
+    {
+     "que": "Forma (oversized, baggy…)",
+     "estado": "no",
+     "texto": "No existe en ningún modelo mío. Con CLIP sobre el recorte no mejora a contestar siempre «oversized»."
+    },
+    {
+     "que": "Estampado (liso, gráfico, logo…)",
+     "estado": "no",
+     "texto": "No existe en ningún modelo mío. Con CLIP sobre el recorte acierta un 32 %."
+    },
+    {
+     "que": "Calzado y accesorios",
+     "estado": "parcial",
+     "texto": "Se detecta calzado en 7 de 14 fotos geek y en 4 de 14 urbano; bolso, en 2 de 14 geek (en una salen varios). Gorras y gorros salen mejor en urbano (4 de 14)."
+    }
+   ]
+  },
+  {
+   "tipo": "tabla",
+   "titulo": "Prendas detectadas en 28 fotos de tu Biblioteca",
+   "texto": "14 geek y 14 urbano, elegidas al azar de lo que ya clasificaste (no son fotos nuevas de los referentes). Se cuentan las prendas detectadas en la persona principal de cada foto; una foto puede sumar varias del mismo tipo (por eso salen 5 bolsos en 2 fotos).",
+   "columnas": [
+    "Detectado",
+    "Geek",
+    "Urbano"
+   ],
+   "alinear": [
+    "l",
+    "r",
+    "r"
+   ],
+   "filas": [
+    [
+     "Camisa o camiseta de manga larga",
+     "8",
+     "8"
+    ],
+    [
+     "Camisa o camiseta de manga corta",
+     "1",
+     "2"
+    ],
+    [
+     "Chaqueta o abrigo",
+     "2",
+     "4"
+    ],
+    [
+     "Chaleco o top sin mangas",
+     "2",
+     "0"
+    ],
+    [
+     "Pantalón largo",
+     "5",
+     "6"
+    ],
+    [
+     "Short",
+     "3",
+     "1"
+    ],
+    [
+     "Falda",
+     "4",
+     "1"
+    ],
+    [
+     "Vestido",
+     "3",
+     "1"
+    ],
+    [
+     "Calzado",
+     "7",
+     "4"
+    ],
+    [
+     "Bolso",
+     "5",
+     "0"
+    ],
+    [
+     "Gorra, gorro o sombrero",
+     "1",
+     "4"
+    ],
+    [
+     "Torso entero (sin separar prendas)",
+     "1",
+     "3"
+    ],
+    [
+     "Total de prendas",
+     "42",
+     "34"
+    ]
+   ],
+   "nota": "Que salgan 4 faldas en geek y casi ninguna en urbano encaja con lo que veo en las fotos, pero es una muestra de 14."
+  },
+  {
+   "tipo": "semaforo",
+   "titulo": "Prueba 2: recortar cada prenda y preguntarle a CLIP",
+   "texto": "36 recortes al azar de las 28 fotos, revisados por mí a ojo (no por ti). CLIP elige entre tu lista de tipos, estampados y formas sin entrenar nada.",
+   "filas": [
+    {
+     "que": "Tipo de prenda: 26 de 35 (74 %)",
+     "estado": "parcial",
+     "texto": "Abajo y calzado van bien: 12 de 13 pantalones y faldas, 3 de 4 zapatos. Arriba falla: 9 de 15. Una chaqueta salió «sudadera», una camisa salió «chaleco» y unos pantalones cargo salieron «leggings»."
+    },
+    {
+     "que": "Estampado: 10 de 31 (32 %)",
+     "estado": "no",
+     "texto": "Reconoce bien el tartán (4 de 4) y los gráficos grandes (2 de 2), pero casi nunca dice «liso»: solo en 1 de 20 prendas lisas. Inventa camuflaje o rayas en negros y grises. Sesgándolo hacia «liso» sube a 77 % (validación cruzada), pero entonces deja de ver logos y camuflaje. Decir siempre «liso» ya daría 65 %."
+    },
+    {
+     "que": "Forma: 13 de 18 (72 %)",
+     "estado": "no",
+     "texto": "Es lo mismo que contestar siempre «oversized» (72 % en esta muestra), así que no aporta. Con faldas, vestidos y shorts no tiene sentido: necesitan longitud y vuelo, no esta lista."
+    }
+   ],
+   "nota": "Revisión mía a ojo de 36 recortes: vale para decidir el siguiente paso, no para medir fino."
+  },
+  {
+   "tipo": "barra",
+   "titulo": "Clasificador de estilo con fotos reales de prensa",
+   "texto": "18 fotos nuevas de medios españoles, sin enseñarte la predicción. Las juzgaste tú.",
+   "segmentos": [
+    {
+     "etiqueta": "Acierta",
+     "valor": 2,
+     "tono": "ok"
+    },
+    {
+     "etiqueta": "Falla",
+     "valor": 8,
+     "tono": "no"
+    },
+    {
+     "etiqueta": "No era un look",
+     "valor": 8,
+     "tono": "na"
+    }
+   ],
+   "nota": "Con 10 fotos válidas el margen es de unos ±25 puntos. Vale como aviso, no como medida."
+  },
+  {
+   "tipo": "pasos",
+   "titulo": "Siguiente prueba que propongo",
+   "items": [
+    "Probar un CLIP más grande, también de pesos abiertos, con los mismos 36 recortes, por si basta con eso. No hace falta que hagas nada.",
+    "Si no basta, mandarte hojas de recortes con número, como las M y las U, para que corrijas tipo y estampado desde el móvil, y entrenar con eso una capa pequeña encima de CLIP.",
+    "Medir con recortes que no haya visto y decidir qué se puede contar de verdad: seguramente el tipo y algunos estampados, la forma depende de lo que salga."
+   ]
+  }
+ ]
+}

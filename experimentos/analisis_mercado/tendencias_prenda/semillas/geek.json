@@ -1,0 +1,337 @@
+{
+ "v": 1,
+ "estilo": "geek",
+ "titulo": "Geek",
+ "actualizado": "2026-10-06T16:00:00Z",
+ "definicion": "Ropa ligada al fandom y la cultura pop (gaming, anime, cómic): manda el motivo o estampado, no la silueta.",
+ "referentes": [
+  {
+   "id": "r-orslok",
+   "nombre": "orslok",
+   "canal": "X @orslok (sin publicar desde hace unos 600 días) · streamer",
+   "estado": "ok",
+   "origen": "victor",
+   "nota": "Tu referente de geek. Como su X está parado, las fotos saldrían de prensa o de otras redes."
+  },
+  {
+   "id": "r-painthisice",
+   "nombre": "Painthisice",
+   "canal": "X @Painthisice",
+   "estado": "ok",
+   "origen": "ingesta",
+   "nota": "Sus fotos ya salieron buenas en tus revisiones anteriores (4 de 4). No sé si es una persona o una cuenta de contenido."
+  },
+  {
+   "id": "r-techwearclub",
+   "nombre": "TechwearClub",
+   "canal": "X @TechwearClub",
+   "estado": "prop",
+   "origen": "ingesta",
+   "nota": "También 4 de 4 buenas, pero es una cuenta de contenido techwear, no una persona. ¿La dejo como fuente?"
+  },
+  {
+   "id": "r-rubius",
+   "nombre": "Rubius",
+   "canal": "por confirmar",
+   "estado": "prop",
+   "origen": "claude",
+   "nota": "Sugerencia mía: streamer español. No he comprobado cómo viste ni dónde publica fotos."
+  },
+  {
+   "id": "r-thegrefg",
+   "nombre": "TheGrefg",
+   "canal": "por confirmar",
+   "estado": "prop",
+   "origen": "claude",
+   "nota": "Sugerencia mía: streamer español. Sin comprobar su ropa ni sus canales."
+  },
+  {
+   "id": "r-auronplay",
+   "nombre": "AuronPlay",
+   "canal": "por confirmar",
+   "estado": "prop",
+   "origen": "claude",
+   "nota": "Sugerencia mía: streamer español. Sin comprobar su ropa ni sus canales."
+  }
+ ],
+ "prendas": [
+  {
+   "id": "p-camiseta-manga-corta",
+   "nombre": "Camiseta manga corta",
+   "tipo": "ropa",
+   "cuenta": true,
+   "formas": [
+    "regular",
+    "oversized",
+    "boxy",
+    "cropped"
+   ],
+   "estampados": [
+    "gráfico de personaje",
+    "logo de juego / serie",
+    "logo / lettering",
+    "liso"
+   ],
+   "detalles": [],
+   "nota": ""
+  },
+  {
+   "id": "p-sudadera",
+   "nombre": "Sudadera",
+   "tipo": "ropa",
+   "cuenta": true,
+   "formas": [
+    "oversized",
+    "regular",
+    "boxy",
+    "cropped"
+   ],
+   "estampados": [
+    "gráfico de personaje",
+    "logo de juego / serie",
+    "logo / lettering",
+    "liso"
+   ],
+   "detalles": [
+    "con capucha",
+    "cremallera"
+   ],
+   "nota": ""
+  },
+  {
+   "id": "p-jersey",
+   "nombre": "Jersey",
+   "tipo": "ropa",
+   "cuenta": true,
+   "formas": [
+    "oversized",
+    "regular"
+   ],
+   "estampados": [
+    "rayas",
+    "liso",
+    "pixel-art"
+   ],
+   "detalles": [],
+   "nota": "Ejemplo en tus fotos: jersey de rayas rojo y negro con un dibujo de Pokémon."
+  },
+  {
+   "id": "p-camiseta-manga-larga",
+   "nombre": "Camiseta manga larga",
+   "tipo": "ropa",
+   "cuenta": true,
+   "formas": [
+    "regular",
+    "oversized",
+    "slim"
+   ],
+   "estampados": [
+    "rayas",
+    "liso",
+    "gráfico de personaje"
+   ],
+   "detalles": [],
+   "nota": ""
+  },
+  {
+   "id": "p-camisa",
+   "nombre": "Camisa",
+   "tipo": "ropa",
+   "cuenta": true,
+   "formas": [
+    "regular",
+    "oversized"
+   ],
+   "estampados": [
+    "tartán / cuadros escoceses",
+    "cuadros vichy",
+    "liso"
+   ],
+   "detalles": [
+    "corto"
+   ],
+   "nota": ""
+  },
+  {
+   "id": "p-chaqueta",
+   "nombre": "Chaqueta",
+   "tipo": "ropa",
+   "cuenta": true,
+   "formas": [
+    "regular",
+    "oversized",
+    "cropped"
+   ],
+   "estampados": [
+    "liso",
+    "gráfico de personaje"
+   ],
+   "detalles": [
+    "bomber",
+    "vaquero",
+    "correas / hebillas"
+   ],
+   "nota": ""
+  },
+  {
+   "id": "p-pantalon",
+   "nombre": "Pantalón",
+   "tipo": "ropa",
+   "cuenta": true,
+   "formas": [
+    "baggy",
+    "wide leg / palazzo",
+    "slim",
+    "relaxed"
+   ],
+   "estampados": [
+    "liso",
+    "camuflaje",
+    "tartán / cuadros escoceses"
+   ],
+   "detalles": [
+    "cargo",
+    "con rotos",
+    "correas / hebillas",
+    "jogger"
+   ],
+   "nota": ""
+  },
+  {
+   "id": "p-falda",
+   "nombre": "Falda",
+   "tipo": "ropa",
+   "cuenta": true,
+   "formas": [
+    "regular",
+    "maxi"
+   ],
+   "estampados": [
+    "tartán / cuadros escoceses",
+    "liso"
+   ],
+   "detalles": [
+    "mini",
+    "plisada"
+   ],
+   "nota": "Sale en 4 de las 14 fotos geek que probé (casi siempre de tartán)."
+  },
+  {
+   "id": "p-zapatillas-casual-lifest",
+   "nombre": "Zapatillas casual/lifestyle",
+   "tipo": "calzado",
+   "cuenta": true,
+   "formas": [
+    "bajas",
+    "caña alta",
+    "plataforma"
+   ],
+   "estampados": [
+    "liso"
+   ],
+   "detalles": [],
+   "nota": ""
+  },
+  {
+   "id": "p-botas",
+   "nombre": "Botas",
+   "tipo": "calzado",
+   "cuenta": true,
+   "formas": [
+    "plataforma",
+    "caña alta"
+   ],
+   "estampados": [
+    "liso"
+   ],
+   "detalles": [
+    "correas / hebillas"
+   ],
+   "nota": ""
+  },
+  {
+   "id": "p-gorra-gorro-sombrero",
+   "nombre": "Gorra/Gorro/Sombrero",
+   "tipo": "accesorio",
+   "cuenta": false,
+   "formas": [],
+   "estampados": [
+    "liso",
+    "logo / lettering"
+   ],
+   "detalles": [
+    "gorra",
+    "gorro / beanie"
+   ],
+   "nota": ""
+  },
+  {
+   "id": "p-bolso",
+   "nombre": "Bolso",
+   "tipo": "accesorio",
+   "cuenta": false,
+   "formas": [],
+   "estampados": [
+    "gráfico de personaje",
+    "liso"
+   ],
+   "detalles": [
+    "bandolera",
+    "mochila"
+   ],
+   "nota": "Sale un bolso en 2 de las 14 fotos geek que probé."
+  }
+ ],
+ "subestilos": [
+  {
+   "id": "s-alt",
+   "nombre": "Alternativo / e-girl",
+   "descripcion": "Faldas de tartán, medias altas, arneses, capas de negro y calzado con plataforma. Es lo más frecuente en tus fotos: a ojo, 6 de 14.",
+   "activo": true,
+   "origen": "fotos"
+  },
+  {
+   "id": "s-tech",
+   "nombre": "Techwear / cyber",
+   "descripcion": "Chaquetas técnicas, pantalón cargo con correas, botas; negro con toques fluor. A ojo, 3 de 14.",
+   "activo": true,
+   "origen": "fotos"
+  },
+  {
+   "id": "s-kawaii",
+   "nombre": "Kawaii / Harajuku",
+   "descripcion": "Colores suaves, bolsos y accesorios de personajes, calcetines altos y plataforma. A ojo, 2 de 14.",
+   "activo": true,
+   "origen": "fotos"
+  },
+  {
+   "id": "s-fandom",
+   "nombre": "Fandom: anime, juegos, cómic",
+   "descripcion": "Camisetas y sudaderas con el personaje o el logo de la serie o el juego. Es tu definición, pero casi no sale en las 14 fotos (una: el jersey de Pokémon).",
+   "activo": true,
+   "origen": "claude"
+  },
+  {
+   "id": "s-gamer",
+   "nombre": "Gamer / streamer",
+   "descripcion": "Sudadera con capucha, gorra, camiseta de equipo o de marca gaming, tonos oscuros.",
+   "activo": false,
+   "origen": "claude"
+  },
+  {
+   "id": "s-retro",
+   "nombre": "Retro / pixel",
+   "descripcion": "Pixel-art, consolas clásicas, colores saturados al estilo 8 bits.",
+   "activo": false,
+   "origen": "claude"
+  },
+  {
+   "id": "s-dev",
+   "nombre": "Informática / dev",
+   "descripcion": "Camisetas con humor de programación, sudaderas de empresa tecnológica, zapatillas cómodas.",
+   "activo": false,
+   "origen": "claude"
+  }
+ ],
+ "notas": ""
+}

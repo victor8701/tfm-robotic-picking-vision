@@ -117,6 +117,13 @@ Sesgo conocido: 41 de las 44 fotos de lujo confirmadas en la app son bolsos de L
 Objetivo final: un botón que analice las tendencias, saque fotos de X y diga de dónde son. El **modo mercado** (arriba) ya existe en su primera versión. Falta: una **medida real** con fotos nuevas de esas fuentes juzgadas por ti (la del 78 % es validación cruzada con fotos de otras fuentes),
 más datos de urbano, bohemio y geek, el «sube / baja» (necesita un segundo informe de días después) y la `descripcion` de cada tendencia redactada por el LLM con las definiciones de los estilos.
 
+## Tendencia por prenda (propuesta en un Artifact, 2026-10-06)
+
+Víctor redefinió «estar de moda»: no es qué estilo domina (cada persona tiene el suyo), sino **qué prendas, con qué forma, estampado y color, se llevan dentro de cada estilo** y si suben o bajan.
+El estilo lo da la **persona de referencia**, no la foto. Se empieza por **geek y urbano**. La propuesta está en una página editable de claude.ai (privada, con base de datos propia) para que la corrija desde el móvil:
+`tendencias_prenda/tendencias_prenda.html` (la página) y `tendencias_prenda/semillas/*.json` (el contenido inicial de la base: `general`, `geek`, `urbano`, `pruebas`; después las ediciones de Víctor viven solo en esa base).
+Primeras pruebas (volumen de fotos por referente, detector de prendas en 28 fotos, CLIP zero-shot sobre 36 recortes) en `memoria/TFM_tendencias_de_prenda.md`; la última, con su script y la revisión a ojo, en `../vlm_atributos_prenda/`.
+
 ## Privacidad y licencias
 
 Las fotos son de **personas reales** que las subieron a Reddit/X o salen en prensa. Se guardan **solo en `cache/`** (fuera de git); al repositorio van el
@@ -133,6 +140,7 @@ universidad antes de difundir un dataset con fotos de terceros (RGPD). Las pági
 | `modelo_estilos.npz` | pesos del clasificador (CLIP + regresión logística) y prototipos de texto | sí |
 | `etiquetas_mercado.json` | tus clasificaciones de la pestaña «Clasificar» (datos de la tesis) | sí |
 | `biblioteca.json` | descripciones, frases, personas de referencia, cuentas y enlaces por estilo | sí |
+| `tendencias_prenda/` | la página editable de «tendencia por prenda» y el contenido inicial de su base | sí |
 | `cache/` (`img/`, `biblioteca/`) · `candidatos.json` · `informe_mercado.*` | imágenes y trabajo local | no |
 
 Pruebas sin tocar tus datos: `MERCADO_DATOS=/ruta/copia python3 mercado.py app --puerto 8777` (y `MERCADO_CUENTAS_X=/ruta/cuentas.json` para no escribir en `ingesta_x`).

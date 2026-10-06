@@ -1,0 +1,321 @@
+{
+ "v": 1,
+ "actualizado": "2026-10-06T16:00:00Z",
+ "colores": [
+  "blanco",
+  "negro",
+  "gris",
+  "beige",
+  "camel",
+  "navy",
+  "azul",
+  "rojo",
+  "verde",
+  "burdeos",
+  "rosa",
+  "lavanda",
+  "menta",
+  "amarillo",
+  "naranja",
+  "fucsia",
+  "dorado",
+  "plateado"
+ ],
+ "formas": [
+  "skinny",
+  "slim",
+  "regular",
+  "relaxed",
+  "oversized",
+  "wide leg / palazzo",
+  "cropped",
+  "maxi",
+  "boxy",
+  "baggy",
+  "bajas",
+  "caña alta",
+  "plataforma"
+ ],
+ "estampados": [
+  "liso",
+  "rayas",
+  "cuadros vichy",
+  "floral",
+  "leopardo / animal print",
+  "tie-dye",
+  "geométrico",
+  "logo / lettering",
+  "gráfico / ilustración",
+  "gráfico de personaje",
+  "logo de juego / serie",
+  "tartán / cuadros escoceses",
+  "camuflaje",
+  "pixel-art"
+ ],
+ "detalles": [
+  "con capucha",
+  "cremallera",
+  "cargo",
+  "con rotos",
+  "jogger",
+  "vaquero",
+  "bomber",
+  "cortavientos",
+  "universitaria",
+  "correas / hebillas",
+  "corto",
+  "mini",
+  "plisada",
+  "gorra",
+  "gorro / beanie",
+  "cruzada",
+  "mochila",
+  "bandolera"
+ ],
+ "preguntas": [
+  {
+   "id": "urb-streetwear",
+   "tema": "Urbano",
+   "peso": "clave",
+   "q": "¿El streetwear entra en «urbano»?",
+   "ctx": "En las hojas U escribiste «sin street wear». Lo leí así: U01–U09 valen como urbano y U10–U11 no. Aquí fijo la regla para el futuro.",
+   "opciones": [
+    {
+     "id": "a",
+     "t": "No: urbano es la escena española (trap, rap, reality)",
+     "prop": true
+    },
+    {
+     "id": "b",
+     "t": "Sí: también streetwear (skate, baggy, marcas americanas)",
+     "prop": false
+    },
+    {
+     "id": "c",
+     "t": "El streetwear va aparte, como un estilo nuevo",
+     "prop": false
+    }
+   ],
+   "libre": false,
+   "resp": "",
+   "nota": ""
+  },
+  {
+   "id": "prioridad",
+   "tema": "Ritmo",
+   "peso": "clave",
+   "q": "¿Qué hago primero?",
+   "ctx": "Hay dos frentes: afinar cómo se reconocen forma y estampado, o buscar más fotos de tus referentes (YouTube, prensa, Reddit). Con las fuentes de hoy salen muy pocas fotos por referente (mira Pruebas).",
+   "opciones": [
+    {
+     "id": "a",
+     "t": "Primero el método: forma y estampado",
+     "prop": true
+    },
+    {
+     "id": "b",
+     "t": "Primero más fuentes de fotos",
+     "prop": false
+    },
+    {
+     "id": "c",
+     "t": "Las dos a la vez, más despacio",
+     "prop": false
+    }
+   ],
+   "libre": false,
+   "resp": "",
+   "nota": ""
+  },
+  {
+   "id": "geek-alcance",
+   "tema": "Geek",
+   "peso": "clave",
+   "q": "¿Geek incluye lo alternativo / techwear / e-girl?",
+   "ctx": "Tu definición habla de fandom (anime, gaming, cómic). Pero en las 14 fotos geek que miré, a ojo, la mayoría es alternativo o techwear (faldas de tartán, arneses, cargo técnico) y casi nada es camiseta de anime.",
+   "opciones": [
+    {
+     "id": "a",
+     "t": "Sí, todo eso es geek",
+     "prop": true
+    },
+    {
+     "id": "b",
+     "t": "Solo el fandom; lo alternativo es otro estilo",
+     "prop": false
+    },
+    {
+     "id": "c",
+     "t": "Fandom y techwear sí; e-girl / gótico no",
+     "prop": false
+    }
+   ],
+   "libre": false,
+   "resp": "",
+   "nota": ""
+  },
+  {
+   "id": "calzado",
+   "tema": "Alcance",
+   "peso": "detalle",
+   "q": "¿Cuento calzado y accesorios?",
+   "ctx": "En urbano las zapatillas pesan casi como la sudadera, pero en una foto de cuerpo entero salen pequeñas o cortadas. Los accesorios (gorra, riñonera, cadenas) se ven peor todavía.",
+   "opciones": [
+    {
+     "id": "a",
+     "t": "Ropa y calzado; accesorios fuera por ahora",
+     "prop": true
+    },
+    {
+     "id": "b",
+     "t": "Todo: ropa, calzado y accesorios",
+     "prop": false
+    },
+    {
+     "id": "c",
+     "t": "Solo ropa",
+     "prop": false
+    }
+   ],
+   "libre": false,
+   "resp": "",
+   "nota": ""
+  },
+  {
+   "id": "cortadas",
+   "tema": "Reglas",
+   "peso": "detalle",
+   "q": "Si una prenda sale cortada o tapada…",
+   "ctx": "Ejemplo: un pantalón en una foto de busto, o una sudadera medio tapada por una chaqueta.",
+   "opciones": [
+    {
+     "id": "a",
+     "t": "No la cuento (solo prendas que se ven enteras)",
+     "prop": true
+    },
+    {
+     "id": "b",
+     "t": "La cuento si se ve más de la mitad",
+     "prop": false
+    },
+    {
+     "id": "c",
+     "t": "La cuento siempre",
+     "prop": false
+    }
+   ],
+   "libre": false,
+   "resp": "",
+   "nota": ""
+  },
+  {
+   "id": "ventana",
+   "tema": "Reglas",
+   "peso": "detalle",
+   "q": "¿Con qué ventana comparo?",
+   "ctx": "Una ventana corta deja casi vacías las celdas con tantos atributos. Una larga tarda más en notar los cambios.",
+   "opciones": [
+    {
+     "id": "a",
+     "t": "30 días contra los 30 anteriores",
+     "prop": false
+    },
+    {
+     "id": "b",
+     "t": "90 días contra los 90 anteriores",
+     "prop": true
+    },
+    {
+     "id": "c",
+     "t": "Por temporada (6 meses)",
+     "prop": false
+    }
+   ],
+   "libre": false,
+   "resp": "",
+   "nota": ""
+  },
+  {
+   "id": "minimo",
+   "tema": "Reglas",
+   "peso": "detalle",
+   "q": "¿Cuántas fotos mínimo para enseñar una cifra?",
+   "ctx": "Por debajo del mínimo el informe dice «pocos datos» y baja a un nivel más general (prenda + forma, o solo prenda).",
+   "opciones": [
+    {
+     "id": "a",
+     "t": "3 fotos",
+     "prop": false
+    },
+    {
+     "id": "b",
+     "t": "5 fotos",
+     "prop": true
+    },
+    {
+     "id": "c",
+     "t": "10 fotos",
+     "prop": false
+    }
+   ],
+   "libre": false,
+   "resp": "",
+   "nota": ""
+  },
+  {
+   "id": "prensa",
+   "tema": "Fotos",
+   "peso": "detalle",
+   "q": "¿Cuento fotos de prensa donde sale un referente?",
+   "ctx": "Sin reconocer caras: la foto se atribuye solo si el titular o el pie de foto nombra a la persona.",
+   "opciones": [
+    {
+     "id": "a",
+     "t": "Sí, si el texto lo nombra",
+     "prop": true
+    },
+    {
+     "id": "b",
+     "t": "No, solo fotos de sus propias cuentas",
+     "prop": false
+    }
+   ],
+   "libre": false,
+   "resp": "",
+   "nota": ""
+  },
+  {
+   "id": "mercado",
+   "tema": "Fotos",
+   "peso": "detalle",
+   "q": "¿Para qué mercado miro geek y urbano?",
+   "ctx": "Tus referentes son españoles y los idiomas de las fuentes se filtran por mercado.",
+   "opciones": [
+    {
+     "id": "a",
+     "t": "España por ahora",
+     "prop": true
+    },
+    {
+     "id": "b",
+     "t": "España y EEUU, por separado",
+     "prop": false
+    }
+   ],
+   "libre": false,
+   "resp": "",
+   "nota": ""
+  },
+  {
+   "id": "mas-gente",
+   "tema": "Referentes",
+   "peso": "detalle",
+   "q": "¿A quién más metes como referente?",
+   "ctx": "Nombre y dónde publica (X, YouTube, prensa). Mira primero las listas de Geek y Urbano: las sugerencias mías están marcadas.",
+   "opciones": [],
+   "libre": true,
+   "resp": "",
+   "nota": ""
+  }
+ ]
+}

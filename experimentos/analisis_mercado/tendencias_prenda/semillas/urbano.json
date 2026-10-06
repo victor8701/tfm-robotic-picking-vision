@@ -1,0 +1,331 @@
+{
+ "v": 1,
+ "estilo": "urbano",
+ "titulo": "Urbano",
+ "actualizado": "2026-10-06T16:00:00Z",
+ "definicion": "Escena trap/rap española, de lo más crudo a lo más pulido (bronceado, gimnasio, marca deportiva o lifestyle de gama alta, estética de reality y redes).",
+ "referentes": [
+  {
+   "id": "r-cruz",
+   "nombre": "Cruz Cafuné",
+   "canal": "prensa (su X @CruzCafune ya no existe) · Tenerife",
+   "estado": "ok",
+   "origen": "victor",
+   "nota": ""
+  },
+  {
+   "id": "r-hoke",
+   "nombre": "Hoke",
+   "canal": "prensa · Instagram @hokebbo (el X @hokebbo parece de su gestión)",
+   "estado": "ok",
+   "origen": "victor",
+   "nota": ""
+  },
+  {
+   "id": "r-israelb",
+   "nombre": "Israel B",
+   "canal": "prensa · X por confirmar",
+   "estado": "ok",
+   "origen": "victor",
+   "nota": "Una de las páginas de prensa que leo lo presenta como referente del drill español."
+  },
+  {
+   "id": "r-shoda",
+   "nombre": "Shoda Monkas",
+   "canal": "X @shodamonkas (1 foto en 14 días)",
+   "estado": "ok",
+   "origen": "victor",
+   "nota": ""
+  },
+  {
+   "id": "r-bycalitos",
+   "nombre": "bycalitos",
+   "canal": "X @byCaLiTosYT (12 fotos; la última, hace 2 días)",
+   "estado": "ok",
+   "origen": "victor",
+   "nota": ""
+  },
+  {
+   "id": "r-isla",
+   "nombre": "La Isla de las Tentaciones",
+   "canal": "programa de TV · fotos de prensa y redes del programa",
+   "estado": "ok",
+   "origen": "victor",
+   "nota": "No es una persona: los concursantes cambian cada edición. Sirve para la estética reality, no para seguir a alguien."
+  },
+  {
+   "id": "r-quevedo",
+   "nombre": "Quevedo",
+   "canal": "por confirmar",
+   "estado": "prop",
+   "origen": "claude",
+   "nota": "Sugerencia mía: artista urbano español. Sin comprobar su ropa ni dónde publica fotos."
+  },
+  {
+   "id": "r-morad",
+   "nombre": "Morad",
+   "canal": "por confirmar",
+   "estado": "prop",
+   "origen": "claude",
+   "nota": "Sugerencia mía: artista urbano español. Sin comprobar su ropa ni dónde publica fotos."
+  },
+  {
+   "id": "r-benyjr",
+   "nombre": "Beny Jr",
+   "canal": "por confirmar",
+   "estado": "prop",
+   "origen": "claude",
+   "nota": "Sugerencia mía: artista urbano español. Sin comprobar su ropa ni dónde publica fotos."
+  }
+ ],
+ "prendas": [
+  {
+   "id": "p-sudadera",
+   "nombre": "Sudadera",
+   "tipo": "ropa",
+   "cuenta": true,
+   "formas": [
+    "oversized",
+    "boxy",
+    "regular"
+   ],
+   "estampados": [
+    "logo / lettering",
+    "liso",
+    "gráfico / ilustración"
+   ],
+   "detalles": [
+    "con capucha",
+    "cremallera"
+   ],
+   "nota": ""
+  },
+  {
+   "id": "p-camiseta-manga-corta",
+   "nombre": "Camiseta manga corta",
+   "tipo": "ropa",
+   "cuenta": true,
+   "formas": [
+    "oversized",
+    "regular",
+    "slim",
+    "boxy"
+   ],
+   "estampados": [
+    "logo / lettering",
+    "gráfico / ilustración",
+    "liso"
+   ],
+   "detalles": [],
+   "nota": ""
+  },
+  {
+   "id": "p-camiseta-de-tirantes",
+   "nombre": "Camiseta de tirantes",
+   "tipo": "ropa",
+   "cuenta": true,
+   "formas": [
+    "regular",
+    "oversized"
+   ],
+   "estampados": [
+    "liso",
+    "logo / lettering"
+   ],
+   "detalles": [],
+   "nota": "Gimnasio y verano."
+  },
+  {
+   "id": "p-polo",
+   "nombre": "Polo",
+   "tipo": "ropa",
+   "cuenta": true,
+   "formas": [
+    "slim",
+    "regular"
+   ],
+   "estampados": [
+    "rayas",
+    "liso",
+    "logo / lettering"
+   ],
+   "detalles": [],
+   "nota": "Ejemplo en tus fotos: polo de marca de gama alta en la calle."
+  },
+  {
+   "id": "p-camisa",
+   "nombre": "Camisa",
+   "tipo": "ropa",
+   "cuenta": true,
+   "formas": [
+    "regular",
+    "oversized"
+   ],
+   "estampados": [
+    "liso",
+    "rayas"
+   ],
+   "detalles": [
+    "corto"
+   ],
+   "nota": ""
+  },
+  {
+   "id": "p-chaqueta",
+   "nombre": "Chaqueta",
+   "tipo": "ropa",
+   "cuenta": true,
+   "formas": [
+    "regular",
+    "oversized",
+    "cropped"
+   ],
+   "estampados": [
+    "liso",
+    "logo / lettering",
+    "camuflaje"
+   ],
+   "detalles": [
+    "bomber",
+    "cortavientos",
+    "universitaria",
+    "vaquero"
+   ],
+   "nota": ""
+  },
+  {
+   "id": "p-plumas",
+   "nombre": "Plumas",
+   "tipo": "ropa",
+   "cuenta": true,
+   "formas": [
+    "oversized",
+    "regular",
+    "cropped"
+   ],
+   "estampados": [
+    "liso"
+   ],
+   "detalles": [
+    "con capucha"
+   ],
+   "nota": ""
+  },
+  {
+   "id": "p-pantalon",
+   "nombre": "Pantalón",
+   "tipo": "ropa",
+   "cuenta": true,
+   "formas": [
+    "baggy",
+    "wide leg / palazzo",
+    "relaxed",
+    "slim"
+   ],
+   "estampados": [
+    "liso",
+    "camuflaje"
+   ],
+   "detalles": [
+    "cargo",
+    "jogger",
+    "con rotos",
+    "vaquero",
+    "corto"
+   ],
+   "nota": ""
+  },
+  {
+   "id": "p-zapatillas-deportivas",
+   "nombre": "Zapatillas deportivas",
+   "tipo": "calzado",
+   "cuenta": true,
+   "formas": [
+    "bajas",
+    "caña alta",
+    "plataforma"
+   ],
+   "estampados": [
+    "liso"
+   ],
+   "detalles": [],
+   "nota": ""
+  },
+  {
+   "id": "p-gorra-gorro-sombrero",
+   "nombre": "Gorra/Gorro/Sombrero",
+   "tipo": "accesorio",
+   "cuenta": false,
+   "formas": [],
+   "estampados": [
+    "liso",
+    "logo / lettering"
+   ],
+   "detalles": [
+    "gorra",
+    "gorro / beanie"
+   ],
+   "nota": ""
+  },
+  {
+   "id": "p-rinonera",
+   "nombre": "Riñonera",
+   "tipo": "accesorio",
+   "cuenta": false,
+   "formas": [],
+   "estampados": [
+    "liso",
+    "logo / lettering"
+   ],
+   "detalles": [
+    "cruzada"
+   ],
+   "nota": ""
+  }
+ ],
+ "subestilos": [
+  {
+   "id": "s-trap",
+   "nombre": "Trap / rap oscuro",
+   "descripcion": "Negro casi total, sudadera oversized con capucha, pantalón baggy o cargo, zapatilla deportiva y cadenas.",
+   "activo": true,
+   "origen": "claude"
+  },
+  {
+   "id": "s-chandal",
+   "nombre": "Chándal / marca deportiva",
+   "descripcion": "Prendas y conjuntos de marca deportiva: chaqueta de chándal, jogger, riñonera cruzada.",
+   "activo": true,
+   "origen": "claude"
+  },
+  {
+   "id": "s-pulido",
+   "nombre": "Urbano pulido / reality",
+   "descripcion": "Bronceado y gimnasio: camiseta ajustada o polo, camisa abierta, vaquero, zapatilla blanca limpia y marca de gama alta.",
+   "activo": true,
+   "origen": "claude"
+  },
+  {
+   "id": "s-drill",
+   "nombre": "Drill / calle",
+   "descripcion": "Capucha, plumas negras, riñonera cruzada. Sin comprobar qué se lleva ahora en España.",
+   "activo": false,
+   "origen": "claude"
+  },
+  {
+   "id": "s-street",
+   "nombre": "Streetwear baggy / skate",
+   "descripcion": "Solo si el streetwear entra en urbano (mira Preguntas): pantalón baggy, camiseta grande, zapatilla de skate.",
+   "activo": false,
+   "origen": "claude"
+  },
+  {
+   "id": "s-lujo",
+   "nombre": "Lujo urbano",
+   "descripcion": "Logos de lujo sobre looks urbanos. Se solapa con «lujo ostentoso»: mejor dejarlo fuera para no contar dos veces.",
+   "activo": false,
+   "origen": "claude"
+  }
+ ],
+ "notas": ""
+}
