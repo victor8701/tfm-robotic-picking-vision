@@ -1,10 +1,31 @@
 {
-  "_comentario": "Cuentas de X que ya han dado resultados confirmados (revisada=true, sin corregir) para ese estilo -- verificado en clasificaciones.json, no adivinado. Se usan además de la búsqueda abierta, nunca en vez de ella. Añadir una cuenta aquí solo tras verla confirmada de verdad; nunca a partir de un nombre que suene plausible.",
-  "old_money": ["dieworkwear"],
-  "alternativo_geek": ["Painthisice"],
-  "bohemio": ["mchburton"],
+ "_comentario": "Cuentas de X que ya han dado resultados confirmados (revisada=true, sin corregir) para ese estilo -- verificado en clasificaciones.json, no adivinado. Se usan además de la búsqueda abierta, nunca en vez de ella. Añadir una cuenta aquí solo tras verla confirmada de verdad; nunca a partir de un nombre que suene plausible. Única excepción (2026-10-03): las cuentas que Víctor añade a mano en la pestaña Biblioteca de la app local (experimentos/analisis_mercado) se copian aquí solas y quedan anotadas en `_desde_biblioteca`: las elige él, no se adivinan.",
+ "old_money": [
+  "dieworkwear"
+ ],
+ "alternativo_geek": [
+  "Painthisice"
+ ],
+ "bohemio": [
+  "mchburton"
+ ],
+ "lujo_ostentoso": [],
+ "clasico_tradicional": [
+  "vitoquiles",
+  "envido6"
+ ],
+ "urbano": [],
+ "convencional": [],
+ "_desde_biblioteca": {
+  "old_money": [],
   "lujo_ostentoso": [],
-  "clasico_tradicional": [],
+  "clasico_tradicional": [
+   "vitoquiles",
+   "envido6"
+  ],
   "urbano": [],
+  "bohemio": [],
+  "alternativo_geek": [],
   "convencional": []
+ }
 }

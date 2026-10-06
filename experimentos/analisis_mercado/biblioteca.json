@@ -1,0 +1,331 @@
+{
+ "version": 1,
+ "estilos": {
+  "old_money": {
+   "descripcion": "Lujo discreto y clásico: americana o chaleco, camisa de corte náutico, punto fino, tonos sobrios y ningún logo ni detalle vistoso (Anexo A de la memoria).",
+   "frases": [
+    "a quiet luxury outfit with a tailored navy blazer, a fine knit sweater and no visible logos",
+    "old money style: a cashmere sweater over a white collared shirt, beige chinos and leather loafers",
+    "an elegant understated classic look in neutral colors made of high quality fabrics",
+    "a refined outfit with a camel coat, tailored trousers and a silk scarf"
+   ],
+   "referentes": "",
+   "usar_texto": false
+  },
+  "lujo_ostentoso": {
+   "descripcion": "El contraste de Old Money («New Money»): marca de lujo muy visible (Gucci, Philipp Plein…), logos grandes, joyas, colores y estampados llamativos. Referencia de Víctor: estética «futbolista» (Dani Alves).",
+   "frases": [
+    "a person wearing flashy designer clothes with big visible luxury brand logos",
+    "footballer style outfit with a Gucci or Louis Vuitton monogram, a gold chain and a designer belt",
+    "ostentatious luxury fashion with bold prints, an expensive watch, jewelry and designer sneakers",
+    "new money look: Philipp Plein, Versace baroque print, Balenciaga or Dolce & Gabbana"
+   ],
+   "referentes": "Dani Alves (estética «futbolista»)",
+   "usar_texto": true
+  },
+  "clasico_tradicional": {
+   "descripcion": "El pijo/cayetano español que viste un poco «paleto» (definición de Víctor, 2026-10-03): chalecos, náuticos, calcetines feos y vistosos con pantalones tobilleros, etc. Prendas icónicas citadas en prensa: chaqueta Barbour y manoletinas. Es un estilo muy de España.",
+   "frases": [
+    "a man wearing a quilted vest over a polo shirt, ankle-length chino trousers, bright colorful socks and boat shoes",
+    "a spanish preppy conservative look: a navy blazer with gold buttons, pink or red trousers and loafers with colorful socks",
+    "a waxed Barbour jacket with a quilted gilet, corduroy trousers and earth tone colors",
+    "cropped trousers that show loud patterned socks with nautical boat shoes",
+    "a traditional upper class outfit with a polo shirt, a sweater tied over the shoulders and boat shoes",
+    "a classic women's look with a Barbour jacket, ballet flats, a headband and pearl earrings"
+   ],
+   "referentes": "vito quiles, envido6, https://envido6.com/",
+   "usar_texto": true
+  },
+  "urbano": {
+   "descripcion": "Escena trap/rap española, de lo más crudo a lo más pulido (bronceado, gimnasio, marca deportiva o lifestyle de gama alta, estética de reality y redes).",
+   "frases": [
+    "spanish trap and rap street style: an oversized hoodie or tracksuit, chunky sneakers, a gold chain and a cap",
+    "urban streetwear with premium sportswear brands, a puffer jacket and a cross-body bag",
+    "a young man with a fade haircut and a tan wearing a branded tracksuit and white sneakers"
+   ],
+   "referentes": "Cruz Cafuné · Hoke · Israel B · Shoda Monkas · bycalitos · La Isla de las Tentaciones",
+   "usar_texto": false
+  },
+  "bohemio": {
+   "descripcion": "Telas fluidas, tonos tierra, capas y accesorios artesanales.",
+   "frases": [
+    "a bohemian outfit with flowy fabrics, earth tones and layered handmade jewelry",
+    "hippie style with a crochet top, fringe, an embroidered blouse and sandals",
+    "a boho layered look with a long cardigan, a scarf, a floppy hat and a leather bag"
+   ],
+   "referentes": "",
+   "usar_texto": false
+  },
+  "alternativo_geek": {
+   "descripcion": "Ropa ligada al fandom y la cultura pop (gaming, anime, cómic): manda el motivo o estampado, no la silueta.",
+   "frases": [
+    "a geek outfit with a graphic t-shirt of an anime, video game or comic character",
+    "fandom clothing with printed characters, a gaming hoodie and a backpack",
+    "nerd fashion with glasses and pop culture merchandise t-shirts"
+   ],
+   "referentes": "orslok",
+   "usar_texto": false
+  },
+  "convencional": {
+   "descripcion": "Sigue la tendencia dominante del momento sin rasgo diferenciador propio.",
+   "frases": [
+    "an everyday normcore outfit with a plain t-shirt, jeans and white sneakers",
+    "a basic casual look that follows mainstream trends with no distinctive style",
+    "simple jeans and a sweatshirt in neutral colors"
+   ],
+   "referentes": "",
+   "usar_texto": false
+  }
+ },
+ "fuentes": [
+  {
+   "id": "d7817cf13d",
+   "tipo": "x",
+   "valor": "vitoquiles",
+   "estilo": "clasico_tradicional",
+   "anadida": "2026-10-03T17:21:02+00:00",
+   "estado": {
+    "ultima": "2026-10-03T19:08:42+00:00",
+    "fotos": 0
+   }
+  },
+  {
+   "id": "ea28ef1189",
+   "tipo": "reddit_sub",
+   "valor": "Barbour",
+   "estilo": "clasico_tradicional",
+   "anadida": "2026-10-03T18:23:41+00:00",
+   "estado": {
+    "ultima": "2026-10-03T18:43:19+00:00",
+    "fotos": 0,
+    "con_imagen": 26
+   }
+  },
+  {
+   "id": "fac4572061",
+   "tipo": "pagina",
+   "valor": "https://www.trendencias.com/tendencias/chaleco-acolchado-que-se-esta-poniendo-moda-madrid-esta-a-venta-hipercor-30-euros",
+   "estilo": "clasico_tradicional",
+   "anadida": "2026-10-03T18:23:41+00:00",
+   "estado": {
+    "ultima": "2026-10-03T18:23:49+00:00",
+    "fotos": 3,
+    "repetidas": 3
+   }
+  },
+  {
+   "id": "570ef83541",
+   "tipo": "reddit_sub",
+   "valor": "LouisVuitton",
+   "estilo": "lujo_ostentoso",
+   "anadida": "2026-10-03T18:23:41+00:00",
+   "estado": {
+    "ultima": "2026-10-03T18:44:06+00:00",
+    "fotos": 0,
+    "con_imagen": 53
+   }
+  },
+  {
+   "id": "8354d32a14",
+   "tipo": "reddit_sub",
+   "valor": "Gucci",
+   "estilo": "lujo_ostentoso",
+   "anadida": "2026-10-03T18:23:41+00:00",
+   "estado": {
+    "ultima": "2026-10-03T18:45:06+00:00",
+    "fotos": 0,
+    "con_imagen": 41
+   }
+  },
+  {
+   "id": "c965f3ce24",
+   "tipo": "pagina",
+   "valor": "https://www.semana.com/jet-set/articulo/futbolistas-y-moda-de-lujo-los-bolsos-que-marcan-tendencia-en-el-mundial/202648/",
+   "estilo": "lujo_ostentoso",
+   "anadida": "2026-10-03T18:23:41+00:00",
+   "estado": {
+    "ultima": "2026-10-03T18:23:59+00:00",
+    "fotos": 5
+   }
+  },
+  {
+   "id": "9242f1ab5f",
+   "tipo": "pagina",
+   "valor": "https://www.hola.com/moda/20260723914154/campeones-mundo-iconos-estilo-la-roja-moda-internacional/",
+   "estilo": "lujo_ostentoso",
+   "anadida": "2026-10-03T18:23:41+00:00",
+   "estado": {
+    "ultima": "2026-10-03T18:24:02+00:00",
+    "fotos": 11,
+    "repetidas": 1
+   }
+  },
+  {
+   "id": "c8f9d6dce7",
+   "tipo": "x",
+   "valor": "envido6",
+   "estilo": "clasico_tradicional",
+   "anadida": "2026-10-03T18:42:59+00:00",
+   "estado": {
+    "ultima": "2026-10-03T19:08:45+00:00",
+    "fotos": 0
+   },
+   "nombre": "Envido6"
+  },
+  {
+   "id": "800bd312c2",
+   "tipo": "pagina",
+   "valor": "https://envido6.com/",
+   "estilo": "clasico_tradicional",
+   "anadida": "2026-10-03T18:42:59+00:00",
+   "estado": {
+    "ultima": "2026-10-03T18:47:21+00:00",
+    "fotos": 6
+   }
+  },
+  {
+   "id": "3aec6f0eae",
+   "tipo": "x",
+   "valor": "Versace",
+   "estilo": "lujo_ostentoso",
+   "anadida": "2026-10-03T19:08:39+00:00",
+   "estado": {
+    "ultima": "2026-10-03T19:09:09+00:00",
+    "fotos": 22
+   },
+   "nombre": "VERSACE",
+   "origen": "asistente"
+  },
+  {
+   "id": "020386ea81",
+   "tipo": "x",
+   "valor": "DSQUARED2",
+   "estilo": "lujo_ostentoso",
+   "anadida": "2026-10-03T19:08:39+00:00",
+   "estado": {
+    "ultima": "2026-10-03T19:09:30+00:00",
+    "fotos": 38
+   },
+   "nombre": "DSQUARED2",
+   "origen": "asistente"
+  },
+  {
+   "id": "0710c3bf9e",
+   "tipo": "x",
+   "valor": "gucci",
+   "estilo": "lujo_ostentoso",
+   "anadida": "2026-10-03T19:08:39+00:00",
+   "estado": {
+    "ultima": "2026-10-03T19:10:01+00:00",
+    "fotos": 31
+   },
+   "nombre": "gucci",
+   "origen": "asistente"
+  },
+  {
+   "id": "3242c5cbd1",
+   "tipo": "x",
+   "valor": "DolceGabbana",
+   "estilo": "lujo_ostentoso",
+   "anadida": "2026-10-03T19:08:39+00:00",
+   "estado": {
+    "ultima": "2026-10-03T19:10:14+00:00",
+    "fotos": 18
+   },
+   "nombre": "Dolce&Gabbana",
+   "origen": "asistente"
+  },
+  {
+   "id": "f5b52b997d",
+   "tipo": "x",
+   "valor": "Balmain",
+   "estilo": "lujo_ostentoso",
+   "anadida": "2026-10-03T19:08:39+00:00",
+   "estado": {
+    "ultima": "2026-10-03T19:10:39+00:00",
+    "fotos": 21
+   },
+   "nombre": "Balmain",
+   "origen": "asistente"
+  },
+  {
+   "id": "de41c55a8a",
+   "tipo": "x",
+   "valor": "Dior",
+   "estilo": "lujo_ostentoso",
+   "anadida": "2026-10-03T19:08:39+00:00",
+   "estado": {
+    "ultima": "2026-10-03T19:11:17+00:00",
+    "fotos": 41
+   },
+   "nombre": "Dior",
+   "origen": "asistente"
+  },
+  {
+   "id": "8d9f34de2c",
+   "tipo": "x",
+   "valor": "HackettLondon",
+   "estilo": "clasico_tradicional",
+   "anadida": "2026-10-03T19:08:41+00:00",
+   "estado": {
+    "ultima": "2026-10-03T19:11:36+00:00",
+    "fotos": 31
+   },
+   "nombre": "hackettlondon",
+   "origen": "asistente"
+  },
+  {
+   "id": "fcb3237551",
+   "tipo": "x",
+   "valor": "Barbour",
+   "estilo": "clasico_tradicional",
+   "anadida": "2026-10-03T19:08:41+00:00",
+   "estado": {
+    "ultima": "2026-10-03T19:12:02+00:00",
+    "fotos": 44,
+    "repetidas": 1
+   },
+   "nombre": "barbour",
+   "origen": "asistente"
+  },
+  {
+   "id": "d098127610",
+   "tipo": "x",
+   "valor": "RalphLauren",
+   "estilo": "clasico_tradicional",
+   "anadida": "2026-10-03T19:08:41+00:00",
+   "estado": {
+    "ultima": "2026-10-03T19:12:23+00:00",
+    "fotos": 35
+   },
+   "nombre": "Ralph Lauren",
+   "origen": "asistente"
+  },
+  {
+   "id": "b6477267bb",
+   "tipo": "x",
+   "valor": "BrooksBrothers",
+   "estilo": "clasico_tradicional",
+   "anadida": "2026-10-03T19:08:41+00:00",
+   "estado": {
+    "ultima": "2026-10-03T19:12:39+00:00",
+    "fotos": 22
+   },
+   "nombre": "Brooks Brothers",
+   "origen": "asistente"
+  },
+  {
+   "id": "863ad57f50",
+   "tipo": "x",
+   "valor": "massimodutti",
+   "estilo": "clasico_tradicional",
+   "anadida": "2026-10-03T19:08:41+00:00",
+   "estado": {
+    "ultima": "2026-10-03T19:13:43+00:00",
+    "fotos": 55
+   },
+   "nombre": "Massimo Dutti",
+   "origen": "asistente"
+  }
+ ]
+}

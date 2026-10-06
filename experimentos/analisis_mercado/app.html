@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Analizar mercado</title>
+<style>
+:root{--fondo:#f4f1ec;--tinta:#1e2430;--suave:#6a6f7a;--tarjeta:#fff;--linea:#d9d4cb;--acento:#2f4a6b;--acento-t:#fff;--sug:#e8eef6;--ok:#2d7a4b;--mal:#a8433a;--aviso:#f3ede0;--log:#101418;--log-t:#cfd6dd}
+@media (prefers-color-scheme:dark){:root{--fondo:#15181f;--tinta:#e9e6df;--suave:#9aa0ab;--tarjeta:#1f242e;--linea:#333a47;--acento:#8fb0d6;--acento-t:#10151d;--sug:#26324a;--ok:#62c086;--mal:#e08a80;--aviso:#2a2620;--log:#0b0d10}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fondo);color:var(--tinta);font:16px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{padding:14px 16px 0;max-width:820px;margin:0 auto}
+h1{font-size:1.25rem;margin:0}h1 small{font-weight:400;color:var(--suave);font-size:.8rem;margin-left:6px}
+nav{display:flex;gap:4px;flex-wrap:wrap;margin:10px 0 0;border-bottom:1px solid var(--linea)}
+nav button{font:inherit;background:none;border:0;border-bottom:3px solid transparent;color:var(--suave);padding:8px 12px;cursor:pointer}
+nav button[aria-selected="true"]{color:var(--tinta);border-bottom-color:var(--acento);font-weight:600}
+main{max-width:820px;margin:0 auto;padding:16px 16px 60px}
+section[hidden]{display:none}
+.tarjetas{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:0 0 16px}
+.tarjeta{background:var(--tarjeta);border:1px solid var(--linea);border-radius:12px;padding:10px 12px}
+.tarjeta b{display:block;font-size:1.5rem}.tarjeta span{color:var(--suave);font-size:.82rem}
+.grande{font:inherit;font-size:1.15rem;font-weight:700;width:100%;padding:16px;border-radius:14px;border:0;background:var(--acento);color:var(--acento-t);cursor:pointer}
+.grande:disabled,button:disabled{opacity:.5;cursor:not-allowed}
+.fila-btn{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;align-items:center}
+button.sec{font:inherit;padding:9px 14px;border-radius:10px;border:1px solid var(--linea);background:var(--tarjeta);color:var(--tinta);cursor:pointer}
+button.sec:hover:not(:disabled){border-color:var(--acento)}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,.zona:focus-visible{outline:2px solid var(--acento);outline-offset:2px}
+.nota{color:var(--suave);font-size:.85rem;margin:6px 0}
+.consejo{background:var(--sug);border-radius:10px;padding:10px 12px;margin:12px 0;font-size:.92rem}
+.tarea{background:var(--tarjeta);border:1px solid var(--linea);border-radius:12px;padding:12px;margin-top:14px}
+.tarea h3{margin:0 0 6px;font-size:.95rem}.estado-ok{color:var(--ok)}.estado-mal{color:var(--mal)}
+pre{background:var(--log);color:var(--log-t);border-radius:8px;padding:10px;font:12px/1.4 ui-monospace,Menlo,Consolas,monospace;max-height:230px;overflow:auto;white-space:pre-wrap;margin:8px 0 0}
+label{display:block;font-size:.88rem;color:var(--suave);margin:12px 0 4px}
+input[type=text],select,textarea{font:inherit;width:100%;padding:9px 10px;border-radius:10px;border:1px solid var(--linea);background:var(--tarjeta);color:var(--tinta)}
+textarea{font:13px/1.4 ui-monospace,Menlo,Consolas,monospace;min-height:64px;resize:vertical}
+h2{font-size:1.05rem;margin:0 0 8px}
+/* clasificar */
+.foto{background:var(--tarjeta);border:1px solid var(--linea);border-radius:12px;padding:12px;text-align:center}
+.foto img{max-width:100%;max-height:44vh;border-radius:8px;background:#fff}
+.meta{color:var(--suave);font-size:.82rem;margin:8px 0 2px}
+.tit{font-size:.9rem;margin:0 0 8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sug{background:var(--sug);border-radius:8px;padding:6px 10px;font-size:.88rem;margin:6px 0 10px}
+.prop-txt{background:var(--aviso);border-left:4px solid var(--ok);border-radius:8px;padding:6px 10px;font-size:.92rem;margin:6px 0}
+.estilos{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}
+.estilos button{font:inherit;padding:10px 8px;border-radius:10px;border:1px solid var(--linea);background:var(--tarjeta);color:var(--tinta);cursor:pointer;text-align:left}
+.estilos button b{display:inline-block;min-width:1.4em;color:var(--acento)}
+.estilos button.top{border-color:var(--acento);outline:2px solid var(--acento)}
+.estilos button.prop{border-color:var(--ok);outline:3px solid var(--ok)}
+.estilos button.no{grid-column:1/-1;text-align:center}
+.barra{height:6px;background:var(--linea);border-radius:4px;overflow:hidden;margin:8px 0 10px}.barra div{height:100%;background:var(--acento);width:0}
+.pie{display:flex;justify-content:space-between;gap:8px;margin-top:10px;color:var(--suave);font-size:.82rem;align-items:center}
+iframe{width:100%;height:78vh;border:1px solid var(--linea);border-radius:12px;background:#fff}
+/* biblioteca */
+.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin:12px 0}
+.chip{font:inherit;text-align:left;padding:9px 10px;border-radius:12px;border:1px solid var(--linea);background:var(--tarjeta);color:var(--tinta);cursor:pointer}
+.chip[aria-selected="true"]{border-color:var(--acento);outline:2px solid var(--acento)}
+.chip b{display:block;font-size:.92rem}.chip small{display:block;color:var(--suave);font-size:.76rem;margin-top:2px}
+.meta-barra{height:5px;background:var(--linea);border-radius:3px;margin-top:6px;overflow:hidden}.meta-barra i{display:block;height:100%;background:var(--acento)}
+.chip.falta .meta-barra i{background:var(--mal)}
+.bloque{background:var(--tarjeta);border:1px solid var(--linea);border-radius:12px;padding:12px 14px;margin:12px 0}
+.bloque h4{margin:0 0 6px;font-size:.98rem;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.etiq{font-size:.7rem;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--sug);color:var(--acento)}
+.zona{border:2px dashed var(--linea);border-radius:12px;padding:22px 12px;text-align:center;color:var(--suave);cursor:pointer}
+.zona.sobre{border-color:var(--acento);background:var(--sug)}
+.zona u{color:var(--acento)}
+.miniaturas{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:6px;margin-top:10px}
+.miniaturas figure{position:relative;margin:0}
+.miniaturas img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:8px;background:var(--linea);display:block}
+.miniaturas button,ul.fuentes button{font:inherit;line-height:1;border-radius:999px;border:1px solid var(--linea);background:var(--tarjeta);color:var(--tinta);cursor:pointer}
+.miniaturas button{position:absolute;top:3px;right:3px;width:24px;height:24px;padding:0}
+.check{display:flex;gap:8px;align-items:flex-start;color:var(--tinta);margin:10px 0 4px}.check input{margin-top:4px}
+.aviso-es{background:var(--aviso);border-radius:8px;padding:6px 10px;font-size:.84rem;margin:6px 0}
+ul.fuentes{list-style:none;padding:0;margin:8px 0 0}
+ul.fuentes li{display:grid;grid-template-columns:1fr auto;gap:2px 8px;padding:8px 0;border-top:1px solid var(--linea)}
+ul.fuentes .quien{overflow-wrap:anywhere}ul.fuentes a{color:var(--acento)}
+ul.fuentes .tipo{font-size:.72rem;color:var(--suave);margin-right:6px}
+ul.fuentes .est{grid-column:1/-1;font-size:.8rem;color:var(--suave)}
+ul.fuentes button{padding:4px 9px;font-size:.8rem}
+.acciones{position:sticky;bottom:0;background:var(--fondo);border-top:1px solid var(--linea);padding:10px 0 6px;margin-top:14px}
+.acciones .fila-btn{margin:0 0 4px}.acciones .grande{width:auto;font-size:1rem;padding:11px 18px}
+code{background:var(--sug);border-radius:4px;padding:0 4px}
+</style>
+
+<header>
+  <h1>Analizar mercado <small>prototipo</small></h1>
+  <nav role="tablist" id="pestanas">
+    <button role="tab" data-t="inicio">Inicio</button>
+    <button role="tab" data-t="clasificar">Clasificar</button>
+    <button role="tab" data-t="biblioteca">Biblioteca</button>
+    <button role="tab" data-t="informe">Informe</button>
+    <button role="tab" data-t="ajustes">Ajustes</button>
+  </nav>
+</header>
+
+<main>
+<!-- INICIO -->
+<section id="s-inicio">
+  <div class="tarjetas">
+    <div class="tarjeta"><b id="n-cand">–</b><span>fotos candidatas</span></div>
+    <div class="tarjeta"><b id="n-etq">–</b><span>clasificadas por ti</span></div>
+    <div class="tarjeta"><b id="n-pend">–</b><span>pendientes de clasificar</span></div>
+    <div class="tarjeta"><b id="n-acierto">–</b><span id="t-acierto">acierto del modelo contigo</span></div>
+  </div>
+  <button class="grande" id="b-analizar">Analizar mercado</button>
+  <p class="nota">Reentrena el modelo si has cambiado la Biblioteca o confirmado fotos, descarga fotos nuevas (Reddit y las cuentas, comunidades y enlaces de tu Biblioteca), las clasifica y prepara el informe. <b>Tarda varios minutos</b> (Reddit limita las peticiones); puedes dejar esta pestaña abierta.</p>
+  <div class="fila-btn">
+    <button class="sec" id="b-informe">Solo actualizar el informe (sin descargar)</button>
+    <button class="sec" id="b-ver-informe">Ver el informe</button>
+    <button class="sec" id="b-parar" hidden>Cancelar la tarea</button>
+  </div>
+  <div class="consejo" id="consejo"></div>
+  <div class="tarea" id="tarea" hidden><h3 id="tarea-t"></h3><div id="tarea-e" class="nota"></div><pre id="tarea-log"></pre></div>
+</section>
+
+<!-- CLASIFICAR -->
+<section id="s-clasificar" hidden>
+  <div id="c-inicio">
+    <h2>Clasificar fotos</h2>
+    <p class="nota">Ves una foto cada vez, con la sugerencia del modelo. Mientras clasificas, la app calcula <b>en qué porcentaje coincide el modelo contigo</b>: esa es la medida honesta de lo bien que funciona con fotos nuevas. Con ratón o con teclado (1-7 estilo · Enter acepta la sugerencia · 0 no sirve · ← volver · S saltar). Las fotos que propones desde la <b>Biblioteca</b> salen primero, con el estilo que indicaste: Enter lo confirma.</p>
+    <label for="c-cuantas">¿Cuántas fotos esta vez?</label>
+    <select id="c-cuantas"><option value="30">30 (unos 3 minutos)</option><option value="60" selected>60 (unos 6 minutos)</option><option value="0">Todas las pendientes</option></select>
+    <p><button class="grande" id="c-empezar">Empezar a clasificar</button></p>
+    <div class="nota" id="c-msg"></div>
+  </div>
+  <div id="c-panel" hidden>
+    <div class="barra"><div id="c-prog"></div></div>
+    <div class="foto" id="c-caja"></div>
+    <div class="pie"><span id="c-cuenta"></span><button class="sec" id="c-atras">← Volver</button></div>
+  </div>
+</section>
+
+<!-- BIBLIOTECA -->
+<section id="s-biblioteca" hidden>
+  <h2>Biblioteca de estilos</h2>
+  <p class="nota">Aquí le enseñas tú al clasificador y al buscador: describe cada estilo, sube fotos de ejemplo y apunta cuentas y enlaces. Lo que añadas se usa al <b>reentrenar</b> (clasificador) y al <b>buscar fotos</b> (buscador). Meta: <span id="b-meta">60</span> fotos confirmadas por estilo.</p>
+  <div class="chips" id="b-chips" role="tablist" aria-label="Estilos"></div>
+
+  <div id="b-detalle" hidden>
+    <h2 id="b-titulo"></h2>
+    <p class="nota" id="b-resumen"></p>
+
+    <div class="bloque">
+      <h4>1 · Cómo es este estilo <span class="etiq">clasificador</span></h4>
+      <label for="b-desc">Con tus palabras (queda guardado para la memoria y para que el LLM redacte las tendencias)</label>
+      <textarea id="b-desc" rows="3" spellcheck="true"></textarea>
+      <label for="b-frases">Frases para el clasificador: <b>en inglés</b>, una por línea (CLIP entiende mucho mejor el inglés). Describe prendas concretas.</label>
+      <textarea id="b-frases" rows="6" spellcheck="false"></textarea>
+      <div class="aviso-es" id="b-aviso-es" hidden></div>
+      <label class="check" for="b-usar"><input type="checkbox" id="b-usar"><span>Usar estas frases para clasificar este estilo. Recomendado cuando hay pocas fotos o las que hay no recogen bien el estilo; el modelo las corrige con tus fotos. Se comprueba con validación cruzada al reentrenar.</span></label>
+      <label for="b-ref">Personas de referencia (solo apuntes tuyos)</label>
+      <input type="text" id="b-ref" spellcheck="false">
+      <div class="fila-btn"><button class="sec" id="b-guardar">Guardar</button><span class="nota" id="b-guardado"></span></div>
+    </div>
+
+    <div class="bloque">
+      <h4>2 · Fotos de ejemplo <span class="etiq">clasificador</span></h4>
+      <div class="zona" id="b-zona" tabindex="0" role="button" aria-label="Añadir fotos: arrastra, pega o elige archivos">Arrastra aquí fotos de este estilo · pégalas con <b>Ctrl+V</b> · o <u>elige archivos</u></div>
+      <input type="file" id="b-archivos" accept="image/*" multiple hidden>
+      <p class="nota" id="b-msg-fotos">Cuantas más fotos reales del estilo que tú quieres decir, mejor. Se guardan solo en este ordenador.</p>
+      <div class="miniaturas" id="b-fotos"></div>
+    </div>
+
+    <div class="bloque">
+      <h4>3 · Cuentas y enlaces <span class="etiq">buscador</span></h4>
+      <p class="nota">Pega cuentas (<code>@usuario</code>, <code>r/comunidad</code>, <code>u/usuario</code>) o enlaces (tuits con fotos, páginas web o artículos con fotos, imágenes), separados por espacios o por líneas.
+        Reddit, cuentas de X (leídas con el servicio público FxTwitter, de terceros), tuits, páginas e imágenes se descargan solos al pulsar «Buscar fotos con la Biblioteca»; Instagram y TikTok no se pueden leer solos (abre el perfil y pega aquí los enlaces de las fotos buenas).
+        Las fotos que salgan se te proponen en «Clasificar» con este estilo. Las que subes tú en el apartado 2 no pasan por «Clasificar»: ya son ejemplos tuyos.</p>
+      <textarea id="b-fuentes" rows="3" spellcheck="false" placeholder="@usuario   r/comunidad   https://…/articulo   https://x.com/…/status/…"></textarea>
+      <div class="fila-btn"><label for="b-plataforma" style="margin:0">Las @cuentas sueltas son de</label>
+        <select id="b-plataforma" style="width:auto"><option value="x">X</option><option value="instagram">Instagram</option><option value="tiktok">TikTok</option></select>
+        <button class="sec" id="b-anadir">Añadir</button></div>
+      <p class="nota" id="b-msg-fuentes"></p>
+      <ul class="fuentes" id="b-lista-fuentes"></ul>
+    </div>
+  </div>
+
+  <div class="acciones">
+    <div class="fila-btn">
+      <button class="grande" id="b-buscar">Buscar fotos con la Biblioteca</button>
+      <button class="sec" id="b-reentrenar">Reentrenar el modelo</button>
+    </div>
+    <p class="nota" id="b-estado"></p>
+  </div>
+</section>
+
+<!-- INFORME -->
+<section id="s-informe" hidden>
+  <p class="nota" id="i-msg"></p>
+  <iframe id="i-marco" title="Informe de mercado" hidden></iframe>
+  <p class="nota"><a id="i-abrir" href="/informe_mercado.html" target="_blank" rel="noopener">Abrir el informe en una pestaña nueva</a></p>
+</section>
+
+<!-- AJUSTES -->
+<section id="s-ajustes" hidden>
+  <h2>Ajustes</h2>
+  <label for="a-subs">Comunidades de Reddit que se descargan (separadas por comas)</label>
+  <input type="text" id="a-subs" spellcheck="false">
+  <label for="a-periodo">Qué parte del «top» de cada comunidad</label>
+  <select id="a-periodo"><option value="week">Esta semana (más «ahora», menos fotos)</option><option value="month" selected>Este mes (más fotos)</option><option value="day">Hoy</option><option value="year">Este año</option></select>
+  <h2 style="margin-top:22px">Modelo de estilos</h2>
+  <p class="nota" id="a-modelo"></p>
+  <div class="fila-btn"><button class="sec" id="a-reentrenar">Reentrenar con mis etiquetas y mi Biblioteca, y actualizar el informe</button></div>
+  <p class="nota">El modelo aprende de tus fotos confirmadas de la galería, de lo que clasificas aquí y de las fotos y frases de tu Biblioteca. Reentrénalo después de clasificar unas decenas de fotos o de cambiar la Biblioteca.</p>
+  <h2 style="margin-top:22px">Privacidad</h2>
+  <p class="nota">Las fotos son de personas reales y se guardan <b>solo en este ordenador</b> (carpeta <code>cache</code>, fuera de git). Al repositorio solo van el código, el modelo, tus etiquetas y los textos de la Biblioteca (frases, cuentas, enlaces). No publiques las imágenes.</p>
+</section>
+</main>
+
+<script>
+const $ = s => document.querySelector(s);
+let E = null;                 // último estado del servidor
+let tabActual = 'inicio';
+const TABS = ['inicio', 'clasificar', 'biblioteca', 'informe', 'ajustes'];
+
+async function api(ruta, cuerpo) {
+  const r = await fetch(ruta, cuerpo === undefined ? {} : {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(cuerpo)});
+  let datos = null; try { datos = await r.json(); } catch (_) {}
+  if (!r.ok) throw new Error((datos && (datos.error || datos.motivo)) || ('Error ' + r.status));
+  return datos;
+}
+function el(tag, props, ...hijos) { const n = document.createElement(tag); Object.assign(n, props || {}); hijos.forEach(h => n.append(h)); return n; }
+
+/* ------------------------------------------------------------ pestañas */
+function ir(t) {
+  tabActual = t;
+  document.querySelectorAll('main > section').forEach(s => s.hidden = s.id !== 's-' + t);
+  document.querySelectorAll('#pestanas button').forEach(b => b.setAttribute('aria-selected', b.dataset.t === t));
+  history.replaceState(null, '', '#' + t);
+  if (t === 'informe') cargarInforme();
+  if (t === 'biblioteca') cargarBiblioteca(false);
+}
+document.querySelectorAll('#pestanas button').forEach(b => b.onclick = () => ir(b.dataset.t));
+
+/* ------------------------------------------------------------ estado e inicio */
+function fecha(iso) { return iso ? new Date(iso).toLocaleString('es-ES', {dateStyle: 'short', timeStyle: 'short'}) : '–'; }
+function hora(iso) { return iso ? new Date(iso).toLocaleTimeString('es-ES', {hour: '2-digit', minute: '2-digit'}) : ''; }
+async function refrescar() {
+  try { E = await api('/api/estado'); } catch (e) { return; }
+  $('#n-cand').textContent = E.candidatas; $('#n-etq').textContent = E.etiquetadas; $('#n-pend').textContent = E.pendientes;
+  if (E.coincide.n) { $('#n-acierto').textContent = Math.round(100 * E.coincide.k / E.coincide.n) + ' %'; $('#t-acierto').textContent = 'acierto del modelo contigo (' + E.coincide.k + ' de ' + E.coincide.n + ')'; }
+  else { $('#n-acierto').textContent = '–'; $('#t-acierto').textContent = 'acierto del modelo contigo (aún sin medir)'; }
+  const t = E.tarea, activa = t.en_curso;
+  ['b-analizar', 'b-informe', 'a-reentrenar', 'b-buscar', 'b-reentrenar'].forEach(id => { const x = document.getElementById(id); if (x) x.disabled = activa; });
+  $('#b-parar').hidden = !activa;
+  $('#tarea').hidden = !t.nombre;
+  if (t.nombre) {
+    $('#tarea-t').textContent = t.nombre;
+    const e = $('#tarea-e');
+    if (activa) { e.className = 'nota'; e.textContent = 'En marcha desde las ' + fecha(t.inicio) + '… no cierres la ventana negra que se abrió con la app.'; }
+    else if (t.codigo === 0) { e.className = 'nota estado-ok'; e.textContent = '✔ Terminada.'; }
+    else { e.className = 'nota estado-mal'; e.textContent = '✖ Terminó con un error (código ' + t.codigo + '). Mira el final del registro.'; }
+    const pre = $('#tarea-log'), abajo = pre.scrollTop + pre.clientHeight >= pre.scrollHeight - 8;
+    pre.textContent = t.log || '(sin salida todavía)'; if (abajo) pre.scrollTop = pre.scrollHeight;
+  }
+  $('#b-ver-informe').disabled = !E.informe;
+  let c = '';
+  if (!E.modelo) c = 'Falta el modelo de estilos: ve a «Ajustes» y pulsa «Reentrenar».';
+  else if (E.candidatas === 0) c = 'Aún no hay fotos. Pulsa «Analizar mercado» para descargar las primeras (tarda unos minutos).';
+  else if (E.propuestas_pendientes > 0) c = 'Tienes ' + E.propuestas_pendientes + ' fotos que has propuesto desde la Biblioteca esperando tu confirmación: ve a «Clasificar» (salen primero; Enter confirma el estilo que indicaste).';
+  else if (E.biblioteca_cambiada) c = 'Has cambiado la Biblioteca desde el último entrenamiento: pulsa «Reentrenar» (en «Biblioteca» o «Ajustes») para que el modelo la use.';
+  else if (E.coincide.n < 20 && E.pendientes > 0) c = 'Siguiente paso: clasifica unas 40 fotos en «Clasificar» (5 minutos). Así sabremos cuánto acierta el modelo con fotos nuevas.';
+  else if (E.etiquetas_desde_modelo >= 15) c = 'Has clasificado ' + E.etiquetas_desde_modelo + ' fotos desde el último entrenamiento: pulsa «Reentrenar» para que el modelo aprenda de ellas.';
+  else c = 'Todo al día. Modelo entrenado con ' + E.modelo.n + ' fotos (acierto en validación cruzada ' + Math.round(100 * E.modelo.cv_acc) + ' %, optimista: manda lo que midas tú).';
+  $('#consejo').textContent = c;
+  $('#a-modelo').textContent = E.modelo ? ('Entrenado el ' + fecha(E.modelo.fecha) + ' con ' + E.modelo.n + ' fotos · acierto en validación cruzada ' + Math.round(100 * E.modelo.cv_acc) + ' % (optimista: mezcla fuentes)'
+    + (E.modelo.lam ? '; usa las frases de la Biblioteca (λ = ' + E.modelo.lam + '), sin ellas sería ' + Math.round(100 * E.modelo.cv_acc_fotos) + ' %.' : '; solo con fotos.')) : 'Todavía no hay modelo entrenado.';
+  if (!$('#a-subs').value) $('#a-subs').value = E.subs_por_defecto;
+  if (tabActual === 'informe' && E.informe && $('#i-marco').dataset.v !== E.informe) cargarInforme();
+  if (tabActual === 'biblioteca') { pintarEstadoBiblioteca(); cargarBiblioteca(false); }
+}
+async function lanzar(accion, quedarse) {
+  try { await api('/api/tarea', {accion, subs: $('#a-subs').value, periodo: $('#a-periodo').value}); if (!quedarse) ir('inicio'); refrescar(); }
+  catch (e) { alert(e.message); }
+}
+$('#b-analizar').onclick = () => lanzar('analizar');
+$('#b-informe').onclick = () => lanzar('informe');
+$('#a-reentrenar').onclick = () => lanzar('reentrenar');
+$('#b-parar').onclick = async () => { await api('/api/parar', {}); refrescar(); };
+$('#b-ver-informe').onclick = () => ir('informe');
+
+/* ------------------------------------------------------------ informe */
+function cargarInforme() {
+  const m = $('#i-marco');
+  if (E && E.informe) { m.hidden = false; $('#i-msg').textContent = 'Informe generado el ' + fecha(E.informe) + '.'; if (m.dataset.v !== E.informe) { m.src = '/informe_mercado.html?v=' + encodeURIComponent(E.informe); m.dataset.v = E.informe; } }
+  else { m.hidden = true; $('#i-msg').textContent = 'Todavía no hay informe. En «Inicio», pulsa «Analizar mercado» o «Solo actualizar el informe».'; }
+}
+
+/* ------------------------------------------------------------ biblioteca */
+let B = null, estiloSel = null, firmaB = '';
+const ESPANOL = /[áéíóúñ¿¡]|\b(con|de|del|el|la|los|las|un|una|y|para|que|sin|pantalones?|calcetines|chaleco|camisa|zapatos?)\b/i;
+
+async function cargarBiblioteca(forzar) {
+  let nuevo;
+  try { nuevo = await api('/api/biblioteca'); } catch (e) { $('#b-estado').textContent = '⚠ ' + e.message; return; }
+  const firma = JSON.stringify([nuevo.estilos.map(s => [s.id, s.total, s.n, s.recall, s.fotos]), nuevo.fuentes, nuevo.cambiada]);
+  const primera = B === null;
+  B = nuevo; $('#b-meta').textContent = B.meta;
+  if (!estiloSel) estiloSel = B.estilos.find(s => s.id === 'clasico_tradicional') ? 'clasico_tradicional' : B.estilos[0].id;
+  if (forzar || primera) { pintarChips(); pintarEstilo(true); }
+  else if (firma !== firmaB) { pintarChips(); pintarEstilo(false); }
+  firmaB = firma;
+  pintarEstadoBiblioteca();
+}
+function estiloActual() { return B.estilos.find(s => s.id === estiloSel); }
+
+function pintarChips() {
+  const caja = $('#b-chips'); caja.replaceChildren();
+  B.estilos.forEach(s => {
+    const falta = s.total < 30 || (s.recall !== null && s.recall < 0.6);
+    const b = el('button', {className: 'chip' + (falta ? ' falta' : ''), role: 'tab'}, el('b', {textContent: s.nombre}),
+      el('small', {textContent: s.total + ' / ' + B.meta + ' fotos'}),
+      el('small', {textContent: s.recall === null ? 'acierto sin medir' : 'acierto ' + Math.round(100 * s.recall) + ' %' + (falta ? ' ⚠' : '')}),
+      el('div', {className: 'meta-barra'}, el('i', {style: 'width:' + Math.min(100, 100 * s.total / B.meta) + '%'})));
+    b.setAttribute('aria-selected', s.id === estiloSel);
+    b.onclick = () => { estiloSel = s.id; pintarChips(); pintarEstilo(true); };
+    caja.append(b);
+  });
+}
+
+function pintarEstilo(rellenarCampos) {
+  const s = estiloActual();
+  $('#b-detalle').hidden = false;
+  $('#b-titulo').textContent = s.nombre;
+  const n = s.n;
+  $('#b-resumen').textContent = s.rasgos + ' · ' + s.total + ' fotos para entrenar (' + n.galeria + ' de la galería, ' + n.clasificadas + ' clasificadas aquí, ' + n.biblioteca + ' de la Biblioteca)'
+    + (s.recall === null ? '' : ' · el modelo acierta el ' + Math.round(100 * s.recall) + ' % de sus fotos' + (s.recall_fotos !== null && s.recall_fotos !== s.recall ? ' (solo con fotos: ' + Math.round(100 * s.recall_fotos) + ' %)' : '') + ' en validación cruzada, medido con ' + s.n_modelo + ' fotos.');
+  if (rellenarCampos) {
+    $('#b-desc').value = s.descripcion; $('#b-frases').value = s.frases.join('\n'); $('#b-ref').value = s.referentes; $('#b-usar').checked = s.usar_texto;
+    $('#b-guardado').textContent = ''; $('#b-msg-fuentes').textContent = ''; avisoEspanol();
+  }
+  const fotos = $('#b-fotos'); fotos.replaceChildren();
+  s.fotos.forEach(id => {
+    const x = el('button', {textContent: '✕', title: 'Quitar esta foto', type: 'button'}); x.setAttribute('aria-label', 'Quitar esta foto');
+    x.onclick = async () => { try { await api('/api/biblioteca/borrar_foto', {estilo: s.id, id}); cargarBiblioteca(false); } catch (e) { alert(e.message); } };
+    fotos.append(el('figure', {}, el('img', {src: '/bib/' + s.id + '/' + id + '.jpg', alt: 'foto de ejemplo de ' + s.nombre, loading: 'lazy'}), x));
+  });
+  const lista = $('#b-lista-fuentes'); lista.replaceChildren();
+  const fs = B.fuentes.filter(f => f.estilo === s.id);
+  if (!fs.length) lista.append(el('li', {className: 'nota', textContent: 'Aún no has añadido cuentas ni enlaces a este estilo.'}));
+  fs.forEach(f => {
+    const e = f.estado || {};
+    let txt;
+    if (e.error) txt = '⚠ ' + e.error;
+    else if (!f.descarga) txt = f.tipo === 'red' ? 'Guardada, pero no se descarga sola: pega el enlace de la imagen o abre la publicación.' : 'Guardada. No se puede leer sola: abre el perfil y pega aquí los enlaces de las fotos que te gusten.';
+    else if (!e.ultima) txt = 'Pendiente de descargar: pulsa «Buscar fotos con la Biblioteca».';
+    else txt = '✔ ' + (e.fotos || 0) + ' fotos nuevas · ' + fecha(e.ultima);
+    const x = el('button', {textContent: '✕', title: 'Quitar', type: 'button'}); x.setAttribute('aria-label', 'Quitar ' + f.texto);
+    x.onclick = async () => { try { await api('/api/biblioteca/borrar_fuente', {id: f.id}); cargarBiblioteca(false); } catch (er) { alert(er.message); } };
+    lista.append(el('li', {}, el('div', {className: 'quien'}, el('span', {className: 'tipo', textContent: f.tipo_nombre}), el('a', {href: f.url, target: '_blank', rel: 'noopener noreferrer', textContent: f.texto}), f.nombre ? el('span', {className: 'tipo', textContent: ' · ' + f.nombre}) : ''), x,
+      el('div', {className: 'est' + (e.error ? ' estado-mal' : ''), textContent: txt})));
+  });
+}
+
+function pintarEstadoBiblioteca() {
+  if (!B || !E) return;
+  const t = E.tarea, partes = [];
+  if (t.nombre && t.en_curso) partes.push('⏳ ' + t.nombre + ' en marcha desde las ' + hora(t.inicio) + '… (el registro está en «Inicio»)');
+  else if (t.nombre && t.codigo === 0) partes.push('✔ ' + t.nombre + ': terminada.' + (/Buscar|Descargar/.test(t.nombre) ? ' Las fotos nuevas están en «Clasificar» (salen primero).' : ''));
+  else if (t.nombre) partes.push('✖ ' + t.nombre + ': terminó con un error; mira el registro en «Inicio».');
+  if (B.cambiada) partes.push('La Biblioteca ha cambiado desde el último entrenamiento: pulsa «Reentrenar el modelo» para que la use.');
+  $('#b-estado').textContent = partes.join('  ·  ');
+}
+
+function avisoEspanol() {
+  const lineas = $('#b-frases').value.split('\n').map(l => l.trim()).filter(Boolean), es = lineas.filter(l => ESPANOL.test(l)), caja = $('#b-aviso-es');
+  caja.hidden = !es.length;
+  if (es.length) caja.textContent = '⚠ ' + es.length + (es.length === 1 ? ' frase parece estar' : ' frases parecen estar') + ' en español. CLIP entiende mucho mejor el inglés: tradúcelas (puedes pegarlas en un traductor) o el estilo no se reconocerá bien.';
+}
+$('#b-frases').oninput = avisoEspanol;
+
+$('#b-guardar').onclick = async () => {
+  const s = estiloActual();
+  try {
+    const r = await api('/api/biblioteca/textos', {estilo: s.id, descripcion: $('#b-desc').value, frases: $('#b-frases').value, referentes: $('#b-ref').value, usar_texto: $('#b-usar').checked});
+    $('#b-guardado').textContent = '✔ Guardado (' + r.frases + ' frases). Pulsa «Reentrenar el modelo» para que las use.'; cargarBiblioteca(false);
+  } catch (e) { $('#b-guardado').textContent = '⚠ ' + e.message; }
+};
+
+async function subir(archivos) {
+  const s = estiloActual(), fotos = [...archivos].filter(f => f.type.startsWith('image/') || /\.(jpe?g|png|webp)$/i.test(f.name));
+  if (!fotos.length) { $('#b-msg-fotos').textContent = '⚠ Eso no parece una imagen (usa JPG, PNG o WebP).'; return; }
+  let nuevas = 0, repetidas = 0, distinto = [], fallos = [];
+  for (let i = 0; i < fotos.length; i++) {
+    $('#b-msg-fotos').textContent = 'Subiendo ' + (i + 1) + ' de ' + fotos.length + '…';
+    try {
+      const r = await fetch('/api/biblioteca/imagen?estilo=' + encodeURIComponent(s.id), {method: 'POST', headers: {'Content-Type': fotos[i].type || 'application/octet-stream'}, body: fotos[i]});
+      const d = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error(d.error || ('Error ' + r.status));
+      if (d.guardada === false || (d.guardada === undefined && d.repetida_en)) repetidas++;   // (servidor antiguo: solo tenía repetida_en)
+      else { nuevas++; if (d.estilo_previo) distinto.push(d.estilo_previo); }
+    } catch (e) { fallos.push((fotos[i].name || 'imagen') + ': ' + e.message); }
+  }
+  const nombre = id => (B.estilos.find(x => x.id === id) || {nombre: id}).nombre;
+  const partes = [];
+  partes.push(nuevas ? '✔ ' + nuevas + (nuevas === 1 ? ' foto nueva' : ' fotos nuevas') + ' en ' + s.nombre : 'Ninguna foto nueva');
+  if (repetidas) partes.push(repetidas + (repetidas === 1 ? ' ya estaba' : ' ya estaban') + ' entre tus fotos con este estilo (no se repiten)');
+  if (distinto.length) partes.push(distinto.length + ' ya estaba(n) como «' + [...new Set(distinto.map(nombre))].join('», «') + '»: se usa tu elección');
+  if (fallos.length) partes.push('⚠ ' + fallos.join(' · '));
+  $('#b-msg-fotos').textContent = partes.join(' · ') + (nuevas ? '. Pulsa «Reentrenar el modelo» para que aprenda de ellas.' : '.');
+  cargarBiblioteca(false);
+}
+const zona = $('#b-zona');
+zona.onclick = () => $('#b-archivos').click();
+zona.onkeydown = ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); $('#b-archivos').click(); } };
+$('#b-archivos').onchange = ev => { subir(ev.target.files); ev.target.value = ''; };
+zona.ondragover = ev => { ev.preventDefault(); zona.classList.add('sobre'); };
+zona.ondragleave = () => zona.classList.remove('sobre');
+zona.ondrop = ev => { ev.preventDefault(); zona.classList.remove('sobre'); subir(ev.dataTransfer.files); };
+document.addEventListener('paste', ev => {
+  if (tabActual !== 'biblioteca' || !B) return;
+  const imgs = [...(ev.clipboardData ? ev.clipboardData.files : [])].filter(f => f.type.startsWith('image/'));
+  if (imgs.length) { ev.preventDefault(); subir(imgs); }
+});
+
+$('#b-anadir').onclick = async () => {
+  const s = estiloActual(), btn = $('#b-anadir');
+  btn.disabled = true; $('#b-msg-fuentes').textContent = 'Comprobando y añadiendo… (si hay cuentas de X puede tardar unos segundos)';
+  try {
+    const r = await api('/api/biblioteca/fuentes', {estilo: s.id, texto: $('#b-fuentes').value, plataforma: $('#b-plataforma').value});
+    const m = [r.nuevas + ' añadidas'];
+    if (r.repetidas) m.push(r.repetidas + ' ya estaban');
+    if (r.no_entendidas.length) m.push('no entendidas: ' + r.no_entendidas.join(', '));
+    if ((r.no_existen || []).length) m.push('no existen en X (¿mal escritas?): ' + r.no_existen.join(', '));
+    if (r.por_descargar) m.push(r.descarga ? 'descargando las fotos de ' + r.por_descargar + ' enlaces (puede tardar un minuto)' : r.por_descargar + ' enlaces pendientes: pulsa «Buscar fotos con la Biblioteca»');
+    if (r.hay_x && r.nuevas) m.push('las fotos de las cuentas de X se bajan al pulsar «Buscar fotos con la Biblioteca»');
+    $('#b-msg-fuentes').textContent = (r.nuevas ? '✔ ' : '⚠ ') + m.join(' · ') + '.';
+    if (r.nuevas) $('#b-fuentes').value = '';
+    cargarBiblioteca(false); refrescar();
+  } catch (e) { $('#b-msg-fuentes').textContent = '⚠ ' + e.message; }
+  btn.disabled = false;
+};
+$('#b-buscar').onclick = () => lanzar('buscar', true);
+$('#b-reentrenar').onclick = () => lanzar('reentrenar', true);
+
+/* ------------------------------------------------------------ clasificar */
+let cola = [], et = {}, i = 0, enCurso = false;
+
+$('#c-empezar').onclick = async () => {
+  $('#c-msg').textContent = 'Preparando las fotos y las sugerencias del modelo (la primera vez tarda unos segundos)…';
+  try {
+    cola = await api('/api/cola?max=' + $('#c-cuantas').value); et = await api('/api/etiquetas');
+  } catch (e) { $('#c-msg').textContent = '⚠ ' + e.message; return; }
+  if (!cola.length) { sinPendientes(); return; }
+  i = 0; enCurso = true; $('#c-inicio').hidden = true; $('#c-panel').hidden = false; pintar();
+};
+function sinPendientes() {
+  const m = $('#c-msg'); m.replaceChildren();
+  const n = E.fuentes_biblioteca;
+  m.append(E.candidatas === 0 ? 'Aún no hay fotos que clasificar.' : 'No hay fotos pendientes de clasificar. Aquí solo salen las fotos que descarga el buscador; las que subes tú en la Biblioteca ya son ejemplos tuyos con su estilo y no pasan por esta pantalla. ',
+    n ? 'Tus ' + n + ' fuentes de la Biblioteca (cuentas de X, comunidades de Reddit, tuits, artículos) no tienen nada nuevo ahora: los posts nuevos aparecen con los días, o añade más fuentes. '
+      : 'Todavía no tienes fuentes en la Biblioteca que se descarguen solas: añade cuentas de X, comunidades de Reddit, tuits o artículos de prensa con fotos. ');
+  const a = el('button', {className: 'sec', textContent: 'Ir a la Biblioteca'}); a.onclick = () => ir('biblioteca');
+  const b = el('button', {className: 'sec', textContent: 'Buscar fotos nuevas ahora'}); b.onclick = () => { lanzar('buscar', true); ir('biblioteca'); };
+  m.append(el('div', {className: 'fila-btn'}, a, b));
+}
+function estadisticas() {
+  const hechas = cola.filter(c => c.id in et), ok = hechas.filter(c => et[c.id].decision === 'ok'), medibles = ok.filter(c => !c.propuesto);
+  return {n: hechas.length, ok: ok.length, med: medibles.length, ac: medibles.filter(c => et[c.id].estilo === c.pred[0][0]).length};
+}
+function pintar() {
+  const s = estadisticas();
+  $('#c-prog').style.width = (100 * s.n / Math.max(1, cola.length)) + '%';
+  $('#c-cuenta').textContent = s.n + ' / ' + cola.length + ' revisadas' + (s.med ? ' · el modelo coincidió contigo en ' + s.ac + ' de ' + s.med + ' (' + Math.round(100 * s.ac / s.med) + ' %)' : '');
+  const caja = $('#c-caja'); caja.replaceChildren();
+  if (i >= cola.length) {
+    enCurso = false;
+    caja.append(el('p', {textContent: 'Tanda terminada ✔'}),
+      el('p', {className: 'nota', textContent: 'Gracias: ' + s.ok + ' fotos con estilo y ' + (s.n - s.ok) + ' descartadas. Para que el modelo aprenda de ellas, reentrénalo.'}));
+    const b1 = el('button', {className: 'grande', textContent: 'Reentrenar con mis etiquetas y actualizar el informe'}); b1.onclick = () => { $('#c-panel').hidden = true; $('#c-inicio').hidden = false; lanzar('reentrenar'); };
+    const b2 = el('button', {className: 'sec', textContent: 'Otra tanda'}); b2.onclick = () => { $('#c-panel').hidden = true; $('#c-inicio').hidden = false; $('#c-msg').textContent = ''; refrescar(); };
+    caja.append(b1, el('p'), b2); return;
+  }
+  const c = cola[i], top = c.pred[0], prop = c.propuesto ? c.propuesto[0] : null;
+  const img = el('img', {src: '/img/' + encodeURIComponent(c.id), alt: 'foto ' + (i + 1)});
+  const meta = el('div', {className: 'meta', textContent: (c.comunidad || '') + (c.rank ? ' · puesto ' + c.rank : '') + (c.gate < 0.35 ? ' · ⚠ quizá no es un outfit' : '')});
+  const sug = el('div', {className: 'sug', textContent: 'Sugerencia del modelo: ' + c.pred.map(p => p[2] + ' ' + Math.round(100 * p[1]) + ' %').join(' · ')});
+  const grid = el('div', {className: 'estilos'});
+  E.estilos.forEach((e, k) => {
+    const b = el('button', {className: e[0] === prop ? 'prop' : e[0] === top[0] ? 'top' : ''}, el('b', {textContent: String(k + 1)}), ' ' + e[1] + (e[0] === prop ? '  (el que indicaste)' : ''));
+    b.title = e[2]; b.onclick = () => poner('ok', e[0]); grid.append(b);
+  });
+  const no = el('button', {className: 'no'}, el('b', {textContent: '0'}), ' No sirve (no es un outfit / no quiero esta foto)'); no.onclick = () => poner('descartada'); grid.append(no);
+  caja.append(img, meta, el('p', {className: 'tit', textContent: c.titulo || ''}));
+  if (prop) caja.append(el('div', {className: 'prop-txt'}, 'Propuesta desde tu Biblioteca: ', el('b', {textContent: c.propuesto[1]}), '. Enter la confirma; si no es, elige otro estilo o «No sirve».'));
+  caja.append(sug, grid);
+}
+async function poner(decision, estilo) {
+  const c = cola[i];
+  try { await api('/api/etiqueta', {id: c.id, decision, estilo: estilo || null}); } catch (e) { alert('No se pudo guardar: ' + e.message); return; }
+  et[c.id] = {decision, estilo: estilo || null}; i++; pintar();
+}
+$('#c-atras').onclick = () => { if (i > 0) { i--; pintar(); } };
+document.addEventListener('keydown', ev => {
+  if (tabActual !== 'clasificar' || !enCurso || ['TEXTAREA', 'INPUT', 'SELECT'].includes(ev.target.tagName)) return;
+  if (ev.key >= '1' && ev.key <= '7' && i < cola.length) poner('ok', E.estilos[+ev.key - 1][0]);
+  else if ((ev.key === 'Enter' || ev.key === ' ') && i < cola.length) { ev.preventDefault(); poner('ok', cola[i].propuesto ? cola[i].propuesto[0] : cola[i].pred[0][0]); }
+  else if ((ev.key === '0' || ev.key === 'x') && i < cola.length) poner('descartada');
+  else if (ev.key === 's' && i < cola.length) { i++; pintar(); }
+  else if (ev.key === 'ArrowLeft' && i > 0) { i--; pintar(); }
+});
+
+/* ------------------------------------------------------------ arranque */
+(async () => {
+  await refrescar();
+  ir(TABS.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'inicio');
+  setInterval(refrescar, 2500);
+})();
+</script>
+</html>
