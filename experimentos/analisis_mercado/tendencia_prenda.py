@@ -85,6 +85,8 @@ def temporada(fecha_iso: str | None) -> str | None:
 
 # ---------------------------------------------------------------- cosecha
 def registro(cid, s, fecha, url, enlace, titulo, **extra) -> dict:
+    if s.get("archivo"):   # persona fallecida o cuenta de archivo: la foto es antigua aunque se publique hoy -> sin fecha (muestra de referencia)
+        fecha, extra["archivo"] = None, True
     return {"id": cid, "fuente": s["tipo"], "referente": s["referente"], "estilo": s["estilo"], "mercado": s["mercado"], "fecha": fecha, "url": url, "enlace": enlace,
             "titulo": (titulo or "")[:140], "capturada": ahora_iso(), **{k: v for k, v in extra.items() if v is not None}}
 

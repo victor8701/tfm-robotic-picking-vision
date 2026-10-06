@@ -190,5 +190,29 @@
   "nuevas": 0,
   "buenas": 0,
   "con_imagen": 0
+ },
+ "2fb48b29": {
+  "referente": "Lil Peep",
+  "tipo": "x",
+  "ultima": "2026-10-06T19:48:19+00:00",
+  "nuevas": 8,
+  "buenas": 0,
+  "ultima_foto_hace_dias": 382
+ },
+ "82d9aa3c": {
+  "referente": "Lil Peep",
+  "tipo": "noticias",
+  "ultima": "2026-10-06T19:48:26+00:00",
+  "nuevas": 0,
+  "buenas": 0,
+  "articulos": 0
+ },
+ "72c3b965": {
+  "referente": "Lil Xan",
+  "tipo": "noticias",
+  "ultima": "2026-10-06T19:48:32+00:00",
+  "nuevas": 0,
+  "buenas": 0,
+  "articulos": 0
  }
 }

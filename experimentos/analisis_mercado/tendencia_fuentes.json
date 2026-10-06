@@ -1,6 +1,6 @@
 {
  "version": 1,
- "nota": "Referentes con estado «ok» en el Artifact «Tendencias de prenda» (2026-10-06) y dónde se leen sus fotos. `noticias`: Bing Noticias por nombre; la foto cuenta si el texto nombra a la persona.",
+ "nota": "Referentes con estado «ok» en el Artifact «Tendencias de prenda» (2026-10-06) y dónde se leen sus fotos. `noticias`: Bing Noticias por nombre; la foto cuenta si el texto nombra a la persona. `archivo: true` = persona fallecida o cuenta de archivo: sus fotos son antiguas aunque se publiquen hoy, así que se guardan sin fecha (cuentan como muestra de referencia, no como tendencia de la temporada).",
  "fuentes": [
   {
    "referente": "bycalitos",
@@ -258,6 +258,41 @@
    "mercado": "US",
    "tipo": "reddit",
    "valor": "techwearclothing"
+  },
+  {
+   "referente": "Lil Peep",
+   "estilo": "geek",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "Lilpeep",
+   "archivo": true
+  },
+  {
+   "referente": "Lil Peep",
+   "estilo": "geek",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"Lil Peep\" outfit",
+   "consultas": [
+    "\"Lil Peep\" outfit",
+    "\"Lil Peep\" style"
+   ],
+   "nombre": "lil peep",
+   "contexto": "music_en",
+   "archivo": true
+  },
+  {
+   "referente": "Lil Xan",
+   "estilo": "geek",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"Lil Xan\" outfit",
+   "consultas": [
+    "\"Lil Xan\" outfit",
+    "\"Lil Xan\" style"
+   ],
+   "nombre": "lil xan",
+   "contexto": "music_en"
   }
  ]
 }

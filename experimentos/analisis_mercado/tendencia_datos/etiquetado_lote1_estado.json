@@ -1,0 +1,470 @@
+{
+ "1": {
+  "foto": "bib_16f1b254bd",
+  "idx": 2,
+  "caja": [
+   229.8,
+   563.1,
+   682.8,
+   799.4
+  ],
+  "tipo_modelo": "Falda",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "2": {
+  "foto": "bib_1a5ea157df",
+  "idx": 0,
+  "caja": [
+   2.1,
+   211.5,
+   433.4,
+   598.6
+  ],
+  "tipo_modelo": "Polo",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "3": {
+  "foto": "bib_c4d357d099",
+  "idx": 1,
+  "caja": [
+   232.9,
+   198.1,
+   576.8,
+   502.3
+  ],
+  "tipo_modelo": "Chaqueta",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "4": {
+  "foto": "bib_f4d94f5891",
+  "idx": 0,
+  "caja": [
+   272.1,
+   259.5,
+   894.3,
+   574.2
+  ],
+  "tipo_modelo": "Sudadera",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "5": {
+  "foto": "bib_cf459a5149",
+  "idx": 0,
+  "caja": [
+   82.9,
+   191.4,
+   358.7,
+   474.3
+  ],
+  "tipo_modelo": "Jersey",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "6": {
+  "foto": "bib_dba5c50cfa",
+  "idx": 2,
+  "caja": [
+   242.4,
+   1011.0,
+   601.7,
+   1171.8
+  ],
+  "tipo_modelo": "Zapatillas deportivas",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "7": {
+  "foto": "pr_7bb95e5024",
+  "idx": 0,
+  "caja": [
+   182.1,
+   475.9,
+   701.4,
+   799.1
+  ],
+  "tipo_modelo": "Vestido",
+  "estilo": "urbano",
+  "mercado": "ES"
+ },
+ "8": {
+  "foto": "bib_6ff3f6920c",
+  "idx": 1,
+  "caja": [
+   453.2,
+   556.0,
+   606.7,
+   756.4
+  ],
+  "tipo_modelo": "Short",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "9": {
+  "foto": "bib_dcb090be37",
+  "idx": 0,
+  "caja": [
+   93.4,
+   177.8,
+   336.6,
+   384.2
+  ],
+  "tipo_modelo": "Camiseta manga larga",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "10": {
+  "foto": "bib_a2b7bbd28b",
+  "idx": 0,
+  "caja": [
+   31.7,
+   273.6,
+   424.1,
+   553.5
+  ],
+  "tipo_modelo": "Camiseta manga corta",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "11": {
+  "foto": "bib_9fc9782409",
+  "idx": 1,
+  "caja": [
+   735.6,
+   1306.8,
+   1309.9,
+   1701.6
+  ],
+  "tipo_modelo": "Short",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "12": {
+  "foto": "bib_ed026122fb",
+  "idx": 2,
+  "caja": [
+   322.9,
+   763.4,
+   469.6,
+   940.5
+  ],
+  "tipo_modelo": "Zapatillas casual/lifestyle",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "13": {
+  "foto": "bib_757517b039",
+  "idx": 0,
+  "caja": [
+   400.1,
+   61.7,
+   837.8,
+   662.3
+  ],
+  "tipo_modelo": "Camiseta manga corta",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "14": {
+  "foto": "bib_08c2b3eff7",
+  "idx": 1,
+  "caja": [
+   224.3,
+   209.8,
+   649.2,
+   712.8
+  ],
+  "tipo_modelo": "Sudadera",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "15": {
+  "foto": "bib_f79053b0ab",
+  "idx": 0,
+  "caja": [
+   240.4,
+   412.3,
+   455.0,
+   633.2
+  ],
+  "tipo_modelo": "Sudadera",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "16": {
+  "foto": "bib_af08d6d664",
+  "idx": 2,
+  "caja": [
+   500.4,
+   306.9,
+   626.5,
+   494.6
+  ],
+  "tipo_modelo": "Sudadera",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "17": {
+  "foto": "rd_1wye81l",
+  "idx": 0,
+  "caja": [
+   282.4,
+   454.4,
+   505.3,
+   928.0
+  ],
+  "tipo_modelo": "Pantalón",
+  "estilo": "urbano",
+  "mercado": "US"
+ },
+ "18": {
+  "foto": "bib_def807ef28",
+  "idx": 0,
+  "caja": [
+   79.2,
+   304.8,
+   566.9,
+   937.7
+  ],
+  "tipo_modelo": "Sudadera",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "19": {
+  "foto": "bib_1dbbbc020c",
+  "idx": 2,
+  "caja": [
+   245.1,
+   532.4,
+   556.5,
+   728.5
+  ],
+  "tipo_modelo": "Falda",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "20": {
+  "foto": "bib_3e8bb6f7b7",
+  "idx": 1,
+  "caja": [
+   100.2,
+   363.9,
+   351.7,
+   546.7
+  ],
+  "tipo_modelo": "Pantalón",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "21": {
+  "foto": "bib_723becc9a7",
+  "idx": 2,
+  "caja": [
+   348.4,
+   765.4,
+   579.8,
+   881.2
+  ],
+  "tipo_modelo": "Botas",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "22": {
+  "foto": "bib_d730fb63ae",
+  "idx": 0,
+  "caja": [
+   178.1,
+   315.4,
+   380.5,
+   545.2
+  ],
+  "tipo_modelo": "Camisa",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "23": {
+  "foto": "bib_7b4547ecc8",
+  "idx": 1,
+  "caja": [
+   262.9,
+   436.8,
+   516.8,
+   781.1
+  ],
+  "tipo_modelo": "Camisa",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "24": {
+  "foto": "bib_1236dbbec8",
+  "idx": 0,
+  "caja": [
+   186.5,
+   594.2,
+   745.2,
+   949.7
+  ],
+  "tipo_modelo": "Pantalón",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "25": {
+  "foto": "bib_ca4141cb50",
+  "idx": 2,
+  "caja": [
+   221.2,
+   36.7,
+   548.9,
+   285.3
+  ],
+  "tipo_modelo": "Jersey",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "26": {
+  "foto": "rd_1wqrdn2",
+  "idx": 0,
+  "caja": [
+   221.8,
+   377.9,
+   459.5,
+   684.0
+  ],
+  "tipo_modelo": "Chaqueta",
+  "estilo": "urbano",
+  "mercado": "US"
+ },
+ "27": {
+  "foto": "bib_93040c725f",
+  "idx": 2,
+  "caja": [
+   184.0,
+   781.6,
+   459.7,
+   911.5
+  ],
+  "tipo_modelo": "Botas",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "28": {
+  "foto": "bib_6f4496039b",
+  "idx": 0,
+  "caja": [
+   338.7,
+   738.7,
+   486.4,
+   1101.1
+  ],
+  "tipo_modelo": "Falda",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "29": {
+  "foto": "bib_d9208fb89f",
+  "idx": 1,
+  "caja": [
+   50.9,
+   171.5,
+   357.7,
+   326.2
+  ],
+  "tipo_modelo": "Chaqueta",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "30": {
+  "foto": "bib_663c05bcfc",
+  "idx": 1,
+  "caja": [
+   136.6,
+   316.7,
+   351.3,
+   488.9
+  ],
+  "tipo_modelo": "Camiseta manga larga",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "31": {
+  "foto": "bib_803902d316",
+  "idx": 0,
+  "caja": [
+   25.7,
+   170.3,
+   298.1,
+   588.7
+  ],
+  "tipo_modelo": "Jersey",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "32": {
+  "foto": "tw_2086799407085670837_4",
+  "idx": 0,
+  "caja": [
+   142.4,
+   512.5,
+   769.8,
+   767.4
+  ],
+  "tipo_modelo": "Camiseta manga corta",
+  "estilo": "urbano",
+  "mercado": "ES"
+ },
+ "33": {
+  "foto": "tw_2094850483919765639_1",
+  "idx": 0,
+  "caja": [
+   210.7,
+   602.3,
+   424.8,
+   957.5
+  ],
+  "tipo_modelo": "Pantalón",
+  "estilo": "urbano",
+  "mercado": "ES"
+ },
+ "34": {
+  "foto": "bib_00c05e0125",
+  "idx": 1,
+  "caja": [
+   203.3,
+   203.4,
+   384.0,
+   360.9
+  ],
+  "tipo_modelo": "Camiseta manga corta",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "35": {
+  "foto": "pr_af5ce52efb",
+  "idx": 0,
+  "caja": [
+   105.4,
+   344.4,
+   421.3,
+   572.8
+  ],
+  "tipo_modelo": "Pantalón",
+  "estilo": "urbano",
+  "mercado": "ES"
+ },
+ "36": {
+  "foto": "pr_3400cdbe58",
+  "idx": 0,
+  "caja": [
+   300.9,
+   50.9,
+   504.0,
+   291.1
+  ],
+  "tipo_modelo": "Chaqueta",
+  "estilo": "urbano",
+  "mercado": "US"
+ }
+}
