@@ -206,18 +206,18 @@ def cmd_importar(a):
             continue
         clave = f"{e['foto']}#{e['idx']}"
         ps = d.get("prendas") or [d]   # la página guarda una lista de prendas por recorte (y los campos de la primera sueltos, por compatibilidad)
-        ps = [q for q in ps if q.get("tipo") and q.get("estampado") and q.get("forma")]
+        ps = [q for q in ps if q.get("tipo") or q.get("estampado") or q.get("tejido") or q.get("forma")]   # se guardan también las prendas a medias: lo vacío queda a None
         if d.get("x"):
             etiq[clave] = {"inservible": True, "caja": e["caja"], "tipo_modelo": e["tipo_modelo"], "estilo": e["estilo"]}
         elif ps:
-            etiq[clave] = {"prendas": [{"tipo": q["tipo"], "estampado": q["estampado"], "tejido": q.get("tejido") or None, "forma": q["forma"]} for q in ps],
+            etiq[clave] = {"prendas": [{c: (q.get(c) or None) for c in ("tipo", "estampado", "tejido", "forma")} for q in ps],
                            "caja": e["caja"], "tipo_modelo": e["tipo_modelo"], "estilo": e["estilo"], "mercado": e["mercado"]}
+            sin += not all(all(q.get(c) for c in ("tipo", "estampado", "tejido", "forma")) for q in ps)
         else:
-            sin += 1
             continue
         n += 1
     ETIQ.write_text(json.dumps(etiq, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"Importadas {n} etiquetas ({sin} incompletas); {len(etiq)} en total")
+    print(f"Importadas {n} etiquetas ({sin} con alguna prenda a medias); {len(etiq)} en total")
 
 
 def main():

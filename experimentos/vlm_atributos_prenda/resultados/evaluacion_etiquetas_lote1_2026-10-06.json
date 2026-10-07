@@ -1,0 +1,55 @@
+{
+ "recortes": 29,
+ "prendas": 45,
+ "tipo": {
+  "recortes": 27,
+  "flujo_acierta": 16,
+  "clip_top1": 18,
+  "clip_top3": 23,
+  "varias_prendas_en_el_recorte": 12
+ },
+ "estampado": {
+  "recortes": 24,
+  "clip_acierta": 12,
+  "siempre_la_mas_frecuente": 9,
+  "mas_frecuente": "liso",
+  "con_prior_cv": 14,
+  "peso_prior": 3.0,
+  "frecuencias": {
+   "liso": 10,
+   "gráfico / dibujo": 7,
+   "texto / logo": 4,
+   "cuadros": 3,
+   "rayas": 1
+  }
+ },
+ "tejido": {
+  "recortes": 17,
+  "clip_acierta": 6,
+  "siempre_la_mas_frecuente": 10,
+  "mas_frecuente": "algodón",
+  "con_prior_cv": 12,
+  "peso_prior": 3.0,
+  "frecuencias": {
+   "algodón": 10,
+   "cuero / vinilo": 3,
+   "denim (vaquero)": 2,
+   "tul / encaje": 1,
+   "punto": 1
+  }
+ },
+ "forma": {
+  "recortes": 22,
+  "clip_acierta": 12,
+  "siempre_la_mas_frecuente": 13,
+  "mas_frecuente": "oversized / baggy",
+  "con_prior_cv": 13,
+  "peso_prior": 3.0,
+  "frecuencias": {
+   "oversized / baggy": 13,
+   "regular": 6,
+   "ajustada": 3,
+   "corta / cropped": 1
+  }
+ }
+}

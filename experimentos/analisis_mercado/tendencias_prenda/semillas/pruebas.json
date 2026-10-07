@@ -1,401 +1,395 @@
 {
- "v": 1,
- "fecha": "2026-10-06",
- "intro": "Lo que has decidido, lo que he medido con lo que ya existe y lo que sigue. Las pruebas son pequeñas: sirven para decidir por dónde seguir, no para sacar conclusiones.",
  "bloques": [
   {
-   "tipo": "decisiones",
-   "titulo": "Tus respuestas y lo que cambian",
-   "texto": "Leídas el 6 de octubre. Si algo no es lo que querías decir, cámbialo en Preguntas y lo releo.",
    "items": [
     {
+     "efecto": "Queda activo el subestilo «Streetwear baggy / skate», igual que «Drill / calle». Las fuentes de EEUU de streetwear pueden alimentar urbano. U01–U09 siguen como urbano y U10–U11 como descartadas.",
+     "igual": false,
      "q": "¿El streetwear entra en urbano?",
-     "resp": "Sí, también streetwear (skate, baggy, marcas americanas)",
-     "igual": false,
-     "efecto": "Queda activo el subestilo «Streetwear baggy / skate», igual que «Drill / calle». Las fuentes de EEUU de streetwear pueden alimentar urbano. U01–U09 siguen como urbano y U10–U11 como descartadas."
+     "resp": "Sí, también streetwear (skate, baggy, marcas americanas)"
     },
     {
+     "efecto": "Voy en paralelo con las fotos de los referentes y con el reconocimiento de tipo, estampado y forma. Lo de hoy está más abajo.",
+     "igual": false,
      "q": "¿Qué hago primero?",
-     "resp": "Las dos a la vez, más despacio",
-     "igual": false,
-     "efecto": "Voy en paralelo con las fotos de los referentes y con el reconocimiento de tipo, estampado y forma. Lo de hoy está más abajo."
+     "resp": "Las dos a la vez, más despacio"
     },
     {
+     "efecto": "Mis 14 fotos geek de prueba valen tal cual. Has encendido también «Informática / dev».",
+     "igual": true,
      "q": "¿Geek incluye lo alternativo, techwear y e-girl?",
-     "resp": "Sí, todo eso es geek",
-     "igual": true,
-     "efecto": "Mis 14 fotos geek de prueba valen tal cual. Has encendido también «Informática / dev»."
+     "resp": "Sí, todo eso es geek"
     },
     {
+     "efecto": "En urbano has encendido gorra/gorro y riñonera, y apagado camisa. Tomo lo que marcaste en la lista: en urbano cuentan esos dos accesorios; en geek, ninguno.",
+     "igual": true,
      "q": "¿Cuento calzado y accesorios?",
-     "resp": "Ropa y calzado; accesorios fuera por ahora",
-     "igual": true,
-     "efecto": "En urbano has encendido gorra/gorro y riñonera, y apagado camisa. Tomo lo que marcaste en la lista: en urbano cuentan esos dos accesorios; en geek, ninguno."
+     "resp": "Ropa y calzado; accesorios fuera por ahora"
     },
     {
+     "efecto": "El detector tendrá que estimar cuánto se ve de cada prenda (caja pegada al borde de la foto, persona cortada). Queda como tarea.",
+     "igual": false,
      "q": "Si una prenda sale cortada o tapada",
-     "resp": "La cuento si se ve más de la mitad",
-     "igual": false,
-     "efecto": "El detector tendrá que estimar cuánto se ve de cada prenda (caja pegada al borde de la foto, persona cortada). Queda como tarea."
+     "resp": "La cuento si se ve más de la mitad"
     },
     {
+     "efecto": "Todavía no hay dos temporadas de fotos: la primera comparación sería hacia abril de 2027. Mientras tanto el informe enseñaría la cuota de la temporada actual, sin flechas, y guardaría una instantánea por semana. Cómo conseguir flechas antes te lo pregunto en Preguntas.",
+     "igual": false,
      "q": "¿Con qué ventana comparo?",
-     "resp": "Por temporada (6 meses)",
-     "igual": false,
-     "efecto": "Todavía no hay dos temporadas de fotos: la primera comparación sería hacia abril de 2027. Mientras tanto el informe enseñaría la cuota de la temporada actual, sin flechas, y guardaría una instantánea por semana. Cómo conseguir flechas antes te lo pregunto en Preguntas."
+     "resp": "Por temporada (6 meses)"
     },
     {
+     "efecto": "Por debajo de 5 sale «pocos datos» y se baja a prenda + forma, o solo prenda.",
+     "igual": true,
      "q": "¿Cuántas fotos mínimo para enseñar una cifra?",
-     "resp": "5 fotos",
-     "igual": true,
-     "efecto": "Por debajo de 5 sale «pocos datos» y se baja a prenda + forma, o solo prenda."
+     "resp": "5 fotos"
     },
     {
+     "efecto": "Es la vía para Quevedo, Morad, Beny Jr e Israel B: no encuentro una cuenta de X propia de ninguno. Puede colarse alguien con el mismo nombre.",
+     "igual": true,
      "q": "¿Cuento fotos de prensa donde sale un referente?",
-     "resp": "Sí, si el texto lo nombra",
-     "igual": true,
-     "efecto": "Es la vía para Quevedo, Morad, Beny Jr e Israel B: no encuentro una cuenta de X propia de ninguno. Puede colarse alguien con el mismo nombre."
+     "resp": "Sí, si el texto lo nombra"
     },
     {
+     "efecto": "Faltan referentes de EEUU. En Urbano te propongo cuatro (marcados como sugerencia mía) y en Preguntas hay una pregunta nueva para geek.",
+     "igual": false,
      "q": "¿Para qué mercado miro geek y urbano?",
-     "resp": "España y EEUU, por separado",
-     "igual": false,
-     "efecto": "Faltan referentes de EEUU. En Urbano te propongo cuatro (marcados como sugerencia mía) y en Preguntas hay una pregunta nueva para geek."
+     "resp": "España y EEUU, por separado"
     },
     {
+     "efecto": "Los streamers famosos no encajan con tu geek, así que para EEUU no propongo ninguno.",
      "q": "Referentes",
-     "resp": "Descartados: Rubius, TheGrefg, AuronPlay y La Isla de las Tentaciones. Aceptados: TechwearClub, Quevedo, Morad y Beny Jr.",
-     "efecto": "Los streamers famosos no encajan con tu geek, así que para EEUU no propongo ninguno."
+     "resp": "Descartados: Rubius, TheGrefg, AuronPlay y La Isla de las Tentaciones. Aceptados: TechwearClub, Quevedo, Morad y Beny Jr."
     },
     {
+     "efecto": "Medí las fuentes nuevas y ninguna resuelve el volumen (mira Fotos útiles). Monté la recogida semanal con lo que hay: X, prensa por nombre y Reddit. Las miniaturas de YouTube quedan fuera de momento (1 de cada 5 enseña ropa) y las fotos libres de Wikimedia Commons, para después.",
+     "igual": true,
      "q": "Salen muy pocas fotos de los referentes: ¿qué hago?",
-     "resp": "Las dos cosas a la vez (medir solo prenda y acumular cada semana, y añadir fuentes con más fotos)",
-     "igual": true,
-     "efecto": "Medí las fuentes nuevas y ninguna resuelve el volumen (mira Fotos útiles). Monté la recogida semanal con lo que hay: X, prensa por nombre y Reddit. Las miniaturas de YouTube quedan fuera de momento (1 de cada 5 enseña ropa) y las fotos libres de Wikimedia Commons, para después."
+     "resp": "Las dos cosas a la vez (medir solo prenda y acumular cada semana, y añadir fuentes con más fotos)"
     },
     {
+     "efecto": "Geek España pasa de 1 a 3 referentes. Rojuu y SoyUnaPringada tienen canal de YouTube; sus cuentas de X no sirven (el @rojuu de X es de otra persona).",
      "q": "¿A quién más metes como referente?",
-     "resp": "orslok, rojuu y soyunapringada; no tienes más ejemplos por ahora (por el chat)",
-     "efecto": "Geek España pasa de 1 a 3 referentes. Rojuu y SoyUnaPringada tienen canal de YouTube; sus cuentas de X no sirven (el @rojuu de X es de otra persona)."
+     "resp": "orslok, rojuu y soyunapringada; no tienes más ejemplos por ahora (por el chat)"
     },
     {
+     "efecto": "Quedan como referentes de urbano en EEUU.",
      "q": "¿Te valen Travis Scott, Playboi Carti, Kid Cudi y A$AP Rocky para urbano EEUU?",
-     "resp": "Confirmados (por el chat)",
-     "efecto": "Quedan como referentes de urbano en EEUU."
+     "resp": "Confirmados (por el chat)"
     },
     {
+     "efecto": "Lil Peep murió en 2017 y su cuenta la lleva su herencia: sus fotos cuentan como muestra de referencia del estilo, sin fecha. De Lil Xan no encuentro su X: solo prensa por nombre.",
      "q": "¿Quién da el estilo geek en EEUU?",
-     "resp": "Lil Peep y Lil Xan, ese estilo (por el chat)",
-     "efecto": "Lil Peep murió en 2017 y su cuenta la lleva su herencia: sus fotos cuentan como muestra de referencia del estilo, sin fecha. De Lil Xan no encuentro su X: solo prensa por nombre."
+     "resp": "Lil Peep y Lil Xan, ese estilo (por el chat)"
     },
     {
+     "efecto": "En «Etiquetar prendas» ya hay «Hoodie (con capucha)» aparte de «Sudadera», y un campo «Tejido» (denim, cuero, punto, felpa…). Aquí también: el tejido es una pieza más de la celda y Hoodie es una prenda de las listas.",
+     "igual": false,
      "q": "Etiquetado de recortes: lo que faltaba",
-     "resp": "En sudadera falta Hoodie; añadir tipo de tejido (vaquero, cuero…) (por el chat)",
-     "igual": false,
-     "efecto": "En «Etiquetar prendas» ya hay «Hoodie (con capucha)» aparte de «Sudadera», y un campo «Tejido» (denim, cuero, punto, felpa…). Aquí también: el tejido es una pieza más de la celda y Hoodie es una prenda de las listas."
+     "resp": "En sudadera falta Hoodie; añadir tipo de tejido (vaquero, cuero…) (por el chat)"
     },
     {
+     "efecto": "Lo quité también de las listas de cada prenda y de «Etiquetar prendas»: «cuadros» sustituye a «cuadros vichy» y a «tartán». Dime si falta algo más.",
+     "igual": false,
      "q": "Vocabulario común: lo que has quitado y unido",
-     "resp": "Quitaste «maxi», «jogger», «mini», «plisada» y «tweed / bouclé», y uniste los cuadros en «cuadros» (por la página)",
-     "igual": false,
-     "efecto": "Lo quité también de las listas de cada prenda y de «Etiquetar prendas»: «cuadros» sustituye a «cuadros vichy» y a «tartán». Dime si falta algo más."
+     "resp": "Quitaste «maxi», «jogger», «mini», «plisada» y «tweed / bouclé», y uniste los cuadros en «cuadros» (por la página)"
     },
     {
-     "q": "¿Cuándo quieres ver si una prenda sube o baja?",
-     "resp": "De momento no te preocupa la temporada, solo si es verano, invierno, etc. (por el chat)",
+     "efecto": "El informe se agrupa por verano (marzo a agosto) e invierno (septiembre a febrero) y no enseña flechas de sube / baja por ahora. Las fotos se siguen guardando con su fecha.",
      "igual": true,
-     "efecto": "El informe se agrupa por verano (marzo a agosto) e invierno (septiembre a febrero) y no enseña flechas de sube / baja por ahora. Las fotos se siguen guardando con su fecha."
+     "q": "¿Cuándo quieres ver si una prenda sube o baja?",
+     "resp": "De momento no te preocupa la temporada, solo si es verano, invierno, etc. (por el chat)"
     }
-   ]
+   ],
+   "texto": "Leídas el 6 de octubre. Si algo no es lo que querías decir, cámbialo en Preguntas y lo releo.",
+   "tipo": "decisiones",
+   "titulo": "Tus respuestas y lo que cambian"
   },
   {
+   "texto": "Calculado el 2026-10-06 con 175 fotos de 24 fuentes (X, prensa por nombre y Reddit) y tus 82 fotos aprobadas como muestra de referencia. Solo tipo de prenda: estampado y forma todavía no se estiman. El filtro automático deja pasar fotos de otras personas, portadas y detenciones (a ojo, la mitad de las de prensa), el tipo de prenda acierta alrededor del 85 % y la temporada actual solo lleva cinco semanas: con tan pocas fotos esto ilustra el método, no es una tendencia.",
    "tipo": "texto",
-   "titulo": "Primer informe por prenda (v0)",
-   "texto": "Calculado el 2026-10-06 con 175 fotos de 24 fuentes (X, prensa por nombre y Reddit) y tus 82 fotos aprobadas como muestra de referencia. Solo tipo de prenda: estampado y forma todavía no se estiman. El filtro automático deja pasar fotos de otras personas, portadas y detenciones (a ojo, la mitad de las de prensa), el tipo de prenda acierta alrededor del 85 % y la temporada actual solo lleva cinco semanas: con tan pocas fotos esto ilustra el método, no es una tendencia."
+   "titulo": "Primer informe por prenda (v0)"
   },
   {
-   "tipo": "barras",
-   "titulo": "Urbano · España · OI 2026/27",
-   "texto": "23 fotos, 23 con alguna prenda visible. Cuota = % de fotos (con más peso las populares y recientes) en que sale la prenda. Fuentes: Morad 12, Quevedo 8, bycalitos 3.",
-   "unidad": "%",
-   "max": 100,
    "filas": [
     {
      "etiqueta": "Camiseta manga corta",
-     "valor": 38,
-     "nota": "11 fotos"
+     "nota": "11 fotos",
+     "valor": 38
     },
     {
      "etiqueta": "Short",
-     "valor": 29,
-     "nota": "5 fotos"
+     "nota": "5 fotos",
+     "valor": 29
     },
     {
      "etiqueta": "Pantalón",
-     "valor": 14,
-     "nota": "5 fotos"
+     "nota": "5 fotos",
+     "valor": 14
     }
    ],
-   "nota": "Sin cifra por tener menos de 5 fotos: Chaqueta (3), Vestido (2), Camisa (2), Americana (1), Top (1), Mono (2), Polo (2), Camiseta manga larga (1), Sandalias (1)."
+   "max": 100,
+   "nota": "Sin cifra por tener menos de 5 fotos: Chaqueta (3), Vestido (2), Camisa (2), Americana (1), Top (1), Mono (2), Polo (2), Camiseta manga larga (1), Sandalias (1).",
+   "texto": "23 fotos, 23 con alguna prenda visible. Cuota = % de fotos (con más peso las populares y recientes) en que sale la prenda. Fuentes: Morad 12, Quevedo 8, bycalitos 3.",
+   "tipo": "barras",
+   "titulo": "Urbano · España · OI 2026/27",
+   "unidad": "%"
   },
   {
+   "filas": [],
+   "max": 100,
+   "nota": "Sin cifra por tener menos de 5 fotos: Polo (1), Short (4), Camiseta manga larga (2), Camiseta manga corta (2), Pantalón (2), Chaqueta (2), Zapatillas deportivas (1), Zapatillas casual/lifestyle (1), Chaleco sin mangas (1), Americana (1).",
+   "texto": "9 fotos, 9 con alguna prenda visible. Cuota = % de fotos (con más peso las populares y recientes) en que sale la prenda. Fuentes: bycalitos 4, Quevedo 4, Israel B 1. Ninguna prenda llega a 5 fotos: no hay cifras.",
    "tipo": "barras",
    "titulo": "Urbano · España · PV 2026",
-   "texto": "9 fotos, 9 con alguna prenda visible. Cuota = % de fotos (con más peso las populares y recientes) en que sale la prenda. Fuentes: bycalitos 4, Quevedo 4, Israel B 1. Ninguna prenda llega a 5 fotos: no hay cifras.",
-   "unidad": "%",
-   "max": 100,
-   "filas": [],
-   "nota": "Sin cifra por tener menos de 5 fotos: Polo (1), Short (4), Camiseta manga larga (2), Camiseta manga corta (2), Pantalón (2), Chaqueta (2), Zapatillas deportivas (1), Zapatillas casual/lifestyle (1), Chaleco sin mangas (1), Americana (1)."
+   "unidad": "%"
   },
   {
-   "tipo": "barras",
-   "titulo": "Urbano · EEUU · OI 2026/27",
-   "texto": "10 fotos, 10 con alguna prenda visible. Cuota = % de fotos (con más peso las populares y recientes) en que sale la prenda. Fuentes: r/streetwear 10.",
-   "unidad": "%",
-   "max": 100,
    "filas": [
     {
      "etiqueta": "Pantalón",
-     "valor": 100,
-     "nota": "10 fotos"
+     "nota": "10 fotos",
+     "valor": 100
     },
     {
      "etiqueta": "Chaqueta",
-     "valor": 56,
-     "nota": "5 fotos"
+     "nota": "5 fotos",
+     "valor": 56
     }
    ],
-   "nota": "Sin cifra por tener menos de 5 fotos: Zapatos planos de vestir (3), Camisa (2), Botas (1), Zapatillas casual/lifestyle (3), Camiseta manga larga (2), Polo (1)."
+   "max": 100,
+   "nota": "Sin cifra por tener menos de 5 fotos: Zapatos planos de vestir (3), Camisa (2), Botas (1), Zapatillas casual/lifestyle (3), Camiseta manga larga (2), Polo (1).",
+   "texto": "10 fotos, 10 con alguna prenda visible. Cuota = % de fotos (con más peso las populares y recientes) en que sale la prenda. Fuentes: r/streetwear 10.",
+   "tipo": "barras",
+   "titulo": "Urbano · EEUU · OI 2026/27",
+   "unidad": "%"
   },
   {
-   "tipo": "barras",
-   "titulo": "Geek · tus fotos aprobadas · muestra de referencia",
-   "texto": "42 fotos, 42 con alguna prenda visible. Cuota = % de fotos (con más peso las populares y recientes) en que sale la prenda. Fuentes: Biblioteca 42.",
-   "unidad": "%",
-   "max": 100,
    "filas": [
     {
      "etiqueta": "Falda",
-     "valor": 31,
-     "nota": "13 fotos"
+     "nota": "13 fotos",
+     "valor": 31
     },
     {
      "etiqueta": "Pantalón",
-     "valor": 29,
-     "nota": "12 fotos"
+     "nota": "12 fotos",
+     "valor": 29
     },
     {
      "etiqueta": "Chaqueta",
-     "valor": 21,
-     "nota": "9 fotos"
+     "nota": "9 fotos",
+     "valor": 21
     },
     {
      "etiqueta": "Botas",
-     "valor": 17,
-     "nota": "7 fotos"
+     "nota": "7 fotos",
+     "valor": 17
     },
     {
      "etiqueta": "Jersey",
-     "valor": 17,
-     "nota": "7 fotos"
+     "nota": "7 fotos",
+     "valor": 17
     },
     {
      "etiqueta": "Top",
-     "valor": 14,
-     "nota": "6 fotos"
+     "nota": "6 fotos",
+     "valor": 14
     },
     {
      "etiqueta": "Short",
-     "valor": 12,
-     "nota": "5 fotos"
+     "nota": "5 fotos",
+     "valor": 12
     }
    ],
-   "nota": "Sin cifra por tener menos de 5 fotos: Sudadera (4), Camiseta manga larga (4), Chaleco sin mangas (3), Vestido (3), Camiseta manga corta (2), Zapatillas casual/lifestyle (2), Mono (2), Camiseta de tirantes (2), Legging/Malla (2), Zapatos planos de vestir (2)."
+   "max": 100,
+   "nota": "Sin cifra por tener menos de 5 fotos: Sudadera (4), Camiseta manga larga (4), Chaleco sin mangas (3), Vestido (3), Camiseta manga corta (2), Zapatillas casual/lifestyle (2), Mono (2), Camiseta de tirantes (2), Legging/Malla (2), Zapatos planos de vestir (2).",
+   "texto": "42 fotos, 42 con alguna prenda visible. Cuota = % de fotos (con más peso las populares y recientes) en que sale la prenda. Fuentes: Biblioteca 42.",
+   "tipo": "barras",
+   "titulo": "Geek · tus fotos aprobadas · muestra de referencia",
+   "unidad": "%"
   },
   {
-   "tipo": "barras",
-   "titulo": "Urbano · tus fotos aprobadas · muestra de referencia",
-   "texto": "40 fotos, 40 con alguna prenda visible. Cuota = % de fotos (con más peso las populares y recientes) en que sale la prenda. Fuentes: Biblioteca 40.",
-   "unidad": "%",
-   "max": 100,
    "filas": [
     {
      "etiqueta": "Chaqueta",
-     "valor": 35,
-     "nota": "14 fotos"
+     "nota": "14 fotos",
+     "valor": 35
     },
     {
      "etiqueta": "Pantalón",
-     "valor": 32,
-     "nota": "13 fotos"
+     "nota": "13 fotos",
+     "valor": 32
     },
     {
      "etiqueta": "Short",
-     "valor": 20,
-     "nota": "8 fotos"
+     "nota": "8 fotos",
+     "valor": 20
     },
     {
      "etiqueta": "Camiseta manga corta",
-     "valor": 12,
-     "nota": "5 fotos"
+     "nota": "5 fotos",
+     "valor": 12
     },
     {
      "etiqueta": "Sudadera",
-     "valor": 12,
-     "nota": "5 fotos"
+     "nota": "5 fotos",
+     "valor": 12
     }
    ],
-   "nota": "Sin cifra por tener menos de 5 fotos: Chaleco sin mangas (4), Camiseta manga larga (4), Camisa (4), Falda (4), Zapatillas casual/lifestyle (4), Polo (2), Abrigo (2), Botas (2), Plumas (2), Zapatos planos de vestir (2)."
+   "max": 100,
+   "nota": "Sin cifra por tener menos de 5 fotos: Chaleco sin mangas (4), Camiseta manga larga (4), Camisa (4), Falda (4), Zapatillas casual/lifestyle (4), Polo (2), Abrigo (2), Botas (2), Plumas (2), Zapatos planos de vestir (2).",
+   "texto": "40 fotos, 40 con alguna prenda visible. Cuota = % de fotos (con más peso las populares y recientes) en que sale la prenda. Fuentes: Biblioteca 40.",
+   "tipo": "barras",
+   "titulo": "Urbano · tus fotos aprobadas · muestra de referencia",
+   "unidad": "%"
   },
   {
+   "texto": "Sin informe por tener muy pocas fotos: Geek · España · OI 2026/27 (2); Urbano · EEUU · OI 2025/26 (1); Urbano · EEUU · PV 2026 (4).",
    "tipo": "texto",
-   "titulo": "Grupos con menos de 5 fotos",
-   "texto": "Sin informe por tener muy pocas fotos: Geek · España · OI 2026/27 (2); Urbano · EEUU · OI 2025/26 (1); Urbano · EEUU · PV 2026 (4)."
+   "titulo": "Grupos con menos de 5 fotos"
   },
   {
-   "tipo": "hallazgos",
-   "titulo": "Lo más importante hasta ahora",
    "items": [
     {
-     "tono": "aviso",
+     "texto": "bycalitos da 12 en X; la prensa que nombra a la persona, otras 13 (Quevedo 8, Morad 4, Israel B 1); Shoda Monkas, 1. Beny Jr, Cruz Cafuné, Hoke y orslok no dan nada en 6 meses. Instagram y TikTok, donde publican, no se pueden leer. Con ese volumen el informe llegaría a «prenda» y alguna vez a «prenda + forma», no a la celda completa. En el último informe de España (45 días, 116 fotos) urbano pesaba un **6 %** y geek un **0 %**.",
      "titulo": "Con las fuentes que se pueden leer hoy salen unas 26 fotos útiles por temporada en urbano España, y ninguna en geek España",
-     "texto": "bycalitos da 12 en X; la prensa que nombra a la persona, otras 13 (Quevedo 8, Morad 4, Israel B 1); Shoda Monkas, 1. Beny Jr, Cruz Cafuné, Hoke y orslok no dan nada en 6 meses. Instagram y TikTok, donde publican, no se pueden leer. Con ese volumen el informe llegaría a «prenda» y alguna vez a «prenda + forma», no a la celda completa. En el último informe de España (45 días, 116 fotos) urbano pesaba un **6 %** y geek un **0 %**."
+     "tono": "aviso"
     },
     {
-     "tono": "no",
+     "texto": "Casi todo lo de arriba sale como «camisa de manga larga»: **8 de 11** prendas en geek y **8 de 10** en urbano, sudaderas incluidas. Si recorto cada prenda y la comparo con tu lista, juntando arriba y abrigo, el tipo sale bien en **29 de 34 (85 %)**. Los fallos están entre sudadera, chaqueta y camisa.",
      "titulo": "El detector no distingue una sudadera de una camiseta de manga larga",
-     "texto": "Casi todo lo de arriba sale como «camisa de manga larga»: **8 de 11** prendas en geek y **8 de 10** en urbano, sudaderas incluidas. Si recorto cada prenda y la comparo con tu lista, juntando arriba y abrigo, el tipo sale bien en **29 de 34 (85 %)**. Los fallos están entre sudadera, chaqueta y camisa."
+     "tono": "no"
     },
     {
-     "tono": "no",
+     "texto": "El modelo de color y categoría se entrenó con fotos de catálogo. Sobre recortes de calle coincide con el detector solo el **64 %** de las veces en geek y el **56 %** en urbano (por ejemplo, unos shorts clasificados como «accesorio»). Forma y estampado se descartaron al entrenarlo. Sin entrenar nada, CLIP sobre el recorte acierta el estampado en **32 %** y la forma no mejora a contestar siempre «oversized».",
      "titulo": "Forma y estampado no existen todavía",
-     "texto": "El modelo de color y categoría se entrenó con fotos de catálogo. Sobre recortes de calle coincide con el detector solo el **64 %** de las veces en geek y el **56 %** en urbano (por ejemplo, unos shorts clasificados como «accesorio»). Forma y estampado se descartaron al entrenarlo. Sin entrenar nada, CLIP sobre el recorte acierta el estampado en **32 %** y la forma no mejora a contestar siempre «oversized»."
+     "tono": "no"
     },
     {
-     "tono": "ok",
+     "texto": "Las 28 fotos tenían persona y salen **3,0** prendas por foto en geek y **2,4** en urbano. A ojo falla en 6 de 28: capturas de pantalla, primeros planos de cara, una infografía y una persona diminuta.",
      "titulo": "Dónde está cada prenda sí se detecta bien",
-     "texto": "Las 28 fotos tenían persona y salen **3,0** prendas por foto en geek y **2,4** en urbano. A ojo falla en 6 de 28: capturas de pantalla, primeros planos de cara, una infografía y una persona diminuta."
+     "tono": "ok"
     },
     {
-     "tono": "aviso",
+     "texto": "En las 14 fotos geek, a ojo: 6 alternativo / e-girl, 3 techwear, 2 kawaii / Harajuku y solo 1 de fandom explícito (un jersey de Pokémon). Por eso propongo esos subestilos y te pregunto si cuentan como geek.",
      "titulo": "Tu muestra geek es más «alternativo / techwear» que «fandom»",
-     "texto": "En las 14 fotos geek, a ojo: 6 alternativo / e-girl, 3 techwear, 2 kawaii / Harajuku y solo 1 de fandom explícito (un jersey de Pokémon). Por eso propongo esos subestilos y te pregunto si cuentan como geek."
+     "tono": "aviso"
     },
     {
-     "tono": "info",
+     "texto": "En fotos de prensa acertó 2 de 10, y en 8 de 18 ni siquiera había un look. Seguirá sirviendo para fotos sin referente, pero ya no decide el estilo de las que sí lo tienen.",
      "titulo": "Con el estilo dado por la persona, el clasificador de estilo pesa menos",
-     "texto": "En fotos de prensa acertó 2 de 10, y en 8 de 18 ni siquiera había un look. Seguirá sirviendo para fotos sin referente, pero ya no decide el estilo de las que sí lo tienen."
+     "tono": "info"
     }
-   ]
+   ],
+   "tipo": "hallazgos",
+   "titulo": "Lo más importante hasta ahora"
   },
   {
-   "tipo": "barras",
-   "titulo": "Fotos útiles de tus referentes en 6 meses (España)",
-   "texto": "X: fotos descargadas de sus últimos posts. Prensa: noticias de los últimos 180 días que nombran a la persona (Bing Noticias), con persona y ropa según el filtro automático y revisadas por mí a ojo: quito otras personas, portadas, detenciones y la misma foto recortada de otra forma.",
-   "unidad": "fotos",
    "filas": [
     {
      "etiqueta": "bycalitos · X",
-     "valor": 12,
-     "nota": "la última, hace 2 días; 4 pasaron el filtro del informe"
+     "nota": "la última, hace 2 días; 4 pasaron el filtro del informe",
+     "valor": 12
     },
     {
      "etiqueta": "Quevedo · prensa",
-     "valor": 8,
-     "nota": "de 12 con persona; alfombra roja, escenario y podcast"
+     "nota": "de 12 con persona; alfombra roja, escenario y podcast",
+     "valor": 8
     },
     {
      "etiqueta": "Morad · prensa",
-     "valor": 4,
-     "nota": "de 12 con persona; escenario sobre todo"
+     "nota": "de 12 con persona; escenario sobre todo",
+     "valor": 4
     },
     {
      "etiqueta": "Israel B · prensa",
-     "valor": 1,
-     "nota": "una sola noticia en 6 meses"
+     "nota": "una sola noticia en 6 meses",
+     "valor": 1
     },
     {
      "etiqueta": "Shoda Monkas · X",
-     "valor": 1,
-     "nota": "la última, hace 14 días"
+     "nota": "la última, hace 14 días",
+     "valor": 1
     },
     {
      "etiqueta": "Hoke · prensa",
-     "valor": 0,
-     "nota": "su X (@HokeBBO) es de su gestión"
+     "nota": "su X (@HokeBBO) es de su gestión",
+     "valor": 0
     },
     {
      "etiqueta": "Beny Jr · prensa",
-     "valor": 0,
-     "nota": "ninguna noticia en 6 meses"
+     "nota": "ninguna noticia en 6 meses",
+     "valor": 0
     },
     {
      "etiqueta": "Cruz Cafuné · prensa",
-     "valor": 0,
-     "nota": "ninguna noticia que lo nombre"
+     "nota": "ninguna noticia que lo nombre",
+     "valor": 0
     },
     {
      "etiqueta": "orslok · X y prensa",
-     "valor": 0,
-     "nota": "X parado desde hace unos 600 días"
+     "nota": "X parado desde hace unos 600 días",
+     "valor": 0
     }
    ],
-   "nota": "Wikimedia Commons tiene fotos con licencia libre y fecha de Quevedo, Morad y Cruz Cafuné (también de Travis Scott, Playboi Carti y A$AP Rocky): sirven para la temporada pasada, aún sin revisar."
+   "nota": "Wikimedia Commons tiene fotos con licencia libre y fecha de Quevedo, Morad y Cruz Cafuné (también de Travis Scott, Playboi Carti y A$AP Rocky): sirven para la temporada pasada, aún sin revisar.",
+   "texto": "X: fotos descargadas de sus últimos posts. Prensa: noticias de los últimos 180 días que nombran a la persona (Bing Noticias), con persona y ropa según el filtro automático y revisadas por mí a ojo: quito otras personas, portadas, detenciones y la misma foto recortada de otra forma.",
+   "tipo": "barras",
+   "titulo": "Fotos útiles de tus referentes en 6 meses (España)",
+   "unidad": "fotos"
   },
   {
-   "tipo": "semaforo",
-   "titulo": "Qué ve hoy el sistema en una foto",
    "filas": [
     {
-     "que": "Dónde está cada prenda",
      "estado": "ok",
+     "que": "Dónde está cada prenda",
      "texto": "Bien en foto de cuerpo entero. Falla en primeros planos, capturas y collages."
     },
     {
-     "que": "Tipo de prenda",
      "estado": "parcial",
+     "que": "Tipo de prenda",
      "texto": "El detector tiene 13 clases (camisa de manga larga o corta, chaqueta, pantalón, falda, vestido…). No existe «sudadera», «jersey» ni «polo». Con CLIP sobre el recorte, juntando arriba y abrigo: 85 %."
     },
     {
-     "que": "Color",
      "estado": "parcial",
+     "que": "Color",
      "texto": "Plausible, pero domina el negro (62 % en geek, 41 % en urbano) y no separa el color del estampado: un jersey de rayas rojas y negras salió «negro»."
     },
     {
-     "que": "Tejido (denim, cuero, punto…)",
      "estado": "no",
+     "que": "Tejido (denim, cuero, punto…)",
      "texto": "No existe en ningún modelo mío. Lo estás etiquetando ahora en «Etiquetar prendas»."
     },
     {
-     "que": "Forma (oversized, baggy…)",
      "estado": "no",
+     "que": "Forma (oversized, baggy…)",
      "texto": "No existe en ningún modelo mío. Con CLIP sobre el recorte no mejora a contestar siempre «oversized»."
     },
     {
-     "que": "Estampado (liso, gráfico, logo…)",
      "estado": "no",
+     "que": "Estampado (liso, gráfico, logo…)",
      "texto": "No existe en ningún modelo mío. Con CLIP sobre el recorte acierta un 32 %."
     },
     {
-     "que": "Calzado y accesorios",
      "estado": "parcial",
+     "que": "Calzado y accesorios",
      "texto": "Se detecta calzado en 7 de 14 fotos geek y en 4 de 14 urbano; bolso, en 2 de 14 geek (en una salen varios). Gorras y gorros salen mejor en urbano (4 de 14)."
     }
-   ]
+   ],
+   "tipo": "semaforo",
+   "titulo": "Qué ve hoy el sistema en una foto"
   },
   {
-   "tipo": "tabla",
-   "titulo": "Prendas detectadas en 28 fotos de tu Biblioteca",
-   "texto": "14 geek y 14 urbano, elegidas al azar de lo que ya clasificaste (no son fotos nuevas de los referentes). Se cuentan las prendas detectadas en la persona principal de cada foto; una foto puede sumar varias del mismo tipo (por eso salen 5 bolsos en 2 fotos).",
-   "columnas": [
-    "Detectado",
-    "Geek",
-    "Urbano"
-   ],
    "alinear": [
     "l",
     "r",
     "r"
+   ],
+   "columnas": [
+    "Detectado",
+    "Geek",
+    "Urbano"
    ],
    "filas": [
     [
@@ -464,62 +458,97 @@
      "34"
     ]
    ],
-   "nota": "Que salgan 4 faldas en geek y casi ninguna en urbano encaja con lo que veo en las fotos, pero es una muestra de 14."
+   "nota": "Que salgan 4 faldas en geek y casi ninguna en urbano encaja con lo que veo en las fotos, pero es una muestra de 14.",
+   "texto": "14 geek y 14 urbano, elegidas al azar de lo que ya clasificaste (no son fotos nuevas de los referentes). Se cuentan las prendas detectadas en la persona principal de cada foto; una foto puede sumar varias del mismo tipo (por eso salen 5 bolsos en 2 fotos).",
+   "tipo": "tabla",
+   "titulo": "Prendas detectadas en 28 fotos de tu Biblioteca"
   },
   {
-   "tipo": "semaforo",
-   "titulo": "Prueba 2: recortar cada prenda y preguntarle a CLIP",
-   "texto": "36 recortes al azar de las 28 fotos, revisados por mí a ojo (no por ti). CLIP elige entre tu lista de tipos, estampados y formas sin entrenar nada.",
    "filas": [
     {
-     "que": "Tipo de prenda: 29 de 34 (85 %)",
      "estado": "parcial",
+     "que": "Tipo de prenda: 29 de 34 (85 %)",
      "texto": "Arriba y abrigo 12 de 15, pantalones y faldas 12 de 13, zapatos 3 de 4, vestidos 2 de 2. Fallos: una sudadera salió «chaqueta», una chaqueta de camuflaje salió «plumas», una camisa salió «chaleco» y unos cargo salieron «leggings». Con las listas de arriba y abrigo por separado daba 74 %: el detector llama «camisa» a casi todo lo de arriba, así que no hay que fiarse de su categoría."
     },
     {
-     "que": "Estampado: 10 de 31 (32 %)",
      "estado": "no",
+     "que": "Estampado: 10 de 31 (32 %)",
      "texto": "Reconoce bien el tartán (4 de 4) y los gráficos grandes (2 de 2), pero casi nunca dice «liso»: solo en 1 de 20 prendas lisas. Inventa camuflaje o rayas en negros y grises. Sesgándolo hacia «liso» sube a 77 % (validación cruzada), pero entonces deja de ver logos y camuflaje. Decir siempre «liso» ya daría 65 %."
     },
     {
-     "que": "Forma: 13 de 18 (72 %)",
      "estado": "no",
+     "que": "Forma: 13 de 18 (72 %)",
      "texto": "Es lo mismo que contestar siempre «oversized» (72 % en esta muestra), así que no aporta. Con faldas, vestidos y shorts no tiene sentido: necesitan longitud y vuelo, no esta lista."
     }
    ],
-   "nota": "Revisión mía a ojo de 36 recortes: vale para decidir el siguiente paso, no para medir fino."
+   "nota": "Revisión mía a ojo de 36 recortes: vale para decidir el siguiente paso, no para medir fino.",
+   "texto": "36 recortes al azar de las 28 fotos, revisados por mí a ojo (no por ti). CLIP elige entre tu lista de tipos, estampados y formas sin entrenar nada.",
+   "tipo": "semaforo",
+   "titulo": "Prueba 2: recortar cada prenda y preguntarle a CLIP"
   },
   {
-   "tipo": "barra",
-   "titulo": "Clasificador de estilo con fotos reales de prensa",
-   "texto": "18 fotos nuevas de medios españoles, sin enseñarte la predicción. Las juzgaste tú.",
+   "tipo": "semaforo",
+   "titulo": "Prueba 3: tus etiquetas contra el modelo",
+   "texto": "29 recortes y 45 prendas que etiquetaste en «Etiquetar prendas». No viste la predicción del modelo, así que es una medida real. Cuenta como acierto si coincide con alguna de las etiquetas que pusiste a ese recorte (12 de los 27 recortes con tipo llevan más de una prenda).",
+   "filas": [
+    {
+     "que": "Tipo de prenda: 18 de 27 (67 %) a la primera",
+     "estado": "parcial",
+     "texto": "Tu tipo está entre las tres primeras opciones del modelo en 23 de 27 (85 %). El flujo que corre cada semana, que da una sola prenda por recorte, coincide en 16 de 27 (59 %): todavía no conoce Hoodie ni las prendas extra de cada recorte."
+    },
+    {
+     "que": "Estampado: 12 de 24 (50 %)",
+     "estado": "parcial",
+     "texto": "Decir siempre «liso» daría 9 de 24. Usando la frecuencia de tus etiquetas como pista sube a 14 de 24 (58 %), una estimación optimista."
+    },
+    {
+     "que": "Tejido: 6 de 17 (35 %)",
+     "estado": "no",
+     "texto": "Decir siempre «algodón» daría 10 de 17 (59 %); con la frecuencia de tus etiquetas, 12 de 17 (71 %, optimista). Sin entrenar no distingue bien los tejidos."
+    },
+    {
+     "que": "Forma: 12 de 22 (55 %)",
+     "estado": "no",
+     "texto": "Igual que decir siempre «oversized» (13 de 22)."
+    }
+   ],
+   "nota": "Son muy pocas etiquetas para entrenar: 8 prendas completas y el resto a medias. Casi siempre pusiste estampado, tejido y forma a una sola prenda de cada recorte, y 12 recortes llevan varias."
+  },
+  {
+   "nota": "Con 10 fotos válidas el margen es de unos ±25 puntos. Vale como aviso, no como medida.",
    "segmentos": [
     {
      "etiqueta": "Acierta",
-     "valor": 2,
-     "tono": "ok"
+     "tono": "ok",
+     "valor": 2
     },
     {
      "etiqueta": "Falla",
-     "valor": 8,
-     "tono": "no"
+     "tono": "no",
+     "valor": 8
     },
     {
      "etiqueta": "No era un look",
-     "valor": 8,
-     "tono": "na"
+     "tono": "na",
+     "valor": 8
     }
    ],
-   "nota": "Con 10 fotos válidas el margen es de unos ±25 puntos. Vale como aviso, no como medida."
+   "texto": "18 fotos nuevas de medios españoles, sin enseñarte la predicción. Las juzgaste tú.",
+   "tipo": "barra",
+   "titulo": "Clasificador de estilo con fotos reales de prensa"
   },
   {
-   "tipo": "pasos",
-   "titulo": "Lo que sigue, en paralelo",
    "items": [
     "Fotos: cada lunes de madrugada se recogen solas las fuentes (X, prensa por nombre y Reddit), se analizan y se recalcula el informe. Falta decidir si merece la pena añadir miniaturas de YouTube (1 de cada 5 enseña ropa) y fotos libres de Wikimedia Commons para la temporada pasada.",
-    "Método: etiquetar a toques en la página «Etiquetar prendas» (36 recortes) tipo, estampado y forma, y entrenar con eso una capa pequeña sobre CLIP. Los CLIP más grandes se descargan a 0,2 MB/s: los dejo para otro momento.",
-    "Medir con recortes que no haya visto y decidir qué se puede contar de verdad: seguramente el tipo y algunos estampados; la forma depende de lo que salga."
-   ]
+    "Método: un segundo lote de recortes más cómodo. El modelo propone el tipo de la prenda principal (la que llena el recorte) y tú lo confirmas con un toque; estampado, tejido y forma son de esa prenda y las demás prendas del recorte son opcionales.",
+    "Con unas 150 prendas completas entreno una capa pequeña sobre CLIP y mido con recortes que no haya visto. Los CLIP más grandes se descargan a 0,2 MB/s: los dejo para otro momento."
+   ],
+   "tipo": "pasos",
+   "titulo": "Lo que sigue, en paralelo"
   }
- ]
+ ],
+ "fecha": "2026-10-06",
+ "intro": "Lo que has decidido, lo que he medido con lo que ya existe y lo que sigue. Las pruebas son pequeñas: sirven para decidir por dónde seguir, no para sacar conclusiones.",
+ "v": 1,
+ "actualizado": "2026-10-07T07:30:00Z"
 }
