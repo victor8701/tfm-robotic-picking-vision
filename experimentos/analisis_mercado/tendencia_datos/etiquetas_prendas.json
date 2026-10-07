@@ -645,5 +645,244 @@
   "tipo_modelo": "Camiseta manga larga",
   "estilo": "geek",
   "mercado": "Biblioteca"
+ },
+ "bib_2453e9391f#1": {
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "estampado": "liso",
+    "tejido": "cuero / vinilo",
+    "forma": "corta / cropped"
+   }
+  ],
+  "caja": [
+   15.5,
+   60.1,
+   171.7,
+   259.7
+  ],
+  "tipo_modelo": "Chaqueta",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "pr_0afac551b8#0": {
+  "prendas": [
+   {
+    "tipo": "Camiseta manga corta",
+    "estampado": "liso",
+    "tejido": "algodón",
+    "forma": "ajustada"
+   }
+  ],
+  "caja": [
+   321.5,
+   213.9,
+   752.2,
+   458.0
+  ],
+  "tipo_modelo": "Chaleco sin mangas",
+  "estilo": "urbano",
+  "mercado": "ES"
+ },
+ "bib_51b997a8da#0": {
+  "prendas": [
+   {
+    "tipo": "Camiseta manga corta",
+    "estampado": null,
+    "tejido": null,
+    "forma": "oversized / baggy"
+   },
+   {
+    "tipo": "Riñonera",
+    "estampado": null,
+    "tejido": null,
+    "forma": null
+   }
+  ],
+  "caja": [
+   183.0,
+   5.6,
+   644.1,
+   593.3
+  ],
+  "tipo_modelo": "Camiseta manga corta",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "bib_ef44acb69f#1": {
+  "prendas": [
+   {
+    "tipo": "Falda",
+    "estampado": null,
+    "tejido": null,
+    "forma": null
+   }
+  ],
+  "caja": [
+   554.8,
+   827.6,
+   866.5,
+   1057.8
+  ],
+  "tipo_modelo": "Falda",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "bib_d7cd043a9d#2": {
+  "prendas": [
+   {
+    "tipo": "Zapatillas deportivas",
+    "estampado": null,
+    "tejido": null,
+    "forma": null
+   },
+   {
+    "tipo": "Zapatillas casual/lifestyle",
+    "estampado": null,
+    "tejido": null,
+    "forma": null
+   }
+  ],
+  "caja": [
+   271.5,
+   882.2,
+   514.2,
+   1004.0
+  ],
+  "tipo_modelo": "Zapatillas deportivas",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "bib_864fecb83d#0": {
+  "prendas": [
+   {
+    "tipo": "Top",
+    "estampado": "liso",
+    "tejido": null,
+    "forma": "ajustada"
+   }
+  ],
+  "caja": [
+   207.1,
+   57.1,
+   641.5,
+   586.8
+  ],
+  "tipo_modelo": "Top",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "bib_fc0e35437c#0": {
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "estampado": "liso",
+    "tejido": null,
+    "forma": "oversized / baggy"
+   },
+   {
+    "tipo": "Riñonera",
+    "estampado": null,
+    "tejido": null,
+    "forma": null
+   },
+   {
+    "tipo": "Camiseta de tirantes",
+    "estampado": null,
+    "tejido": null,
+    "forma": null
+   },
+   {
+    "tipo": "Chaqueta",
+    "estampado": null,
+    "tejido": null,
+    "forma": null
+   }
+  ],
+  "caja": [
+   128.2,
+   169.8,
+   319.4,
+   565.8
+  ],
+  "tipo_modelo": "Abrigo",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "bib_8fad34f445#1": {
+  "prendas": [
+   {
+    "tipo": "Camiseta manga larga",
+    "estampado": "liso",
+    "tejido": "algodón",
+    "forma": "ajustada"
+   }
+  ],
+  "caja": [
+   302.2,
+   200.9,
+   649.0,
+   602.9
+  ],
+  "tipo_modelo": "Sudadera",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "bib_14798998b8#0": {
+  "prendas": [
+   {
+    "tipo": "Hoodie",
+    "estampado": "otro",
+    "tejido": null,
+    "forma": "oversized / baggy"
+   }
+  ],
+  "caja": [
+   191.0,
+   426.5,
+   1182.1,
+   838.9
+  ],
+  "tipo_modelo": "Sudadera",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "bib_9747c29cf2#0": {
+  "prendas": [
+   {
+    "tipo": "Hoodie",
+    "estampado": "gráfico / dibujo",
+    "tejido": "algodón",
+    "forma": "oversized / baggy"
+   }
+  ],
+  "caja": [
+   234.9,
+   72.9,
+   574.9,
+   429.4
+  ],
+  "tipo_modelo": "Sudadera",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "bib_4089632a46#0": {
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "estampado": "liso",
+    "tejido": "técnico / impermeable",
+    "forma": "regular"
+   }
+  ],
+  "caja": [
+   109.3,
+   83.2,
+   749.9,
+   593.4
+  ],
+  "tipo_modelo": "Chaqueta",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
  }
 }

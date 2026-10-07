@@ -1,0 +1,52 @@
+{
+ "fashionpedia_prendas": 1980,
+ "estampado": {
+  "fashionpedia": {
+   "liso": 1482,
+   "otro": 187,
+   "camuflaje": 7,
+   "gráfico / dibujo": 112,
+   "cuadros": 58,
+   "rayas": 88,
+   "texto / logo": 9
+  },
+  "cv_por_foto": 0.723,
+  "C": 8.0,
+  "siempre_la_mas_frecuente_fashionpedia": 0.763,
+  "victor_principal": [
+   10,
+   22
+  ],
+  "victor_siempre_la_mas_frecuente": [
+   11,
+   22
+  ],
+  "victor_cualquier_prenda": [
+   16,
+   32
+  ]
+ },
+ "forma": {
+  "fashionpedia": {
+   "oversized / baggy": 173,
+   "regular": 513,
+   "ajustada": 227,
+   "corta / cropped": 511
+  },
+  "cv_por_foto": 0.569,
+  "C": 8.0,
+  "siempre_la_mas_frecuente_fashionpedia": 0.36,
+  "victor_principal": [
+   8,
+   23
+  ],
+  "victor_siempre_la_mas_frecuente": [
+   11,
+   23
+  ],
+  "victor_cualquier_prenda": [
+   15,
+   31
+  ]
+ }
+}
