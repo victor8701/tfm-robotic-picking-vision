@@ -95,11 +95,32 @@ def recorte(x: dict) -> Image.Image:
     return im.crop((max(0, int(x1 - .06 * bw)), max(0, int(y1 - .06 * bh)), min(W, int(x2 + .06 * bw)), min(H, int(y2 + .06 * bh))))
 
 
+def sugerir(el: list[dict]) -> list[list[str]]:
+    """Las tres opciones de tipo más probables según CLIP ViT-B/32 sin restringir (en el lote 1 acertó la de Víctor 18/27 a la primera y 23/27 entre las tres)."""
+    sys.path.insert(0, str(AQUI.parent / "vlm_atributos_prenda" / "herramientas"))
+    import evaluar_etiquetas_prendas as ev
+    import numpy as np
+    import torch
+    torch.set_grad_enabled(False)
+    model, prep, tok = ev.pc.cargar(None, None)
+    nombres = list(ev.TIPOS)
+    t = model.encode_text(tok(["a photo of " + p for p in ev.TIPOS.values()]))
+    T = (t / t.norm(dim=-1, keepdim=True)).numpy()
+    out = []
+    for x in el:
+        v = model.encode_image(prep(ev.recorte(CACHE / "img" / f"{x['foto']}.jpg", x["caja"])).unsqueeze(0))
+        v = (v / v.norm(dim=-1, keepdim=True)).numpy()[0]
+        orden = [nombres[j] for j in np.argsort(-(T @ v))]
+        out.append(orden[:3])
+    return out
+
+
 def cmd_crear(a):
     c = candidatos()
     if not c:
         raise SystemExit("No hay recortes nuevos para etiquetar.")
     el = elegir(c, a.n)
+    sugerencias = sugerir(el)
     SALIDA.mkdir(parents=True, exist_ok=True)
     for f in SALIDA.glob("*"):
         f.unlink()
@@ -137,7 +158,8 @@ def cmd_crear(a):
             pid = h * 12 + n + 1
             dr.rectangle([px, py, px + 40, py + 22], fill=(0, 0, 0))
             dr.text((px + 5, py + 3), f"{pid}", fill=(255, 255, 255), font=fu)
-            estado[str(pid)] = {"foto": x["foto"], "idx": x["idx"], "caja": x["caja"], "tipo_modelo": x["tipo"], "estilo": x["estilo"], "mercado": x["mercado"]}
+            estado[f"{a.prefijo}{pid}"] = {"foto": x["foto"], "idx": x["idx"], "caja": x["caja"], "tipo_modelo": x["tipo"], "estilo": x["estilo"], "mercado": x["mercado"],
+                                "sug": sugerencias[pid - 1]}
         y0 = 4 * H + 6
         for k, t in enumerate(leyenda):
             dr.text((8, y0 + k * 22), t, fill=(255, 220, 140) if t.startswith("Respuesta") else (210, 215, 235), font=fp)
@@ -182,12 +204,12 @@ def cmd_html(a):
     import io
     estado = json.loads((SALIDA / "estado.json").read_text(encoding="utf-8"))
     crops = []
-    for pid in sorted(estado, key=int):
+    for pid in sorted(estado, key=lambda k: (len(k), k)):   # «b2-1» … «b2-9» antes que «b2-10»
         im = recorte(estado[pid])
         im.thumbnail((480, 480))
         b = io.BytesIO()
         im.save(b, "JPEG", quality=72)
-        crops.append({"id": pid, "src": "data:image/jpeg;base64," + base64.b64encode(b.getvalue()).decode()})
+        crops.append({"id": pid, "src": "data:image/jpeg;base64," + base64.b64encode(b.getvalue()).decode(), "sug": estado[pid].get("sug", [])})
     plantilla = Path(a.plantilla).read_text(encoding="utf-8")
     Path(a.salida).write_text(plantilla.replace("__CROPS__", json.dumps(crops, ensure_ascii=False)), encoding="utf-8")
     print(f"{len(crops)} recortes incrustados en {a.salida} ({Path(a.salida).stat().st_size // 1024} KB)")
@@ -225,6 +247,7 @@ def main():
     sub = ap.add_subparsers(dest="cmd", required=True)
     p = sub.add_parser("crear")
     p.add_argument("--n", type=int, default=36)
+    p.add_argument("--prefijo", default="", help="prefijo de los números de recorte (p. ej. «b2-» en el lote 2) para no pisar las etiquetas de lotes anteriores en la base de la página")
     p = sub.add_parser("resolver")
     p.add_argument("--respuestas", required=True)
     p = sub.add_parser("html")

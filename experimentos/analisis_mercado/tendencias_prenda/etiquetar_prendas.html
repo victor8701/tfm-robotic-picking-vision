@@ -70,6 +70,9 @@ h1{margin:0;font:700 26px/1.05 var(--f-display);letter-spacing:-.02em}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 .chip{min-height:40px;padding:0 13px;border-radius:999px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);font:500 14px/1 var(--f-body)}
 .chip[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:transparent}
+.chip.sug{border-style:dashed;border-color:var(--accent);font-weight:600}
+.chip.sug[aria-pressed="true"]{border-style:solid}
+.sugs{display:grid;gap:6px}
 .actions2{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .actions2 .no{flex:1;min-width:0}
 .tabs2{display:flex;gap:6px;flex-wrap:wrap}
@@ -104,7 +107,7 @@ h1{margin:0;font:700 26px/1.05 var(--f-display);letter-spacing:-.02em}
   </header>
   <div class="wrap prog"><div class="txt"><span id="ptxt">0 de 0</span><span id="pflt"></span></div><div class="meter"><i id="pbar" style="width:0%"></i></div></div>
   <main class="wrap" id="view"></main>
-  <div class="wrap" style="padding-block:20px 60px"><p class="note">Cada toque se guarda solo. Un recorte cuenta como hecho con los cuatro campos de cada prenda; con borde discontinuo, a medias. Si en un recorte hay varias prendas, elige todos los tipos. No te enseño lo que predice el modelo para no influirte.</p></div>
+  <div class="wrap" style="padding-block:20px 60px"><p class="note">Cada toque se guarda solo. Un recorte cuenta como hecho cuando la prenda principal tiene sus cuatro campos; con borde discontinuo, a medias. Si ves otras prendas en el recorte, marca también su tipo (es opcional). No te enseño lo que predice el modelo para no influirte.</p></div>
 </div>
 
 <script type="application/json" id="crops">__CROPS__</script>
@@ -133,7 +136,7 @@ function vacia(){return {tipo:'',estampado:'',tejido:'',forma:''}}
 function lab(id){return S.lab[id]||(S.lab[id]={x:false,prendas:[vacia()]})}
 function completa(p){return !!(p.tipo&&p.estampado&&p.tejido&&p.forma)}
 function alguna(p){return !!(p.tipo||p.estampado||p.tejido||p.forma)}
-function done(id){var l=S.lab[id];return !!l&&(l.x===true||(l.prendas.length>0&&l.prendas.every(completa)))}
+function done(id){var l=S.lab[id];return !!l&&(l.x===true||(l.prendas.length>0&&completa(l.prendas[0])))}
 function partial(id){var l=S.lab[id];return !!l&&!l.x&&!done(id)&&l.prendas.some(alguna)}
 function nDone(){var n=0;CROPS.forEach(function(c){if(done(c.id))n++});return n}
 function firstPending(from){for(var k=0;k<CROPS.length;k++){var j=(from+k)%CROPS.length;if(!done(CROPS[j].id))return j}return -1}
@@ -185,15 +188,16 @@ function render(){
   if(S.g>=l.prendas.length)S.g=l.prendas.length-1;
   var p=l.prendas[S.g];
   var elegidos=l.prendas.map(function(q){return q.tipo}).filter(Boolean);
-  var tip=TIPOS.map(function(g){return '<div class="sub">'+esc(g[0])+'</div>'+chips('tipo',g[1],elegidos)}).join('');
+  var sug=(c.sug||[]).map(function(t){return '<button class="chip sug" data-c="tipo" data-v="'+esc(t)+'" aria-pressed="'+(elegidos.indexOf(t)>=0)+'">'+esc(t)+'</button>'}).join('');
+  var tip=(sug?'<div class="sugs"><span class="sub">El modelo cree que es</span><div class="chips">'+sug+'</div><span class="sub">O elige otro</span></div>':'')+TIPOS.map(function(g){return '<div class="sub">'+esc(g[0])+'</div>'+chips('tipo',g[1],elegidos)}).join('');
   var multi=l.prendas.length>1;
-  var tabs=multi?'<div class="tabs2">'+l.prendas.map(function(q,k){return '<button class="tab2" data-g="'+k+'" aria-pressed="'+(k===S.g)+'">'+esc(q.tipo||('Prenda '+(k+1)))+(completa(q)?' ✓':'')+'</button>'}).join('')+'</div>':'';
-  var cab=multi?'<p class="note">Varias prendas: el estampado, el tejido y la forma de abajo son de <b>'+esc(p.tipo||('la prenda '+(S.g+1)))+'</b>. Cambia de pestaña para etiquetar las demás.</p>':'';
+  var tabs=multi?'<div class="tabs2">'+l.prendas.map(function(q,k){return '<button class="tab2" data-g="'+k+'" aria-pressed="'+(k===S.g)+'">'+(k===0?'Principal · ':'Otra · ')+esc(q.tipo||('prenda '+(k+1)))+(completa(q)?' ✓':'')+'</button>'}).join('')+'</div>':'';
+  var cab=multi?'<p class="note">El estampado, el tejido y la forma de abajo son de <b>'+esc(p.tipo||('la prenda '+(S.g+1)))+'</b>'+(S.g===0?' (la principal, la que llena el recorte). Las otras son opcionales: si quieres, cambia de pestaña.':'. Vuelve a «Principal» cuando termines.')+'</p>':'';
   var listo=done(c.id);
   v.innerHTML=
    '<div class="stage"><img src="'+c.src+'" alt="Recorte '+esc(c.id)+'"><span class="num">'+(S.i+1)+' / '+tot+'</span>'+(listo?'<span class="st">'+(l.x?'no sirve':'hecho')+'</span>':'')+'</div>'+
    '<section class="card">'+
-   '<div class="grp"><div class="lab"><span>Tipo de prenda · puedes elegir varios</span><b>'+esc(elegidos.join(' + '))+'</b></div>'+tip+'</div>'+tabs+cab+
+   '<div class="grp"><div class="lab"><span>Tipo de prenda · el primero es el principal</span><b>'+esc(elegidos.join(' + '))+'</b></div>'+tip+'</div>'+tabs+cab+
    '<div class="grp"><div class="lab"><span>Estampado</span><b>'+esc(p.estampado||'')+'</b></div>'+chips('estampado',ESTAMP,p.estampado)+'</div>'+
    '<div class="grp"><div class="lab"><span>Tejido</span><b>'+esc(p.tejido||'')+'</b></div>'+chips('tejido',TEJIDOS,p.tejido)+'</div>'+
    '<div class="grp"><div class="lab"><span>Forma</span><b>'+esc(p.forma||'')+'</b></div>'+chips('forma',FORMAS,p.forma)+'</div>'+
@@ -222,8 +226,8 @@ function pick(campo,valor){
       if(S.g>k)S.g--;if(S.g>=l.prendas.length)S.g=l.prendas.length-1;
     }else{
       var e=-1;l.prendas.forEach(function(q,n){if(!q.tipo&&e<0)e=n});
-      if(e>=0){l.prendas[e].tipo=valor;S.g=e}
-      else{l.prendas.push({tipo:valor,estampado:'',tejido:'',forma:''});S.g=l.prendas.length-1}
+      if(e>=0){l.prendas[e].tipo=valor}
+      else{l.prendas.push({tipo:valor,estampado:'',tejido:'',forma:''})}
     }
   }else{
     var p=l.prendas[S.g];p[campo]=(p[campo]===valor)?'':valor;
