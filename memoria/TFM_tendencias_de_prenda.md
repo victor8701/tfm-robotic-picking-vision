@@ -144,3 +144,44 @@ por eso «negro» (55 % de las prendas con color) está inflado.
 
 **Qué hace el informe con esto** (pestaña «Prendas» de la app, `fiabilidad_prenda.py`, `tendencia_prenda.py informe`): cada cifra lleva un margen (intervalo de Wilson con las fotos efectivas) y una confianza = mínimo entre lo que sostienen las fotos (≥ 30 alta, 15 a 29 media, 5 a 14 baja) y el techo que fija lo que acierta el atributo (≥ 85 % alta, ≥ 65 % media, menos baja).
 Hoy el tipo fino y el color tienen techo «baja» y la familia «media»: la herramienta es **orientativa** hasta que el clasificador mejore. Para probar si un modelo de lenguaje y visión grande lo mejora, ver `vlm_atributos_prenda/herramientas/vlm_profesor/`.
+
+### 6.2 El «profesor»: un modelo grande de lenguaje y visión, sin entrenar (8 de octubre, tarde)
+
+**Pregunta.** CLIP, una capa entrenada con Fashionpedia y Florence-2 no mejoran a «decir siempre lo más frecuente» con las etiquetas de Víctor. ¿Lo hace un modelo abierto grande de lenguaje y visión que mira la foto entera? Si sí, puede hacer de profesor (etiquetar muchas fotos) y destilarse en nuestro modelo.
+
+**Método** (`vlm_atributos_prenda/herramientas/vlm_profesor/`). Kaggle con dos GPU T4; Qwen2.5-VL-7B-Instruct y Qwen3-VL-8B-Instruct en fp16 repartidos entre las dos GPU (carga de 100 a 146 s, unos 0,7 s por prenda y pregunta con lotes de 6); sin entrenar nada.
+A cada modelo se le da la foto con la prenda marcada en una caja roja y su recorte («foto») o solo el recorte («recorte») y se le pide un JSON con valores cerrados que se traducen al vocabulario de Víctor; para el tipo, una lista numerada. Examen: 308 prendas de Fashionpedia val (30 por clase de estampado y 40 por clase de forma),
+con las etiquetas que salen de los atributos del conjunto; sus fotos son públicas, así que no hay datos de personas de las fuentes de Víctor en Kaggle. Comparación: la capa de regresión logística sobre CLIP B/32 entrenada con 22 000 prendas de Fashionpedia (para estampado y forma) y CLIP B/32 sin entrenar (para el tipo).
+
+| 308 prendas de Fashionpedia val | CLIP B/32 | Qwen2.5-VL-7B | Qwen3-VL-8B |
+|---|---|---|---|
+| Tipo (13 categorías; el modelo no sabe cuál es la prenda) | 137 de 308 (44 %), sin entrenar | recorte 199 (65 %) · foto 187 (61 %) | recorte 226 (73 %) · **foto 233 (76 %)** |
+| Estampado (7 clases) | 202 de 307 (66 %), recall medio 0,59, capa entrenada | recorte 192 (63 %) · foto 188 (61 %) | **recorte 226 (74 %), recall medio 0,65** · foto 215 (70 %) |
+| Forma (4 clases) | **150 de 255 (59 %), recall medio 0,61**, capa entrenada | recorte 109 (43 %) · foto 106 (42 %) | recorte 122 (48 %) · foto 118 (46 %) |
+
+Pedirles que describan antes de contestar («foto_razona», 80 prendas) no mejora: Qwen3-VL estampado 50 de 79 (63 %) y forma 35 de 71 (49 %). Con el recorte o con la foto entera sale parecido en estampado y forma; la foto ayuda algo en el tipo (76 frente a 73 %).
+
+**Lectura.** (1) El tipo y el estampado mejoran con claridad: el profesor acierta 30 puntos más que CLIP sin entrenar en tipo y 8 más que la capa entrenada en estampado, aun siendo esa capa un modelo entrenado con las propias etiquetas del conjunto. Los errores de tipo son de ambigüedad entre categorías vecinas
+(abrigo ↔ chaqueta 7, camisa ↔ chaqueta 6, top ↔ camisa 4, falda ↔ vestido 4), no de gruesos. (2) La forma no: 48 % frente a 59 % de la capa entrenada. La capa aprende cómo etiqueta Fashionpedia «oversized», «ajustada» o «corta»; el modelo grande tiene su propio criterio. Lo que decide si sirve es medirlo con las etiquetas de Víctor,
+que dicen otra cosa de «oversized» que Fashionpedia (la capa sacaba 4 de 23). (3) Qwen2.5-VL-7B queda por debajo de la capa sobre CLIP en todo salvo el tipo; Qwen3-VL-8B es el que se usa de aquí en adelante. (4) No se midió contra Víctor directamente: subir sus 40 fotos a Kaggle se bloqueó por permisos (son personas reales);
+en su lugar se usa el profesor sobre fotos públicas y se mide al alumno con las etiquetas de Víctor, que no salen del ordenador (§6.3).
+
+### 6.3 El alumno: nuestro modelo entrenado con las etiquetas del profesor, medido con las de Víctor (8 de octubre, noche)
+
+**Qué se hizo.** Qwen3-VL-8B etiquetó en Kaggle 5 252 prendas públicas de Fashionpedia train (13 categorías de ropa más calzado, bolsos y sombreros; tope de 350 por categoría y 300 por accesorio): primero el tipo entre los 29 de Víctor con la foto entera y luego, sabiendo ese tipo, estampado, tejido y forma sobre el recorte
+(dos tareas en paralelo, 103 y 105 minutos en dos GPU T4; ~2,5 s por prenda). Con esas etiquetas se entrenó una regresión logística por atributo sobre los embeddings de CLIP B/32 del recorte (`vlm_profesor/entrenar_alumno.py`), y se midió con las etiquetas de Víctor, que no salieron del ordenador y no se usaron para entrenar.
+En el tipo se descartaron 406 etiquetas del profesor que contradecían la categoría de Fashionpedia (p. ej. un «pantalón» etiquetado como falda).
+
+| Atributo | Alumno (prenda principal) | Alumno («cualquiera») | Siempre la más frecuente (principal · cualquiera) | Acuerdo del alumno con el profesor (validación cruzada) |
+|---|---|---|---|---|
+| Tipo de 29 | 19 de 38 (20 de 38 si el detector pesa 0,5 a 0) | 25 de 38 | 9 de 38 («Sudadera») · flujo actual 19 de 38 (principal) y 24 de 38 | 66 % |
+| Estampado | 11 de 22 | 16 de 32 | 11 de 22 · 15 de 32 («liso») | 71 % |
+| Tejido | 7 de 15 | 12 de 23 | 10 de 15 · 13 de 23 («algodón») | 51 % |
+| Forma | 11 de 23 | 18 de 31 | 11 de 23 · 17 de 31 («oversized / baggy») | 63 % |
+
+**Lectura.** (1) El alumno no mejora lo que había: el tipo queda en 19 o 20 de 38 (50 a 53 %) frente a los 19 del flujo actual, y estampado, tejido y forma empatan con «decir siempre lo más frecuente» (tejido, peor). Con 22 o 23 etiquetas el error típico es de unos 10 puntos: no se distingue de lo anterior.
+Con la mitad de las prendas (2 626) el tipo salió 22 de 38, lo que da idea del ruido. (2) CLIP B/32 solo reproduce entre el 51 y el 71 % de lo que dice el profesor (validación cruzada): el recorte a 224 píxeles tiene pocos datos de tejido y de cómo cae la prenda; destilar en esa capa pierde buena parte de lo que el profesor veía.
+(3) Hay además una diferencia de criterio entre el profesor y Víctor, que se ve en los fallos: 7 de los 8 fallos de tejido son «algodón» (Víctor) frente a «felpa / polar» (alumno), porque el profesor etiqueta como felpa las sudaderas y capuchas (así lo pedía la guía de mi propio prompt) y Víctor las etiqueta como algodón;
+5 de los 12 fallos de forma son «oversized» (Víctor) frente a «regular» (alumno), porque en Fashionpedia «oversized» es mucho más raro (13 %) que en el streetwear de Víctor (la mitad de sus prendas); y en estampado el alumno dice «texto / logo» en prendas que Víctor llama «liso» o «gráfico» (7 fallos). Es decir, parte del problema es de **definiciones**, no solo de capacidad.
+(4) Lo que no se sabe es cuánto acierta el propio profesor contra Víctor, porque subir sus fotos a Kaggle se bloqueó por permisos. Esa es la prueba que separa «el modelo grande coincide con Víctor y falla la destilación» de «el modelo grande tiene otro criterio». Sin ella, la conclusión sólida es que la destilación sobre CLIP no basta.
+

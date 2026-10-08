@@ -56,6 +56,7 @@ def main():
     ap.add_argument("--etiqueta", default="b32")
     ap.add_argument("--etiquetas", type=Path, default=ev.BASE / "etiquetas_prendas.json")
     ap.add_argument("--salida", type=Path)
+    ap.add_argument("--cv", action="store_true", help="además, acuerdo del alumno con el profesor en validación cruzada de 5 pliegues (¿puede CLIP reproducir lo que dice el profesor?)")
     ap.add_argument("--guardar", type=Path, help="guarda las capas entrenadas (.npz: clases, pesos y sesgo de cada campo) para usarlas en el flujo semanal")
     a = ap.parse_args()
     fp.MODELO.update(modelo=a.modelo, pesos=a.pesos)
@@ -102,7 +103,8 @@ def main():
             cual = [(i, {q.get(campo) for q in etiq[k]["prendas"]} - {None, "no aplica"}) for i, k in enumerate(claves)]
         cual = [(i, s) for i, s in cual if s]
         frec = collections.Counter(v for _, v in prin).most_common(1)[0]
-        r = {"entrenamiento": len(y), "clases": dict(dist.most_common()),
+        confusion = collections.Counter((v, pred[i]) for i, v in prin if pred[i] != v)
+        r = {"entrenamiento": len(y), "clases": dict(dist.most_common()), "fallos_con_victor": [[v, p_, n] for (v, p_), n in confusion.most_common(8)],
              "principal": [int(sum(pred[i] == v for i, v in prin)), len(prin)], "cualquiera": [int(sum(pred[i] in s for i, s in cual)), len(cual)],
              "siempre_la_mas_frecuente": [frec[0], frec[1], len(prin)],
              "no_mayoritarias_acertadas": [int(sum(pred[i] == v for i, v in prin if v != frec[0])), sum(v != frec[0] for _, v in prin)]}
@@ -110,10 +112,19 @@ def main():
             fam = lambda t: kp_familia(t)   # noqa: E731
             r["familia_principal"] = [int(sum(fam(pred[i]) == fam(v) for i, v in prin)), len(prin)]
             r["con_detector"] = con_detector(m, EV, claves, etiq, prin, fam)
+        if a.cv:
+            from sklearn.model_selection import cross_val_predict
+            Xc = X[list(idx)]
+            pc_ = cross_val_predict(LogisticRegression(C=2.0, max_iter=4000, class_weight="balanced"), Xc, y, cv=5, n_jobs=1)
+            rec = [float(np.mean(pc_[y == c] == c)) for c in sorted(set(y.tolist())) if (y == c).sum() >= 5]
+            r["cv_con_profesor"] = {"acuerdo": round(float(np.mean(pc_ == y)), 3), "recall_medio": round(float(np.mean(rec)), 3)}
         res["campos"][campo] = r
         extra = f" | familia {r['familia_principal'][0]}/{r['familia_principal'][1]}" if "familia_principal" in r else ""
         if "con_detector" in r:
             extra += " | con el detector (peso de lo que él descarta → principal/familia de n): " + "; ".join(f"{w}: {v[0]}/{v[1]} de {v[2]}" for w, v in r["con_detector"].items())
+        if "cv_con_profesor" in r:
+            print(f"   (acuerdo del alumno con el profesor en validación cruzada: {r['cv_con_profesor']['acuerdo']:.0%}, recall medio {r['cv_con_profesor']['recall_medio']:.0%})", flush=True)
+        print(f"   fallos con Víctor (verdad → alumno): {r['fallos_con_victor'][:6]}", flush=True)
         print(f"{campo:<10} entrenado con {len(y)} prendas | principal {r['principal'][0]}/{r['principal'][1]} | cualquiera {r['cualquiera'][0]}/{r['cualquiera'][1]}{extra} | "
               f"más frecuente «{frec[0]}» {frec[1]}/{len(prin)} | no mayoritarias {r['no_mayoritarias_acertadas'][0]}/{r['no_mayoritarias_acertadas'][1]}", flush=True)
     if a.salida:
