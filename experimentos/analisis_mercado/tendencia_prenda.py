@@ -63,6 +63,8 @@ FAMILIA = {"Camiseta manga corta": "Arriba", "Camiseta de tirantes": "Arriba", "
            "Zapatillas deportivas": "Calzado", "Zapatillas casual/lifestyle": "Calzado", "Zapatos planos de vestir": "Calzado", "Zapatos de vestir": "Calzado", "Zapatos de tacón": "Calzado",
            "Sandalias": "Calzado", "Botas": "Calzado", "Bolso": "Accesorio", "Riñonera": "Accesorio", "Gorra/Gorro/Sombrero": "Accesorio"}
 NIVELES = ["baja", "media", "alta"]
+ALUMNO = TD / "alumno.npz"           # capas sobre CLIP B/32 entrenadas con el profesor (vlm_profesor/entrenar_alumno.py --guardar); si no existe, se usa CLIP sin entrenar
+PESO_FUERA_DE_CATEGORIA = 0.2        # el detector solo orienta: los tipos que no son de su categoría pesan esto (0 = restricción dura)
 FIABILIDAD = TD / "fiabilidad.json"   # aciertos medidos de cada atributo (`fiabilidad_prenda.py`): ponen el techo de confianza de sus cifras
 
 
@@ -275,6 +277,29 @@ def _datos_app(ruta_app: Path):
 
 
 # ---------------------------------------------------------------- análisis de prendas
+def cargar_alumno():
+    """Capas del alumno {campo: (clases, W, b)} si hay `alumno.npz` hecho con CLIP B/32 (el que usa este flujo); si no, None."""
+    if not ALUMNO.exists():
+        return None
+    z = np.load(ALUMNO, allow_pickle=False)
+    if str(z["_modelo"]) != "b32":
+        return None
+    return {c.split("__")[0]: (z[c], z[c.replace("__clases", "__W")], z[c.replace("__clases", "__b")]) for c in z.files if c.endswith("__clases")}
+
+
+def tipo_del_alumno(alumno, v, categoria, pc):
+    """Tipo de prenda con la capa del alumno: probabilidad por tipo × peso según la categoría del detector. Devuelve (tipo, probabilidad)."""
+    clases, W, b = alumno["tipo29"]
+    z = W @ v + b
+    p = np.exp(z - z.max())
+    p /= p.sum()
+    permitidos = {t[0] for t in pc.GRUPOS[categoria]} | ({"Hoodie"} if categoria in ("ropa_superior", "abrigo") else set()) | ({"Zapatos de vestir"} if categoria == "calzado" else set())
+    q = p * np.array([1.0 if c in permitidos else PESO_FUERA_DE_CATEGORIA for c in clases])
+    q /= q.sum()
+    j = int(q.argmax())
+    return str(clases[j]), float(q[j])
+
+
 def cargar_tipos():
     sys.path.insert(0, str(DET))
     import prueba_recortes_clip as pc
@@ -310,6 +335,9 @@ def cmd_analizar(args):
     if not pend:
         return
     pc, model, prep, T = cargar_tipos()
+    alumno = cargar_alumno()
+    if alumno and "tipo29" in alumno:
+        print("tipo de prenda: capa entrenada con el profesor (alumno.npz)", flush=True)
     for i in range(0, len(pend), 20):
         lote = pend[i:i + 20]
         carpeta = TD / "lote"
@@ -345,7 +373,12 @@ def cmd_analizar(args):
                 p = np.exp(s)
                 p /= p.sum()
                 j = int(p.argmax())
-                out.append({"tipo": pc.TIPOS[cand[j]][0], "p_tipo": round(float(p[j]), 3), "cat": pr["categoria"], "deteccion": pr["deteccion"],
+                tipo, p_tipo = pc.TIPOS[cand[j]][0], float(p[j])
+                extra = {}
+                if alumno and "tipo29" in alumno:   # el tipo de CLIP sin entrenar queda guardado aparte, para poder compararlos
+                    extra["tipo_clip"] = tipo
+                    tipo, p_tipo = tipo_del_alumno(alumno, v, pr["categoria"], pc)
+                out.append({"tipo": tipo, "p_tipo": round(p_tipo, 3), "cat": pr["categoria"], "deteccion": pr["deteccion"], **extra,
                             "color": (pr.get("atributos") or {}).get("color_primario"), "visible": visible(pr["caja"], pr["categoria"], W, H), "caja": [round(v_, 1) for v_ in pr["caja"]]})
             prendas[k] = {"n_personas": r["n_personas"], "prendas": out}
         guardar(PRENDAS, prendas)

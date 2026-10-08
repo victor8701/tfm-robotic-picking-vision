@@ -56,6 +56,7 @@ def main():
     ap.add_argument("--etiqueta", default="b32")
     ap.add_argument("--etiquetas", type=Path, default=ev.BASE / "etiquetas_prendas.json")
     ap.add_argument("--salida", type=Path)
+    ap.add_argument("--guardar", type=Path, help="guarda las capas entrenadas (.npz: clases, pesos y sesgo de cada campo) para usarlas en el flujo semanal")
     a = ap.parse_args()
     fp.MODELO.update(modelo=a.modelo, pesos=a.pesos)
 
@@ -73,6 +74,7 @@ def main():
     claves = sorted(etiq)
     EV = embeddings_victor(claves, etiq, a.modelo, a.pesos, a.etiqueta)
     res = {"prendas_del_profesor": len(filas), "campos": {}}
+    capas = {"_modelo": np.array(a.etiqueta)}
 
     for campo in CAMPOS:
         pares = [(por_id[r["id"][2:]], r.get(campo)) for r in filas if r["id"][2:] in por_id and r.get(campo)]
@@ -90,6 +92,7 @@ def main():
         dist = collections.Counter(y.tolist())
         m = LogisticRegression(C=2.0, max_iter=4000, class_weight="balanced").fit(X[list(idx)], y)
         pred = m.predict(EV)
+        capas[f"{campo}__clases"], capas[f"{campo}__W"], capas[f"{campo}__b"] = m.classes_.astype(str), m.coef_.astype(np.float32), m.intercept_.astype(np.float32)
         # verdad de Víctor
         if campo == "tipo29":
             prin = [(i, EQ.get(etiq[k]["prendas"][0]["tipo"], etiq[k]["prendas"][0]["tipo"])) for i, k in enumerate(claves) if etiq[k]["prendas"][0].get("tipo")]
@@ -106,12 +109,57 @@ def main():
         if campo == "tipo29":
             fam = lambda t: kp_familia(t)   # noqa: E731
             r["familia_principal"] = [int(sum(fam(pred[i]) == fam(v) for i, v in prin)), len(prin)]
+            r["con_detector"] = con_detector(m, EV, claves, etiq, prin, fam)
         res["campos"][campo] = r
         extra = f" | familia {r['familia_principal'][0]}/{r['familia_principal'][1]}" if "familia_principal" in r else ""
+        if "con_detector" in r:
+            extra += " | con el detector (peso de lo que él descarta → principal/familia de n): " + "; ".join(f"{w}: {v[0]}/{v[1]} de {v[2]}" for w, v in r["con_detector"].items())
         print(f"{campo:<10} entrenado con {len(y)} prendas | principal {r['principal'][0]}/{r['principal'][1]} | cualquiera {r['cualquiera'][0]}/{r['cualquiera'][1]}{extra} | "
               f"más frecuente «{frec[0]}» {frec[1]}/{len(prin)} | no mayoritarias {r['no_mayoritarias_acertadas'][0]}/{r['no_mayoritarias_acertadas'][1]}", flush=True)
     if a.salida:
         a.salida.write_text(json.dumps(res, ensure_ascii=False, indent=1), encoding="utf-8")
+    if a.guardar:
+        np.savez(a.guardar, **capas)
+        print(f"capas guardadas en {a.guardar}")
+
+
+def categorias_detector(claves, etiq):
+    """Categoría del detector (ropa_superior, abrigo, ropa_inferior, cuerpo_entero, calzado) de cada recorte etiquetado: se lee de prendas.json por foto e índice (`bib_xxx#2` = tercera prenda de esa foto)."""
+    prendas = json.loads((ev.BASE / "prendas.json").read_text(encoding="utf-8"))
+    cats = {}
+    for i, k in enumerate(claves):
+        foto, _, n = k.partition("#")
+        try:
+            pr = prendas[foto]["prendas"][int(n)]
+        except (KeyError, IndexError, ValueError):
+            continue
+        if np.allclose(pr["caja"], etiq[k]["caja"], atol=1.0):
+            cats[i] = pr["cat"]
+    return cats
+
+
+def con_detector(m, EV, claves, etiq, prin, fam):
+    """El detector solo orienta: los tipos de su categoría pesan entero y los demás un peso w (w = 1 ignora al detector; w = 0 es la restricción dura del flujo actual)."""
+    cats = categorias_detector(claves, etiq)
+    permitidos = {c: {t[0] for t in ev.pc.GRUPOS[c]} for c in ev.pc.GRUPOS}
+    for c in ("ropa_superior", "abrigo"):
+        permitidos[c] |= {"Hoodie"}
+    permitidos["calzado"] |= {"Zapatos de vestir"}
+    P, clases, salida = m.predict_proba(EV), list(m.classes_), {}
+    for w in (1.0, 0.5, 0.2, 0.05, 0.0):
+        ok = okf = n = 0
+        for i, v in prin:
+            if i not in cats:
+                continue
+            q = P[i] * np.array([1.0 if c in permitidos[cats[i]] else w for c in clases])
+            if q.sum() == 0:
+                continue
+            t = clases[int(q.argmax())]
+            n += 1
+            ok += EQ.get(t, t) == EQ.get(v, v)
+            okf += fam(t) == fam(v)
+        salida[str(w)] = [int(ok), int(okf), n]
+    return salida
 
 
 def kp_familia(tipo):
