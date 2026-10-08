@@ -1,0 +1,308 @@
+{"id": "f:val100", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val1000", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val1006", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val1032", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val1112", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "1", "tipo": "shirt, blouse"}
+{"id": "f:val1126", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val1132", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val1139", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val1147", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val1187", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "6", "tipo": "vest"}
+{"id": "f:val1291", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val1300", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "9", "tipo": "skirt"}
+{"id": "f:val1324", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "1", "tipo": "shirt, blouse"}
+{"id": "f:val1325", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val1334", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "1", "tipo": "shirt, blouse"}
+{"id": "f:val1348", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val1425", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val1524", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val1569", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val1615", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "1", "tipo": "shirt, blouse"}
+{"id": "f:val1652", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val1675", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "1", "tipo": "shirt, blouse"}
+{"id": "f:val1733", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "6", "tipo": "vest"}
+{"id": "f:val1814", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val1891", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val190", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "1", "tipo": "shirt, blouse"}
+{"id": "f:val1900", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "9", "tipo": "skirt"}
+{"id": "f:val1920", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val1987", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val1995", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "8", "tipo": "shorts"}
+{"id": "f:val1998", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val2", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val2008", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "1", "tipo": "shirt, blouse"}
+{"id": "f:val2069", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val2070", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val2142", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val218", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "1", "tipo": "shirt, blouse"}
+{"id": "f:val22", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val2249", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "9", "tipo": "skirt"}
+{"id": "f:val2254", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val2255", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "10", "tipo": "coat"}
+{"id": "f:val2266", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "9", "tipo": "skirt"}
+{"id": "f:val2267", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val2281", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "8", "tipo": "shorts"}
+{"id": "f:val2320", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val2329", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val2343", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val237", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val2374", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val2385", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val240", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "9", "tipo": "skirt"}
+{"id": "f:val2496", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val25", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val2532", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val2557", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val2570", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val2574", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val258", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val2615", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val2661", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "4", "tipo": "cardigan"}
+{"id": "f:val2687", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val2697", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val2734", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val2735", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "9", "tipo": "skirt"}
+{"id": "f:val2775", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val2789", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "12", "tipo": "jumpsuit"}
+{"id": "f:val2801", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val2835", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "1", "tipo": "shirt, blouse"}
+{"id": "f:val2882", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val290", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "9", "tipo": "skirt"}
+{"id": "f:val2907", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "8", "tipo": "shorts"}
+{"id": "f:val2950", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "1", "tipo": "shirt, blouse"}
+{"id": "f:val298", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val299", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "8", "tipo": "shorts"}
+{"id": "f:val3002", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "12", "tipo": "jumpsuit"}
+{"id": "f:val3018", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val303", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "10", "tipo": "coat"}
+{"id": "f:val3031", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "1", "tipo": "shirt, blouse"}
+{"id": "f:val3051", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val3090", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val311", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val3116", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val3145", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val3195", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val3203", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val3241", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val3272", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val3327", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val3347", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val3378", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val3379", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val338", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val3432", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val3436", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val35", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val3552", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "9", "tipo": "skirt"}
+{"id": "f:val3554", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val3613", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val365", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val3657", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val367", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val3754", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "1", "tipo": "shirt, blouse"}
+{"id": "f:val3766", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val3782", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val3787", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val3845", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "6", "tipo": "vest"}
+{"id": "f:val3881", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val3894", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "12", "tipo": "jumpsuit"}
+{"id": "f:val3915", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val3933", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val3955", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val3957", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val3967", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "8", "tipo": "shorts"}
+{"id": "f:val3973", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val3994", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "1", "tipo": "shirt, blouse"}
+{"id": "f:val40", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "6", "tipo": "vest"}
+{"id": "f:val4007", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "9", "tipo": "skirt"}
+{"id": "f:val4034", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val4097", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val4137", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val422", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "8", "tipo": "shorts"}
+{"id": "f:val4252", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val427", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val4297", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "3", "tipo": "sweater"}
+{"id": "f:val4301", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val4361", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val4367", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "1", "tipo": "shirt, blouse"}
+{"id": "f:val4442", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "8", "tipo": "shorts"}
+{"id": "f:val4467", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val4473", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "10", "tipo": "coat"}
+{"id": "f:val4504", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val4522", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val4533", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val4541", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val4671", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val4677", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "4", "tipo": "cardigan"}
+{"id": "f:val4694", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val4711", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val4732", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val4759", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val4766", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val4767", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val4772", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val4788", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val4789", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val4906", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val492", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val4934", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val4964", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val4976", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val4983", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val5069", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "9", "tipo": "skirt"}
+{"id": "f:val5106", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val5139", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "1", "tipo": "shirt, blouse"}
+{"id": "f:val5184", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val5244", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "4", "tipo": "cardigan"}
+{"id": "f:val5253", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val5269", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "9", "tipo": "skirt"}
+{"id": "f:val5294", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "4", "tipo": "cardigan"}
+{"id": "f:val538", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "9", "tipo": "skirt"}
+{"id": "f:val5422", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "12", "tipo": "jumpsuit"}
+{"id": "f:val5449", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val5558", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "6", "tipo": "vest"}
+{"id": "f:val5597", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val5616", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "10", "tipo": "coat"}
+{"id": "f:val5627", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val5637", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val5675", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val5680", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val5698", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val5744", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "4", "tipo": "cardigan"}
+{"id": "f:val575", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val5770", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val581", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "1", "tipo": "shirt, blouse"}
+{"id": "f:val5816", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "3", "tipo": "sweater"}
+{"id": "f:val5827", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "3", "tipo": "sweater"}
+{"id": "f:val5844", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val5862", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val591", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "8", "tipo": "shorts"}
+{"id": "f:val5923", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val5937", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "8", "tipo": "shorts"}
+{"id": "f:val5941", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val5982", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val6049", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val6068", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val6127", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val6147", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "4", "tipo": "cardigan"}
+{"id": "f:val6168", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "1", "tipo": "shirt, blouse"}
+{"id": "f:val6204", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val6219", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val6246", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "8", "tipo": "shorts"}
+{"id": "f:val6249", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "6", "tipo": "vest"}
+{"id": "f:val6254", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val6265", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val6270", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val6288", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val6297", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val6320", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val635", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "10", "tipo": "coat"}
+{"id": "f:val6357", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val6390", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val6430", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "8", "tipo": "shorts"}
+{"id": "f:val6443", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "1", "tipo": "shirt, blouse"}
+{"id": "f:val6467", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val651", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "9", "tipo": "skirt"}
+{"id": "f:val6525", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val6557", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val6589", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val6629", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val664", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val6669", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val6705", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "6", "tipo": "vest"}
+{"id": "f:val6757", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val6768", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "6", "tipo": "vest"}
+{"id": "f:val6775", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val6785", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val6793", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val68", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val6814", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "3", "tipo": "sweater"}
+{"id": "f:val6833", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "1", "tipo": "shirt, blouse"}
+{"id": "f:val6853", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val6873", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val6910", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val6948", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val695", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val6964", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val6993", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val704", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val7068", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "10", "tipo": "coat"}
+{"id": "f:val7109", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val7115", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val7127", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "10", "tipo": "coat"}
+{"id": "f:val7148", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val7154", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val7166", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val7187", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "1", "tipo": "shirt, blouse"}
+{"id": "f:val7238", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val7255", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val7295", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "9", "tipo": "skirt"}
+{"id": "f:val7307", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val7318", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "1", "tipo": "shirt, blouse"}
+{"id": "f:val7337", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val7370", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "3", "tipo": "sweater"}
+{"id": "f:val7404", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val7405", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "10", "tipo": "coat"}
+{"id": "f:val7416", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val7422", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val7507", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val7526", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "12", "tipo": "jumpsuit"}
+{"id": "f:val7579", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val759", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "9", "tipo": "skirt"}
+{"id": "f:val7590", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val7630", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "1", "tipo": "shirt, blouse"}
+{"id": "f:val7673", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "4", "tipo": "cardigan"}
+{"id": "f:val7714", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "10", "tipo": "coat"}
+{"id": "f:val7735", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val7744", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val7756", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "9", "tipo": "skirt"}
+{"id": "f:val7778", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val7795", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val780", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "1", "tipo": "shirt, blouse"}
+{"id": "f:val7806", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "10", "tipo": "coat"}
+{"id": "f:val7826", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "8", "tipo": "shorts"}
+{"id": "f:val7861", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val7894", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "10", "tipo": "coat"}
+{"id": "f:val8068", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "9", "tipo": "skirt"}
+{"id": "f:val8082", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val809", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "6", "tipo": "vest"}
+{"id": "f:val8095", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val8108", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "8", "tipo": "shorts"}
+{"id": "f:val8228", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val8263", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val8276", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val8290", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val8331", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "9", "tipo": "skirt"}
+{"id": "f:val8390", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val8394", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val8447", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val8463", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "9", "tipo": "skirt"}
+{"id": "f:val8492", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val8523", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val8524", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val8539", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val8551", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val8563", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val8740", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "8", "tipo": "shorts"}
+{"id": "f:val8777", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "3", "tipo": "sweater"}
+{"id": "f:val879", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val8820", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val8839", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "8", "tipo": "shorts"}
+{"id": "f:val8888", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "4", "tipo": "cardigan"}
+{"id": "f:val8895", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val8902", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val8913", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "9", "tipo": "skirt"}
+{"id": "f:val8943", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val8955", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val8962", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val9004", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val9016", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "8", "tipo": "shorts"}
+{"id": "f:val9094", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "10", "tipo": "coat"}
+{"id": "f:val9220", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val9240", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val9242", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val9253", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}
+{"id": "f:val9304", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "11", "tipo": "dress"}
+{"id": "f:val966", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "5", "tipo": "jacket"}
+{"id": "f:val970", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "2", "tipo": "top, t-shirt, sweatshirt"}
+{"id": "f:val997", "origen": "fashionpedia", "modelo": "qwen3vl8b", "config": "tipo_foto", "crudo": "7", "tipo": "pants"}

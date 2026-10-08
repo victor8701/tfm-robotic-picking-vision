@@ -1,0 +1,418 @@
+{
+ "modo": "completo",
+ "prendas": 308,
+ "ejecuciones": [
+  {
+   "modelo": "qwen25vl7b",
+   "carga": "fp16",
+   "config": "recorte",
+   "segundos": 273,
+   "fashionpedia": {
+    "estampado": {
+     "acierto": [
+      192,
+      307
+     ],
+     "recall_medio": 0.55,
+     "por_clase": {
+      "liso": [
+       121,
+       155
+      ],
+      "texto / logo": [
+       3,
+       9
+      ],
+      "otro": [
+       4,
+       37
+      ],
+      "rayas": [
+       17,
+       34
+      ],
+      "camuflaje": [
+       6,
+       7
+      ],
+      "gráfico / dibujo": [
+       19,
+       34
+      ],
+      "cuadros": [
+       22,
+       31
+      ]
+     }
+    },
+    "forma": {
+     "acierto": [
+      109,
+      255
+     ],
+     "recall_medio": 0.453,
+     "por_clase": {
+      "regular": [
+       44,
+       77
+      ],
+      "ajustada": [
+       21,
+       48
+      ],
+      "corta / cropped": [
+       7,
+       78
+      ],
+      "oversized / baggy": [
+       37,
+       52
+      ]
+     }
+    }
+   }
+  },
+  {
+   "modelo": "qwen25vl7b",
+   "carga": "fp16",
+   "config": "foto",
+   "segundos": 575,
+   "fashionpedia": {
+    "estampado": {
+     "acierto": [
+      188,
+      307
+     ],
+     "recall_medio": 0.551,
+     "por_clase": {
+      "liso": [
+       116,
+       155
+      ],
+      "texto / logo": [
+       3,
+       9
+      ],
+      "otro": [
+       0,
+       37
+      ],
+      "rayas": [
+       18,
+       34
+      ],
+      "camuflaje": [
+       6,
+       7
+      ],
+      "gráfico / dibujo": [
+       23,
+       34
+      ],
+      "cuadros": [
+       22,
+       31
+      ]
+     }
+    },
+    "forma": {
+     "acierto": [
+      106,
+      255
+     ],
+     "recall_medio": 0.428,
+     "por_clase": {
+      "regular": [
+       49,
+       77
+      ],
+      "ajustada": [
+       18,
+       48
+      ],
+      "corta / cropped": [
+       8,
+       78
+      ],
+      "oversized / baggy": [
+       31,
+       52
+      ]
+     }
+    }
+   }
+  },
+  {
+   "modelo": "qwen25vl7b",
+   "carga": "fp16",
+   "config": "foto_razona",
+   "segundos": 229,
+   "fashionpedia": {
+    "estampado": {
+     "acierto": [
+      50,
+      79
+     ],
+     "recall_medio": 0.591,
+     "por_clase": {
+      "gráfico / dibujo": [
+       9,
+       12
+      ],
+      "liso": [
+       28,
+       41
+      ],
+      "rayas": [
+       7,
+       9
+      ],
+      "cuadros": [
+       4,
+       6
+      ],
+      "otro": [
+       0,
+       8
+      ],
+      "texto / logo": [
+       2,
+       3
+      ]
+     }
+    },
+    "forma": {
+     "acierto": [
+      30,
+      71
+     ],
+     "recall_medio": 0.426,
+     "por_clase": {
+      "corta / cropped": [
+       2,
+       24
+      ],
+      "oversized / baggy": [
+       6,
+       14
+      ],
+      "regular": [
+       18,
+       21
+      ],
+      "ajustada": [
+       4,
+       12
+      ]
+     }
+    }
+   }
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "carga": "fp16",
+   "config": "recorte",
+   "segundos": 283,
+   "fashionpedia": {
+    "estampado": {
+     "acierto": [
+      226,
+      307
+     ],
+     "recall_medio": 0.649,
+     "por_clase": {
+      "liso": [
+       136,
+       155
+      ],
+      "texto / logo": [
+       4,
+       9
+      ],
+      "otro": [
+       23,
+       37
+      ],
+      "rayas": [
+       19,
+       34
+      ],
+      "camuflaje": [
+       6,
+       7
+      ],
+      "gráfico / dibujo": [
+       14,
+       34
+      ],
+      "cuadros": [
+       24,
+       31
+      ]
+     }
+    },
+    "forma": {
+     "acierto": [
+      122,
+      255
+     ],
+     "recall_medio": 0.504,
+     "por_clase": {
+      "regular": [
+       46,
+       77
+      ],
+      "ajustada": [
+       34,
+       48
+      ],
+      "corta / cropped": [
+       15,
+       78
+      ],
+      "oversized / baggy": [
+       27,
+       52
+      ]
+     }
+    }
+   }
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "carga": "fp16",
+   "config": "foto",
+   "segundos": 478,
+   "fashionpedia": {
+    "estampado": {
+     "acierto": [
+      215,
+      307
+     ],
+     "recall_medio": 0.615,
+     "por_clase": {
+      "liso": [
+       129,
+       155
+      ],
+      "texto / logo": [
+       3,
+       9
+      ],
+      "otro": [
+       21,
+       37
+      ],
+      "rayas": [
+       18,
+       34
+      ],
+      "camuflaje": [
+       6,
+       7
+      ],
+      "gráfico / dibujo": [
+       15,
+       34
+      ],
+      "cuadros": [
+       23,
+       31
+      ]
+     }
+    },
+    "forma": {
+     "acierto": [
+      118,
+      255
+     ],
+     "recall_medio": 0.487,
+     "por_clase": {
+      "regular": [
+       46,
+       77
+      ],
+      "ajustada": [
+       34,
+       48
+      ],
+      "corta / cropped": [
+       14,
+       78
+      ],
+      "oversized / baggy": [
+       24,
+       52
+      ]
+     }
+    }
+   }
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "carga": "fp16",
+   "config": "foto_razona",
+   "segundos": 244,
+   "fashionpedia": {
+    "estampado": {
+     "acierto": [
+      50,
+      79
+     ],
+     "recall_medio": 0.592,
+     "por_clase": {
+      "gráfico / dibujo": [
+       5,
+       12
+      ],
+      "liso": [
+       30,
+       41
+      ],
+      "rayas": [
+       4,
+       9
+      ],
+      "cuadros": [
+       4,
+       6
+      ],
+      "otro": [
+       5,
+       8
+      ],
+      "texto / logo": [
+       2,
+       3
+      ]
+     }
+    },
+    "forma": {
+     "acierto": [
+      35,
+      71
+     ],
+     "recall_medio": 0.528,
+     "por_clase": {
+      "corta / cropped": [
+       5,
+       24
+      ],
+      "oversized / baggy": [
+       8,
+       14
+      ],
+      "regular": [
+       14,
+       21
+      ],
+      "ajustada": [
+       8,
+       12
+      ]
+     }
+    }
+   }
+  }
+ ]
+}

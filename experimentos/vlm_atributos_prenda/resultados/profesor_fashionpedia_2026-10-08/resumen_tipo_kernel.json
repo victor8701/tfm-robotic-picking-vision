@@ -1,0 +1,62 @@
+{
+ "modo": "completo",
+ "prendas": 308,
+ "ejecuciones": [
+  {
+   "modelo": "qwen25vl7b",
+   "carga": "fp16",
+   "config": "tipo_recorte",
+   "segundos": 141,
+   "fashionpedia": {
+    "tipo": {
+     "acierto": [
+      199,
+      308
+     ]
+    }
+   }
+  },
+  {
+   "modelo": "qwen25vl7b",
+   "carga": "fp16",
+   "config": "tipo_foto",
+   "segundos": 380,
+   "fashionpedia": {
+    "tipo": {
+     "acierto": [
+      187,
+      308
+     ]
+    }
+   }
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "carga": "fp16",
+   "config": "tipo_recorte",
+   "segundos": 127,
+   "fashionpedia": {
+    "tipo": {
+     "acierto": [
+      226,
+      308
+     ]
+    }
+   }
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "carga": "fp16",
+   "config": "tipo_foto",
+   "segundos": 300,
+   "fashionpedia": {
+    "tipo": {
+     "acierto": [
+      233,
+      308
+     ]
+    }
+   }
+  }
+ ]
+}

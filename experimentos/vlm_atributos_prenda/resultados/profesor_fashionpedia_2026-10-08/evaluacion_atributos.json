@@ -1,0 +1,864 @@
+{
+ "fashionpedia": [
+  {
+   "modelo": "qwen25vl7b",
+   "config": "foto",
+   "campo": "estampado",
+   "vlm": {
+    "acierto": [
+     188,
+     307
+    ],
+    "recall_medio": 0.551,
+    "por_clase": {
+     "camuflaje": [
+      6,
+      7
+     ],
+     "cuadros": [
+      22,
+      31
+     ],
+     "gráfico / dibujo": [
+      23,
+      34
+     ],
+     "liso": [
+      116,
+      155
+     ],
+     "otro": [
+      0,
+      37
+     ],
+     "rayas": [
+      18,
+      34
+     ],
+     "texto / logo": [
+      3,
+      9
+     ]
+    }
+   },
+   "sin_respuesta_valida": 8,
+   "cabeza_clip": {
+    "acierto": [
+     202,
+     307
+    ],
+    "recall_medio": 0.591,
+    "por_clase": {
+     "camuflaje": [
+      5,
+      7
+     ],
+     "cuadros": [
+      25,
+      31
+     ],
+     "gráfico / dibujo": [
+      11,
+      34
+     ],
+     "liso": [
+      119,
+      155
+     ],
+     "otro": [
+      17,
+      37
+     ],
+     "rayas": [
+      21,
+      34
+     ],
+     "texto / logo": [
+      4,
+      9
+     ]
+    }
+   },
+   "siempre_la_mas_frecuente": [
+    "liso",
+    155,
+    307
+   ]
+  },
+  {
+   "modelo": "qwen25vl7b",
+   "config": "foto",
+   "campo": "forma",
+   "vlm": {
+    "acierto": [
+     106,
+     255
+    ],
+    "recall_medio": 0.428,
+    "por_clase": {
+     "ajustada": [
+      18,
+      48
+     ],
+     "corta / cropped": [
+      8,
+      78
+     ],
+     "oversized / baggy": [
+      31,
+      52
+     ],
+     "regular": [
+      49,
+      77
+     ]
+    }
+   },
+   "sin_respuesta_valida": 0,
+   "cabeza_clip": {
+    "acierto": [
+     150,
+     255
+    ],
+    "recall_medio": 0.606,
+    "por_clase": {
+     "ajustada": [
+      33,
+      48
+     ],
+     "corta / cropped": [
+      57,
+      78
+     ],
+     "oversized / baggy": [
+      36,
+      52
+     ],
+     "regular": [
+      24,
+      77
+     ]
+    }
+   },
+   "siempre_la_mas_frecuente": [
+    "corta / cropped",
+    78,
+    255
+   ]
+  },
+  {
+   "modelo": "qwen25vl7b",
+   "config": "foto_razona",
+   "campo": "estampado",
+   "vlm": {
+    "acierto": [
+     50,
+     79
+    ],
+    "recall_medio": 0.591,
+    "por_clase": {
+     "cuadros": [
+      4,
+      6
+     ],
+     "gráfico / dibujo": [
+      9,
+      12
+     ],
+     "liso": [
+      28,
+      41
+     ],
+     "otro": [
+      0,
+      8
+     ],
+     "rayas": [
+      7,
+      9
+     ],
+     "texto / logo": [
+      2,
+      3
+     ]
+    }
+   },
+   "sin_respuesta_valida": 6,
+   "cabeza_clip": {
+    "acierto": [
+     48,
+     79
+    ],
+    "recall_medio": 0.487,
+    "por_clase": {
+     "cuadros": [
+      4,
+      6
+     ],
+     "gráfico / dibujo": [
+      4,
+      12
+     ],
+     "liso": [
+      32,
+      41
+     ],
+     "otro": [
+      2,
+      8
+     ],
+     "rayas": [
+      5,
+      9
+     ],
+     "texto / logo": [
+      1,
+      3
+     ]
+    }
+   },
+   "siempre_la_mas_frecuente": [
+    "liso",
+    41,
+    79
+   ]
+  },
+  {
+   "modelo": "qwen25vl7b",
+   "config": "foto_razona",
+   "campo": "forma",
+   "vlm": {
+    "acierto": [
+     30,
+     71
+    ],
+    "recall_medio": 0.426,
+    "por_clase": {
+     "ajustada": [
+      4,
+      12
+     ],
+     "corta / cropped": [
+      2,
+      24
+     ],
+     "oversized / baggy": [
+      6,
+      14
+     ],
+     "regular": [
+      18,
+      21
+     ]
+    }
+   },
+   "sin_respuesta_valida": 0,
+   "cabeza_clip": {
+    "acierto": [
+     40,
+     71
+    ],
+    "recall_medio": 0.583,
+    "por_clase": {
+     "ajustada": [
+      8,
+      12
+     ],
+     "corta / cropped": [
+      16,
+      24
+     ],
+     "oversized / baggy": [
+      10,
+      14
+     ],
+     "regular": [
+      6,
+      21
+     ]
+    }
+   },
+   "siempre_la_mas_frecuente": [
+    "corta / cropped",
+    24,
+    71
+   ]
+  },
+  {
+   "modelo": "qwen25vl7b",
+   "config": "recorte",
+   "campo": "estampado",
+   "vlm": {
+    "acierto": [
+     192,
+     307
+    ],
+    "recall_medio": 0.55,
+    "por_clase": {
+     "camuflaje": [
+      6,
+      7
+     ],
+     "cuadros": [
+      22,
+      31
+     ],
+     "gráfico / dibujo": [
+      19,
+      34
+     ],
+     "liso": [
+      121,
+      155
+     ],
+     "otro": [
+      4,
+      37
+     ],
+     "rayas": [
+      17,
+      34
+     ],
+     "texto / logo": [
+      3,
+      9
+     ]
+    }
+   },
+   "sin_respuesta_valida": 21,
+   "cabeza_clip": {
+    "acierto": [
+     202,
+     307
+    ],
+    "recall_medio": 0.591,
+    "por_clase": {
+     "camuflaje": [
+      5,
+      7
+     ],
+     "cuadros": [
+      25,
+      31
+     ],
+     "gráfico / dibujo": [
+      11,
+      34
+     ],
+     "liso": [
+      119,
+      155
+     ],
+     "otro": [
+      17,
+      37
+     ],
+     "rayas": [
+      21,
+      34
+     ],
+     "texto / logo": [
+      4,
+      9
+     ]
+    }
+   },
+   "siempre_la_mas_frecuente": [
+    "liso",
+    155,
+    307
+   ]
+  },
+  {
+   "modelo": "qwen25vl7b",
+   "config": "recorte",
+   "campo": "forma",
+   "vlm": {
+    "acierto": [
+     109,
+     255
+    ],
+    "recall_medio": 0.453,
+    "por_clase": {
+     "ajustada": [
+      21,
+      48
+     ],
+     "corta / cropped": [
+      7,
+      78
+     ],
+     "oversized / baggy": [
+      37,
+      52
+     ],
+     "regular": [
+      44,
+      77
+     ]
+    }
+   },
+   "sin_respuesta_valida": 0,
+   "cabeza_clip": {
+    "acierto": [
+     150,
+     255
+    ],
+    "recall_medio": 0.606,
+    "por_clase": {
+     "ajustada": [
+      33,
+      48
+     ],
+     "corta / cropped": [
+      57,
+      78
+     ],
+     "oversized / baggy": [
+      36,
+      52
+     ],
+     "regular": [
+      24,
+      77
+     ]
+    }
+   },
+   "siempre_la_mas_frecuente": [
+    "corta / cropped",
+    78,
+    255
+   ]
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "config": "foto",
+   "campo": "estampado",
+   "vlm": {
+    "acierto": [
+     215,
+     307
+    ],
+    "recall_medio": 0.615,
+    "por_clase": {
+     "camuflaje": [
+      6,
+      7
+     ],
+     "cuadros": [
+      23,
+      31
+     ],
+     "gráfico / dibujo": [
+      15,
+      34
+     ],
+     "liso": [
+      129,
+      155
+     ],
+     "otro": [
+      21,
+      37
+     ],
+     "rayas": [
+      18,
+      34
+     ],
+     "texto / logo": [
+      3,
+      9
+     ]
+    }
+   },
+   "sin_respuesta_valida": 0,
+   "cabeza_clip": {
+    "acierto": [
+     202,
+     307
+    ],
+    "recall_medio": 0.591,
+    "por_clase": {
+     "camuflaje": [
+      5,
+      7
+     ],
+     "cuadros": [
+      25,
+      31
+     ],
+     "gráfico / dibujo": [
+      11,
+      34
+     ],
+     "liso": [
+      119,
+      155
+     ],
+     "otro": [
+      17,
+      37
+     ],
+     "rayas": [
+      21,
+      34
+     ],
+     "texto / logo": [
+      4,
+      9
+     ]
+    }
+   },
+   "siempre_la_mas_frecuente": [
+    "liso",
+    155,
+    307
+   ]
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "config": "foto",
+   "campo": "forma",
+   "vlm": {
+    "acierto": [
+     118,
+     255
+    ],
+    "recall_medio": 0.487,
+    "por_clase": {
+     "ajustada": [
+      34,
+      48
+     ],
+     "corta / cropped": [
+      14,
+      78
+     ],
+     "oversized / baggy": [
+      24,
+      52
+     ],
+     "regular": [
+      46,
+      77
+     ]
+    }
+   },
+   "sin_respuesta_valida": 0,
+   "cabeza_clip": {
+    "acierto": [
+     150,
+     255
+    ],
+    "recall_medio": 0.606,
+    "por_clase": {
+     "ajustada": [
+      33,
+      48
+     ],
+     "corta / cropped": [
+      57,
+      78
+     ],
+     "oversized / baggy": [
+      36,
+      52
+     ],
+     "regular": [
+      24,
+      77
+     ]
+    }
+   },
+   "siempre_la_mas_frecuente": [
+    "corta / cropped",
+    78,
+    255
+   ]
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "config": "foto_razona",
+   "campo": "estampado",
+   "vlm": {
+    "acierto": [
+     50,
+     79
+    ],
+    "recall_medio": 0.592,
+    "por_clase": {
+     "cuadros": [
+      4,
+      6
+     ],
+     "gráfico / dibujo": [
+      5,
+      12
+     ],
+     "liso": [
+      30,
+      41
+     ],
+     "otro": [
+      5,
+      8
+     ],
+     "rayas": [
+      4,
+      9
+     ],
+     "texto / logo": [
+      2,
+      3
+     ]
+    }
+   },
+   "sin_respuesta_valida": 0,
+   "cabeza_clip": {
+    "acierto": [
+     48,
+     79
+    ],
+    "recall_medio": 0.487,
+    "por_clase": {
+     "cuadros": [
+      4,
+      6
+     ],
+     "gráfico / dibujo": [
+      4,
+      12
+     ],
+     "liso": [
+      32,
+      41
+     ],
+     "otro": [
+      2,
+      8
+     ],
+     "rayas": [
+      5,
+      9
+     ],
+     "texto / logo": [
+      1,
+      3
+     ]
+    }
+   },
+   "siempre_la_mas_frecuente": [
+    "liso",
+    41,
+    79
+   ]
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "config": "foto_razona",
+   "campo": "forma",
+   "vlm": {
+    "acierto": [
+     35,
+     71
+    ],
+    "recall_medio": 0.528,
+    "por_clase": {
+     "ajustada": [
+      8,
+      12
+     ],
+     "corta / cropped": [
+      5,
+      24
+     ],
+     "oversized / baggy": [
+      8,
+      14
+     ],
+     "regular": [
+      14,
+      21
+     ]
+    }
+   },
+   "sin_respuesta_valida": 0,
+   "cabeza_clip": {
+    "acierto": [
+     40,
+     71
+    ],
+    "recall_medio": 0.583,
+    "por_clase": {
+     "ajustada": [
+      8,
+      12
+     ],
+     "corta / cropped": [
+      16,
+      24
+     ],
+     "oversized / baggy": [
+      10,
+      14
+     ],
+     "regular": [
+      6,
+      21
+     ]
+    }
+   },
+   "siempre_la_mas_frecuente": [
+    "corta / cropped",
+    24,
+    71
+   ]
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "config": "recorte",
+   "campo": "estampado",
+   "vlm": {
+    "acierto": [
+     226,
+     307
+    ],
+    "recall_medio": 0.649,
+    "por_clase": {
+     "camuflaje": [
+      6,
+      7
+     ],
+     "cuadros": [
+      24,
+      31
+     ],
+     "gráfico / dibujo": [
+      14,
+      34
+     ],
+     "liso": [
+      136,
+      155
+     ],
+     "otro": [
+      23,
+      37
+     ],
+     "rayas": [
+      19,
+      34
+     ],
+     "texto / logo": [
+      4,
+      9
+     ]
+    }
+   },
+   "sin_respuesta_valida": 0,
+   "cabeza_clip": {
+    "acierto": [
+     202,
+     307
+    ],
+    "recall_medio": 0.591,
+    "por_clase": {
+     "camuflaje": [
+      5,
+      7
+     ],
+     "cuadros": [
+      25,
+      31
+     ],
+     "gráfico / dibujo": [
+      11,
+      34
+     ],
+     "liso": [
+      119,
+      155
+     ],
+     "otro": [
+      17,
+      37
+     ],
+     "rayas": [
+      21,
+      34
+     ],
+     "texto / logo": [
+      4,
+      9
+     ]
+    }
+   },
+   "siempre_la_mas_frecuente": [
+    "liso",
+    155,
+    307
+   ]
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "config": "recorte",
+   "campo": "forma",
+   "vlm": {
+    "acierto": [
+     122,
+     255
+    ],
+    "recall_medio": 0.504,
+    "por_clase": {
+     "ajustada": [
+      34,
+      48
+     ],
+     "corta / cropped": [
+      15,
+      78
+     ],
+     "oversized / baggy": [
+      27,
+      52
+     ],
+     "regular": [
+      46,
+      77
+     ]
+    }
+   },
+   "sin_respuesta_valida": 0,
+   "cabeza_clip": {
+    "acierto": [
+     150,
+     255
+    ],
+    "recall_medio": 0.606,
+    "por_clase": {
+     "ajustada": [
+      33,
+      48
+     ],
+     "corta / cropped": [
+      57,
+      78
+     ],
+     "oversized / baggy": [
+      36,
+      52
+     ],
+     "regular": [
+      24,
+      77
+     ]
+    }
+   },
+   "siempre_la_mas_frecuente": [
+    "corta / cropped",
+    78,
+    255
+   ]
+  }
+ ]
+}

@@ -1,0 +1,77 @@
+{
+ "fashionpedia": [],
+ "tipo_fashionpedia": [
+  {
+   "modelo": "qwen25vl7b",
+   "config": "tipo_foto",
+   "vlm": [
+    187,
+    308
+   ],
+   "clip_b32": [
+    137,
+    308
+   ],
+   "siempre_la_mas_frecuente": [
+    "top, t-shirt, sweatshirt",
+    64,
+    308
+   ],
+   "sin_respuesta_valida": 0
+  },
+  {
+   "modelo": "qwen25vl7b",
+   "config": "tipo_recorte",
+   "vlm": [
+    199,
+    308
+   ],
+   "clip_b32": [
+    137,
+    308
+   ],
+   "siempre_la_mas_frecuente": [
+    "top, t-shirt, sweatshirt",
+    64,
+    308
+   ],
+   "sin_respuesta_valida": 0
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "config": "tipo_foto",
+   "vlm": [
+    233,
+    308
+   ],
+   "clip_b32": [
+    137,
+    308
+   ],
+   "siempre_la_mas_frecuente": [
+    "top, t-shirt, sweatshirt",
+    64,
+    308
+   ],
+   "sin_respuesta_valida": 0
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "config": "tipo_recorte",
+   "vlm": [
+    226,
+    308
+   ],
+   "clip_b32": [
+    137,
+    308
+   ],
+   "siempre_la_mas_frecuente": [
+    "top, t-shirt, sweatshirt",
+    64,
+    308
+   ],
+   "sin_respuesta_valida": 0
+  }
+ ]
+}

@@ -74,10 +74,11 @@ def cargar_anotaciones(ruta: Path):
         return json.load(f, object_hook=sin_segmentacion)
 
 
-def items_de(datos: Path, split: str, min_lado: int = 60):
+def items_de(datos: Path, split: str, min_lado: int = 60, categorias=None):
+    """Prendas de un split. Por defecto las 13 categorías de ropa; `categorias` (nombres) permite pedir también calzado, bolsos o sombreros."""
     d = cargar_anotaciones(datos / f"instances_attributes_{split}2020.json")
     cats = {c["id"]: c["name"] for c in d["categories"]}
-    prendas = {c["id"] for c in d["categories"][:GARMENTS]}
+    prendas = {c["id"] for c in d["categories"][:GARMENTS]} if categorias is None else {c["id"] for c in d["categories"] if c["name"] in categorias}
     atr = {a["id"]: a["name"] for a in d["attributes"]}
     carpeta = datos / f"imagenes_{split}"
     ficheros = {p.name: p for p in carpeta.rglob("*.jpg")}

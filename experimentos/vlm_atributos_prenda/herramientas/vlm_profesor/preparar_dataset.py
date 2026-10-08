@@ -5,6 +5,7 @@ independientes, para poder subirlos, usarlos y borrarlos por separado:
 
   --origen fashionpedia  una muestra equilibrada de prendas de Fashionpedia val (público; con su estampado y forma derivados de los atributos del conjunto)
   --origen victor        las fotos de los recortes que Víctor etiquetó (caja y tipo de la prenda, pero SIN estampado, tejido ni forma: eso se queda en local para medir)
+  --origen fashionpedia_train  prendas de Fashionpedia train (públicas) para que el profesor las etiquete y entrenar con ellas nuestro modelo: tope por categoría, más calzado, bolsos y sombreros
 
 Salida (en --salida): `fotos.zip` (todas las fotos, ya reducidas), `manifiesto.json` y `dataset-metadata.json`.
 Uso:  python3 preparar_dataset.py --origen fashionpedia --salida /ruta/dataset [--fashionpedia ~/datos_tfm/fashionpedia] [--por-estampado 30 --por-forma 40]
@@ -29,14 +30,17 @@ TIPO_EN = dict(ev.TIPOS)
 TIPO_EN.update({"Zapatos de vestir": "a pair of dress shoes", "Zapatos planos de vestir": "a pair of dress shoes"})
 CAT_EN = {"shirt, blouse": "a shirt or blouse", "top, t-shirt, sweatshirt": "a t-shirt, top or sweatshirt", "sweater": "a sweater", "cardigan": "a cardigan", "jacket": "a jacket",
           "vest": "a vest", "pants": "a pair of pants", "shorts": "a pair of shorts", "skirt": "a skirt", "coat": "a coat", "dress": "a dress", "jumpsuit": "a jumpsuit", "cape": "a cape"}
-PAQUETES = {"fashionpedia": ("tfm-prendas-fashionpedia-vlm", "TFM prendas Fashionpedia VLM"), "victor": ("tfm-prendas-victor-vlm", "TFM prendas Victor VLM (privado)")}
+PAQUETES = {"fashionpedia": ("tfm-prendas-fashionpedia-vlm", "TFM prendas Fashionpedia VLM"), "victor": ("tfm-prendas-victor-vlm", "TFM prendas Victor VLM (privado)"),
+            "fashionpedia_train": ("tfm-prendas-fashionpedia-train", "TFM prendas Fashionpedia train")}
+ACCESORIOS_FP = ["hat", "shoe", "bag, wallet"]
+CAT_EN.update({"hat": "a hat", "shoe": "a shoe", "bag, wallet": "a bag"})
 
 
-def guardar_reducida(origen: Path, destino: Path, caja):
-    """Guarda la foto con el lado largo <= LADO_MAX y devuelve la caja en las coordenadas de la foto guardada."""
+def guardar_reducida(origen: Path, destino: Path, caja, lado_max: int = LADO_MAX):
+    """Guarda la foto con el lado largo <= lado_max y devuelve la caja en las coordenadas de la foto guardada."""
     im = Image.open(origen).convert("RGB")
     W, H = im.size
-    s = min(1.0, LADO_MAX / max(W, H))
+    s = min(1.0, lado_max / max(W, H))
     if s < 1:
         im = im.resize((round(W * s), round(H * s)), Image.LANCZOS)
     im.save(destino, quality=90)
@@ -52,6 +56,9 @@ def main():
     ap.add_argument("--fashionpedia", type=Path, default=Path.home() / "datos_tfm" / "fashionpedia")
     ap.add_argument("--por-estampado", type=int, default=30)
     ap.add_argument("--por-forma", type=int, default=40)
+    ap.add_argument("--por-categoria", type=int, default=350, help="fashionpedia_train: tope de prendas por categoría de ropa")
+    ap.add_argument("--por-accesorio", type=int, default=300, help="fashionpedia_train: tope de zapatos, bolsos y sombreros (cada uno)")
+    ap.add_argument("--lado-max", type=int, default=LADO_MAX)
     a = ap.parse_args()
     a.salida.mkdir(parents=True, exist_ok=True)
     tmp = a.salida / "_fotos"
@@ -96,6 +103,31 @@ def main():
             c = collections.Counter(m[campo] for m in manifiesto if m["origen"] == "fashionpedia" and m.get(campo))
             print(f"Fashionpedia {campo}: {dict(c.most_common())}")
         print(f"Fashionpedia: {sum(m['origen'] == 'fashionpedia' for m in manifiesto)} prendas de {len({m['foto'] for m in manifiesto if m['origen'] == 'fashionpedia'})} fotos")
+
+    # ---- prendas de Fashionpedia train para etiquetar con el profesor (tope por categoría; las etiquetas propias del conjunto van aparte como referencia)
+    if a.origen == "fashionpedia_train":
+        ropa = [c["name"] for c in json.loads((a.fashionpedia / "instances_attributes_val2020.json").read_text(encoding="utf-8"))["categories"][:13]]
+        todo = fp.items_de(a.fashionpedia, "train", min_lado=100, categorias=ropa + ACCESORIOS_FP)
+        por_cat = collections.defaultdict(list)
+        for it in todo:
+            por_cat[it["categoria"]].append(it)
+        rnd = random.Random(21)
+        elegidos = []
+        for cat, lista in sorted(por_cat.items()):
+            rnd.shuffle(lista)
+            elegidos += lista[:a.por_accesorio if cat in ACCESORIOS_FP else a.por_categoria]
+        for it in sorted(elegidos, key=lambda x: x["id"]):
+            destino = f"t_{it['grupo']}.jpg"
+            if not (tmp / destino).exists():
+                caja = guardar_reducida(it["imagen"], tmp / destino, it["caja"], a.lado_max)
+            else:
+                W, H = Image.open(it["imagen"]).size
+                s_ = min(1.0, a.lado_max / max(W, H))
+                caja = [round(c * s_, 1) for c in it["caja"]]
+            manifiesto.append({"id": f"f:{it['id']}", "origen": "fashionpedia", "foto": destino, "caja": caja, "tipo": it["categoria"], "tipo_en": CAT_EN.get(it["categoria"], it["categoria"]),
+                               "estampado": it["estampado"], "forma": it["forma"]})
+        print("Fashionpedia train por categoría:", dict(collections.Counter(m["tipo"] for m in manifiesto).most_common()))
+        print(f"Fashionpedia train: {len(manifiesto)} prendas de {len({m['foto'] for m in manifiesto})} fotos")
 
     # ---- paquete
     with zipfile.ZipFile(a.salida / "fotos.zip", "w", zipfile.ZIP_STORED) as z:

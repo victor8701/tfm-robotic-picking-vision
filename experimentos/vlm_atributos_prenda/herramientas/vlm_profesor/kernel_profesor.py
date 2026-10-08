@@ -12,6 +12,9 @@ Configuraciones:
   recorte      solo el recorte de la prenda (lo mismo que ve CLIP)
   foto         la foto entera con la prenda marcada en una caja roja + el recorte (el modelo ve cómo cae la prenda sobre el cuerpo)
   foto_razona  igual que «foto», pero primero describe en pocas frases y luego contesta (solo en una submuestra)
+  tipo_recorte / tipo_foto  el modelo NO sabe qué prenda es: elige su tipo de una lista numerada (las 13 categorías de Fashionpedia, o los 29 tipos de Víctor)
+  profesor     etiquetado en dos pasos: primero, con la foto entera, elige el tipo entre los 29 de Víctor; luego, sobre el recorte y sabiendo ese tipo, estampado, tejido y forma
+               (el recorte basta para el estampado: 74 % frente a 70 % con la foto en Fashionpedia, y es más barato)
 
 Uso en Kaggle: lo sube y lo lanza `kaggle_ops.py`. En local, con un generador falso para probar la lógica:  PROFESOR_FALSO=1 PROFESOR_ENTRADA=<carpeta> PROFESOR_SALIDA=<carpeta> python3 kernel_profesor.py
 """
@@ -28,11 +31,17 @@ from pathlib import Path
 
 MODO = "completo"      # «humo»: 8 prendas, un modelo y la configuración «recorte» (para depurar); «completo»: todo
 MODELOS = [("qwen25vl7b", "Qwen/Qwen2.5-VL-7B-Instruct"), ("qwen3vl8b", "Qwen/Qwen3-VL-8B-Instruct")]
-CONFIGS = [  # (nombre, imágenes, razona, máximo de prendas)
-    ("recorte", "recorte", False, None),
-    ("foto", "foto", False, None),
-    ("foto_razona", "foto", True, 80),
+CONFIGS = [  # (nombre, imágenes, razona, máximo de prendas, tarea)
+    ("recorte", "recorte", False, None, "atributos"),
+    ("foto", "foto", False, None, "atributos"),
+    ("foto_razona", "foto", True, 80, "atributos"),
+    ("tipo_recorte", "recorte", False, None, "tipo"),
+    ("tipo_foto", "foto", False, None, "tipo"),
+    ("profesor", "foto", False, None, "profesor"),
 ]
+PARTE = None           # (k, n): procesa solo las prendas k, k+n, k+2n… (para repartir una tanda larga entre varios kernels)
+SOLO = None            # lista de nombres de configuración a correr (None = todas); sirve para repetir solo una parte
+MODELOS_SOLO = None    # ídem para los modelos, p. ej. ["qwen3vl8b"]
 LOTE = 6
 PRESUPUESTO_S = 4 * 3600
 ENTRADA = Path(os.environ.get("PROFESOR_ENTRADA", "/kaggle/input"))
@@ -47,6 +56,15 @@ OPC = {
     "fit": {"oversized": "oversized / baggy", "regular": "regular", "slim": "ajustada", "cropped": "corta / cropped", "n/a": "no aplica"},
 }
 CAMPO = {"pattern": "estampado", "fabric": "tejido", "fit": "forma"}
+TIPOS_FP = [("shirt, blouse", "a shirt or blouse"), ("top, t-shirt, sweatshirt", "a t-shirt, top or sweatshirt"), ("sweater", "a sweater"), ("cardigan", "a cardigan"), ("jacket", "a jacket"),
+            ("vest", "a vest"), ("pants", "a pair of pants"), ("shorts", "a pair of shorts"), ("skirt", "a skirt"), ("coat", "a coat"), ("dress", "a dress"), ("jumpsuit", "a jumpsuit"), ("cape", "a cape")]
+TIPOS_V = [("Camiseta manga corta", "a short-sleeved t-shirt"), ("Camiseta de tirantes", "a sleeveless tank top"), ("Camiseta manga larga", "a long-sleeved t-shirt"), ("Top", "a crop top"),
+           ("Camisa", "a button-up shirt"), ("Polo", "a polo shirt"), ("Sudadera", "a crewneck sweatshirt without a hood"), ("Hoodie", "a hoodie with a hood"), ("Jersey", "a knitted sweater"),
+           ("Chaleco sin mangas", "a sleeveless vest"), ("Chaqueta", "a jacket"), ("Americana", "a blazer"), ("Abrigo", "a long coat"), ("Plumas", "a puffer jacket"),
+           ("Pantalón", "a pair of long trousers"), ("Falda", "a skirt"), ("Short", "a pair of shorts"), ("Legging/Malla", "leggings"), ("Vestido", "a dress"), ("Mono", "a jumpsuit"),
+           ("Zapatillas deportivas", "a pair of sports sneakers"), ("Zapatillas casual/lifestyle", "a pair of casual canvas shoes"), ("Zapatos de vestir", "a pair of dress shoes"),
+           ("Zapatos de tacón", "a pair of high heels"), ("Sandalias", "a pair of sandals"), ("Botas", "a pair of boots"), ("Bolso", "a handbag"), ("Riñonera", "a fanny pack"),
+           ("Gorra/Gorro/Sombrero", "a cap or a hat")]
 FORMATO = ('{"pattern": <plain|striped|plaid|graphic|text_logo|camouflage|other>, "fabric": <denim|leather|cotton|knit|fleece|technical|corduroy|velvet|satin|lace|linen|unknown>, '
            '"fit": <oversized|regular|slim|cropped|n/a>}')
 GUIA = ("Guidelines:\n"
@@ -69,6 +87,26 @@ def prompt(variante: str, razona: bool, tipo_en: str) -> str:
     else:
         cola = "Answer with ONLY this JSON object and nothing else: " + FORMATO
     return f"You are an expert fashion analyst. {intro} The garment of interest is {tipo_en}.\n{cola}\n{GUIA}"
+
+
+def lista_tipos(origen: str, tarea: str):
+    return TIPOS_FP if (origen == "fashionpedia" and tarea == "tipo") else TIPOS_V
+
+
+def prompt_tipo(variante: str, origen: str, tarea: str = "tipo") -> str:
+    lista = lista_tipos(origen, tarea)
+    if variante == "foto":
+        intro = "Image 1 is a photo of a person; the red box marks one garment. Image 2 is a close-up crop of that same garment."
+    else:
+        intro = "The image is a close-up crop of one garment worn by a person."
+    opciones = "\n".join(f"{i}. {en}" for i, (_, en) in enumerate(lista, 1))
+    return f"You are an expert fashion analyst. {intro} Which of these is that garment?\n{opciones}\nAnswer with ONLY the number."
+
+
+def parsear_tipo(texto: str, origen: str, tarea: str = "tipo") -> str | None:
+    lista = lista_tipos(origen, tarea)
+    m = re.search(r"\d+", texto or "")
+    return lista[int(m.group(0)) - 1][0] if m and 1 <= int(m.group(0)) <= len(lista) else None
 
 
 def parsear(texto: str) -> dict:
@@ -203,10 +241,12 @@ def cargar_modelo(nombre_hf, items):
 
 
 def correr_config(m, proc, items, cfg, nombre_modelo, generador, t_inicio):
-    nombre, variante, razona, maximo = cfg
+    nombre, variante, razona, maximo, tarea = cfg
     sel = list(items)
     if maximo and len(sel) > maximo:
         sel = random.Random(5).sample(sel, maximo)
+    if PARTE:
+        sel = sel[PARTE[0]::PARTE[1]]
     if MODO == "humo":
         sel = sel[:8]
     ruta = SALIDA / f"pred_{nombre_modelo}_{nombre}.jsonl"
@@ -217,15 +257,26 @@ def correr_config(m, proc, items, cfg, nombre_modelo, generador, t_inicio):
                 print("presupuesto de tiempo agotado; se corta aquí", flush=True)
                 break
             lote = sel[i:i + LOTE]
-            textos, imgs = [], []
-            for it in lote:
-                ims = imagenes_de(it, variante)
-                contenido = [{"type": "image"} for _ in ims] + [{"type": "text", "text": prompt(variante, razona, it["tipo_en"])}]
-                textos.append(proc.apply_chat_template([{"role": "user", "content": contenido}], tokenize=False, add_generation_prompt=True) if proc is not None else "")
-                imgs += ims
-            crudos = generador(m, proc, textos, imgs, 230 if razona else 70)
-            for it, crudo in zip(lote, crudos):
-                f.write(json.dumps({"id": it["id"], "origen": it["origen"], "modelo": nombre_modelo, "config": nombre, "crudo": crudo, **parsear(crudo)}, ensure_ascii=False) + "\n")
+            def pedir(textos_prompt, max_new, var=variante):
+                textos, imgs = [], []
+                for it, texto_prompt in zip(lote, textos_prompt):
+                    ims = imagenes_de(it, var)
+                    contenido = [{"type": "image"} for _ in ims] + [{"type": "text", "text": texto_prompt}]
+                    textos.append(proc.apply_chat_template([{"role": "user", "content": contenido}], tokenize=False, add_generation_prompt=True) if proc is not None else "")
+                    imgs += ims
+                return generador(m, proc, textos, imgs, max_new)
+            if tarea == "profesor":   # paso 1: tipo entre los 29 de Víctor; paso 2: estampado, tejido y forma sabiendo ese tipo
+                crudos_t = pedir([prompt_tipo(variante, it["origen"], "profesor") for it in lote], 8)
+                tipos = [parsear_tipo(c, it["origen"], "profesor") for c, it in zip(crudos_t, lote)]
+                en = dict(TIPOS_V)
+                crudos_a = pedir([prompt("recorte", False, en.get(t, "a garment")) for t in tipos], 70, "recorte")
+                for it, ct, t, ca in zip(lote, crudos_t, tipos, crudos_a):
+                    f.write(json.dumps({"id": it["id"], "origen": it["origen"], "modelo": nombre_modelo, "config": nombre, "crudo_tipo": ct, "tipo29": t, "crudo": ca, **parsear(ca)}, ensure_ascii=False) + "\n")
+            else:
+                crudos = pedir([prompt_tipo(variante, it["origen"]) if tarea == "tipo" else prompt(variante, razona, it["tipo_en"]) for it in lote], 230 if razona else (8 if tarea == "tipo" else 70))
+                for it, crudo in zip(lote, crudos):
+                    resultado = {"tipo": parsear_tipo(crudo, it["origen"])} if tarea == "tipo" else parsear(crudo)
+                    f.write(json.dumps({"id": it["id"], "origen": it["origen"], "modelo": nombre_modelo, "config": nombre, "crudo": crudo, **resultado}, ensure_ascii=False) + "\n")
             f.flush()
             if (i // LOTE) % 10 == 0:
                 print(f"  {nombre_modelo}/{nombre}: {min(i + LOTE, len(sel))}/{len(sel)} ({(time.time() - t0) / (i + len(lote)):.1f} s por prenda)", flush=True)
@@ -236,6 +287,15 @@ def resumen_fashionpedia(ruta, items_por_id):
     """Acierto por atributo y recall por clase, para las prendas de Fashionpedia (las únicas con etiqueta dentro del kernel)."""
     res = {}
     filas = [json.loads(linea) for linea in open(ruta, encoding="utf-8")]
+    ok_t = n_t = 0
+    for r in filas:
+        it = items_por_id[r["id"]]
+        if "tipo" in r and it["origen"] == "fashionpedia":
+            n_t += 1
+            ok_t += r["tipo"] == it["tipo"]
+    if n_t:   # configuración de tipo: no lleva estampado ni forma
+        res["tipo"] = {"acierto": [ok_t, n_t]}
+        return res
     for campo in ("estampado", "forma"):
         ok = n = 0
         por_clase = {}
@@ -266,8 +326,8 @@ def main():
     print(f"{len(items)} prendas ({sum(i['origen'] == 'victor' for i in items)} de Víctor, {sum(i['origen'] == 'fashionpedia' for i in items)} de Fashionpedia)", flush=True)
     por_id = {i["id"]: i for i in items}
     resumen = {"modo": MODO, "prendas": len(items), "ejecuciones": []}
-    modelos = MODELOS[:1] if MODO == "humo" else MODELOS
-    configs = CONFIGS[:1] if MODO == "humo" else CONFIGS
+    modelos = MODELOS[:1] if MODO == "humo" else [m_ for m_ in MODELOS if not MODELOS_SOLO or m_[0] in MODELOS_SOLO]
+    configs = CONFIGS[:1] if MODO == "humo" else [c for c in CONFIGS if not SOLO or c[0] in SOLO]
     for nombre_modelo, nombre_hf in modelos:
         m = proc = None
         try:
