@@ -318,7 +318,7 @@ async function lanzar(accion, quedarse) {
 }
 $('#b-analizar').onclick = () => lanzar('analizar');
 $('#b-informe').onclick = () => lanzar('informe');
-$('#b-prendas').onclick = () => lanzar('prendas');
+$('#b-prendas').onclick = () => lanzar('prendas');   // con un servidor viejo contesta «acción desconocida»: hay que reabrir la app
 $('#a-reentrenar').onclick = () => lanzar('reentrenar');
 $('#b-parar').onclick = async () => { await api('/api/parar', {}); refrescar(); };
 $('#b-ver-informe').onclick = () => ir('informe');
@@ -339,7 +339,7 @@ const claveTemp = t => { const m = /^(PV|OI) (\d{4})/.exec(t); return m ? +m[2] 
 const pct = x => Math.round(100 * x) + ' %';
 const nombreGrupo = g => (g.estilo === 'geek' ? 'Geek' : 'Urbano') + ' · ' + (MERC[g.mercado] || g.mercado) + ' · ' + (g.temporada === 'muestra' ? 'muestra de referencia' : g.temporada) + ' (' + g.fotos + ' fotos)';
 async function cargarPrendas() {
-  try { P = await api('/api/prendas'); } catch (e) { $('#p-msg').textContent = '⚠ ' + e.message; return; }
+  try { P = await api('/api/prendas'); } catch (e) { $('#p-msg').textContent = e.message.includes('404') ? 'Esta pestaña necesita la versión nueva del servidor: cierra la ventana negra de la app y ábrela de nuevo.' : '⚠ ' + e.message; return; }
   const inf = P.informe;
   $('#p-cuerpo').hidden = !inf;
   if (!inf) { $('#p-msg').textContent = 'Todavía no hay informe por prenda. En «Inicio», pulsa «Analizar mercado» o «Solo las prendas» (la primera vez tarda: cada foto nueva son unos 20 segundos).'; return; }
