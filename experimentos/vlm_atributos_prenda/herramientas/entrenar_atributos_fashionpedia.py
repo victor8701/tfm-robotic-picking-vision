@@ -110,6 +110,9 @@ def muestrear(items, max_por_clase: int, semilla: int = 7):
     return [items[i] for i in sorted(elegidos)]
 
 
+MODELO = {"modelo": None, "pesos": None}
+
+
 def embeber(items, cache: Path):
     """Embeddings CLIP de cada recorte, con caché por id (se puede interrumpir y reanudar)."""
     previo = {}
@@ -121,7 +124,7 @@ def embeber(items, cache: Path):
         import torch
         torch.set_grad_enabled(False)
         torch.set_num_threads(6)
-        model, prep, _ = ev.pc.cargar(None, None)
+        model, prep, _ = ev.pc.cargar(MODELO["modelo"], MODELO["pesos"])
         t0 = time.time()
         for i in range(0, len(faltan), 64):
             lote = faltan[i:i + 64]
@@ -143,18 +146,25 @@ def main():
     ap.add_argument("--etiquetas", type=Path, default=ev.BASE / "etiquetas_prendas.json")
     ap.add_argument("--fotos", type=Path, default=ev.BASE / "cache" / "img")
     ap.add_argument("--salida", type=Path)
+    ap.add_argument("--modelo", help="p. ej. ViT-L-14")
+    ap.add_argument("--pesos", help="ruta a un .pt original de OpenAI")
+    ap.add_argument("--max-train", type=int, help="tope de prendas de entrenamiento (sirve para modelos lentos)")
+    ap.add_argument("--etiqueta", default="b32", help="sufijo de las cachés de embeddings")
     a = ap.parse_args()
+    MODELO.update(modelo=a.modelo, pesos=a.pesos)
     tr = muestrear(items_de(a.datos, "train"), a.max_por_clase)
+    if a.max_train and len(tr) > a.max_train:
+        tr = [tr[i] for i in sorted(np.random.default_rng(5).choice(len(tr), a.max_train, replace=False))]
     va = items_de(a.datos, "val")
     print(f"entrenamiento: {len(tr)} prendas de Fashionpedia train | validación: {len(va)} de val", flush=True)
-    Etr = embeber(tr, a.datos / "emb_train_b32.npz")
-    Eva = embeber(va, a.datos / "emb_val_b32.npz")
+    Etr = embeber(tr, a.datos / f"emb_train_{a.etiqueta}.npz")
+    Eva = embeber(va, a.datos / f"emb_val_{a.etiqueta}.npz")
     # ---- etiquetas de Víctor (solo para probar)
     etiq = {k: v for k, v in json.loads(a.etiquetas.read_text(encoding="utf-8")).items() if v.get("prendas")}
     claves = sorted(etiq)
     import torch
     torch.set_grad_enabled(False)
-    model, prep, _ = ev.pc.cargar(None, None)
+    model, prep, _ = ev.pc.cargar(a.modelo, a.pesos)
     EV = []
     for k in claves:
         v = model.encode_image(prep(ev.recorte(a.fotos / f"{k.split('#')[0]}.jpg", etiq[k]["caja"])).unsqueeze(0))

@@ -48,6 +48,12 @@ def cargar(modelo, pesos):
         from clip_matching_poc import cargar_modelo
         return cargar_modelo()
     import open_clip
+    if pesos and Path(pesos).is_file():   # checkpoint original de OpenAI descargado a mano (p. ej. ViT-L-14.pt desde openaipublic.azureedge.net)
+        from open_clip.constants import OPENAI_DATASET_MEAN, OPENAI_DATASET_STD
+        from open_clip.openai import load_openai_model
+        m = load_openai_model(str(pesos), device="cpu").eval()
+        prep = open_clip.image_transform(m.visual.image_size, is_train=False, mean=OPENAI_DATASET_MEAN, std=OPENAI_DATASET_STD)
+        return m, prep, open_clip.get_tokenizer(modelo)
     m, _, prep = open_clip.create_model_and_transforms(modelo, pretrained=pesos)
     m.eval()
     return m, prep, open_clip.get_tokenizer(modelo)

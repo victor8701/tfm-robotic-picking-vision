@@ -1,0 +1,257 @@
+{
+ "entrenamiento": 22300,
+ "validacion": 1980,
+ "max_por_clase": 2500,
+ "curvas": {
+  "estampado": {
+   "filas": [
+    {
+     "fraccion": 0.1,
+     "n": 2196,
+     "balanceado": true,
+     "val_fashionpedia": 0.65,
+     "victor_principal": [
+      10,
+      22
+     ],
+     "victor_cualquiera": [
+      17,
+      32
+     ]
+    },
+    {
+     "fraccion": 0.1,
+     "n": 2196,
+     "balanceado": false,
+     "val_fashionpedia": 0.789,
+     "victor_principal": [
+      13,
+      22
+     ],
+     "victor_cualquiera": [
+      19,
+      32
+     ]
+    },
+    {
+     "fraccion": 0.25,
+     "n": 5491,
+     "balanceado": true,
+     "val_fashionpedia": 0.674,
+     "victor_principal": [
+      10,
+      22
+     ],
+     "victor_cualquiera": [
+      19,
+      32
+     ]
+    },
+    {
+     "fraccion": 0.25,
+     "n": 5491,
+     "balanceado": false,
+     "val_fashionpedia": 0.79,
+     "victor_principal": [
+      12,
+      22
+     ],
+     "victor_cualquiera": [
+      19,
+      32
+     ]
+    },
+    {
+     "fraccion": 0.5,
+     "n": 10983,
+     "balanceado": true,
+     "val_fashionpedia": 0.684,
+     "victor_principal": [
+      10,
+      22
+     ],
+     "victor_cualquiera": [
+      18,
+      32
+     ]
+    },
+    {
+     "fraccion": 0.5,
+     "n": 10983,
+     "balanceado": false,
+     "val_fashionpedia": 0.791,
+     "victor_principal": [
+      13,
+      22
+     ],
+     "victor_cualquiera": [
+      20,
+      32
+     ]
+    },
+    {
+     "fraccion": 1.0,
+     "n": 21966,
+     "balanceado": true,
+     "val_fashionpedia": 0.694,
+     "victor_principal": [
+      11,
+      22
+     ],
+     "victor_cualquiera": [
+      19,
+      32
+     ]
+    },
+    {
+     "fraccion": 1.0,
+     "n": 21966,
+     "balanceado": false,
+     "val_fashionpedia": 0.793,
+     "victor_principal": [
+      12,
+      22
+     ],
+     "victor_cualquiera": [
+      19,
+      32
+     ]
+    }
+   ],
+   "siempre_la_mas_frecuente_val": [
+    "liso",
+    0.763
+   ],
+   "siempre_la_mas_frecuente_victor": [
+    "liso",
+    11,
+    22
+   ]
+  },
+  "forma": {
+   "filas": [
+    {
+     "fraccion": 0.1,
+     "n": 1747,
+     "balanceado": true,
+     "val_fashionpedia": 0.522,
+     "victor_principal": [
+      7,
+      23
+     ],
+     "victor_cualquiera": [
+      12,
+      31
+     ]
+    },
+    {
+     "fraccion": 0.1,
+     "n": 1747,
+     "balanceado": false,
+     "val_fashionpedia": 0.595,
+     "victor_principal": [
+      4,
+      23
+     ],
+     "victor_cualquiera": [
+      8,
+      31
+     ]
+    },
+    {
+     "fraccion": 0.25,
+     "n": 4367,
+     "balanceado": true,
+     "val_fashionpedia": 0.522,
+     "victor_principal": [
+      8,
+      23
+     ],
+     "victor_cualquiera": [
+      13,
+      31
+     ]
+    },
+    {
+     "fraccion": 0.25,
+     "n": 4367,
+     "balanceado": false,
+     "val_fashionpedia": 0.591,
+     "victor_principal": [
+      4,
+      23
+     ],
+     "victor_cualquiera": [
+      8,
+      31
+     ]
+    },
+    {
+     "fraccion": 0.5,
+     "n": 8735,
+     "balanceado": true,
+     "val_fashionpedia": 0.525,
+     "victor_principal": [
+      8,
+      23
+     ],
+     "victor_cualquiera": [
+      13,
+      31
+     ]
+    },
+    {
+     "fraccion": 0.5,
+     "n": 8735,
+     "balanceado": false,
+     "val_fashionpedia": 0.603,
+     "victor_principal": [
+      4,
+      23
+     ],
+     "victor_cualquiera": [
+      9,
+      31
+     ]
+    },
+    {
+     "fraccion": 1.0,
+     "n": 17471,
+     "balanceado": true,
+     "val_fashionpedia": 0.539,
+     "victor_principal": [
+      9,
+      23
+     ],
+     "victor_cualquiera": [
+      14,
+      31
+     ]
+    },
+    {
+     "fraccion": 1.0,
+     "n": 17471,
+     "balanceado": false,
+     "val_fashionpedia": 0.608,
+     "victor_principal": [
+      4,
+      23
+     ],
+     "victor_cualquiera": [
+      9,
+      31
+     ]
+    }
+   ],
+   "siempre_la_mas_frecuente_val": [
+    "regular",
+    0.36
+   ],
+   "siempre_la_mas_frecuente_victor": [
+    "oversized / baggy",
+    11,
+    23
+   ]
+  }
+ }
+}
