@@ -1,0 +1,41 @@
+{
+ "generado": "2026-10-08T19:04:32+00:00",
+ "tipo_fino": {
+  "acierto": 19,
+  "n": 38,
+  "cualquiera": 24,
+  "fuente": "etiquetas de Víctor (lotes 1 y 2)",
+  "metodo": "tipo del flujo semanal (CLIP ViT-B/32 dentro de la lista de la categoría del detector) frente a la prenda principal etiquetada; Hoodie = Sudadera",
+  "nota": "con «cualquiera de las prendas del recorte» sube; CLIP ViT-L/14 y una capa entrenada con sus etiquetas no mejoran"
+ },
+ "familia": {
+  "acierto": 29,
+  "n": 38,
+  "cualquiera": 36,
+  "fuente": "etiquetas de Víctor (lotes 1 y 2)",
+  "metodo": "arriba · abrigo · abajo · cuerpo entero · calzado · accesorio, con el mismo tipo del flujo semanal"
+ },
+ "color": {
+  "acierto": 21,
+  "n": 30,
+  "fuente": "revisión a ojo del asistente, 30 prendas al azar (no de Víctor)",
+  "techo": "baja",
+  "metodo": "color_primario del adaptador Florence-2 v3 sobre el recorte",
+  "nota": "5 claramente mal y 4 dudosas; sesgo hacia «negro»: prendas rojas, moradas, doradas o de camuflaje salen negras o grises"
+ },
+ "estampado": {
+  "estado": "no se estima",
+  "mejor_medido": "12 a 13 de 22, igual que decir siempre «liso» (11 de 22)",
+  "fuente": "memoria/TFM_tendencias_de_prenda.md §6"
+ },
+ "tejido": {
+  "estado": "no se estima",
+  "mejor_medido": "6 de 17 con CLIP; decir siempre «algodón» da 10 de 17",
+  "fuente": "memoria/TFM_tendencias_de_prenda.md §6"
+ },
+ "forma": {
+  "estado": "no se estima",
+  "mejor_medido": "4 a 9 de 23; decir siempre «oversized» da 11 de 23",
+  "fuente": "memoria/TFM_tendencias_de_prenda.md §6"
+ }
+}

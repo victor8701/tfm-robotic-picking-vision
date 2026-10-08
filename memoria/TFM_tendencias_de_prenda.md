@@ -121,3 +121,26 @@ la limitación no es la cantidad de datos de este tipo ni la capacidad del codif
 **Decisión de Víctor y mía (8 de octubre).** No se hace ahora un «entrenamiento muy grande» repitiendo lo mismo con más fotos. Orden de trabajo: (1) cerrar lo fiable, es decir, el botón «Analizar mercado» y el informe por prenda con tipo, color y estampado grueso (liso, dibujo o texto), cada cifra con su nivel de confianza;
 (2) probar un modelo abierto grande de lenguaje y visión (7 000 a 8 000 millones de parámetros, tipo Qwen-VL) en una GPU de Kaggle sobre la foto entera y medirlo con las etiquetas de Víctor; si supera el 70 % y la clase más frecuente, se usa de profesor para etiquetar miles de fotos de las fuentes y se afina nuestro modelo con LoRA (ese sería el entrenamiento grande, con una aportación propia);
 si no, forma y tejido quedan como límite documentado; (3) titulares y pies de foto como pista barata cuando existan. Subir las fotos de las etiquetas (personas reales) a Kaggle requiere el permiso expreso de Víctor, en un dataset privado que se borra al terminar. Su única tarea futura: unos 60 recortes nuevos etiquetados a ciegas, y solo si el profesor funciona.
+
+### 6.1 Corrección sobre el tipo de prenda y revisión del color (8 de octubre, tarde)
+
+**El tipo fino acierta la mitad, no dos tercios.** La cifra «18 de 27 a la primera» del apartado 6 cuenta como acierto que el modelo coincida con *cualquiera* de las prendas que Víctor etiquetó en ese recorte (indulgente) y solo con el lote 1. Contra la **prenda principal** (la primera que eligió, la que llena el recorte) y con los dos lotes (38 recortes con tipo),
+el tipo que da el flujo semanal acierta **19 de 38 (50 %)**; con «cualquiera de las prendas», 24 de 38 (63 %); **por familia** (arriba, abrigo, abajo, cuerpo entero, calzado, accesorio) 29 de 38 (76 %) y 36 de 38 con «cualquiera». Probé alternativas sobre esos mismos 38:
+
+| Método | Principal | Cualquiera |
+|---|---|---|
+| Flujo semanal (CLIP B/32 dentro de la lista de la categoría del detector) | 19 de 38 | 24 de 38 |
+| CLIP B/32 sin restringir (29 tipos), «a photo of …» | 19 de 38 | 25 de 38 |
+| CLIP B/32, conjunto de 4 plantillas | 16 de 38 | 22 de 38 |
+| CLIP B/32, sonda lineal con tus etiquetas (dejando uno fuera) | 11 de 38 | 13 de 38 |
+| CLIP L/14, «a photo of …» | 17 de 38 | 25 de 38 |
+| CLIP L/14, conjunto de 4 plantillas | 18 de 38 | 26 de 38 |
+| CLIP L/14, sonda lineal (dejando uno fuera) | 8 de 38 | 11 de 38 |
+
+Ninguna alternativa mejora al flujo: con 38 etiquetas y 14 clases, la sonda lineal no aprende y un CLIP mayor no ayuda. Lo que dije a Víctor el 8 de octubre («el tipo de prenda es fiable») era demasiado optimista para el tipo fino; para la familia, 76 %, es aceptable pero no alto.
+
+**Color.** No hay etiquetas de Víctor de color. Revisé a ojo 30 prendas al azar del flujo (recortes con el `color_primario` del adaptador Florence-2 v3): 21 de 30 bien, 5 claramente mal y 4 dudosas (juez único, el asistente; intervalo muy ancho). Los fallos son sistemáticos: prendas rojas, moradas, doradas, marrones o de camuflaje salen negras, grises o «camel»;
+por eso «negro» (55 % de las prendas con color) está inflado.
+
+**Qué hace el informe con esto** (pestaña «Prendas» de la app, `fiabilidad_prenda.py`, `tendencia_prenda.py informe`): cada cifra lleva un margen (intervalo de Wilson con las fotos efectivas) y una confianza = mínimo entre lo que sostienen las fotos (≥ 30 alta, 15 a 29 media, 5 a 14 baja) y el techo que fija lo que acierta el atributo (≥ 85 % alta, ≥ 65 % media, menos baja).
+Hoy el tipo fino y el color tienen techo «baja» y la familia «media»: la herramienta es **orientativa** hasta que el clasificador mejore. Para probar si un modelo de lenguaje y visión grande lo mejora, ver `vlm_atributos_prenda/herramientas/vlm_profesor/`.

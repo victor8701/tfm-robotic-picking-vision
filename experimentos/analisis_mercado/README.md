@@ -24,6 +24,7 @@ vuelve a abrirla** (el servidor lee `mercado.py` solo al arrancar). Pestañas:
 | **Clasificar** | una foto cada vez con la sugerencia del modelo: clic o teclado (1-7 estilo · Enter acepta · 0 no sirve · ← volver · S saltar). Las fotos que **propones desde la Biblioteca** salen primero, con el estilo que indicaste (Enter lo confirma). Calcula en vivo **en qué % coincide el modelo contigo** (la medida honesta con fotos nuevas; lo que propones tú no cuenta) |
 | **Biblioteca** | por estilo: **1** descripción con tus palabras + frases en inglés para el clasificador, **2** fotos de ejemplo (arrastrar, Ctrl+V o elegir archivos), **3** cuentas y enlaces para el buscador. Cada estilo muestra cuántas fotos tiene (meta 60) y cuánto acierta el modelo |
 | **Informe** | el «qué está de moda ahora mismo» (barras ordenadas, tabla, fotos de ejemplo) |
+| **Prendas** | la tendencia por prenda (urbano y geek, por mercado y temporada): reparto por tipo y por familia de prenda, con la confianza de cada cifra y miniaturas de ejemplo; ver «Tendencia por prenda» más abajo |
 | **Ajustes** | comunidades de Reddit, periodo del «top», y **Reentrenar** el modelo |
 
 Para automatizar o depurar, lo mismo existe por línea de comandos: `python3 mercado.py app | entrenar | cosechar --biblioteca [--solo-x | --solo-enlaces] | cosechar --reddit a,b | informe | reentrenar | analizar --cosechar --biblioteca | hojas --estilo … | resolver …`.
@@ -127,7 +128,13 @@ Primeras pruebas (volumen de fotos por referente, detector de prendas en 28 foto
 **Flujo v0 (`tendencia_prenda.py`)**, aparte de los datos de la app (todo en `tendencia_datos/`, solo `fotos.json`, `prendas.json` e `informe.json` van a git; las fotos no):
 `cosechar` (fuentes de `tendencia_fuentes.json`: X vía FxTwitter, prensa por nombre vía Bing Noticias, comunidades de Reddit) → `biblioteca` (tus fotos aprobadas como urbano/geek, como muestra de referencia) →
 `analizar` (detector de prendas de `vlm_atributos_prenda` + tipo fino con CLIP sobre el recorte) → `informe` (cuota de fotos por prenda, por estilo × mercado × temporada de 6 meses; mínimo 5 fotos por cifra). `python3 tendencia_prenda.py todo` hace las cuatro.
-Todavía NO estima estampado ni forma (CLIP sin entrenar no sirve) y la visibilidad de la prenda es una heurística de caja pegada al borde.
+Todavía NO estima estampado, tejido ni forma (ver `memoria/TFM_tendencias_de_prenda.md` §6: ningún método probado supera a «decir siempre lo más frecuente») y la visibilidad de la prenda es una heurística de caja pegada al borde.
+
+**En la app (desde el 2026-10-08).** El botón «Analizar mercado» hace, al terminar el flujo de estilos, `tendencia_prenda.py todo` (como proceso aparte y con el mismo candado, `/tmp/tendencia_semanal.lock`, que el cron de los lunes: si el semanal está corriendo, no lanza otro); «Solo las prendas» hace solo eso.
+La pestaña **Prendas** enseña `tendencia_datos/informe.json`: por estilo × mercado × temporada, el reparto de fotos por tipo de prenda y por familia (arriba, abrigo, abajo, cuerpo entero, calzado, accesorio), el color y las fuentes. Cada cifra lleva:
+- un **margen** (intervalo de Wilson al 95 % con las fotos «efectivas», que pesan menos que las reales porque cada una pesa según su popularidad y recencia);
+- una **confianza**: por las fotos que la sostienen (≥ 30 alta, 15 a 29 media, 5 a 14 baja; por debajo de 5 no hay cifra) **con un techo según lo que acierta ese dato** (`fiabilidad_prenda.py` lo mide contra las etiquetas de Víctor y lo guarda en `tendencia_datos/fiabilidad.json`: ≥ 85 % alta, ≥ 65 % media, menos baja). El 8 de octubre: tipo fino 19 de 38 (50 %, techo baja), familia 29 de 38 (76 %, techo media), color 21 de 30 a ojo (techo baja). Al mejorar el clasificador sube el techo sin tocar el informe.
+Las miniaturas (`/prenda/<foto>/<n>.jpg`) son las fotos con más peso de cada tipo: sirven para ver cuándo el modelo se equivoca. Las fotos y las miniaturas se quedan en este ordenador, como el resto de `cache/`.
 
 ## Privacidad y licencias
 
@@ -147,7 +154,8 @@ universidad antes de difundir un dataset con fotos de terceros (RGPD). Las pági
 | `biblioteca.json` | descripciones, frases, personas de referencia, cuentas y enlaces por estilo | sí |
 | `tendencias_prenda/` | la página editable de «tendencia por prenda» y el contenido inicial de su base | sí |
 | `tendencia_prenda.py` · `tendencia_fuentes.json` · `sonda_prensa.py` | flujo de tendencia por prenda (v0), sus fuentes y la sonda de prensa por nombre | sí |
-| `tendencia_datos/` | fotos (`cache/`) y análisis del flujo de tendencia; `fotos.json`, `prendas.json`, `informe.json` sí van a git | parcial |
+| `fiabilidad_prenda.py` | mide lo que acierta cada atributo (tipo, familia, color) y fija el techo de confianza de sus cifras | sí |
+| `tendencia_datos/` | fotos (`cache/`) y análisis del flujo de tendencia; `fotos.json`, `prendas.json`, `informe.json`, `fiabilidad.json` y las etiquetas de prendas sí van a git | parcial |
 | `cache/` (`img/`, `biblioteca/`) · `candidatos.json` · `informe_mercado.*` | imágenes y trabajo local | no |
 
 Pruebas sin tocar tus datos: `MERCADO_DATOS=/ruta/copia python3 mercado.py app --puerto 8777` (y `MERCADO_CUENTAS_X=/ruta/cuentas.json` para no escribir en `ingesta_x`).

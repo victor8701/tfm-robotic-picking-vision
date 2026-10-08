@@ -1434,7 +1434,37 @@ def resumen_estado() -> dict:
             "coincide": {"n": len(medibles), "k": sum(1 for e in medibles if e.get("sugerido") == e.get("estilo"))},
             "etiquetas_desde_modelo": len(desde), "modelo": modelo, "biblioteca_cambiada": cambiada, "tarea": estado_tarea(),
             "fuentes_biblioteca": sum(1 for s in leer_biblioteca()["fuentes"] if TIPOS[s["tipo"]][1]),
-            "informe": datetime.fromtimestamp(INFORME_HTML.stat().st_mtime, timezone.utc).isoformat(timespec="seconds") if INFORME_HTML.exists() else None}
+            "informe": datetime.fromtimestamp(INFORME_HTML.stat().st_mtime, timezone.utc).isoformat(timespec="seconds") if INFORME_HTML.exists() else None,
+            "informe_prendas": datetime.fromtimestamp((TD_PRENDA / "informe.json").stat().st_mtime, timezone.utc).isoformat(timespec="seconds") if (TD_PRENDA / "informe.json").exists() else None}
+
+
+TD_PRENDA = Path(os.environ.get("TENDENCIA_DATOS") or AQUI / "tendencia_datos")   # datos del flujo de tendencia por prenda (aparte de los de la app)
+_PRENDAS_JSON = {"mtime": 0.0, "datos": {}}
+
+
+def datos_prendas() -> dict:
+    """El último informe por prenda (lo escribe `tendencia_prenda.py informe`); None si aún no se ha generado."""
+    f = TD_PRENDA / "informe.json"
+    return {"informe": leer_json(f) if f.exists() else None}
+
+
+def recorte_prenda(foto: str, i: int) -> bytes | None:
+    """Miniatura JPEG de la prenda i de una foto del flujo por prenda (recorte de su caja), o None si no existe."""
+    f, img = TD_PRENDA / "prendas.json", TD_PRENDA / "cache" / "img" / f"{foto}.jpg"
+    if not re.fullmatch(r"[A-Za-z0-9_]+", foto) or not f.exists() or not img.is_file():
+        return None
+    if f.stat().st_mtime != _PRENDAS_JSON["mtime"]:
+        _PRENDAS_JSON.update(mtime=f.stat().st_mtime, datos=leer_json(f))
+    v = _PRENDAS_JSON["datos"].get(foto)
+    if not v or not 0 <= i < len(v["prendas"]):
+        return None
+    x1, y1, x2, y2 = v["prendas"][i]["caja"]
+    im = Image.open(img).convert("RGB")
+    c = im.crop((max(0, int(x1)), max(0, int(y1)), min(im.width, int(x2)), min(im.height, int(y2))))
+    c.thumbnail((240, 240))
+    buf = io.BytesIO()
+    c.save(buf, "JPEG", quality=85)
+    return buf.getvalue()
 
 
 def periodo_valido(d: dict) -> str:
@@ -1551,6 +1581,12 @@ class ManejadorApp(BaseHTTPRequestHandler):
                 self._imagen(urllib.request.unquote(ruta[11:-4]))
             elif ruta == "/informe_mercado.html" and INFORME_HTML.exists():
                 self._env(INFORME_HTML.read_bytes(), "text/html; charset=utf-8")
+            elif ruta == "/api/prendas":
+                self._json(datos_prendas())
+            elif ruta.startswith("/prenda/") and ruta.endswith(".jpg"):   # miniatura de una prenda del informe por prenda
+                mm = re.fullmatch(r"/prenda/([A-Za-z0-9_]+)/(\d+)\.jpg", ruta)
+                b = recorte_prenda(mm.group(1), int(mm.group(2))) if mm else None
+                self._env(b, "image/jpeg") if b else self._env("no encontrada", "text/plain", 404)
             else:
                 self._env("no encontrada", "text/plain", 404)
         except SystemExit as e:   # p. ej. falta el modelo: se lo contamos a la página en vez de romper
@@ -1576,7 +1612,9 @@ class ManejadorApp(BaseHTTPRequestHandler):
             if ruta == "/api/tarea":
                 acc = d.get("accion")
                 if acc == "analizar":
-                    ok = lanzar_tarea("Analizar mercado", ["analizar", "--cosechar", *args_comunes(d)])
+                    ok = lanzar_tarea("Analizar mercado", ["analizar", "--cosechar", "--prendas", *args_comunes(d)])
+                elif acc == "prendas":
+                    ok = lanzar_tarea("Analizar prendas (geek y urbano)", ["prendas"])
                 elif acc == "buscar":
                     ok = lanzar_tarea("Buscar fotos con la Biblioteca", ["cosechar", "--biblioteca", "--periodo", periodo_valido(d)])
                 elif acc == "informe":
@@ -1892,8 +1930,22 @@ def motivo_reentrenar() -> str | None:
     return f"has confirmado {nuevas} fotos desde el último entrenamiento" if nuevas >= 10 else None
 
 
+def analizar_prendas() -> int:
+    """Tendencia por prenda (geek y urbano): `tendencia_prenda.py todo` como proceso aparte (cosechar → biblioteca → analizar → informe), con el mismo candado que el cron semanal
+    para no correr dos a la vez. Solo analiza las fotos nuevas, así que tras la primera vez es rápido."""
+    import fcntl
+    candado = open("/tmp/tendencia_semanal.lock", "w")
+    try:
+        fcntl.flock(candado, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError:
+        print("\nYa hay un análisis por prenda en marcha (el semanal automático): no lo lanzo otra vez.", flush=True)
+        return 0
+    print("\n== Tendencia por prenda (geek y urbano) ==", flush=True)
+    return subprocess.run([sys.executable, "-u", str(AQUI / "tendencia_prenda.py"), "todo"], cwd=AQUI).returncode
+
+
 def cmd_analizar(args):
-    """El «botón»: [reentrenar si hace falta] → cosechar (opcional) → clasificar → informe."""
+    """El «botón»: [reentrenar si hace falta] → cosechar (opcional) → clasificar → informe → (con --prendas) tendencia por prenda."""
     motivo = motivo_reentrenar()
     if motivo:
         print(f"Antes de analizar reentreno el modelo: {motivo}.\n", flush=True)
@@ -1902,6 +1954,8 @@ def cmd_analizar(args):
     if args.cosechar:
         cmd_cosechar(args)
     cmd_informe(args)
+    if getattr(args, "prendas", False):
+        sys.exit(analizar_prendas())
 
 
 # ---------------------------------------------------------------- revisar desde el móvil (hojas numeradas por chat)
@@ -2167,7 +2221,9 @@ def main():
     a.add_argument("--urls", default="")
     a.add_argument("--biblioteca", action="store_true", help="incluir lo que hay en la Biblioteca")
     a.add_argument("--vida-media", type=float, default=10.0, dest="vida_media")
+    a.add_argument("--prendas", action="store_true", help="al final, también la tendencia por prenda (geek y urbano): tendencia_prenda.py todo")
     a.set_defaults(f=cmd_analizar)
+    sub.add_parser("prendas", help="solo la tendencia por prenda (geek y urbano): cosechar, analizar y generar su informe").set_defaults(f=lambda _: sys.exit(analizar_prendas()))
     args = p.parse_args()
     args.f(args)
 

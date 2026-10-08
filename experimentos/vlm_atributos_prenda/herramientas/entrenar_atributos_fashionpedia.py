@@ -90,7 +90,7 @@ def items_de(datos: Path, split: str, min_lado: int = 60):
         if min(w, h) < min_lado or nombre[a["image_id"]] not in ficheros:
             continue
         nombres = {atr[i] for i in a.get("attribute_ids", []) if i in atr}
-        items.append({"id": f"{split}{a['id']}", "imagen": ficheros[nombre[a["image_id"]]], "caja": [x, y, x + w, y + h], "grupo": a["image_id"],
+        items.append({"id": f"{split}{a['id']}", "imagen": ficheros[nombre[a["image_id"]]], "caja": [x, y, x + w, y + h], "grupo": a["image_id"], "categoria": cats[a["category_id"]],
                       "estampado": estampado_de(nombres), "forma": forma_de(nombres, cats[a["category_id"]])})
     return items
 

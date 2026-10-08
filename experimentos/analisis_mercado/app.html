@@ -78,6 +78,19 @@ ul.fuentes button{padding:4px 9px;font-size:.8rem}
 .acciones{position:sticky;bottom:0;background:var(--fondo);border-top:1px solid var(--linea);padding:10px 0 6px;margin-top:14px}
 .acciones .fila-btn{margin:0 0 4px}.acciones .grande{width:auto;font-size:1rem;padding:11px 18px}
 code{background:var(--sug);border-radius:4px;padding:0 4px}
+/* prendas */
+.fila-prenda{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;padding:10px 0;border-top:1px solid var(--linea)}
+.fila-prenda .nom{font-weight:600;overflow-wrap:anywhere}
+.fila-prenda .num{color:var(--suave);font-size:.85rem;text-align:right}
+.fila-prenda .barra-p{grid-column:1/-1;height:9px;background:var(--linea);border-radius:5px;position:relative;overflow:hidden}
+.fila-prenda .barra-p i{position:absolute;left:0;top:0;bottom:0;background:var(--acento);border-radius:5px}
+.fila-prenda .barra-p b{position:absolute;top:0;bottom:0;background:var(--acento);opacity:.3}
+.fila-prenda .ej{grid-column:1/-1;display:flex;gap:6px;margin-top:4px;flex-wrap:wrap}
+.fila-prenda .ej img{height:64px;width:auto;max-width:96px;object-fit:cover;border-radius:6px;background:var(--linea)}
+.conf{font-size:.7rem;font-weight:600;padding:2px 8px;border-radius:999px;margin-left:6px;white-space:nowrap}
+.conf.baja{background:var(--aviso);color:var(--mal)}.conf.media{background:var(--sug);color:var(--acento)}.conf.alta{background:var(--sug);color:var(--ok)}
+.colores{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}.colores span{background:var(--sug);border-radius:999px;padding:3px 10px;font-size:.85rem}
+.fiab li{margin:4px 0}
 </style>
 
 <header>
@@ -87,6 +100,7 @@ code{background:var(--sug);border-radius:4px;padding:0 4px}
     <button role="tab" data-t="clasificar">Clasificar</button>
     <button role="tab" data-t="biblioteca">Biblioteca</button>
     <button role="tab" data-t="informe">Informe</button>
+    <button role="tab" data-t="prendas">Prendas</button>
     <button role="tab" data-t="ajustes">Ajustes</button>
   </nav>
 </header>
@@ -101,9 +115,10 @@ code{background:var(--sug);border-radius:4px;padding:0 4px}
     <div class="tarjeta"><b id="n-acierto">–</b><span id="t-acierto">acierto del modelo contigo</span></div>
   </div>
   <button class="grande" id="b-analizar">Analizar mercado</button>
-  <p class="nota">Reentrena el modelo si has cambiado la Biblioteca o confirmado fotos, descarga fotos nuevas (Reddit y las cuentas, comunidades y enlaces de tu Biblioteca, incluidas las fuentes de mercado), las clasifica y prepara el informe por mercado. <b>Tarda varios minutos</b> (Reddit limita las peticiones); puedes dejar esta pestaña abierta.</p>
+  <p class="nota">Reentrena el modelo si has cambiado la Biblioteca o confirmado fotos, descarga fotos nuevas (Reddit y las cuentas, comunidades y enlaces de tu Biblioteca, incluidas las fuentes de mercado), las clasifica y prepara el informe por mercado. Después hace la <b>tendencia por prenda</b> (geek y urbano, pestaña «Prendas»): fotos de tus referentes, prendas detectadas y su reparto por temporada. <b>Tarda varios minutos</b> (Reddit limita las peticiones y cada foto nueva de prendas tarda unos 20 segundos); puedes dejar esta pestaña abierta.</p>
   <div class="fila-btn">
     <button class="sec" id="b-informe">Solo actualizar el informe (sin descargar)</button>
+    <button class="sec" id="b-prendas">Solo las prendas (geek y urbano)</button>
     <button class="sec" id="b-ver-informe">Ver el informe</button>
     <button class="sec" id="b-parar" hidden>Cancelar la tarea</button>
   </div>
@@ -201,6 +216,21 @@ code{background:var(--sug);border-radius:4px;padding:0 4px}
   <p class="nota"><a id="i-abrir" href="/informe_mercado.html" target="_blank" rel="noopener">Abrir el informe en una pestaña nueva</a></p>
 </section>
 
+<!-- PRENDAS -->
+<section id="s-prendas" hidden>
+  <h2>Qué prendas se llevan</h2>
+  <p class="nota">El estilo (urbano, geek) lo da la <b>persona de referencia</b>, no la foto. Cada cifra es el reparto de las fotos de una temporada por tipo de prenda y lleva su <b>confianza</b>: cuántas fotos la sostienen y cuánto acierta el modelo con ese dato. La franja clara de cada barra es el margen (95 %).</p>
+  <p class="nota" id="p-msg"></p>
+  <div id="p-cuerpo" hidden>
+    <label for="p-grupo">Estilo · mercado · temporada</label>
+    <select id="p-grupo"></select>
+    <div class="nota" id="p-cab"></div>
+    <div id="p-lista"></div>
+    <div class="bloque" id="p-color" hidden></div>
+    <div class="bloque" id="p-fiab"></div>
+  </div>
+</section>
+
 <!-- AJUSTES -->
 <section id="s-ajustes" hidden>
   <h2>Ajustes</h2>
@@ -221,7 +251,7 @@ code{background:var(--sug);border-radius:4px;padding:0 4px}
 const $ = s => document.querySelector(s);
 let E = null;                 // último estado del servidor
 let tabActual = 'inicio';
-const TABS = ['inicio', 'clasificar', 'biblioteca', 'informe', 'ajustes'];
+const TABS = ['inicio', 'clasificar', 'biblioteca', 'informe', 'prendas', 'ajustes'];
 
 async function api(ruta, cuerpo) {
   const r = await fetch(ruta, cuerpo === undefined ? {} : {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(cuerpo)});
@@ -239,6 +269,7 @@ function ir(t) {
   history.replaceState(null, '', '#' + t);
   if (t === 'informe') cargarInforme();
   if (t === 'biblioteca') cargarBiblioteca(false);
+  if (t === 'prendas') cargarPrendas();
 }
 document.querySelectorAll('#pestanas button').forEach(b => b.onclick = () => ir(b.dataset.t));
 
@@ -251,7 +282,7 @@ async function refrescar() {
   if (E.coincide.n) { $('#n-acierto').textContent = Math.round(100 * E.coincide.k / E.coincide.n) + ' %'; $('#t-acierto').textContent = 'acierto del modelo contigo (' + E.coincide.k + ' de ' + E.coincide.n + ')'; }
   else { $('#n-acierto').textContent = '–'; $('#t-acierto').textContent = 'acierto del modelo contigo (aún sin medir)'; }
   const t = E.tarea, activa = t.en_curso;
-  ['b-analizar', 'b-informe', 'a-reentrenar', 'b-buscar', 'b-reentrenar'].forEach(id => { const x = document.getElementById(id); if (x) x.disabled = activa; });
+  ['b-analizar', 'b-informe', 'b-prendas', 'a-reentrenar', 'b-buscar', 'b-reentrenar'].forEach(id => { const x = document.getElementById(id); if (x) x.disabled = activa; });
   $('#b-parar').hidden = !activa;
   $('#tarea').hidden = !t.nombre;
   if (t.nombre) {
@@ -278,6 +309,7 @@ async function refrescar() {
     + (E.modelo.lam ? '; usa las frases de la Biblioteca (λ = ' + E.modelo.lam + '), sin ellas sería ' + Math.round(100 * E.modelo.cv_acc_fotos) + ' %.' : '; solo con fotos.')) : 'Todavía no hay modelo entrenado.';
   if (!$('#a-subs').value) $('#a-subs').value = E.subs_por_defecto;
   if (tabActual === 'informe' && E.informe && $('#i-marco').dataset.v !== E.informe) cargarInforme();
+  if (tabActual === 'prendas' && E.informe_prendas && (!P || !P.informe || P.informe.generado.slice(0, 19) !== E.informe_prendas.slice(0, 19))) cargarPrendas();
   if (tabActual === 'biblioteca') { pintarEstadoBiblioteca(); cargarBiblioteca(false); }
 }
 async function lanzar(accion, quedarse) {
@@ -286,6 +318,7 @@ async function lanzar(accion, quedarse) {
 }
 $('#b-analizar').onclick = () => lanzar('analizar');
 $('#b-informe').onclick = () => lanzar('informe');
+$('#b-prendas').onclick = () => lanzar('prendas');
 $('#a-reentrenar').onclick = () => lanzar('reentrenar');
 $('#b-parar').onclick = async () => { await api('/api/parar', {}); refrescar(); };
 $('#b-ver-informe').onclick = () => ir('informe');
@@ -295,6 +328,71 @@ function cargarInforme() {
   const m = $('#i-marco');
   if (E && E.informe) { m.hidden = false; $('#i-msg').textContent = 'Informe generado el ' + fecha(E.informe) + '.'; if (m.dataset.v !== E.informe) { m.src = '/informe_mercado.html?v=' + encodeURIComponent(E.informe); m.dataset.v = E.informe; } }
   else { m.hidden = true; $('#i-msg').textContent = 'Todavía no hay informe. En «Inicio», pulsa «Analizar mercado» o «Solo actualizar el informe».'; }
+}
+
+/* ------------------------------------------------------------ prendas */
+let P = null;
+const MERC = {ES: 'España', US: 'EEUU', Biblioteca: 'Tus fotos aprobadas'};
+const ORDEN_MERC = ['ES', 'US', 'Biblioteca'];
+// cronología de una temporada: «PV 2026» (mar-ago 2026) va antes que «OI 2026/27» (sep 2026-feb 2027); la muestra sin fecha, la última
+const claveTemp = t => { const m = /^(PV|OI) (\d{4})/.exec(t); return m ? +m[2] * 2 + (m[1] === 'OI' ? 1 : 0) : -1; };
+const pct = x => Math.round(100 * x) + ' %';
+const nombreGrupo = g => (g.estilo === 'geek' ? 'Geek' : 'Urbano') + ' · ' + (MERC[g.mercado] || g.mercado) + ' · ' + (g.temporada === 'muestra' ? 'muestra de referencia' : g.temporada) + ' (' + g.fotos + ' fotos)';
+async function cargarPrendas() {
+  try { P = await api('/api/prendas'); } catch (e) { $('#p-msg').textContent = '⚠ ' + e.message; return; }
+  const inf = P.informe;
+  $('#p-cuerpo').hidden = !inf;
+  if (!inf) { $('#p-msg').textContent = 'Todavía no hay informe por prenda. En «Inicio», pulsa «Analizar mercado» o «Solo las prendas» (la primera vez tarda: cada foto nueva son unos 20 segundos).'; return; }
+  $('#p-msg').textContent = 'Informe generado el ' + fecha(inf.generado) + '. Mínimo ' + inf.min_fotos + ' fotos por cifra.';
+  const gs = inf.grupos.map((g, i) => ({g, i})).sort((a, b) => (a.g.estilo === b.g.estilo ? 0 : a.g.estilo === 'urbano' ? -1 : 1)
+    || ORDEN_MERC.indexOf(a.g.mercado) - ORDEN_MERC.indexOf(b.g.mercado) || claveTemp(b.g.temporada) - claveTemp(a.g.temporada));
+  const sel = $('#p-grupo'), previo = sel.value;
+  sel.replaceChildren(...gs.map(({g, i}) => el('option', {value: i, textContent: nombreGrupo(g)})));
+  const reales = gs.filter(({g}) => g.mercado !== 'Biblioteca' && g.fotos_con_prenda >= inf.min_fotos).sort((a, b) => b.g.fotos_con_prenda - a.g.fotos_con_prenda);
+  sel.value = previo && gs.some(({i}) => String(i) === previo) ? previo : String((reales[0] || gs[0] || {i: 0}).i);
+  sel.onchange = pintarPrendas;
+  pintarPrendas();
+}
+function filaPrenda(f, escala, nombre) {
+  const r = el('div', {className: 'fila-prenda'});
+  r.append(el('div', {className: 'nom'}, nombre, el('span', {className: 'conf ' + f.confianza, textContent: 'confianza ' + f.confianza})),
+           el('div', {className: 'num', textContent: pct(f.cuota) + ' · ' + f.fotos + ' fotos'}));
+  const b = el('div', {className: 'barra-p', title: 'entre ' + pct(f.ic[0]) + ' y ' + pct(f.ic[1])});
+  b.append(el('b', {style: 'left:' + (f.ic[0] * escala) + '%;width:' + ((f.ic[1] - f.ic[0]) * escala) + '%'}), el('i', {style: 'width:' + (f.cuota * escala) + '%'}));
+  r.append(b, el('div', {className: 'num', style: 'grid-column:1/-1;text-align:left', textContent: 'entre ' + pct(f.ic[0]) + ' y ' + pct(f.ic[1])}));
+  if (f.ejemplos && f.ejemplos.length) r.append(el('div', {className: 'ej'}, ...f.ejemplos.map(([k, i]) => el('img', {src: '/prenda/' + k + '/' + i + '.jpg', alt: 'ejemplo de ' + nombre, loading: 'lazy'}))));
+  return r;
+}
+function pintarPrendas() {
+  const inf = P.informe, g = inf.grupos[+$('#p-grupo').value];
+  if (!g) return;
+  $('#p-cab').textContent = g.fotos + ' fotos, ' + g.fotos_con_prenda + ' con alguna prenda visible (por el peso de cada una equivalen a ' + g.fotos_efectivas.toLocaleString('es-ES') + ' fotos independientes). Fuentes: '
+    + Object.entries(g.fuentes).map(([k, v]) => k + ' ' + v).join(', ') + '.';
+  const lista = $('#p-lista');
+  lista.replaceChildren();
+  const bloque = (titulo, nota, filas, nombre) => {
+    const con = filas.filter(f => f.cuota !== null), sin = filas.filter(f => f.cuota === null);
+    const caja = el('div', {className: 'bloque'}, el('h4', {textContent: titulo}), el('div', {className: 'nota', textContent: nota}));
+    if (!con.length) caja.append(el('div', {className: 'nota', textContent: 'Ninguna alcanza las ' + inf.min_fotos + ' fotos necesarias para enseñar una cifra.'}));
+    const escala = 100 / Math.max(0.01, ...con.map(f => f.ic[1]));
+    con.forEach(f => caja.append(filaPrenda(f, escala, nombre(f))));
+    if (sin.length) caja.append(el('div', {className: 'nota', textContent: 'Con menos de ' + inf.min_fotos + ' fotos (no se enseña cifra): ' + sin.map(f => nombre(f) + ' (' + f.fotos + ')').join(', ') + '.'}));
+    return caja;
+  };
+  lista.append(bloque('Por tipo de prenda', 'Una foto cuenta una vez por tipo. El tipo exacto (camiseta de manga corta, sudadera, chaqueta…) es orientativo: se confunden entre sí. Las miniaturas son las fotos con más peso de cada tipo: si alguna no lo es, el modelo se equivocó.', g.prendas, f => f.tipo),
+               bloque('Por familia', 'Arriba, abrigo, abajo, cuerpo entero, calzado y accesorio: se confunden mucho menos. Casi todas las fotos llevan prenda de «arriba».', g.familias, f => f.familia));
+  const c = $('#p-color'), cols = Object.entries(g.colores);
+  c.hidden = !cols.length;
+  if (cols.length) c.replaceChildren(el('h4', {textContent: 'Colores más vistos'}), el('div', {className: 'colores'}, ...cols.map(([k, v]) => el('span', {textContent: k + ' · ' + v}))),
+    el('div', {className: 'nota', textContent: 'Prendas con ese color. Confianza ' + g.confianza_color + ': el color se revisó a ojo y tiende a decir «negro» (' + 'las prendas rojas, moradas o de camuflaje salen a veces negras o grises).'}));
+  const fb = inf.fiabilidad || {}, ul = el('ul', {className: 'fiab'});
+  const li = t => ul.append(el('li', {textContent: t}));
+  if (fb.tipo_fino) li('Tipo de prenda: acierta ' + fb.tipo_fino.acierto + ' de ' + fb.tipo_fino.n + ' (' + pct(fb.tipo_fino.acierto / fb.tipo_fino.n) + ') contra tus etiquetas de la prenda principal; si vale cualquiera de las prendas del recorte, ' + fb.tipo_fino.cualquiera + ' de ' + fb.tipo_fino.n + '. Confianza máxima: ' + inf.techos.tipo + '.');
+  if (fb.familia) li('Familia de prenda: ' + fb.familia.acierto + ' de ' + fb.familia.n + ' (' + pct(fb.familia.acierto / fb.familia.n) + '). Confianza máxima: ' + inf.techos.familia + '.');
+  if (fb.color) li('Color: ' + fb.color.acierto + ' de ' + fb.color.n + ' (' + pct(fb.color.acierto / fb.color.n) + ') revisadas a ojo por el asistente, no por ti. Confianza máxima: ' + inf.techos.color + '.');
+  li('Estampado, tejido y forma: todavía no se estiman. Se probó CLIP, una capa entrenada con 22 000 prendas de Fashionpedia y un modelo pequeño de lenguaje y visión, y con tus etiquetas ninguno supera a «decir siempre lo más frecuente».');
+  li('Cada cifra tiene dos límites: cuántas fotos la sostienen (30 o más → alta, 15 a 29 → media, menos → baja) y lo que acierta ese dato; manda el más bajo. Con pocas fotos, el margen de las barras es amplio: no leas diferencias pequeñas.');
+  $('#p-fiab').replaceChildren(el('h4', {textContent: 'Cuánto fiarte de esto'}), ul);
 }
 
 /* ------------------------------------------------------------ biblioteca */

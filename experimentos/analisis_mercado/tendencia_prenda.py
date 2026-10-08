@@ -57,6 +57,13 @@ CONTEXTO = {"musica": ["cantante", "rapero", "rapera", "artista", "cancion", "di
             "streamer": ["streamer", "twitch", "youtuber", "directo", "videojuego", "juego"],
             "music_en": ["rapper", "singer", "artist", "song", "album", "concert", "tour", "festival", "fashion", "style", "outfit", "met gala", "collection"]}
 norm = lambda s: unicodedata.normalize("NFKD", (s or "").lower()).encode("ascii", "ignore").decode()
+FAMILIA = {"Camiseta manga corta": "Arriba", "Camiseta de tirantes": "Arriba", "Camiseta manga larga": "Arriba", "Top": "Arriba", "Camisa": "Arriba", "Polo": "Arriba",
+           "Sudadera": "Arriba", "Hoodie": "Arriba", "Jersey": "Arriba", "Chaleco sin mangas": "Arriba", "Chaqueta": "Abrigo", "Americana": "Abrigo", "Abrigo": "Abrigo", "Plumas": "Abrigo",
+           "Pantalón": "Abajo", "Falda": "Abajo", "Short": "Abajo", "Legging/Malla": "Abajo", "Vestido": "Cuerpo entero", "Mono": "Cuerpo entero",
+           "Zapatillas deportivas": "Calzado", "Zapatillas casual/lifestyle": "Calzado", "Zapatos planos de vestir": "Calzado", "Zapatos de vestir": "Calzado", "Zapatos de tacón": "Calzado",
+           "Sandalias": "Calzado", "Botas": "Calzado", "Bolso": "Accesorio", "Riñonera": "Accesorio", "Gorra/Gorro/Sombrero": "Accesorio"}
+NIVELES = ["baja", "media", "alta"]
+FIABILIDAD = TD / "fiabilidad.json"   # aciertos medidos de cada atributo (`fiabilidad_prenda.py`): ponen el techo de confianza de sus cifras
 
 
 def ahora_iso() -> str:
@@ -354,35 +361,79 @@ def peso(v: dict, ahora_dt) -> float:
     return m.peso_foto(c, ahora_dt, VIDA_MEDIA)
 
 
+def wilson(p: float, n: float, z: float = 1.96) -> list[float]:
+    """Intervalo de Wilson al 95 % de una proporción p con n fotos efectivas."""
+    if n <= 0:
+        return [0.0, 1.0]
+    d = 1 + z * z / n
+    c = (p + z * z / (2 * n)) / d
+    h = z * math.sqrt(max(p * (1 - p) / n + z * z / (4 * n * n), 0.0)) / d
+    return [round(max(0.0, c - h), 3), round(min(1.0, c + h), 3)]
+
+
+def techo_de(medida: dict | None) -> str:
+    """Techo de confianza de un atributo según lo bien que acierta medido con las etiquetas de Víctor (o a ojo): ≥ 85 % alta, ≥ 65 % media, menos baja."""
+    if not medida or not medida.get("n"):
+        return "baja"
+    acc = medida["acierto"] / medida["n"]
+    t = "alta" if acc >= 0.85 and medida["n"] >= 30 else "media" if acc >= 0.65 else "baja"
+    return medida.get("techo") or t
+
+
+def nivel(n_fotos: int, techo: str) -> str:
+    """Confianza de una cifra: por cuántas fotos la sostienen (≥ 30 alta, ≥ 15 media, el resto baja), sin pasar del techo del atributo."""
+    base = "alta" if n_fotos >= 30 else "media" if n_fotos >= 15 else "baja"
+    return NIVELES[min(NIVELES.index(base), NIVELES.index(techo))]
+
+
 def cmd_informe(args):
-    fotos, prendas = cargar(FOTOS), cargar(PRENDAS)
+    fotos, prendas, fiab = cargar(FOTOS), cargar(PRENDAS), cargar(FIABILIDAD)
+    t_tipo, t_fam, t_col = techo_de(fiab.get("tipo_fino")), techo_de(fiab.get("familia")), techo_de(fiab.get("color"))
     ahora_dt = datetime.now(timezone.utc)
     grupos = collections.defaultdict(list)
     for k, v in fotos.items():
         if v.get("descartada") or k not in prendas:
             continue
         grupos[(v["estilo"], v["mercado"], temporada(v.get("fecha")) if v.get("fecha") else "muestra")].append(k)
-    informe = {"generado": ahora_iso(), "min_fotos": MIN_FOTOS, "vida_media_dias": VIDA_MEDIA, "grupos": []}
+    informe = {"generado": ahora_iso(), "min_fotos": MIN_FOTOS, "vida_media_dias": VIDA_MEDIA, "fiabilidad": fiab, "techos": {"tipo": t_tipo, "familia": t_fam, "color": t_col}, "grupos": []}
     for (estilo, mercado, temp), ids in sorted(grupos.items()):
         con_prendas = [k for k in ids if any(p["visible"] for p in prendas[k]["prendas"])]
         pesos = {k: peso(fotos[k], ahora_dt) for k in con_prendas}
         total = sum(pesos.values()) or 1.0
-        por_tipo = collections.defaultdict(lambda: {"n": 0, "w": 0.0})
+        s1, s2 = sum(pesos.values()), sum(w * w for w in pesos.values())
+        n_ef = (s1 * s1 / s2) if s2 else 0.0   # fotos «efectivas»: con pesos desiguales cuentan menos que las fotos reales
+        por_tipo = collections.defaultdict(lambda: {"n": 0, "w": 0.0, "ej": []})
+        por_fam = collections.defaultdict(lambda: {"n": 0, "w": 0.0, "ej": []})
         for k in con_prendas:
-            for t in {p["tipo"] for p in prendas[k]["prendas"] if p["visible"]}:   # una foto cuenta una vez por tipo
-                por_tipo[t]["n"] += 1
-                por_tipo[t]["w"] += pesos[k]
+            vistos_t, vistos_f = set(), set()
+            for i, p in enumerate(prendas[k]["prendas"]):
+                if not p["visible"]:
+                    continue
+                fam = FAMILIA.get(p["tipo"], "Otros")
+                for clave, vistos, tabla in ((p["tipo"], vistos_t, por_tipo), (fam, vistos_f, por_fam)):   # una foto cuenta una vez por tipo y una vez por familia
+                    if clave not in vistos:
+                        vistos.add(clave)
+                        tabla[clave]["n"] += 1
+                        tabla[clave]["w"] += pesos[k]
+                    tabla[clave]["ej"].append((pesos[k] * p["p_tipo"], k, i))
+
+        def fila(clave, d, techo, extra=None):
+            ok = d["n"] >= MIN_FOTOS
+            cuota = d["w"] / total
+            ej = [[k, i] for _, k, i in sorted(d["ej"], reverse=True)[:3]]
+            return {**(extra or {}), "fotos": d["n"], "cuota": round(cuota, 3) if ok else None, "ic": wilson(min(cuota, 1.0), n_ef) if ok else None,
+                    "confianza": nivel(d["n"], techo) if ok else None, "pocos_datos": not ok, "ejemplos": ej}
+        filas = [fila(t, d, t_tipo, {"tipo": t, "familia": FAMILIA.get(t, "Otros")}) for t, d in sorted(por_tipo.items(), key=lambda kv: -kv[1]["w"])]
+        familias = [fila(f, d, t_fam, {"familia": f}) for f, d in sorted(por_fam.items(), key=lambda kv: -kv[1]["w"])]
         colores = collections.Counter(p["color"] for k in con_prendas for p in prendas[k]["prendas"] if p["visible"] and p.get("color"))
-        filas = [{"tipo": t, "fotos": d["n"], "cuota": round(d["w"] / total, 3) if d["n"] >= MIN_FOTOS else None, "pocos_datos": d["n"] < MIN_FOTOS}
-                 for t, d in sorted(por_tipo.items(), key=lambda kv: -kv[1]["w"])]
         fuentes = collections.Counter((fotos[k].get("referente") or "Biblioteca") for k in ids)
-        informe["grupos"].append({"estilo": estilo, "mercado": mercado, "temporada": temp, "fotos": len(ids), "fotos_con_prenda": len(con_prendas), "prendas": filas,
-                                  "colores": dict(colores.most_common(8)), "fuentes": dict(fuentes.most_common())})
+        informe["grupos"].append({"estilo": estilo, "mercado": mercado, "temporada": temp, "fotos": len(ids), "fotos_con_prenda": len(con_prendas), "fotos_efectivas": round(n_ef, 1),
+                                  "prendas": filas, "familias": familias, "colores": dict(colores.most_common(8)), "confianza_color": t_col, "fuentes": dict(fuentes.most_common())})
     guardar(INFORME, informe)
     for g in informe["grupos"]:
         print(f"\n{g['estilo']} · {g['mercado']} · {g['temporada']}: {g['fotos']} fotos ({g['fotos_con_prenda']} con prenda visible)  fuentes: {g['fuentes']}")
         for f in g["prendas"][:12]:
-            print(f"   {f['tipo']:<28} {f['fotos']:>3} fotos  " + (f"{f['cuota']:.0%}" if f["cuota"] is not None else "pocos datos"))
+            print(f"   {f['tipo']:<28} {f['fotos']:>3} fotos  " + (f"{f['cuota']:.0%} (entre {f['ic'][0]:.0%} y {f['ic'][1]:.0%}) confianza {f['confianza']}" if f["cuota"] is not None else "pocos datos"))
     print(f"\nGuardado en {INFORME}")
 
 
