@@ -1,0 +1,38 @@
+{
+ "usable_a": {
+  "descarta_inservibles": [
+   2,
+   21
+  ],
+  "descarta_utilizables": [
+   0,
+   72
+  ],
+  "precision_al_descartar": [
+   2,
+   2
+  ],
+  "sin_respuesta": 0,
+  "motivos_de_descarte": {
+   "inservible → not_garment": 2
+  }
+ },
+ "usable_b": {
+  "descarta_inservibles": [
+   6,
+   21
+  ],
+  "descarta_utilizables": [
+   0,
+   72
+  ],
+  "precision_al_descartar": [
+   6,
+   6
+  ],
+  "sin_respuesta": 0,
+  "motivos_de_descarte": {
+   "inservible → not_garment": 6
+  }
+ }
+}
