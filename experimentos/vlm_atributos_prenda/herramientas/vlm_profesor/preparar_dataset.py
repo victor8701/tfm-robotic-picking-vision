@@ -56,6 +56,7 @@ def main():
     ap.add_argument("--fashionpedia", type=Path, default=Path.home() / "datos_tfm" / "fashionpedia")
     ap.add_argument("--por-estampado", type=int, default=30)
     ap.add_argument("--por-forma", type=int, default=40)
+    ap.add_argument("--con-inservibles", action="store_true", help="victor: incluye también los recortes que Víctor marcó como inservibles (sin decir cuáles son) para medir un filtro de calidad")
     ap.add_argument("--por-categoria", type=int, default=350, help="fashionpedia_train: tope de prendas por categoría de ropa")
     ap.add_argument("--por-accesorio", type=int, default=300, help="fashionpedia_train: tope de zapatos, bolsos y sombreros (cada uno)")
     ap.add_argument("--lado-max", type=int, default=LADO_MAX)
@@ -66,12 +67,12 @@ def main():
     manifiesto = []
 
     # ---- recortes etiquetados por Víctor: solo foto, caja y tipo (lo demás se mide en local)
-    etiq = {k: v for k, v in json.loads(a.etiquetas.read_text(encoding="utf-8")).items() if v.get("prendas")} if a.origen == "victor" else {}
+    etiq = {k: v for k, v in json.loads(a.etiquetas.read_text(encoding="utf-8")).items() if v.get("prendas") or (a.con_inservibles and v.get("inservible"))} if a.origen == "victor" else {}
     for k in sorted(etiq):
         nombre = f"{k.split('#')[0]}.jpg"
         destino = f"v_{nombre}"
         caja = guardar_reducida(a.fotos / nombre, tmp / destino, etiq[k]["caja"])
-        tipo = etiq[k]["prendas"][0].get("tipo") or etiq[k]["tipo_modelo"]
+        tipo = (etiq[k]["prendas"][0].get("tipo") if etiq[k].get("prendas") else None) or etiq[k]["tipo_modelo"]
         manifiesto.append({"id": f"v:{k}", "origen": "victor", "foto": destino, "caja": caja, "tipo": tipo, "tipo_en": TIPO_EN.get(tipo, tipo)})
     if a.origen == "victor":
         print(f"Víctor: {len(manifiesto)} recortes de {len({m['foto'] for m in manifiesto})} fotos")

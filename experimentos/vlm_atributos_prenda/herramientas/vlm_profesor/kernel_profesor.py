@@ -13,6 +13,7 @@ Configuraciones:
   foto         la foto entera con la prenda marcada en una caja roja + el recorte (el modelo ve cómo cae la prenda sobre el cuerpo)
   foto_razona  igual que «foto», pero primero describe en pocas frases y luego contesta (solo en una submuestra)
   tipo_recorte / tipo_foto  el modelo NO sabe qué prenda es: elige su tipo de una lista numerada (las 13 categorías de Fashionpedia, o los 29 tipos de Víctor)
+  usable_a / usable_b  ¿el recuadro es una prenda bien visible o un recorte inservible (solo piel, manos, fondo, trozo cortado, diminuto o borroso)? a = criterio normal, b = más estricto
   semanal      la del análisis semanal: tipo entre los 29 con el recorte (24 de 38 con las etiquetas de Víctor) y luego, sabiendo ese tipo, estampado, tejido y forma con la foto
                entera + el recorte (la forma sube de 11 a 14 de 23 con la foto), con la guía v3
   profesor     etiquetado en dos pasos: primero, con la foto entera, elige el tipo entre los 29 de Víctor; luego, sobre el recorte y sabiendo ese tipo, estampado, tejido y forma
@@ -42,6 +43,8 @@ CONFIGS = [  # (nombre, imágenes, razona, máximo de prendas, tarea)
     ("profesor", "foto", False, None, "profesor"),
     ("profesor_v2", "foto", False, None, "profesor"),
     ("semanal", "recorte", False, None, "semanal"),
+    ("usable_a", "foto", False, None, "usable"),
+    ("usable_b", "foto", False, None, "usable"),
 ]
 PARTE = None           # (k, n): procesa solo las prendas k, k+n, k+2n… (para repartir una tanda larga entre varios kernels)
 SOLO = None            # lista de nombres de configuración a correr (None = todas); sirve para repetir solo una parte
@@ -114,6 +117,28 @@ def prompt_tipo(variante: str, origen: str, tarea: str = "tipo") -> str:
         intro = "The image is a close-up crop of one garment worn by a person."
     opciones = "\n".join(f"{i}. {en}" for i, (_, en) in enumerate(lista, 1))
     return f"You are an expert fashion analyst. {intro} Which of these is that garment?\n{opciones}\nAnswer with ONLY the number."
+
+
+MOTIVOS = ("clear", "cut_off", "tiny_or_blurry", "not_garment", "multiple_garments", "occluded")
+
+
+def prompt_usable(nombre: str) -> str:
+    base = ("You are checking crops for a fashion trend study. Image 1 is a photo of a person; the red box marks a candidate garment. Image 2 is a close-up crop of that box. "
+            "Is the box a clearly visible, identifiable garment worn by a person, and not just skin, hands, hair, background, a tiny, blurred or cut-off fragment, or a box that mixes several garments?")
+    if nombre.endswith("b"):
+        base += " Answer yes only if you could confidently tell the garment type, its fabric and how it fits from the crop."
+    return base + (' Answer ONLY a JSON object: {"usable": "yes" or "no", "reason": one of ' + " | ".join(MOTIVOS) + "}")
+
+
+def parsear_usable(texto: str) -> dict:
+    m = re.search(r"\{[^{}]*\}", texto or "")
+    try:
+        d = json.loads(m.group(0)) if m else {}
+    except Exception:
+        d = {}
+    u = str(d.get("usable", "")).strip().lower()
+    r = str(d.get("reason", "")).strip().lower()
+    return {"usable": u if u in ("yes", "no") else None, "motivo": r if r in MOTIVOS else None}
 
 
 def parsear_tipo(texto: str, origen: str, tarea: str = "tipo") -> str | None:
@@ -279,7 +304,11 @@ def correr_config(m, proc, items, cfg, nombre_modelo, generador, t_inicio):
                     textos.append(proc.apply_chat_template([{"role": "user", "content": contenido}], tokenize=False, add_generation_prompt=True) if proc is not None else "")
                     imgs += ims
                 return generador(m, proc, textos, imgs, max_new)
-            if tarea == "semanal":   # producción: si falla un lote, se repite prenda a prenda y lo que no se pueda queda en blanco
+            if tarea == "usable":
+                crudos = pedir([prompt_usable(nombre) for _ in lote], 40)
+                for it, crudo in zip(lote, crudos):
+                    f.write(json.dumps({"id": it["id"], "origen": it["origen"], "modelo": nombre_modelo, "config": nombre, "crudo": crudo, **parsear_usable(crudo)}, ensure_ascii=False) + "\n")
+            elif tarea == "semanal":   # producción: si falla un lote, se repite prenda a prenda y lo que no se pueda queda en blanco
                 def pedir_seguro(textos_prompt, max_new, var):
                     try:
                         return pedir(textos_prompt, max_new, var)
