@@ -1,0 +1,307 @@
+<title>Resultados por etapas</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Concepto: informe técnico de una columna. Reglas finas, cifras en monoespaciada, el acento azul marca lo que supera a su referencia y el rojo lo que queda por debajo. */
+:root{
+  --fondo:#f4f6f9; --papel:#ffffff; --tinta:#131a25; --suave:#586274; --linea:#dde2ea; --ref:#8d97a8;
+  --azul:#2a78d6; --rojo:#d03b3b;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --fondo:#0e1218; --papel:#161c25; --tinta:#e8ecf2; --suave:#a0a9b8; --linea:#29313d; --ref:#6d7889; --azul:#3987e5; --rojo:#e66767; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --fondo:#0e1218; --papel:#161c25; --tinta:#e8ecf2; --suave:#a0a9b8; --linea:#29313d; --ref:#6d7889; --azul:#3987e5; --rojo:#e66767; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--fondo);color:var(--tinta);font:15px/1.5 var(--sans);margin:0}
+.pagina{max-width:760px;margin:0 auto;padding-inline:16px;padding-block:28px 56px;display:grid;grid-template-columns:minmax(0,1fr);gap:34px}
+h1,h2,h3{text-wrap:balance;margin:0}
+h1{font-size:2rem;line-height:1.1;font-weight:600;letter-spacing:-.01em}
+h2{font-size:1.2rem;font-weight:600}
+.sobre{margin:0 0 8px;font:500 .72rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--suave)}
+.sub{margin:10px 0 0;color:var(--suave);max-width:60ch}
+.nota{color:var(--suave);font-size:.88rem;margin:6px 0 0;max-width:68ch}
+section>.nota+*{margin-top:14px}
+.esencial{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.esencial li{padding-left:16px;position:relative;max-width:66ch}
+.esencial li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--azul)}
+.leyenda{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.82rem;color:var(--suave);margin-top:10px}
+.leyenda span{display:inline-flex;align-items:center;gap:7px}
+.mk{display:inline-block;width:12px;height:12px;border-radius:50%}
+.mk.ref{border:2px solid var(--ref);background:var(--papel)}
+.mk.res{background:var(--azul)}
+.mk.res.peor{background:var(--rojo)}
+.mk.res.neutro{background:var(--ref)}
+.mk.ic{width:22px;height:4px;border-radius:2px;background:var(--azul);opacity:.3}
+.eje{position:relative;height:18px;margin-top:16px;font:400 .72rem/1 var(--mono);color:var(--suave)}
+.eje span{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap}
+.eje span:first-child{transform:none}.eje span:last-child{transform:translateX(-100%)}
+.etapa{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-top:22px;font-size:.98rem;font-weight:600}
+.veredicto{font:500 .7rem/1 var(--mono);letter-spacing:.04em;text-transform:uppercase;padding:4px 8px;border:1px solid var(--linea);border-radius:999px;color:var(--suave)}
+ul.filas{list-style:none;margin:6px 0 0;padding:0}
+.fila{display:block;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--linea);padding:11px 0 9px;color:inherit;font:inherit;cursor:pointer}
+.fila:focus-visible{outline:2px solid var(--azul);outline-offset:2px;border-radius:4px}
+.cab{display:flex;justify-content:space-between;align-items:baseline;gap:4px 14px;flex-wrap:wrap}
+.nom{flex:1 1 230px;min-width:0;font-weight:500}
+.num{font:400 .84rem/1.3 var(--mono);white-space:nowrap}
+.num b{font-weight:500}
+.delta{margin-left:8px;color:var(--suave)}
+.pista{display:block;position:relative;height:30px;margin-top:8px;background-image:linear-gradient(to right,var(--linea) 1px,transparent 1px);background-size:25% 100%;background-repeat:repeat-x;border-right:1px solid var(--linea)}
+.pto{position:absolute;top:5px;width:12px;height:12px;margin-left:-6px;border-radius:50%}
+.pto.ref{border:2px solid var(--ref);background:var(--papel)}
+.pto.res{background:var(--c);box-shadow:0 0 0 2px var(--papel)}
+.union{position:absolute;top:10px;height:2px;background:var(--c);opacity:.5}
+.banda{position:absolute;top:22px;height:4px;border-radius:2px;background:var(--c);opacity:.3}
+.detalle{padding:6px 0 4px;font-size:.88rem;display:grid;gap:4px;color:var(--suave)}
+.detalle b{color:var(--tinta);font-weight:500}
+.detalle .mono{font-family:var(--mono);font-size:.82rem}
+button.enlace{font:inherit;font-size:.86rem;color:var(--tinta);background:none;border:1px solid var(--linea);border-radius:8px;padding:8px 12px;cursor:pointer;margin-top:14px}
+button.enlace:hover{border-color:var(--azul)}
+button.enlace:focus-visible{outline:2px solid var(--azul);outline-offset:2px}
+.envoltura{overflow-x:auto;margin-top:6px;border-top:1px solid var(--linea)}
+table{border-collapse:separate;border-spacing:0;width:100%;font-size:.88rem}
+table#matriz{min-width:430px}
+th,td{padding:8px 6px;border-bottom:1px solid var(--linea);text-align:center;vertical-align:middle}
+th{font-weight:500;color:var(--suave);font-size:.8rem}
+th small{display:block;font:400 .72rem/1.2 var(--mono);white-space:nowrap}
+th:first-child,td:first-child{text-align:left;position:sticky;left:0;background:var(--fondo);min-width:112px;max-width:150px;font-size:.8rem;padding-left:0}
+tr.grupo th{text-align:left;font:500 .7rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding-top:16px;border-bottom:0}
+td.c{font-family:var(--mono);font-size:.8rem;line-height:1.25;white-space:nowrap;background:color-mix(in srgb,var(--t,transparent) calc(var(--m,0) * 1%),var(--papel))}
+td.c b{display:block;font-weight:500}
+td.c span{color:var(--suave)}
+td.c.ref{background:var(--papel);color:var(--suave)}
+td.vacio{color:var(--suave);background:var(--papel)}
+td.mas{--t:var(--azul)}td.menos{--t:var(--rojo)}
+.cuerpo-t td:first-child{background:var(--fondo)}
+table.plana td:first-child,table.plana th:first-child{position:static;min-width:0;max-width:none;background:none}
+table.plana td{text-align:left;font-size:.84rem}
+table.plana td.n{font-family:var(--mono);white-space:nowrap}
+.lista{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.lista li{max-width:68ch}
+.lista strong{font-weight:600}
+.barras{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.barras li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;align-items:baseline}
+.barras .b{grid-column:1/-1;height:8px;background:var(--linea);border-radius:4px;overflow:hidden}
+.barras .b i{display:block;height:100%;background:var(--azul);border-radius:4px}
+footer{color:var(--suave);font-size:.82rem;border-top:1px solid var(--linea);padding-top:14px}
+code{font-family:var(--mono);font-size:.82rem}
+</style>
+
+<main class="pagina">
+  <header>
+    <p class="sobre">Tendencias de prenda · TFM</p>
+    <h1>Resultados por etapas</h1>
+    <p class="sub">Qué acertó cada parte del proyecto, contra qué referencia y con cuántos datos. Actualizado el 9 de octubre de 2026.</p>
+  </header>
+
+  <section aria-labelledby="h-esencial">
+    <h2 id="h-esencial">Lo esencial</h2>
+    <ul class="esencial" style="margin-top:12px">
+      <li>Con fotos de catálogo el clasificador propio funciona. En la calle hizo falta detectar antes cada prenda, y que una foto sea útil depende más de la fuente que del modelo.</li>
+      <li>Lo que más subió el acierto fue la especificidad (reglas y vocabulario propios) y, para las prendas, un modelo general grande: estampado del 50 al 77 %, tipo de prenda del 50 al 63 %.</li>
+      <li>Varias cifras iniciales eran demasiado buenas y se corrigieron al medir bien: estilo 73 → 64 %, tipo de prenda 85 → 50 %.</li>
+      <li>Con 15 a 38 etiquetas el margen al 95 % es de ±15 a ±22 puntos. De las medidas por prenda, solo el estampado se distingue con claridad de su referencia.</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="h-evolucion">
+    <h2 id="h-evolucion">Etapa a etapa</h2>
+    <p class="nota">Cada fila compara un método con su referencia (azar, «decir siempre lo más frecuente» o el método anterior). El resultado solo se pinta de azul o de rojo cuando su margen del 95 % deja fuera la referencia; si no, es gris. Toca una fila para ver los recuentos, el margen y la fuente.</p>
+    <div class="leyenda" aria-hidden="true">
+      <span><i class="mk ref"></i>referencia</span>
+      <span><i class="mk res"></i>resultado por encima</span>
+      <span><i class="mk res peor"></i>resultado por debajo</span>
+      <span><i class="mk res neutro"></i>no se distingue de la referencia</span>
+      <span><i class="mk ic"></i>margen del 95 %</span>
+    </div>
+    <div class="eje" aria-hidden="true"><span style="left:0">0 %</span><span style="left:25%">25</span><span style="left:50%">50</span><span style="left:75%">75</span><span style="left:100%">100 %</span></div>
+    <div id="g1"></div>
+    <button class="enlace" id="ver-tabla" type="button" aria-pressed="false">Ver como tabla</button>
+    <div id="t1" hidden></div>
+  </section>
+
+  <section aria-labelledby="h-matriz">
+    <h2 id="h-matriz">Tipo, estampado, forma y tejido: qué método sirve</h2>
+    <p class="nota">Prenda principal de tus etiquetas. Cada celda es aciertos/n y porcentaje; el color marca la diferencia con «decir siempre lo más frecuente» de esa columna (azul por encima, rojo por debajo). El punto ● indica que el margen del 95 % no incluye esa referencia.</p>
+    <div class="envoltura"><table id="matriz"></table></div>
+  </section>
+
+  <section aria-labelledby="h-ensenan">
+    <h2 id="h-ensenan">Lo que enseñan los números</h2>
+    <ul class="lista" style="margin-top:12px">
+      <li><strong>La especificidad pesa más que el volumen.</strong> Afinar con las reglas del esquema dio +34 puntos de media en catálogo; un texto que sabe qué significa cada estilo dio +33 a +40 puntos de acierto en el top 5; un vocabulario propio evita errores que ningún entrenamiento arregla (para el modelo una sudadera es felpa, para ti algodón).</li>
+      <li><strong>Un modelo general más grande sí ayuda en percepción.</strong> Reconoce el tipo y el estampado donde CLIP y una capa entrenada con 22 000 prendas se quedaban en la referencia.</li>
+      <li><strong>Entrenar más con un modelo pequeño no sirvió.</strong> Con el 10 % de las prendas sale lo mismo que con el 100 %; un CLIP casi tres veces mayor, igual; y la capa entrenada con las etiquetas del modelo grande reproduce solo el 51 a 71 % de lo que este dice.</li>
+      <li><strong>Las cifras iniciales hay que desconfiarlas.</strong> Una evaluación contaminada (73 → 64 %), un juez a ojo (tipo 85 → 50 %) y una métrica indulgente («cualquiera» de las prendas del recorte) inflaron resultados que se corrigieron al medir con tus etiquetas.</li>
+      <li><strong>La fuente de las fotos decide más que el modelo.</strong> La búsqueda automática por texto da un 17 % de fotos útiles; las fuentes elegidas mirando las imágenes, un 76 a 80 %.</li>
+      <li><strong>El límite está en los datos y en las definiciones.</strong> Decenas de fotos por temporada, y etiquetas con criterios distintos entre el modelo y tú («oversized», algodón frente a felpa, la temporada de Kaggle).</li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="h-datos">
+    <h2 id="h-datos">Fotos disponibles para el informe por prenda</h2>
+    <p class="nota">Fotos con alguna prenda visible, por estilo, mercado y temporada. Para enseñar una cifra hacen falta 5 por tipo de prenda.</p>
+    <ul class="barras" id="barras"></ul>
+  </section>
+
+  <section aria-labelledby="h-falta">
+    <h2 id="h-falta">Qué falta medir</h2>
+    <ul class="lista" style="margin-top:12px">
+      <li><strong>Un lote ciego</strong> de 30 a 60 recortes nuevos que etiquetes después de que el modelo grande los haya etiquetado, con las instrucciones congeladas. Es la única medida limpia de lo que correrá cada semana: las 40 fotos de la prueba ya se usaron para ajustar las instrucciones.</li>
+      <li><strong>Más etiquetas y más de una persona</strong> (más de 100 por atributo) para distinguir diferencias de 10 puntos.</li>
+      <li><strong>Más volumen de fotos</strong> para que una cifra por tipo y atributo llegue a 5 fotos.</li>
+    </ul>
+  </section>
+
+  <footer>
+    Informe completo, con todas las tablas y las fuentes: <code>memoria/TFM_analisis_resultados_por_etapas.md</code>. Cada cifra remite a su documento de origen.
+  </footer>
+</main>
+
+<script>
+/* Datos: recuentos k de n cuando existen; «p» cuando solo se conoce el porcentaje (aprox). Fuentes en memoria/TFM_analisis_resultados_por_etapas.md */
+const ETAPAS = [
+  {id: 'A', nombre: 'CLIP sin entrenar', veredicto: 'no basta', filas: [
+    {t: 'Estilo de una prenda de catálogo (1 de 6, 1 207 imágenes)', ref: {n: 'azar (1 de 6)', p: 1 / 6}, res: {n: 'CLIP sin entrenar', k: 396, N: 1207, aprox: true},
+     nota: '«fiesta_noche» 0 %. CLIP sí gana en «de_vestir» (87 % frente a 57 %).', fuente: 'TFM_clasificador_visual_atributos §3 y §6.3'}]},
+  {id: 'B', nombre: 'Clasificador propio: Florence-2 + LoRA, catálogo', veredicto: 'funciona en catálogo', filas: [
+    {t: 'Estilo en 371 imágenes que el modelo no había visto', ref: {n: 'CLIP sin entrenar', k: 137, N: 371}, res: {n: 'Florence-2 + LoRA', k: 237, N: 371},
+     nota: 'La primera cifra (73,4 %) estaba contaminada por imágenes ya vistas en el entrenamiento.', fuente: '§6.3 y §10'},
+    {t: 'Media de 5 campos en el test (500 imágenes)', ref: {n: 'Florence-2 sin afinar', p: .503, N: 2500}, res: {n: 'Florence-2 afinado (v1)', p: .842, N: 2500},
+     nota: 'JSON válido el 100 %. En «temporada» no mejora (58,2 → 60,2 %): el problema es la definición de la etiqueta.', fuente: '§6.1'},
+    {t: 'Media de 5 campos frente a un LLM comercial (50 fichas)', ref: {n: 'Claude sin afinar', p: .74, N: 250}, res: {n: 'Florence-2 + LoRA (v3)', p: .85, N: 250},
+     nota: 'Gana en estilo (+24 a +28 puntos) y temporada (+20 a +24); pierde en color (64 % frente a 70-74 %).', fuente: '§11.8'}]},
+  {id: 'C', nombre: 'Fotos de calle', veredicto: 'parcial', filas: [
+    {t: 'Estilo del look en fotos reales de calle (19 fotos)', ref: {n: 'foto entera', k: 13, N: 19}, res: {n: 'detectar, recortar y clasificar', k: 16, N: 19},
+     nota: 'La foto entera sale «accesorio» en 12 de 19. Auditoría hecha por el asistente, sin validar.', fuente: '§8.4 y §8.6'}]},
+  {id: 'D', nombre: 'Fotos de X', veredicto: 'parcial', filas: [
+    {t: 'Fotos útiles entre las que revisas', ref: {n: 'búsqueda automática por texto', k: 35, N: 209}, res: {n: 'filtro aprendido de tus decisiones', p: .54, N: 359},
+     nota: 'Estimado en validación cruzada (AUC 0,92, conservando el 90 % de las útiles). No está integrado en la búsqueda.', fuente: 'TFM_ingesta_redes_sociales; notas de sesión del 3 de octubre'}]},
+  {id: 'E', nombre: 'Vector de tendencia (Experimento B)', veredicto: 'negativo para lo visual', filas: [
+    {t: 'Prendas buenas en el top 5 de cada tendencia', ref: {n: 'evidencia visual (10 fotos)', k: 10, N: 30, aprox: true}, res: {n: 'texto bien especificado', k: 21, N: 30, aprox: true},
+     nota: '6 tendencias, puntuadas a ciegas por Víctor. Sumar las fotos a un buen texto lo empeora (70 → 50 %).', fuente: 'TFM_experimento_B_vectores_visuales'}]},
+  {id: 'F', nombre: 'Siete estilos y «Analizar mercado»', veredicto: 'útil, flojo fuera de su fuente', filas: [
+    {t: 'Estilo (7 clases) con 168 fotos confirmadas', ref: {n: 'CLIP sin entrenar', p: .59, N: 168}, res: {n: 'capa lineal, 10 fotos por estilo', p: .78, N: 168},
+     nota: 'Validación cruzada; meseta entre 10 y 20 fotos por estilo. El límite es la ambigüedad entre estilos vecinos.', fuente: 'notas de sesión del 3 de octubre; analisis_mercado/README'},
+    {t: 'Estilo con fotos nuevas de medios españoles (10 juzgadas)', ref: {n: 'azar (1 de 7)', p: 1 / 7}, res: {n: 'modelo de 7 estilos', k: 2, N: 10},
+     nota: 'Además, 8 de 18 fotos de medios no eran un outfit.', fuente: 'medida real del 6 de octubre'}]},
+  {id: 'G', nombre: 'Tendencia por prenda', veredicto: 'en curso', filas: [
+    {t: 'Tipo de prenda (29 tipos)', ref: {n: 'flujo con CLIP', k: 19, N: 38}, res: {n: 'modelo grande', k: 24, N: 38}, nota: 'El margen del resultado incluye la referencia: la mejora es una indicación.', fuente: 'TFM_tendencias_de_prenda §6.1 y §6.4'},
+    {t: 'Familia de prenda (arriba, abrigo, abajo, cuerpo entero, calzado, accesorio)', ref: {n: 'flujo con CLIP', k: 29, N: 38}, res: {n: 'modelo grande', k: 33, N: 38}, nota: 'Se confunde mucho menos que el tipo exacto.', fuente: '§6.1 y §6.4'},
+    {t: 'Estampado', ref: {n: 'siempre «liso»', k: 11, N: 22}, res: {n: 'modelo grande', k: 17, N: 22}, nota: 'Liso 9 de 11, dibujo 6 de 7, texto o logo 2 de 3. Es la única mejora con un margen que deja fuera la referencia.', fuente: '§6.4'},
+    {t: 'Forma', ref: {n: 'siempre «oversized»', k: 11, N: 23}, res: {n: 'modelo grande, foto entera', k: 14, N: 23}, nota: 'Con solo el recorte, 11 de 23. «Ajustada» solo 1 de 5: la confunde con «corta».', fuente: '§6.4'},
+    {t: 'Tejido', ref: {n: 'siempre «algodón»', k: 10, N: 15}, res: {n: 'modelo grande', k: 9, N: 15}, nota: 'Acierta los materiales claros (vaquero, cuero, técnico: 3 de 3) y falla entre algodón, punto y felpa.', fuente: '§6.4'}]}
+];
+const COLS = [['tipo', 'Tipo', 38], ['est', 'Estampado', 22], ['for', 'Forma', 23], ['tej', 'Tejido', 15]];
+const BASE = {tipo: [9, 38], est: [11, 22], for: [11, 23], tej: [10, 15]};
+const MATRIZ = [
+  {g: 'Referencia'},
+  {m: 'Siempre lo más frecuente', ref: true, c: {tipo: [9, 38], est: [11, 22], for: [11, 23], tej: [10, 15]}},
+  {g: 'Modelos pequeños'},
+  {m: 'CLIP B/32 sin entrenar (el flujo anterior)', c: {tipo: [19, 38], est: [9, 22], for: [11, 23], tej: [4, 14]}},
+  {m: 'Capa sobre CLIP entrenada con 22 000 prendas de Fashionpedia', c: {est: [12, 22], for: [4, 23]}},
+  {m: 'Igual con CLIP L/14 (2 800 prendas)', c: {est: [13, 22], for: [4, 23]}},
+  {m: 'Florence-2 describe el recorte', c: {est: [13, 22], for: [10, 23], tej: [9, 14]}},
+  {m: 'Alumno: capa sobre CLIP entrenada con 5 252 prendas etiquetadas por el modelo grande', c: {tipo: [20, 38], est: [11, 22], for: [11, 23], tej: [7, 15]}},
+  {g: 'Modelo grande (Qwen3-VL de 8 000 millones, sin entrenar)'},
+  {m: 'Directo, con tu tipo de prenda', c: {tipo: [24, 38], est: [17, 22], for: [14, 23], tej: [9, 15]}},
+  {m: 'Como en el paso semanal (elige él el tipo)', c: {tipo: [22, 38], est: [16, 22], for: [13, 23], tej: [8, 15]}}
+];
+const FOTOS = [['Urbano · España · otoño-invierno 2026/27', 23], ['Urbano · España · primavera-verano 2026', 9], ['Urbano · EEUU · otoño-invierno 2026/27', 10], ['Urbano · EEUU · primavera-verano 2026', 4],
+               ['Geek · España · otoño-invierno 2026/27', 2], ['Tus fotos aprobadas · urbano (muestra sin fecha)', 40], ['Tus fotos aprobadas · geek (muestra sin fecha)', 42]];
+
+const $ = s => document.querySelector(s);
+const el = (tag, props, ...hijos) => { const n = document.createElement(tag); Object.assign(n, props || {}); hijos.forEach(h => n.append(h)); return n; };
+const pct = x => Math.round(100 * x) + ' %';
+const num = x => x.toLocaleString('es-ES');
+function wilson(p, n, z = 1.96) {
+  const d = 1 + z * z / n, c = (p + z * z / (2 * n)) / d, h = z * Math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / d;
+  return [Math.max(0, c - h), Math.min(1, c + h)];
+}
+const prop = o => o.k !== undefined ? o.k / o.N : o.p;
+const texto = o => o.k !== undefined ? (o.aprox ? '≈ ' : '') + o.k + ' de ' + num(o.N) + ' (' + pct(prop(o)) + ')' : (o.aprox ? '≈ ' : '') + pct(o.p) + (o.N ? ' (n = ' + num(o.N) + ')' : '');
+
+/* ---------- gráfico de etapas ---------- */
+const filasPlanas = [];
+function pintarEtapas() {
+  const g = $('#g1');
+  ETAPAS.forEach(e => {
+    g.append(el('h3', {className: 'etapa'}, e.nombre, el('span', {className: 'veredicto', textContent: e.veredicto})));
+    const ul = el('ul', {className: 'filas'});
+    e.filas.forEach((f, i) => {
+      const pr = prop(f.ref), pe = prop(f.res), dif = Math.round(100 * (pe - pr));
+      const [lo, hi] = wilson(pe, f.res.N);
+      const neutro = pr >= lo && pr <= hi;   // el margen del resultado incluye la referencia: no se distingue
+      const peor = dif < 0;
+      filasPlanas.push({etapa: e.nombre, f, pr, pe, dif, lo, hi});
+      const c = neutro ? 'var(--ref)' : peor ? 'var(--rojo)' : 'var(--azul)';
+      const id = 'd-' + e.id + i;
+      const b = el('button', {className: 'fila', type: 'button'});
+      b.setAttribute('aria-expanded', 'false');
+      b.setAttribute('aria-controls', id);
+      b.style.setProperty('--c', c);
+      b.append(el('span', {className: 'cab'}, el('span', {className: 'nom', textContent: f.t}),
+        el('span', {className: 'num'}, el('b', {textContent: pct(pr) + ' → ' + pct(pe)}), el('span', {className: 'delta', textContent: (peor ? '▼ −' : '▲ +') + Math.abs(dif) + ' pts'}))));
+      const pista = el('span', {className: 'pista'});
+      pista.append(el('i', {className: 'union', style: 'left:' + 100 * Math.min(pr, pe) + '%;width:' + 100 * Math.abs(pe - pr) + '%'}),
+                   el('i', {className: 'banda', style: 'left:' + 100 * lo + '%;width:' + 100 * (hi - lo) + '%'}),
+                   el('i', {className: 'pto ref', style: 'left:' + 100 * pr + '%'}), el('i', {className: 'pto res', style: 'left:' + 100 * pe + '%'}));
+      b.append(pista);
+      const d = el('div', {className: 'detalle', id, hidden: true},
+        el('div', {}, el('b', {textContent: 'Referencia: '}), f.ref.n + ' · ', el('span', {className: 'mono', textContent: texto(f.ref)})),
+        el('div', {}, el('b', {textContent: 'Resultado: '}), f.res.n + ' · ', el('span', {className: 'mono', textContent: texto(f.res)})),
+        el('div', {}, el('b', {textContent: 'Margen del 95 %: '}), el('span', {className: 'mono', textContent: pct(lo) + ' a ' + pct(hi)}), (lo <= pr && pr <= hi) ? ' (incluye la referencia)' : ' (deja fuera la referencia)'),
+        el('div', {textContent: f.nota}), el('div', {}, el('b', {textContent: 'Fuente: '}), f.fuente));
+      b.onclick = () => { const abierto = b.getAttribute('aria-expanded') === 'true'; b.setAttribute('aria-expanded', String(!abierto)); d.hidden = abierto; };
+      ul.append(el('li', {}, b, d));
+    });
+    g.append(ul);
+  });
+}
+function pintarTabla() {
+  const t = el('table', {className: 'plana'});
+  t.append(el('thead', {}, el('tr', {}, ...['Etapa', 'Medida', 'Referencia', 'Resultado', 'Margen 95 %'].map(h => el('th', {textContent: h})))));
+  const tb = el('tbody');
+  filasPlanas.forEach(r => tb.append(el('tr', {}, el('td', {textContent: r.etapa}), el('td', {textContent: r.f.t}), el('td', {className: 'n', textContent: r.f.ref.n + ': ' + texto(r.f.ref)}),
+    el('td', {className: 'n', textContent: r.f.res.n + ': ' + texto(r.f.res)}), el('td', {className: 'n', textContent: pct(r.lo) + ' a ' + pct(r.hi)}))));
+  t.append(tb);
+  $('#t1').append(el('div', {className: 'envoltura'}, t));
+}
+$('#ver-tabla').onclick = function () {
+  const ver = $('#t1').hidden;
+  $('#t1').hidden = !ver; $('#g1').hidden = ver;
+  this.setAttribute('aria-pressed', String(ver)); this.textContent = ver ? 'Ver como gráfico' : 'Ver como tabla';
+};
+
+/* ---------- matriz de métodos ---------- */
+function pintarMatriz() {
+  const t = $('#matriz');
+  t.append(el('thead', {}, el('tr', {}, el('th', {textContent: 'Método'}), ...COLS.map(([, nombre, n]) => el('th', {}, nombre, el('small', {textContent: 'n = ' + n}))))));
+  const tb = el('tbody', {className: 'cuerpo-t'});
+  MATRIZ.forEach(r => {
+    if (r.g) { tb.append(el('tr', {className: 'grupo'}, el('th', {colSpan: 5, textContent: r.g}))); return; }
+    const tr = el('tr', {}, el('td', {textContent: r.m}));
+    COLS.forEach(([k]) => {
+      const v = r.c[k];
+      if (!v) { tr.append(el('td', {className: 'vacio', textContent: '—'})); return; }
+      const [a, n] = v, p = a / n, pb = BASE[k][0] / BASE[k][1], dif = 100 * (p - pb), [lo, hi] = wilson(p, n);
+      const sig = !r.ref && (pb < lo || pb > hi);
+      const td = el('td', {className: 'c' + (r.ref ? ' ref' : dif >= 5 ? ' mas' : dif <= -5 ? ' menos' : '')});
+      td.style.setProperty('--m', String(Math.min(55, Math.abs(dif) * 1.1)));
+      td.title = 'Margen del 95 %: ' + pct(lo) + ' a ' + pct(hi);
+      td.append(el('b', {textContent: a + '/' + n}), el('span', {textContent: pct(p) + (sig ? ' ●' : '')}));
+      tr.append(td);
+    });
+    tb.append(tr);
+  });
+  t.append(tb);
+}
+
+/* ---------- fotos disponibles ---------- */
+function pintarFotos() {
+  const max = Math.max(...FOTOS.map(f => f[1]));
+  FOTOS.forEach(([nombre, n]) => $('#barras').append(el('li', {}, el('span', {textContent: nombre}), el('span', {className: 'num', textContent: n + ' fotos'}), el('div', {className: 'b'}, el('i', {style: 'width:' + 100 * n / max + '%'})))));
+}
+
+pintarEtapas(); pintarTabla(); pintarMatriz(); pintarFotos();
+</script>
