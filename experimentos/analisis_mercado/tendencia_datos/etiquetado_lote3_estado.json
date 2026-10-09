@@ -1,0 +1,842 @@
+{
+ "b3-1": {
+  "foto": "rd_1wgxbsk",
+  "idx": 1,
+  "caja": [
+   269.2,
+   410.4,
+   494.5,
+   654.7
+  ],
+  "tipo_modelo": "Camisa",
+  "estilo": "urbano",
+  "mercado": "US",
+  "sug": []
+ },
+ "b3-2": {
+  "foto": "rd_1wto9ck",
+  "idx": 0,
+  "caja": [
+   269.2,
+   438.4,
+   470.4,
+   640.0
+  ],
+  "tipo_modelo": "Camisa",
+  "estilo": "urbano",
+  "mercado": "US",
+  "sug": []
+ },
+ "b3-3": {
+  "foto": "bib_92df00c0c2",
+  "idx": 0,
+  "caja": [
+   89.5,
+   318.0,
+   714.6,
+   1189.7
+  ],
+  "tipo_modelo": "Top",
+  "estilo": "urbano",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-4": {
+  "foto": "bib_ad4701dfd0",
+  "idx": 1,
+  "caja": [
+   124.7,
+   350.2,
+   360.4,
+   568.1
+  ],
+  "tipo_modelo": "Top",
+  "estilo": "geek",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-5": {
+  "foto": "bib_b8b8b8cedd",
+  "idx": 0,
+  "caja": [
+   222.3,
+   267.3,
+   533.6,
+   629.3
+  ],
+  "tipo_modelo": "Camisa",
+  "estilo": "urbano",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-6": {
+  "foto": "pr_fede2ee6b6",
+  "idx": 0,
+  "caja": [
+   0.6,
+   25.2,
+   192.2,
+   354.9
+  ],
+  "tipo_modelo": "Camiseta manga corta",
+  "estilo": "urbano",
+  "mercado": "ES",
+  "sug": []
+ },
+ "b3-7": {
+  "foto": "bib_ade783de0c",
+  "idx": 0,
+  "caja": [
+   226.1,
+   718.8,
+   534.7,
+   1023.5
+  ],
+  "tipo_modelo": "Top",
+  "estilo": "geek",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-8": {
+  "foto": "bib_bf3f39d6d0",
+  "idx": 1,
+  "caja": [
+   102.9,
+   195.1,
+   530.3,
+   461.2
+  ],
+  "tipo_modelo": "Hoodie",
+  "estilo": "urbano",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-9": {
+  "foto": "tw_2086516838855287213_1",
+  "idx": 1,
+  "caja": [
+   787.2,
+   270.5,
+   899.4,
+   423.6
+  ],
+  "tipo_modelo": "Short",
+  "estilo": "urbano",
+  "mercado": "ES",
+  "sug": []
+ },
+ "b3-10": {
+  "foto": "bib_d4e6e7f58c",
+  "idx": 1,
+  "caja": [
+   269.6,
+   2.5,
+   692.5,
+   539.9
+  ],
+  "tipo_modelo": "Top",
+  "estilo": "geek",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-11": {
+  "foto": "pr_dc17e08361",
+  "idx": 0,
+  "caja": [
+   203.3,
+   160.3,
+   639.3,
+   523.4
+  ],
+  "tipo_modelo": "Hoodie",
+  "estilo": "urbano",
+  "mercado": "ES",
+  "sug": []
+ },
+ "b3-12": {
+  "foto": "bib_0782c8a74d",
+  "idx": 1,
+  "caja": [
+   278.7,
+   771.4,
+   726.0,
+   1199.3
+  ],
+  "tipo_modelo": "Camiseta manga larga",
+  "estilo": "geek",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-13": {
+  "foto": "bib_6f4496039b",
+  "idx": 2,
+  "caja": [
+   284.5,
+   507.7,
+   539.8,
+   738.7
+  ],
+  "tipo_modelo": "Chaqueta",
+  "estilo": "geek",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-14": {
+  "foto": "rd_1wez11m",
+  "idx": 1,
+  "caja": [
+   273.3,
+   568.7,
+   442.8,
+   889.1
+  ],
+  "tipo_modelo": "Pantalón",
+  "estilo": "urbano",
+  "mercado": "US",
+  "sug": []
+ },
+ "b3-15": {
+  "foto": "bib_7df766a92d",
+  "idx": 0,
+  "caja": [
+   432.7,
+   343.5,
+   690.5,
+   577.0
+  ],
+  "tipo_modelo": "Polo",
+  "estilo": "urbano",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-16": {
+  "foto": "pr_87e8c80aa0",
+  "idx": 0,
+  "caja": [
+   44.1,
+   90.4,
+   373.0,
+   535.7
+  ],
+  "tipo_modelo": "Camisa",
+  "estilo": "geek",
+  "mercado": "ES",
+  "sug": []
+ },
+ "b3-17": {
+  "foto": "pr_c7aef1e39d",
+  "idx": 1,
+  "caja": [
+   274.3,
+   562.1,
+   449.8,
+   726.0
+  ],
+  "tipo_modelo": "Plumas",
+  "estilo": "urbano",
+  "mercado": "ES",
+  "sug": []
+ },
+ "b3-18": {
+  "foto": "pr_fac840fe81",
+  "idx": 1,
+  "caja": [
+   214.6,
+   282.2,
+   795.2,
+   682.2
+  ],
+  "tipo_modelo": "Chaqueta",
+  "estilo": "urbano",
+  "mercado": "ES",
+  "sug": []
+ },
+ "b3-19": {
+  "foto": "pr_2644a61c37",
+  "idx": 0,
+  "caja": [
+   352.6,
+   271.0,
+   814.2,
+   575.3
+  ],
+  "tipo_modelo": "Polo",
+  "estilo": "urbano",
+  "mercado": "ES",
+  "sug": []
+ },
+ "b3-20": {
+  "foto": "bib_49a72fac07",
+  "idx": 0,
+  "caja": [
+   15.4,
+   739.5,
+   796.2,
+   1079.2
+  ],
+  "tipo_modelo": "Top",
+  "estilo": "geek",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-21": {
+  "foto": "bib_55cc03756f",
+  "idx": 0,
+  "caja": [
+   202.4,
+   321.0,
+   461.2,
+   765.4
+  ],
+  "tipo_modelo": "Camiseta manga larga",
+  "estilo": "geek",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-22": {
+  "foto": "bib_f88ea92a43",
+  "idx": 1,
+  "caja": [
+   63.0,
+   245.5,
+   666.3,
+   693.8
+  ],
+  "tipo_modelo": "Camisa",
+  "estilo": "urbano",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-23": {
+  "foto": "bib_680391b6b2",
+  "idx": 1,
+  "caja": [
+   547.3,
+   1017.0,
+   782.1,
+   1188.5
+  ],
+  "tipo_modelo": "Camiseta manga larga",
+  "estilo": "urbano",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-24": {
+  "foto": "bib_ba7848e948",
+  "idx": 0,
+  "caja": [
+   197.1,
+   141.6,
+   347.4,
+   392.4
+  ],
+  "tipo_modelo": "Camiseta de tirantes",
+  "estilo": "geek",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-25": {
+  "foto": "pr_ecbab69c71",
+  "idx": 0,
+  "caja": [
+   243.6,
+   266.3,
+   764.0,
+   572.3
+  ],
+  "tipo_modelo": "Camiseta manga corta",
+  "estilo": "urbano",
+  "mercado": "ES",
+  "sug": []
+ },
+ "b3-26": {
+  "foto": "bib_f8e735b697",
+  "idx": 1,
+  "caja": [
+   156.4,
+   171.4,
+   695.6,
+   688.5
+  ],
+  "tipo_modelo": "Short",
+  "estilo": "geek",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-27": {
+  "foto": "bib_48c4f64f2f",
+  "idx": 0,
+  "caja": [
+   299.1,
+   240.7,
+   974.4,
+   529.3
+  ],
+  "tipo_modelo": "Hoodie",
+  "estilo": "urbano",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-28": {
+  "foto": "pr_c39d49c4af",
+  "idx": 1,
+  "caja": [
+   121.4,
+   276.5,
+   322.6,
+   401.0
+  ],
+  "tipo_modelo": "Pantalón",
+  "estilo": "urbano",
+  "mercado": "ES",
+  "sug": []
+ },
+ "b3-29": {
+  "foto": "bib_600718df7a",
+  "idx": 0,
+  "caja": [
+   61.0,
+   421.9,
+   771.2,
+   767.4
+  ],
+  "tipo_modelo": "Camiseta manga larga",
+  "estilo": "geek",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-30": {
+  "foto": "bib_90d35f48f5",
+  "idx": 1,
+  "caja": [
+   146.2,
+   544.8,
+   346.7,
+   879.4
+  ],
+  "tipo_modelo": "Chaqueta",
+  "estilo": "geek",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-31": {
+  "foto": "bib_5373e40d09",
+  "idx": 0,
+  "caja": [
+   394.2,
+   279.7,
+   785.7,
+   699.6
+  ],
+  "tipo_modelo": "Americana",
+  "estilo": "urbano",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-32": {
+  "foto": "bib_70fd39caf3",
+  "idx": 1,
+  "caja": [
+   112.3,
+   412.7,
+   282.8,
+   738.6
+  ],
+  "tipo_modelo": "Pantalón",
+  "estilo": "urbano",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-33": {
+  "foto": "bib_54fbf6ace0",
+  "idx": 0,
+  "caja": [
+   639.8,
+   476.4,
+   2398.0,
+   1702.3
+  ],
+  "tipo_modelo": "Camisa",
+  "estilo": "urbano",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-34": {
+  "foto": "bib_ea0cb70920",
+  "idx": 0,
+  "caja": [
+   134.3,
+   266.0,
+   541.7,
+   599.5
+  ],
+  "tipo_modelo": "Camiseta manga larga",
+  "estilo": "geek",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-35": {
+  "foto": "bib_bf62d2409f",
+  "idx": 0,
+  "caja": [
+   130.2,
+   259.2,
+   332.0,
+   611.1
+  ],
+  "tipo_modelo": "Camiseta de tirantes",
+  "estilo": "geek",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-36": {
+  "foto": "pr_c61cbd573b",
+  "idx": 0,
+  "caja": [
+   319.8,
+   372.4,
+   728.6,
+   576.0
+  ],
+  "tipo_modelo": "Top",
+  "estilo": "urbano",
+  "mercado": "ES",
+  "sug": []
+ },
+ "b3-37": {
+  "foto": "pr_d94c6c84df",
+  "idx": 0,
+  "caja": [
+   185.5,
+   226.2,
+   460.1,
+   420.6
+  ],
+  "tipo_modelo": "Camiseta manga larga",
+  "estilo": "urbano",
+  "mercado": "US",
+  "sug": []
+ },
+ "b3-38": {
+  "foto": "bib_9a4b05cfbc",
+  "idx": 0,
+  "caja": [
+   82.5,
+   483.2,
+   912.9,
+   1023.1
+  ],
+  "tipo_modelo": "Camiseta de tirantes",
+  "estilo": "geek",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-39": {
+  "foto": "bib_723becc9a7",
+  "idx": 2,
+  "caja": [
+   348.4,
+   765.4,
+   579.8,
+   881.2
+  ],
+  "tipo_modelo": "Botas",
+  "estilo": "geek",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-40": {
+  "foto": "pr_e5c19c0423",
+  "idx": 0,
+  "caja": [
+   45.1,
+   250.3,
+   588.1,
+   840.2
+  ],
+  "tipo_modelo": "Chaqueta",
+  "estilo": "urbano",
+  "mercado": "ES",
+  "sug": []
+ },
+ "b3-41": {
+  "foto": "bib_a5c006bd38",
+  "idx": 3,
+  "caja": [
+   388.4,
+   455.7,
+   565.4,
+   670.0
+  ],
+  "tipo_modelo": "Chaqueta",
+  "estilo": "urbano",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-42": {
+  "foto": "rd_1wx0m0l",
+  "idx": 0,
+  "caja": [
+   228.8,
+   135.2,
+   441.5,
+   460.3
+  ],
+  "tipo_modelo": "Chaqueta",
+  "estilo": "urbano",
+  "mercado": "US",
+  "sug": []
+ },
+ "b3-43": {
+  "foto": "pr_7afb6285a8",
+  "idx": 0,
+  "caja": [
+   0.5,
+   21.3,
+   195.2,
+   351.6
+  ],
+  "tipo_modelo": "Polo",
+  "estilo": "urbano",
+  "mercado": "ES",
+  "sug": []
+ },
+ "b3-44": {
+  "foto": "pr_c86b917cd2",
+  "idx": 0,
+  "caja": [
+   401.3,
+   189.9,
+   673.2,
+   489.1
+  ],
+  "tipo_modelo": "Chaqueta",
+  "estilo": "urbano",
+  "mercado": "US",
+  "sug": []
+ },
+ "b3-45": {
+  "foto": "bib_d31016ef91",
+  "idx": 0,
+  "caja": [
+   233.3,
+   197.0,
+   769.9,
+   561.2
+  ],
+  "tipo_modelo": "Chaqueta",
+  "estilo": "urbano",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-46": {
+  "foto": "tw_2094125419444257137_1",
+  "idx": 0,
+  "caja": [
+   395.9,
+   253.9,
+   670.9,
+   573.9
+  ],
+  "tipo_modelo": "Polo",
+  "estilo": "urbano",
+  "mercado": "ES",
+  "sug": []
+ },
+ "b3-47": {
+  "foto": "bib_c5c537138e",
+  "idx": 2,
+  "caja": [
+   311.3,
+   698.3,
+   504.3,
+   837.4
+  ],
+  "tipo_modelo": "Short",
+  "estilo": "urbano",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-48": {
+  "foto": "bib_7d7b6c9949",
+  "idx": 1,
+  "caja": [
+   502.8,
+   146.3,
+   846.9,
+   504.1
+  ],
+  "tipo_modelo": "Camiseta manga corta",
+  "estilo": "urbano",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-49": {
+  "foto": "pr_b929fb380a",
+  "idx": 0,
+  "caja": [
+   226.4,
+   393.4,
+   781.0,
+   787.0
+  ],
+  "tipo_modelo": "Camiseta manga corta",
+  "estilo": "urbano",
+  "mercado": "ES",
+  "sug": []
+ },
+ "b3-50": {
+  "foto": "bib_2b71e049b6",
+  "idx": 0,
+  "caja": [
+   279.1,
+   319.3,
+   745.1,
+   869.3
+  ],
+  "tipo_modelo": "Camiseta manga larga",
+  "estilo": "geek",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-51": {
+  "foto": "bib_91bfef3f0e",
+  "idx": 1,
+  "caja": [
+   368.0,
+   477.3,
+   520.5,
+   667.5
+  ],
+  "tipo_modelo": "Short",
+  "estilo": "geek",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-52": {
+  "foto": "pr_448530abef",
+  "idx": 0,
+  "caja": [
+   214.7,
+   130.3,
+   484.6,
+   606.6
+  ],
+  "tipo_modelo": "Americana",
+  "estilo": "urbano",
+  "mercado": "ES",
+  "sug": []
+ },
+ "b3-53": {
+  "foto": "tw_2097664023282036913_1",
+  "idx": 0,
+  "caja": [
+   288.5,
+   649.0,
+   767.0,
+   1023.3
+  ],
+  "tipo_modelo": "Camisa",
+  "estilo": "urbano",
+  "mercado": "ES",
+  "sug": []
+ },
+ "b3-54": {
+  "foto": "bib_3eb1aa2ae6",
+  "idx": 0,
+  "caja": [
+   249.4,
+   68.0,
+   688.5,
+   1139.1
+  ],
+  "tipo_modelo": "Camiseta manga larga",
+  "estilo": "geek",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-55": {
+  "foto": "pr_e544635acf",
+  "idx": 0,
+  "caja": [
+   389.0,
+   177.8,
+   593.0,
+   455.4
+  ],
+  "tipo_modelo": "Short",
+  "estilo": "geek",
+  "mercado": "ES",
+  "sug": []
+ },
+ "b3-56": {
+  "foto": "pr_b989f1b434",
+  "idx": 0,
+  "caja": [
+   291.5,
+   244.4,
+   602.6,
+   535.5
+  ],
+  "tipo_modelo": "Camiseta manga corta",
+  "estilo": "urbano",
+  "mercado": "ES",
+  "sug": []
+ },
+ "b3-57": {
+  "foto": "rd_1wbxdrt",
+  "idx": 1,
+  "caja": [
+   280.8,
+   181.8,
+   581.4,
+   531.5
+  ],
+  "tipo_modelo": "Camiseta manga larga",
+  "estilo": "urbano",
+  "mercado": "US",
+  "sug": []
+ },
+ "b3-58": {
+  "foto": "bib_baa9290c7c",
+  "idx": 0,
+  "caja": [
+   88.5,
+   193.4,
+   659.9,
+   819.6
+  ],
+  "tipo_modelo": "Hoodie",
+  "estilo": "geek",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-59": {
+  "foto": "bib_00c05e0125",
+  "idx": 2,
+  "caja": [
+   224.7,
+   718.6,
+   374.1,
+   847.3
+  ],
+  "tipo_modelo": "Botas",
+  "estilo": "geek",
+  "mercado": "Biblioteca",
+  "sug": []
+ },
+ "b3-60": {
+  "foto": "rd_1wfkd70",
+  "idx": 1,
+  "caja": [
+   369.8,
+   568.2,
+   491.4,
+   801.4
+  ],
+  "tipo_modelo": "Pantalón",
+  "estilo": "urbano",
+  "mercado": "US",
+  "sug": []
+ }
+}
