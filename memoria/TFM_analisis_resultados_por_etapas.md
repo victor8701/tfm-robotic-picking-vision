@@ -85,6 +85,13 @@ Etiquetas de Víctor (prenda principal): tipo n = 38, estampado 22, forma 23, te
 | Alumno: capa sobre CLIP entrenada con las etiquetas del modelo grande (5 252 prendas) | 20 de 38 (53 %) | 11 de 22 (50 %) | 11 de 23 (48 %) | 7 de 15 (47 %) |
 | **Modelo grande directo** (Qwen3-VL-8B, sin entrenar) | **24 de 38 (63 %)** | **17 de 22 (77 %)** | **14 de 23 (61 %)** | 9 de 15 (60 %) |
 | Modelo grande como en el paso semanal (instrucciones v1, con su propio tipo) | 22 de 38 (58 %) | 16 de 22 (73 %) | 13 de 23 (57 %) | 8 de 15 (53 %) |
+| **Lote ciego**: modelo grande en el paso semanal (instrucciones v3), 32 recortes al azar etiquetados después | 17 de 32 (53 %) | 23 de 27 (85 %) | 15 de 27 (56 %) | 14 de 26 (54 %) |
+| Lote ciego: referencia «siempre lo más frecuente» (esa muestra) | 8 de 32 (25 %, «Chaqueta») | 21 de 27 (78 %, «liso») | 13 de 27 (48 %, «regular») | 7 de 26 (27 %, «algodón») |
+| Lote ciego: CLIP (el tipo que había) en los mismos recortes | 17 de 32 (53 %) | | | |
+
+**Lote ciego (9 de octubre).** 60 recortes al azar, uno por foto, con la etiqueta del modelo grande ya puesta y sin sugerencias en la página; Víctor contestó 53: **32 con etiquetas, 21 «inservibles» y 7 sin contestar**. Con la prenda principal: tipo 17 de 32 (53 %, IC 36 a 69 %), **igual que CLIP en los mismos recortes (17 de 32)**, y por familia 27 de 32 (84 %) frente a 28 de 32 (88 %) de CLIP;
+estampado 23 de 27 (85 %, IC 68 a 94 %) frente a 21 de 27 (78 %) de «siempre liso» (liso 19 de 21; con estampado 4 de 6); forma 15 de 27 (56 %, IC 37 a 72 %) frente a 13 de 27 (48 %) de «regular» («oversized» 4 de 9, con 5 de las 9 dichas «regular»; «ajustada» 1 de 5);
+tejido 14 de 26 (54 %, IC 35 a 71 %) frente a 7 de 26 (27 %) de «algodón»: **la única medida que se distingue de su referencia** (cuero 4 de 4, técnico 2 de 2, algodón 5 de 7; vaquero 2 de 5, lino 0 de 2, «no se distingue» 1 de 5).
 
 **Qué es distinguible.** El estampado del modelo grande (17 de 22, IC 57 a 90 %) deja fuera el 50 % de «siempre liso». El tipo (24 de 38, IC 47 a 77 %) incluye el 50 % del flujo anterior: la mejora de 50 a 63 % es una indicación, no una certeza. Forma (IC 41 a 78 %) y tejido (IC 36 a 80 %) incluyen su referencia.
 
@@ -116,10 +123,13 @@ Familia de prenda (arriba, abrigo, abajo, cuerpo entero, calzado, accesorio): fl
 | `grupo_estilo` 90,8 % en test | no dice lo que parece fuera del catálogo | aprende el atajo `articleType → etiqueta` (cae al 3 % con tipos de prenda no vistos) |
 | Alumno entrenado con 2 626 prendas: tipo 22 de 38 (58 %) | con las 5 252 prendas, 19-20 de 38 (50-53 %) | más datos no lo mejoraron: la diferencia era ruido de n = 38 |
 | Ajuste de instrucciones del modelo grande («profesor_v2», tejido 8 → 9 de 15) | no cuenta como mejora | se hizo mirando las mismas etiquetas; solo la medida del lote ciego vale |
+| Tipo de prenda del modelo grande 63 % (prueba con las 40 fotos) | 53 % en el lote ciego, igual que CLIP en esos mismos recortes (53 %) | otra muestra y otro reparto de prendas; los márgenes (±15 a ±17 puntos) cubren los dos valores: no hay evidencia de que mejore a CLIP en el tipo |
+| Estampado 77 % frente a 50 % de «siempre liso» | 85 % frente a 78 % en el lote ciego | la referencia cambia con la muestra (la mitad de lisas en la prueba, el 78 % en el lote ciego); el estampado de lo no liso acierta 4 de 6 |
 
 ### 3.4 Cuellos de botella
 
 - **Datos, no modelo.** ~23 fotos útiles por temporada en urbano España (referentes por X y prensa por nombre) y 2 en geek España; Instagram y TikTok, donde publican, no se pueden leer. Con ese volumen una cifra por tipo apenas llega a las 5 fotos exigidas.
+- **Recortes inservibles.** Al etiquetar el lote ciego, Víctor marcó como inservibles **21 de los 53 recortes contestados (40 %)**: 4 de 4 del «torso geométrico» (red de seguridad del detector, que no se estaba filtrando por un fallo de comparación de texto, corregido el 9 de octubre), 2 de 4 de las detecciones por *grounding* y 14 de 44 (32 %) de las de DeepFashion2. Los informes cuentan prendas que no lo son.
 - **Definiciones.** Cada etiqueta lleva un criterio: `temporada` (colección frente a estacionalidad), «oversized» (13 % en Fashionpedia, la mitad en el streetwear de Víctor), sudadera (felpa para el modelo, algodón para Víctor), «ajustada» frente a «corta». Una parte del error es de lenguaje, no de visión.
 - **Muestras de evaluación pequeñas.** 15 a 38 etiquetas por atributo; un solo etiquetador; las auditorías de cajas, color y estilo de calle las hizo el asistente y siguen sin validar.
 - **Dominio.** Catálogo ≠ calle: el clasificador de prenda suelta colapsa sobre la foto entera (`accesorio`, 12 de 19) y solo se arregla detectando antes.
@@ -137,20 +147,21 @@ Familia de prenda (arriba, abrigo, abajo, cuerpo entero, calzado, accesorio): fl
 
 ## 4. Fiabilidad actual por atributo (lo que usa el informe de «Prendas»)
 
-| Atributo | Método | Acierto (principal) | Referencia | Confianza máxima en el informe |
+| Atributo | Método | Acierto (principal, lote ciego) | Referencia | Confianza máxima en el informe |
 |---|---|---|---|---|
-| Tipo de prenda | modelo grande | 24 de 38 (63 %) | 9 de 38 (24 %); método anterior 50 % | baja |
-| Familia de prenda | modelo grande | 33 de 38 (87 %) | método anterior 76 % | alta (con 30 fotos o más) |
-| Estampado | modelo grande | 16 de 22 (73 %) en el paso semanal | 11 de 22 (50 %) | media |
-| Forma | modelo grande | 13 de 23 (57 %) | 11 de 23 (48 %) | baja |
-| Tejido | modelo grande | 8 de 15 (53 %) | 10 de 15 (67 %) | baja |
+| Tipo de prenda | modelo grande | 17 de 32 (53 %) | CLIP 17 de 32; «siempre Chaqueta» 8 de 32 | baja |
+| Familia de prenda | modelo grande | 27 de 32 (84 %) | CLIP 28 de 32 (88 %) | media |
+| Estampado | modelo grande | 23 de 27 (85 %) | «siempre liso» 21 de 27 (78 %) | media |
+| Forma | modelo grande | 15 de 27 (56 %) | «siempre regular» 13 de 27 (48 %) | baja |
+| Tejido | modelo grande | 14 de 26 (54 %) | «siempre algodón» 7 de 26 (27 %) | baja |
 | Color | adaptador Florence-2 v3 | 21 de 30 (70 %, a ojo) | — | baja |
 
-La confianza de cada cifra del informe es el mínimo entre las fotos que la sostienen (≥ 30 alta, 15 a 29 media, 5 a 14 baja) y el techo que fija el acierto del atributo (≥ 85 % con 30 o más etiquetas alta, ≥ 65 % media, menos baja). Las cifras de esta tabla se sustituyen por las del **lote ciego** cuando exista (§5).
+La confianza de cada cifra del informe es el mínimo entre las fotos que la sostienen (≥ 30 alta, 15 a 29 media, 5 a 14 baja) y el techo que fija el acierto del atributo (≥ 85 % con 30 o más etiquetas alta, ≥ 65 % media, menos baja). Desde el 9 de octubre estas cifras son las del **lote ciego** (antes, las de la prueba con las 40 fotos).
 
 ## 5. Qué falta medir
 
-1. **Lote ciego** de 30 a 60 recortes nuevos que Víctor etiquete después de que el modelo grande los haya etiquetado, con las instrucciones congeladas (v3) y sin sugerencias del modelo en la página. Es la única medida limpia de lo que corre cada semana: las 40 fotos de la prueba se usaron para ajustar las instrucciones (sudadera = algodón, logos pequeños = liso).
+1. **Un segundo lote ciego**, solo si se ajustan las instrucciones: el primero (9 de octubre) ya no es ciego para cualquier cambio hecho viendo sus fallos («oversized» dicho «regular» 5 de 9 veces, «ajustada» dicha «corta», tejido «no se distingue» dicho «algodón»). Con las instrucciones v3 congeladas, esas son las cifras del paso semanal.
+1b. **Filtrar los recortes inservibles** (40 % de los contestados): un filtro del modelo grande («¿se ve una prenda con claridad?»), probado contra las 21 marcas de «inservible» y las 32 etiquetadas.
 2. **Más de una persona etiquetando** y más de 100 etiquetas por atributo si se quiere distinguir diferencias de 10 puntos.
 3. **Validar las auditorías** de cajas, color y estilo de calle hechas por el asistente.
 4. **Más volumen de fotos** para que una cifra por tipo y atributo llegue a 5 fotos: YouTube, comunidades de Reddit, fotos libres de Wikimedia Commons para la temporada pasada.
@@ -158,7 +169,7 @@ La confianza de cada cifra del informe es el mínimo entre las fotos que la sost
 
 ## 6. Resumen en cinco frases
 
-El proyecto pasó de un CLIP que acertaba el 33 % del estilo de una prenda a un clasificador propio que acierta el 64 % sin haberla visto y el 85 % de media de cinco campos sobre catálogo. En la calle y con redes sociales el catálogo no sirve tal cual: hizo falta detectar y recortar, y las fotos útiles no salen de una búsqueda por texto (17 %) sino de elegir las fuentes. Entrenar más con modelos pequeños nunca mejoró lo que ya daba la referencia; lo que mejoró fue la especificidad (reglas y vocabulario propios) y, para estampado y tipo de prenda, un modelo general grande (estampado 50 → 77 %, tipo 50 → 63 %). Varias cifras iniciales eran demasiado buenas (contaminación, juez a ojo, «cualquiera») y se corrigieron al medir con referencias humanas; con 15 a 38 etiquetas el margen es de 8 a 13 puntos. Lo que limita hoy el análisis de tendencia es el volumen de fotos (decenas por temporada) y las definiciones de las etiquetas, no el modelo.
+El proyecto pasó de un CLIP que acertaba el 33 % del estilo de una prenda a un clasificador propio que acierta el 64 % sin haberla visto y el 85 % de media de cinco campos sobre catálogo. En la calle y con redes sociales el catálogo no sirve tal cual: hizo falta detectar y recortar, y las fotos útiles no salen de una búsqueda por texto (17 %) sino de elegir las fuentes. Entrenar más con modelos pequeños nunca mejoró lo que ya daba la referencia; lo que mejoró fue la especificidad (reglas y vocabulario propios) y, para estampado y tipo de prenda, un modelo general grande (estampado 50 → 77 %, tipo 50 → 63 %). Varias cifras iniciales eran demasiado buenas (contaminación, juez a ojo, «cualquiera») y se corrigieron al medir con referencias humanas; con 15 a 38 etiquetas el margen es de 8 a 13 puntos. Medido a ciegas con 32 recortes de producción, el modelo grande iguala a CLIP en el tipo (53 %) y solo se distingue de su referencia en el tejido (54 % frente a 27 %); además, el 40 % de los recortes que se revisaron eran inservibles. Lo que limita hoy el análisis de tendencia es el volumen de fotos (decenas por temporada), la calidad de los recortes y las definiciones de las etiquetas, más que el modelo.
 
 ## 7. Fuentes
 

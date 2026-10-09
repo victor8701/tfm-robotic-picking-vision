@@ -55,7 +55,7 @@ def candidatos() -> list[dict]:
         for i, p in enumerate(r["prendas"]):
             x1, y1, x2, y2 = p["caja"]
             ancho, alto = x2 - x1, y2 - y1
-            if not p["visible"] or min(ancho, alto) < 110 or not 0.4 <= ancho / alto <= 2.5 or f"{fid}#{i}" in ya:
+            if not p["visible"] or p.get("deteccion", "").startswith("torso") or min(ancho, alto) < 110 or not 0.4 <= ancho / alto <= 2.5 or f"{fid}#{i}" in ya:
                 continue
             out.append({"foto": fid, "idx": i, "caja": p["caja"], "tipo": p["tipo"], "p": p["p_tipo"], "cat": p["cat"], "estilo": f["estilo"],
                         "mercado": f["mercado"], "fuente": f.get("referente") or "Biblioteca", "vlm": "vlm" in p})

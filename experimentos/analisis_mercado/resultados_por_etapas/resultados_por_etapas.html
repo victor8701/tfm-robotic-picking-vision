@@ -60,7 +60,8 @@ button.enlace:hover{border-color:var(--azul)}
 button.enlace:focus-visible{outline:2px solid var(--azul);outline-offset:2px}
 .envoltura{overflow-x:auto;margin-top:6px;border-top:1px solid var(--linea)}
 table{border-collapse:separate;border-spacing:0;width:100%;font-size:.88rem}
-table#matriz{min-width:430px}
+table.matriz{min-width:430px}
+.subtitulo{font-size:.98rem;font-weight:600;margin-top:22px}
 th,td{padding:8px 6px;border-bottom:1px solid var(--linea);text-align:center;vertical-align:middle}
 th{font-weight:500;color:var(--suave);font-size:.8rem}
 th small{display:block;font:400 .72rem/1.2 var(--mono);white-space:nowrap}
@@ -98,9 +99,10 @@ code{font-family:var(--mono);font-size:.82rem}
     <h2 id="h-esencial">Lo esencial</h2>
     <ul class="esencial" style="margin-top:12px">
       <li>Con fotos de catálogo el clasificador propio funciona. En la calle hizo falta detectar antes cada prenda, y que una foto sea útil depende más de la fuente que del modelo.</li>
-      <li>Lo que más subió el acierto fue la especificidad (reglas y vocabulario propios) y, para las prendas, un modelo general grande: estampado del 50 al 77 %, tipo de prenda del 50 al 63 %.</li>
+      <li>Lo que más subió el acierto fue la especificidad (reglas y vocabulario propios) y, para las prendas, un modelo general grande: con tus 40 fotos, estampado del 50 al 77 % y tipo de prenda del 50 al 63 %; a ciegas, esas mejoras no se confirman.</li>
       <li>Varias cifras iniciales eran demasiado buenas y se corrigieron al medir bien: estilo 73 → 64 %, tipo de prenda 85 → 50 %.</li>
-      <li>Con 15 a 38 etiquetas el margen al 95 % es de ±15 a ±22 puntos. De las medidas por prenda, solo el estampado se distingue con claridad de su referencia.</li>
+      <li>Medido a ciegas con 32 recortes del paso semanal, el modelo grande iguala a CLIP en el tipo de prenda (53 %) y solo el tejido (54 % frente a 27 %) se distingue de su referencia. Además, 4 de cada 10 recortes que revisaste eran inservibles.</li>
+      <li>Con 15 a 38 etiquetas el margen al 95 % es de ±15 a ±22 puntos: pocas diferencias se distinguen de su referencia.</li>
     </ul>
   </section>
 
@@ -123,7 +125,7 @@ code{font-family:var(--mono);font-size:.82rem}
   <section aria-labelledby="h-matriz">
     <h2 id="h-matriz">Tipo, estampado, forma y tejido: qué método sirve</h2>
     <p class="nota">Prenda principal de tus etiquetas. Cada celda es aciertos/n y porcentaje; el color marca la diferencia con «decir siempre lo más frecuente» de esa columna (azul por encima, rojo por debajo). El punto ● indica que el margen del 95 % no incluye esa referencia.</p>
-    <div class="envoltura"><table id="matriz"></table></div>
+    <div id="matrices"></div>
   </section>
 
   <section aria-labelledby="h-ensenan">
@@ -185,16 +187,23 @@ const ETAPAS = [
      nota: 'Validación cruzada; meseta entre 10 y 20 fotos por estilo. El límite es la ambigüedad entre estilos vecinos.', fuente: 'notas de sesión del 3 de octubre; analisis_mercado/README'},
     {t: 'Estilo con fotos nuevas de medios españoles (10 juzgadas)', ref: {n: 'azar (1 de 7)', p: 1 / 7}, res: {n: 'modelo de 7 estilos', k: 2, N: 10},
      nota: 'Además, 8 de 18 fotos de medios no eran un outfit.', fuente: 'medida real del 6 de octubre'}]},
-  {id: 'G', nombre: 'Tendencia por prenda', veredicto: 'en curso', filas: [
+  {id: 'G', nombre: 'Tendencia por prenda: prueba con tus 40 fotos', veredicto: 'optimista', filas: [
     {t: 'Tipo de prenda (29 tipos)', ref: {n: 'flujo con CLIP', k: 19, N: 38}, res: {n: 'modelo grande', k: 24, N: 38}, nota: 'El margen del resultado incluye la referencia: la mejora es una indicación.', fuente: 'TFM_tendencias_de_prenda §6.1 y §6.4'},
     {t: 'Familia de prenda (arriba, abrigo, abajo, cuerpo entero, calzado, accesorio)', ref: {n: 'flujo con CLIP', k: 29, N: 38}, res: {n: 'modelo grande', k: 33, N: 38}, nota: 'Se confunde mucho menos que el tipo exacto.', fuente: '§6.1 y §6.4'},
     {t: 'Estampado', ref: {n: 'siempre «liso»', k: 11, N: 22}, res: {n: 'modelo grande', k: 17, N: 22}, nota: 'Liso 9 de 11, dibujo 6 de 7, texto o logo 2 de 3. Es la única mejora con un margen que deja fuera la referencia.', fuente: '§6.4'},
     {t: 'Forma', ref: {n: 'siempre «oversized»', k: 11, N: 23}, res: {n: 'modelo grande, foto entera', k: 14, N: 23}, nota: 'Con solo el recorte, 11 de 23. «Ajustada» solo 1 de 5: la confunde con «corta».', fuente: '§6.4'},
-    {t: 'Tejido', ref: {n: 'siempre «algodón»', k: 10, N: 15}, res: {n: 'modelo grande', k: 9, N: 15}, nota: 'Acierta los materiales claros (vaquero, cuero, técnico: 3 de 3) y falla entre algodón, punto y felpa.', fuente: '§6.4'}]}
+    {t: 'Tejido', ref: {n: 'siempre «algodón»', k: 10, N: 15}, res: {n: 'modelo grande', k: 9, N: 15}, nota: 'Acierta los materiales claros (vaquero, cuero, técnico: 3 de 3) y falla entre algodón, punto y felpa.', fuente: '§6.4'}]},
+  {id: 'H', nombre: 'Tendencia por prenda: lote ciego del paso semanal', veredicto: 'medida limpia', filas: [
+    {t: 'Tipo de prenda (29 tipos), 32 recortes', ref: {n: 'CLIP (el tipo que había)', k: 17, N: 32}, res: {n: 'modelo grande', k: 17, N: 32}, nota: 'Igual que CLIP en los mismos recortes. «siempre Chaqueta» daría 8 de 32 (25 %). Por familia: 27 de 32 (84 %) frente a 28 de 32 (88 %) de CLIP.', fuente: 'TFM_tendencias_de_prenda §6.5'},
+    {t: 'Estampado, 27 recortes', ref: {n: 'siempre «liso»', k: 21, N: 27}, res: {n: 'modelo grande', k: 23, N: 27}, nota: 'En esta muestra el 78 % son lisos. Liso 19 de 21; con estampado 4 de 6.', fuente: '§6.5'},
+    {t: 'Forma, 27 recortes', ref: {n: 'siempre «regular»', k: 13, N: 27}, res: {n: 'modelo grande', k: 15, N: 27}, nota: '«Oversized» 4 de 9 (5 dichas «regular»); «ajustada» 1 de 5.', fuente: '§6.5'},
+    {t: 'Tejido, 26 recortes', ref: {n: 'siempre «algodón»', k: 7, N: 26}, res: {n: 'modelo grande', k: 14, N: 26}, nota: 'La única que se distingue de su referencia. Cuero 4 de 4, técnico 2 de 2, algodón 5 de 7; vaquero 2 de 5, lino 0 de 2.', fuente: '§6.5'}]}
 ];
-const COLS = [['tipo', 'Tipo', 38], ['est', 'Estampado', 22], ['for', 'Forma', 23], ['tej', 'Tejido', 15]];
-const BASE = {tipo: [9, 38], est: [11, 22], for: [11, 23], tej: [10, 15]};
-const MATRIZ = [
+const MATRICES = [
+ {titulo: 'Con tus 40 fotos', nota: 'Las instrucciones del modelo grande se ajustaron mirando estas etiquetas: es una medida optimista.',
+  cols: [['tipo', 'Tipo', 38], ['est', 'Estampado', 22], ['for', 'Forma', 23], ['tej', 'Tejido', 15]],
+  base: {tipo: [9, 38], est: [11, 22], for: [11, 23], tej: [10, 15]},
+  filas: [
   {g: 'Referencia'},
   {m: 'Siempre lo más frecuente', ref: true, c: {tipo: [9, 38], est: [11, 22], for: [11, 23], tej: [10, 15]}},
   {g: 'Modelos pequeños'},
@@ -206,6 +215,15 @@ const MATRIZ = [
   {g: 'Modelo grande (Qwen3-VL de 8 000 millones, sin entrenar)'},
   {m: 'Directo, con tu tipo de prenda', c: {tipo: [24, 38], est: [17, 22], for: [14, 23], tej: [9, 15]}},
   {m: 'Como en el paso semanal (elige él el tipo)', c: {tipo: [22, 38], est: [16, 22], for: [13, 23], tej: [8, 15]}}
+ ]},
+ {titulo: 'Lote ciego del paso semanal', nota: 'Recortes al azar que etiquetaste después de que el modelo grande los etiquetara. Es la medida limpia.',
+  cols: [['tipo', 'Tipo', 32], ['est', 'Estampado', 27], ['for', 'Forma', 27], ['tej', 'Tejido', 26]],
+  base: {tipo: [8, 32], est: [21, 27], for: [13, 27], tej: [7, 26]},
+  filas: [
+   {m: 'Siempre lo más frecuente', ref: true, c: {tipo: [8, 32], est: [21, 27], for: [13, 27], tej: [7, 26]}},
+   {m: 'CLIP B/32 (el tipo que había)', c: {tipo: [17, 32]}},
+   {m: 'Modelo grande (paso semanal)', c: {tipo: [17, 32], est: [23, 27], for: [15, 27], tej: [14, 26]}}
+ ]}
 ];
 const FOTOS = [['Urbano · España · otoño-invierno 2026/27', 23], ['Urbano · España · primavera-verano 2026', 9], ['Urbano · EEUU · otoño-invierno 2026/27', 10], ['Urbano · EEUU · primavera-verano 2026', 4],
                ['Geek · España · otoño-invierno 2026/27', 2], ['Tus fotos aprobadas · urbano (muestra sin fecha)', 40], ['Tus fotos aprobadas · geek (muestra sin fecha)', 42]];
@@ -275,10 +293,19 @@ $('#ver-tabla').onclick = function () {
 
 /* ---------- matriz de métodos ---------- */
 function pintarMatriz() {
-  const t = $('#matriz');
+  MATRICES.forEach(M => {
+    const cont = $('#matrices');
+    cont.append(el('h3', {className: 'subtitulo', textContent: M.titulo}), el('p', {className: 'nota', textContent: M.nota}));
+    const t = el('table', {className: 'matriz'});
+    cont.append(el('div', {className: 'envoltura'}, t));
+    pintarUna(t, M);
+  });
+}
+function pintarUna(t, M) {
+  const COLS = M.cols, BASE = M.base;
   t.append(el('thead', {}, el('tr', {}, el('th', {textContent: 'Método'}), ...COLS.map(([, nombre, n]) => el('th', {}, nombre, el('small', {textContent: 'n = ' + n}))))));
   const tb = el('tbody', {className: 'cuerpo-t'});
-  MATRIZ.forEach(r => {
+  M.filas.forEach(r => {
     if (r.g) { tb.append(el('tr', {className: 'grupo'}, el('th', {colSpan: 5, textContent: r.g}))); return; }
     const tr = el('tr', {}, el('td', {textContent: r.m}));
     COLS.forEach(([k]) => {

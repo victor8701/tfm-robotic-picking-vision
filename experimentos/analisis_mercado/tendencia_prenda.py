@@ -367,7 +367,7 @@ def cmd_analizar(args):
             out = []
             for pr in (r["personas"][0]["prendas"] if r["personas"] else []):
                 x1, y1, x2, y2 = pr["caja"]
-                if pr["categoria"] not in pc.GRUPOS or pr["deteccion"] == "torso" or min(x2 - x1, y2 - y1) < 40:
+                if pr["categoria"] not in pc.GRUPOS or pr["deteccion"].startswith("torso") or min(x2 - x1, y2 - y1) < 40:
                     continue
                 c = im.crop((max(0, int(x1 - .06 * (x2 - x1))), max(0, int(y1 - .06 * (y2 - y1))), min(W, int(x2 + .06 * (x2 - x1))), min(H, int(y2 + .06 * (y2 - y1)))))
                 lado = max(c.size)
@@ -433,7 +433,7 @@ def texto_kernel(parte=None) -> str:
 
 def cmd_vlm(args):
     prendas = cargar(PRENDAS)
-    pend = [(k, i, p) for k, v in sorted(prendas.items()) for i, p in enumerate(v["prendas"]) if p["visible"] and "vlm" not in p and (m.IMG / f"{k}.jpg").exists()]
+    pend = [(k, i, p) for k, v in sorted(prendas.items()) for i, p in enumerate(v["prendas"]) if valida(p) and "vlm" not in p and (m.IMG / f"{k}.jpg").exists()]
     if args.max_vlm:
         pend = pend[:args.max_vlm]
     fotos_pend = len({k for k, _, _ in pend})
@@ -529,6 +529,11 @@ def nivel(n_fotos: int, techo: str) -> str:
     return NIVELES[min(NIVELES.index(base), NIVELES.index(techo))]
 
 
+def valida(p: dict) -> bool:
+    """Una prenda entra en el informe si se ve y no sale del «torso geométrico» (red de seguridad del detector: en el lote ciego, 4 de 4 eran inservibles)."""
+    return bool(p["visible"]) and not p.get("deteccion", "").startswith("torso")
+
+
 def cmd_informe(args):
     fotos, prendas, fiab = cargar(FOTOS), cargar(PRENDAS), cargar(FIABILIDAD)
     t_tipo, t_fam, t_col = techo_de(fiab.get("tipo_fino")), techo_de(fiab.get("familia")), techo_de(fiab.get("color"))
@@ -541,7 +546,7 @@ def cmd_informe(args):
         grupos[(v["estilo"], v["mercado"], temporada(v.get("fecha")) if v.get("fecha") else "muestra")].append(k)
     informe = {"generado": ahora_iso(), "min_fotos": MIN_FOTOS, "vida_media_dias": VIDA_MEDIA, "fiabilidad": fiab, "techos": {"tipo": t_tipo, "familia": t_fam, "color": t_col, "vlm": t_vlm}, "grupos": []}
     for (estilo, mercado, temp), ids in sorted(grupos.items()):
-        con_prendas = [k for k in ids if any(p["visible"] for p in prendas[k]["prendas"])]
+        con_prendas = [k for k in ids if any(valida(p) for p in prendas[k]["prendas"])]
         pesos = {k: peso(fotos[k], ahora_dt) for k in con_prendas}
         total = sum(pesos.values()) or 1.0
         s1, s2 = sum(pesos.values()), sum(w * w for w in pesos.values())
@@ -549,11 +554,11 @@ def cmd_informe(args):
         por_tipo = collections.defaultdict(lambda: {"n": 0, "w": 0.0, "ej": [], "atr": {c: collections.Counter() for c in ATRIBUTOS}})
         por_fam = collections.defaultdict(lambda: {"n": 0, "w": 0.0, "ej": [], "atr": {c: collections.Counter() for c in ATRIBUTOS}})
         atr_grupo = {c: collections.Counter() for c in ATRIBUTOS}
-        todas_vlm = all("vlm" in p for k in con_prendas for p in prendas[k]["prendas"] if p["visible"])
+        todas_vlm = all("vlm" in p for k in con_prendas for p in prendas[k]["prendas"] if valida(p))
         for k in con_prendas:
             vistos_t, vistos_f = set(), set()
             for i, p in enumerate(prendas[k]["prendas"]):
-                if not p["visible"]:
+                if not valida(p):
                     continue
                 for c in ATRIBUTOS:   # estampado, tejido y forma del modelo grande (cuentan prendas, no fotos)
                     v = (p.get("vlm") or {}).get(c)
@@ -581,7 +586,7 @@ def cmd_informe(args):
         filas = [fila(t, d, t_vlm["tipo"] if todas_vlm else t_tipo, {"tipo": t, "familia": FAMILIA.get(t, "Otros")}) for t, d in sorted(por_tipo.items(), key=lambda kv: -kv[1]["w"])]
         familias = [fila(f, d, t_vlm["familia"] if todas_vlm else t_fam, {"familia": f}) for f, d in sorted(por_fam.items(), key=lambda kv: -kv[1]["w"])]
         atributos = {c: {"n": sum(cnt.values()), "reparto": dict(cnt.most_common()), "confianza": nivel(sum(cnt.values()), t_vlm[c])} for c, cnt in atr_grupo.items() if sum(cnt.values()) >= MIN_FOTOS}
-        colores = collections.Counter(p["color"] for k in con_prendas for p in prendas[k]["prendas"] if p["visible"] and p.get("color"))
+        colores = collections.Counter(p["color"] for k in con_prendas for p in prendas[k]["prendas"] if valida(p) and p.get("color"))
         fuentes = collections.Counter((fotos[k].get("referente") or "Biblioteca") for k in ids)
         informe["grupos"].append({"estilo": estilo, "mercado": mercado, "temporada": temp, "fotos": len(ids), "fotos_con_prenda": len(con_prendas), "fotos_efectivas": round(n_ef, 1),
                                   "prendas": filas, "familias": familias, "atributos": atributos, "etiquetadas_con_modelo_grande": todas_vlm,

@@ -884,5 +884,862 @@
   "tipo_modelo": "Chaqueta",
   "estilo": "geek",
   "mercado": "Biblioteca"
+ },
+ "rd_1wgxbsk#1": {
+  "prendas": [
+   {
+    "tipo": "Camiseta manga corta",
+    "estampado": "liso",
+    "tejido": null,
+    "forma": "oversized / baggy"
+   }
+  ],
+  "caja": [
+   269.2,
+   410.4,
+   494.5,
+   654.7
+  ],
+  "tipo_modelo": "Camisa",
+  "estilo": "urbano",
+  "mercado": "US"
+ },
+ "bib_d4e6e7f58c#1": {
+  "prendas": [
+   {
+    "tipo": "Top",
+    "estampado": "liso",
+    "tejido": "tul / encaje",
+    "forma": "ajustada"
+   }
+  ],
+  "caja": [
+   269.6,
+   2.5,
+   692.5,
+   539.9
+  ],
+  "tipo_modelo": "Top",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "pr_dc17e08361#0": {
+  "prendas": [
+   {
+    "tipo": "Hoodie",
+    "estampado": "liso",
+    "tejido": "algodón",
+    "forma": "oversized / baggy"
+   }
+  ],
+  "caja": [
+   203.3,
+   160.3,
+   639.3,
+   523.4
+  ],
+  "tipo_modelo": "Hoodie",
+  "estilo": "urbano",
+  "mercado": "ES"
+ },
+ "bib_0782c8a74d#1": {
+  "prendas": [
+   {
+    "tipo": "Falda",
+    "estampado": null,
+    "tejido": "no se distingue",
+    "forma": "no aplica"
+   }
+  ],
+  "caja": [
+   278.7,
+   771.4,
+   726.0,
+   1199.3
+  ],
+  "tipo_modelo": "Camiseta manga larga",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "bib_6f4496039b#2": {
+  "inservible": true,
+  "caja": [
+   284.5,
+   507.7,
+   539.8,
+   738.7
+  ],
+  "tipo_modelo": "Chaqueta",
+  "estilo": "geek"
+ },
+ "rd_1wez11m#1": {
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "estampado": null,
+    "tejido": "lino",
+    "forma": "regular"
+   }
+  ],
+  "caja": [
+   273.3,
+   568.7,
+   442.8,
+   889.1
+  ],
+  "tipo_modelo": "Pantalón",
+  "estilo": "urbano",
+  "mercado": "US"
+ },
+ "bib_7df766a92d#0": {
+  "prendas": [
+   {
+    "tipo": "Polo",
+    "estampado": "texto / logo",
+    "tejido": null,
+    "forma": null
+   }
+  ],
+  "caja": [
+   432.7,
+   343.5,
+   690.5,
+   577.0
+  ],
+  "tipo_modelo": "Polo",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "pr_87e8c80aa0#0": {
+  "inservible": true,
+  "caja": [
+   44.1,
+   90.4,
+   373.0,
+   535.7
+  ],
+  "tipo_modelo": "Camisa",
+  "estilo": "geek"
+ },
+ "pr_c7aef1e39d#1": {
+  "prendas": [
+   {
+    "tipo": "Plumas",
+    "estampado": "liso",
+    "tejido": "técnico / impermeable",
+    "forma": "no aplica"
+   }
+  ],
+  "caja": [
+   274.3,
+   562.1,
+   449.8,
+   726.0
+  ],
+  "tipo_modelo": "Plumas",
+  "estilo": "urbano",
+  "mercado": "ES"
+ },
+ "pr_fac840fe81#1": {
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "estampado": "liso",
+    "tejido": "cuero / vinilo",
+    "forma": "regular"
+   }
+  ],
+  "caja": [
+   214.6,
+   282.2,
+   795.2,
+   682.2
+  ],
+  "tipo_modelo": "Chaqueta",
+  "estilo": "urbano",
+  "mercado": "ES"
+ },
+ "pr_2644a61c37#0": {
+  "prendas": [
+   {
+    "tipo": "Camiseta manga larga",
+    "estampado": "liso",
+    "tejido": "algodón",
+    "forma": "ajustada"
+   }
+  ],
+  "caja": [
+   352.6,
+   271.0,
+   814.2,
+   575.3
+  ],
+  "tipo_modelo": "Polo",
+  "estilo": "urbano",
+  "mercado": "ES"
+ },
+ "rd_1wto9ck#0": {
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "estampado": "camuflaje",
+    "tejido": null,
+    "forma": "regular"
+   },
+   {
+    "tipo": "Bolso",
+    "estampado": null,
+    "tejido": null,
+    "forma": null
+   }
+  ],
+  "caja": [
+   269.2,
+   438.4,
+   470.4,
+   640.0
+  ],
+  "tipo_modelo": "Camisa",
+  "estilo": "urbano",
+  "mercado": "US"
+ },
+ "bib_49a72fac07#0": {
+  "inservible": true,
+  "caja": [
+   15.4,
+   739.5,
+   796.2,
+   1079.2
+  ],
+  "tipo_modelo": "Top",
+  "estilo": "geek"
+ },
+ "bib_55cc03756f#0": {
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "estampado": null,
+    "tejido": "no se distingue",
+    "forma": "oversized / baggy"
+   }
+  ],
+  "caja": [
+   202.4,
+   321.0,
+   461.2,
+   765.4
+  ],
+  "tipo_modelo": "Camiseta manga larga",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "bib_f88ea92a43#1": {
+  "inservible": true,
+  "caja": [
+   63.0,
+   245.5,
+   666.3,
+   693.8
+  ],
+  "tipo_modelo": "Camisa",
+  "estilo": "urbano"
+ },
+ "bib_680391b6b2#1": {
+  "inservible": true,
+  "caja": [
+   547.3,
+   1017.0,
+   782.1,
+   1188.5
+  ],
+  "tipo_modelo": "Camiseta manga larga",
+  "estilo": "urbano"
+ },
+ "bib_ba7848e948#0": {
+  "prendas": [
+   {
+    "tipo": "Camiseta de tirantes",
+    "estampado": "liso",
+    "tejido": "algodón",
+    "forma": "regular"
+   }
+  ],
+  "caja": [
+   197.1,
+   141.6,
+   347.4,
+   392.4
+  ],
+  "tipo_modelo": "Camiseta de tirantes",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "pr_ecbab69c71#0": {
+  "inservible": true,
+  "caja": [
+   243.6,
+   266.3,
+   764.0,
+   572.3
+  ],
+  "tipo_modelo": "Camiseta manga corta",
+  "estilo": "urbano"
+ },
+ "bib_f8e735b697#1": {
+  "inservible": true,
+  "caja": [
+   156.4,
+   171.4,
+   695.6,
+   688.5
+  ],
+  "tipo_modelo": "Short",
+  "estilo": "geek"
+ },
+ "bib_48c4f64f2f#0": {
+  "inservible": true,
+  "caja": [
+   299.1,
+   240.7,
+   974.4,
+   529.3
+  ],
+  "tipo_modelo": "Hoodie",
+  "estilo": "urbano"
+ },
+ "pr_c39d49c4af#1": {
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "estampado": null,
+    "tejido": "no se distingue",
+    "forma": "regular"
+   }
+  ],
+  "caja": [
+   121.4,
+   276.5,
+   322.6,
+   401.0
+  ],
+  "tipo_modelo": "Pantalón",
+  "estilo": "urbano",
+  "mercado": "ES"
+ },
+ "bib_600718df7a#0": {
+  "inservible": true,
+  "caja": [
+   61.0,
+   421.9,
+   771.2,
+   767.4
+  ],
+  "tipo_modelo": "Camiseta manga larga",
+  "estilo": "geek"
+ },
+ "bib_92df00c0c2#0": {
+  "prendas": [
+   {
+    "tipo": "Top",
+    "estampado": "liso",
+    "tejido": null,
+    "forma": null
+   }
+  ],
+  "caja": [
+   89.5,
+   318.0,
+   714.6,
+   1189.7
+  ],
+  "tipo_modelo": "Top",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "bib_90d35f48f5#1": {
+  "inservible": true,
+  "caja": [
+   146.2,
+   544.8,
+   346.7,
+   879.4
+  ],
+  "tipo_modelo": "Chaqueta",
+  "estilo": "geek"
+ },
+ "bib_5373e40d09#0": {
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "estampado": "cuadros",
+    "tejido": "no se distingue",
+    "forma": "oversized / baggy"
+   }
+  ],
+  "caja": [
+   394.2,
+   279.7,
+   785.7,
+   699.6
+  ],
+  "tipo_modelo": "Americana",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "bib_70fd39caf3#1": {
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "estampado": "liso",
+    "tejido": "lino",
+    "forma": "regular"
+   }
+  ],
+  "caja": [
+   112.3,
+   412.7,
+   282.8,
+   738.6
+  ],
+  "tipo_modelo": "Pantalón",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "bib_54fbf6ace0#0": {
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "estampado": "liso",
+    "tejido": "no se distingue",
+    "forma": "oversized / baggy"
+   }
+  ],
+  "caja": [
+   639.8,
+   476.4,
+   2398.0,
+   1702.3
+  ],
+  "tipo_modelo": "Camisa",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "bib_ea0cb70920#0": {
+  "prendas": [
+   {
+    "tipo": "Camiseta manga larga",
+    "estampado": "gráfico / dibujo",
+    "tejido": "algodón",
+    "forma": "regular"
+   }
+  ],
+  "caja": [
+   134.3,
+   266.0,
+   541.7,
+   599.5
+  ],
+  "tipo_modelo": "Camiseta manga larga",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "bib_bf62d2409f#0": {
+  "prendas": [
+   {
+    "tipo": "Camiseta de tirantes",
+    "estampado": "liso",
+    "tejido": "algodón",
+    "forma": "ajustada"
+   }
+  ],
+  "caja": [
+   130.2,
+   259.2,
+   332.0,
+   611.1
+  ],
+  "tipo_modelo": "Camiseta de tirantes",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "pr_c61cbd573b#0": {
+  "inservible": true,
+  "caja": [
+   319.8,
+   372.4,
+   728.6,
+   576.0
+  ],
+  "tipo_modelo": "Top",
+  "estilo": "urbano"
+ },
+ "pr_d94c6c84df#0": {
+  "inservible": true,
+  "caja": [
+   185.5,
+   226.2,
+   460.1,
+   420.6
+  ],
+  "tipo_modelo": "Camiseta manga larga",
+  "estilo": "urbano"
+ },
+ "bib_9a4b05cfbc#0": {
+  "inservible": true,
+  "caja": [
+   82.5,
+   483.2,
+   912.9,
+   1023.1
+  ],
+  "tipo_modelo": "Camiseta de tirantes",
+  "estilo": "geek"
+ },
+ "bib_723becc9a7#2": {
+  "inservible": true,
+  "caja": [
+   348.4,
+   765.4,
+   579.8,
+   881.2
+  ],
+  "tipo_modelo": "Botas",
+  "estilo": "geek"
+ },
+ "bib_ad4701dfd0#1": {
+  "prendas": [
+   {
+    "tipo": "Camiseta manga corta",
+    "estampado": "gráfico / dibujo",
+    "tejido": null,
+    "forma": "regular"
+   },
+   {
+    "tipo": "Chaqueta",
+    "estampado": null,
+    "tejido": null,
+    "forma": null
+   },
+   {
+    "tipo": "Pantalón",
+    "estampado": null,
+    "tejido": null,
+    "forma": null
+   }
+  ],
+  "caja": [
+   124.7,
+   350.2,
+   360.4,
+   568.1
+  ],
+  "tipo_modelo": "Top",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "pr_e5c19c0423#0": {
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "estampado": "liso",
+    "tejido": "cuero / vinilo",
+    "forma": "regular"
+   }
+  ],
+  "caja": [
+   45.1,
+   250.3,
+   588.1,
+   840.2
+  ],
+  "tipo_modelo": "Chaqueta",
+  "estilo": "urbano",
+  "mercado": "ES"
+ },
+ "bib_a5c006bd38#3": {
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "estampado": "camuflaje",
+    "tejido": "denim (vaquero)",
+    "forma": "regular"
+   }
+  ],
+  "caja": [
+   388.4,
+   455.7,
+   565.4,
+   670.0
+  ],
+  "tipo_modelo": "Chaqueta",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "rd_1wx0m0l#0": {
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "estampado": "liso",
+    "tejido": "cuero / vinilo",
+    "forma": "regular"
+   }
+  ],
+  "caja": [
+   228.8,
+   135.2,
+   441.5,
+   460.3
+  ],
+  "tipo_modelo": "Chaqueta",
+  "estilo": "urbano",
+  "mercado": "US"
+ },
+ "pr_7afb6285a8#0": {
+  "inservible": true,
+  "caja": [
+   0.5,
+   21.3,
+   195.2,
+   351.6
+  ],
+  "tipo_modelo": "Polo",
+  "estilo": "urbano"
+ },
+ "pr_c86b917cd2#0": {
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "estampado": "liso",
+    "tejido": "cuero / vinilo",
+    "forma": "regular"
+   }
+  ],
+  "caja": [
+   401.3,
+   189.9,
+   673.2,
+   489.1
+  ],
+  "tipo_modelo": "Chaqueta",
+  "estilo": "urbano",
+  "mercado": "US"
+ },
+ "bib_d31016ef91#0": {
+  "prendas": [
+   {
+    "tipo": "Abrigo",
+    "estampado": "liso",
+    "tejido": "técnico / impermeable",
+    "forma": "oversized / baggy"
+   }
+  ],
+  "caja": [
+   233.3,
+   197.0,
+   769.9,
+   561.2
+  ],
+  "tipo_modelo": "Chaqueta",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "tw_2094125419444257137_1#0": {
+  "prendas": [
+   {
+    "tipo": "Polo",
+    "estampado": "liso",
+    "tejido": "algodón",
+    "forma": "regular"
+   }
+  ],
+  "caja": [
+   395.9,
+   253.9,
+   670.9,
+   573.9
+  ],
+  "tipo_modelo": "Polo",
+  "estilo": "urbano",
+  "mercado": "ES"
+ },
+ "bib_c5c537138e#2": {
+  "prendas": [
+   {
+    "tipo": "Falda",
+    "estampado": "liso",
+    "tejido": "denim (vaquero)",
+    "forma": "ajustada"
+   }
+  ],
+  "caja": [
+   311.3,
+   698.3,
+   504.3,
+   837.4
+  ],
+  "tipo_modelo": "Short",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "bib_7d7b6c9949#1": {
+  "inservible": true,
+  "caja": [
+   502.8,
+   146.3,
+   846.9,
+   504.1
+  ],
+  "tipo_modelo": "Camiseta manga corta",
+  "estilo": "urbano"
+ },
+ "pr_b929fb380a#0": {
+  "inservible": true,
+  "caja": [
+   226.4,
+   393.4,
+   781.0,
+   787.0
+  ],
+  "tipo_modelo": "Camiseta manga corta",
+  "estilo": "urbano"
+ },
+ "bib_b8b8b8cedd#0": {
+  "prendas": [
+   {
+    "tipo": "Camiseta manga corta",
+    "estampado": "liso",
+    "tejido": null,
+    "forma": "oversized / baggy"
+   }
+  ],
+  "caja": [
+   222.3,
+   267.3,
+   533.6,
+   629.3
+  ],
+  "tipo_modelo": "Camisa",
+  "estilo": "urbano",
+  "mercado": "Biblioteca"
+ },
+ "bib_2b71e049b6#0": {
+  "prendas": [
+   {
+    "tipo": "Top",
+    "estampado": "liso",
+    "tejido": "algodón",
+    "forma": "ajustada"
+   }
+  ],
+  "caja": [
+   279.1,
+   319.3,
+   745.1,
+   869.3
+  ],
+  "tipo_modelo": "Camiseta manga larga",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "bib_91bfef3f0e#1": {
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "estampado": "liso",
+    "tejido": "denim (vaquero)",
+    "forma": "oversized / baggy"
+   }
+  ],
+  "caja": [
+   368.0,
+   477.3,
+   520.5,
+   667.5
+  ],
+  "tipo_modelo": "Short",
+  "estilo": "geek",
+  "mercado": "Biblioteca"
+ },
+ "pr_448530abef#0": {
+  "inservible": true,
+  "caja": [
+   214.7,
+   130.3,
+   484.6,
+   606.6
+  ],
+  "tipo_modelo": "Americana",
+  "estilo": "urbano"
+ },
+ "tw_2097664023282036913_1#0": {
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "estampado": "liso",
+    "tejido": "denim (vaquero)",
+    "forma": "oversized / baggy"
+   }
+  ],
+  "caja": [
+   288.5,
+   649.0,
+   767.0,
+   1023.3
+  ],
+  "tipo_modelo": "Camisa",
+  "estilo": "urbano",
+  "mercado": "ES"
+ },
+ "pr_fede2ee6b6#0": {
+  "inservible": true,
+  "caja": [
+   0.6,
+   25.2,
+   192.2,
+   354.9
+  ],
+  "tipo_modelo": "Camiseta manga corta",
+  "estilo": "urbano"
+ },
+ "bib_ade783de0c#0": {
+  "inservible": true,
+  "caja": [
+   226.1,
+   718.8,
+   534.7,
+   1023.5
+  ],
+  "tipo_modelo": "Top",
+  "estilo": "geek"
+ },
+ "bib_bf3f39d6d0#1": {
+  "inservible": true,
+  "caja": [
+   102.9,
+   195.1,
+   530.3,
+   461.2
+  ],
+  "tipo_modelo": "Hoodie",
+  "estilo": "urbano"
+ },
+ "tw_2086516838855287213_1#1": {
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "estampado": null,
+    "tejido": "denim (vaquero)",
+    "forma": null
+   }
+  ],
+  "caja": [
+   787.2,
+   270.5,
+   899.4,
+   423.6
+  ],
+  "tipo_modelo": "Short",
+  "estilo": "urbano",
+  "mercado": "ES"
  }
 }

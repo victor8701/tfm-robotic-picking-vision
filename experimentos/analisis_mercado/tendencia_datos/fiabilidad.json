@@ -1,5 +1,5 @@
 {
- "generado": "2026-10-09T18:29:19+00:00",
+ "generado": "2026-10-09T19:33:29+00:00",
  "tipo_fino": {
   "acierto": 19,
   "n": 38,
@@ -39,47 +39,33 @@
   "fuente": "memoria/TFM_tendencias_de_prenda.md §6"
  },
  "vlm_tipo": {
-  "acierto": 24,
-  "n": 38,
-  "cualquiera": 27,
-  "fuente": "prueba con las 40 fotos de Víctor (9 de octubre de 2026), instrucciones v1; sustituir por el lote ciego"
+  "acierto": 17,
+  "n": 32,
+  "cualquiera": 17,
+  "fuente": "lote ciego de Víctor (etiquetado después de que el modelo etiquetara esos recortes)"
  },
  "vlm_familia": {
-  "acierto": 33,
-  "n": 38,
-  "fuente": "prueba con las 40 fotos de Víctor (9 de octubre de 2026), instrucciones v1; sustituir por el lote ciego"
+  "acierto": 27,
+  "n": 32,
+  "cualquiera": 0,
+  "fuente": "lote ciego de Víctor (etiquetado después de que el modelo etiquetara esos recortes)"
  },
  "vlm_estampado": {
-  "acierto": 16,
-  "n": 22,
-  "cualquiera": 25,
-  "mas_frecuente": [
-   "liso",
-   11,
-   22
-  ],
-  "fuente": "prueba con las 40 fotos de Víctor (9 de octubre de 2026), instrucciones v1; sustituir por el lote ciego"
+  "acierto": 23,
+  "n": 27,
+  "cualquiera": 23,
+  "fuente": "lote ciego de Víctor (etiquetado después de que el modelo etiquetara esos recortes)"
  },
  "vlm_tejido": {
-  "acierto": 8,
-  "n": 15,
-  "cualquiera": 13,
-  "mas_frecuente": [
-   "algodón",
-   10,
-   15
-  ],
-  "fuente": "prueba con las 40 fotos de Víctor (9 de octubre de 2026), instrucciones v1; sustituir por el lote ciego"
+  "acierto": 14,
+  "n": 26,
+  "cualquiera": 14,
+  "fuente": "lote ciego de Víctor (etiquetado después de que el modelo etiquetara esos recortes)"
  },
  "vlm_forma": {
-  "acierto": 13,
-  "n": 23,
-  "cualquiera": 17,
-  "mas_frecuente": [
-   "oversized / baggy",
-   11,
-   23
-  ],
-  "fuente": "prueba con las 40 fotos de Víctor (9 de octubre de 2026), instrucciones v1; sustituir por el lote ciego"
+  "acierto": 15,
+  "n": 27,
+  "cualquiera": 15,
+  "fuente": "lote ciego de Víctor (etiquetado después de que el modelo etiquetara esos recortes)"
  }
 }

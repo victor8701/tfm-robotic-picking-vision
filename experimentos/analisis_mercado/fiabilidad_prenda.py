@@ -81,7 +81,10 @@ def main():
     ap.add_argument("--etiquetas", type=Path, default=TD / "etiquetas_prendas.json")
     ap.add_argument("--salida", type=Path, default=TD / "fiabilidad.json")
     a = ap.parse_args()
-    etiq = {k: v for k, v in json.loads(a.etiquetas.read_text(encoding="utf-8")).items() if v.get("prendas") and v["prendas"][0].get("tipo")}
+    todas = json.loads(a.etiquetas.read_text(encoding="utf-8"))
+    ciego = set(json.loads((TD / "lote_ciego.json").read_text(encoding="utf-8"))) if (TD / "lote_ciego.json").exists() else set()
+    # el tipo de CLIP se mide con los lotes 1 y 2: en el lote ciego el `tipo_modelo` guardado ya es el del modelo grande (se mide aparte, abajo)
+    etiq = {k: v for k, v in todas.items() if v.get("prendas") and v["prendas"][0].get("tipo") and k not in ciego}
     n = fino = fino_cual = fam = fam_cual = 0
     for v in etiq.values():
         modelo = v["tipo_modelo"]
