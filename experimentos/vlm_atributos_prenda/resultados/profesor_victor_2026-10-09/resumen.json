@@ -1,0 +1,48 @@
+{
+ "modo": "completo",
+ "prendas": 40,
+ "ejecuciones": [
+  {
+   "modelo": "qwen3vl8b",
+   "carga": "fp16",
+   "config": "recorte",
+   "segundos": 36,
+   "fashionpedia": {}
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "carga": "fp16",
+   "config": "foto",
+   "segundos": 68,
+   "fashionpedia": {}
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "carga": "fp16",
+   "config": "tipo_recorte",
+   "segundos": 23,
+   "fashionpedia": {}
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "carga": "fp16",
+   "config": "tipo_foto",
+   "segundos": 50,
+   "fashionpedia": {}
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "carga": "fp16",
+   "config": "profesor",
+   "segundos": 89,
+   "fashionpedia": {}
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "carga": "fp16",
+   "config": "profesor_v2",
+   "segundos": 90,
+   "fashionpedia": {}
+  }
+ ]
+}

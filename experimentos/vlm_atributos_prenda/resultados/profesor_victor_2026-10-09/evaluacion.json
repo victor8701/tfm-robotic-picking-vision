@@ -1,0 +1,394 @@
+{
+ "tipo_victor": [
+  {
+   "modelo": "qwen3vl8b",
+   "config": "profesor",
+   "principal": [
+    22,
+    38
+   ],
+   "cualquiera": [
+    28,
+    38
+   ],
+   "familia_principal": [
+    30,
+    38
+   ]
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "config": "profesor_v2",
+   "principal": [
+    22,
+    38
+   ],
+   "cualquiera": [
+    28,
+    38
+   ],
+   "familia_principal": [
+    30,
+    38
+   ]
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "config": "tipo_foto",
+   "principal": [
+    22,
+    38
+   ],
+   "cualquiera": [
+    28,
+    38
+   ],
+   "familia_principal": [
+    30,
+    38
+   ]
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "config": "tipo_recorte",
+   "principal": [
+    24,
+    38
+   ],
+   "cualquiera": [
+    27,
+    38
+   ],
+   "familia_principal": [
+    33,
+    38
+   ]
+  }
+ ],
+ "victor": [
+  {
+   "modelo": "qwen3vl8b",
+   "config": "foto",
+   "campo": "estampado",
+   "principal": [
+    17,
+    22
+   ],
+   "cualquiera": [
+    27,
+    32
+   ],
+   "siempre_la_mas_frecuente": [
+    "liso",
+    11,
+    22
+   ],
+   "siempre_la_mas_frecuente_cualquiera": [
+    "liso",
+    15,
+    32
+   ],
+   "no_mayoritarias_acertadas": [
+    8,
+    11
+   ]
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "config": "foto",
+   "campo": "tejido",
+   "principal": [
+    9,
+    15
+   ],
+   "cualquiera": [
+    14,
+    23
+   ],
+   "siempre_la_mas_frecuente": [
+    "algodón",
+    10,
+    15
+   ],
+   "siempre_la_mas_frecuente_cualquiera": [
+    "algodón",
+    13,
+    23
+   ],
+   "no_mayoritarias_acertadas": [
+    3,
+    5
+   ]
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "config": "foto",
+   "campo": "forma",
+   "principal": [
+    14,
+    23
+   ],
+   "cualquiera": [
+    22,
+    31
+   ],
+   "siempre_la_mas_frecuente": [
+    "oversized / baggy",
+    11,
+    23
+   ],
+   "siempre_la_mas_frecuente_cualquiera": [
+    "oversized / baggy",
+    17,
+    31
+   ],
+   "no_mayoritarias_acertadas": [
+    6,
+    12
+   ]
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "config": "profesor",
+   "campo": "estampado",
+   "principal": [
+    16,
+    22
+   ],
+   "cualquiera": [
+    25,
+    32
+   ],
+   "siempre_la_mas_frecuente": [
+    "liso",
+    11,
+    22
+   ],
+   "siempre_la_mas_frecuente_cualquiera": [
+    "liso",
+    15,
+    32
+   ],
+   "no_mayoritarias_acertadas": [
+    8,
+    11
+   ]
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "config": "profesor",
+   "campo": "tejido",
+   "principal": [
+    8,
+    15
+   ],
+   "cualquiera": [
+    13,
+    23
+   ],
+   "siempre_la_mas_frecuente": [
+    "algodón",
+    10,
+    15
+   ],
+   "siempre_la_mas_frecuente_cualquiera": [
+    "algodón",
+    13,
+    23
+   ],
+   "no_mayoritarias_acertadas": [
+    3,
+    5
+   ]
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "config": "profesor",
+   "campo": "forma",
+   "principal": [
+    13,
+    23
+   ],
+   "cualquiera": [
+    17,
+    31
+   ],
+   "siempre_la_mas_frecuente": [
+    "oversized / baggy",
+    11,
+    23
+   ],
+   "siempre_la_mas_frecuente_cualquiera": [
+    "oversized / baggy",
+    17,
+    31
+   ],
+   "no_mayoritarias_acertadas": [
+    6,
+    12
+   ]
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "config": "profesor_v2",
+   "campo": "estampado",
+   "principal": [
+    16,
+    22
+   ],
+   "cualquiera": [
+    25,
+    32
+   ],
+   "siempre_la_mas_frecuente": [
+    "liso",
+    11,
+    22
+   ],
+   "siempre_la_mas_frecuente_cualquiera": [
+    "liso",
+    15,
+    32
+   ],
+   "no_mayoritarias_acertadas": [
+    8,
+    11
+   ]
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "config": "profesor_v2",
+   "campo": "tejido",
+   "principal": [
+    9,
+    15
+   ],
+   "cualquiera": [
+    14,
+    23
+   ],
+   "siempre_la_mas_frecuente": [
+    "algodón",
+    10,
+    15
+   ],
+   "siempre_la_mas_frecuente_cualquiera": [
+    "algodón",
+    13,
+    23
+   ],
+   "no_mayoritarias_acertadas": [
+    3,
+    5
+   ]
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "config": "profesor_v2",
+   "campo": "forma",
+   "principal": [
+    13,
+    23
+   ],
+   "cualquiera": [
+    17,
+    31
+   ],
+   "siempre_la_mas_frecuente": [
+    "oversized / baggy",
+    11,
+    23
+   ],
+   "siempre_la_mas_frecuente_cualquiera": [
+    "oversized / baggy",
+    17,
+    31
+   ],
+   "no_mayoritarias_acertadas": [
+    6,
+    12
+   ]
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "config": "recorte",
+   "campo": "estampado",
+   "principal": [
+    17,
+    22
+   ],
+   "cualquiera": [
+    26,
+    32
+   ],
+   "siempre_la_mas_frecuente": [
+    "liso",
+    11,
+    22
+   ],
+   "siempre_la_mas_frecuente_cualquiera": [
+    "liso",
+    15,
+    32
+   ],
+   "no_mayoritarias_acertadas": [
+    8,
+    11
+   ]
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "config": "recorte",
+   "campo": "tejido",
+   "principal": [
+    9,
+    15
+   ],
+   "cualquiera": [
+    14,
+    23
+   ],
+   "siempre_la_mas_frecuente": [
+    "algodón",
+    10,
+    15
+   ],
+   "siempre_la_mas_frecuente_cualquiera": [
+    "algodón",
+    13,
+    23
+   ],
+   "no_mayoritarias_acertadas": [
+    3,
+    5
+   ]
+  },
+  {
+   "modelo": "qwen3vl8b",
+   "config": "recorte",
+   "campo": "forma",
+   "principal": [
+    11,
+    23
+   ],
+   "cualquiera": [
+    17,
+    31
+   ],
+   "siempre_la_mas_frecuente": [
+    "oversized / baggy",
+    11,
+    23
+   ],
+   "siempre_la_mas_frecuente_cualquiera": [
+    "oversized / baggy",
+    17,
+    31
+   ],
+   "no_mayoritarias_acertadas": [
+    4,
+    12
+   ]
+  }
+ ]
+}

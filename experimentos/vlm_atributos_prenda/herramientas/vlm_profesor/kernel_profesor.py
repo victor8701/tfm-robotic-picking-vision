@@ -38,6 +38,7 @@ CONFIGS = [  # (nombre, imágenes, razona, máximo de prendas, tarea)
     ("tipo_recorte", "recorte", False, None, "tipo"),
     ("tipo_foto", "foto", False, None, "tipo"),
     ("profesor", "foto", False, None, "profesor"),
+    ("profesor_v2", "foto", False, None, "profesor"),
 ]
 PARTE = None           # (k, n): procesa solo las prendas k, k+n, k+2n… (para repartir una tanda larga entre varios kernels)
 SOLO = None            # lista de nombres de configuración a correr (None = todas); sirve para repetir solo una parte
@@ -75,9 +76,13 @@ GUIA = ("Guidelines:\n"
         "unknown only if the fabric really cannot be judged.\n"
         "- fit: how the garment sits on the body. oversized = clearly roomy, baggy, dropped shoulders or wide legs; regular = standard cut; slim = close to the body; "
         "cropped = hem clearly above the waist or hip, or a very short length; n/a = shoes, bags and hats.")
+# v2: lo que se vio con las etiquetas de Víctor (7 fallos de tejido): una sudadera o una capucha de jersey normal es «algodón» para él, y «felpa / polar» solo el polar de pelo
+GUIA_V2 = (GUIA.replace("fleece = sweatshirt or hoodie material, or polar fleece;", "fleece = only fuzzy polar fleece (a sweatshirt or hoodie in ordinary cotton jersey is cotton);")
+           .replace("cotton = ordinary t-shirt jersey or woven cotton;", "cotton = ordinary t-shirt jersey, woven cotton, and sweatshirt or hoodie jersey;"))
+assert GUIA_V2 != GUIA
 
 
-def prompt(variante: str, razona: bool, tipo_en: str) -> str:
+def prompt(variante: str, razona: bool, tipo_en: str, guia: str = GUIA) -> str:
     if variante == "foto":
         intro = "Image 1 is a photo of a person; the red box marks the garment of interest. Image 2 is a close-up crop of that same garment."
     else:
@@ -86,7 +91,7 @@ def prompt(variante: str, razona: bool, tipo_en: str) -> str:
         cola = "First write at most three short sentences about the print, the material and how the garment fits on the body. Then write the answer on a new line as: JSON: " + FORMATO
     else:
         cola = "Answer with ONLY this JSON object and nothing else: " + FORMATO
-    return f"You are an expert fashion analyst. {intro} The garment of interest is {tipo_en}.\n{cola}\n{GUIA}"
+    return f"You are an expert fashion analyst. {intro} The garment of interest is {tipo_en}.\n{cola}\n{guia}"
 
 
 def lista_tipos(origen: str, tarea: str):
@@ -242,6 +247,7 @@ def cargar_modelo(nombre_hf, items):
 
 def correr_config(m, proc, items, cfg, nombre_modelo, generador, t_inicio):
     nombre, variante, razona, maximo, tarea = cfg
+    guia = GUIA_V2 if nombre.endswith("_v2") else GUIA
     sel = list(items)
     if maximo and len(sel) > maximo:
         sel = random.Random(5).sample(sel, maximo)
@@ -269,11 +275,11 @@ def correr_config(m, proc, items, cfg, nombre_modelo, generador, t_inicio):
                 crudos_t = pedir([prompt_tipo(variante, it["origen"], "profesor") for it in lote], 8)
                 tipos = [parsear_tipo(c, it["origen"], "profesor") for c, it in zip(crudos_t, lote)]
                 en = dict(TIPOS_V)
-                crudos_a = pedir([prompt("recorte", False, en.get(t, "a garment")) for t in tipos], 70, "recorte")
+                crudos_a = pedir([prompt("recorte", False, en.get(t, "a garment"), guia) for t in tipos], 70, "recorte")
                 for it, ct, t, ca in zip(lote, crudos_t, tipos, crudos_a):
                     f.write(json.dumps({"id": it["id"], "origen": it["origen"], "modelo": nombre_modelo, "config": nombre, "crudo_tipo": ct, "tipo29": t, "crudo": ca, **parsear(ca)}, ensure_ascii=False) + "\n")
             else:
-                crudos = pedir([prompt_tipo(variante, it["origen"]) if tarea == "tipo" else prompt(variante, razona, it["tipo_en"]) for it in lote], 230 if razona else (8 if tarea == "tipo" else 70))
+                crudos = pedir([prompt_tipo(variante, it["origen"]) if tarea == "tipo" else prompt(variante, razona, it["tipo_en"], guia) for it in lote], 230 if razona else (8 if tarea == "tipo" else 70))
                 for it, crudo in zip(lote, crudos):
                     resultado = {"tipo": parsear_tipo(crudo, it["origen"])} if tarea == "tipo" else parsear(crudo)
                     f.write(json.dumps({"id": it["id"], "origen": it["origen"], "modelo": nombre_modelo, "config": nombre, "crudo": crudo, **resultado}, ensure_ascii=False) + "\n")

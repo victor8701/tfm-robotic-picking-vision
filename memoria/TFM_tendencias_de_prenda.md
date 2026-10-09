@@ -185,3 +185,29 @@ Con la mitad de las prendas (2 626) el tipo salió 22 de 38, lo que da idea del 
 5 de los 12 fallos de forma son «oversized» (Víctor) frente a «regular» (alumno), porque en Fashionpedia «oversized» es mucho más raro (13 %) que en el streetwear de Víctor (la mitad de sus prendas); y en estampado el alumno dice «texto / logo» en prendas que Víctor llama «liso» o «gráfico» (7 fallos). Es decir, parte del problema es de **definiciones**, no solo de capacidad.
 (4) Lo que no se sabe es cuánto acierta el propio profesor contra Víctor, porque subir sus fotos a Kaggle se bloqueó por permisos. Esa es la prueba que separa «el modelo grande coincide con Víctor y falla la destilación» de «el modelo grande tiene otro criterio». Sin ella, la conclusión sólida es que la destilación sobre CLIP no basta.
 
+### 6.4 El profesor medido directamente con las etiquetas de Víctor (9 de octubre)
+
+**Método.** Con permiso expreso de Víctor, sus 40 recortes etiquetados (40 fotos de personas reales: 33 de su Biblioteca, 3 de prensa, 2 de Reddit, 2 de X) se subieron a un dataset privado de Kaggle (5,8 MB: foto, caja de la prenda y su tipo; ninguna etiqueta de estampado, tejido ni forma),
+se corrió Qwen3-VL-8B-Instruct sin entrenar (9 minutos, 131 s de carga, dos GPU T4) y el dataset se borró al bajar los resultados. Configuraciones: `recorte` y `foto` (estampado, tejido y forma dándole el tipo que puso Víctor); `tipo_recorte` y `tipo_foto` (elegir el tipo entre los 29);
+`profesor` (el flujo en dos pasos que etiquetó Fashionpedia: tipo con la foto, y atributos con el recorte y el tipo que eligió él) y `profesor_v2` (igual, con la guía de tejido ajustada tras ver los fallos del alumno: sudadera y capucha de jersey cuentan como algodón; **ajuste hecho mirando las mismas etiquetas, no es una medida limpia**).
+Resultados por prenda en `vlm_atributos_prenda/resultados/profesor_victor_2026-10-09/`.
+
+| Prenda principal de Víctor | Flujo / CLIP hasta ahora | Alumno sobre CLIP (§6.3) | Qwen3-VL-8B directo | Siempre la más frecuente |
+|---|---|---|---|---|
+| Tipo de 29 | 19 de 38 (50 %) | 19-20 de 38 | recorte 24 de 38 (63 %); foto 22; profesor 22 | 9 de 38 |
+| Tipo, «cualquiera» | 24 de 38 | 25 de 38 | 27-28 de 38 (71-74 %) | |
+| Familia de prenda | 29 de 38 (76 %) | 28 de 38 | 30-33 de 38 (79-87 %) | |
+| **Estampado** | 12-13 de 22 | 11 de 22 | **17 de 22 (77 %)** con foto o recorte; profesor 16 | 11 de 22 («liso») |
+| Estampado, «cualquiera» | | 16 de 32 | 25-27 de 32 (78-84 %) | 15 de 32 |
+| Tejido | 6 de 17 | 7 de 15 | 9 de 15; profesor 8; v2 9 | 10 de 15 («algodón») |
+| Forma | 4-9 de 23 | 11 de 23 | foto 14 de 23 (61 %); profesor 13; recorte 11 | 11 de 23 («oversized») |
+| Forma, «cualquiera» | | 18 de 31 | foto 22 de 31 (71 %); profesor 17 | 17 de 31 |
+
+**Lectura.** (1) **Estampado: el modelo grande supera el 70 % y casi dobla a «decir liso»** (50 %): liso 9 de 11, gráfico 6 de 7, texto o logo 2 de 3; los fallos son «liso» → «texto / logo» (2, logos pequeños), gráfico ↔ texto (2) y «otro» → camuflaje (1). Con 22 etiquetas el error típico es de unos 9 puntos: la diferencia con la referencia es de tres errores típicos.
+(2) **Tejido: no supera a «algodón»** (9 de 15 frente a 10), pero acierta los materiales que se distinguen a simple vista (vaquero, cuero y técnico, 3 de 3) y falla donde hay que separar algodón, punto y felpa (4 de 10 algodones) y en el tul; con 15 etiquetas, 10 de ellas «algodón», la prueba no puede decir más.
+(3) **Forma: mejora con la foto entera** (14 de 23, 61 %) frente al recorte (11 de 23): el modelo necesita ver cómo cae la prenda sobre el cuerpo. «Regular» 5 de 5, «oversized» 8 de 11 y «ajustada» solo 1 de 5 (3 veces «corta / cropped»: tops ajustados y cortos a la vez, una ambigüedad del propio vocabulario). No llega al 70 % con la prenda principal.
+(4) **Tipo: mejora modesta** (63 frente a 50 %, dentro del margen con 38 prendas); por familia 87 % con el recorte. Los fallos son entre vecinos: camiseta ↔ polo, camisa ↔ chaqueta.
+(5) **Conclusión.** El modelo grande sí coincide con Víctor en estampado y en los materiales evidentes, y la destilación sobre CLIP (§6.3) pierde esa ventaja: lo que falla es el alumno (51-71 % de acuerdo con el profesor), no el profesor. Es un argumento para usar el modelo grande dentro del flujo y no destilarlo.
+Su coste: una GPU (Kaggle gratuita: ~2,5 s por prenda con dos preguntas, 25 minutos por cada 600 prendas) y que las fotos de cada semana salgan del ordenador a un servicio externo (privado y borrado después). (6) Límites: 15 a 38 etiquetas por atributo (error típico de 8 a 13 puntos), una sola persona etiquetó, fotos de sus propias fuentes;
+el umbral del 70 % lo fijé antes de ver el resultado.
+

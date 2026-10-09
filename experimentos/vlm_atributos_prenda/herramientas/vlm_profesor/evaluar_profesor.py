@@ -122,13 +122,14 @@ def medir_tipo_fashionpedia(preds, manifiesto):
 def medir_tipo_victor(preds, etiq):
     filas = []
     for (modelo, cfg), pr in sorted(preds.items()):
-        if not cfg.startswith("tipo_"):
+        if not (cfg.startswith("tipo_") or cfg.startswith("profesor")):
             continue
+        clave_tipo = "tipo29" if cfg.startswith("profesor") else "tipo"
         claves = [i[2:] for i in pr if i.startswith("v:") and i[2:] in etiq and etiq[i[2:]]["prendas"][0].get("tipo")]
         eq = lambda t: {"Hoodie": "Sudadera"}.get(t, t)   # noqa: E731
-        princ = sum(eq(pr["v:" + k].get("tipo")) == eq(etiq[k]["prendas"][0]["tipo"]) for k in claves)
-        cual = sum(eq(pr["v:" + k].get("tipo")) in {eq(q["tipo"]) for q in etiq[k]["prendas"] if q.get("tipo")} for k in claves)
-        fam = sum(kp_familia(pr["v:" + k].get("tipo")) == kp_familia(etiq[k]["prendas"][0]["tipo"]) for k in claves)
+        princ = sum(eq(pr["v:" + k].get(clave_tipo)) == eq(etiq[k]["prendas"][0]["tipo"]) for k in claves)
+        cual = sum(eq(pr["v:" + k].get(clave_tipo)) in {eq(q["tipo"]) for q in etiq[k]["prendas"] if q.get("tipo")} for k in claves)
+        fam = sum(kp_familia(pr["v:" + k].get(clave_tipo)) == kp_familia(etiq[k]["prendas"][0]["tipo"]) for k in claves)
         filas.append({"modelo": modelo, "config": cfg, "principal": [princ, len(claves)], "cualquiera": [cual, len(claves)], "familia_principal": [fam, len(claves)]})
     return filas
 
@@ -194,13 +195,13 @@ def main():
                   f" | más frecuente {f['siempre_la_mas_frecuente'][0]} {f['siempre_la_mas_frecuente'][1]}/{f['siempre_la_mas_frecuente'][2]} | sin respuesta válida {f['sin_respuesta_valida']}")
     if any(i.startswith("v:") for p in preds.values() for i in p):
         etiq = {k: v for k, v in json.loads(a.etiquetas.read_text(encoding="utf-8")).items() if v.get("prendas")}
-        if any(c.startswith("tipo_") for _, c in preds):
+        if any(c.startswith("tipo_") or c.startswith("profesor") for _, c in preds):
             res["tipo_victor"] = medir_tipo_victor(preds, etiq)
             print("\n== Tipo de prenda: etiquetas de Víctor (el flujo semanal: 19 de 38 principal, 24 de 38 cualquiera, 29 de 38 familia) ==")
             for f in res["tipo_victor"]:
                 print(f"{f['modelo']:>10}/{f['config']:<13} principal {f['principal'][0]}/{f['principal'][1]} | cualquiera {f['cualquiera'][0]}/{f['cualquiera'][1]} | familia {f['familia_principal'][0]}/{f['familia_principal'][1]}")
         res["victor"] = medir_victor(preds, etiq)
-        print("\n== Etiquetas de Víctor ==")
+        print("\n== Etiquetas de Víctor (estampado, tejido y forma) ==")
         for f in res["victor"]:
             print(f"{f['modelo']:>10}/{f['config']:<11} {f['campo']:<9} principal {f['principal'][0]}/{f['principal'][1]} | cualquiera {f['cualquiera'][0]}/{f['cualquiera'][1]} | "
                   f"más frecuente «{f['siempre_la_mas_frecuente'][0]}» {f['siempre_la_mas_frecuente'][1]}/{f['siempre_la_mas_frecuente'][2]} | no mayoritarias acertadas {f['no_mayoritarias_acertadas'][0]}/{f['no_mayoritarias_acertadas'][1]}")
