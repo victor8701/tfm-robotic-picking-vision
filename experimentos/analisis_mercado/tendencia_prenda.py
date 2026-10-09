@@ -442,6 +442,13 @@ def cmd_vlm(args):
         return
     sys.path.insert(0, str(VLMP))
     import kaggle_ops as ko   # lee el token de ~/.config/kaggle/api_token
+    for ref, _, _ in ko.datasets():   # restos de una pasada anterior que falló: las fotos de personas no se quedan en Kaggle
+        if ref.split("/")[-1].startswith("tfm-semanal-prendas-"):
+            try:
+                ko.dataset_borrar(ref.split("/")[-1])
+                print(f"Borrado un dataset que quedó de una pasada anterior: {ref}", flush=True)
+            except Exception as e:  # noqa: BLE001
+                print(f"⚠ No pude borrar {ref} ({type(e).__name__}): bórralo a mano en kaggle.com/datasets", flush=True)
     slug = "tfm-semanal-prendas-" + datetime.now().strftime("%Y%m%d-%H%M")
     n_partes = max(1, math.ceil(len(pend) / MAX_POR_KERNEL))
     resultados = []

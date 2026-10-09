@@ -56,21 +56,34 @@ def dataset_estado(slug) -> str:
     return api_cli().dataset_status(f"{USUARIO.lower()}/{slug}")
 
 
-def esperar_dataset(slug, intentos=60, pausa=5) -> None:
+def esperar_dataset(slug, intentos=120, pausa=5) -> None:
+    """Espera a que el dataset esté listo. Justo después de crearlo, Kaggle contesta 403 (aún no lo ve): se sigue esperando."""
     for _ in range(intentos):
-        if dataset_estado(slug) == "ready":
-            return
+        try:
+            if dataset_estado(slug) == "ready":
+                return
+        except Exception:  # noqa: BLE001
+            pass
         time.sleep(pausa)
     raise TimeoutError(f"el dataset {slug} no llegó a «ready»")
 
 
-def dataset_borrar(slug) -> None:
-    with KaggleClient() as k:
-        req = ApiDeleteDatasetRequest()
-        req.owner_slug, req.dataset_slug = USUARIO.lower(), slug
-        r = k.datasets.dataset_api_client.delete_dataset(req)
-        if getattr(r, "error", None):
-            raise RuntimeError(f"no se pudo borrar {slug}: {r.error}")
+def dataset_borrar(slug, intentos=24, pausa=5) -> None:
+    """Borra el dataset. Si aún no se puede (Kaggle contesta 403 mientras lo procesa), reintenta hasta ~2 minutos; si no, lanza el último error."""
+    ultimo = None
+    for _ in range(intentos):
+        try:
+            with KaggleClient() as k:
+                req = ApiDeleteDatasetRequest()
+                req.owner_slug, req.dataset_slug = USUARIO.lower(), slug
+                r = k.datasets.dataset_api_client.delete_dataset(req)
+            if getattr(r, "error", None):
+                raise RuntimeError(f"no se pudo borrar {slug}: {r.error}")
+            return
+        except Exception as e:  # noqa: BLE001
+            ultimo = e
+            time.sleep(pausa)
+    raise ultimo
 
 
 def datasets() -> list[tuple[str, bool, str]]:
