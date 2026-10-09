@@ -13,7 +13,10 @@ Formato de respuesta, una línea por recorte:   <recorte> <tipo> <estampado> <fo
   tipo: número de la leyenda (1-28);  estampado: L liso · R rayas · C cuadros/tartán · G gráfico/dibujo · T texto/logo · K camuflaje · O otro;
   forma: O oversized/baggy · R regular · S ajustada · C corta/cropped · N no aplica (calzado, falda, vestido…).   "5 x" = recorte inservible.
 
-Uso:  python3 hojas_prendas.py crear [--n 36]   |   python3 hojas_prendas.py resolver --respuestas "1 7 L O; 2 14 L R; 3 x"
+Lote CIEGO (`crear --ciego`, 9 de octubre de 2026): recortes al azar (uno por foto, de fotos que no tienen ninguna etiqueta) que YA tienen la etiqueta del modelo grande y sin sugerencias del modelo en la página,
+para medir con limpieza lo que corre cada semana; sus claves se guardan en `tendencia_datos/lote_ciego.json` y `fiabilidad_prenda.py` las usa.
+
+Uso:  python3 hojas_prendas.py crear [--n 36] [--ciego]   |   python3 hojas_prendas.py resolver --respuestas "1 7 L O; 2 14 L R; 3 x"
       python3 hojas_prendas.py html --salida etiquetar_prendas_build.html   |   python3 hojas_prendas.py importar --dir <carpeta exportada de la base>
 """
 import argparse
@@ -55,7 +58,7 @@ def candidatos() -> list[dict]:
             if not p["visible"] or min(ancho, alto) < 110 or not 0.4 <= ancho / alto <= 2.5 or f"{fid}#{i}" in ya:
                 continue
             out.append({"foto": fid, "idx": i, "caja": p["caja"], "tipo": p["tipo"], "p": p["p_tipo"], "cat": p["cat"], "estilo": f["estilo"],
-                        "mercado": f["mercado"], "fuente": f.get("referente") or "Biblioteca"})
+                        "mercado": f["mercado"], "fuente": f.get("referente") or "Biblioteca", "vlm": "vlm" in p})
     return out
 
 
@@ -115,12 +118,29 @@ def sugerir(el: list[dict]) -> list[list[str]]:
     return out
 
 
+def elegir_ciego(c: list[dict], n: int, semilla: int = 9) -> list[dict]:
+    """Al azar, un recorte por foto, solo de fotos sin ninguna etiqueta y con la etiqueta del modelo grande ya puesta (así lo que contestas se compara con una predicción hecha antes)."""
+    ya = json.loads(ETIQ.read_text(encoding="utf-8")) if ETIQ.exists() else {}
+    fotos_etiquetadas = {k.split("#")[0] for k in ya}
+    pool = [x for x in c if x["vlm"] and x["foto"] not in fotos_etiquetadas]
+    rnd = random.Random(semilla)
+    rnd.shuffle(pool)
+    vistas, el = set(), []
+    for x in pool:
+        if x["foto"] not in vistas:
+            vistas.add(x["foto"])
+            el.append(x)
+    return el[:n]
+
+
 def cmd_crear(a):
     c = candidatos()
     if not c:
         raise SystemExit("No hay recortes nuevos para etiquetar.")
-    el = elegir(c, a.n)
-    sugerencias = sugerir(el)
+    el = elegir_ciego(c, a.n) if a.ciego else elegir(c, a.n)
+    if a.ciego and len(el) < a.n:
+        print(f"Aviso: solo hay {len(el)} recortes que cumplan lo del lote ciego (se pedían {a.n}).")
+    sugerencias = [[] for _ in el] if a.ciego else sugerir(el)
     SALIDA.mkdir(parents=True, exist_ok=True)
     for f in SALIDA.glob("*"):
         f.unlink()
@@ -165,6 +185,8 @@ def cmd_crear(a):
             dr.text((8, y0 + k * 22), t, fill=(255, 220, 140) if t.startswith("Respuesta") else (210, 215, 235), font=fp)
         im.save(SALIDA / f"hoja_prendas_{h + 1}.jpg", quality=88)
     (SALIDA / "estado.json").write_text(json.dumps(estado, ensure_ascii=False, indent=1), encoding="utf-8")
+    if a.ciego:
+        (TD / "lote_ciego.json").write_text(json.dumps(sorted(f"{e['foto']}#{e['idx']}" for e in estado.values()), ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"{len(el)} recortes en {hojas} hojas: {SALIDA}")
 
 
@@ -247,6 +269,7 @@ def main():
     sub = ap.add_subparsers(dest="cmd", required=True)
     p = sub.add_parser("crear")
     p.add_argument("--n", type=int, default=36)
+    p.add_argument("--ciego", action="store_true", help="lote ciego: al azar, uno por foto, con la etiqueta del modelo grande ya puesta y sin sugerencias; guarda tendencia_datos/lote_ciego.json")
     p.add_argument("--prefijo", default="", help="prefijo de los números de recorte (p. ej. «b2-» en el lote 2) para no pisar las etiquetas de lotes anteriores en la base de la página")
     p = sub.add_parser("resolver")
     p.add_argument("--respuestas", required=True)
