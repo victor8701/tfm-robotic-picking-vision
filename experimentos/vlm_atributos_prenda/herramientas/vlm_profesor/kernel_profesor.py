@@ -13,6 +13,8 @@ Configuraciones:
   foto         la foto entera con la prenda marcada en una caja roja + el recorte (el modelo ve cómo cae la prenda sobre el cuerpo)
   foto_razona  igual que «foto», pero primero describe en pocas frases y luego contesta (solo en una submuestra)
   tipo_recorte / tipo_foto  el modelo NO sabe qué prenda es: elige su tipo de una lista numerada (las 13 categorías de Fashionpedia, o los 29 tipos de Víctor)
+  semanal      la del análisis semanal: tipo entre los 29 con el recorte (24 de 38 con las etiquetas de Víctor) y luego, sabiendo ese tipo, estampado, tejido y forma con la foto
+               entera + el recorte (la forma sube de 11 a 14 de 23 con la foto), con la guía v3
   profesor     etiquetado en dos pasos: primero, con la foto entera, elige el tipo entre los 29 de Víctor; luego, sobre el recorte y sabiendo ese tipo, estampado, tejido y forma
                (el recorte basta para el estampado: 74 % frente a 70 % con la foto en Fashionpedia, y es más barato)
 
@@ -39,6 +41,7 @@ CONFIGS = [  # (nombre, imágenes, razona, máximo de prendas, tarea)
     ("tipo_foto", "foto", False, None, "tipo"),
     ("profesor", "foto", False, None, "profesor"),
     ("profesor_v2", "foto", False, None, "profesor"),
+    ("semanal", "recorte", False, None, "semanal"),
 ]
 PARTE = None           # (k, n): procesa solo las prendas k, k+n, k+2n… (para repartir una tanda larga entre varios kernels)
 SOLO = None            # lista de nombres de configuración a correr (None = todas); sirve para repetir solo una parte
@@ -80,6 +83,11 @@ GUIA = ("Guidelines:\n"
 GUIA_V2 = (GUIA.replace("fleece = sweatshirt or hoodie material, or polar fleece;", "fleece = only fuzzy polar fleece (a sweatshirt or hoodie in ordinary cotton jersey is cotton);")
            .replace("cotton = ordinary t-shirt jersey or woven cotton;", "cotton = ordinary t-shirt jersey, woven cotton, and sweatshirt or hoodie jersey;"))
 assert GUIA_V2 != GUIA
+# v3 (la del análisis semanal): v2 + «liso» admite logos y estampados pequeños (en las etiquetas de Víctor, 2 prendas lisas salieron «texto / logo»); «texto / logo» y «gráfico» son lo llamativo
+GUIA_V3 = (GUIA_V2.replace("plain = one solid color (tags or tiny logos do not count);", "plain = one solid color (small chest or sleeve logos, tags and tiny prints still count as plain);")
+           .replace("graphic = illustration, photo or large artwork;", "graphic = illustration, photo or large artwork that covers a notable part of the garment;")
+           .replace("text_logo = mainly words or a brand logo;", "text_logo = prominent words, a slogan or a big brand logo;"))
+assert GUIA_V3 != GUIA_V2
 
 
 def prompt(variante: str, razona: bool, tipo_en: str, guia: str = GUIA) -> str:
@@ -271,7 +279,29 @@ def correr_config(m, proc, items, cfg, nombre_modelo, generador, t_inicio):
                     textos.append(proc.apply_chat_template([{"role": "user", "content": contenido}], tokenize=False, add_generation_prompt=True) if proc is not None else "")
                     imgs += ims
                 return generador(m, proc, textos, imgs, max_new)
-            if tarea == "profesor":   # paso 1: tipo entre los 29 de Víctor; paso 2: estampado, tejido y forma sabiendo ese tipo
+            if tarea == "semanal":   # producción: si falla un lote, se repite prenda a prenda y lo que no se pueda queda en blanco
+                def pedir_seguro(textos_prompt, max_new, var):
+                    try:
+                        return pedir(textos_prompt, max_new, var)
+                    except Exception:
+                        print("lote fallido; se repite prenda a prenda:", traceback.format_exc()[-300:], flush=True)
+                        salida = []
+                        for it, tp in zip(lote, textos_prompt):
+                            try:
+                                ims = imagenes_de(it, var)
+                                contenido = [{"type": "image"} for _ in ims] + [{"type": "text", "text": tp}]
+                                t = proc.apply_chat_template([{"role": "user", "content": contenido}], tokenize=False, add_generation_prompt=True) if proc is not None else ""
+                                salida.append(generador(m, proc, [t], ims, max_new)[0])
+                            except Exception:
+                                salida.append("")
+                        return salida
+                crudos_t = pedir_seguro([prompt_tipo("recorte", it["origen"], "profesor") for it in lote], 8, "recorte")
+                tipos = [parsear_tipo(c, it["origen"], "profesor") for c, it in zip(crudos_t, lote)]
+                en = dict(TIPOS_V)
+                crudos_a = pedir_seguro([prompt("foto", False, en.get(t, "a garment"), GUIA_V3) for t in tipos], 70, "foto")
+                for it, ct, t, ca in zip(lote, crudos_t, tipos, crudos_a):
+                    f.write(json.dumps({"id": it["id"], "origen": it["origen"], "modelo": nombre_modelo, "config": nombre, "crudo_tipo": ct, "tipo29": t, "crudo": ca, **parsear(ca)}, ensure_ascii=False) + "\n")
+            elif tarea == "profesor":   # paso 1: tipo entre los 29 de Víctor; paso 2: estampado, tejido y forma sabiendo ese tipo
                 crudos_t = pedir([prompt_tipo(variante, it["origen"], "profesor") for it in lote], 8)
                 tipos = [parsear_tipo(c, it["origen"], "profesor") for c, it in zip(crudos_t, lote)]
                 en = dict(TIPOS_V)

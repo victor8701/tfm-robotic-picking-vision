@@ -91,6 +91,8 @@ code{background:var(--sug);border-radius:4px;padding:0 4px}
 .conf.baja{background:var(--aviso);color:var(--mal)}.conf.media{background:var(--sug);color:var(--acento)}.conf.alta{background:var(--sug);color:var(--ok)}
 .colores{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0}.colores span{background:var(--sug);border-radius:999px;padding:3px 10px;font-size:.85rem}
 .fiab li{margin:4px 0}
+.atr{grid-column:1/-1;font-size:.84rem;color:var(--suave);margin-top:4px;display:grid;gap:2px}.atr b{color:var(--tinta);font-weight:600}
+.sub-atr{margin:10px 0 2px;font-weight:600;font-size:.92rem}
 </style>
 
 <header>
@@ -115,7 +117,7 @@ code{background:var(--sug);border-radius:4px;padding:0 4px}
     <div class="tarjeta"><b id="n-acierto">–</b><span id="t-acierto">acierto del modelo contigo</span></div>
   </div>
   <button class="grande" id="b-analizar">Analizar mercado</button>
-  <p class="nota">Reentrena el modelo si has cambiado la Biblioteca o confirmado fotos, descarga fotos nuevas (Reddit y las cuentas, comunidades y enlaces de tu Biblioteca, incluidas las fuentes de mercado), las clasifica y prepara el informe por mercado. Después hace la <b>tendencia por prenda</b> (geek y urbano, pestaña «Prendas»): fotos de tus referentes, prendas detectadas y su reparto por temporada. <b>Tarda varios minutos</b> (Reddit limita las peticiones y cada foto nueva de prendas tarda unos 20 segundos); puedes dejar esta pestaña abierta.</p>
+  <p class="nota">Reentrena el modelo si has cambiado la Biblioteca o confirmado fotos, descarga fotos nuevas (Reddit y las cuentas, comunidades y enlaces de tu Biblioteca, incluidas las fuentes de mercado), las clasifica y prepara el informe por mercado. Después hace la <b>tendencia por prenda</b> (geek y urbano, pestaña «Prendas»): fotos de tus referentes, prendas detectadas y su reparto por temporada. Un modelo grande en <b>Kaggle</b> etiqueta tipo, estampado, tejido y forma de las prendas nuevas: <b>los recortes de esas fotos salen de este ordenador a un dataset privado de Kaggle que se borra al terminar</b>. <b>Tarda varios minutos</b> (Reddit limita las peticiones y cada foto nueva de prendas tarda unos 20 segundos); puedes dejar esta pestaña abierta.</p>
   <div class="fila-btn">
     <button class="sec" id="b-informe">Solo actualizar el informe (sin descargar)</button>
     <button class="sec" id="b-prendas">Solo las prendas (geek y urbano)</button>
@@ -337,6 +339,8 @@ const ORDEN_MERC = ['ES', 'US', 'Biblioteca'];
 // cronología de una temporada: «PV 2026» (mar-ago 2026) va antes que «OI 2026/27» (sep 2026-feb 2027); la muestra sin fecha, la última
 const claveTemp = t => { const m = /^(PV|OI) (\d{4})/.exec(t); return m ? +m[2] * 2 + (m[1] === 'OI' ? 1 : 0) : -1; };
 const pct = x => Math.round(100 * x) + ' %';
+const ETIQ_ATR = {estampado: 'Estampado', forma: 'Forma', tejido: 'Tejido'};
+const reparto = r => Object.entries(r).slice(0, 4).map(([k, v]) => k + ' ' + v).join(' · ');
 const nombreGrupo = g => (g.estilo === 'geek' ? 'Geek' : 'Urbano') + ' · ' + (MERC[g.mercado] || g.mercado) + ' · ' + (g.temporada === 'muestra' ? 'muestra de referencia' : g.temporada) + ' (' + g.fotos + ' fotos)';
 async function cargarPrendas() {
   try { P = await api('/api/prendas'); } catch (e) { $('#p-msg').textContent = e.message.includes('404') ? 'Esta pestaña necesita la versión nueva del servidor: cierra la ventana negra de la app y ábrela de nuevo.' : '⚠ ' + e.message; return; }
@@ -361,6 +365,8 @@ function filaPrenda(f, escala, nombre) {
   b.append(el('b', {style: 'left:' + (f.ic[0] * escala) + '%;width:' + ((f.ic[1] - f.ic[0]) * escala) + '%'}), el('i', {style: 'width:' + (f.cuota * escala) + '%'}));
   r.append(b, el('div', {className: 'num', style: 'grid-column:1/-1;text-align:left', textContent: 'entre ' + pct(f.ic[0]) + ' y ' + pct(f.ic[1])}));
   if (f.ejemplos && f.ejemplos.length) r.append(el('div', {className: 'ej'}, ...f.ejemplos.map(([k, i]) => el('img', {src: '/prenda/' + k + '/' + i + '.jpg', alt: 'ejemplo de ' + nombre, loading: 'lazy'}))));
+  const at = Object.entries(f.atributos || {});
+  if (at.length) r.append(el('div', {className: 'atr'}, ...at.map(([c, a]) => el('div', {}, el('b', {textContent: ETIQ_ATR[c] + ' (' + a.n + ' prendas, confianza ' + a.confianza + '): '}), reparto(a.reparto)))));
   return r;
 }
 function pintarPrendas() {
@@ -381,16 +387,42 @@ function pintarPrendas() {
   };
   lista.append(bloque('Por tipo de prenda', 'Una foto cuenta una vez por tipo. El tipo exacto (camiseta de manga corta, sudadera, chaqueta…) es orientativo: se confunden entre sí. Las miniaturas son las fotos con más peso de cada tipo: si alguna no lo es, el modelo se equivocó.', g.prendas, f => f.tipo),
                bloque('Por familia', 'Arriba, abrigo, abajo, cuerpo entero, calzado y accesorio: se confunden mucho menos. Casi todas las fotos llevan prenda de «arriba».', g.familias, f => f.familia));
+  const atr = Object.entries(g.atributos || {});
+  if (atr.length) {
+    const caja = el('div', {className: 'bloque'}, el('h4', {textContent: 'Estampado, forma y tejido'}),
+      el('div', {className: 'nota', textContent: 'Reparto de las prendas visibles, según el modelo grande de Kaggle. Cuenta prendas (una foto puede traer varias).' + (g.etiquetadas_con_modelo_grande ? '' : ' Faltan prendas por etiquetar: se hará en el próximo análisis.')}));
+    atr.forEach(([c, a]) => {
+      caja.append(el('div', {className: 'sub-atr'}, ETIQ_ATR[c] + ' · ' + a.n + ' prendas', el('span', {className: 'conf ' + a.confianza, textContent: 'confianza ' + a.confianza})));
+      const maximo = Math.max(...Object.values(a.reparto));
+      Object.entries(a.reparto).forEach(([k, v]) => {
+        const f = el('div', {className: 'fila-prenda'});
+        f.append(el('div', {className: 'nom', textContent: k}), el('div', {className: 'num', textContent: pct(v / a.n) + ' · ' + v}),
+                 el('div', {className: 'barra-p'}, el('i', {style: 'width:' + (100 * v / maximo) + '%'})));
+        caja.append(f);
+      });
+    });
+    lista.append(caja);
+  }
   const c = $('#p-color'), cols = Object.entries(g.colores);
   c.hidden = !cols.length;
   if (cols.length) c.replaceChildren(el('h4', {textContent: 'Colores más vistos'}), el('div', {className: 'colores'}, ...cols.map(([k, v]) => el('span', {textContent: k + ' · ' + v}))),
     el('div', {className: 'nota', textContent: 'Prendas con ese color. Confianza ' + g.confianza_color + ': el color se revisó a ojo y tiende a decir «negro» (' + 'las prendas rojas, moradas o de camuflaje salen a veces negras o grises).'}));
   const fb = inf.fiabilidad || {}, ul = el('ul', {className: 'fiab'});
   const li = t => ul.append(el('li', {textContent: t}));
-  if (fb.tipo_fino) li('Tipo de prenda: acierta ' + fb.tipo_fino.acierto + ' de ' + fb.tipo_fino.n + ' (' + pct(fb.tipo_fino.acierto / fb.tipo_fino.n) + ') contra tus etiquetas de la prenda principal; si vale cualquiera de las prendas del recorte, ' + fb.tipo_fino.cualquiera + ' de ' + fb.tipo_fino.n + '. Confianza máxima: ' + inf.techos.tipo + '.');
-  if (fb.familia) li('Familia de prenda: ' + fb.familia.acierto + ' de ' + fb.familia.n + ' (' + pct(fb.familia.acierto / fb.familia.n) + '). Confianza máxima: ' + inf.techos.familia + '.');
+  const medida = (x) => x.acierto + ' de ' + x.n + ' (' + pct(x.acierto / x.n) + ')';
+  if (fb.vlm_tipo) {
+    li('Tipo de prenda (modelo grande): acierta ' + medida(fb.vlm_tipo) + ' contra tus etiquetas de la prenda principal; por familia (arriba, abrigo, abajo…) ' + medida(fb.vlm_familia) + '. Antes, con CLIP: ' + medida(fb.tipo_fino) + '. Confianza máxima: ' + inf.techos.vlm.tipo + ' (tipo) y ' + inf.techos.vlm.familia + ' (familia).');
+  } else {
+    if (fb.tipo_fino) li('Tipo de prenda: acierta ' + medida(fb.tipo_fino) + ' contra tus etiquetas de la prenda principal; si vale cualquiera de las prendas del recorte, ' + fb.tipo_fino.cualquiera + ' de ' + fb.tipo_fino.n + '. Confianza máxima: ' + inf.techos.tipo + '.');
+    if (fb.familia) li('Familia de prenda: ' + medida(fb.familia) + '. Confianza máxima: ' + inf.techos.familia + '.');
+  }
   if (fb.color) li('Color: ' + fb.color.acierto + ' de ' + fb.color.n + ' (' + pct(fb.color.acierto / fb.color.n) + ') revisadas a ojo por el asistente, no por ti. Confianza máxima: ' + inf.techos.color + '.');
-  li('Estampado, tejido y forma: todavía no se estiman. Se probó CLIP, una capa entrenada con 22 000 prendas de Fashionpedia y un modelo pequeño de lenguaje y visión, y con tus etiquetas ninguno supera a «decir siempre lo más frecuente».');
+  if (fb.vlm_estampado) {
+    li('Estampado: ' + medida(fb.vlm_estampado) + ' (decir siempre «liso» daría ' + fb.vlm_estampado.mas_frecuente[1] + ' de ' + fb.vlm_estampado.n + '); forma: ' + medida(fb.vlm_forma) + '; tejido: ' + medida(fb.vlm_tejido)
+       + ' (no supera a decir siempre «algodón»: solo acierta bien los materiales claros, como vaquero o cuero). Los estima Qwen3-VL de 8 000 millones en Kaggle, medido con tus etiquetas. Confianza máxima: ' + inf.techos.vlm.estampado + ' (estampado), ' + inf.techos.vlm.forma + ' (forma), ' + inf.techos.vlm.tejido + ' (tejido).');
+  } else {
+    li('Estampado, tejido y forma: todavía no se estiman. Se probó CLIP, una capa entrenada con 22 000 prendas de Fashionpedia y un modelo pequeño de lenguaje y visión, y con tus etiquetas ninguno supera a «decir siempre lo más frecuente».');
+  }
   li('Cada cifra tiene dos límites: cuántas fotos la sostienen (30 o más → alta, 15 a 29 → media, menos → baja) y lo que acierta ese dato; manda el más bajo. Con pocas fotos, el margen de las barras es amplio: no leas diferencias pequeñas.');
   $('#p-fiab').replaceChildren(el('h4', {textContent: 'Cuánto fiarte de esto'}), ul);
 }

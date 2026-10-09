@@ -9,13 +9,15 @@ Flujo (todo en `tendencia_datos/`, aparte de los datos de la app «Analizar merc
   cosechar   fuentes de `tendencia_fuentes.json` (X vía FxTwitter, prensa por nombre vía Bing Noticias, comunidades de Reddit) -> fotos + `fotos.json`
   biblioteca incorpora como muestra de referencia las fotos que Víctor aprobó como urbano / geek en la app
   analizar   detector de prendas (analizar_outfit.py: DeepFashion2 + Florence) + tipo fino con CLIP sobre el recorte -> `prendas.json`
+  vlm        un modelo abierto grande de lenguaje y visión (Qwen3-VL-8B, en una GPU de Kaggle) etiqueta cada prenda nueva: tipo entre los 29 de Víctor, estampado, tejido y forma.
+             Los recortes de las fotos nuevas se suben a un dataset PRIVADO de Kaggle que se BORRA al terminar (decisión de Víctor, 2026-10-09) -> `prendas.json` (campo `vlm`)
   informe    cuota de fotos por prenda, por estilo × mercado × temporada (mínimo de fotos por cifra) -> `informe.json`
-  todo       las cuatro seguidas (es lo que correría cada semana)
+  todo       las cinco seguidas (es lo que corre cada semana; `--sin-vlm` salta el paso de Kaggle)
 
 Límites conocidos (medidos el 2026-10-06): con las fuentes legibles salen pocas fotos por referente (decenas por temporada); el estampado y la forma NO se
 estiman todavía (CLIP sin entrenar: 32 % y no mejora a «siempre oversized»); la visibilidad de la prenda es una heurística de caja pegada al borde.
 
-Uso:  python3 tendencia_prenda.py todo | cosechar [--solo NOMBRE] | biblioteca | analizar [--max N] | informe
+Uso:  python3 tendencia_prenda.py todo [--sin-vlm] | cosechar [--solo NOMBRE] | biblioteca | analizar [--max N] | vlm [--max-vlm N] [--simular] | informe
 """
 import argparse
 import collections
@@ -28,11 +30,13 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 import time
 import unicodedata
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
+import zipfile
 from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
@@ -48,6 +52,9 @@ TD = Path(os.environ.get("TENDENCIA_DATOS") or AQUI / "tendencia_datos")
 m.CACHE, m.IMG = TD / "cache", TD / "cache" / "img"   # las funciones de cosecha de mercado.py escriben aquí, no en los datos de la app
 FUENTES, FOTOS, PRENDAS, INFORME = AQUI / "tendencia_fuentes.json", TD / "fotos.json", TD / "prendas.json", TD / "informe.json"
 DET = AQUI.parent / "vlm_atributos_prenda" / "herramientas"
+VLMP = DET / "vlm_profesor"
+LADO_VLM = 1024           # las fotos se reducen a este lado largo antes de subirlas a Kaggle
+MAX_POR_KERNEL = 700      # prendas por kernel (~2,5 s cada una): con más se reparten en varios kernels en paralelo
 MIN_FOTOS = 5            # decisión de Víctor: por debajo de 5 fotos no se enseña una cifra
 VIDA_MEDIA = 10.0        # días, como el informe de estilos
 VENTANA_DIAS = 180       # temporada
@@ -63,6 +70,7 @@ FAMILIA = {"Camiseta manga corta": "Arriba", "Camiseta de tirantes": "Arriba", "
            "Zapatillas deportivas": "Calzado", "Zapatillas casual/lifestyle": "Calzado", "Zapatos planos de vestir": "Calzado", "Zapatos de vestir": "Calzado", "Zapatos de tacón": "Calzado",
            "Sandalias": "Calzado", "Botas": "Calzado", "Bolso": "Accesorio", "Riñonera": "Accesorio", "Gorra/Gorro/Sombrero": "Accesorio"}
 NIVELES = ["baja", "media", "alta"]
+ATRIBUTOS = ("estampado", "forma", "tejido")
 ALUMNO = TD / "alumno.npz"           # capas sobre CLIP B/32 entrenadas con el profesor (vlm_profesor/entrenar_alumno.py --guardar); si no existe, se usa CLIP sin entrenar
 PESO_FUERA_DE_CATEGORIA = 0.2        # el detector solo orienta: los tipos que no son de su categoría pesan esto (0 = restricción dura)
 FIABILIDAD = TD / "fiabilidad.json"   # aciertos medidos de cada atributo (`fiabilidad_prenda.py`): ponen el techo de confianza de sus cifras
@@ -386,6 +394,101 @@ def cmd_analizar(args):
     shutil.rmtree(TD / "lote", ignore_errors=True)
 
 
+# ---------------------------------------------------------------- etiquetado con el modelo grande (Kaggle)
+def paquete_vlm(pend, destino: Path, slug: str) -> list[dict]:
+    """Carpeta para subir a Kaggle: `fotos.zip` (fotos reducidas), `manifiesto.json` (una entrada por prenda: foto y caja) y los metadatos del dataset PRIVADO."""
+    tmp = destino / "_fotos"
+    tmp.mkdir(parents=True, exist_ok=True)
+    manifiesto, escala = [], {}
+    for k, i, p in pend:
+        nombre = f"w_{k}.jpg"
+        if k not in escala:
+            im = Image.open(m.IMG / f"{k}.jpg").convert("RGB")
+            escala[k] = min(1.0, LADO_VLM / max(im.size))
+            if escala[k] < 1:
+                im = im.resize((round(im.width * escala[k]), round(im.height * escala[k])), Image.LANCZOS)
+            im.save(tmp / nombre, quality=90)
+        manifiesto.append({"id": f"w:{k}#{i}", "origen": "semanal", "foto": nombre, "caja": [round(c * escala[k], 1) for c in p["caja"]], "tipo": p["tipo"], "tipo_en": "a garment"})
+    with zipfile.ZipFile(destino / "fotos.zip", "w", zipfile.ZIP_STORED) as z:
+        for f in sorted(tmp.glob("*.jpg")):
+            z.write(f, f.name)
+    shutil.rmtree(tmp)
+    (destino / "manifiesto.json").write_text(json.dumps(manifiesto, ensure_ascii=False), encoding="utf-8")
+    (destino / "dataset-metadata.json").write_text(json.dumps({"title": f"TFM semanal prendas {slug[-13:]}", "id": f"victor871/{slug}", "licenses": [{"name": "other"}],
+                                                               "description": "Privado. Fotos de prueba del TFM (UC3M); se borra al terminar."}, ensure_ascii=False), encoding="utf-8")
+    return manifiesto
+
+
+def texto_kernel(parte=None) -> str:
+    """El código de `kernel_profesor.py` con las constantes de la tanda semanal: solo la configuración «semanal», solo Qwen3-VL-8B y, si hace falta, una parte (k, n)."""
+    s = (VLMP / "kernel_profesor.py").read_text(encoding="utf-8")
+    s, n1 = re.subn(r"(?m)^SOLO = None ", 'SOLO = ["semanal"] ', s, count=1)
+    s, n2 = re.subn(r"(?m)^MODELOS_SOLO = None ", 'MODELOS_SOLO = ["qwen3vl8b"] ', s, count=1)
+    if parte:
+        s, n3 = re.subn(r"(?m)^PARTE = None ", f"PARTE = {tuple(parte)} ", s, count=1)
+        assert n3 == 1
+    assert n1 == n2 == 1, "no encuentro las constantes SOLO / MODELOS_SOLO en kernel_profesor.py"
+    return s
+
+
+def cmd_vlm(args):
+    prendas = cargar(PRENDAS)
+    pend = [(k, i, p) for k, v in sorted(prendas.items()) for i, p in enumerate(v["prendas"]) if p["visible"] and "vlm" not in p and (m.IMG / f"{k}.jpg").exists()]
+    if args.max_vlm:
+        pend = pend[:args.max_vlm]
+    fotos_pend = len({k for k, _, _ in pend})
+    print(f"{len(pend)} prendas visibles de {fotos_pend} fotos sin etiquetar con el modelo grande", flush=True)
+    if not pend or args.simular:
+        return
+    sys.path.insert(0, str(VLMP))
+    import kaggle_ops as ko   # lee el token de ~/.config/kaggle/api_token
+    slug = "tfm-semanal-prendas-" + datetime.now().strftime("%Y%m%d-%H%M")
+    n_partes = max(1, math.ceil(len(pend) / MAX_POR_KERNEL))
+    resultados = []
+    with tempfile.TemporaryDirectory(prefix="vlm_") as tmp:
+        carpeta = Path(tmp) / "paquete"
+        paquete_vlm(pend, carpeta, slug)
+        mb = (carpeta / "fotos.zip").stat().st_size / 1e6
+        print(f"Paquete de {mb:.0f} MB: se sube a un dataset PRIVADO de Kaggle ({slug}) y se borra al terminar. Kernels: {n_partes}.", flush=True)
+        creado = False
+        try:
+            ko.dataset_crear(carpeta, quiet=True)
+            creado = True
+            ko.esperar_dataset(slug)
+            slugs = [ko.kernel_push(texto_kernel((j, n_partes) if n_partes > 1 else None), f"TFM semanal VLM prendas {j + 1}", [slug]) for j in range(n_partes)]
+            print(f"Lanzado en Kaggle: {', '.join(slugs)} (unos {math.ceil(len(pend) / n_partes * 2.5 / 60) + 4} minutos)", flush=True)
+            for sl in slugs:
+                est = ko.esperar_kernel(sl, avisar=lambda t: print("  " + t, flush=True))
+                if est != "COMPLETE":
+                    raise RuntimeError(f"el kernel {sl} terminó en {est}: {ko.kernel_log(sl)[-400:]}")
+                salida = Path(tmp) / f"salida_{sl}"
+                ko.kernel_bajar(salida, sl)
+                f = salida / "pred_qwen3vl8b_semanal.jsonl"
+                if not f.exists():
+                    raise RuntimeError(f"el kernel {sl} no devolvió resultados: {ko.kernel_log(sl)[-400:]}")
+                resultados += [json.loads(linea) for linea in open(f, encoding="utf-8")]
+        finally:
+            if creado:
+                try:
+                    ko.dataset_borrar(slug)
+                    print("Dataset borrado de Kaggle.", flush=True)
+                except Exception as e:  # noqa: BLE001
+                    print(f"⚠ NO se pudo borrar el dataset {slug} de Kaggle ({type(e).__name__}: {e}): bórralo a mano en kaggle.com/datasets", flush=True)
+    ahora = ahora_iso()
+    n_ok = 0
+    for r in resultados:
+        k, _, i = r["id"][2:].partition("#")
+        p = prendas[k]["prendas"][int(i)]
+        if not r.get("tipo29"):
+            continue   # sin respuesta válida: queda pendiente para la próxima pasada
+        p.setdefault("tipo_clip", p["tipo"])   # el tipo de CLIP sin entrenar queda aparte, para compararlos
+        p["tipo"] = r["tipo29"]
+        p["vlm"] = {"tipo": r["tipo29"], "estampado": r.get("estampado"), "tejido": r.get("tejido"), "forma": r.get("forma"), "modelo": "qwen3vl8b", "config": "semanal", "fecha": ahora}
+        n_ok += 1
+    guardar(PRENDAS, prendas)
+    print(f"Etiquetadas con el modelo grande: {n_ok} de {len(pend)} prendas.", flush=True)
+
+
 # ---------------------------------------------------------------- informe
 def peso(v: dict, ahora_dt) -> float:
     if not v.get("fecha"):
@@ -422,26 +525,35 @@ def nivel(n_fotos: int, techo: str) -> str:
 def cmd_informe(args):
     fotos, prendas, fiab = cargar(FOTOS), cargar(PRENDAS), cargar(FIABILIDAD)
     t_tipo, t_fam, t_col = techo_de(fiab.get("tipo_fino")), techo_de(fiab.get("familia")), techo_de(fiab.get("color"))
+    t_vlm = {c: techo_de(fiab.get(f"vlm_{c}")) for c in ("tipo", "familia", "estampado", "tejido", "forma")}
     ahora_dt = datetime.now(timezone.utc)
     grupos = collections.defaultdict(list)
     for k, v in fotos.items():
         if v.get("descartada") or k not in prendas:
             continue
         grupos[(v["estilo"], v["mercado"], temporada(v.get("fecha")) if v.get("fecha") else "muestra")].append(k)
-    informe = {"generado": ahora_iso(), "min_fotos": MIN_FOTOS, "vida_media_dias": VIDA_MEDIA, "fiabilidad": fiab, "techos": {"tipo": t_tipo, "familia": t_fam, "color": t_col}, "grupos": []}
+    informe = {"generado": ahora_iso(), "min_fotos": MIN_FOTOS, "vida_media_dias": VIDA_MEDIA, "fiabilidad": fiab, "techos": {"tipo": t_tipo, "familia": t_fam, "color": t_col, "vlm": t_vlm}, "grupos": []}
     for (estilo, mercado, temp), ids in sorted(grupos.items()):
         con_prendas = [k for k in ids if any(p["visible"] for p in prendas[k]["prendas"])]
         pesos = {k: peso(fotos[k], ahora_dt) for k in con_prendas}
         total = sum(pesos.values()) or 1.0
         s1, s2 = sum(pesos.values()), sum(w * w for w in pesos.values())
         n_ef = (s1 * s1 / s2) if s2 else 0.0   # fotos «efectivas»: con pesos desiguales cuentan menos que las fotos reales
-        por_tipo = collections.defaultdict(lambda: {"n": 0, "w": 0.0, "ej": []})
-        por_fam = collections.defaultdict(lambda: {"n": 0, "w": 0.0, "ej": []})
+        por_tipo = collections.defaultdict(lambda: {"n": 0, "w": 0.0, "ej": [], "atr": {c: collections.Counter() for c in ATRIBUTOS}})
+        por_fam = collections.defaultdict(lambda: {"n": 0, "w": 0.0, "ej": [], "atr": {c: collections.Counter() for c in ATRIBUTOS}})
+        atr_grupo = {c: collections.Counter() for c in ATRIBUTOS}
+        todas_vlm = all("vlm" in p for k in con_prendas for p in prendas[k]["prendas"] if p["visible"])
         for k in con_prendas:
             vistos_t, vistos_f = set(), set()
             for i, p in enumerate(prendas[k]["prendas"]):
                 if not p["visible"]:
                     continue
+                for c in ATRIBUTOS:   # estampado, tejido y forma del modelo grande (cuentan prendas, no fotos)
+                    v = (p.get("vlm") or {}).get(c)
+                    if v:
+                        atr_grupo[c][v] += 1
+                        por_tipo[p["tipo"]]["atr"][c][v] += 1
+                        por_fam[FAMILIA.get(p["tipo"], "Otros")]["atr"][c][v] += 1
                 fam = FAMILIA.get(p["tipo"], "Otros")
                 for clave, vistos, tabla in ((p["tipo"], vistos_t, por_tipo), (fam, vistos_f, por_fam)):   # una foto cuenta una vez por tipo y una vez por familia
                     if clave not in vistos:
@@ -454,14 +566,19 @@ def cmd_informe(args):
             ok = d["n"] >= MIN_FOTOS
             cuota = d["w"] / total
             ej = [[k, i] for _, k, i in sorted(d["ej"], reverse=True)[:3]]
+            # estampado, tejido y forma de las prendas de esta fila: solo si hay al menos MIN_FOTOS prendas etiquetadas con ese atributo
+            atr = {c: {"n": sum(cnt.values()), "reparto": dict(cnt.most_common()), "confianza": nivel(sum(cnt.values()), t_vlm[c])}
+                   for c, cnt in d["atr"].items() if sum(cnt.values()) >= MIN_FOTOS}
             return {**(extra or {}), "fotos": d["n"], "cuota": round(cuota, 3) if ok else None, "ic": wilson(min(cuota, 1.0), n_ef) if ok else None,
-                    "confianza": nivel(d["n"], techo) if ok else None, "pocos_datos": not ok, "ejemplos": ej}
-        filas = [fila(t, d, t_tipo, {"tipo": t, "familia": FAMILIA.get(t, "Otros")}) for t, d in sorted(por_tipo.items(), key=lambda kv: -kv[1]["w"])]
-        familias = [fila(f, d, t_fam, {"familia": f}) for f, d in sorted(por_fam.items(), key=lambda kv: -kv[1]["w"])]
+                    "confianza": nivel(d["n"], techo) if ok else None, "pocos_datos": not ok, "ejemplos": ej, "atributos": atr if ok else {}}
+        filas = [fila(t, d, t_vlm["tipo"] if todas_vlm else t_tipo, {"tipo": t, "familia": FAMILIA.get(t, "Otros")}) for t, d in sorted(por_tipo.items(), key=lambda kv: -kv[1]["w"])]
+        familias = [fila(f, d, t_vlm["familia"] if todas_vlm else t_fam, {"familia": f}) for f, d in sorted(por_fam.items(), key=lambda kv: -kv[1]["w"])]
+        atributos = {c: {"n": sum(cnt.values()), "reparto": dict(cnt.most_common()), "confianza": nivel(sum(cnt.values()), t_vlm[c])} for c, cnt in atr_grupo.items() if sum(cnt.values()) >= MIN_FOTOS}
         colores = collections.Counter(p["color"] for k in con_prendas for p in prendas[k]["prendas"] if p["visible"] and p.get("color"))
         fuentes = collections.Counter((fotos[k].get("referente") or "Biblioteca") for k in ids)
         informe["grupos"].append({"estilo": estilo, "mercado": mercado, "temporada": temp, "fotos": len(ids), "fotos_con_prenda": len(con_prendas), "fotos_efectivas": round(n_ef, 1),
-                                  "prendas": filas, "familias": familias, "colores": dict(colores.most_common(8)), "confianza_color": t_col, "fuentes": dict(fuentes.most_common())})
+                                  "prendas": filas, "familias": familias, "atributos": atributos, "etiquetadas_con_modelo_grande": todas_vlm,
+                                  "colores": dict(colores.most_common(8)), "confianza_color": t_col, "fuentes": dict(fuentes.most_common())})
     guardar(INFORME, informe)
     for g in informe["grupos"]:
         print(f"\n{g['estilo']} · {g['mercado']} · {g['temporada']}: {g['fotos']} fotos ({g['fotos_con_prenda']} con prenda visible)  fuentes: {g['fuentes']}")
@@ -479,11 +596,16 @@ def main():
     p = sub.add_parser("analizar")
     p.add_argument("--max", type=int)
     p.add_argument("--max-dias", type=int, default=400)
+    p = sub.add_parser("vlm")
+    p.add_argument("--max-vlm", type=int, dest="max_vlm", help="como mucho N prendas (para probar)")
+    p.add_argument("--simular", action="store_true", help="solo cuenta lo pendiente, sin subir nada")
     sub.add_parser("informe")
     p = sub.add_parser("todo")
     p.add_argument("--solo")
     p.add_argument("--max", type=int)
     p.add_argument("--max-dias", type=int, default=400)
+    p.add_argument("--sin-vlm", action="store_true", help="no usar el modelo grande de Kaggle (nada sale del ordenador)")
+    p.add_argument("--max-vlm", type=int, dest="max_vlm")
     a = ap.parse_args()
     if a.cmd in ("cosechar", "todo"):
         cmd_cosechar(a)
@@ -491,6 +613,15 @@ def main():
         cmd_biblioteca(a)
     if a.cmd in ("analizar", "todo"):
         cmd_analizar(a)
+    if a.cmd == "vlm":
+        a.simular = getattr(a, "simular", False)
+        cmd_vlm(a)
+    elif a.cmd == "todo" and not a.sin_vlm and not os.environ.get("TENDENCIA_SIN_VLM"):
+        a.simular = False
+        try:
+            cmd_vlm(a)
+        except Exception as e:  # noqa: BLE001 -- sin Kaggle el informe sale igual, con el tipo de CLIP; las prendas siguen pendientes para la próxima semana
+            print(f"\n⚠ El modelo grande de Kaggle falló ({type(e).__name__}: {e}). Sigo sin él; se reintenta la próxima vez.", flush=True)
     if a.cmd in ("informe", "todo"):
         cmd_informe(a)
 

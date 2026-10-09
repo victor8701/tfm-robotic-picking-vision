@@ -1,5 +1,5 @@
 {
- "generado": "2026-10-08T19:04:32+00:00",
+ "generado": "2026-10-09T16:51:12+00:00",
  "tipo_fino": {
   "acierto": 19,
   "n": 38,
@@ -37,5 +37,49 @@
   "estado": "no se estima",
   "mejor_medido": "4 a 9 de 23; decir siempre «oversized» da 11 de 23",
   "fuente": "memoria/TFM_tendencias_de_prenda.md §6"
+ },
+ "vlm_tipo": {
+  "acierto": 24,
+  "n": 38,
+  "cualquiera": 27,
+  "fuente": "prueba con las 40 fotos de Víctor (9 de octubre de 2026), instrucciones v1; sustituir por el lote ciego"
+ },
+ "vlm_familia": {
+  "acierto": 33,
+  "n": 38,
+  "fuente": "prueba con las 40 fotos de Víctor (9 de octubre de 2026), instrucciones v1; sustituir por el lote ciego"
+ },
+ "vlm_estampado": {
+  "acierto": 16,
+  "n": 22,
+  "cualquiera": 25,
+  "mas_frecuente": [
+   "liso",
+   11,
+   22
+  ],
+  "fuente": "prueba con las 40 fotos de Víctor (9 de octubre de 2026), instrucciones v1; sustituir por el lote ciego"
+ },
+ "vlm_tejido": {
+  "acierto": 8,
+  "n": 15,
+  "cualquiera": 13,
+  "mas_frecuente": [
+   "algodón",
+   10,
+   15
+  ],
+  "fuente": "prueba con las 40 fotos de Víctor (9 de octubre de 2026), instrucciones v1; sustituir por el lote ciego"
+ },
+ "vlm_forma": {
+  "acierto": 13,
+  "n": 23,
+  "cualquiera": 17,
+  "mas_frecuente": [
+   "oversized / baggy",
+   11,
+   23
+  ],
+  "fuente": "prueba con las 40 fotos de Víctor (9 de octubre de 2026), instrucciones v1; sustituir por el lote ciego"
  }
 }
