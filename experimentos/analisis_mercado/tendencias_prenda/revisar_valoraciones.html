@@ -144,39 +144,56 @@ var LISTAS={estampado:['liso','rayas','cuadros','gráfico / dibujo','texto / log
  tejido:['denim (vaquero)','cuero / vinilo','algodón','punto','felpa / polar','técnico / impermeable','pana','terciopelo','seda / satén','tul / encaje','lino','no se distingue'],
  forma:['oversized / baggy','regular','ajustada','corta / cropped','no aplica']};
 var CAMPOS=[['tipo','Tipo de prenda'],['estampado','Estampado'],['tejido','Tejido'],['forma','Forma']];
-var S={db:null,absent:false,rv:{},i:0,loaded:false,inflight:{},dirty:{},timers:{},fin:true};
+var S={db:null,absent:false,rv:{},i:0,loaded:false,inflight:{},dirty:{},touched:{},seen:{},tries:{},timers:{},fin:true};
 var $=function(s){return document.querySelector(s)};
 var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
 var SAVE={load:'Cargando…',saved:'Guardado',saving:'Guardando…',error:'No se pudo guardar',off:'Sin base de datos'};
 function setSave(s,msg){var el=$('#save');el.setAttribute('data-s',s);el.querySelector('span').textContent=SAVE[s]||s;if(msg)el.title=msg;else el.removeAttribute('title')}
-function rv(id){return S.rv[id]||(S.rv[id]={x:false,r:{},alt:{}})}
+function blank(){var r={},alt={};CAMPOS.forEach(function(c){r[c[0]]='';alt[c[0]]=[]});return {x:false,r:r,alt:alt}}
+/* Lo que entrega la base viene CONGELADO (no se puede modificar): nunca se guarda tal cual, siempre una copia propia. */
+function norm(v){
+  var o=blank();if(!v)return o;
+  o.x=v.x===true;
+  CAMPOS.forEach(function(c){
+    var k=c[0],q=v.r&&v.r[k],a=v.alt&&v.alt[k];
+    o.r[k]=(q==='ok'||q==='mm'||q==='no')?q:'';
+    o.alt[k]=Array.isArray(a)?a.filter(function(s){return typeof s==='string'}):[];
+  });
+  return o;
+}
+function rv(id){return S.rv[id]||(S.rv[id]=blank())}
+function guard(f){try{f()}catch(e){setSave('error',e&&e.message)}}
 function done(id){var l=S.rv[id];return !!l&&(l.x===true||CAMPOS.every(function(c){return !!l.r[c[0]]}))}
 function partial(id){var l=S.rv[id];return !!l&&!l.x&&!done(id)&&CAMPOS.some(function(c){return !!l.r[c[0]]})}
 function nDone(){var n=0;CROPS.forEach(function(c){if(done(c.id))n++});return n}
 function firstPending(from){for(var k=0;k<CROPS.length;k++){var j=(from+k)%CROPS.length;if(!done(CROPS[j].id))return j}return -1}
 
 /* ---------- guardado ---------- */
-function queue(id){S.dirty[id]=true;setSave('saving');clearTimeout(S.timers[id]);S.timers[id]=setTimeout(function(){flush(id)},250)}
+function queue(id){S.touched[id]=true;S.dirty[id]=true;setSave('saving');clearTimeout(S.timers[id]);S.timers[id]=setTimeout(function(){flush(id)},250)}
 function flush(id){
   if(!S.db||S.inflight[id]||!S.dirty[id])return;
   S.dirty[id]=false;S.inflight[id]=true;
-  var l=rv(id),alt={};CAMPOS.forEach(function(c){alt[c[0]]=(l.alt[c[0]]||[]).slice()});
-  S.db.doc('valoraciones/v'+id).set({r:l.r,alt:alt,x:!!l.x,t:new Date().toISOString()}).then(function(){
-    S.inflight[id]=false;
+  var l=rv(id),r={},alt={};CAMPOS.forEach(function(c){r[c[0]]=l.r[c[0]]||'';alt[c[0]]=(l.alt[c[0]]||[]).slice()});
+  S.db.doc('valoraciones/v'+id).set({r:r,alt:alt,x:!!l.x,t:new Date().toISOString()}).then(function(){
+    S.inflight[id]=false;S.tries[id]=0;
     if(S.dirty[id])flush(id);else if(!busy())setSave('saved');
-  },function(e){S.inflight[id]=false;S.dirty[id]=true;setSave('error',e&&e.message)});
+  },function(e){
+    S.inflight[id]=false;S.dirty[id]=true;setSave('error',e&&e.message);
+    if((S.tries[id]=(S.tries[id]||0)+1)<=2){clearTimeout(S.timers[id]);S.timers[id]=setTimeout(function(){flush(id)},2500)}   // un par de reintentos solos; después, el siguiente toque vuelve a probar
+  });
 }
 function busy(){var k;for(k in S.dirty)if(S.dirty[k])return true;for(k in S.inflight)if(S.inflight[k])return true;return false}
+/* Lo que has tocado en esta visita manda sobre lo que llegue de la base (un aviso atrasado no deshace un toque); solo se cargan los recortes que aún no has tocado. */
 function onSnap(snap){
+  var changed=false;
   snap.docs.forEach(function(d){
     var id=d.id.replace(/^v/,'');
-    if(S.dirty[id]||S.inflight[id])return;
-    var v=d.data()||{};
-    S.rv[id]={x:v.x===true,r:v.r||{},alt:v.alt||{}};
+    if(S.touched[id]||S.dirty[id]||S.inflight[id]||S.seen[id]===d)return;
+    S.seen[id]=d;S.rv[id]=norm(d.data());changed=true;
   });
   var first=!S.loaded;S.loaded=true;
-  if(first){var p=firstPending(0);S.i=p<0?0:p;S.fin=true;setSave('saved')}
-  render();
+  if(first){var p=firstPending(0);S.i=p<0?0:p;S.fin=true;setSave('saved');render()}
+  else if(changed)render();
 }
 
 /* ---------- pintado ---------- */
@@ -214,9 +231,9 @@ function render(){
    '<section class="card"><div class="lab"><span>Todos los recortes</span></div>'+grid()+'</section>';
   $('#ant').onclick=function(){go(S.i-1)};
   $('#sig').onclick=function(){siguiente()};
-  $('#nos').onclick=function(){var id=CROPS[S.i].id,x=!rv(id).x;S.rv[id]={x:x,r:{},alt:{}};queue(id);render();if(x)setTimeout(siguiente,260)};
-  Array.prototype.forEach.call(document.querySelectorAll('.vb'),function(b){b.onclick=function(){pickR(b.getAttribute('data-c'),b.getAttribute('data-r'))}});
-  Array.prototype.forEach.call(document.querySelectorAll('.chip'),function(b){b.onclick=function(){pickAlt(b.getAttribute('data-c'),b.getAttribute('data-v'))}});
+  $('#nos').onclick=function(){guard(function(){var id=CROPS[S.i].id,x=!rv(id).x,o=blank();o.x=x;S.rv[id]=o;queue(id);render();if(x)setTimeout(siguiente,260)})};
+  Array.prototype.forEach.call(document.querySelectorAll('.vb'),function(b){b.onclick=function(){guard(function(){pickR(b.getAttribute('data-c'),b.getAttribute('data-r'))})}});
+  Array.prototype.forEach.call(document.querySelectorAll('.chip'),function(b){b.onclick=function(){guard(function(){pickAlt(b.getAttribute('data-c'),b.getAttribute('data-v'))})}});
   wireGrid();
 }
 function grid(){
@@ -226,9 +243,9 @@ function wireGrid(){Array.prototype.forEach.call(document.querySelectorAll('.cel
 function go(k){if(k<0||k>=CROPS.length)return;S.i=k;render();window.scrollTo(0,0)}
 function siguiente(){var p=firstPending(S.i+1);if(p>=0&&p!==S.i)go(p);else if(nDone()===CROPS.length){S.fin=true;render();window.scrollTo(0,0)}else if(S.i+1<CROPS.length)go(S.i+1);else render()}
 function pickR(campo,r){
-  var id=CROPS[S.i].id,l=rv(id);l.x=false;
-  l.r[campo]=(l.r[campo]===r)?'':r;
-  if(l.r[campo]==='ok'||!l.r[campo])l.alt[campo]=[];
+  var id=CROPS[S.i].id,l=rv(id),antes=l.r[campo];l.x=false;
+  l.r[campo]=(antes===r)?'':r;                       // tocar la respuesta marcada la quita
+  if(l.r[campo]!==antes)l.alt[campo]=[];             // al cambiar de respuesta se vacían las marcas de «qué más puede ser»
   queue(id);render();
 }
 function pickAlt(campo,val){
