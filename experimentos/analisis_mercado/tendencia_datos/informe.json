@@ -1,9 +1,9 @@
 {
- "generado": "2026-10-09T19:33:29+00:00",
+ "generado": "2026-10-10T17:22:58+00:00",
  "min_fotos": 5,
  "vida_media_dias": 10.0,
  "fiabilidad": {
-  "generado": "2026-10-09T19:33:29+00:00",
+  "generado": "2026-10-10T17:22:58+00:00",
   "tipo_fino": {
    "acierto": 19,
    "n": 38,
@@ -46,7 +46,97 @@
    "acierto": 17,
    "n": 32,
    "cualquiera": 17,
-   "fuente": "lote ciego de Víctor (etiquetado después de que el modelo etiquetara esos recortes)"
+   "fuente": "lote ciego de Víctor (etiquetado después de que el modelo etiquetara esos recortes)",
+   "revision": {
+    "ok": 40,
+    "mas_o_menos": 1,
+    "no": 5,
+    "n": 46,
+    "aceptable": 41,
+    "ic_aceptable": [
+     77,
+     95
+    ],
+    "ic_estricto": [
+     74,
+     94
+    ],
+    "parte_b_nuevos": {
+     "n": 24,
+     "ok": 20,
+     "aceptable": 21
+    },
+    "recortes": 46,
+    "fuente": "revisión de Víctor (OK / más o menos / No) viendo la valoración del modelo, 10 de octubre de 2026"
+   },
+   "techo": "media",
+   "techo_regla": "a ciegas: baja; por la revisión (límite inferior de «aceptable» 77 % ≥ 65 % → media): media; manda el más alto, y «alta» solo se alcanza a ciegas",
+   "por_tipo": {
+    "Camisa": {
+     "aceptado": 4,
+     "n": 8
+    },
+    "Pantalón": {
+     "aceptado": 7,
+     "n": 7
+    },
+    "Top": {
+     "aceptado": 3,
+     "n": 4
+    },
+    "Camiseta manga larga": {
+     "aceptado": 4,
+     "n": 4
+    },
+    "Chaqueta": {
+     "aceptado": 4,
+     "n": 4
+    },
+    "Camiseta manga corta": {
+     "aceptado": 4,
+     "n": 4
+    },
+    "Short": {
+     "aceptado": 3,
+     "n": 3
+    },
+    "Hoodie": {
+     "aceptado": 2,
+     "n": 2
+    },
+    "Americana": {
+     "aceptado": 2,
+     "n": 2
+    },
+    "Polo": {
+     "aceptado": 2,
+     "n": 2
+    },
+    "Falda": {
+     "aceptado": 1,
+     "n": 1
+    },
+    "Jersey": {
+     "aceptado": 1,
+     "n": 1
+    },
+    "Sudadera": {
+     "aceptado": 1,
+     "n": 1
+    },
+    "Camiseta de tirantes": {
+     "aceptado": 1,
+     "n": 1
+    },
+    "Zapatillas deportivas": {
+     "aceptado": 1,
+     "n": 1
+    },
+    "Plumas": {
+     "aceptado": 1,
+     "n": 1
+    }
+   }
   },
   "vlm_familia": {
    "acierto": 27,
@@ -58,19 +148,106 @@
    "acierto": 23,
    "n": 27,
    "cualquiera": 23,
-   "fuente": "lote ciego de Víctor (etiquetado después de que el modelo etiquetara esos recortes)"
+   "fuente": "lote ciego de Víctor (etiquetado después de que el modelo etiquetara esos recortes)",
+   "mas_frecuente": [
+    "liso",
+    21,
+    27
+   ],
+   "revision": {
+    "ok": 43,
+    "mas_o_menos": 0,
+    "no": 3,
+    "n": 46,
+    "aceptable": 43,
+    "ic_aceptable": [
+     82,
+     98
+    ],
+    "ic_estricto": [
+     82,
+     98
+    ],
+    "parte_b_nuevos": {
+     "n": 24,
+     "ok": 22,
+     "aceptable": 22
+    },
+    "recortes": 46,
+    "fuente": "revisión de Víctor (OK / más o menos / No) viendo la valoración del modelo, 10 de octubre de 2026"
+   },
+   "techo": "media",
+   "techo_regla": "a ciegas: media; por la revisión (límite inferior de «aceptable» 82 % ≥ 65 % → media): media; manda el más alto, y «alta» solo se alcanza a ciegas"
   },
   "vlm_tejido": {
    "acierto": 14,
    "n": 26,
    "cualquiera": 14,
-   "fuente": "lote ciego de Víctor (etiquetado después de que el modelo etiquetara esos recortes)"
+   "fuente": "lote ciego de Víctor (etiquetado después de que el modelo etiquetara esos recortes)",
+   "mas_frecuente": [
+    "algodón",
+    7,
+    26
+   ],
+   "revision": {
+    "ok": 33,
+    "mas_o_menos": 5,
+    "no": 7,
+    "n": 45,
+    "aceptable": 38,
+    "ic_aceptable": [
+     71,
+     92
+    ],
+    "ic_estricto": [
+     59,
+     84
+    ],
+    "parte_b_nuevos": {
+     "n": 23,
+     "ok": 20,
+     "aceptable": 20
+    },
+    "recortes": 46,
+    "fuente": "revisión de Víctor (OK / más o menos / No) viendo la valoración del modelo, 10 de octubre de 2026"
+   },
+   "techo": "media",
+   "techo_regla": "a ciegas: baja; por la revisión (límite inferior de «aceptable» 71 % ≥ 65 % → media): media; manda el más alto, y «alta» solo se alcanza a ciegas"
   },
   "vlm_forma": {
    "acierto": 15,
    "n": 27,
    "cualquiera": 15,
-   "fuente": "lote ciego de Víctor (etiquetado después de que el modelo etiquetara esos recortes)"
+   "fuente": "lote ciego de Víctor (etiquetado después de que el modelo etiquetara esos recortes)",
+   "mas_frecuente": [
+    "regular",
+    13,
+    27
+   ],
+   "revision": {
+    "ok": 41,
+    "mas_o_menos": 4,
+    "no": 1,
+    "n": 46,
+    "aceptable": 45,
+    "ic_aceptable": [
+     89,
+     100
+    ],
+    "ic_estricto": [
+     77,
+     95
+    ],
+    "parte_b_nuevos": {
+     "n": 24,
+     "ok": 22,
+     "aceptable": 23
+    },
+    "recortes": 46,
+    "fuente": "revisión de Víctor (OK / más o menos / No) viendo la valoración del modelo, 10 de octubre de 2026"
+   },
+   "techo": "media",
+   "techo_regla": "a ciegas: baja; por la revisión (límite inferior de «aceptable» 89 % ≥ 65 % → media): media; manda el más alto, y «alta» solo se alcanza a ciegas"
   }
  },
  "techos": {
@@ -78,11 +255,11 @@
   "familia": "media",
   "color": "baja",
   "vlm": {
-   "tipo": "baja",
+   "tipo": "media",
    "familia": "media",
    "estampado": "media",
-   "tejido": "baja",
-   "forma": "baja"
+   "tejido": "media",
+   "forma": "media"
   }
  },
  "grupos": [
@@ -626,6 +803,7 @@
     {
      "tipo": "Camisa",
      "familia": "Arriba",
+     "aviso": "En tu revisión diste por buena la etiqueta «Camisa» del modelo 4 de 8 veces: se confunde con otras prendas, así que esta cifra es más dudosa que las demás.",
      "fotos": 3,
      "cuota": null,
      "ic": null,
@@ -731,7 +909,7 @@
         "oversized / baggy": 13,
         "ajustada": 7
        },
-       "confianza": "baja"
+       "confianza": "media"
       },
       "tejido": {
        "n": 58,
@@ -741,7 +919,7 @@
         "terciopelo": 2,
         "técnico / impermeable": 1
        },
-       "confianza": "baja"
+       "confianza": "media"
       }
      }
     },
@@ -936,7 +1114,7 @@
       "ajustada": 13,
       "no aplica": 7
      },
-     "confianza": "baja"
+     "confianza": "media"
     },
     "tejido": {
      "n": 91,
@@ -949,7 +1127,7 @@
       "denim (vaquero)": 1,
       "felpa / polar": 1
      },
-     "confianza": "baja"
+     "confianza": "media"
     }
    },
    "etiquetadas_con_modelo_grande": true,
@@ -979,6 +1157,7 @@
     {
      "tipo": "Camisa",
      "familia": "Arriba",
+     "aviso": "En tu revisión diste por buena la etiqueta «Camisa» del modelo 4 de 8 veces: se confunde con otras prendas, así que esta cifra es más dudosa que las demás.",
      "fotos": 1,
      "cuota": null,
      "ic": null,
@@ -1286,6 +1465,7 @@
     {
      "tipo": "Camisa",
      "familia": "Arriba",
+     "aviso": "En tu revisión diste por buena la etiqueta «Camisa» del modelo 4 de 8 veces: se confunde con otras prendas, así que esta cifra es más dudosa que las demás.",
      "fotos": 6,
      "cuota": 0.154,
      "ic": [
@@ -1693,7 +1873,7 @@
         "no aplica": 1,
         "corta / cropped": 1
        },
-       "confianza": "baja"
+       "confianza": "media"
       },
       "tejido": {
        "n": 43,
@@ -1704,7 +1884,7 @@
         "felpa / polar": 1,
         "técnico / impermeable": 1
        },
-       "confianza": "baja"
+       "confianza": "media"
       }
      }
     },
@@ -1750,7 +1930,7 @@
         "oversized / baggy": 8,
         "regular": 8
        },
-       "confianza": "baja"
+       "confianza": "media"
       },
       "tejido": {
        "n": 16,
@@ -1761,7 +1941,7 @@
         "denim (vaquero)": 1,
         "felpa / polar": 1
        },
-       "confianza": "baja"
+       "confianza": "media"
       }
      }
     },
@@ -1895,7 +2075,7 @@
       "corta / cropped": 2,
       "ajustada": 1
      },
-     "confianza": "baja"
+     "confianza": "media"
     },
     "tejido": {
      "n": 78,
@@ -1909,7 +2089,7 @@
       "no se distingue": 1,
       "terciopelo": 1
      },
-     "confianza": "baja"
+     "confianza": "media"
     }
    },
    "etiquetadas_con_modelo_grande": true,
@@ -1975,14 +2155,14 @@
        "reparto": {
         "regular": 15
        },
-       "confianza": "baja"
+       "confianza": "media"
       },
       "tejido": {
        "n": 15,
        "reparto": {
         "algodón": 15
        },
-       "confianza": "baja"
+       "confianza": "media"
       }
      }
     },
@@ -2033,6 +2213,7 @@
     {
      "tipo": "Camisa",
      "familia": "Arriba",
+     "aviso": "En tu revisión diste por buena la etiqueta «Camisa» del modelo 4 de 8 veces: se confunde con otras prendas, así que esta cifra es más dudosa que las demás.",
      "fotos": 4,
      "cuota": null,
      "ic": null,
@@ -2219,7 +2400,7 @@
         "corta / cropped": 2,
         "ajustada": 1
        },
-       "confianza": "baja"
+       "confianza": "media"
       },
       "tejido": {
        "n": 28,
@@ -2227,7 +2408,7 @@
         "algodón": 27,
         "felpa / polar": 1
        },
-       "confianza": "baja"
+       "confianza": "media"
       }
      }
     },
@@ -2305,7 +2486,7 @@
       "corta / cropped": 2,
       "no aplica": 1
      },
-     "confianza": "baja"
+     "confianza": "media"
     },
     "tejido": {
      "n": 36,
@@ -2316,7 +2497,7 @@
       "técnico / impermeable": 1,
       "felpa / polar": 1
      },
-     "confianza": "baja"
+     "confianza": "media"
     }
    },
    "etiquetadas_con_modelo_grande": true,
@@ -2656,7 +2837,7 @@
       "no aplica": 2,
       "oversized / baggy": 2
      },
-     "confianza": "baja"
+     "confianza": "media"
     },
     "tejido": {
      "n": 19,
@@ -2666,7 +2847,7 @@
       "punto": 1,
       "denim (vaquero)": 1
      },
-     "confianza": "baja"
+     "confianza": "media"
     }
    },
    "etiquetadas_con_modelo_grande": true,
@@ -2748,6 +2929,7 @@
     {
      "tipo": "Camisa",
      "familia": "Arriba",
+     "aviso": "En tu revisión diste por buena la etiqueta «Camisa» del modelo 4 de 8 veces: se confunde con otras prendas, así que esta cifra es más dudosa que las demás.",
      "fotos": 6,
      "cuota": 0.836,
      "ic": [
@@ -3236,7 +3418,7 @@
       "oversized / baggy": 7,
       "no aplica": 3
      },
-     "confianza": "baja"
+     "confianza": "media"
     },
     "tejido": {
      "n": 28,
@@ -3246,7 +3428,7 @@
       "técnico / impermeable": 2,
       "punto": 1
      },
-     "confianza": "baja"
+     "confianza": "media"
     }
    },
    "etiquetadas_con_modelo_grande": true,
@@ -3316,6 +3498,7 @@
     {
      "tipo": "Camisa",
      "familia": "Arriba",
+     "aviso": "En tu revisión diste por buena la etiqueta «Camisa» del modelo 4 de 8 veces: se confunde con otras prendas, así que esta cifra es más dudosa que las demás.",
      "fotos": 1,
      "cuota": null,
      "ic": null,

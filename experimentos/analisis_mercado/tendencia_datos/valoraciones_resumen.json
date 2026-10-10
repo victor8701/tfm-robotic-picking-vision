@@ -1,0 +1,328 @@
+{
+ "recortes": 54,
+ "inservibles": 6,
+ "recortes reales (partes A y B)": {
+  "tipo": {
+   "n": 46,
+   "ok": 40,
+   "mas_o_menos": 1,
+   "no": 5,
+   "estricto": [
+    40,
+    46,
+    [
+     74,
+     94
+    ]
+   ],
+   "aceptable": [
+    41,
+    46,
+    [
+     77,
+     95
+    ]
+   ]
+  },
+  "estampado": {
+   "n": 46,
+   "ok": 43,
+   "mas_o_menos": 0,
+   "no": 3,
+   "estricto": [
+    43,
+    46,
+    [
+     82,
+     98
+    ]
+   ],
+   "aceptable": [
+    43,
+    46,
+    [
+     82,
+     98
+    ]
+   ]
+  },
+  "tejido": {
+   "n": 45,
+   "ok": 33,
+   "mas_o_menos": 5,
+   "no": 7,
+   "estricto": [
+    33,
+    45,
+    [
+     59,
+     84
+    ]
+   ],
+   "aceptable": [
+    38,
+    45,
+    [
+     71,
+     92
+    ]
+   ]
+  },
+  "forma": {
+   "n": 46,
+   "ok": 41,
+   "mas_o_menos": 4,
+   "no": 1,
+   "estricto": [
+    41,
+    46,
+    [
+     77,
+     95
+    ]
+   ],
+   "aceptable": [
+    45,
+    46,
+    [
+     89,
+     100
+    ]
+   ]
+  }
+ },
+ "parte A: donde no coincidíamos con tu etiqueta": {
+  "tipo": {
+   "n": 22,
+   "ok": 20,
+   "mas_o_menos": 0,
+   "no": 2,
+   "estricto": [
+    20,
+    22,
+    [
+     72,
+     97
+    ]
+   ],
+   "aceptable": [
+    20,
+    22,
+    [
+     72,
+     97
+    ]
+   ]
+  },
+  "estampado": {
+   "n": 22,
+   "ok": 21,
+   "mas_o_menos": 0,
+   "no": 1,
+   "estricto": [
+    21,
+    22,
+    [
+     78,
+     99
+    ]
+   ],
+   "aceptable": [
+    21,
+    22,
+    [
+     78,
+     99
+    ]
+   ]
+  },
+  "tejido": {
+   "n": 22,
+   "ok": 13,
+   "mas_o_menos": 5,
+   "no": 4,
+   "estricto": [
+    13,
+    22,
+    [
+     39,
+     77
+    ]
+   ],
+   "aceptable": [
+    18,
+    22,
+    [
+     61,
+     93
+    ]
+   ]
+  },
+  "forma": {
+   "n": 22,
+   "ok": 19,
+   "mas_o_menos": 3,
+   "no": 0,
+   "estricto": [
+    19,
+    22,
+    [
+     67,
+     95
+    ]
+   ],
+   "aceptable": [
+    22,
+    22,
+    [
+     85,
+     100
+    ]
+   ]
+  }
+ },
+ "parte B: recortes nuevos": {
+  "tipo": {
+   "n": 24,
+   "ok": 20,
+   "mas_o_menos": 1,
+   "no": 3,
+   "estricto": [
+    20,
+    24,
+    [
+     64,
+     93
+    ]
+   ],
+   "aceptable": [
+    21,
+    24,
+    [
+     69,
+     96
+    ]
+   ]
+  },
+  "estampado": {
+   "n": 24,
+   "ok": 22,
+   "mas_o_menos": 0,
+   "no": 2,
+   "estricto": [
+    22,
+    24,
+    [
+     74,
+     98
+    ]
+   ],
+   "aceptable": [
+    22,
+    24,
+    [
+     74,
+     98
+    ]
+   ]
+  },
+  "tejido": {
+   "n": 23,
+   "ok": 20,
+   "mas_o_menos": 0,
+   "no": 3,
+   "estricto": [
+    20,
+    23,
+    [
+     68,
+     95
+    ]
+   ],
+   "aceptable": [
+    20,
+    23,
+    [
+     68,
+     95
+    ]
+   ]
+  },
+  "forma": {
+   "n": 24,
+   "ok": 22,
+   "mas_o_menos": 1,
+   "no": 1,
+   "estricto": [
+    22,
+    24,
+    [
+     74,
+     98
+    ]
+   ],
+   "aceptable": [
+    23,
+    24,
+    [
+     80,
+     99
+    ]
+   ]
+  }
+ },
+ "controles": {
+  "tipo": {
+   "n": 2,
+   "no": 0,
+   "mas_o_menos": 0,
+   "ok": 2
+  },
+  "estampado": {
+   "n": 1,
+   "no": 0,
+   "mas_o_menos": 0,
+   "ok": 1
+  },
+  "tejido": {
+   "n": 2,
+   "no": 1,
+   "mas_o_menos": 0,
+   "ok": 1
+  },
+  "forma": {
+   "n": 2,
+   "no": 0,
+   "mas_o_menos": 0,
+   "ok": 2
+  }
+ },
+ "alternativas_marcadas": {
+  "tipo": {
+   "Sudadera": 1,
+   "Chaqueta": 1,
+   "Falda": 1,
+   "Pantalón": 2,
+   "Camiseta manga corta": 1
+  },
+  "tejido": {
+   "tul / encaje": 1,
+   "algodón": 3,
+   "pana": 1,
+   "lino": 3,
+   "técnico / impermeable": 2,
+   "denim (vaquero)": 2
+  },
+  "forma": {
+   "oversized / baggy": 3,
+   "ajustada": 2
+  },
+  "estampado": {
+   "liso": 3
+  }
+ },
+ "coherencia_con_etiqueta_anterior": [
+  12,
+  14
+ ]
+}

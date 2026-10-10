@@ -103,6 +103,8 @@ code{font-family:var(--mono);font-size:.82rem}
       <li>Varias cifras iniciales eran demasiado buenas y se corrigieron al medir bien: estilo 73 → 64 %, tipo de prenda 85 → 50 %.</li>
       <li>Medido a ciegas con 32 recortes del paso semanal, el modelo grande iguala a CLIP en el tipo de prenda (53 %) y solo el tejido (54 % frente a 27 %) se distingue de su referencia. Además, 4 de cada 10 recortes que revisaste eran inservibles.</li>
       <li>Con 15 a 38 etiquetas el margen al 95 % es de ±15 a ±22 puntos: pocas diferencias se distinguen de su referencia.</li>
+      <li>Tu revisión «OK / más o menos / No» (46 recortes reales): das por buena su valoración en tipo el 89 %, estampado el 93 %, forma el 98 % y tejido el 84 %. Es una vara más generosa que etiquetar a ciegas, pero con tu criterio (con un 70 % más o menos vale) los cuatro la cumplen.</li>
+      <li>Lo importante, separar por estilo: con tus fotos, la forma, el tejido y el tipo de prenda sí distinguen el geek del urbano; el estampado y la familia, no. En el mercado real casi no hay geek para comparar (2 fotos en España, ninguna en EEUU).</li>
     </ul>
   </section>
 
@@ -136,6 +138,7 @@ code{font-family:var(--mono);font-size:.82rem}
       <li><strong>Entrenar más con un modelo pequeño no sirvió.</strong> Con el 10 % de las prendas sale lo mismo que con el 100 %; un CLIP casi tres veces mayor, igual; y la capa entrenada con las etiquetas del modelo grande reproduce solo el 51 a 71 % de lo que este dice.</li>
       <li><strong>Las cifras iniciales hay que desconfiarlas.</strong> Una evaluación contaminada (73 → 64 %), un juez a ojo (tipo 85 → 50 %) y una métrica indulgente («cualquiera» de las prendas del recorte) inflaron resultados que se corrigieron al medir con tus etiquetas.</li>
       <li><strong>La fuente de las fotos decide más que el modelo.</strong> La búsqueda automática por texto da un 17 % de fotos útiles; las fuentes elegidas mirando las imágenes, un 76 a 80 %.</li>
+      <li><strong>Para separar estilos basta un acierto de ~70 %.</strong> Si el modelo falla al azar, las diferencias entre estilos se encogen pero no se inventan. Con tus fotos, la forma (urbano más oversized: 40 % frente a 15 %), el tejido (el punto es de geek: 19 % frente a 4 %) y el tipo de prenda (el top es de geek: 15 % frente a 1 %) distinguen los dos estilos con una probabilidad de azar menor del 2 %; el estampado y la familia no.</li>
       <li><strong>El límite está en los datos y en las definiciones.</strong> Decenas de fotos por temporada, y etiquetas con criterios distintos entre el modelo y tú («oversized», algodón frente a felpa, la temporada de Kaggle).</li>
     </ul>
   </section>
@@ -149,10 +152,11 @@ code{font-family:var(--mono);font-size:.82rem}
   <section aria-labelledby="h-falta">
     <h2 id="h-falta">Qué falta medir</h2>
     <ul class="lista" style="margin-top:12px">
-      <li><strong>Un lote ciego</strong> de 30 a 60 recortes nuevos que etiquetes después de que el modelo grande los haya etiquetado, con las instrucciones congeladas. Es la única medida limpia de lo que correrá cada semana: las 40 fotos de la prueba ya se usaron para ajustar las instrucciones.</li>
-      <li><strong>Un filtro mejor para los recortes inservibles</strong> (el 40 % de los que contestaste). El modelo grande descarta con seguridad pero poco: 6 de tus 21 inservibles y ninguno de 72 utilizables. Falta probar la fracción visible de la prenda («más de la mitad») y un filtro por foto, con un lote nuevo.</li>
+      <li><strong>Fotos geek del mercado.</strong> Hoy hay 2 en España y ninguna en EEUU: solo se puede comparar el geek con el urbano usando tus fotos. Es lo que más limita separar por estilo.</li>
+      <li><strong>Otro lote ciego</strong> si se ajustan las instrucciones (por ejemplo «Camisa», que se da por buena 4 de 8 veces, o la forma y el tejido): el lote de 60 ya no es ciego para lo que se arregle viéndolo.</li>
+      <li><strong>Cuánto sube el OK por ver la respuesta.</strong> Los 6 controles no lo midieron (4 los marcaste «no sirve» y 2 valían para otra prenda del recorte). Haría falta una prueba con controles más limpios.</li>
+      <li><strong>Un filtro mejor para los recortes inservibles</strong> (el 40 % de los que contestaste a ciegas). El modelo grande descarta con seguridad pero poco: 6 de tus 21 inservibles y ninguno de 72 utilizables.</li>
       <li><strong>Más etiquetas y más de una persona</strong> (más de 100 por atributo) para distinguir diferencias de 10 puntos.</li>
-      <li><strong>Más volumen de fotos</strong> para que una cifra por tipo y atributo llegue a 5 fotos.</li>
     </ul>
   </section>
 
@@ -198,7 +202,16 @@ const ETAPAS = [
     {t: 'Tipo de prenda (29 tipos), 32 recortes', ref: {n: 'CLIP (el tipo que había)', k: 17, N: 32}, res: {n: 'modelo grande', k: 17, N: 32}, nota: 'Igual que CLIP en los mismos recortes. «siempre Chaqueta» daría 8 de 32 (25 %). Por familia: 27 de 32 (84 %) frente a 28 de 32 (88 %) de CLIP.', fuente: 'TFM_tendencias_de_prenda §6.5'},
     {t: 'Estampado, 27 recortes', ref: {n: 'siempre «liso»', k: 21, N: 27}, res: {n: 'modelo grande', k: 23, N: 27}, nota: 'En esta muestra el 78 % son lisos. Liso 19 de 21; con estampado 4 de 6.', fuente: '§6.5'},
     {t: 'Forma, 27 recortes', ref: {n: 'siempre «regular»', k: 13, N: 27}, res: {n: 'modelo grande', k: 15, N: 27}, nota: '«Oversized» 4 de 9 (5 dichas «regular»); «ajustada» 1 de 5.', fuente: '§6.5'},
-    {t: 'Tejido, 26 recortes', ref: {n: 'siempre «algodón»', k: 7, N: 26}, res: {n: 'modelo grande', k: 14, N: 26}, nota: 'La única que se distingue de su referencia. Cuero 4 de 4, técnico 2 de 2, algodón 5 de 7; vaquero 2 de 5, lino 0 de 2.', fuente: '§6.5'}]}
+    {t: 'Tejido, 26 recortes', ref: {n: 'siempre «algodón»', k: 7, N: 26}, res: {n: 'modelo grande', k: 14, N: 26}, nota: 'La única que se distingue de su referencia. Cuero 4 de 4, técnico 2 de 2, algodón 5 de 7; vaquero 2 de 5, lino 0 de 2.', fuente: '§6.5'}]},
+  {id: 'I', nombre: 'Tendencia por prenda: tu revisión «OK / más o menos / No»', veredicto: 'otra vara de medir', filas: [
+    {t: 'Tipo de prenda: lo das por bueno (OK o «más o menos»), 46 recortes', ref: {n: 'tu umbral (con un 70 % más o menos vale)', p: .70}, res: {n: 'revisión', k: 41, N: 46},
+     nota: 'Solo con OK, 40 de 46. A ciegas fueron 17 de 32 (53 %): aquí ves la respuesta y lo dudoso vale. «Camisa» se da por buena 4 de 8 veces; las demás etiquetas, 37 de 38.', fuente: 'TFM_tendencias_de_prenda §6.6'},
+    {t: 'Estampado, 46 recortes', ref: {n: 'tu umbral (con un 70 % más o menos vale)', p: .70}, res: {n: 'revisión', k: 43, N: 46},
+     nota: 'Todo con OK. A ciegas, 23 de 27 (85 %), frente a 21 de 27 de «siempre liso». Falla viendo «texto» o «dibujo» en prendas lisas.', fuente: '§6.6'},
+    {t: 'Forma, 46 recortes', ref: {n: 'tu umbral (con un 70 % más o menos vale)', p: .70}, res: {n: 'revisión', k: 45, N: 46},
+     nota: 'Solo con OK, 41 de 46. A ciegas, 15 de 27 (56 %): la forma es la zona gris («regular» frente a «oversized» o «ajustada»), y se acepta cualquiera de las dos.', fuente: '§6.6'},
+    {t: 'Tejido, 45 recortes', ref: {n: 'tu umbral (con un 70 % más o menos vale)', p: .70}, res: {n: 'revisión', k: 38, N: 45},
+     nota: 'Solo con OK, 33 de 45 (73 %). A ciegas, 14 de 26 (54 %). Es el más flojo: dice «algodón» donde ves vaquero, técnico o lino. Los 6 recortes de control no resultaron concluyentes: no sé cuánto sube el OK por ver la respuesta.', fuente: '§6.6'}]}
 ];
 const MATRICES = [
  {titulo: 'Con tus 40 fotos', nota: 'Las instrucciones del modelo grande se ajustaron mirando estas etiquetas: es una medida optimista.',

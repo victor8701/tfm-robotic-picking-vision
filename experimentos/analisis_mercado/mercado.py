@@ -1444,8 +1444,8 @@ _PRENDAS_JSON = {"mtime": 0.0, "datos": {}}
 
 def datos_prendas() -> dict:
     """El último informe por prenda (lo escribe `tendencia_prenda.py informe`); None si aún no se ha generado."""
-    f = TD_PRENDA / "informe.json"
-    return {"informe": leer_json(f) if f.exists() else None}
+    f, g = TD_PRENDA / "informe.json", TD_PRENDA / "separacion_estilos.json"   # g: lo que distingue al geek del urbano (`separacion_estilos.py`, lo recalcula el informe)
+    return {"informe": leer_json(f) if f.exists() else None, "estilos": leer_json(g) if g.exists() else None}
 
 
 def recorte_prenda(foto: str, i: int) -> bytes | None:

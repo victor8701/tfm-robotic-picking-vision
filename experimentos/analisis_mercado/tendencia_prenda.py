@@ -538,6 +538,7 @@ def cmd_informe(args):
     fotos, prendas, fiab = cargar(FOTOS), cargar(PRENDAS), cargar(FIABILIDAD)
     t_tipo, t_fam, t_col = techo_de(fiab.get("tipo_fino")), techo_de(fiab.get("familia")), techo_de(fiab.get("color"))
     t_vlm = {c: techo_de(fiab.get(f"vlm_{c}")) for c in ("tipo", "familia", "estampado", "tejido", "forma")}
+    dudosos = {t: d for t, d in ((fiab.get("vlm_tipo") or {}).get("por_tipo") or {}).items() if d["n"] >= 6 and d["aceptado"] / d["n"] < 0.65}   # tipos que el modelo dice y que Víctor no da por buenos (revisión)
     ahora_dt = datetime.now(timezone.utc)
     grupos = collections.defaultdict(list)
     for k, v in fotos.items():
@@ -583,7 +584,15 @@ def cmd_informe(args):
                    for c, cnt in d["atr"].items() if sum(cnt.values()) >= MIN_FOTOS}
             return {**(extra or {}), "fotos": d["n"], "cuota": round(cuota, 3) if ok else None, "ic": wilson(min(cuota, 1.0), n_ef) if ok else None,
                     "confianza": nivel(d["n"], techo) if ok else None, "pocos_datos": not ok, "ejemplos": ej, "atributos": atr if ok else {}}
-        filas = [fila(t, d, t_vlm["tipo"] if todas_vlm else t_tipo, {"tipo": t, "familia": FAMILIA.get(t, "Otros")}) for t, d in sorted(por_tipo.items(), key=lambda kv: -kv[1]["w"])]
+        def techo_tipo(t):
+            return "baja" if todas_vlm and t in dudosos else (t_vlm["tipo"] if todas_vlm else t_tipo)
+
+        def extra_tipo(t):
+            e = {"tipo": t, "familia": FAMILIA.get(t, "Otros")}
+            if todas_vlm and t in dudosos:
+                e["aviso"] = f"En tu revisión diste por buena la etiqueta «{t}» del modelo {dudosos[t]['aceptado']} de {dudosos[t]['n']} veces: se confunde con otras prendas, así que esta cifra es más dudosa que las demás."
+            return e
+        filas = [fila(t, d, techo_tipo(t), extra_tipo(t)) for t, d in sorted(por_tipo.items(), key=lambda kv: -kv[1]["w"])]
         familias = [fila(f, d, t_vlm["familia"] if todas_vlm else t_fam, {"familia": f}) for f, d in sorted(por_fam.items(), key=lambda kv: -kv[1]["w"])]
         atributos = {c: {"n": sum(cnt.values()), "reparto": dict(cnt.most_common()), "confianza": nivel(sum(cnt.values()), t_vlm[c])} for c, cnt in atr_grupo.items() if sum(cnt.values()) >= MIN_FOTOS}
         colores = collections.Counter(p["color"] for k in con_prendas for p in prendas[k]["prendas"] if valida(p) and p.get("color"))
@@ -592,6 +601,11 @@ def cmd_informe(args):
                                   "prendas": filas, "familias": familias, "atributos": atributos, "etiquetadas_con_modelo_grande": todas_vlm,
                                   "colores": dict(colores.most_common(8)), "confianza_color": t_col, "fuentes": dict(fuentes.most_common())})
     guardar(INFORME, informe)
+    try:   # comparación geek-urbano (`separacion_estilos.py`): son unos segundos y la enseña la pestaña «Prendas»
+        import separacion_estilos
+        separacion_estilos.generar(sys.modules[__name__], rep=2000)
+    except Exception as e:  # noqa: BLE001 -- sin ella el informe sale igual
+        print(f"⚠ No se pudo calcular la comparación entre estilos ({type(e).__name__}: {e}).", flush=True)
     for g in informe["grupos"]:
         print(f"\n{g['estilo']} · {g['mercado']} · {g['temporada']}: {g['fotos']} fotos ({g['fotos_con_prenda']} con prenda visible)  fuentes: {g['fuentes']}")
         for f in g["prendas"][:12]:

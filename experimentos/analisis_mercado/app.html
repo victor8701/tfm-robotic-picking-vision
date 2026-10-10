@@ -93,6 +93,24 @@ code{background:var(--sug);border-radius:4px;padding:0 4px}
 .fiab li{margin:4px 0}
 .atr{grid-column:1/-1;font-size:.84rem;color:var(--suave);margin-top:4px;display:grid;gap:2px}.atr b{color:var(--tinta);font-weight:600}
 .sub-atr{margin:10px 0 2px;font-weight:600;font-size:.92rem}
+.aviso-fila{grid-column:1/-1;font-size:.8rem;color:var(--mal)}
+/* qué distingue al geek del urbano */
+:root{--geek:#7a4fa3}
+@media (prefers-color-scheme:dark){:root{--geek:#b896dc}}
+button.sec[aria-pressed="true"]{border-color:var(--acento);outline:2px solid var(--acento)}
+.fila-dif{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;padding:8px 0;border-top:1px solid var(--linea)}
+.fila-dif .nom{font-weight:600;overflow-wrap:anywhere}
+.fila-dif .num{color:var(--suave);font-size:.82rem;text-align:right}
+.barra-d{grid-column:1/-1;height:10px;background:var(--linea);border-radius:5px;position:relative;overflow:hidden}
+.barra-d::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--tinta);opacity:.45}
+.barra-d i{position:absolute;top:0;bottom:0}
+.barra-d i.geek{background:var(--geek)}.barra-d i.urbano{background:var(--acento)}
+.barra-d b{position:absolute;top:4px;height:2px;background:var(--tinta);opacity:.85}   /* margen (95 %): línea con topes */
+.barra-d b::before,.barra-d b::after{content:"";position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--tinta)}
+.barra-d b::before{left:0}.barra-d b::after{right:0}
+.lado{display:flex;justify-content:space-between;font-size:.78rem;margin:4px 0 0}
+.lado .g{color:var(--geek);font-weight:600}.lado .u{color:var(--acento);font-weight:600}
+.dim-t{margin:12px 0 2px;font-weight:600;font-size:.92rem}
 </style>
 
 <header>
@@ -224,6 +242,7 @@ code{background:var(--sug);border-radius:4px;padding:0 4px}
   <p class="nota">El estilo (urbano, geek) lo da la <b>persona de referencia</b>, no la foto. Cada cifra es el reparto de las fotos de una temporada por tipo de prenda y lleva su <b>confianza</b>: cuántas fotos la sostienen y cuánto acierta el modelo con ese dato. La franja clara de cada barra es el margen (95 %).</p>
   <p class="nota" id="p-msg"></p>
   <div id="p-cuerpo" hidden>
+    <div class="bloque" id="p-estilos" hidden></div>
     <label for="p-grupo">Estilo · mercado · temporada</label>
     <select id="p-grupo"></select>
     <div class="nota" id="p-cab"></div>
@@ -355,7 +374,47 @@ async function cargarPrendas() {
   const reales = gs.filter(({g}) => g.mercado !== 'Biblioteca' && g.fotos_con_prenda >= inf.min_fotos).sort((a, b) => b.g.fotos_con_prenda - a.g.fotos_con_prenda);
   sel.value = previo && gs.some(({i}) => String(i) === previo) ? previo : String((reales[0] || gs[0] || {i: 0}).i);
   sel.onchange = pintarPrendas;
+  pintarEstilos();
   pintarPrendas();
+}
+/* qué distingue al geek del urbano: `separacion_estilos.py` (la recalcula el informe); con un servidor viejo no llega `estilos` y el bloque queda oculto */
+let ALC = 'solo_biblioteca';
+const NOM_DIM = {familia: 'Familia de prenda', tipo: 'Tipo de prenda', estampado: 'Estampado', tejido: 'Tejido', forma: 'Forma'};
+function textoGlobal(p) { return p < 0.01 ? 'se separan claramente' : p < 0.05 ? 'se separan' : p < 0.10 ? 'se separan algo (poco claro)' : 'no se separan con estos datos'; }
+function filaDif(c, esc) {
+  const r = el('div', {className: 'fila-dif'});
+  const seg = c.q < 0.10;
+  r.append(el('div', {className: 'nom'}, c.categoria, el('span', {className: 'conf ' + (seg ? 'alta' : 'media'), textContent: seg ? 'segura' : 'orientativa'})),
+           el('div', {className: 'num', textContent: 'geek ' + pct(c.geek) + ' · urbano ' + pct(c.urbano)}));
+  const b = el('div', {className: 'barra-d', title: 'diferencia ' + (c.dif > 0 ? '+' : '') + Math.round(100 * c.dif) + ' puntos (entre ' + Math.round(100 * c.ic[0]) + ' y ' + Math.round(100 * c.ic[1]) + '); p = ' + c.p.toLocaleString('es-ES')});
+  const izq = c.dif >= 0 ? 50 : 50 + c.dif * esc, ancho = Math.abs(c.dif) * esc;
+  b.append(el('b', {style: 'left:' + (50 + c.ic[0] * esc) + '%;width:' + ((c.ic[1] - c.ic[0]) * esc) + '%'}), el('i', {className: c.dif >= 0 ? 'geek' : 'urbano', style: 'left:' + izq + '%;width:' + ancho + '%'}));
+  r.append(b);
+  return r;
+}
+function pintarEstilos() {
+  const caja = $('#p-estilos'), E = P && P.estilos, A = E && E[ALC];
+  caja.hidden = !A;
+  if (!A) return;
+  const d0 = A.dimensiones[0];
+  const botones = el('div', {className: 'fila-btn'});
+  [['solo_biblioteca', 'Solo tus fotos aprobadas'], ['todas_las_fuentes', 'Todas las fuentes (con mercado)']].forEach(([k, t]) => {
+    const b = el('button', {className: 'sec', textContent: t}); b.setAttribute('aria-pressed', k === ALC); b.onclick = () => { ALC = k; pintarEstilos(); }; botones.append(b);
+  });
+  caja.replaceChildren(el('h4', {textContent: 'Qué distingue al geek del urbano'}), botones,
+    el('div', {className: 'nota', textContent: A.prendas + ' prendas con valoración del modelo grande: geek ' + d0.prendas_geek + ' (' + d0.fotos_geek + ' fotos) frente a urbano ' + d0.prendas_urbano + ' (' + d0.fotos_urbano + ' fotos). '
+      + 'Cada barra es la diferencia de cuota entre los dos estilos: a la derecha, más frecuente en geek; a la izquierda, en urbano; la línea con topes es el margen (95 %). '
+      + 'Solo salen las categorías con diferencia clara: «segura» si aguanta comparar muchas categorías a la vez, «orientativa» si no.'}));
+  A.dimensiones.forEach(d => {
+    const vistas = d.categorias.filter(c => c.p < 0.05 || c.q < 0.10).sort((a, b) => Math.abs(b.dif) - Math.abs(a.dif));
+    caja.append(el('div', {className: 'dim-t', textContent: NOM_DIM[d.dimension] + ': ' + textoGlobal(d.global.p) + ' (p = ' + d.global.p.toLocaleString('es-ES') + ')'}));
+    if (!vistas.length) { caja.append(el('div', {className: 'nota', textContent: 'Ninguna categoría destaca por sí sola.'})); return; }
+    const esc = 50 / Math.max(0.05, ...vistas.map(c => Math.max(Math.abs(c.ic[0]), Math.abs(c.ic[1]), Math.abs(c.dif))));
+    vistas.forEach(c => caja.append(filaDif(c, esc)));
+    caja.append(el('div', {className: 'lado'}, el('span', {className: 'u', textContent: '◄ más en urbano'}), el('span', {className: 'g', textContent: 'más en geek ►'})));
+  });
+  caja.append(el('div', {className: 'nota', textContent: 'Los fallos del modelo, si son al azar, encogen las diferencias reales (con un 70 % de acierto, a unos 70 puntos de cada 100); no las inventan. Podrían inventarlas si fallase distinto en un estilo que en otro: en tu revisión dio por buena su valoración casi igual en geek que en urbano. '
+    + 'Con «solo tus fotos aprobadas» los dos estilos salen del mismo sitio; con «todas» el geek es casi todo de tu galería y el urbano mezcla galería y mercado, así que parte de la diferencia puede venir del origen de las fotos.'}));
 }
 function filaPrenda(f, escala, nombre) {
   const r = el('div', {className: 'fila-prenda'});
@@ -364,6 +423,7 @@ function filaPrenda(f, escala, nombre) {
   const b = el('div', {className: 'barra-p', title: 'entre ' + pct(f.ic[0]) + ' y ' + pct(f.ic[1])});
   b.append(el('b', {style: 'left:' + (f.ic[0] * escala) + '%;width:' + ((f.ic[1] - f.ic[0]) * escala) + '%'}), el('i', {style: 'width:' + (f.cuota * escala) + '%'}));
   r.append(b, el('div', {className: 'num', style: 'grid-column:1/-1;text-align:left', textContent: 'entre ' + pct(f.ic[0]) + ' y ' + pct(f.ic[1])}));
+  if (f.aviso) r.append(el('div', {className: 'aviso-fila', textContent: f.aviso}));
   if (f.ejemplos && f.ejemplos.length) r.append(el('div', {className: 'ej'}, ...f.ejemplos.map(([k, i]) => el('img', {src: '/prenda/' + k + '/' + i + '.jpg', alt: 'ejemplo de ' + nombre, loading: 'lazy'}))));
   const at = Object.entries(f.atributos || {});
   if (at.length) r.append(el('div', {className: 'atr'}, ...at.map(([c, a]) => el('div', {}, el('b', {textContent: ETIQ_ATR[c] + ' (' + a.n + ' prendas, confianza ' + a.confianza + '): '}), reparto(a.reparto)))));
@@ -418,10 +478,17 @@ function pintarPrendas() {
   }
   if (fb.color) li('Color: ' + fb.color.acierto + ' de ' + fb.color.n + ' (' + pct(fb.color.acierto / fb.color.n) + ') revisadas a ojo por el asistente, no por ti. Confianza máxima: ' + inf.techos.color + '.');
   if (fb.vlm_estampado) {
-    li('Estampado: ' + medida(fb.vlm_estampado) + ' (decir siempre «liso» daría ' + fb.vlm_estampado.mas_frecuente[1] + ' de ' + fb.vlm_estampado.n + '); forma: ' + medida(fb.vlm_forma) + '; tejido: ' + medida(fb.vlm_tejido)
-       + ' (no supera a decir siempre «algodón»: solo acierta bien los materiales claros, como vaquero o cuero). Los estima Qwen3-VL de 8 000 millones en Kaggle, medido con tus etiquetas. Confianza máxima: ' + inf.techos.vlm.estampado + ' (estampado), ' + inf.techos.vlm.forma + ' (forma), ' + inf.techos.vlm.tejido + ' (tejido).');
+    const siempre = c => { const m = fb['vlm_' + c].mas_frecuente; return m ? ' (decir siempre «' + m[0] + '» daría ' + m[1] + ' de ' + fb['vlm_' + c].n + ')' : ''; };
+    li('Estampado: ' + medida(fb.vlm_estampado) + siempre('estampado') + '; forma: ' + medida(fb.vlm_forma) + siempre('forma') + '; tejido: ' + medida(fb.vlm_tejido) + siempre('tejido')
+       + ' (sin ver la respuesta del modelo, con tus etiquetas). Los estima Qwen3-VL de 8 000 millones en Kaggle. Confianza máxima: ' + inf.techos.vlm.estampado + ' (estampado), ' + inf.techos.vlm.forma + ' (forma), ' + inf.techos.vlm.tejido + ' (tejido).');
   } else {
     li('Estampado, tejido y forma: todavía no se estiman. Se probó CLIP, una capa entrenada con 22 000 prendas de Fashionpedia y un modelo pequeño de lenguaje y visión, y con tus etiquetas ninguno supera a «decir siempre lo más frecuente».');
+  }
+  const rv = ['tipo', 'estampado', 'tejido', 'forma'].filter(c => fb['vlm_' + c] && fb['vlm_' + c].revision);
+  if (rv.length) {
+    const r = c => fb['vlm_' + c].revision;
+    li('Tu revisión («OK / más o menos / No» sobre ' + r(rv[0]).recortes + ' recortes, viendo lo que había valorado el modelo): da por buena su valoración en ' + rv.map(c => c + ' ' + pct(r(c).aceptable / r(c).n)).join(', ')
+       + ' (solo con OK: ' + rv.map(c => pct(r(c).ok / r(c).n)).join(', ') + '). Es más generosa que etiquetar sin ver la respuesta (las cifras de arriba), así que el acierto real queda entre las dos. Con ella la confianza máxima sube a «media»; «alta» solo se alcanzaría a ciegas.');
   }
   li('Cada cifra tiene dos límites: cuántas fotos la sostienen (30 o más → alta, 15 a 29 → media, menos → baja) y lo que acierta ese dato; manda el más bajo. Con pocas fotos, el margen de las barras es amplio: no leas diferencias pequeñas.');
   $('#p-fiab').replaceChildren(el('h4', {textContent: 'Cuánto fiarte de esto'}), ul);

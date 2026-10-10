@@ -97,6 +97,10 @@ tejido 14 de 26 (54 %, IC 35 a 71 %) frente a 7 de 26 (27 %) de «algodón»: **
 
 Familia de prenda (arriba, abrigo, abajo, cuerpo entero, calzado, accesorio): flujo anterior 29 de 38 (76 %) → modelo grande 33 de 38 (87 %). Color: 21 de 30 (70 %) a ojo, con sesgo hacia «negro» (juez único). En datos públicos (308 prendas de Fashionpedia): tipo 76 % frente a 44 % de CLIP; estampado 74 % frente a 66 % de la capa entrenada; forma 48 % frente a 59 %.
 
+**Revisión «OK / más o menos / No» (10 de octubre).** Otra vara de medir: Víctor ve la valoración del modelo en cada recorte y contesta OK, «más o menos» (con las alternativas que también valen) o No (con lo que es). 54 recortes (24 donde a ciegas no coincidían, 30 nuevos, 6 de control con la valoración de otro recorte); quedan 46 reales con respuesta. **Aceptable (OK + «más o menos»): tipo 41 de 46 (89 %, IC 77 a 95 %), estampado 43 de 46 (93 %), tejido 38 de 45 (84 %), forma 45 de 46 (98 %); solo con OK, 87, 93, 73 y 89 %.** Es más generosa que el lote ciego (tipo 53 %, estampado 85 %, tejido 54 %, forma 56 %) porque ve la respuesta y lo dudoso vale; el acierto real queda entre las dos. Los 6 controles no fueron concluyentes (4 marcados «no sirve»; en los otros 2 la valoración equivocada valía para otra prenda del recorte), así que no se sabe cuánto sube el OK por ver la respuesta. El tipo falla casi solo en «Camisa» (4 de 8 aceptadas; las demás etiquetas, 37 de 38). Criterio de Víctor tras verla: con ~70 % basta; lo importante es separar por estilo. Detalle en `TFM_tendencias_de_prenda.md` §6.6.
+
+**Separación por estilo (10 de octubre).** Con las fotos aprobadas de Víctor (geek 91 prendas en 42 fotos, urbano 78 en 39), el geek y el urbano **se separan en forma (p = 0,005), tejido (0,011) y tipo de prenda (0,013)** y no en estampado (0,47) ni en familia (0,14): urbano más oversized (40 % frente a 15 %); geek más corta/cropped (19 % frente a 3 %), ajustada (14 % frente a 1 %), punto (19 % frente a 4 %) y top (15 % frente a 1 %). Con todas las fuentes (261 prendas) el tipo se separa todavía más (p = 0,001). Un acierto del ~70 % encoge las diferencias, no las inventa. Cuello de botella: en el mercado real casi no hay geek (2 fotos en España, ninguna en EEUU). Detalle en §6.7.
+
 ## 3. Lectura transversal
 
 ### 3.1 Qué hizo subir el acierto de verdad
@@ -147,19 +151,21 @@ Familia de prenda (arriba, abrigo, abajo, cuerpo entero, calzado, accesorio): fl
 
 ## 4. Fiabilidad actual por atributo (lo que usa el informe de «Prendas»)
 
-| Atributo | Método | Acierto (principal, lote ciego) | Referencia | Confianza máxima en el informe |
-|---|---|---|---|---|
-| Tipo de prenda | modelo grande | 17 de 32 (53 %) | CLIP 17 de 32; «siempre Chaqueta» 8 de 32 | baja |
-| Familia de prenda | modelo grande | 27 de 32 (84 %) | CLIP 28 de 32 (88 %) | media |
-| Estampado | modelo grande | 23 de 27 (85 %) | «siempre liso» 21 de 27 (78 %) | media |
-| Forma | modelo grande | 15 de 27 (56 %) | «siempre regular» 13 de 27 (48 %) | baja |
-| Tejido | modelo grande | 14 de 26 (54 %) | «siempre algodón» 7 de 26 (27 %) | baja |
-| Color | adaptador Florence-2 v3 | 21 de 30 (70 %, a ojo) | — | baja |
+| Atributo | Método | A ciegas (principal, lote ciego) | Revisión (aceptable) | Referencia a ciegas | Confianza máxima en el informe |
+|---|---|---|---|---|---|
+| Tipo de prenda | modelo grande | 17 de 32 (53 %) | 41 de 46 (89 %) | CLIP 17 de 32; «siempre Chaqueta» 8 de 32 | media (antes baja) |
+| Familia de prenda | modelo grande | 27 de 32 (84 %) | | CLIP 28 de 32 (88 %) | media |
+| Estampado | modelo grande | 23 de 27 (85 %) | 43 de 46 (93 %) | «siempre liso» 21 de 27 (78 %) | media |
+| Forma | modelo grande | 15 de 27 (56 %) | 45 de 46 (98 %) | «siempre regular» 13 de 27 (48 %) | media (antes baja) |
+| Tejido | modelo grande | 14 de 26 (54 %) | 38 de 45 (84 %) | «siempre algodón» 7 de 26 (27 %) | media (antes baja) |
+| Color | adaptador Florence-2 v3 | 21 de 30 (70 %, a ojo) | | | baja |
 
-La confianza de cada cifra del informe es el mínimo entre las fotos que la sostienen (≥ 30 alta, 15 a 29 media, 5 a 14 baja) y el techo que fija el acierto del atributo (≥ 85 % con 30 o más etiquetas alta, ≥ 65 % media, menos baja). Desde el 9 de octubre estas cifras son las del **lote ciego** (antes, las de la prueba con las 40 fotos).
+La confianza de cada cifra del informe es el mínimo entre las fotos que la sostienen (≥ 30 alta, 15 a 29 media, 5 a 14 baja) y el techo que fija el acierto del atributo. El techo sale del mejor de dos criterios: a ciegas (≥ 85 % con 30 o más etiquetas alta, ≥ 65 % media, menos baja) y la revisión (límite inferior del intervalo de «aceptable» ≥ 65 % → media; «alta» solo se alcanza a ciegas, porque la revisión ve la respuesta del modelo). Desde el 10 de octubre se aplica la revisión; los tipos con 6 o más revisados y menos del 65 % aceptado («Camisa», 4 de 8) salen con confianza baja y un aviso.
 
 ## 5. Qué falta medir
 
+0. **Fotos geek del mercado** (2 en España, ninguna en EEUU): hoy solo se puede separar por estilo con las fotos aprobadas de Víctor. Es lo que más limita.
+0b. **Cuánto sube el OK por ver la respuesta**: los 6 controles no lo midieron; haría falta repetirlo con controles más limpios (valoración de otro recorte de una sola prenda).
 1. **Un segundo lote ciego**, solo si se ajustan las instrucciones: el primero (9 de octubre) ya no es ciego para cualquier cambio hecho viendo sus fallos («oversized» dicho «regular» 5 de 9 veces, «ajustada» dicha «corta», tejido «no se distingue» dicho «algodón»). Con las instrucciones v3 congeladas, esas son las cifras del paso semanal.
 1b. **Filtrar mejor los recortes inservibles** (40 % de los contestados). Probado un filtro del modelo grande sobre 93 recortes: seguro (0 de 72 utilizables perdidos) pero flojo (6 de 21 inservibles). Falta probar la fracción visible («más de la mitad», la regla de Víctor) y un filtro por foto, con un lote nuevo.
 2. **Más de una persona etiquetando** y más de 100 etiquetas por atributo si se quiere distinguir diferencias de 10 puntos.
@@ -169,8 +175,8 @@ La confianza de cada cifra del informe es el mínimo entre las fotos que la sost
 
 ## 6. Resumen en cinco frases
 
-El proyecto pasó de un CLIP que acertaba el 33 % del estilo de una prenda a un clasificador propio que acierta el 64 % sin haberla visto y el 85 % de media de cinco campos sobre catálogo. En la calle y con redes sociales el catálogo no sirve tal cual: hizo falta detectar y recortar, y las fotos útiles no salen de una búsqueda por texto (17 %) sino de elegir las fuentes. Entrenar más con modelos pequeños nunca mejoró lo que ya daba la referencia; lo que mejoró fue la especificidad (reglas y vocabulario propios) y, para estampado y tipo de prenda, un modelo general grande (estampado 50 → 77 %, tipo 50 → 63 %). Varias cifras iniciales eran demasiado buenas (contaminación, juez a ojo, «cualquiera») y se corrigieron al medir con referencias humanas; con 15 a 38 etiquetas el margen es de 8 a 13 puntos. Medido a ciegas con 32 recortes de producción, el modelo grande iguala a CLIP en el tipo (53 %) y solo se distingue de su referencia en el tejido (54 % frente a 27 %); además, el 40 % de los recortes que se revisaron eran inservibles. Lo que limita hoy el análisis de tendencia es el volumen de fotos (decenas por temporada), la calidad de los recortes y las definiciones de las etiquetas, más que el modelo.
+El proyecto pasó de un CLIP que acertaba el 33 % del estilo de una prenda a un clasificador propio que acierta el 64 % sin haberla visto y el 85 % de media de cinco campos sobre catálogo. En la calle y con redes sociales el catálogo no sirve tal cual: hizo falta detectar y recortar, y las fotos útiles no salen de una búsqueda por texto (17 %) sino de elegir las fuentes. Entrenar más con modelos pequeños nunca mejoró lo que ya daba la referencia; lo que mejoró fue la especificidad (reglas y vocabulario propios) y, para estampado y tipo de prenda, un modelo general grande (estampado 50 → 77 %, tipo 50 → 63 %). Varias cifras iniciales eran demasiado buenas (contaminación, juez a ojo, «cualquiera») y se corrigieron al medir con referencias humanas; con 15 a 38 etiquetas el margen es de 8 a 13 puntos. Medido a ciegas con 32 recortes de producción, el modelo grande iguala a CLIP en el tipo (53 %) y solo se distingue de su referencia en el tejido (54 % frente a 27 %); además, el 40 % de los recortes que se revisaron eran inservibles. Lo que limita hoy el análisis de tendencia es el volumen de fotos (decenas por temporada), la calidad de los recortes y las definiciones de las etiquetas, más que el modelo. Cuando Víctor revisó lo que había valorado el modelo (OK, «más o menos» o No) dio por buena su valoración en el 84 a 98 % de los atributos y fijó el criterio del proyecto: con un 70 % basta, lo importante es separar por estilo; con sus fotos, la forma, el tejido y el tipo de prenda sí distinguen el geek del urbano, aunque en el mercado real casi no hay geek para comparar.
 
 ## 7. Fuentes
 
-`memoria/TFM_clasificador_visual_atributos.md` (§0, §3, §6, §7, §8, §11, §13) · `memoria/TFM_experimento_B_vectores_visuales.md` · `memoria/TFM_ingesta_redes_sociales.md` · `memoria/TFM_tendencias_de_prenda.md` (§3, §6.1 a §6.4) · `experimentos/analisis_mercado/README.md` · `experimentos/vlm_atributos_prenda/resultados/` (`profesor_fashionpedia_2026-10-08/`, `profesor_victor_2026-10-09/`, `alumno_2026-10-08.json`, `fashionpedia_atributos_*.json`) · `experimentos/analisis_mercado/tendencia_datos/fiabilidad.json`.
+`memoria/TFM_clasificador_visual_atributos.md` (§0, §3, §6, §7, §8, §11, §13) · `memoria/TFM_experimento_B_vectores_visuales.md` · `memoria/TFM_ingesta_redes_sociales.md` · `memoria/TFM_tendencias_de_prenda.md` (§3, §6.1 a §6.7) · `experimentos/analisis_mercado/README.md` · `experimentos/vlm_atributos_prenda/resultados/` (`profesor_fashionpedia_2026-10-08/`, `profesor_victor_2026-10-09/`, `alumno_2026-10-08.json`, `fashionpedia_atributos_*.json`) · `experimentos/analisis_mercado/tendencia_datos/fiabilidad.json` · `valoraciones.json` y `valoraciones_resumen.json` (revisión) · `separacion_estilos.json`.
