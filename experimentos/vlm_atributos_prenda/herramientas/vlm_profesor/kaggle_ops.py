@@ -35,8 +35,18 @@ from kagglesdk.kernels.types.kernels_enums import KernelWorkerStatus  # noqa: E4
 TERMINADOS = ("COMPLETE", "ERROR", "CANCEL_REQUESTED", "CANCEL_ACKNOWLEDGED")
 
 
+def _asegurar_config():
+    """La CLI exige un kaggle.json aunque se autentique con el token nuevo (en GitHub Actions no existe y `dataset_create_new` falla con «Could not find kaggle.json»): si falta, se crea uno de relleno."""
+    f = Path.home() / ".config" / "kaggle" / "kaggle.json"
+    if not f.exists():
+        f.parent.mkdir(parents=True, exist_ok=True)
+        f.write_text(json.dumps({"username": USUARIO, "key": "no-se-usa"}), encoding="utf-8")
+        f.chmod(0o600)
+
+
 def api_cli():
     """La clase de la CLI, pero hablando con el SDK autenticado por el token nuevo."""
+    _asegurar_config()
     from kaggle.api.kaggle_api_extended import KaggleApi
     a = KaggleApi()
     a.config_values = {a.CONFIG_NAME_USER: USUARIO}
