@@ -1,5 +1,5 @@
 {
- "generado": "2026-10-10T17:22:58+00:00",
+ "generado": "2026-10-11T17:23:15+00:00",
  "min_prendas_categoria": 6,
  "repeticiones": 2000,
  "metodo": "diferencia de cuota geek − urbano por categoría; intervalo por bootstrap por foto; p de permutación por foto; q de Benjamini-Hochberg entre las categorías de cada dimensión",
@@ -580,7 +580,1279 @@
      }
     ]
    }
-  ]
+  ],
+  "por_estilo": {
+   "prendas": 261,
+   "estilos_con_datos": [
+    "urbano",
+    "geek"
+   ],
+   "dimensiones": [
+    {
+     "dimension": "familia",
+     "estilos": {
+      "urbano": {
+       "prendas": 167,
+       "fotos": 85,
+       "categorias": [
+        {
+         "categoria": "Arriba",
+         "n": 152,
+         "estilo": 0.557,
+         "resto": 0.628,
+         "dif": -0.071,
+         "ic": [
+          -0.21,
+          0.068
+         ],
+         "p": 0.3423,
+         "q": 0.4564
+        },
+        {
+         "categoria": "Abrigo",
+         "n": 41,
+         "estilo": 0.204,
+         "resto": 0.074,
+         "dif": 0.129,
+         "ic": [
+          0.031,
+          0.221
+         ],
+         "p": 0.019,
+         "q": 0.076
+        },
+        {
+         "categoria": "Abajo",
+         "n": 35,
+         "estilo": 0.126,
+         "resto": 0.149,
+         "dif": -0.023,
+         "ic": [
+          -0.106,
+          0.056
+         ],
+         "p": 0.5577,
+         "q": 0.5577
+        },
+        {
+         "categoria": "Calzado",
+         "n": 33,
+         "estilo": 0.114,
+         "resto": 0.149,
+         "dif": -0.035,
+         "ic": [
+          -0.1,
+          0.03
+         ],
+         "p": 0.3113,
+         "q": 0.4564
+        }
+       ]
+      },
+      "geek": {
+       "prendas": 94,
+       "fotos": 44,
+       "categorias": [
+        {
+         "categoria": "Arriba",
+         "n": 152,
+         "estilo": 0.628,
+         "resto": 0.557,
+         "dif": 0.071,
+         "ic": [
+          -0.068,
+          0.203
+         ],
+         "p": 0.3388,
+         "q": 0.4518
+        },
+        {
+         "categoria": "Abrigo",
+         "n": 41,
+         "estilo": 0.074,
+         "resto": 0.204,
+         "dif": -0.129,
+         "ic": [
+          -0.213,
+          -0.039
+         ],
+         "p": 0.0215,
+         "q": 0.086
+        },
+        {
+         "categoria": "Abajo",
+         "n": 35,
+         "estilo": 0.149,
+         "resto": 0.126,
+         "dif": 0.023,
+         "ic": [
+          -0.057,
+          0.109
+         ],
+         "p": 0.5567,
+         "q": 0.5567
+        },
+        {
+         "categoria": "Calzado",
+         "n": 33,
+         "estilo": 0.149,
+         "resto": 0.114,
+         "dif": 0.035,
+         "ic": [
+          -0.031,
+          0.103
+         ],
+         "p": 0.3093,
+         "q": 0.4518
+        }
+       ]
+      }
+     },
+     "global": {
+      "tv": 0.06,
+      "p": 0.1009
+     },
+     "perfil": {
+      "urbano": [
+       [
+        "Arriba",
+        0.557
+       ],
+       [
+        "Abrigo",
+        0.204
+       ],
+       [
+        "Abajo",
+        0.126
+       ],
+       [
+        "Calzado",
+        0.114
+       ]
+      ],
+      "geek": [
+       [
+        "Arriba",
+        0.628
+       ],
+       [
+        "Abajo",
+        0.149
+       ],
+       [
+        "Calzado",
+        0.149
+       ],
+       [
+        "Abrigo",
+        0.074
+       ]
+      ]
+     }
+    },
+    {
+     "dimension": "tipo",
+     "estilos": {
+      "urbano": {
+       "prendas": 167,
+       "fotos": 85,
+       "categorias": [
+        {
+         "categoria": "Chaqueta",
+         "n": 33,
+         "estilo": 0.156,
+         "resto": 0.074,
+         "dif": 0.081,
+         "ic": [
+          -0.005,
+          0.172
+         ],
+         "p": 0.096,
+         "q": 0.1439
+        },
+        {
+         "categoria": "Camiseta manga corta",
+         "n": 32,
+         "estilo": 0.162,
+         "resto": 0.053,
+         "dif": 0.108,
+         "ic": [
+          0.02,
+          0.194
+         ],
+         "p": 0.0315,
+         "q": 0.0846
+        },
+        {
+         "categoria": "Camisa",
+         "n": 27,
+         "estilo": 0.132,
+         "resto": 0.053,
+         "dif": 0.079,
+         "ic": [
+          -0.001,
+          0.159
+         ],
+         "p": 0.0945,
+         "q": 0.1439
+        },
+        {
+         "categoria": "Camiseta manga larga",
+         "n": 22,
+         "estilo": 0.066,
+         "resto": 0.117,
+         "dif": -0.051,
+         "ic": [
+          -0.155,
+          0.04
+         ],
+         "p": 0.2754,
+         "q": 0.3558
+        },
+        {
+         "categoria": "Pantalón",
+         "n": 19,
+         "estilo": 0.096,
+         "resto": 0.032,
+         "dif": 0.064,
+         "ic": [
+          0.007,
+          0.115
+         ],
+         "p": 0.0355,
+         "q": 0.0846
+        },
+        {
+         "categoria": "Hoodie",
+         "n": 18,
+         "estilo": 0.054,
+         "resto": 0.096,
+         "dif": -0.042,
+         "ic": [
+          -0.134,
+          0.038
+         ],
+         "p": 0.3018,
+         "q": 0.3558
+        },
+        {
+         "categoria": "Top",
+         "n": 17,
+         "estilo": 0.018,
+         "resto": 0.149,
+         "dif": -0.131,
+         "ic": [
+          -0.223,
+          -0.049
+         ],
+         "p": 0.0005,
+         "q": 0.0075
+        },
+        {
+         "categoria": "Zapatillas deportivas",
+         "n": 16,
+         "estilo": 0.06,
+         "resto": 0.064,
+         "dif": -0.004,
+         "ic": [
+          -0.061,
+          0.047
+         ],
+         "p": 0.931,
+         "q": 0.931
+        },
+        {
+         "categoria": "Camiseta de tirantes",
+         "n": 13,
+         "estilo": 0.024,
+         "resto": 0.096,
+         "dif": -0.072,
+         "ic": [
+          -0.155,
+          0.007
+         ],
+         "p": 0.0765,
+         "q": 0.1434
+        },
+        {
+         "categoria": "Polo",
+         "n": 11,
+         "estilo": 0.066,
+         "resto": 0.0,
+         "dif": 0.066,
+         "ic": [
+          0.028,
+          0.116
+         ],
+         "p": 0.0305,
+         "q": 0.0846
+        },
+        {
+         "categoria": "Short",
+         "n": 9,
+         "estilo": 0.024,
+         "resto": 0.053,
+         "dif": -0.029,
+         "ic": [
+          -0.094,
+          0.021
+         ],
+         "p": 0.3083,
+         "q": 0.3558
+        },
+        {
+         "categoria": "Botas",
+         "n": 8,
+         "estilo": 0.012,
+         "resto": 0.064,
+         "dif": -0.052,
+         "ic": [
+          -0.097,
+          -0.004
+         ],
+         "p": 0.0145,
+         "q": 0.0725
+        },
+        {
+         "categoria": "Falda",
+         "n": 7,
+         "estilo": 0.006,
+         "resto": 0.064,
+         "dif": -0.058,
+         "ic": [
+          -0.108,
+          -0.014
+         ],
+         "p": 0.0065,
+         "q": 0.0487
+        },
+        {
+         "categoria": "Jersey",
+         "n": 6,
+         "estilo": 0.006,
+         "resto": 0.053,
+         "dif": -0.047,
+         "ic": [
+          -0.107,
+          0.0
+         ],
+         "p": 0.0395,
+         "q": 0.0846
+        },
+        {
+         "categoria": "Zapatos de vestir",
+         "n": 6,
+         "estilo": 0.024,
+         "resto": 0.021,
+         "dif": 0.003,
+         "ic": [
+          -0.037,
+          0.036
+         ],
+         "p": 0.7296,
+         "q": 0.7818
+        }
+       ]
+      },
+      "geek": {
+       "prendas": 94,
+       "fotos": 44,
+       "categorias": [
+        {
+         "categoria": "Chaqueta",
+         "n": 33,
+         "estilo": 0.074,
+         "resto": 0.156,
+         "dif": -0.081,
+         "ic": [
+          -0.169,
+          0.009
+         ],
+         "p": 0.1054,
+         "q": 0.1582
+        },
+        {
+         "categoria": "Camiseta manga corta",
+         "n": 32,
+         "estilo": 0.053,
+         "resto": 0.162,
+         "dif": -0.108,
+         "ic": [
+          -0.192,
+          -0.022
+         ],
+         "p": 0.0365,
+         "q": 0.095
+        },
+        {
+         "categoria": "Camisa",
+         "n": 27,
+         "estilo": 0.053,
+         "resto": 0.132,
+         "dif": -0.079,
+         "ic": [
+          -0.151,
+          0.004
+         ],
+         "p": 0.0875,
+         "q": 0.1458
+        },
+        {
+         "categoria": "Camiseta manga larga",
+         "n": 22,
+         "estilo": 0.117,
+         "resto": 0.066,
+         "dif": 0.051,
+         "ic": [
+          -0.042,
+          0.156
+         ],
+         "p": 0.2824,
+         "q": 0.3573
+        },
+        {
+         "categoria": "Pantalón",
+         "n": 19,
+         "estilo": 0.032,
+         "resto": 0.096,
+         "dif": -0.064,
+         "ic": [
+          -0.118,
+          -0.012
+         ],
+         "p": 0.046,
+         "q": 0.0985
+        },
+        {
+         "categoria": "Hoodie",
+         "n": 18,
+         "estilo": 0.096,
+         "resto": 0.054,
+         "dif": 0.042,
+         "ic": [
+          -0.038,
+          0.126
+         ],
+         "p": 0.2859,
+         "q": 0.3573
+        },
+        {
+         "categoria": "Top",
+         "n": 17,
+         "estilo": 0.149,
+         "resto": 0.018,
+         "dif": 0.131,
+         "ic": [
+          0.044,
+          0.226
+         ],
+         "p": 0.0015,
+         "q": 0.015
+        },
+        {
+         "categoria": "Zapatillas deportivas",
+         "n": 16,
+         "estilo": 0.064,
+         "resto": 0.06,
+         "dif": 0.004,
+         "ic": [
+          -0.046,
+          0.059
+         ],
+         "p": 0.9215,
+         "q": 0.9215
+        },
+        {
+         "categoria": "Camiseta de tirantes",
+         "n": 13,
+         "estilo": 0.096,
+         "resto": 0.024,
+         "dif": 0.072,
+         "ic": [
+          -0.007,
+          0.162
+         ],
+         "p": 0.0815,
+         "q": 0.1458
+        },
+        {
+         "categoria": "Polo",
+         "n": 11,
+         "estilo": 0.0,
+         "resto": 0.066,
+         "dif": -0.066,
+         "ic": [
+          -0.118,
+          -0.024
+         ],
+         "p": 0.024,
+         "q": 0.09
+        },
+        {
+         "categoria": "Short",
+         "n": 9,
+         "estilo": 0.053,
+         "resto": 0.024,
+         "dif": 0.029,
+         "ic": [
+          -0.022,
+          0.093
+         ],
+         "p": 0.3258,
+         "q": 0.376
+        },
+        {
+         "categoria": "Botas",
+         "n": 8,
+         "estilo": 0.064,
+         "resto": 0.012,
+         "dif": 0.052,
+         "ic": [
+          0.006,
+          0.101
+         ],
+         "p": 0.0135,
+         "q": 0.0675
+        },
+        {
+         "categoria": "Falda",
+         "n": 7,
+         "estilo": 0.064,
+         "resto": 0.006,
+         "dif": 0.058,
+         "ic": [
+          0.013,
+          0.11
+         ],
+         "p": 0.002,
+         "q": 0.015
+        },
+        {
+         "categoria": "Jersey",
+         "n": 6,
+         "estilo": 0.053,
+         "resto": 0.006,
+         "dif": 0.047,
+         "ic": [
+          0.0,
+          0.11
+         ],
+         "p": 0.038,
+         "q": 0.095
+        },
+        {
+         "categoria": "Zapatos de vestir",
+         "n": 6,
+         "estilo": 0.021,
+         "resto": 0.024,
+         "dif": -0.003,
+         "ic": [
+          -0.036,
+          0.034
+         ],
+         "p": 0.7241,
+         "q": 0.7759
+        }
+       ]
+      }
+     },
+     "global": {
+      "tv": 0.204,
+      "p": 0.001
+     },
+     "perfil": {
+      "urbano": [
+       [
+        "Camiseta manga corta",
+        0.162
+       ],
+       [
+        "Chaqueta",
+        0.156
+       ],
+       [
+        "Camisa",
+        0.132
+       ],
+       [
+        "Pantalón",
+        0.096
+       ],
+       [
+        "Camiseta manga larga",
+        0.066
+       ]
+      ],
+      "geek": [
+       [
+        "Top",
+        0.149
+       ],
+       [
+        "Camiseta manga larga",
+        0.117
+       ],
+       [
+        "Hoodie",
+        0.096
+       ],
+       [
+        "Camiseta de tirantes",
+        0.096
+       ],
+       [
+        "Chaqueta",
+        0.074
+       ]
+      ]
+     }
+    },
+    {
+     "dimension": "estampado",
+     "estilos": {
+      "urbano": {
+       "prendas": 167,
+       "fotos": 85,
+       "categorias": [
+        {
+         "categoria": "liso",
+         "n": 150,
+         "estilo": 0.629,
+         "resto": 0.479,
+         "dif": 0.15,
+         "ic": [
+          0.006,
+          0.291
+         ],
+         "p": 0.047,
+         "q": 0.1644
+        },
+        {
+         "categoria": "gráfico / dibujo",
+         "n": 35,
+         "estilo": 0.09,
+         "resto": 0.213,
+         "dif": -0.123,
+         "ic": [
+          -0.247,
+          -0.009
+         ],
+         "p": 0.0325,
+         "q": 0.1644
+        },
+        {
+         "categoria": "texto / logo",
+         "n": 34,
+         "estilo": 0.144,
+         "resto": 0.106,
+         "dif": 0.037,
+         "ic": [
+          -0.071,
+          0.136
+         ],
+         "p": 0.4768,
+         "q": 0.7521
+        },
+        {
+         "categoria": "cuadros",
+         "n": 17,
+         "estilo": 0.054,
+         "resto": 0.085,
+         "dif": -0.031,
+         "ic": [
+          -0.11,
+          0.047
+         ],
+         "p": 0.4508,
+         "q": 0.7521
+        },
+        {
+         "categoria": "otro",
+         "n": 11,
+         "estilo": 0.036,
+         "resto": 0.053,
+         "dif": -0.017,
+         "ic": [
+          -0.095,
+          0.048
+         ],
+         "p": 0.6122,
+         "q": 0.7521
+        },
+        {
+         "categoria": "rayas",
+         "n": 8,
+         "estilo": 0.024,
+         "resto": 0.043,
+         "dif": -0.019,
+         "ic": [
+          -0.083,
+          0.04
+         ],
+         "p": 0.6447,
+         "q": 0.7521
+        },
+        {
+         "categoria": "camuflaje",
+         "n": 6,
+         "estilo": 0.024,
+         "resto": 0.021,
+         "dif": 0.003,
+         "ic": [
+          -0.047,
+          0.047
+         ],
+         "p": 0.8021,
+         "q": 0.8021
+        }
+       ]
+      },
+      "geek": {
+       "prendas": 94,
+       "fotos": 44,
+       "categorias": [
+        {
+         "categoria": "liso",
+         "n": 150,
+         "estilo": 0.479,
+         "resto": 0.629,
+         "dif": -0.15,
+         "ic": [
+          -0.296,
+          -0.008
+         ],
+         "p": 0.0475,
+         "q": 0.1662
+        },
+        {
+         "categoria": "gráfico / dibujo",
+         "n": 35,
+         "estilo": 0.213,
+         "resto": 0.09,
+         "dif": 0.123,
+         "ic": [
+          0.009,
+          0.246
+         ],
+         "p": 0.0265,
+         "q": 0.1662
+        },
+        {
+         "categoria": "texto / logo",
+         "n": 34,
+         "estilo": 0.106,
+         "resto": 0.144,
+         "dif": -0.037,
+         "ic": [
+          -0.134,
+          0.07
+         ],
+         "p": 0.4793,
+         "q": 0.7539
+        },
+        {
+         "categoria": "cuadros",
+         "n": 17,
+         "estilo": 0.085,
+         "resto": 0.054,
+         "dif": 0.031,
+         "ic": [
+          -0.046,
+          0.112
+         ],
+         "p": 0.4383,
+         "q": 0.7539
+        },
+        {
+         "categoria": "otro",
+         "n": 11,
+         "estilo": 0.053,
+         "resto": 0.036,
+         "dif": 0.017,
+         "ic": [
+          -0.046,
+          0.088
+         ],
+         "p": 0.6142,
+         "q": 0.7539
+        },
+        {
+         "categoria": "rayas",
+         "n": 8,
+         "estilo": 0.043,
+         "resto": 0.024,
+         "dif": 0.019,
+         "ic": [
+          -0.038,
+          0.086
+         ],
+         "p": 0.6462,
+         "q": 0.7539
+        },
+        {
+         "categoria": "camuflaje",
+         "n": 6,
+         "estilo": 0.021,
+         "resto": 0.024,
+         "dif": -0.003,
+         "ic": [
+          -0.046,
+          0.052
+         ],
+         "p": 0.7816,
+         "q": 0.7816
+        }
+       ]
+      }
+     },
+     "global": {
+      "tv": 0.088,
+      "p": 0.0509
+     },
+     "perfil": {
+      "urbano": [
+       [
+        "liso",
+        0.629
+       ],
+       [
+        "texto / logo",
+        0.144
+       ],
+       [
+        "gráfico / dibujo",
+        0.09
+       ],
+       [
+        "cuadros",
+        0.054
+       ],
+       [
+        "otro",
+        0.036
+       ]
+      ],
+      "geek": [
+       [
+        "liso",
+        0.479
+       ],
+       [
+        "gráfico / dibujo",
+        0.213
+       ],
+       [
+        "texto / logo",
+        0.106
+       ],
+       [
+        "cuadros",
+        0.085
+       ],
+       [
+        "otro",
+        0.053
+       ]
+      ]
+     }
+    },
+    {
+     "dimension": "tejido",
+     "estilos": {
+      "urbano": {
+       "prendas": 167,
+       "fotos": 85,
+       "categorias": [
+        {
+         "categoria": "algodón",
+         "n": 177,
+         "estilo": 0.725,
+         "resto": 0.596,
+         "dif": 0.129,
+         "ic": [
+          0.0,
+          0.252
+         ],
+         "p": 0.0585,
+         "q": 0.1462
+        },
+        {
+         "categoria": "cuero / vinilo",
+         "n": 25,
+         "estilo": 0.102,
+         "resto": 0.085,
+         "dif": 0.017,
+         "ic": [
+          -0.064,
+          0.096
+         ],
+         "p": 0.7066,
+         "q": 0.8496
+        },
+        {
+         "categoria": "punto",
+         "n": 23,
+         "estilo": 0.03,
+         "resto": 0.191,
+         "dif": -0.162,
+         "ic": [
+          -0.253,
+          -0.073
+         ],
+         "p": 0.0005,
+         "q": 0.0025
+        },
+        {
+         "categoria": "técnico / impermeable",
+         "n": 18,
+         "estilo": 0.066,
+         "resto": 0.074,
+         "dif": -0.009,
+         "ic": [
+          -0.092,
+          0.068
+         ],
+         "p": 0.8496,
+         "q": 0.8496
+        },
+        {
+         "categoria": "denim (vaquero)",
+         "n": 8,
+         "estilo": 0.042,
+         "resto": 0.011,
+         "dif": 0.031,
+         "ic": [
+          -0.007,
+          0.072
+         ],
+         "p": 0.2019,
+         "q": 0.3365
+        }
+       ]
+      },
+      "geek": {
+       "prendas": 94,
+       "fotos": 44,
+       "categorias": [
+        {
+         "categoria": "algodón",
+         "n": 177,
+         "estilo": 0.596,
+         "resto": 0.725,
+         "dif": -0.129,
+         "ic": [
+          -0.251,
+          -0.005
+         ],
+         "p": 0.0545,
+         "q": 0.1362
+        },
+        {
+         "categoria": "cuero / vinilo",
+         "n": 25,
+         "estilo": 0.085,
+         "resto": 0.102,
+         "dif": -0.017,
+         "ic": [
+          -0.092,
+          0.065
+         ],
+         "p": 0.7241,
+         "q": 0.8546
+        },
+        {
+         "categoria": "punto",
+         "n": 23,
+         "estilo": 0.191,
+         "resto": 0.03,
+         "dif": 0.162,
+         "ic": [
+          0.072,
+          0.257
+         ],
+         "p": 0.0005,
+         "q": 0.0025
+        },
+        {
+         "categoria": "técnico / impermeable",
+         "n": 18,
+         "estilo": 0.074,
+         "resto": 0.066,
+         "dif": 0.009,
+         "ic": [
+          -0.071,
+          0.091
+         ],
+         "p": 0.8546,
+         "q": 0.8546
+        },
+        {
+         "categoria": "denim (vaquero)",
+         "n": 8,
+         "estilo": 0.011,
+         "resto": 0.042,
+         "dif": -0.031,
+         "ic": [
+          -0.072,
+          0.008
+         ],
+         "p": 0.1834,
+         "q": 0.3057
+        }
+       ]
+      }
+     },
+     "global": {
+      "tv": 0.08,
+      "p": 0.011
+     },
+     "perfil": {
+      "urbano": [
+       [
+        "algodón",
+        0.725
+       ],
+       [
+        "cuero / vinilo",
+        0.102
+       ],
+       [
+        "técnico / impermeable",
+        0.066
+       ],
+       [
+        "denim (vaquero)",
+        0.042
+       ],
+       [
+        "punto",
+        0.03
+       ]
+      ],
+      "geek": [
+       [
+        "algodón",
+        0.596
+       ],
+       [
+        "punto",
+        0.191
+       ],
+       [
+        "cuero / vinilo",
+        0.085
+       ],
+       [
+        "técnico / impermeable",
+        0.074
+       ],
+       [
+        "denim (vaquero)",
+        0.011
+       ]
+      ]
+     }
+    },
+    {
+     "dimension": "forma",
+     "estilos": {
+      "urbano": {
+       "prendas": 167,
+       "fotos": 85,
+       "categorias": [
+        {
+         "categoria": "regular",
+         "n": 146,
+         "estilo": 0.617,
+         "resto": 0.457,
+         "dif": 0.159,
+         "ic": [
+          0.003,
+          0.306
+         ],
+         "p": 0.0395,
+         "q": 0.0658
+        },
+        {
+         "categoria": "oversized / baggy",
+         "n": 57,
+         "estilo": 0.257,
+         "resto": 0.149,
+         "dif": 0.109,
+         "ic": [
+          -0.012,
+          0.218
+         ],
+         "p": 0.0905,
+         "q": 0.1131
+        },
+        {
+         "categoria": "corta / cropped",
+         "n": 21,
+         "estilo": 0.024,
+         "resto": 0.181,
+         "dif": -0.157,
+         "ic": [
+          -0.266,
+          -0.06
+         ],
+         "p": 0.0005,
+         "q": 0.0025
+        },
+        {
+         "categoria": "no aplica",
+         "n": 20,
+         "estilo": 0.078,
+         "resto": 0.074,
+         "dif": 0.003,
+         "ic": [
+          -0.056,
+          0.061
+         ],
+         "p": 0.8971,
+         "q": 0.8971
+        },
+        {
+         "categoria": "ajustada",
+         "n": 17,
+         "estilo": 0.024,
+         "resto": 0.138,
+         "dif": -0.114,
+         "ic": [
+          -0.212,
+          -0.027
+         ],
+         "p": 0.004,
+         "q": 0.01
+        }
+       ]
+      },
+      "geek": {
+       "prendas": 94,
+       "fotos": 44,
+       "categorias": [
+        {
+         "categoria": "regular",
+         "n": 146,
+         "estilo": 0.457,
+         "resto": 0.617,
+         "dif": -0.159,
+         "ic": [
+          -0.304,
+          -0.004
+         ],
+         "p": 0.039,
+         "q": 0.065
+        },
+        {
+         "categoria": "oversized / baggy",
+         "n": 57,
+         "estilo": 0.149,
+         "resto": 0.257,
+         "dif": -0.109,
+         "ic": [
+          -0.218,
+          0.011
+         ],
+         "p": 0.097,
+         "q": 0.1212
+        },
+        {
+         "categoria": "corta / cropped",
+         "n": 21,
+         "estilo": 0.181,
+         "resto": 0.024,
+         "dif": 0.157,
+         "ic": [
+          0.052,
+          0.27
+         ],
+         "p": 0.0015,
+         "q": 0.0075
+        },
+        {
+         "categoria": "no aplica",
+         "n": 20,
+         "estilo": 0.074,
+         "resto": 0.078,
+         "dif": -0.003,
+         "ic": [
+          -0.06,
+          0.055
+         ],
+         "p": 0.905,
+         "q": 0.905
+        },
+        {
+         "categoria": "ajustada",
+         "n": 17,
+         "estilo": 0.138,
+         "resto": 0.024,
+         "dif": 0.114,
+         "ic": [
+          0.027,
+          0.212
+         ],
+         "p": 0.0035,
+         "q": 0.0087
+        }
+       ]
+      }
+     },
+     "global": {
+      "tv": 0.125,
+      "p": 0.001
+     },
+     "perfil": {
+      "urbano": [
+       [
+        "regular",
+        0.617
+       ],
+       [
+        "oversized / baggy",
+        0.257
+       ],
+       [
+        "no aplica",
+        0.078
+       ],
+       [
+        "corta / cropped",
+        0.024
+       ],
+       [
+        "ajustada",
+        0.024
+       ]
+      ],
+      "geek": [
+       [
+        "regular",
+        0.457
+       ],
+       [
+        "corta / cropped",
+        0.181
+       ],
+       [
+        "oversized / baggy",
+        0.149
+       ],
+       [
+        "ajustada",
+        0.138
+       ],
+       [
+        "no aplica",
+        0.074
+       ]
+      ]
+     }
+    }
+   ]
+  }
  },
  "solo_biblioteca": {
   "prendas": 169,
@@ -1089,6 +2361,1148 @@
      }
     ]
    }
-  ]
+  ],
+  "por_estilo": {
+   "prendas": 169,
+   "estilos_con_datos": [
+    "urbano",
+    "geek"
+   ],
+   "dimensiones": [
+    {
+     "dimension": "familia",
+     "estilos": {
+      "urbano": {
+       "prendas": 78,
+       "fotos": 39,
+       "categorias": [
+        {
+         "categoria": "Arriba",
+         "n": 101,
+         "estilo": 0.551,
+         "resto": 0.637,
+         "dif": -0.086,
+         "ic": [
+          -0.251,
+          0.073
+         ],
+         "p": 0.2929,
+         "q": 0.3905
+        },
+        {
+         "categoria": "Abajo",
+         "n": 23,
+         "estilo": 0.141,
+         "resto": 0.132,
+         "dif": 0.009,
+         "ic": [
+          -0.079,
+          0.1
+         ],
+         "p": 0.8561,
+         "q": 0.8561
+        },
+        {
+         "categoria": "Abrigo",
+         "n": 23,
+         "estilo": 0.205,
+         "resto": 0.077,
+         "dif": 0.128,
+         "ic": [
+          0.014,
+          0.243
+         ],
+         "p": 0.032,
+         "q": 0.1279
+        },
+        {
+         "categoria": "Calzado",
+         "n": 22,
+         "estilo": 0.103,
+         "resto": 0.154,
+         "dif": -0.051,
+         "ic": [
+          -0.13,
+          0.028
+         ],
+         "p": 0.2204,
+         "q": 0.3905
+        }
+       ]
+      },
+      "geek": {
+       "prendas": 91,
+       "fotos": 42,
+       "categorias": [
+        {
+         "categoria": "Arriba",
+         "n": 101,
+         "estilo": 0.637,
+         "resto": 0.551,
+         "dif": 0.086,
+         "ic": [
+          -0.07,
+          0.249
+         ],
+         "p": 0.2809,
+         "q": 0.3745
+        },
+        {
+         "categoria": "Abajo",
+         "n": 23,
+         "estilo": 0.132,
+         "resto": 0.141,
+         "dif": -0.009,
+         "ic": [
+          -0.1,
+          0.08
+         ],
+         "p": 0.8466,
+         "q": 0.8466
+        },
+        {
+         "categoria": "Abrigo",
+         "n": 23,
+         "estilo": 0.077,
+         "resto": 0.205,
+         "dif": -0.128,
+         "ic": [
+          -0.243,
+          -0.01
+         ],
+         "p": 0.0345,
+         "q": 0.1379
+        },
+        {
+         "categoria": "Calzado",
+         "n": 22,
+         "estilo": 0.154,
+         "resto": 0.103,
+         "dif": 0.051,
+         "ic": [
+          -0.033,
+          0.127
+         ],
+         "p": 0.2294,
+         "q": 0.3745
+        }
+       ]
+      }
+     },
+     "global": {
+      "tv": 0.068,
+      "p": 0.1409
+     },
+     "perfil": {
+      "urbano": [
+       [
+        "Arriba",
+        0.551
+       ],
+       [
+        "Abrigo",
+        0.205
+       ],
+       [
+        "Abajo",
+        0.141
+       ],
+       [
+        "Calzado",
+        0.103
+       ]
+      ],
+      "geek": [
+       [
+        "Arriba",
+        0.637
+       ],
+       [
+        "Calzado",
+        0.154
+       ],
+       [
+        "Abajo",
+        0.132
+       ],
+       [
+        "Abrigo",
+        0.077
+       ]
+      ]
+     }
+    },
+    {
+     "dimension": "tipo",
+     "estilos": {
+      "urbano": {
+       "prendas": 78,
+       "fotos": 39,
+       "categorias": [
+        {
+         "categoria": "Chaqueta",
+         "n": 19,
+         "estilo": 0.154,
+         "resto": 0.077,
+         "dif": 0.077,
+         "ic": [
+          -0.027,
+          0.183
+         ],
+         "p": 0.1674,
+         "q": 0.3683
+        },
+        {
+         "categoria": "Camiseta manga larga",
+         "n": 18,
+         "estilo": 0.09,
+         "resto": 0.121,
+         "dif": -0.031,
+         "ic": [
+          -0.153,
+          0.099
+         ],
+         "p": 0.6452,
+         "q": 0.7097
+        },
+        {
+         "categoria": "Hoodie",
+         "n": 17,
+         "estilo": 0.103,
+         "resto": 0.099,
+         "dif": 0.004,
+         "ic": [
+          -0.102,
+          0.109
+         ],
+         "p": 0.9355,
+         "q": 0.9355
+        },
+        {
+         "categoria": "Top",
+         "n": 15,
+         "estilo": 0.013,
+         "resto": 0.154,
+         "dif": -0.141,
+         "ic": [
+          -0.238,
+          -0.052
+         ],
+         "p": 0.007,
+         "q": 0.077
+        },
+        {
+         "categoria": "Camiseta manga corta",
+         "n": 13,
+         "estilo": 0.103,
+         "resto": 0.055,
+         "dif": 0.048,
+         "ic": [
+          -0.043,
+          0.143
+         ],
+         "p": 0.3123,
+         "q": 0.446
+        },
+        {
+         "categoria": "Camisa",
+         "n": 12,
+         "estilo": 0.103,
+         "resto": 0.044,
+         "dif": 0.059,
+         "ic": [
+          -0.035,
+          0.156
+         ],
+         "p": 0.2369,
+         "q": 0.4343
+        },
+        {
+         "categoria": "Camiseta de tirantes",
+         "n": 12,
+         "estilo": 0.038,
+         "resto": 0.099,
+         "dif": -0.06,
+         "ic": [
+          -0.165,
+          0.044
+         ],
+         "p": 0.3243,
+         "q": 0.446
+        },
+        {
+         "categoria": "Pantalón",
+         "n": 11,
+         "estilo": 0.103,
+         "resto": 0.033,
+         "dif": 0.07,
+         "ic": [
+          -0.004,
+          0.141
+         ],
+         "p": 0.0565,
+         "q": 0.2707
+        },
+        {
+         "categoria": "Zapatillas deportivas",
+         "n": 9,
+         "estilo": 0.038,
+         "resto": 0.066,
+         "dif": -0.027,
+         "ic": [
+          -0.091,
+          0.036
+         ],
+         "p": 0.4508,
+         "q": 0.5509
+        },
+        {
+         "categoria": "Botas",
+         "n": 7,
+         "estilo": 0.013,
+         "resto": 0.066,
+         "dif": -0.053,
+         "ic": [
+          -0.103,
+          0.0
+         ],
+         "p": 0.0915,
+         "q": 0.2707
+        },
+        {
+         "categoria": "Falda",
+         "n": 7,
+         "estilo": 0.013,
+         "resto": 0.066,
+         "dif": -0.053,
+         "ic": [
+          -0.106,
+          0.0
+         ],
+         "p": 0.0985,
+         "q": 0.2707
+        }
+       ]
+      },
+      "geek": {
+       "prendas": 91,
+       "fotos": 42,
+       "categorias": [
+        {
+         "categoria": "Chaqueta",
+         "n": 19,
+         "estilo": 0.077,
+         "resto": 0.154,
+         "dif": -0.077,
+         "ic": [
+          -0.184,
+          0.032
+         ],
+         "p": 0.1869,
+         "q": 0.4112
+        },
+        {
+         "categoria": "Camiseta manga larga",
+         "n": 18,
+         "estilo": 0.121,
+         "resto": 0.09,
+         "dif": 0.031,
+         "ic": [
+          -0.087,
+          0.157
+         ],
+         "p": 0.6597,
+         "q": 0.7256
+        },
+        {
+         "categoria": "Hoodie",
+         "n": 17,
+         "estilo": 0.099,
+         "resto": 0.103,
+         "dif": -0.004,
+         "ic": [
+          -0.11,
+          0.1
+         ],
+         "p": 0.9455,
+         "q": 0.9455
+        },
+        {
+         "categoria": "Top",
+         "n": 15,
+         "estilo": 0.154,
+         "resto": 0.013,
+         "dif": 0.141,
+         "ic": [
+          0.055,
+          0.237
+         ],
+         "p": 0.0045,
+         "q": 0.0495
+        },
+        {
+         "categoria": "Camiseta manga corta",
+         "n": 13,
+         "estilo": 0.055,
+         "resto": 0.103,
+         "dif": -0.048,
+         "ic": [
+          -0.145,
+          0.041
+         ],
+         "p": 0.3433,
+         "q": 0.4721
+        },
+        {
+         "categoria": "Camisa",
+         "n": 12,
+         "estilo": 0.044,
+         "resto": 0.103,
+         "dif": -0.059,
+         "ic": [
+          -0.158,
+          0.03
+         ],
+         "p": 0.2299,
+         "q": 0.4215
+        },
+        {
+         "categoria": "Camiseta de tirantes",
+         "n": 12,
+         "estilo": 0.099,
+         "resto": 0.038,
+         "dif": 0.06,
+         "ic": [
+          -0.047,
+          0.165
+         ],
+         "p": 0.2919,
+         "q": 0.4586
+        },
+        {
+         "categoria": "Pantalón",
+         "n": 11,
+         "estilo": 0.033,
+         "resto": 0.103,
+         "dif": -0.07,
+         "ic": [
+          -0.137,
+          -0.003
+         ],
+         "p": 0.043,
+         "q": 0.2364
+        },
+        {
+         "categoria": "Zapatillas deportivas",
+         "n": 9,
+         "estilo": 0.066,
+         "resto": 0.038,
+         "dif": 0.027,
+         "ic": [
+          -0.032,
+          0.09
+         ],
+         "p": 0.4178,
+         "q": 0.5106
+        },
+        {
+         "categoria": "Botas",
+         "n": 7,
+         "estilo": 0.066,
+         "resto": 0.013,
+         "dif": 0.053,
+         "ic": [
+          0.002,
+          0.103
+         ],
+         "p": 0.0855,
+         "q": 0.2625
+        },
+        {
+         "categoria": "Falda",
+         "n": 7,
+         "estilo": 0.066,
+         "resto": 0.013,
+         "dif": 0.053,
+         "ic": [
+          -0.0,
+          0.11
+         ],
+         "p": 0.0955,
+         "q": 0.2625
+        }
+       ]
+      }
+     },
+     "global": {
+      "tv": 0.155,
+      "p": 0.015
+     },
+     "perfil": {
+      "urbano": [
+       [
+        "Chaqueta",
+        0.154
+       ],
+       [
+        "Hoodie",
+        0.103
+       ],
+       [
+        "Camisa",
+        0.103
+       ],
+       [
+        "Camiseta manga corta",
+        0.103
+       ],
+       [
+        "Pantalón",
+        0.103
+       ]
+      ],
+      "geek": [
+       [
+        "Top",
+        0.154
+       ],
+       [
+        "Camiseta manga larga",
+        0.121
+       ],
+       [
+        "Hoodie",
+        0.099
+       ],
+       [
+        "Camiseta de tirantes",
+        0.099
+       ],
+       [
+        "Chaqueta",
+        0.077
+       ]
+      ]
+     }
+    },
+    {
+     "dimension": "estampado",
+     "estilos": {
+      "urbano": {
+       "prendas": 78,
+       "fotos": 39,
+       "categorias": [
+        {
+         "categoria": "liso",
+         "n": 88,
+         "estilo": 0.577,
+         "resto": 0.473,
+         "dif": 0.104,
+         "ic": [
+          -0.065,
+          0.281
+         ],
+         "p": 0.2304,
+         "q": 0.7166
+        },
+        {
+         "categoria": "gráfico / dibujo",
+         "n": 30,
+         "estilo": 0.128,
+         "resto": 0.22,
+         "dif": -0.092,
+         "ic": [
+          -0.231,
+          0.049
+         ],
+         "p": 0.2389,
+         "q": 0.7166
+        },
+        {
+         "categoria": "texto / logo",
+         "n": 21,
+         "estilo": 0.141,
+         "resto": 0.11,
+         "dif": 0.031,
+         "ic": [
+          -0.091,
+          0.148
+         ],
+         "p": 0.6357,
+         "q": 0.9271
+        },
+        {
+         "categoria": "cuadros",
+         "n": 10,
+         "estilo": 0.038,
+         "resto": 0.077,
+         "dif": -0.038,
+         "ic": [
+          -0.128,
+          0.048
+         ],
+         "p": 0.4123,
+         "q": 0.8246
+        },
+        {
+         "categoria": "otro",
+         "n": 8,
+         "estilo": 0.038,
+         "resto": 0.055,
+         "dif": -0.016,
+         "ic": [
+          -0.101,
+          0.065
+         ],
+         "p": 0.7726,
+         "q": 0.9271
+        },
+        {
+         "categoria": "rayas",
+         "n": 7,
+         "estilo": 0.038,
+         "resto": 0.044,
+         "dif": -0.005,
+         "ic": [
+          -0.087,
+          0.091
+         ],
+         "p": 0.97,
+         "q": 0.97
+        }
+       ]
+      },
+      "geek": {
+       "prendas": 91,
+       "fotos": 42,
+       "categorias": [
+        {
+         "categoria": "liso",
+         "n": 88,
+         "estilo": 0.473,
+         "resto": 0.577,
+         "dif": -0.104,
+         "ic": [
+          -0.275,
+          0.067
+         ],
+         "p": 0.2259,
+         "q": 0.6777
+        },
+        {
+         "categoria": "gráfico / dibujo",
+         "n": 30,
+         "estilo": 0.22,
+         "resto": 0.128,
+         "dif": 0.092,
+         "ic": [
+          -0.06,
+          0.227
+         ],
+         "p": 0.2239,
+         "q": 0.6777
+        },
+        {
+         "categoria": "texto / logo",
+         "n": 21,
+         "estilo": 0.11,
+         "resto": 0.141,
+         "dif": -0.031,
+         "ic": [
+          -0.152,
+          0.088
+         ],
+         "p": 0.6172,
+         "q": 0.9103
+        },
+        {
+         "categoria": "cuadros",
+         "n": 10,
+         "estilo": 0.077,
+         "resto": 0.038,
+         "dif": 0.038,
+         "ic": [
+          -0.044,
+          0.123
+         ],
+         "p": 0.4328,
+         "q": 0.8656
+        },
+        {
+         "categoria": "otro",
+         "n": 8,
+         "estilo": 0.055,
+         "resto": 0.038,
+         "dif": 0.016,
+         "ic": [
+          -0.067,
+          0.102
+         ],
+         "p": 0.7586,
+         "q": 0.9103
+        },
+        {
+         "categoria": "rayas",
+         "n": 7,
+         "estilo": 0.044,
+         "resto": 0.038,
+         "dif": 0.005,
+         "ic": [
+          -0.092,
+          0.092
+         ],
+         "p": 0.976,
+         "q": 0.976
+        }
+       ]
+      }
+     },
+     "global": {
+      "tv": 0.071,
+      "p": 0.4755
+     },
+     "perfil": {
+      "urbano": [
+       [
+        "liso",
+        0.577
+       ],
+       [
+        "texto / logo",
+        0.141
+       ],
+       [
+        "gráfico / dibujo",
+        0.128
+       ],
+       [
+        "cuadros",
+        0.038
+       ],
+       [
+        "otro",
+        0.038
+       ]
+      ],
+      "geek": [
+       [
+        "liso",
+        0.473
+       ],
+       [
+        "gráfico / dibujo",
+        0.22
+       ],
+       [
+        "texto / logo",
+        0.11
+       ],
+       [
+        "cuadros",
+        0.077
+       ],
+       [
+        "otro",
+        0.055
+       ]
+      ]
+     }
+    },
+    {
+     "dimension": "tejido",
+     "estilos": {
+      "urbano": {
+       "prendas": 78,
+       "fotos": 39,
+       "categorias": [
+        {
+         "categoria": "algodón",
+         "n": 111,
+         "estilo": 0.731,
+         "resto": 0.593,
+         "dif": 0.137,
+         "ic": [
+          -0.021,
+          0.277
+         ],
+         "p": 0.0875,
+         "q": 0.1458
+        },
+        {
+         "categoria": "punto",
+         "n": 20,
+         "estilo": 0.038,
+         "resto": 0.187,
+         "dif": -0.148,
+         "ic": [
+          -0.251,
+          -0.055
+         ],
+         "p": 0.008,
+         "q": 0.04
+        },
+        {
+         "categoria": "técnico / impermeable",
+         "n": 12,
+         "estilo": 0.064,
+         "resto": 0.077,
+         "dif": -0.013,
+         "ic": [
+          -0.11,
+          0.093
+         ],
+         "p": 0.8176,
+         "q": 0.8176
+        },
+        {
+         "categoria": "cuero / vinilo",
+         "n": 11,
+         "estilo": 0.038,
+         "resto": 0.088,
+         "dif": -0.049,
+         "ic": [
+          -0.122,
+          0.016
+         ],
+         "p": 0.2164,
+         "q": 0.2705
+        },
+        {
+         "categoria": "denim (vaquero)",
+         "n": 7,
+         "estilo": 0.077,
+         "resto": 0.011,
+         "dif": 0.066,
+         "ic": [
+          0.003,
+          0.141
+         ],
+         "p": 0.044,
+         "q": 0.1099
+        }
+       ]
+      },
+      "geek": {
+       "prendas": 91,
+       "fotos": 42,
+       "categorias": [
+        {
+         "categoria": "algodón",
+         "n": 111,
+         "estilo": 0.593,
+         "resto": 0.731,
+         "dif": -0.137,
+         "ic": [
+          -0.286,
+          0.013
+         ],
+         "p": 0.0725,
+         "q": 0.1208
+        },
+        {
+         "categoria": "punto",
+         "n": 20,
+         "estilo": 0.187,
+         "resto": 0.038,
+         "dif": 0.148,
+         "ic": [
+          0.052,
+          0.245
+         ],
+         "p": 0.006,
+         "q": 0.03
+        },
+        {
+         "categoria": "técnico / impermeable",
+         "n": 12,
+         "estilo": 0.077,
+         "resto": 0.064,
+         "dif": 0.013,
+         "ic": [
+          -0.087,
+          0.109
+         ],
+         "p": 0.8111,
+         "q": 0.8111
+        },
+        {
+         "categoria": "cuero / vinilo",
+         "n": 11,
+         "estilo": 0.088,
+         "resto": 0.038,
+         "dif": 0.049,
+         "ic": [
+          -0.02,
+          0.125
+         ],
+         "p": 0.2199,
+         "q": 0.2749
+        },
+        {
+         "categoria": "denim (vaquero)",
+         "n": 7,
+         "estilo": 0.011,
+         "resto": 0.077,
+         "dif": -0.066,
+         "ic": [
+          -0.14,
+          -0.003
+         ],
+         "p": 0.0335,
+         "q": 0.0837
+        }
+       ]
+      }
+     },
+     "global": {
+      "tv": 0.103,
+      "p": 0.009
+     },
+     "perfil": {
+      "urbano": [
+       [
+        "algodón",
+        0.731
+       ],
+       [
+        "denim (vaquero)",
+        0.077
+       ],
+       [
+        "técnico / impermeable",
+        0.064
+       ],
+       [
+        "punto",
+        0.038
+       ],
+       [
+        "cuero / vinilo",
+        0.038
+       ]
+      ],
+      "geek": [
+       [
+        "algodón",
+        0.593
+       ],
+       [
+        "punto",
+        0.187
+       ],
+       [
+        "cuero / vinilo",
+        0.088
+       ],
+       [
+        "técnico / impermeable",
+        0.077
+       ],
+       [
+        "denim (vaquero)",
+        0.011
+       ]
+      ]
+     }
+    },
+    {
+     "dimension": "forma",
+     "estilos": {
+      "urbano": {
+       "prendas": 78,
+       "fotos": 39,
+       "categorias": [
+        {
+         "categoria": "regular",
+         "n": 77,
+         "estilo": 0.474,
+         "resto": 0.44,
+         "dif": 0.035,
+         "ic": [
+          -0.142,
+          0.206
+         ],
+         "p": 0.6942,
+         "q": 0.7556
+        },
+        {
+         "categoria": "oversized / baggy",
+         "n": 45,
+         "estilo": 0.397,
+         "resto": 0.154,
+         "dif": 0.244,
+         "ic": [
+          0.09,
+          0.398
+         ],
+         "p": 0.0035,
+         "q": 0.015
+        },
+        {
+         "categoria": "corta / cropped",
+         "n": 19,
+         "estilo": 0.026,
+         "resto": 0.187,
+         "dif": -0.161,
+         "ic": [
+          -0.284,
+          -0.055
+         ],
+         "p": 0.006,
+         "q": 0.015
+        },
+        {
+         "categoria": "no aplica",
+         "n": 14,
+         "estilo": 0.09,
+         "resto": 0.077,
+         "dif": 0.013,
+         "ic": [
+          -0.064,
+          0.084
+         ],
+         "p": 0.7556,
+         "q": 0.7556
+        },
+        {
+         "categoria": "ajustada",
+         "n": 14,
+         "estilo": 0.013,
+         "resto": 0.143,
+         "dif": -0.13,
+         "ic": [
+          -0.228,
+          -0.041
+         ],
+         "p": 0.017,
+         "q": 0.0283
+        }
+       ]
+      },
+      "geek": {
+       "prendas": 91,
+       "fotos": 42,
+       "categorias": [
+        {
+         "categoria": "regular",
+         "n": 77,
+         "estilo": 0.44,
+         "resto": 0.474,
+         "dif": -0.035,
+         "ic": [
+          -0.211,
+          0.136
+         ],
+         "p": 0.6992,
+         "q": 0.7536
+        },
+        {
+         "categoria": "oversized / baggy",
+         "n": 45,
+         "estilo": 0.154,
+         "resto": 0.397,
+         "dif": -0.244,
+         "ic": [
+          -0.395,
+          -0.087
+         ],
+         "p": 0.002,
+         "q": 0.01
+        },
+        {
+         "categoria": "corta / cropped",
+         "n": 19,
+         "estilo": 0.187,
+         "resto": 0.026,
+         "dif": 0.161,
+         "ic": [
+          0.053,
+          0.285
+         ],
+         "p": 0.0095,
+         "q": 0.0237
+        },
+        {
+         "categoria": "no aplica",
+         "n": 14,
+         "estilo": 0.077,
+         "resto": 0.09,
+         "dif": -0.013,
+         "ic": [
+          -0.087,
+          0.064
+         ],
+         "p": 0.7536,
+         "q": 0.7536
+        },
+        {
+         "categoria": "ajustada",
+         "n": 14,
+         "estilo": 0.143,
+         "resto": 0.013,
+         "dif": 0.13,
+         "ic": [
+          0.042,
+          0.241
+         ],
+         "p": 0.016,
+         "q": 0.0267
+        }
+       ]
+      }
+     },
+     "global": {
+      "tv": 0.145,
+      "p": 0.006
+     },
+     "perfil": {
+      "urbano": [
+       [
+        "regular",
+        0.474
+       ],
+       [
+        "oversized / baggy",
+        0.397
+       ],
+       [
+        "no aplica",
+        0.09
+       ],
+       [
+        "corta / cropped",
+        0.026
+       ],
+       [
+        "ajustada",
+        0.013
+       ]
+      ],
+      "geek": [
+       [
+        "regular",
+        0.44
+       ],
+       [
+        "corta / cropped",
+        0.187
+       ],
+       [
+        "oversized / baggy",
+        0.154
+       ],
+       [
+        "ajustada",
+        0.143
+       ],
+       [
+        "no aplica",
+        0.077
+       ]
+      ]
+     }
+    }
+   ]
+  }
  }
 }
