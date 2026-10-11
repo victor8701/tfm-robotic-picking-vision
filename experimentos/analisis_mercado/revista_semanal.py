@@ -246,6 +246,8 @@ def bloque_grupo(g: dict, fotos: Fotos, prendas: dict, hoy_temp: str) -> str:
            f'<div style="font:700 19px/1.25 {SERIF};margin:2px 0 2px">{esc(NOMBRE_TEMP(g["temporada"]).capitalize())}</div>'
            + nota(f'{g["fotos_con_prenda"]} fotos con prenda visible (pesan como {str(g["fotos_efectivas"]).replace(".", ",")} independientes). Fuentes: '
                   + esc(", ".join(f"{k} {v}" for k, v in list(g["fuentes"].items())[:5])) + "."))
+    if not g.get("etiquetadas_con_modelo_grande", True):
+        cab += nota(f'<b style="color:{AVISO}">Ojo:</b> algunas prendas de este grupo aún no las ha etiquetado el modelo grande y usan el tipo de CLIP, menos fiable; se corrige en cuanto termina esa etapa.')
     if g["temporada"] != hoy_temp and g["temporada"] != "muestra":
         cab += nota(f'<b style="color:{AVISO}">Ojo:</b> no hay fotos suficientes de {esc(NOMBRE_TEMP(hoy_temp))}; se enseña {esc(NOMBRE_TEMP(g["temporada"]))}.')
     if not filas:
