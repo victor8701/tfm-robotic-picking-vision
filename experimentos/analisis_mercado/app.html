@@ -239,7 +239,7 @@ button.sec[aria-pressed="true"]{border-color:var(--acento);outline:2px solid var
 <!-- PRENDAS -->
 <section id="s-prendas" hidden>
   <h2>Qué prendas se llevan</h2>
-  <p class="nota">El estilo (urbano, geek) lo da la <b>persona de referencia</b>, no la foto. Cada cifra es el reparto de las fotos de una temporada por tipo de prenda y lleva su <b>confianza</b>: cuántas fotos la sostienen y cuánto acierta el modelo con ese dato. La franja clara de cada barra es el margen (95 %).</p>
+  <p class="nota">El estilo lo da la <b>persona de referencia</b>, no la foto (urbano y geek tienen fuentes de mercado; los otros cinco estilos, por ahora, solo tu muestra de la Biblioteca). Cada cifra es el reparto de las fotos de una temporada por tipo de prenda y lleva su <b>confianza</b>: cuántas fotos la sostienen y cuánto acierta el modelo con ese dato. La franja clara de cada barra es el margen (95 %).</p>
   <p class="nota" id="p-msg"></p>
   <div id="p-cuerpo" hidden>
     <div class="bloque" id="p-estilos" hidden></div>
@@ -360,14 +360,17 @@ const claveTemp = t => { const m = /^(PV|OI) (\d{4})/.exec(t); return m ? +m[2] 
 const pct = x => Math.round(100 * x) + ' %';
 const ETIQ_ATR = {estampado: 'Estampado', forma: 'Forma', tejido: 'Tejido'};
 const reparto = r => Object.entries(r).slice(0, 4).map(([k, v]) => k + ' ' + v).join(' · ');
-const nombreGrupo = g => (g.estilo === 'geek' ? 'Geek' : 'Urbano') + ' · ' + (MERC[g.mercado] || g.mercado) + ' · ' + (g.temporada === 'muestra' ? 'muestra de referencia' : g.temporada) + ' (' + g.fotos + ' fotos)';
+const NOM_ESTILO = {urbano: 'Urbano', geek: 'Geek', clasico: 'Clásico', old_money: 'Old money', lujo: 'Lujo ostentoso', bohemio: 'Bohemio', convencional: 'Convencional'};
+const ORDEN_ESTILO = Object.keys(NOM_ESTILO);
+const COL_ESTILO = {urbano: '#b5441f', geek: '#7a4fa3', clasico: '#2f4a6b', old_money: '#4d6b3a', lujo: '#a37b16', bohemio: '#b0527a', convencional: '#5c6670'};
+const nombreGrupo = g => (NOM_ESTILO[g.estilo] || g.estilo) + ' · ' + (MERC[g.mercado] || g.mercado) + ' · ' + (g.temporada === 'muestra' ? 'muestra de referencia' : g.temporada) + ' (' + g.fotos + ' fotos)';
 async function cargarPrendas() {
   try { P = await api('/api/prendas'); } catch (e) { $('#p-msg').textContent = e.message.includes('404') ? 'Esta pestaña necesita la versión nueva del servidor: cierra la ventana negra de la app y ábrela de nuevo.' : '⚠ ' + e.message; return; }
   const inf = P.informe;
   $('#p-cuerpo').hidden = !inf;
   if (!inf) { $('#p-msg').textContent = 'Todavía no hay informe por prenda. En «Inicio», pulsa «Analizar mercado» o «Solo las prendas» (la primera vez tarda: cada foto nueva son unos 20 segundos).'; return; }
   $('#p-msg').textContent = 'Informe generado el ' + fecha(inf.generado) + '. Mínimo ' + inf.min_fotos + ' fotos por cifra.';
-  const gs = inf.grupos.map((g, i) => ({g, i})).sort((a, b) => (a.g.estilo === b.g.estilo ? 0 : a.g.estilo === 'urbano' ? -1 : 1)
+  const gs = inf.grupos.map((g, i) => ({g, i})).sort((a, b) => (ORDEN_ESTILO.indexOf(a.g.estilo) - ORDEN_ESTILO.indexOf(b.g.estilo))
     || ORDEN_MERC.indexOf(a.g.mercado) - ORDEN_MERC.indexOf(b.g.mercado) || claveTemp(b.g.temporada) - claveTemp(a.g.temporada));
   const sel = $('#p-grupo'), previo = sel.value;
   sel.replaceChildren(...gs.map(({g, i}) => el('option', {value: i, textContent: nombreGrupo(g)})));
@@ -392,10 +395,56 @@ function filaDif(c, esc) {
   r.append(b);
   return r;
 }
+function filaRasgo(c, dn, esc, col) {
+  const r = el('div', {className: 'fila-dif'});
+  r.append(el('div', {className: 'nom'}, c.categoria, el('span', {style: 'font-weight:400;color:var(--suave);font-size:.8rem', textContent: ' (' + dn + ')'})),
+           el('div', {className: 'num', textContent: pct(c.estilo) + ' frente a ' + pct(c.resto) + ' en el resto'}));
+  const b = el('div', {className: 'barra-d', title: 'diferencia ' + (c.dif > 0 ? '+' : '') + Math.round(100 * c.dif) + ' puntos (entre ' + Math.round(100 * c.ic[0]) + ' y ' + Math.round(100 * c.ic[1]) + '); p = ' + c.p.toLocaleString('es-ES')});
+  b.append(el('b', {style: 'left:' + (50 + c.ic[0] * esc) + '%;width:' + ((c.ic[1] - c.ic[0]) * esc) + '%'}), el('i', {style: 'background:' + col + ';left:50%;width:' + Math.max(0, c.dif) * esc + '%'}));
+  r.append(b);
+  return r;
+}
+function pintarEstilosN(caja, A, botones) {
+  const p7 = A.por_estilo, dims = {};
+  p7.dimensiones.forEach(d => { dims[d.dimension] = d; });
+  const orden = ['tipo', 'forma', 'tejido', 'estampado', 'familia'].filter(k => dims[k]);
+  const fp = x => x.toLocaleString('es-ES', {maximumFractionDigits: 3});
+  caja.replaceChildren(el('h4', {textContent: 'Qué distingue a cada estilo'}), botones,
+    el('div', {className: 'nota', textContent: 'Cada estilo frente a la suma de los demás, con ' + p7.prendas + ' prendas de ' + p7.estilos_con_datos.length + ' estilos (muestra de referencia: tus fotos aprobadas; el geek y el urbano suman además sus fotos de mercado en «todas las fuentes»). '
+      + 'La barra sale del centro hacia la derecha cuando el estilo lleva esa característica más que el resto; la línea con topes es el margen (95 %). Solo salen las que aguantan comparar muchas a la vez.'}),
+    el('div', {className: 'nota'}, el('b', {textContent: 'Los estilos se distinguen por: '}),
+      orden.filter(k => dims[k].global.p < 0.05).map(k => k + ' (p = ' + fp(dims[k].global.p) + ')').join(', ') || 'ninguna dimensión',
+      '. No se distinguen por: ' + (orden.filter(k => dims[k].global.p >= 0.05).join(', ') || 'ninguna') + '.'));
+  p7.estilos_con_datos.forEach(e => {
+    const col = COL_ESTILO[e] || '#555', ej = orden.map(k => dims[k].estilos[e]).find(Boolean);
+    if (!ej) return;
+    const perfil = ((dims.tipo && dims.tipo.perfil && dims.tipo.perfil[e]) || []).slice(0, 3);
+    const rasgos = [], menos = [];
+    orden.forEach(dn => { const d = dims[dn].estilos[e]; if (d) d.categorias.forEach(c => { if (c.q < 0.10) (c.dif > 0 ? rasgos : menos).push([c, dn]); }); });
+    rasgos.sort((a, b) => b[0].dif - a[0].dif); menos.sort((a, b) => a[0].dif - b[0].dif);
+    const top = rasgos.slice(0, 4);
+    const tarj = el('div', {className: 'bloque', style: 'border-left:4px solid ' + col},
+      el('h4', {style: 'color:' + col, textContent: NOM_ESTILO[e] || e}),
+      el('div', {className: 'nota', textContent: ej.prendas + ' prendas en ' + ej.fotos + ' fotos.' + (perfil.length ? ' Lo más frecuente: ' + perfil.map(([k, v]) => k.toLowerCase() + ' ' + pct(v)).join(', ') + '.' : '')}));
+    if (top.length) {
+      const esc = 50 / Math.max(0.05, ...top.map(([c]) => Math.max(Math.abs(c.ic[0]), Math.abs(c.ic[1]), Math.abs(c.dif))));
+      top.forEach(([c, dn]) => tarj.append(filaRasgo(c, dn, esc, col)));
+    } else tarj.append(el('div', {className: 'nota', textContent: 'Ningún rasgo se distingue con seguridad del resto de estilos.'}));
+    if (menos.length) tarj.append(el('div', {className: 'nota', textContent: 'Menos que el resto: ' + menos.slice(0, 2).map(([c, dn]) => c.categoria + ' (' + dn + ', ' + Math.round(100 * c.dif) + ' pts)').join(', ') + '.'}));
+    caja.append(tarj);
+  });
+}
 function pintarEstilos() {
   const caja = $('#p-estilos'), E = P && P.estilos, A = E && E[ALC];
   caja.hidden = !A;
   if (!A) return;
+  if (A.por_estilo && A.por_estilo.estilos_con_datos && A.por_estilo.estilos_con_datos.length > 2) {
+    const botonesN = el('div', {className: 'fila-btn'});
+    [['solo_biblioteca', 'Solo tus fotos aprobadas'], ['todas_las_fuentes', 'Todas las fuentes (con mercado)']].forEach(([k, t]) => {
+      const b = el('button', {className: 'sec', textContent: t}); b.setAttribute('aria-pressed', k === ALC); b.onclick = () => { ALC = k; pintarEstilos(); }; botonesN.append(b);
+    });
+    return pintarEstilosN(caja, A, botonesN);
+  }
   const d0 = A.dimensiones[0];
   const botones = el('div', {className: 'fila-btn'});
   [['solo_biblioteca', 'Solo tus fotos aprobadas'], ['todas_las_fuentes', 'Todas las fuentes (con mercado)']].forEach(([k, t]) => {

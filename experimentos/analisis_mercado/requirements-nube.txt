@@ -1,0 +1,14 @@
+# Dependencias de la tarea semanal en GitHub Actions (CPU). torch y torchvision se instalan aparte, de la rueda CPU:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+# Versiones = las del portátil de Víctor donde se midió todo (octubre de 2026).
+numpy>=2.0
+pillow>=12.0
+open_clip_torch==3.3.0
+transformers==4.51.3      # Florence-2 usa código remoto que se rompe con transformers >= 4.52.1 (ver vlm_atributos_prenda/requirements.txt)
+accelerate>=1.15.0
+peft>=0.21.0
+einops
+timm
+huggingface_hub
+ultralytics               # detector DeepFashion2 (los pesos se bajan de Hugging Face al ejecutar)
+kaggle==1.7.4.5           # trae kagglesdk: el paso del modelo grande crea y borra el dataset privado y lanza el kernel

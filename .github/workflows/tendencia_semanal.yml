@@ -1,0 +1,113 @@
+name: Tendencia semanal (revista)
+
+# Cada lunes: cosecha las fuentes de mercado, analiza las prendas nuevas (CPU), etiqueta con el modelo grande en Kaggle (GPU, dataset privado que se borra al terminar),
+# recalcula el informe y manda la revista semanal por correo. Los datos generados se guardan en la rama `datos-tendencia`; el código se toma de la rama `analisis-mercado`.
+# Pasos para ponerlo en marcha (secretos y primera ejecución): experimentos/analisis_mercado/NUBE.md
+# Este fichero tiene que estar en la rama principal (main): GitHub solo programa las tareas desde ahí.
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    # Lunes 02:30 UTC (04:30 en España en horario de verano, 03:30 en invierno). En este repositorio GitHub suele retrasar las tareas programadas entre 2 y 7 horas.
+    - cron: '30 2 * * 1'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tendencia-semanal
+  cancel-in-progress: false
+
+jobs:
+  semanal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    env:
+      PYTHONUNBUFFERED: '1'
+      TENDENCIA_DATOS: ${{ github.workspace }}/codigo/experimentos/analisis_mercado/tendencia_datos
+    steps:
+      - name: Código (rama analisis-mercado)
+        uses: actions/checkout@v4
+        with:
+          ref: analisis-mercado
+          path: codigo
+
+      - name: Datos (rama datos-tendencia)
+        uses: actions/checkout@v4
+        with:
+          ref: datos-tendencia
+          path: datos
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: pip
+          cache-dependency-path: codigo/experimentos/analisis_mercado/requirements-nube.txt
+
+      - name: Dependencias
+        shell: bash
+        run: |
+          pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+          pip install -r codigo/experimentos/analisis_mercado/requirements-nube.txt
+
+      - name: Modelos en caché (Hugging Face)
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-modelos-${{ runner.os }}-v1
+
+      - name: Credencial de Kaggle
+        shell: bash
+        env:
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+        run: |
+          test -n "$KAGGLE_API_TOKEN" || { echo "Falta el secreto KAGGLE_API_TOKEN"; exit 1; }
+          mkdir -p ~/.config/kaggle
+          printf '%s' "$KAGGLE_API_TOKEN" > ~/.config/kaggle/api_token
+          chmod 600 ~/.config/kaggle/api_token
+
+      - name: Traer los datos de la semana pasada
+        shell: bash
+        run: python3 codigo/experimentos/analisis_mercado/sincronizar_nube.py traer datos
+
+      - name: Cosechar, analizar, modelo grande e informe
+        shell: bash
+        working-directory: codigo/experimentos/analisis_mercado
+        run: python3 tendencia_prenda.py todo --sin-biblioteca 2>&1 | tee "$GITHUB_WORKSPACE/registro_semanal.txt"
+
+      - name: Guardar los datos en la rama datos-tendencia
+        shell: bash
+        run: |
+          cp "$GITHUB_WORKSPACE/registro_semanal.txt" "$TENDENCIA_DATOS/registro_semanal.txt"
+          python3 codigo/experimentos/analisis_mercado/sincronizar_nube.py llevar datos
+          cd datos
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then echo "Sin cambios que guardar."; exit 0; fi
+          git commit -m "Tendencia semanal: datos del $(date -u +%F)"
+          for i in 1 2 3 4 5; do
+            git push origin HEAD:datos-tendencia && exit 0
+            sleep $((i * 5))
+            git pull --rebase origin datos-tendencia || exit 1
+          done
+          exit 1
+
+      - name: Revista por correo
+        shell: bash
+        working-directory: codigo/experimentos/analisis_mercado
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+        run: python3 revista_semanal.py enviar
+
+      - name: Aviso por correo si algo falla
+        if: failure()
+        shell: bash
+        working-directory: codigo/experimentos/analisis_mercado
+        env:
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+        run: python3 revista_semanal.py aviso-fallo --paso "la tarea semanal (el registro está en GitHub)" --enlace "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" || true

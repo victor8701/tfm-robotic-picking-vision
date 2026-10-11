@@ -69,6 +69,10 @@ FAMILIA = {"Camiseta manga corta": "Arriba", "Camiseta de tirantes": "Arriba", "
            "Pantalón": "Abajo", "Falda": "Abajo", "Short": "Abajo", "Legging/Malla": "Abajo", "Vestido": "Cuerpo entero", "Mono": "Cuerpo entero",
            "Zapatillas deportivas": "Calzado", "Zapatillas casual/lifestyle": "Calzado", "Zapatos planos de vestir": "Calzado", "Zapatos de vestir": "Calzado", "Zapatos de tacón": "Calzado",
            "Sandalias": "Calzado", "Botas": "Calzado", "Bolso": "Accesorio", "Riñonera": "Accesorio", "Gorra/Gorro/Sombrero": "Accesorio"}
+# los siete estilos de la app (id en la app → clave en el flujo por prenda). Víctor decidió el 6 de octubre empezar por geek y urbano (con referentes y fuentes de mercado); el 11 de octubre pidió los demás:
+# de esos cinco solo hay, por ahora, la muestra de referencia de su Biblioteca (fotos aprobadas, sin fecha ni mercado).
+ESTILOS_FLUJO = {"urbano": "urbano", "alternativo_geek": "geek", "clasico_tradicional": "clasico", "old_money": "old_money", "lujo_ostentoso": "lujo", "bohemio": "bohemio", "convencional": "convencional"}
+NOMBRE_ESTILO = {"urbano": "Urbano", "geek": "Geek", "clasico": "Clásico", "old_money": "Old money", "lujo": "Lujo ostentoso", "bohemio": "Bohemio", "convencional": "Convencional"}
 NIVELES = ["baja", "media", "alta"]
 ATRIBUTOS = ("estampado", "forma", "tejido")
 ALUMNO = TD / "alumno.npz"           # capas sobre CLIP B/32 entrenadas con el profesor (vlm_profesor/entrenar_alumno.py --guardar); si no existe, se usa CLIP sin entrenar
@@ -194,6 +198,39 @@ def cosechar_noticias(s, existentes):
 COSECHA = {"x": cosechar_x, "reddit": cosechar_reddit, "noticias": cosechar_noticias}
 
 
+EMB_IDS = TD / "embeddings.npz"   # embedding CLIP de cada foto aceptada, por identificador: sirve para detectar repetidas aunque la caché de imágenes esté vacía (la tarea en la nube empieza sin ella)
+
+
+def cargar_emb() -> dict:
+    if not EMB_IDS.exists():
+        return {}
+    try:
+        z = np.load(EMB_IDS, allow_pickle=False)
+        return dict(zip(z["ids"].tolist(), z["v"].astype(np.float32)))
+    except Exception:  # noqa: BLE001 -- fichero a medio escribir: se recalcula
+        return {}
+
+
+def guardar_emb(d: dict) -> None:
+    tmp = EMB_IDS.with_name(EMB_IDS.stem + ".tmp.npz")
+    np.savez_compressed(tmp, ids=np.array(list(d.keys())), v=np.array(list(d.values()), dtype=np.float16))
+    tmp.replace(EMB_IDS)
+
+
+def asegurar_imagen(k: str, fotos: dict) -> bool:
+    """La foto en la caché; si falta y se conoce su dirección, se vuelve a bajar (en la nube la caché empieza vacía cada semana). False si no se pudo."""
+    ruta = m.IMG / f"{k}.jpg"
+    if ruta.exists():
+        return True
+    url = (fotos.get(k) or {}).get("url")
+    if not url:
+        return False
+    try:
+        return bool(m.descargar_imagen(url, ruta))
+    except Exception:  # noqa: BLE001 -- la foto pudo desaparecer: esa prenda se queda sin etiquetar esta semana
+        return False
+
+
 def filtrar_nuevas(fotos: dict, nuevas: dict) -> tuple[int, int, int]:
     """Puerta «persona con ropa» y repetidas (coseno CLIP). Lo descartado se apunta para no volver a bajarlo. Devuelve (buenas, no persona, repetidas)."""
     ids = list(nuevas)
@@ -201,8 +238,13 @@ def filtrar_nuevas(fotos: dict, nuevas: dict) -> tuple[int, int, int]:
         return 0, 0, 0
     X = m.embeber_imagenes([m.IMG / f"{c}.jpg" for c in ids], "tendencia")
     g = m.puntuacion_foto_real(X)
-    previas = [k for k, v in fotos.items() if not v.get("descartada") and (m.IMG / f"{k}.jpg").exists()]
-    P = m.embeber_imagenes([m.IMG / f"{k}.jpg" for k in previas], "tendencia") if previas else np.zeros((0, X.shape[1]))
+    embs = cargar_emb()
+    previas = [k for k, v in fotos.items() if not v.get("descartada") and k not in nuevas]
+    falta = [k for k in previas if k not in embs and (m.IMG / f"{k}.jpg").exists()]   # sin embedding guardado: se calcula si la foto está
+    if falta:
+        for k, v in zip(falta, m.embeber_imagenes([m.IMG / f"{k}.jpg" for k in falta], "tendencia")):
+            embs[k] = v
+    P = np.array([embs[k] for k in previas if k in embs]) if any(k in embs for k in previas) else np.zeros((0, X.shape[1]))
     buenas = sinp = dup = 0
     aceptadas = []
     for i, cid in enumerate(ids):
@@ -221,7 +263,9 @@ def filtrar_nuevas(fotos: dict, nuevas: dict) -> tuple[int, int, int]:
         else:
             aceptadas.append(i)
             buenas += 1
+            embs[cid] = X[i]
         fotos[cid] = v
+    guardar_emb(embs)
     return buenas, sinp, dup
 
 
@@ -250,6 +294,17 @@ def cmd_cosechar(args):
     print(f"\nFotos útiles acumuladas: {n} ({len(fotos)} vistas en total)")
 
 
+def cmd_embeddings(args):
+    """Calcula y guarda el embedding de cada foto aceptada que tenga imagen en la caché (para la detección de repetidas desde la nube)."""
+    fotos, embs = cargar(FOTOS), cargar_emb()
+    falta = [k for k, v in fotos.items() if not v.get("descartada") and k not in embs and (m.IMG / f"{k}.jpg").exists()]
+    if falta:
+        for k, v in zip(falta, m.embeber_imagenes([m.IMG / f"{k}.jpg" for k in falta], "tendencia")):
+            embs[k] = v
+        guardar_emb(embs)
+    print(f"Embeddings guardados: {len(embs)} ({len(falta)} nuevos) → {EMB_IDS}")
+
+
 def cmd_biblioteca(args):
     """Incorpora como muestra de referencia las fotos que Víctor aprobó en la app como urbano / geek (ya sin repetidas)."""
     TD.mkdir(parents=True, exist_ok=True)
@@ -258,17 +313,18 @@ def cmd_biblioteca(args):
     fotos = cargar(FOTOS)
     n = 0
     for r, est, org in zip(rutas, y, origen):
-        if est not in ("urbano", "alternativo_geek"):
+        if est not in ESTILOS_FLUJO:
             continue
         cid = "bib_" + hashlib.sha1(str(r).encode()).hexdigest()[:10]
         if cid in fotos:
             continue
         shutil.copy(r, m.IMG / f"{cid}.jpg")
-        fotos[cid] = {"id": cid, "fuente": "biblioteca", "referente": None, "estilo": "geek" if est == "alternativo_geek" else "urbano", "mercado": "Biblioteca", "fecha": None,
+        fotos[cid] = {"id": cid, "fuente": "biblioteca", "referente": None, "estilo": ESTILOS_FLUJO[est], "mercado": "Biblioteca", "fecha": None,
                       "url": None, "enlace": None, "titulo": f"origen: {org}", "capturada": ahora_iso(), "gate": 1.0}
         n += 1
     guardar(FOTOS, fotos)
-    print(f"Muestra de referencia: {n} fotos nuevas de la Biblioteca ({sum(1 for v in fotos.values() if v['fuente'] == 'biblioteca')} en total)")
+    por_estilo = collections.Counter(v["estilo"] for v in fotos.values() if v["fuente"] == "biblioteca")
+    print(f"Muestra de referencia: {n} fotos nuevas de la Biblioteca ({sum(por_estilo.values())} en total: " + ", ".join(f"{NOMBRE_ESTILO[k]} {v}" for k, v in por_estilo.most_common()) + ")")
 
 
 def _datos_app(ruta_app: Path):
@@ -433,7 +489,9 @@ def texto_kernel(parte=None) -> str:
 
 def cmd_vlm(args):
     prendas = cargar(PRENDAS)
-    pend = [(k, i, p) for k, v in sorted(prendas.items()) for i, p in enumerate(v["prendas"]) if valida(p) and "vlm" not in p and (m.IMG / f"{k}.jpg").exists()]
+    fotos_d, hay = cargar(FOTOS), {}
+    pend = [(k, i, p) for k, v in sorted(prendas.items()) for i, p in enumerate(v["prendas"])
+            if valida(p) and "vlm" not in p and hay.setdefault(k, asegurar_imagen(k, fotos_d))]
     if args.max_vlm:
         pend = pend[:args.max_vlm]
     fotos_pend = len({k for k, _, _ in pend})
@@ -626,8 +684,10 @@ def main():
     p.add_argument("--max-vlm", type=int, dest="max_vlm", help="como mucho N prendas (para probar)")
     p.add_argument("--simular", action="store_true", help="solo cuenta lo pendiente, sin subir nada")
     sub.add_parser("informe")
+    sub.add_parser("embeddings")
     p = sub.add_parser("todo")
     p.add_argument("--solo")
+    p.add_argument("--sin-biblioteca", action="store_true", dest="sin_biblioteca", help="no importar las fotos aprobadas en la app (en la nube no están)")
     p.add_argument("--max", type=int)
     p.add_argument("--max-dias", type=int, default=400)
     p.add_argument("--sin-vlm", action="store_true", help="no usar el modelo grande de Kaggle (nada sale del ordenador)")
@@ -635,8 +695,10 @@ def main():
     a = ap.parse_args()
     if a.cmd in ("cosechar", "todo"):
         cmd_cosechar(a)
-    if a.cmd == "biblioteca" or (a.cmd == "todo" and not getattr(a, "solo", None)):
+    if a.cmd == "biblioteca" or (a.cmd == "todo" and not getattr(a, "solo", None) and not getattr(a, "sin_biblioteca", False)):
         cmd_biblioteca(a)
+    if a.cmd == "embeddings":
+        cmd_embeddings(a)
     if a.cmd in ("analizar", "todo"):
         cmd_analizar(a)
     if a.cmd == "vlm":

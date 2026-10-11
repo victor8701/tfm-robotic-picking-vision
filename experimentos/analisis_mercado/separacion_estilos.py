@@ -37,13 +37,14 @@ def aciertos():
     return out
 
 
-def filas(tp, solo_biblioteca=False):
+def filas(tp, solo_biblioteca=False, estilos=("geek", "urbano")):
+    """Prendas válidas con valoración del modelo grande. `estilos`: los que se incluyen (None = los siete)."""
     prendas = json.loads((TD / "prendas.json").read_text(encoding="utf-8"))
     fotos = json.loads((TD / "fotos.json").read_text(encoding="utf-8"))
     out = []
     for fid, r in prendas.items():
         f = fotos.get(fid)
-        if not f or f.get("descartada") or f["estilo"] not in ("geek", "urbano"):
+        if not f or f.get("descartada") or (estilos is not None and f["estilo"] not in estilos) or f["estilo"] not in tp.NOMBRE_ESTILO:
             continue
         if solo_biblioteca and f["mercado"] != "Biblioteca":
             continue
@@ -133,6 +134,74 @@ def analizar(todas, dim, minimo, rep, rnd, acierto):
             "global": {"tv": round(tv_obs, 3), "p": round((tv_ge + 1) / (rep + 1), 4)}, "categorias": filas_}
 
 
+def analizar_estilos(todas, dim, minimo, rep, rng, orden):
+    """Cada estilo frente a los demás en una dimensión: diferencia de cuota (estilo − resto) con intervalo por bootstrap por foto y p de permutación por foto, q de Benjamini-Hochberg dentro
+    del estilo, y una prueba global entre todos los estilos (distancia de variación total media frente al reparto general, ponderada por prendas)."""
+    import numpy as np
+    estilos = [e for e in orden if any(p["estilo"] == e for p in todas)]
+    cuenta = collections.Counter(p[dim] for p in todas)
+    cats = [k for k, n in cuenta.most_common() if n >= minimo]
+    if len(cats) < 2 or len(estilos) < 2:
+        return None
+    fotos = sorted({p["foto"] for p in todas})
+    fi, ci = {f: i for i, f in enumerate(fotos)}, {c: j for j, c in enumerate(cats)}
+    N, K = len(fotos), len(cats)
+    C, tot, lab = np.zeros((N, K)), np.zeros(N), np.empty(N, dtype=object)
+    for p in todas:
+        i = fi[p["foto"]]
+        tot[i] += 1
+        lab[i] = p["estilo"]
+        if p[dim] in ci:
+            C[i, ci[p[dim]]] += 1
+    gran_tot = tot.sum()
+    reparto_gral = C.sum(0) / gran_tot
+    por_estilo = {}
+    for e in estilos:
+        idx = np.where(lab == e)[0]
+        res_ = np.where(lab != e)[0]
+        if len(idx) < 5:
+            continue
+        cS, tS, cR, tR = C[idx], tot[idx], C[res_], tot[res_]
+        obs = cS.sum(0) / tS.sum() - cR.sum(0) / tR.sum()
+        dif_boot = np.empty((rep, K))
+        for a in range(0, rep, 250):
+            b = min(rep, a + 250)
+            iS = rng.integers(0, len(idx), (b - a, len(idx)))
+            iR = rng.integers(0, len(res_), (b - a, len(res_)))
+            dif_boot[a:b] = cS[iS].sum(1) / tS[iS].sum(1)[:, None] - cR[iR].sum(1) / tR[iR].sum(1)[:, None]
+        ic = np.percentile(dif_boot, [2.5, 97.5], axis=0)
+        extremos = np.zeros(K)
+        for a in range(0, rep, 250):
+            b = min(rep, a + 250)
+            perm = np.argsort(rng.random((b - a, N)), axis=1)[:, :len(idx)]
+            sS, sT = C[perm].sum(1), tot[perm].sum(1)
+            d = sS / sT[:, None] - (C.sum(0) - sS) / (gran_tot - sT)[:, None]
+            extremos += (np.abs(d) >= np.abs(obs) - 1e-12).sum(0)
+        pv = (extremos + 1) / (rep + 1)
+        q = bh(list(pv))
+        por_estilo[e] = {"prendas": int(tS.sum()), "fotos": len(idx),
+                         "categorias": [{"categoria": cats[j], "n": int(cuenta[cats[j]]), "estilo": round(float(cS.sum(0)[j] / tS.sum()), 3), "resto": round(float(cR.sum(0)[j] / tR.sum()), 3),
+                                         "dif": round(float(obs[j]), 3), "ic": [round(float(ic[0, j]), 3), round(float(ic[1, j]), 3)], "p": round(float(pv[j]), 4), "q": round(float(q[j]), 4)} for j in range(K)]}
+    # prueba global entre estilos
+    def estadistico(etiquetas):
+        s_ = 0.0
+        for e in por_estilo:
+            m = etiquetas == e
+            if not m.any():
+                continue
+            c, t = C[m].sum(0), tot[m].sum()
+            s_ += (t / gran_tot) * 0.5 * np.abs(c / t - reparto_gral).sum()
+        return s_
+    t_obs = estadistico(lab)
+    ge = sum(estadistico(lab[rng.permutation(N)]) >= t_obs - 1e-12 for _ in range(min(rep, 1000)))
+    perfil = {}
+    for e in por_estilo:
+        m = lab == e
+        c, t = C[m].sum(0), tot[m].sum()
+        perfil[e] = [[cats[j], round(float(c[j] / t), 3)] for j in np.argsort(-c)[:5] if c[j] > 0]
+    return {"dimension": dim, "estilos": por_estilo, "global": {"tv": round(float(t_obs), 3), "p": round((ge + 1) / (min(rep, 1000) + 1), 4)}, "perfil": perfil}
+
+
 def generar(tp, rep=3000, minimo=6, semilla=5, salida=None, imprimir=False):
     """Calcula la comparación geek-urbano con todas las fuentes y solo con la Biblioteca; la escribe en `salida` (por defecto tendencia_datos/separacion_estilos.json) y la devuelve."""
     rnd = random.Random(semilla)
@@ -142,6 +211,14 @@ def generar(tp, rep=3000, minimo=6, semilla=5, salida=None, imprimir=False):
     for nombre, solo in (("todas_las_fuentes", False), ("solo_biblioteca", True)):
         todas = filas(tp, solo)
         res[nombre] = {"prendas": len(todas), "dimensiones": [r for r in (analizar(todas, d, minimo, rep, rnd, acierto) for d in DIMS) if r]}
+        # los siete estilos, cada uno frente al resto (si hay al menos dos con datos)
+        import numpy as np
+        rng = np.random.default_rng(semilla)
+        todos = filas(tp, solo, estilos=None)
+        orden = list(tp.NOMBRE_ESTILO)
+        dims7 = [r for r in (analizar_estilos(todos, d, minimo, max(rep, 1000), rng, orden) for d in DIMS) if r]
+        if dims7:
+            res[nombre]["por_estilo"] = {"prendas": len(todos), "estilos_con_datos": sorted({p["estilo"] for p in todos}, key=orden.index), "dimensiones": dims7}
         if imprimir:
             g = [r for r in todas if r["estilo"] == "geek"]
             u = [r for r in todas if r["estilo"] == "urbano"]
