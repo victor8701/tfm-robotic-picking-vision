@@ -135,8 +135,17 @@ def cosechar_reddit(s, existentes):
 
 def noticias_rss(consulta: str, mkt: str) -> list[dict]:
     url = "https://www.bing.com/news/search?" + urllib.parse.urlencode({"q": consulta, "format": "rss", "mkt": mkt})
-    with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": m.UA, "Accept": "application/rss+xml,text/xml"}), timeout=25) as r:
-        raiz = ET.fromstring(r.read(3_000_000))
+    ultimo = None
+    for intento in range(3):   # desde los servidores de GitHub Bing contesta a ratos con algo que no es XML: se reintenta con pausa
+        try:
+            with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": m.UA, "Accept": "application/rss+xml,text/xml"}), timeout=25) as r:
+                raiz = ET.fromstring(r.read(3_000_000))
+            break
+        except Exception as e:  # noqa: BLE001
+            ultimo = e
+            time.sleep(3 + 5 * intento)
+    else:
+        raise ultimo
     out = []
     for it in (e for e in raiz.iter() if e.tag.rsplit("}", 1)[-1] == "item"):
         h = {e.tag.rsplit("}", 1)[-1]: (e.text or "") for e in it}
