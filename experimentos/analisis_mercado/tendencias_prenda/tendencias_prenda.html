@@ -10,6 +10,8 @@
   --accent:#0b6b68; --on-accent:#ffffff; --accent-soft:#dcf0ee;
   --geek:#5a3bd0; --on-geek:#ffffff; --geek-soft:#ebe7fb;
   --urb:#b24a04; --on-urb:#ffffff; --urb-soft:#fbe8da;
+  --cla:#2f4a6b; --on-cla:#ffffff; --cla-soft:#e3ebf5; --old:#3f6b3a; --on-old:#ffffff; --old-soft:#e4f0e1; --luj:#8a6a10; --on-luj:#ffffff; --luj-soft:#f6edcf;
+  --boh:#a8456f; --on-boh:#ffffff; --boh-soft:#f8e3ec; --con:#4f5b66; --on-con:#ffffff; --con-soft:#e6e9ed;
   --ok:#16703d; --ok-soft:#dff3e6; --warn:#8a5700; --warn-soft:#fbefd0; --no:#ad2a22; --no-soft:#fbe3e0;
   --shadow:0 1px 2px rgba(20,23,41,.05),0 8px 22px -12px rgba(20,23,41,.18);
   --f-display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
@@ -25,6 +27,8 @@
   --accent:#52d3c6; --on-accent:#062421; --accent-soft:#12363a;
   --geek:#ab9bff; --on-geek:#1b1240; --geek-soft:#241f4a;
   --urb:#ff9d57; --on-urb:#2f1503; --urb-soft:#3b2213;
+  --cla:#8fb0d6; --on-cla:#10151d; --cla-soft:#1f2a3b; --old:#8fcf86; --on-old:#10200e; --old-soft:#1d2e1b; --luj:#e6c35a; --on-luj:#2a2005; --luj-soft:#352b0c;
+  --boh:#f09bbd; --on-boh:#2f0f1c; --boh-soft:#3a1e2a; --con:#aab4be; --on-con:#10151d; --con-soft:#262c33;
   --ok:#62d48e; --ok-soft:#133a26; --warn:#e9b44f; --warn-soft:#3b2d0e; --no:#ff8f86; --no-soft:#401d1a;
   --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 22px -12px rgba(0,0,0,.6);
   color-scheme:dark}}
@@ -35,6 +39,8 @@
   --accent:#52d3c6; --on-accent:#062421; --accent-soft:#12363a;
   --geek:#ab9bff; --on-geek:#1b1240; --geek-soft:#241f4a;
   --urb:#ff9d57; --on-urb:#2f1503; --urb-soft:#3b2213;
+  --cla:#8fb0d6; --on-cla:#10151d; --cla-soft:#1f2a3b; --old:#8fcf86; --on-old:#10200e; --old-soft:#1d2e1b; --luj:#e6c35a; --on-luj:#2a2005; --luj-soft:#352b0c;
+  --boh:#f09bbd; --on-boh:#2f0f1c; --boh-soft:#3a1e2a; --con:#aab4be; --on-con:#10151d; --con-soft:#262c33;
   --ok:#62d48e; --ok-soft:#133a26; --warn:#e9b44f; --warn-soft:#3b2d0e; --no:#ff8f86; --no-soft:#401d1a;
   --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 22px -12px rgba(0,0,0,.6);
   color-scheme:dark}
@@ -50,6 +56,11 @@ b{font-weight:650}
 .wrap{max-width:760px;margin-inline:auto;padding-inline:16px}
 #app[data-tab="geek"]{--sty:var(--geek);--on-sty:var(--on-geek);--sty-soft:var(--geek-soft)}
 #app[data-tab="urbano"]{--sty:var(--urb);--on-sty:var(--on-urb);--sty-soft:var(--urb-soft)}
+#app[data-tab="clasico"]{--sty:var(--cla);--on-sty:var(--on-cla);--sty-soft:var(--cla-soft)}
+#app[data-tab="old_money"]{--sty:var(--old);--on-sty:var(--on-old);--sty-soft:var(--old-soft)}
+#app[data-tab="lujo"]{--sty:var(--luj);--on-sty:var(--on-luj);--sty-soft:var(--luj-soft)}
+#app[data-tab="bohemio"]{--sty:var(--boh);--on-sty:var(--on-boh);--sty-soft:var(--boh-soft)}
+#app[data-tab="convencional"]{--sty:var(--con);--on-sty:var(--on-con);--sty-soft:var(--con-soft)}
 
 /* cabecera */
 .top{padding-block:22px 14px;display:grid;gap:8px}
@@ -70,7 +81,11 @@ h1{margin:0;font:700 clamp(30px,8.4vw,44px)/1.02 var(--f-display);letter-spacing
 .tab{flex:0 0 auto;min-height:40px;padding:0 14px;border-radius:999px;border:1px solid transparent;background:transparent;color:var(--ink-2);font:600 14px/1 var(--f-body);display:inline-flex;align-items:center;gap:8px}
 .tab[aria-selected="true"]{background:var(--ink);color:var(--bg)}
 .dot{width:9px;height:9px;border-radius:50%;display:inline-block}
-.dot-geek{background:var(--geek)} .dot-urbano{background:var(--urb)}
+.dot-geek{background:var(--geek)} .dot-urbano{background:var(--urb)} .dot-clasico{background:var(--cla)} .dot-old_money{background:var(--old)} .dot-lujo{background:var(--luj)} .dot-bohemio{background:var(--boh)} .dot-convencional{background:var(--con)}
+.estchips{display:flex;gap:6px;overflow-x:auto;padding:2px 0 12px;scrollbar-width:none}
+.estchip{flex:0 0 auto;min-height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);font:600 14px/1 var(--f-body);display:inline-flex;align-items:center;gap:8px}
+.estchip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:transparent}
+.estchip small{font:500 11px/1 var(--f-mono);opacity:.75}
 .tab[aria-selected="true"] .dot{box-shadow:0 0 0 2px var(--ink),0 0 0 3px var(--bg)}
 .badge{min-width:20px;height:20px;padding:0 6px;border-radius:10px;background:var(--accent);color:var(--on-accent);font:600 11px/20px var(--f-mono);text-align:center}
 .tab[aria-selected="true"] .badge{background:var(--bg);color:var(--ink)}
@@ -248,7 +263,7 @@ tr.tot td{font-weight:650;border-top:1.5px solid var(--ink)}
       <span id="save" class="save" data-s="load" role="status" aria-live="polite"><i></i><span>Cargando…</span></span>
     </div>
     <h1>Tendencias de prenda</h1>
-    <p class="lede">Propuesta para <b>geek</b> y <b>urbano</b>. Corrígela desde aquí: lo que toques se guarda solo y lo leo yo directamente.</p>
+    <p class="lede">Propuesta para los <b>siete estilos</b> (geek y urbano ya corregidos por ti; los otros cinco, con lo que veo en tus fotos y tus descripciones). Corrígela desde aquí: lo que toques se guarda solo y lo leo yo directamente.</p>
   </header>
   <div class="tabbar"><div class="wrap"><nav class="tabs" id="tabs" role="tablist" aria-label="Secciones"></nav></div></div>
   <main class="wrap" id="view" role="tabpanel"></main>
@@ -277,8 +292,9 @@ function sig(o){
 function lsGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
 function lsSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 
-var S={data:{},loaded:false,db:null,dbAbsent:false,ro:false,tab:'idea',open:{},confirm:null,dirty:{},inflight:{},timers:{},retry:{}};
-var TABS=[['idea','Idea'],['geek','Geek'],['urbano','Urbano'],['preguntas','Preguntas'],['pruebas','Cómo vamos']];
+var S={data:{},loaded:false,db:null,dbAbsent:false,ro:false,tab:'idea',est:(function(){var e=lsGet('tp-est');return (e&&/^(urbano|geek|clasico|old_money|lujo|bohemio|convencional)$/.test(e))?e:'urbano'})(),open:{},confirm:null,dirty:{},inflight:{},timers:{},retry:{}};
+var TABS=[['idea','Idea'],['estilos','Estilos'],['preguntas','Preguntas'],['pruebas','Cómo vamos']];
+var ESTILOS=['urbano','geek','clasico','old_money','lujo','bohemio','convencional'];
 var ERP={
   ropa:['Camiseta manga corta','Camiseta de tirantes','Camiseta manga larga','Top','Camisa','Polo','Sudadera','Jersey','Chaleco sin mangas','Pantalón','Falda','Legging/Malla','Vestido','Mono','Chaqueta','Americana','Abrigo','Plumas'],
   calzado:['Zapatillas deportivas','Zapatillas casual/lifestyle','Zapatos planos de vestir','Zapatos de tacón','Sandalias','Botas'],
@@ -287,8 +303,9 @@ var ERP={
 var GRUPO={ropa:'Ropa',calzado:'Calzado',accesorio:'Accesorios'};
 var SWATCH={blanco:'#ffffff',negro:'#15151a',gris:'#8c909b',beige:'#d8c6a5',camel:'#b98a55',navy:'#1d2a5b',azul:'#2d6bdc',rojo:'#d12a30',verde:'#2f8a58',burdeos:'#6b1a2d',rosa:'#f3a5c0',lavanda:'#b7a3e8',menta:'#a5e2c7',amarillo:'#f2d03d',naranja:'#f28a26',fucsia:'#d4248e',dorado:'#c8a02a',plateado:'#c3c7d0'};
 var SAVE_TXT={load:'Cargando…',saved:'Guardado',dirty:'Cambios sin guardar',saving:'Guardando…',error:'No se pudo guardar',ro:'Solo lectura',off:'Sin base de datos'};
-var NOMBRE={geek:'Geek',urbano:'Urbano'};
-function ok(id){return S.tab+':'+id}
+var NOMBRE={geek:'Geek',urbano:'Urbano',clasico:'Clásico',old_money:'Old money',lujo:'Lujo ostentoso',bohemio:'Bohemio',convencional:'Convencional'};
+function curEst(){return S.tab==='estilos'?S.est:S.tab}
+function ok(id){return curEst()+':'+id}
 
 /* ---------- guardado ---------- */
 function setSave(s,msg){
@@ -363,19 +380,19 @@ function pendingQ(){
 function renderTabs(){
   var pend=pendingQ();
   $('#tabs').innerHTML=TABS.map(function(t){
-    var dot=(t[0]==='geek'||t[0]==='urbano')?'<i class="dot dot-'+t[0]+'"></i>':'';
+    var dot=(t[0]==='estilos')?'<i class="dot dot-'+S.est+'"></i>':'';
     var badge=(t[0]==='preguntas'&&pend>0)?'<span class="badge" aria-label="'+pend+' sin responder">'+pend+'</span>':'';
     return '<button class="tab" role="tab" data-act="tab" data-t="'+t[0]+'" aria-selected="'+(S.tab===t[0])+'">'+dot+esc(t[1])+badge+'</button>';
   }).join('');
 }
 function render(){
-  var app=$('#app'); app.setAttribute('data-tab',S.tab); app.classList.toggle('ro',!!S.ro);
+  var app=$('#app'); app.setAttribute('data-tab',curEst()); app.classList.toggle('ro',!!S.ro);
   renderTabs();
   var html;
   try{
     if(S.tab!=='idea'&&S.dbAbsent)html=vAbsent();
     else if(S.tab!=='idea'&&!S.loaded)html=vLoading();
-    else html=({idea:vIdea,geek:function(){return vStyle('geek')},urbano:function(){return vStyle('urbano')},preguntas:vPreguntas,pruebas:vPruebas})[S.tab]();
+    else html=({idea:vIdea,estilos:vEstilos,preguntas:vPreguntas,pruebas:vPruebas})[S.tab]();
   }catch(err){
     html='<div class="stack"><section class="card"><h2>No he podido pintar esta sección</h2><p class="hint">Recarga la página. Detalle: '+esc(err&&err.message)+'</p></section></div>';
   }
@@ -384,6 +401,7 @@ function render(){
 }
 function showTab(){var a=$('.tab[aria-selected="true"]');if(a&&a.scrollIntoView){try{a.scrollIntoView({block:'nearest',inline:'center'})}catch(e){}}}
 function setTab(t){
+  if(ESTILOS.indexOf(t)>=0){S.est=t;lsSet('tp-est',t);t='estilos'}
   if(!TABS.some(function(x){return x[0]===t}))t='idea';
   S.tab=t; S.confirm=null; lsSet('tp-tab',t);
   try{history.replaceState(null,'','#'+t)}catch(e){}
@@ -497,7 +515,7 @@ function resumenP(p){
 }
 function usoDe(f){
   var u={};
-  ['geek','urbano'].forEach(function(k){var d=S.data[k];if(!d)return;(d.prendas||[]).forEach(function(p){(p[f]||[]).forEach(function(v){var q=norm(v);u[q]=(u[q]||0)+1})})});
+  ESTILOS.forEach(function(k){var d=S.data[k];if(!d)return;(d.prendas||[]).forEach(function(p){(p[f]||[]).forEach(function(v){var q=norm(v);u[q]=(u[q]||0)+1})})});
   return u;
 }
 function chipGroup(doc,p,f,label,pool){
@@ -559,6 +577,13 @@ function secSub(sid,d){
     '<p class="hint">Grupos dentro de «'+esc(NOMBRE[sid])+'» que quieres distinguir. Los marcados <b>visto en tus fotos</b> salen de lo que veo en tu Biblioteca; el resto son ideas mías, apagadas hasta que las enciendas.</p>'+
     '<div class="list">'+(rows||'<div class="item"><span class="none">Todavía no hay ninguno.</span></div>')+'</div>'+
     addRow('add:sub:'+sid,'add-sub',sid,'Otro subestilo (nombre)','Añadir')+'</section>';
+}
+function vEstilos(){
+  var chips=ESTILOS.map(function(e){
+    var d=S.data[e],n=d?(d.referentes||[]).filter(function(r){return r.estado==='ok'}).length:0;
+    return '<button class="estchip" data-act="est" data-e="'+e+'" aria-pressed="'+(S.est===e)+'"><i class="dot dot-'+e+'"></i>'+esc(NOMBRE[e])+(d?'<small>'+n+'</small>':'<small>—</small>')+'</button>';
+  }).join('');
+  return '<div class="stack"><div class="estchips" role="group" aria-label="Estilo">'+chips+'</div>'+vStyle(S.est)+'</div>';
 }
 function vStyle(sid){
   var d=S.data[sid];
@@ -640,6 +665,7 @@ function inputVal(fk){var n=document.querySelector('[data-fk="'+fk+'"]');return 
 function tipoDe(n){var k=norm(n),t='ropa';['ropa','calzado','accesorio'].forEach(function(x){ERP[x].forEach(function(e){if(norm(e)===k)t=x})});return t}
 var ACT={
   tab:function(el){setTab(el.getAttribute('data-t'))},
+  est:function(el){S.est=el.getAttribute('data-e');lsSet('tp-est',S.est);S.confirm=null;render();var a=$('.estchip[aria-pressed="true"]');if(a&&a.scrollIntoView){try{a.scrollIntoView({block:'nearest',inline:'center'})}catch(e){}}},
   open:function(el){var k=ok(el.getAttribute('data-id'));S.open[k]=!S.open[k];S.confirm=null;paint()},
   'ref-estado':function(el){mutate(el.getAttribute('data-doc'),function(d){var r=find(d.referentes,el.getAttribute('data-id'));if(r)r.estado=el.getAttribute('data-v')})},
   toggle:function(el){var c=el.getAttribute('data-coll'),f=el.getAttribute('data-f');mutate(el.getAttribute('data-doc'),function(d){var it=find(d[c],el.getAttribute('data-id'));if(it)it[f]=!it[f]})},
@@ -692,7 +718,9 @@ document.addEventListener('visibilitychange',function(){if(document.visibilitySt
 window.addEventListener('pagehide',flushAll);
 
 (function init(){
-  var h=(location.hash||'').replace('#',''),t=TABS.some(function(x){return x[0]===h})?h:lsGet('tp-tab');
+  var h=(location.hash||'').replace('#','');
+  if(ESTILOS.indexOf(h)>=0){S.est=h;h='estilos'}
+  var t=TABS.some(function(x){return x[0]===h})?h:lsGet('tp-tab');
   S.tab=TABS.some(function(x){return x[0]===t})?t:'idea';
   render(); showTab(); setSave('load');
   var cl=window.claude;
