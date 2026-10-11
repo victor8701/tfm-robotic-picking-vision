@@ -96,6 +96,12 @@ def dataset_borrar(slug, intentos=24, pausa=5) -> None:
     raise ultimo
 
 
+def dataset_bajar(slug, destino) -> None:
+    """Descarga y descomprime en `destino` un dataset PROPIO (privado)."""
+    Path(destino).mkdir(parents=True, exist_ok=True)
+    api_cli().dataset_download_files(f"{USUARIO.lower()}/{slug}", path=str(destino), quiet=True, unzip=True)
+
+
 def datasets() -> list[tuple[str, bool, str]]:
     from kagglesdk.datasets.types.dataset_api_service import ApiListDatasetsRequest
     from kagglesdk.datasets.types.dataset_enums import DatasetSelectionGroup

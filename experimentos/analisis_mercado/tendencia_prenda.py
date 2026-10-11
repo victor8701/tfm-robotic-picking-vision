@@ -207,6 +207,7 @@ def cosechar_noticias(s, existentes):
 COSECHA = {"x": cosechar_x, "reddit": cosechar_reddit, "noticias": cosechar_noticias}
 
 
+FOTOS_KAGGLE = TD / "fotos_kaggle.txt"   # nombre de un dataset PRIVADO de Kaggle con fotos que solo están en el portátil de Víctor (su Biblioteca): la tarea de la nube las baja, las analiza y lo borra al terminar bien
 EMB_IDS = TD / "embeddings.npz"   # embedding CLIP de cada foto aceptada, por identificador: sirve para detectar repetidas aunque la caché de imágenes esté vacía (la tarea en la nube empieza sin ella)
 
 
@@ -301,6 +302,80 @@ def cmd_cosechar(args):
         time.sleep(1.5)
     n = sum(1 for v in fotos.values() if not v.get("descartada"))
     print(f"\nFotos útiles acumuladas: {n} ({len(fotos)} vistas en total)")
+
+
+def _kaggle_ops():
+    sys.path.insert(0, str(VLMP))
+    import kaggle_ops as ko
+    return ko
+
+
+def cmd_fotos_kaggle(args):
+    """`fotos-kaggle subir`: sube a un dataset privado de Kaggle las fotos de la Biblioteca que aún no tienen todas sus prendas etiquetadas por el modelo grande y apunta su nombre en `fotos_kaggle.txt`
+    (se sincroniza con la rama de datos; la tarea semanal de la nube las baja, las analiza y borra el dataset cuando todo ha ido bien). Así el portátil no hace el trabajo pesado."""
+    fotos, prendas = cargar(FOTOS), cargar(PRENDAS)
+    ids = []
+    for k, v in sorted(fotos.items()):
+        if v.get("fuente") != "biblioteca" or v.get("descartada") or not (m.IMG / f"{k}.jpg").exists():
+            continue
+        pr = prendas.get(k)
+        if pr is None or any(valida(p) and "vlm" not in p for p in pr["prendas"]):
+            ids.append(k)
+    if args.max:
+        ids = ids[:args.max]
+    if not ids:
+        raise SystemExit("No hay fotos de la Biblioteca pendientes.")
+    slug = args.slug
+    carpeta = Path(tempfile.mkdtemp(prefix="fotos_kaggle_"))
+    with zipfile.ZipFile(carpeta / "fotos.zip", "w", zipfile.ZIP_STORED) as z:
+        for k in ids:
+            z.write(m.IMG / f"{k}.jpg", f"{k}.jpg")
+    (carpeta / "dataset-metadata.json").write_text(json.dumps({"title": f"TFM fotos pendientes {slug[-12:]}", "id": f"victor871/{slug}", "licenses": [{"name": "other"}],
+                                                               "description": "Privado. Fotos de referencia del TFM (UC3M); la tarea semanal las usa y lo borra."}, ensure_ascii=False), encoding="utf-8")
+    print(f"{len(ids)} fotos ({(carpeta / 'fotos.zip').stat().st_size / 1e6:.1f} MB) → dataset PRIVADO de Kaggle «{slug}»", flush=True)
+    ko = _kaggle_ops()
+    ko.dataset_crear(carpeta, quiet=True)
+    ko.esperar_dataset(slug)
+    FOTOS_KAGGLE.write_text(slug, encoding="utf-8")
+    shutil.rmtree(carpeta, ignore_errors=True)
+    print(f"Listo. Marca escrita en {FOTOS_KAGGLE}: la nube las bajará en su próxima ejecución.")
+
+
+def traer_fotos_kaggle() -> str | None:
+    """Si hay una marca `fotos_kaggle.txt`, baja ese dataset y deja sus fotos en la caché (la nube no las tiene). Devuelve el nombre del dataset para borrarlo al final."""
+    if not FOTOS_KAGGLE.exists() or not FOTOS_KAGGLE.read_text(encoding="utf-8").strip():
+        return None
+    slug = FOTOS_KAGGLE.read_text(encoding="utf-8").strip()
+    tmp = Path(tempfile.mkdtemp(prefix="fotos_kaggle_"))
+    try:
+        _kaggle_ops().dataset_bajar(slug, tmp)
+    except Exception as e:  # noqa: BLE001
+        print(f"⚠ No pude bajar el dataset {slug} de Kaggle ({type(e).__name__}: {str(e)[:120]}); sigo sin esas fotos.", flush=True)
+        shutil.rmtree(tmp, ignore_errors=True)
+        return None
+    for _ in range(2):   # el dataset es un zip dentro del zip que entrega Kaggle
+        for z in list(tmp.rglob("*.zip")):
+            with zipfile.ZipFile(z) as zf:
+                zf.extractall(z.parent)
+            z.unlink()
+    m.IMG.mkdir(parents=True, exist_ok=True)
+    n = 0
+    for f in tmp.rglob("*.jpg"):
+        if not (m.IMG / f.name).exists():
+            shutil.copy(f, m.IMG / f.name)
+            n += 1
+    shutil.rmtree(tmp, ignore_errors=True)
+    print(f"Fotos de la Biblioteca bajadas de Kaggle ({slug}): {n}", flush=True)
+    return slug
+
+
+def borrar_fotos_kaggle(slug: str) -> None:
+    try:
+        _kaggle_ops().dataset_borrar(slug)
+        FOTOS_KAGGLE.unlink(missing_ok=True)   # al subir los datos, la marca desaparece de la rama de datos
+        print(f"Dataset {slug} borrado de Kaggle.", flush=True)
+    except Exception as e:  # noqa: BLE001
+        print(f"⚠ No pude borrar el dataset {slug} ({type(e).__name__}: {str(e)[:120]}): se reintenta la próxima vez.", flush=True)
 
 
 def cmd_embeddings(args):
@@ -694,6 +769,10 @@ def main():
     p.add_argument("--simular", action="store_true", help="solo cuenta lo pendiente, sin subir nada")
     sub.add_parser("informe")
     sub.add_parser("embeddings")
+    p = sub.add_parser("fotos-kaggle")
+    p.add_argument("accion", choices=["subir"])
+    p.add_argument("--slug", default="tfm-biblioteca-pendiente")
+    p.add_argument("--max", type=int)
     p = sub.add_parser("todo")
     p.add_argument("--solo")
     p.add_argument("--sin-biblioteca", action="store_true", dest="sin_biblioteca", help="no importar las fotos aprobadas en la app (en la nube no están)")
@@ -708,8 +787,12 @@ def main():
         cmd_biblioteca(a)
     if a.cmd == "embeddings":
         cmd_embeddings(a)
+    if a.cmd == "fotos-kaggle":
+        cmd_fotos_kaggle(a)
+    slug_fotos = traer_fotos_kaggle() if a.cmd == "todo" else None   # fotos de la Biblioteca que solo estaban en el portátil
     if a.cmd in ("analizar", "todo"):
         cmd_analizar(a)
+    vlm_ok = False
     if a.cmd == "vlm":
         a.simular = getattr(a, "simular", False)
         cmd_vlm(a)
@@ -717,10 +800,13 @@ def main():
         a.simular = False
         try:
             cmd_vlm(a)
+            vlm_ok = True
         except Exception as e:  # noqa: BLE001 -- sin Kaggle el informe sale igual, con el tipo de CLIP; las prendas siguen pendientes para la próxima semana
             print(f"\n⚠ El modelo grande de Kaggle falló ({type(e).__name__}: {e}). Sigo sin él; se reintenta la próxima vez.", flush=True)
     if a.cmd in ("informe", "todo"):
         cmd_informe(a)
+    if slug_fotos and vlm_ok:   # solo si el análisis y el modelo grande han ido bien: si no, el dataset se queda para reintentarlo
+        borrar_fotos_kaggle(slug_fotos)
 
 
 if __name__ == "__main__":

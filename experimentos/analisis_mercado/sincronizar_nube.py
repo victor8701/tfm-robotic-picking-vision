@@ -22,7 +22,7 @@ from pathlib import Path
 AQUI = Path(__file__).resolve().parent
 TD = Path(os.environ.get("TENDENCIA_DATOS") or AQUI / "tendencia_datos")
 RAMA = "datos-tendencia"
-GENERADOS = ["fotos.json", "prendas.json", "estado.json", "informe.json", "separacion_estilos.json", "embeddings.npz", "registro_semanal.txt"]
+GENERADOS = ["fotos.json", "prendas.json", "estado.json", "informe.json", "separacion_estilos.json", "embeddings.npz", "registro_semanal.txt", "fotos_kaggle.txt"]
 
 
 def _ayudante() -> list[str]:
@@ -52,6 +52,8 @@ def llevar(carpeta: Path) -> None:
         if (TD / f).exists():
             shutil.copy(TD / f, carpeta / f)
             n += 1
+        elif f == "fotos_kaggle.txt" and (carpeta / f).exists():
+            (carpeta / f).unlink()   # la marca de fotos de Kaggle desaparece de la rama de datos cuando ya se han usado (del resto de ficheros no se borra nada)
     print(f"Llevados {n} ficheros de {TD} a {carpeta}")
 
 
