@@ -110,7 +110,8 @@ def p_dos_proporciones(k1: int, n1: int, k2: int, n2: int) -> float:
 
 def edicion(as_of: dt.date) -> tuple[int, int, str]:
     """(número de edición, semana ISO, fecha larga) del lunes de esa semana."""
-    lunes = as_of - dt.timedelta(days=as_of.weekday())
+    # de sábado a domingo es la edición del lunes siguiente (una prueba manual el domingo por la noche cuenta para ese lunes)
+    lunes = as_of - dt.timedelta(days=as_of.weekday()) if as_of.weekday() < 5 else as_of + dt.timedelta(days=7 - as_of.weekday())
     n = max(1, (lunes - PRIMERA).days // 7 + 1)
     return n, lunes.isocalendar()[1], f"{DIAS[lunes.weekday()]} {lunes.day} de {MESES[lunes.month - 1]} de {lunes.year}"
 
@@ -663,7 +664,8 @@ def main():
         generar(a.salida, a.as_of, not a.sin_fotos)
     elif a.cmd == "enviar":
         doc, texto, fotos, info = generar(a.salida, a.as_of, not a.sin_fotos)
-        enviar_mensaje(mensaje(doc, texto, fotos, info["asunto"]))
+        asunto = info["asunto"] if os.environ.get("GITHUB_EVENT_NAME") != "workflow_dispatch" else "[prueba manual] " + info["asunto"]
+        enviar_mensaje(mensaje(doc, texto, fotos, asunto))
         print("Enviada.")
     else:
         msg = EmailMessage()
