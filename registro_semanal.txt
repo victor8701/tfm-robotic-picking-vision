@@ -1,94 +1,140 @@
 [1/27] bycalitos · x byCaLiTosYT → urbano ES
-  16 posts propios, 8 con foto; la última foto es de hace 7 días
+  16 posts propios, 8 con foto; la última foto es de hace 8 días
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [2/27] Shoda Monkas · x shodamonkas → urbano ES
   19 posts propios, 3 con foto; la última foto es de hace 20 días
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [3/27] Hoke · x HokeBBO → urbano ES
-  7 posts propios, 4 con foto; la última foto es de hace 571 días
+  7 posts propios, 4 con foto; la última foto es de hace 572 días
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [4/27] Quevedo · noticias "Quevedo" cantante → urbano ES
-   consulta fallida '"Quevedo" cantante concierto': ParseError
    ✖ www.laprovincia.es: HTTPError
    ✖ www.laprovincia.es: HTTPError
 Cargando CLIP (ViT-B-32, pesos openai)... (primera vez tarda por la descarga)
-  calculando embeddings de 4 imágenes (tendencia)...
-   4 fotos bajadas → 1 nuevas con persona y ropa (3 sin persona, 0 repetidas)
+  calculando embeddings de 6 imágenes (tendencia)...
+   6 fotos bajadas → 2 nuevas con persona y ropa (4 sin persona, 0 repetidas)
 [5/27] Morad · noticias "Morad" rapero → urbano ES
    ✖ www.elperiodico.com: HTTPError
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [6/27] Beny Jr · noticias "Beny Jr" rapero → urbano ES
-  calculando embeddings de 2 imágenes (tendencia)...
-   2 fotos bajadas → 1 nuevas con persona y ropa (0 sin persona, 1 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [7/27] Israel B · noticias "Israel B" rapero → urbano ES
-   consulta fallida '"Israel B" rapero': ParseError
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [8/27] Hoke · noticias "Hoke" rapero → urbano ES
-   consulta fallida '"Hoke" rapero': ParseError
-   consulta fallida '"Hoke" "Tres Creus"': ParseError
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [9/27] Cruz Cafuné · noticias "Cruz Cafuné" → urbano ES
-   consulta fallida '"Cruz Cafuné"': ParseError
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [10/27] orslok · x orslok → geek ES
   20 posts propios, 4 con foto; la última foto es de hace 609 días
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [11/27] orslok · noticias "Orslok" → geek ES
-   consulta fallida '"Orslok" streamer': ParseError
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [12/27] Rojuu · noticias "Rojuu" → geek ES
    ✖ www.elperiodico.com: HTTPError
-  calculando embeddings de 7 imágenes (tendencia)...
-   7 fotos bajadas → 6 nuevas con persona y ropa (1 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [13/27] SoyUnaPringada · noticias "Soy una pringada" → geek ES
-   consulta fallida '"SoyUnaPringada"': ParseError
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [14/27] Travis Scott · x trvisXX → urbano US
-  20 posts propios, 3 con foto; la última foto es de hace 26 días
+  20 posts propios, 3 con foto; la última foto es de hace 27 días
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [15/27] Playboi Carti · x playboicarti → urbano US
   0 posts propios, 0 con foto
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [16/27] Kid Cudi · x kidcudi → urbano US
-  5 posts propios, 0 con foto
+  9 posts propios, 0 con foto
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [17/27] Travis Scott · noticias "Travis Scott" outfit → urbano US
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [18/27] Playboi Carti · noticias "Playboi Carti" outfit → urbano US
-  calculando embeddings de 13 imágenes (tendencia)...
-   13 fotos bajadas → 8 nuevas con persona y ropa (4 sin persona, 1 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [19/27] Kid Cudi · noticias "Kid Cudi" outfit → urbano US
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [20/27] A$AP Rocky · noticias "ASAP Rocky" outfit → urbano US
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [21/27] r/streetwear · reddit streetwear → urbano US
-  calculando embeddings de 3 imágenes (tendencia)...
-   3 fotos bajadas → 3 nuevas con persona y ropa (0 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [22/27] Painthisice · x Painthisice → geek US
-  8 posts propios, 6 con foto; la última foto es de hace 0 días
-  calculando embeddings de 5 imágenes (tendencia)...
-   5 fotos bajadas → 0 nuevas con persona y ropa (5 sin persona, 0 repetidas)
+  8 posts propios, 6 con foto; la última foto es de hace 1 días
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [23/27] TechwearClub · x TechwearClub → geek US
-  20 posts propios, 19 con foto; la última foto es de hace 1954 días
+  20 posts propios, 19 con foto; la última foto es de hace 1955 días
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [24/27] r/techwearclothing · reddit techwearclothing → geek US
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [25/27] Lil Peep · x Lilpeep → geek US
-  19 posts propios, 3 con foto; la última foto es de hace 387 días
+  19 posts propios, 3 con foto; la última foto es de hace 388 días
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [26/27] Lil Peep · noticias "Lil Peep" outfit → geek US
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [27/27] Lil Xan · noticias "Lil Xan" outfit → geek US
-   consulta fallida '"Lil Xan" style': ParseError
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 
-Fotos útiles acumuladas: 194 (289 vistas en total)
-19 fotos por analizar
-  lote 1/1: 19 fotos en 356 s
-29 prendas visibles de 16 fotos sin etiquetar con el modelo grande
-Paquete de 2 MB: se sube a un dataset PRIVADO de Kaggle (tfm-semanal-prendas-20261011-1723) y se borra al terminar. Kernels: 1.
+Fotos útiles acumuladas: 518 (617 vistas en total)
+Dataset URL: https://www.kaggle.com/datasets/victor871/tfm-biblioteca-pendiente
+Fotos de la Biblioteca bajadas de Kaggle (tfm-biblioteca-pendiente): 316
+224 fotos por analizar
+  lote 1/12: 20 fotos en 362 s
+  lote 2/12: 20 fotos en 339 s
+  lote 3/12: 20 fotos en 296 s
+  lote 4/12: 20 fotos en 345 s
+  lote 5/12: 20 fotos en 404 s
+  lote 6/12: 20 fotos en 334 s
+  lote 7/12: 20 fotos en 346 s
+  lote 8/12: 20 fotos en 323 s
+  lote 9/12: 20 fotos en 403 s
+  lote 10/12: 20 fotos en 358 s
+  lote 11/12: 20 fotos en 357 s
+  lote 12/12: 4 fotos en 70 s
+655 prendas visibles de 321 fotos sin etiquetar con el modelo grande
+Paquete de 47 MB: se sube a un dataset PRIVADO de Kaggle (tfm-semanal-prendas-20261012-0757) y se borra al terminar. Kernels: 1.
+Lanzado en Kaggle: tfm-semanal-vlm-prendas-1 (unos 32 minutos)
+  tfm-semanal-vlm-prendas-1: QUEUED
+  tfm-semanal-vlm-prendas-1: RUNNING
+  tfm-semanal-vlm-prendas-1: COMPLETE
+Dataset borrado de Kaggle.
+Etiquetadas con el modelo grande: 654 de 655 prendas.
 
-⚠ El modelo grande de Kaggle falló (OSError: Could not find kaggle.json. Make sure it's located in /home/runner/.config/kaggle. Or use the environment method. See setup instructions at https://github.com/Kaggle/kaggle-api/). Sigo sin él; se reintenta la próxima vez.
+bohemio · Biblioteca · muestra: 38 fotos (38 con prenda visible)  fuentes: {'Biblioteca': 38}
+   Vestido                       10 fotos  26% (entre 15% y 42%) confianza baja
+   Top                           10 fotos  26% (entre 15% y 42%) confianza baja
+   Camiseta de tirantes           6 fotos  16% (entre 7% y 30%) confianza baja
+   Pantalón                       6 fotos  16% (entre 7% y 30%) confianza baja
+   Botas                          5 fotos  13% (entre 6% y 27%) confianza baja
+   Camisa                         5 fotos  13% (entre 6% y 27%) confianza baja
+   Falda                          5 fotos  13% (entre 6% y 27%) confianza baja
+   Sandalias                      5 fotos  13% (entre 6% y 27%) confianza baja
+   Camiseta manga larga           4 fotos  pocos datos
+   Camiseta manga corta           3 fotos  pocos datos
+   Zapatos de tacón               2 fotos  pocos datos
+   Zapatillas casual/lifestyle    1 fotos  pocos datos
+
+clasico · Biblioteca · muestra: 72 fotos (71 con prenda visible)  fuentes: {'Biblioteca': 72}
+   Chaqueta                      23 fotos  32% (entre 23% y 44%) confianza media
+   Camisa                        15 fotos  21% (entre 13% y 32%) confianza baja
+   Americana                     11 fotos  16% (entre 9% y 26%) confianza baja
+   Zapatos de vestir             11 fotos  16% (entre 9% y 26%) confianza baja
+   Jersey                         9 fotos  13% (entre 7% y 22%) confianza baja
+   Chaleco sin mangas             9 fotos  13% (entre 7% y 22%) confianza baja
+   Pantalón                       7 fotos  10% (entre 5% y 19%) confianza baja
+   Botas                          5 fotos  7% (entre 3% y 15%) confianza baja
+   Sandalias                      3 fotos  pocos datos
+   Camiseta manga larga           3 fotos  pocos datos
+   Plumas                         3 fotos  pocos datos
+   Vestido                        2 fotos  pocos datos
+
+convencional · Biblioteca · muestra: 60 fotos (60 con prenda visible)  fuentes: {'Biblioteca': 60}
+   Camisa                        15 fotos  25% (entre 16% y 37%) confianza baja
+   Zapatillas deportivas         11 fotos  18% (entre 11% y 30%) confianza baja
+   Vestido                       11 fotos  18% (entre 11% y 30%) confianza baja
+   Pantalón                      10 fotos  17% (entre 9% y 28%) confianza baja
+   Camiseta manga corta          10 fotos  17% (entre 9% y 28%) confianza baja
+   Jersey                         8 fotos  13% (entre 7% y 24%) confianza baja
+   Top                            7 fotos  12% (entre 6% y 22%) confianza baja
+   Camiseta manga larga           5 fotos  8% (entre 4% y 18%) confianza baja
+   Camiseta de tirantes           5 fotos  8% (entre 4% y 18%) confianza baja
+   Zapatos de tacón               5 fotos  8% (entre 4% y 18%) confianza baja
+   Botas                          4 fotos  pocos datos
+   Americana                      4 fotos  pocos datos
 
 geek · Biblioteca · muestra: 42 fotos (42 con prenda visible)  fuentes: {'Biblioteca': 42}
    Top                           10 fotos  24% (entre 14% y 38%) confianza baja
@@ -105,13 +151,39 @@ geek · Biblioteca · muestra: 42 fotos (42 con prenda visible)  fuentes: {'Bibl
    Short                          3 fotos  pocos datos
 
 geek · ES · OI 2026/27: 8 fotos (7 con prenda visible)  fuentes: {'Rojuu': 8}
-   Camiseta de tirantes           2 fotos  pocos datos
+   Short                          3 fotos  pocos datos
    Pantalón                       1 fotos  pocos datos
-   Sudadera                       1 fotos  pocos datos
+   Hoodie                         1 fotos  pocos datos
    Jersey                         1 fotos  pocos datos
-   Falda                          1 fotos  pocos datos
    Mono                           1 fotos  pocos datos
    Camisa                         1 fotos  pocos datos
+
+lujo · Biblioteca · muestra: 72 fotos (56 con prenda visible)  fuentes: {'Biblioteca': 72}
+   Bolso                         23 fotos  41% (entre 29% y 54%) confianza baja
+   Camisa                         8 fotos  14% (entre 7% y 26%) confianza baja
+   Camiseta manga corta           8 fotos  14% (entre 7% y 26%) confianza baja
+   Camiseta manga larga           5 fotos  9% (entre 4% y 19%) confianza baja
+   Zapatillas deportivas          4 fotos  pocos datos
+   Chaqueta                       4 fotos  pocos datos
+   Top                            3 fotos  pocos datos
+   Hoodie                         2 fotos  pocos datos
+   Pantalón                       2 fotos  pocos datos
+   Americana                      2 fotos  pocos datos
+   Camiseta de tirantes           2 fotos  pocos datos
+   Short                          2 fotos  pocos datos
+
+old_money · Biblioteca · muestra: 80 fotos (80 con prenda visible)  fuentes: {'Biblioteca': 80}
+   Camisa                        38 fotos  48% (entre 37% y 58%) confianza baja
+   Americana                     32 fotos  40% (entre 30% y 51%) confianza media
+   Zapatos de vestir             28 fotos  35% (entre 26% y 46%) confianza media
+   Pantalón                      23 fotos  29% (entre 20% y 40%) confianza media
+   Jersey                        10 fotos  12% (entre 7% y 22%) confianza baja
+   Chaqueta                       7 fotos  9% (entre 4% y 17%) confianza baja
+   Botas                          6 fotos  8% (entre 4% y 15%) confianza baja
+   Camiseta manga larga           4 fotos  pocos datos
+   Chaleco sin mangas             2 fotos  pocos datos
+   Camiseta manga corta           2 fotos  pocos datos
+   Zapatillas casual/lifestyle    1 fotos  pocos datos
    Short                          1 fotos  pocos datos
 
 urbano · Biblioteca · muestra: 40 fotos (39 con prenda visible)  fuentes: {'Biblioteca': 40}
@@ -128,15 +200,15 @@ urbano · Biblioteca · muestra: 40 fotos (39 con prenda visible)  fuentes: {'Bi
    Short                          2 fotos  pocos datos
    Zapatillas casual/lifestyle    2 fotos  pocos datos
 
-urbano · ES · OI 2026/27: 25 fotos (24 con prenda visible)  fuentes: {'Morad': 12, 'Quevedo': 9, 'bycalitos': 3, 'Beny Jr': 1}
-   Camiseta manga corta          12 fotos  38% (entre 19% y 61%) confianza baja
+urbano · ES · OI 2026/27: 27 fotos (24 con prenda visible)  fuentes: {'Morad': 12, 'Quevedo': 11, 'bycalitos': 3, 'Beny Jr': 1}
+   Camiseta manga corta          13 fotos  46% (entre 26% y 68%) confianza baja
    Chaqueta                       3 fotos  pocos datos
-   Camiseta de tirantes           2 fotos  pocos datos
    Top                            2 fotos  pocos datos
    Camisa                         4 fotos  pocos datos
    Polo                           3 fotos  pocos datos
    Camiseta manga larga           1 fotos  pocos datos
    Americana                      1 fotos  pocos datos
+   Camiseta de tirantes           1 fotos  pocos datos
    Hoodie                         1 fotos  pocos datos
    Pantalón                       1 fotos  pocos datos
    Sandalias                      1 fotos  pocos datos
@@ -156,18 +228,18 @@ urbano · US · OI 2025/26: 1 fotos (1 con prenda visible)  fuentes: {'Travis Sc
    Camiseta manga corta           1 fotos  pocos datos
 
 urbano · US · OI 2026/27: 21 fotos (20 con prenda visible)  fuentes: {'r/streetwear': 13, 'Playboi Carti': 8}
-   Chaqueta                       9 fotos  51% (entre 26% y 76%) confianza baja
-   Pantalón                       8 fotos  27% (entre 10% y 55%) confianza baja
+   Pantalón                       7 fotos  24% (entre 8% y 52%) confianza baja
    Americana                      2 fotos  pocos datos
-   Short                          3 fotos  pocos datos
-   Botas                          3 fotos  pocos datos
+   Zapatillas deportivas          6 fotos  18% (entre 5% y 46%) confianza baja
+   Hoodie                         2 fotos  pocos datos
+   Short                          2 fotos  pocos datos
    Camisa                         7 fotos  15% (entre 4% y 43%) confianza baja
    Camiseta manga corta           3 fotos  pocos datos
-   Zapatillas casual/lifestyle    1 fotos  pocos datos
-   Zapatillas deportivas          5 fotos  8% (entre 1% y 36%) confianza baja
-   Zapatos de vestir              2 fotos  pocos datos
-   Sudadera                       1 fotos  pocos datos
-   Zapatos planos de vestir       1 fotos  pocos datos
+   Zapatos de vestir              4 fotos  pocos datos
+   Botas                          2 fotos  pocos datos
+   Camiseta manga larga           2 fotos  pocos datos
+   Chaleco sin mangas             1 fotos  pocos datos
+   Top                            1 fotos  pocos datos
 
 urbano · US · PV 2026: 4 fotos (3 con prenda visible)  fuentes: {'Playboi Carti': 2, 'A$AP Rocky': 2}
    Chaqueta                       2 fotos  pocos datos
@@ -175,3 +247,4 @@ urbano · US · PV 2026: 4 fotos (3 con prenda visible)  fuentes: {'Playboi Cart
    Camisa                         1 fotos  pocos datos
 
 Guardado en /home/runner/work/tfm-robotic-picking-vision/tfm-robotic-picking-vision/codigo/experimentos/analisis_mercado/tendencia_datos/informe.json
+Dataset tfm-biblioteca-pendiente borrado de Kaggle.
