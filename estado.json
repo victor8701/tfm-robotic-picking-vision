@@ -2,7 +2,7 @@
  "16dd989d": {
   "referente": "bycalitos",
   "tipo": "x",
-  "ultima": "2026-10-12T06:46:48+00:00",
+  "ultima": "2026-10-12T09:35:19+00:00",
   "nuevas": 0,
   "buenas": 0,
   "ultima_foto_hace_dias": 8
@@ -10,7 +10,7 @@
  "6b340b4c": {
   "referente": "Shoda Monkas",
   "tipo": "x",
-  "ultima": "2026-10-12T06:46:51+00:00",
+  "ultima": "2026-10-12T09:35:21+00:00",
   "nuevas": 0,
   "buenas": 0,
   "ultima_foto_hace_dias": 20
@@ -18,7 +18,7 @@
  "11bce170": {
   "referente": "Hoke",
   "tipo": "x",
-  "ultima": "2026-10-12T06:47:08+00:00",
+  "ultima": "2026-10-12T09:35:24+00:00",
   "nuevas": 0,
   "buenas": 0,
   "ultima_foto_hace_dias": 572
@@ -26,15 +26,15 @@
  "4bb8e92d": {
   "referente": "Quevedo",
   "tipo": "noticias",
-  "ultima": "2026-10-12T06:47:33+00:00",
-  "nuevas": 6,
-  "buenas": 2,
-  "articulos": 4
+  "ultima": "2026-10-12T09:35:36+00:00",
+  "nuevas": 0,
+  "buenas": 0,
+  "articulos": 3
  },
  "98c88ff0": {
   "referente": "Morad",
   "tipo": "noticias",
-  "ultima": "2026-10-12T06:47:42+00:00",
+  "ultima": "2026-10-12T09:35:44+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 2
@@ -42,7 +42,7 @@
  "d1d918fe": {
   "referente": "Beny Jr",
   "tipo": "noticias",
-  "ultima": "2026-10-12T06:47:48+00:00",
+  "ultima": "2026-10-12T09:35:50+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -50,7 +50,7 @@
  "83f9d812": {
   "referente": "Israel B",
   "tipo": "noticias",
-  "ultima": "2026-10-12T06:47:54+00:00",
+  "ultima": "2026-10-12T09:35:56+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -58,7 +58,7 @@
  "268ed0bb": {
   "referente": "Hoke",
   "tipo": "noticias",
-  "ultima": "2026-10-12T06:48:00+00:00",
+  "ultima": "2026-10-12T09:36:02+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -66,7 +66,7 @@
  "de1fdd76": {
   "referente": "Cruz Cafuné",
   "tipo": "noticias",
-  "ultima": "2026-10-12T06:48:04+00:00",
+  "ultima": "2026-10-12T09:36:06+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -74,15 +74,15 @@
  "b816de84": {
   "referente": "orslok",
   "tipo": "x",
-  "ultima": "2026-10-12T06:48:06+00:00",
+  "ultima": "2026-10-12T09:36:22+00:00",
   "nuevas": 0,
   "buenas": 0,
-  "ultima_foto_hace_dias": 609
+  "ultima_foto_hace_dias": 610
  },
  "549a718b": {
   "referente": "orslok",
   "tipo": "noticias",
-  "ultima": "2026-10-12T06:48:12+00:00",
+  "ultima": "2026-10-12T09:36:28+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -90,7 +90,7 @@
  "ec0017f7": {
   "referente": "Rojuu",
   "tipo": "noticias",
-  "ultima": "2026-10-12T06:48:21+00:00",
+  "ultima": "2026-10-12T09:36:37+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 2
@@ -98,7 +98,7 @@
  "4c1153e7": {
   "referente": "SoyUnaPringada",
   "tipo": "noticias",
-  "ultima": "2026-10-12T06:48:28+00:00",
+  "ultima": "2026-10-12T09:36:43+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -106,7 +106,7 @@
  "c6ec5b6d": {
   "referente": "Travis Scott",
   "tipo": "x",
-  "ultima": "2026-10-12T06:48:44+00:00",
+  "ultima": "2026-10-12T09:36:45+00:00",
   "nuevas": 0,
   "buenas": 0,
   "ultima_foto_hace_dias": 27
@@ -114,7 +114,7 @@
  "81193b11": {
   "referente": "Playboi Carti",
   "tipo": "x",
-  "ultima": "2026-10-12T06:48:46+00:00",
+  "ultima": "2026-10-12T09:36:52+00:00",
   "nuevas": 0,
   "buenas": 0,
   "ultima_foto_hace_dias": null
@@ -122,7 +122,7 @@
  "327c021e": {
   "referente": "Kid Cudi",
   "tipo": "x",
-  "ultima": "2026-10-12T06:48:48+00:00",
+  "ultima": "2026-10-12T09:36:54+00:00",
   "nuevas": 0,
   "buenas": 0,
   "ultima_foto_hace_dias": null
@@ -130,7 +130,7 @@
  "7f37dbf8": {
   "referente": "Travis Scott",
   "tipo": "noticias",
-  "ultima": "2026-10-12T06:48:54+00:00",
+  "ultima": "2026-10-12T09:37:00+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -138,15 +138,15 @@
  "7023eaee": {
   "referente": "Playboi Carti",
   "tipo": "noticias",
-  "ultima": "2026-10-12T06:49:05+00:00",
+  "ultima": "2026-10-12T09:37:10+00:00",
   "nuevas": 0,
   "buenas": 0,
-  "articulos": 2
+  "articulos": 1
  },
  "cf686772": {
   "referente": "Kid Cudi",
   "tipo": "noticias",
-  "ultima": "2026-10-12T06:49:12+00:00",
+  "ultima": "2026-10-12T09:37:16+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -154,7 +154,7 @@
  "44d21106": {
   "referente": "A$AP Rocky",
   "tipo": "noticias",
-  "ultima": "2026-10-12T06:49:19+00:00",
+  "ultima": "2026-10-12T09:37:23+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 1
@@ -162,7 +162,7 @@
  "ec48da0e": {
   "referente": "r/streetwear",
   "tipo": "reddit",
-  "ultima": "2026-10-12T06:50:03+00:00",
+  "ultima": "2026-10-12T09:38:03+00:00",
   "nuevas": 0,
   "buenas": 0,
   "con_imagen": 13
@@ -170,7 +170,7 @@
  "59f68648": {
   "referente": "Painthisice",
   "tipo": "x",
-  "ultima": "2026-10-12T06:50:05+00:00",
+  "ultima": "2026-10-12T09:38:06+00:00",
   "nuevas": 0,
   "buenas": 0,
   "ultima_foto_hace_dias": 1
@@ -178,7 +178,7 @@
  "277f99bf": {
   "referente": "TechwearClub",
   "tipo": "x",
-  "ultima": "2026-10-12T06:50:07+00:00",
+  "ultima": "2026-10-12T09:38:08+00:00",
   "nuevas": 0,
   "buenas": 0,
   "ultima_foto_hace_dias": 1955
@@ -186,7 +186,7 @@
  "2715000d": {
   "referente": "r/techwearclothing",
   "tipo": "reddit",
-  "ultima": "2026-10-12T06:51:02+00:00",
+  "ultima": "2026-10-12T09:39:02+00:00",
   "nuevas": 0,
   "buenas": 0,
   "con_imagen": 0
@@ -194,7 +194,7 @@
  "2fb48b29": {
   "referente": "Lil Peep",
   "tipo": "x",
-  "ultima": "2026-10-12T06:51:04+00:00",
+  "ultima": "2026-10-12T09:39:18+00:00",
   "nuevas": 0,
   "buenas": 0,
   "ultima_foto_hace_dias": 388
@@ -202,7 +202,7 @@
  "82d9aa3c": {
   "referente": "Lil Peep",
   "tipo": "noticias",
-  "ultima": "2026-10-12T06:51:11+00:00",
+  "ultima": "2026-10-12T09:39:24+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -210,7 +210,7 @@
  "72c3b965": {
   "referente": "Lil Xan",
   "tipo": "noticias",
-  "ultima": "2026-10-12T06:51:17+00:00",
+  "ultima": "2026-10-12T09:39:30+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0

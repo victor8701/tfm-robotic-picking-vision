@@ -10,9 +10,7 @@
 [4/27] Quevedo · noticias "Quevedo" cantante → urbano ES
    ✖ www.laprovincia.es: HTTPError
    ✖ www.laprovincia.es: HTTPError
-Cargando CLIP (ViT-B-32, pesos openai)... (primera vez tarda por la descarga)
-  calculando embeddings de 6 imágenes (tendencia)...
-   6 fotos bajadas → 2 nuevas con persona y ropa (4 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [5/27] Morad · noticias "Morad" rapero → urbano ES
    ✖ www.elperiodico.com: HTTPError
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
@@ -25,7 +23,7 @@ Cargando CLIP (ViT-B-32, pesos openai)... (primera vez tarda por la descarga)
 [9/27] Cruz Cafuné · noticias "Cruz Cafuné" → urbano ES
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [10/27] orslok · x orslok → geek ES
-  20 posts propios, 4 con foto; la última foto es de hace 609 días
+  20 posts propios, 4 con foto; la última foto es de hace 610 días
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [11/27] orslok · noticias "Orslok" → geek ES
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
@@ -70,29 +68,8 @@ Cargando CLIP (ViT-B-32, pesos openai)... (primera vez tarda por la descarga)
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 
 Fotos útiles acumuladas: 518 (617 vistas en total)
-Dataset URL: https://www.kaggle.com/datasets/victor871/tfm-biblioteca-pendiente
-Fotos de la Biblioteca bajadas de Kaggle (tfm-biblioteca-pendiente): 316
-224 fotos por analizar
-  lote 1/12: 20 fotos en 362 s
-  lote 2/12: 20 fotos en 339 s
-  lote 3/12: 20 fotos en 296 s
-  lote 4/12: 20 fotos en 345 s
-  lote 5/12: 20 fotos en 404 s
-  lote 6/12: 20 fotos en 334 s
-  lote 7/12: 20 fotos en 346 s
-  lote 8/12: 20 fotos en 323 s
-  lote 9/12: 20 fotos en 403 s
-  lote 10/12: 20 fotos en 358 s
-  lote 11/12: 20 fotos en 357 s
-  lote 12/12: 4 fotos en 70 s
-655 prendas visibles de 321 fotos sin etiquetar con el modelo grande
-Paquete de 47 MB: se sube a un dataset PRIVADO de Kaggle (tfm-semanal-prendas-20261012-0757) y se borra al terminar. Kernels: 1.
-Lanzado en Kaggle: tfm-semanal-vlm-prendas-1 (unos 32 minutos)
-  tfm-semanal-vlm-prendas-1: QUEUED
-  tfm-semanal-vlm-prendas-1: RUNNING
-  tfm-semanal-vlm-prendas-1: COMPLETE
-Dataset borrado de Kaggle.
-Etiquetadas con el modelo grande: 654 de 655 prendas.
+0 fotos por analizar
+0 prendas visibles de 0 fotos sin etiquetar con el modelo grande
 
 bohemio · Biblioteca · muestra: 38 fotos (38 con prenda visible)  fuentes: {'Biblioteca': 38}
    Vestido                       10 fotos  26% (entre 15% y 42%) confianza baja
@@ -247,4 +224,3 @@ urbano · US · PV 2026: 4 fotos (3 con prenda visible)  fuentes: {'Playboi Cart
    Camisa                         1 fotos  pocos datos
 
 Guardado en /home/runner/work/tfm-robotic-picking-vision/tfm-robotic-picking-vision/codigo/experimentos/analisis_mercado/tendencia_datos/informe.json
-Dataset tfm-biblioteca-pendiente borrado de Kaggle.
