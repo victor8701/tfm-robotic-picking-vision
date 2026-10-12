@@ -22,7 +22,7 @@ from pathlib import Path
 AQUI = Path(__file__).resolve().parent
 TD = Path(os.environ.get("TENDENCIA_DATOS") or AQUI / "tendencia_datos")
 RAMA = "datos-tendencia"
-GENERADOS = ["fotos.json", "prendas.json", "estado.json", "informe.json", "separacion_estilos.json", "embeddings.npz", "registro_semanal.txt", "fotos_kaggle.txt"]
+GENERADOS = ["fotos.json", "prendas.json", "estado.json", "informe.json", "separacion_estilos.json", "embeddings.npz", "registro_semanal.txt", "fotos_kaggle.txt", "ultima_revista.txt"]
 
 
 def _ayudante() -> list[str]:

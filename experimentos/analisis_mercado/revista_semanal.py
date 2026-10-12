@@ -666,8 +666,13 @@ def main():
         generar(a.salida, a.as_of, not a.sin_fotos)
     elif a.cmd == "enviar":
         doc, texto, fotos, info = generar(a.salida, a.as_of, not a.sin_fotos)
+        marca = TD / "ultima_revista.txt"   # edición ya enviada (viaja con los datos): una ejecución programada tardía no repite la que se lanzó a mano
+        if os.environ.get("GITHUB_EVENT_NAME") == "schedule" and marca.exists() and marca.read_text(encoding="utf-8").strip() == str(info["edicion"]):
+            print(f"La edición Nº {info['edicion']} ya se envió: no se repite.")
+            return
         asunto = info["asunto"] if os.environ.get("GITHUB_EVENT_NAME") != "workflow_dispatch" else "[prueba manual] " + info["asunto"]
         enviar_mensaje(mensaje(doc, texto, fotos, asunto))
+        marca.write_text(str(info["edicion"]), encoding="utf-8")
         print("Enviada.")
     else:
         msg = EmailMessage()
