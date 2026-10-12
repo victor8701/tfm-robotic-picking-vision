@@ -101,6 +101,8 @@ Familia de prenda (arriba, abrigo, abajo, cuerpo entero, calzado, accesorio): fl
 
 **Separación por estilo (10 de octubre).** Con las fotos aprobadas de Víctor (geek 91 prendas en 42 fotos, urbano 78 en 39), el geek y el urbano **se separan en forma (p = 0,005), tejido (0,011) y tipo de prenda (0,013)** y no en estampado (0,47) ni en familia (0,14): urbano más oversized (40 % frente a 15 %); geek más corta/cropped (19 % frente a 3 %), ajustada (14 % frente a 1 %), punto (19 % frente a 4 %) y top (15 % frente a 1 %). Con todas las fuentes (261 prendas) el tipo se separa todavía más (p = 0,001). Un acierto del ~70 % encoge las diferencias, no las inventa. Cuello de botella: en el mercado real casi no hay geek (2 fotos en España, ninguna en EEUU). Detalle en §6.7.
 
+**Los siete estilos (12 de octubre).** Con las 404 fotos aprobadas de la Biblioteca (794 prendas etiquetadas por el modelo grande, el 99 al 100 % de cada estilo), cada estilo frente a los demás: **los siete se separan en las cinco dimensiones (familia, tipo, estampado, tejido y forma) con una probabilidad de azar menor del 0,1 %**. Rasgos más marcados: clásico, abrigo y chaqueta (47 % frente a 14 %); old money, americana y liso (84 %); lujo, texto o logo (51 % frente a 4 %) y bolsos; bohemio, estampado «otro», tops y vestidos; convencional, liso (90 %); urbano, oversized (40 % frente a 9 %); geek, gráfico o dibujo (22 % frente a 5 %). Falta medir el acierto del modelo en los cinco estilos nuevos y conseguir fotos de mercado para ellos. Detalle en §6.9. La tarea que lo hace cada lunes en la nube, sin el ordenador de Víctor, y la revista por correo están en §6.8.
+
 ## 3. Lectura transversal
 
 ### 3.1 Qué hizo subir el acierto de verdad
