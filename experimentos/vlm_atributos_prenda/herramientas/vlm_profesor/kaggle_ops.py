@@ -96,10 +96,23 @@ def dataset_borrar(slug, intentos=24, pausa=5) -> None:
     raise ultimo
 
 
-def dataset_bajar(slug, destino) -> None:
-    """Descarga y descomprime en `destino` un dataset PROPIO (privado)."""
+def dataset_bajar_fichero(slug, nombre, destino, espera_max=900) -> Path:
+    """Descarga UN fichero de un dataset PROPIO (privado). Kaggle contesta 404 mientras prepara el dataset y 429 si se le piden muchas cosas seguidas: se reintenta con pausas crecientes hasta `espera_max` segundos."""
     Path(destino).mkdir(parents=True, exist_ok=True)
-    api_cli().dataset_download_files(f"{USUARIO.lower()}/{slug}", path=str(destino), quiet=True, unzip=True)
+    api, ref = api_cli(), f"{USUARIO.lower()}/{slug}"
+    t0, pausa, ultimo = time.time(), 10, None
+    while time.time() - t0 < espera_max:
+        try:
+            api.dataset_download_file(ref, nombre, path=str(destino), quiet=True, force=True)
+            f = Path(destino) / nombre
+            if f.exists() and f.stat().st_size > 0:
+                return f
+            ultimo = RuntimeError("fichero vacío")
+        except Exception as e:  # noqa: BLE001
+            ultimo = e
+        time.sleep(pausa)
+        pausa = min(pausa * 2, 120)
+    raise TimeoutError(f"no pude bajar {nombre} de {slug} en {espera_max} s (último error: {type(ultimo).__name__}: {str(ultimo)[:120]})")
 
 
 def datasets() -> list[tuple[str, bool, str]]:

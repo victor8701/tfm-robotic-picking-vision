@@ -30,6 +30,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tarfile
 import tempfile
 import time
 import unicodedata
@@ -327,12 +328,12 @@ def cmd_fotos_kaggle(args):
         raise SystemExit("No hay fotos de la Biblioteca pendientes.")
     slug = args.slug
     carpeta = Path(tempfile.mkdtemp(prefix="fotos_kaggle_"))
-    with zipfile.ZipFile(carpeta / "fotos.zip", "w", zipfile.ZIP_STORED) as z:
+    with tarfile.open(carpeta / "fotos.bin", "w") as z:   # un tar con extensión .bin: Kaggle abre los .zip y los .tar y reparte su contenido en cientos de ficheros (y el dataset entero da 404 y uno a uno 429); un .bin lo deja como UN fichero
         for k in ids:
-            z.write(m.IMG / f"{k}.jpg", f"{k}.jpg")
+            z.add(m.IMG / f"{k}.jpg", f"{k}.jpg")
     (carpeta / "dataset-metadata.json").write_text(json.dumps({"title": f"TFM fotos pendientes {slug[-12:]}", "id": f"victor871/{slug}", "licenses": [{"name": "other"}],
                                                                "description": "Privado. Fotos de referencia del TFM (UC3M); la tarea semanal las usa y lo borra."}, ensure_ascii=False), encoding="utf-8")
-    print(f"{len(ids)} fotos ({(carpeta / 'fotos.zip').stat().st_size / 1e6:.1f} MB) → dataset PRIVADO de Kaggle «{slug}»", flush=True)
+    print(f"{len(ids)} fotos ({(carpeta / 'fotos.bin').stat().st_size / 1e6:.1f} MB) → dataset PRIVADO de Kaggle «{slug}»", flush=True)
     ko = _kaggle_ops()
     ko.dataset_crear(carpeta, quiet=True)
     ko.esperar_dataset(slug)
@@ -342,28 +343,26 @@ def cmd_fotos_kaggle(args):
 
 
 def traer_fotos_kaggle() -> str | None:
-    """Si hay una marca `fotos_kaggle.txt`, baja ese dataset y deja sus fotos en la caché (la nube no las tiene). Devuelve el nombre del dataset para borrarlo al final."""
+    """Si hay una marca `fotos_kaggle.txt`, baja ese dataset (un solo `fotos.bin`, que es un tar) y deja sus fotos en la caché (la nube no las tiene). Devuelve el nombre del dataset para borrarlo al final."""
     if not FOTOS_KAGGLE.exists() or not FOTOS_KAGGLE.read_text(encoding="utf-8").strip():
         return None
     slug = FOTOS_KAGGLE.read_text(encoding="utf-8").strip()
     tmp = Path(tempfile.mkdtemp(prefix="fotos_kaggle_"))
     try:
-        _kaggle_ops().dataset_bajar(slug, tmp)
+        tar = _kaggle_ops().dataset_bajar_fichero(slug, "fotos.bin", tmp)
+        m.IMG.mkdir(parents=True, exist_ok=True)
+        n = 0
+        with tarfile.open(tar) as z:
+            for mi in z.getmembers():
+                nombre = Path(mi.name).name
+                if mi.isfile() and nombre.endswith(".jpg") and not (m.IMG / nombre).exists():
+                    with z.extractfile(mi) as fi, open(m.IMG / nombre, "wb") as fo:
+                        shutil.copyfileobj(fi, fo)
+                    n += 1
     except Exception as e:  # noqa: BLE001
-        print(f"⚠ No pude bajar el dataset {slug} de Kaggle ({type(e).__name__}: {str(e)[:120]}); sigo sin esas fotos.", flush=True)
+        print(f"⚠ No pude bajar el dataset {slug} de Kaggle ({type(e).__name__}: {str(e)[:160]}); sigo sin esas fotos.", flush=True)
         shutil.rmtree(tmp, ignore_errors=True)
         return None
-    for _ in range(2):   # el dataset es un zip dentro del zip que entrega Kaggle
-        for z in list(tmp.rglob("*.zip")):
-            with zipfile.ZipFile(z) as zf:
-                zf.extractall(z.parent)
-            z.unlink()
-    m.IMG.mkdir(parents=True, exist_ok=True)
-    n = 0
-    for f in tmp.rglob("*.jpg"):
-        if not (m.IMG / f.name).exists():
-            shutil.copy(f, m.IMG / f.name)
-            n += 1
     shutil.rmtree(tmp, ignore_errors=True)
     print(f"Fotos de la Biblioteca bajadas de Kaggle ({slug}): {n}", flush=True)
     return slug
