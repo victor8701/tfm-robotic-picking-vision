@@ -1,0 +1,3 @@
+# Argumentos de descubridor_referentes.py para la ejecución de GitHub Actions (rama descubridor-referentes): la primera línea que no empieza por # se usa tal cual.
+# Cambiar este fichero y subirlo lanza la tarea. Opciones: --estilos old_money,clasico,lujo,bohemio,convencional,urbano,geek · --mercados ES,US · --fuentes reddit,noticias,x · --validar puerta|prendas|nada · --muestra 8
+--estilos old_money --validar puerta --muestra 4
