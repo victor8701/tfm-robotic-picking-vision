@@ -1,9 +1,9 @@
 {
  "version": 1,
- "generado": "2026-10-13T20:54:57+00:00",
+ "generado": "2026-10-13T21:17:56+00:00",
  "ventana_dias": 30,
  "muestra_max": 4,
- "validacion": "puerta",
+ "validacion": "prendas",
  "red": {
   "bing": {
    "respuestas": {
@@ -22,14 +22,6 @@
     "ok": 15
    },
    "bloqueado": null
-  },
-  "reddit": {
-   "respuestas": {
-    "ok": 17,
-    "403": 1,
-    "429": 3
-   },
-   "bloqueado": null
   }
  },
  "nota": "La muestra se baja a una carpeta temporal y se borra: no se guardan fotos, solo direcciones públicas. `fuente` es la entrada para tendencia_fuentes.json si se acepta.",
@@ -45,33 +37,39 @@
    "en_uso": false,
    "estado": "medido",
    "evidencia": {
-    "publicaciones_30d": 128,
+    "publicaciones_30d": 127,
     "con_imagen_rss": 18,
     "medios_distintos": 35,
-    "solo_bing": 9,
-    "solo_google": 110,
-    "sin_enlace_real": 110,
+    "solo_bing": 8,
+    "solo_google": 109,
+    "sin_enlace_real": 109,
     "motores_ok": [
      "bing",
      "google"
     ],
-    "descargas_fallidas": 0,
-    "articulos_probados": 7,
+    "descargas_fallidas": 1,
+    "articulos_probados": 6,
     "articulos_con_foto": 4,
-    "con_imagen_30d": 73,
+    "con_imagen_30d": 85,
     "con_imagen_30d_estimada": true,
     "muestra": 4,
     "repetidas": 0,
     "con_persona": 3,
-    "validacion": "puerta",
+    "validacion": "prendas",
+    "con_ropa_visible": 3,
+    "sin_detectar": 0,
     "tasa_util": 0.75,
-    "fotos_utiles_est": 54.8
+    "fotos_utiles_est": 63.8
    },
-   "evidencia_texto": "~73 pub. con imagen/30 d · 3/4 con persona",
+   "evidencia_texto": "~85 pub. con imagen/30 d · 3/4 con ropa visible",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
    "ejemplos": [
     "https://www.diariodenavarra.es/noticias/magazine/sociedad/2026/10/12/reina-letizia-infanta-sofia-apuestan-dia-hispanidad-dos-estilismos-triunfaron-838500-106.html",
-    "https://www.elmundo.es/yodona/moda/reina-letizia/2026/10/12/6acc9db5fdddff6c2a8b459a.html",
-    "https://www.divinity.es/casa-real/20261012/reina-letizia-marca-espana-joya-historica-desfile-hispanidad-detalles-look_18_020411257.html"
+    "https://www.20minutos.es/mujer/moda/reina-letizia-mejor-look-12-octubre-combinacion-colores-atrevida-rosa-burdeos_7047754_0.html",
+    "https://www.telecinco.es/famosos/20261012/infanta-sofia-dia-hispanidad-mudanza-paris-confidencias-letizia-gestos-leonor-look_18_020411627.html"
    ],
    "fuente": {
     "referente": "Reina Letizia",
@@ -130,10 +128,15 @@
     "articulos_probados": 0,
     "articulos_con_foto": 0,
     "con_imagen_30d": 0,
+    "sin_muestra": true,
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "0 pub. con imagen/30 d",
+   "evidencia_texto": "9 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
    "ejemplos": [],
    "fuente": {
     "referente": "prensa: \"lujo silencioso\" moda",
@@ -191,10 +194,15 @@
     "articulos_probados": 0,
     "articulos_con_foto": 0,
     "con_imagen_30d": 0,
+    "sin_muestra": true,
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "0 pub. con imagen/30 d",
+   "evidencia_texto": "1 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
    "ejemplos": [],
    "fuente": {
     "referente": "prensa: \"old money\" moda",
@@ -257,11 +265,17 @@
     "muestra": 1,
     "repetidas": 0,
     "con_persona": 0,
-    "validacion": "puerta",
+    "validacion": "prendas",
+    "con_ropa_visible": 0,
+    "sin_detectar": 0,
     "tasa_util": 0.0,
     "fotos_utiles_est": 0.0
    },
-   "evidencia_texto": "~2 pub. con imagen/30 d · 0/1 con persona",
+   "evidencia_texto": "~2 pub. con imagen/30 d · 0/1 con ropa visible",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
    "ejemplos": [
     "https://fastcompany.mx/2026/10/10/quiet-luxury-lujo-silencioso-diseno-arquitectura/",
     "https://www.msn.com/es-ar/estilo-de-vida/other/qué-viene-después-del-quiet-luxury-las-tendencias-que-marcan-la-moda-en-2026/ar-AA2clkuS"
@@ -298,69 +312,6 @@
    }
   },
   {
-   "id": "d12a3589",
-   "estilo": "old_money",
-   "mercado": "ES",
-   "tipo": "reddit",
-   "valor": "DressLikeOldMoney",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "sin_datos",
-   "evidencia": {},
-   "evidencia_texto": "sin publicaciones en 30 días",
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/DressLikeOldMoney",
-    "estilo": "old_money",
-    "mercado": "ES",
-    "tipo": "reddit",
-    "valor": "DressLikeOldMoney"
-   }
-  },
-  {
-   "id": "f54dc694",
-   "estilo": "old_money",
-   "mercado": "ES",
-   "tipo": "reddit",
-   "valor": "newmoneyreps",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "no_disponible",
-   "evidencia": {},
-   "evidencia_texto": "no disponible (404/403: no existe o es privada)",
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/newmoneyreps",
-    "estilo": "old_money",
-    "mercado": "ES",
-    "tipo": "reddit",
-    "valor": "newmoneyreps"
-   }
-  },
-  {
-   "id": "356261f8",
-   "estilo": "old_money",
-   "mercado": "ES",
-   "tipo": "reddit",
-   "valor": "OldMoneyFashion",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "sin_datos",
-   "evidencia": {},
-   "evidencia_texto": "sin publicaciones en 30 días",
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/OldMoneyFashion",
-    "estilo": "old_money",
-    "mercado": "ES",
-    "tipo": "reddit",
-    "valor": "OldMoneyFashion"
-   }
-  },
-  {
    "id": "e0535441",
    "estilo": "old_money",
    "mercado": "ES",
@@ -372,6 +323,10 @@
    "estado": "sin_datos",
    "evidencia": {},
    "evidencia_texto": "sin publicaciones en 30 días",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
    "ejemplos": [],
    "fuente": {
     "referente": "Rafael Medina",
@@ -406,46 +361,6 @@
    }
   },
   {
-   "id": "019a75ae",
-   "estilo": "old_money",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "vedicastrologyfree_",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "medido",
-   "evidencia": {
-    "publicaciones_30d": 100,
-    "con_imagen_30d": 73,
-    "tope_100": true,
-    "titulos_es": 2,
-    "titulos_en": 37,
-    "mercado_medido": "US",
-    "descargas_fallidas": 0,
-    "muestra": 4,
-    "repetidas": 0,
-    "con_persona": 2,
-    "validacion": "puerta",
-    "tasa_util": 0.5,
-    "fotos_utiles_est": 36.5
-   },
-   "evidencia_texto": "73 pub. con imagen/30 d · 2/4 con persona (mínimo)",
-   "ejemplos": [
-    "https://www.reddit.com/r/vedicastrologyfree_/comments/1wt7jya/nakshatra_series_swati/",
-    "https://www.reddit.com/r/vedicastrologyfree_/comments/1wo8am9/nakshatra_series_magha/",
-    "https://www.reddit.com/r/vedicastrologyfree_/comments/1ww0u69/hanuman_chalisa_bajrang_baan_significance_when_to/"
-   ],
-   "fuente": {
-    "referente": "r/vedicastrologyfree_",
-    "estilo": "old_money",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "vedicastrologyfree_"
-   },
-   "numero": 4
-  },
-  {
    "id": "ace084f0",
    "estilo": "old_money",
    "mercado": "US",
@@ -456,10 +371,10 @@
    "en_uso": false,
    "estado": "medido",
    "evidencia": {
-    "publicaciones_30d": 22,
+    "publicaciones_30d": 23,
     "con_imagen_rss": 1,
-    "medios_distintos": 20,
-    "solo_bing": 3,
+    "medios_distintos": 21,
+    "solo_bing": 4,
     "solo_google": 15,
     "sin_enlace_real": 15,
     "motores_ok": [
@@ -469,16 +384,22 @@
     "descargas_fallidas": 0,
     "articulos_probados": 4,
     "articulos_con_foto": 4,
-    "con_imagen_30d": 22,
+    "con_imagen_30d": 23,
     "con_imagen_30d_estimada": true,
     "muestra": 4,
     "repetidas": 0,
     "con_persona": 4,
-    "validacion": "puerta",
+    "validacion": "prendas",
+    "con_ropa_visible": 4,
+    "sin_detectar": 0,
     "tasa_util": 1.0,
-    "fotos_utiles_est": 22.0
+    "fotos_utiles_est": 23.0
    },
-   "evidencia_texto": "~22 pub. con imagen/30 d · 4/4 con persona",
+   "evidencia_texto": "~23 pub. con imagen/30 d · 4/4 con ropa visible",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
    "ejemplos": [
     "https://jang.com.pk/en/74087-jacob-elordis-fashion-evolution-decoded-4-clever-styling-choices-behind-his-polished-looks-news",
     "https://www.geo.tv/latest/684250-kendall-jenner-and-jacob-elordi-take-matching-style-to-paris",
@@ -515,86 +436,7 @@
      "estilismo"
     ]
    },
-   "numero": 5
-  },
-  {
-   "id": "62c7060f",
-   "estilo": "old_money",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "Vedic_Astrology_Hub",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "medido",
-   "evidencia": {
-    "publicaciones_30d": 100,
-    "con_imagen_30d": 67,
-    "tope_100": true,
-    "titulos_es": 0,
-    "titulos_en": 42,
-    "mercado_medido": "US",
-    "descargas_fallidas": 0,
-    "muestra": 4,
-    "repetidas": 0,
-    "con_persona": 1,
-    "validacion": "puerta",
-    "tasa_util": 0.25,
-    "fotos_utiles_est": 16.8
-   },
-   "evidencia_texto": "67 pub. con imagen/30 d · 1/4 con persona (mínimo)",
-   "ejemplos": [
-    "https://www.reddit.com/r/Vedic_Astrology_Hub/comments/1wh63ad/nakshatra_series_bharani/",
-    "https://www.reddit.com/r/Vedic_Astrology_Hub/comments/1ww0tr2/hanuman_chalisa_bajrang_baan_significance_when_to/",
-    "https://www.reddit.com/r/Vedic_Astrology_Hub/comments/1wqtkur/nakshatra_series_hasta/"
-   ],
-   "fuente": {
-    "referente": "r/Vedic_Astrology_Hub",
-    "estilo": "old_money",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "Vedic_Astrology_Hub"
-   },
-   "numero": 6
-  },
-  {
-   "id": "051cc0d6",
-   "estilo": "old_money",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "astrologyexplore",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "medido",
-   "evidencia": {
-    "publicaciones_30d": 43,
-    "con_imagen_30d": 31,
-    "tope_100": false,
-    "titulos_es": 0,
-    "titulos_en": 10,
-    "mercado_medido": "US",
-    "descargas_fallidas": 0,
-    "muestra": 4,
-    "repetidas": 0,
-    "con_persona": 2,
-    "validacion": "puerta",
-    "tasa_util": 0.5,
-    "fotos_utiles_est": 15.5
-   },
-   "evidencia_texto": "31 pub. con imagen/30 d · 2/4 con persona",
-   "ejemplos": [
-    "https://www.reddit.com/r/astrologyexplore/comments/1wi054z/nakshatra_series_krittika/",
-    "https://www.reddit.com/r/astrologyexplore/comments/1wq7ssd/nakshatra_series_uttara_phalguni/",
-    "https://www.reddit.com/r/astrologyexplore/comments/1wkparo/nakshatra_series_ardra/"
-   ],
-   "fuente": {
-    "referente": "r/astrologyexplore",
-    "estilo": "old_money",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "astrologyexplore"
-   }
+   "numero": 4
   },
   {
    "id": "4f13e446",
@@ -607,10 +449,10 @@
    "en_uso": false,
    "estado": "medido",
    "evidencia": {
-    "publicaciones_30d": 25,
+    "publicaciones_30d": 24,
     "con_imagen_rss": 2,
-    "medios_distintos": 15,
-    "solo_bing": 4,
+    "medios_distintos": 14,
+    "solo_bing": 3,
     "solo_google": 19,
     "sin_enlace_real": 19,
     "motores_ok": [
@@ -618,18 +460,24 @@
      "google"
     ],
     "descargas_fallidas": 6,
-    "articulos_probados": 6,
+    "articulos_probados": 5,
     "articulos_con_foto": 2,
-    "con_imagen_30d": 8,
+    "con_imagen_30d": 10,
     "con_imagen_30d_estimada": true,
     "muestra": 2,
     "repetidas": 0,
     "con_persona": 2,
-    "validacion": "puerta",
+    "validacion": "prendas",
+    "con_ropa_visible": 2,
+    "sin_detectar": 0,
     "tasa_util": 1.0,
-    "fotos_utiles_est": 8.0
+    "fotos_utiles_est": 10.0
    },
-   "evidencia_texto": "~8 pub. con imagen/30 d · 2/2 con persona",
+   "evidencia_texto": "~10 pub. con imagen/30 d · 2/2 con ropa visible",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
    "ejemplos": [
     "https://pagesix.com/2026/10/01/style/cara-delevingne-goes-shirtless-in-gwyneth-paltrow-style-velvet-suit-at-tom-ford-show/",
     "https://www.dailymail.com/tvshowbiz/article-16138427/Gwyneth-Paltrow-gardening-hotpants-jumper-collection-GWYN-luxury-fashion-line.html",
@@ -665,7 +513,8 @@
      "red carpet",
      "estilismo"
     ]
-   }
+   },
+   "numero": 5
   },
   {
    "id": "25d2f59f",
@@ -684,7 +533,7 @@
     "posts_en_el_lote": 21,
     "tope_lote": true,
     "ultima_foto_hace_dias": 0,
-    "seguidores": 1566692,
+    "seguidores": 1566697,
     "titulos_es": 0,
     "titulos_en": 21,
     "mercado_medido": "US",
@@ -692,11 +541,14 @@
     "muestra": 4,
     "repetidas": 0,
     "con_persona": 1,
-    "validacion": "puerta",
+    "validacion": "prendas",
+    "con_ropa_visible": 1,
+    "sin_detectar": 0,
     "tasa_util": 0.25,
     "fotos_utiles_est": 3.0
    },
-   "evidencia_texto": "12 pub. con imagen/30 d · 1/4 con persona (mínimo)",
+   "evidencia_texto": "12 pub. con imagen/30 d · 1/4 con ropa visible (mínimo)",
+   "http": 200,
    "ejemplos": [
     "https://x.com/dieworkwear/status/2109486106244940002",
     "https://x.com/dieworkwear/status/2110104869080309761",
@@ -708,7 +560,8 @@
     "mercado": "US",
     "tipo": "x",
     "valor": "dieworkwear"
-   }
+   },
+   "numero": 6
   },
   {
    "id": "30042ef8",
@@ -721,24 +574,28 @@
    "en_uso": false,
    "estado": "medido",
    "evidencia": {
-    "publicaciones_30d": 3,
+    "publicaciones_30d": 4,
     "con_imagen_rss": 1,
     "medios_distintos": 2,
     "solo_bing": 1,
-    "solo_google": 2,
-    "sin_enlace_real": 2,
+    "solo_google": 3,
+    "sin_enlace_real": 3,
     "motores_ok": [
      "bing",
      "google"
     ],
     "articulos_probados": 1,
     "articulos_con_foto": 0,
-    "con_imagen_30d": 0,
-    "con_imagen_30d_estimada": true,
+    "con_imagen_30d": 1,
+    "sin_muestra": true,
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "~0 pub. con imagen/30 d",
+   "evidencia_texto": "4 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
    "ejemplos": [
     "https://www.msn.com/en-us/lifestyle/other/get-the-old-money-aesthetic-on-a-budget-with-amazon/ar-AA2dV2hP"
    ],
@@ -797,10 +654,15 @@
     "articulos_probados": 0,
     "articulos_con_foto": 0,
     "con_imagen_30d": 0,
+    "sin_muestra": true,
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "0 pub. con imagen/30 d",
+   "evidencia_texto": "4 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
    "ejemplos": [],
    "fuente": {
     "referente": "prensa: \"old money\" style men",
@@ -857,10 +719,15 @@
     "articulos_probados": 0,
     "articulos_con_foto": 0,
     "con_imagen_30d": 0,
+    "sin_muestra": true,
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "0 pub. con imagen/30 d",
+   "evidencia_texto": "20 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
    "ejemplos": [],
    "fuente": {
     "referente": "prensa: \"quiet luxury\" fashion",
@@ -894,45 +761,6 @@
    }
   },
   {
-   "id": "930d27de",
-   "estilo": "old_money",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "GirlDinnerDiaries",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "medido",
-   "evidencia": {
-    "publicaciones_30d": 100,
-    "con_imagen_30d": 100,
-    "tope_100": true,
-    "titulos_es": 0,
-    "titulos_en": 31,
-    "mercado_medido": "US",
-    "descargas_fallidas": 0,
-    "muestra": 4,
-    "repetidas": 0,
-    "con_persona": 0,
-    "validacion": "puerta",
-    "tasa_util": 0.0,
-    "fotos_utiles_est": 0.0
-   },
-   "evidencia_texto": "100 pub. con imagen/30 d · 0/4 con persona (mínimo)",
-   "ejemplos": [
-    "https://www.reddit.com/r/GirlDinnerDiaries/comments/1wr9s18/my_boyfriend_tells_me_every_day_and_i_never/",
-    "https://www.reddit.com/r/GirlDinnerDiaries/comments/1wqci22/heres_what_ive_learned_2_months_after_leaving_my/",
-    "https://www.reddit.com/r/GirlDinnerDiaries/comments/1x2iqe5/no_husband_or_kids_no_right_to_a_personal_life/"
-   ],
-   "fuente": {
-    "referente": "r/GirlDinnerDiaries",
-    "estilo": "old_money",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "GirlDinnerDiaries"
-   }
-  },
-  {
    "id": "7195ee41",
    "estilo": "old_money",
    "mercado": "US",
@@ -956,10 +784,15 @@
     "articulos_probados": 0,
     "articulos_con_foto": 0,
     "con_imagen_30d": 0,
+    "sin_muestra": true,
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "0 pub. con imagen/30 d",
+   "evidencia_texto": "3 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
    "ejemplos": [],
    "fuente": {
     "referente": "Jackie Kennedy",
@@ -991,99 +824,6 @@
      "estilismo"
     ],
     "archivo": true
-   }
-  },
-  {
-   "id": "5401b8ad",
-   "estilo": "old_money",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "TheOldStyle",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "medido",
-   "evidencia": {
-    "publicaciones_30d": 6,
-    "con_imagen_30d": 0,
-    "tope_100": false,
-    "titulos_es": 0,
-    "titulos_en": 0,
-    "mercado_medido": null,
-    "muestra": 0,
-    "validacion": "ninguna"
-   },
-   "evidencia_texto": "0 pub. con imagen/30 d",
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/TheOldStyle",
-    "estilo": "old_money",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "TheOldStyle"
-   }
-  },
-  {
-   "id": "f1c2ca6a",
-   "estilo": "old_money",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "ivystyle",
-   "ambito": "comunidad",
-   "origen": "propuesta",
-   "en_uso": false,
-   "estado": "no_disponible",
-   "evidencia": {},
-   "evidencia_texto": "no disponible (404/403: no existe o es privada)",
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/ivystyle",
-    "estilo": "old_money",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "ivystyle"
-   }
-  },
-  {
-   "id": "74e5f79c",
-   "estilo": "old_money",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "OldMoney",
-   "ambito": "comunidad",
-   "origen": "propuesta",
-   "en_uso": false,
-   "estado": "sin_datos",
-   "evidencia": {},
-   "evidencia_texto": "sin publicaciones en 30 días",
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/OldMoney",
-    "estilo": "old_money",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "OldMoney"
-   }
-  },
-  {
-   "id": "65c5f3fa",
-   "estilo": "old_money",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "quietluxury",
-   "ambito": "comunidad",
-   "origen": "propuesta",
-   "en_uso": false,
-   "estado": "sin_datos",
-   "evidencia": {},
-   "evidencia_texto": "sin publicaciones en 30 días",
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/quietluxury",
-    "estilo": "old_money",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "quietluxury"
    }
   }
  ]
