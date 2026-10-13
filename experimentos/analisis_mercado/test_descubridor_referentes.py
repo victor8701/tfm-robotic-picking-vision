@@ -83,7 +83,7 @@ class Servidor(BaseHTTPRequestHandler):
                 VISTAS["429"] += 1
                 return self.responder("slow", codigo=429, cabeceras=[("Retry-After", "0")])
             if ruta.startswith("/subreddits"):
-                return self.responder(atom([f'<entry><title>r/{s}</title><link href="https://www.reddit.com/r/{s}/"/><id>t5_{s}</id></entry>' for s in ("ivystyle", "pics", "OldMoney", "newmoneyreps")]))   # «pics» es genérica y «…reps» vende réplicas: no deben salir
+                return self.responder(atom([f'<entry><title>r/{s}</title><link href="https://www.reddit.com/r/{s}/"/><id>t5_{s}</id></entry>' for s in ("ivystyle", "pics", "OldMoney", "newmoneyreps", "DiarioDeJonathan")]))   # «pics» es genérica y «…reps» vende réplicas: no deben salir
             if ruta.startswith("/search.rss"):
                 return self.responder(atom([entrada("ivystyle", k, True) for k in range(5)] + [entrada("OldMoney", 40, True)] + [entrada("astrologyexplore", k, True) for k in range(60, 66)]))   # astrología: ruido
             sub = ruta.split("/")[2]
@@ -168,8 +168,8 @@ class Pruebas(unittest.TestCase):
         MODO.update({"reddit": "ok", "x": "ok"})
         VISTAS["429"] = 0
 
-    def medir(self, *extra, estilos="old_money", mercados="US"):
-        salida = TMP / f"salida_{time.time_ns()}.json"
+    def medir(self, *extra, estilos="old_money", mercados="US", salida=None):
+        salida = salida or TMP / f"salida_{time.time_ns()}.json"
         os.environ["DESCUBRIDOR_CONSERVAR"] = ""
         self.assertEqual(d.main(["medir", "--estilos", estilos, "--mercados", mercados, "--salida", str(salida), *extra]), 0)
         return json.loads(salida.read_text(encoding="utf-8")), salida
@@ -213,6 +213,7 @@ class Pruebas(unittest.TestCase):
         self.assertEqual(por[("reddit", "OldMoney")]["origen"], "propuesta", "semilla y descubierta a la vez: gana la semilla")
         self.assertNotIn(("reddit", "pics"), por, "las comunidades genéricas no se proponen")
         self.assertNotIn(("reddit", "newmoneyreps"), por, "ni las de réplicas")
+        self.assertNotIn(("reddit", "DiarioDeJonathan"), por, "ni las que salen en la búsqueda de comunidades pero no hablan de moda")
         self.assertNotIn(("reddit", "astrologyexplore"), por, "el ruido que solo aparece en la búsqueda de publicaciones y no habla de moda tampoco")
         x = por[("x", "dieworkwear")]
         self.assertEqual((x["estado"], x["evidencia"]["con_imagen_30d"], x["evidencia"]["fotos_30d"]), ("medido", 3, 3), "3 posts con foto en 30 días; el repost no cuenta")
@@ -273,6 +274,36 @@ class Pruebas(unittest.TestCase):
         self.assertGreater(datos["red"]["reddit"]["respuestas"]["omitido"], 0)
         self.assertIsNone(datos["red"]["reddit"]["bloqueado"])
         self.assertTrue(any(c["tipo"] == "x" and c["estado"] == "medido" for c in datos["candidatos"]), "lo demás sigue")
+
+    def test_con_pocas_peticiones_se_miden_antes_las_conocidas_que_las_descubiertas(self):
+        original, cuenta = d.pedir, {"n": 0}
+
+        def limitada(srv, url, *a, **k):
+            if srv == "reddit":
+                cuenta["n"] += 1
+                if cuenta["n"] > 3:
+                    return -1, None
+            return original(srv, url, *a, **k)
+        d.pedir = limitada
+        try:
+            datos, _ = self.medir("--validar", "nada", "--fuentes", "reddit")
+        finally:
+            d.pedir = original
+        por = {c["valor"]: c for c in datos["candidatos"]}
+        self.assertEqual([por[s]["estado"] for s in ("ivystyle", "OldMoney", "quietluxury")], ["medido", "medido", "no_disponible"], "las 3 peticiones fueron a las conocidas")
+        self.assertTrue(all(c["origen"] != "descubierto" for c in datos["candidatos"]), "la búsqueda ya no llegó a tiempo")
+
+    def test_fusionar_conserva_lo_que_no_se_vuelve_a_medir(self):
+        salida = TMP / "fusion.json"
+        self.medir("--validar", "nada", "--fuentes", "x,noticias", salida=salida)
+        d.MEDIDAS.clear()
+        d.RED.__init__()
+        datos, _ = self.medir("--validar", "nada", "--fuentes", "reddit", "--fusionar", salida=salida)
+        tipos = {c["tipo"] for c in datos["candidatos"]}
+        self.assertEqual(tipos, {"x", "noticias", "reddit"})
+        self.assertEqual({"bing", "google", "fxtwitter", "reddit"}, set(datos["red"]), "el estado de la red de lo medido antes se conserva")
+        sin_fusion, _ = self.medir("--validar", "nada", "--fuentes", "reddit")
+        self.assertEqual({c["tipo"] for c in sin_fusion["candidatos"]}, {"reddit"}, "sin --fusionar solo queda lo medido ahora")
 
     def test_prensa_sin_enlaces_reales_dice_sin_comprobar_y_no_cero(self):
         med = d.MEDIDAS[d.medir_noticias(d.definicion_prensa("US", ["solo-google moda"], None), 4)]

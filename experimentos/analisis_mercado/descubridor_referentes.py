@@ -214,15 +214,15 @@ def sub_valida(nombre: str | None) -> bool:
 
 
 def descubrir_subs(consultas: list[str]) -> collections.Counter:
-    """Puntos por comunidad: +3 si sale entre las 5 primeras de la búsqueda de comunidades; +1 por cada publicación con imagen que sale en la búsqueda de publicaciones del mes,
-    pero solo si el NOMBRE de la comunidad habla de moda o de lo buscado (sin esto entraban comunidades de astrología y de comida que solo comparten el texto de la búsqueda)."""
+    """Puntos por comunidad: +3 si sale entre las 5 primeras de la búsqueda de comunidades; +1 por cada publicación con imagen que sale en la búsqueda de publicaciones del mes.
+    En los dos casos solo cuenta si el NOMBRE de la comunidad habla de moda o de lo buscado (sin esto entraban comunidades de astrología, de diarios personales y de series que solo comparten el texto de la búsqueda)."""
     puntos = collections.Counter()
     for q in consultas:
         palabras = [w for w in re.findall(r"[A-Za-zÁÉÍÓÚáéíóúñ]{5,}", q) if norm(w) not in {"estilo"}]
         rx_nombre = re.compile(RE_NOMBRE_MODA.pattern + ("|" + "|".join(re.escape(norm(w)) for w in palabras) if palabras else ""), re.I)
         _, xml = pedir("reddit", f"{BASE['reddit']}/subreddits/search.rss?" + urllib.parse.urlencode({"q": q, "limit": 15}), PAUSA_REDDIT, "application/atom+xml")
         for e in (parsear_atom(xml) if xml else [])[:5]:
-            if sub_valida(e["sub"]):
+            if sub_valida(e["sub"]) and rx_nombre.search(e["sub"]):
                 puntos[e["sub"]] += 3
         _, xml = pedir("reddit", f"{BASE['reddit']}/search.rss?" + urllib.parse.urlencode({"q": q, "sort": "top", "t": "month", "limit": 100}), PAUSA_REDDIT, "application/atom+xml")
         for e in (parsear_atom(xml) if xml else []):
@@ -657,17 +657,17 @@ def texto_evidencia(ev: dict, estado: str, http=None) -> str:
         return {"bloqueado": "sin medir: el servicio no contesta desde aquí", "no_disponible": f"no disponible{motivo}: no existe, es privada o limita", "sin_datos": f"sin publicaciones en 30 días{motivo}",
                 "omitido": "omitido: se acabó el tiempo asignado a Reddit", "error": "error al leer"}.get(estado, estado)
     if ev.get("sin_muestra"):
-        return f"{ev.get('publicaciones_30d', 0)} noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)"
+        return f"{ev.get('publicaciones_30d', 0)} noticias/30 d · foto sin comprobar"
     est = "~" if ev.get("con_imagen_30d_estimada") else ""
-    t = f"{est}{ev.get('con_imagen_30d', 0)} pub. con imagen/30 d"
+    t = f"{est}{ev.get('con_imagen_30d', 0)} img/30 d"
     if "con_ropa_visible" in ev:
-        t += f" · {ev['con_ropa_visible']}/{ev['muestra']} con ropa visible"
+        t += f" · ropa visible {ev['con_ropa_visible']}/{ev['muestra']}"
     elif "con_persona" in ev:
-        t += f" · {ev['con_persona']}/{ev['muestra']} con persona"
+        t += f" · persona {ev['con_persona']}/{ev['muestra']}"
     elif ev.get("muestra") == 0 and ev.get("con_imagen_30d"):
         t += " · sin fotos bajadas"
     if ev.get("tope_100") or ev.get("tope_lote"):
-        t += " (mínimo)"
+        t += " (mín.)"
     return t
 
 
@@ -678,27 +678,35 @@ def montar_candidatos(args, sem) -> list[dict]:
     return [c for c in unir(cands) if c["tipo"] in args.fuentes and c["mercado"] in (*args.mercados, "auto")]
 
 
+def medir_candidatos_reddit(cands: list[dict], lista: list[dict], args, etiqueta: str) -> None:
+    for k, c in enumerate(lista, 1):
+        c["medida"] = medir_reddit(c["valor"], args.muestra)
+        med = MEDIDAS[c["medida"]]
+        print(f"  [{etiqueta} {k}/{len(lista)}] r/{c['valor']}: {med['estado']} · {med['datos'].get('con_imagen_30d', '-')} con imagen · {len(med['fotos'])} fotos bajadas", flush=True)
+
+
 def fase_reddit(cands: list[dict], sem: dict, args) -> None:
-    """Descubre comunidades nuevas por búsqueda (por estilo × mercado) y mide el «top» del mes de todas las comunidades candidatas."""
-    for estilo in args.estilos:
+    """1) Mide el «top» del mes de las comunidades que ya se conocen o se proponen. 2) Después, por estilo × mercado (los estilos nuevos primero), busca comunidades con las
+    consultas de las semillas y mide las que encuentra. Reddit limita a ~1 petición por minuto desde GitHub: si se acaba el tiempo asignado, lo que falta queda «omitido»
+    (en la primera pasada completa la búsqueda iba antes y se comió todo el tiempo sin medir ninguna comunidad)."""
+    conocidas = sorted((c for c in cands if c["tipo"] == "reddit"), key=lambda c: (ORIGEN_PRIORIDAD.get(c["origen"].split(" ")[0], 9), c["valor"].lower()))
+    vistas = set()
+    primeras = [c for c in conocidas if not (c["valor"].lower() in vistas or vistas.add(c["valor"].lower()))]
+    medir_candidatos_reddit(cands, primeras, args, "conocidas")
+    for c in conocidas:
+        c["medida"] = f"reddit:{c['valor'].lower()}"
+    for estilo in sorted(args.estilos, key=lambda e: e in ("urbano", "geek")):   # urbano y geek (control) al final
         for mercado in args.mercados:
-            qs = sem.get(estilo, {}).get(mercado, {}).get("reddit_busquedas", [])
+            qs = sem.get(estilo, {}).get(mercado, {}).get("reddit_busquedas", [])[:args.consultas_reddit]
             if not qs or RED.cerrado("reddit"):
                 continue
             puntos = descubrir_subs(qs)
             ya = {c["valor"].lower() for c in cands if c["tipo"] == "reddit" and c["estilo"] == estilo}
             elegidas = [(s, p) for s, p in puntos.most_common() if p >= 3 and s.lower() not in ya][:args.max_subs]
-            print(f"  Reddit · {estilo} {mercado}: {len(puntos)} comunidades vistas, {len(elegidas)} candidatas nuevas", flush=True)
-            cands += [{"estilo": estilo, "mercado": mercado, "tipo": "reddit", "valor": s, "ambito": "comunidad", "origen": "descubierto", "fuente": None, "puntos_busqueda": p} for s, p in elegidas]
-    orden = sorted((c for c in cands if c["tipo"] == "reddit"), key=lambda c: (ORIGEN_PRIORIDAD.get(c["origen"].split(" ")[0], 9), c["valor"].lower()))   # lo conocido y propuesto primero: si se acaba el tiempo, se pierde lo descubierto
-    todas = list(dict.fromkeys(c["valor"] for c in orden))
-    for k, sub in enumerate(todas, 1):
-        clave = medir_reddit(sub, args.muestra)
-        for c in cands:
-            if c["tipo"] == "reddit" and c["valor"].lower() == sub.lower():
-                c["medida"] = clave
-        med = MEDIDAS[clave]
-        print(f"  [{k}/{len(todas)}] r/{sub}: {med['estado']} · {med['datos'].get('con_imagen_30d', '-')} con imagen · {len(med['fotos'])} fotos bajadas", flush=True)
+            print(f"  Reddit · {estilo} {mercado}: {len(puntos)} comunidades con nombre pertinente, {len(elegidas)} candidatas nuevas", flush=True)
+            nuevas = [{"estilo": estilo, "mercado": mercado, "tipo": "reddit", "valor": s, "ambito": "comunidad", "origen": "descubierto", "fuente": None, "puntos_busqueda": p} for s, p in elegidas]
+            cands += nuevas
+            medir_candidatos_reddit(cands, nuevas, args, f"{estilo} {mercado}")
 
 
 def fase_noticias(cands: list[dict], args) -> None:
@@ -734,7 +742,7 @@ def cerrar_candidato(c: dict, modo: str) -> dict:
 
 def clave_orden(c: dict):
     ev = c["evidencia"]
-    return (c["estado"] != "medido", -(ev.get("fotos_utiles_est") if ev.get("fotos_utiles_est") is not None else ev.get("con_imagen_30d", 0) / 10), c["valor"].lower())
+    return (c["estado"] != "medido", ev.get("fotos_utiles_est") is None, -(ev.get("fotos_utiles_est") if ev.get("fotos_utiles_est") is not None else ev.get("con_imagen_30d", 0) / 10), c["valor"].lower())
 
 
 def resumen_texto(datos: dict, por_celda: int = 3) -> str:
@@ -742,9 +750,9 @@ def resumen_texto(datos: dict, por_celda: int = 3) -> str:
     cands = datos["candidatos"]
     red = datos["red"]
     caidos = [f"{s} ✕" for s, r in red.items() if r["bloqueado"]]
-    sanos = [f"{s} ✓" for s, r in red.items() if not r["bloqueado"]]
+    sanos = [f"{s} ✓" + (f" ({r['respuestas']['omitido']} omitidas por tiempo)" if r["respuestas"].get("omitido") else "") for s, r in red.items() if not r["bloqueado"]]
     lineas = [f"Candidatos a referente · {VENTANA} días · {datos['generado'][:10]}", "Red: " + (" · ".join(sanos + caidos) or "sin peticiones"),
-              {"prendas": "Muestra: persona con ropa VISIBLE (detector de prendas)", "puerta": "Muestra: persona con ropa (puerta CLIP; sin detector)", "nada": "Sin validar fotos", "no_disponible": "Sin validar fotos (no cargó CLIP)"}.get(datos["validacion"], ""), ""]
+              {"prendas": "Muestra: persona con ropa VISIBLE (detector de prendas)", "puerta": "Muestra: persona con ropa (puerta CLIP; sin detector)", "nada": "Sin validar fotos", "no_disponible": "Sin validar fotos (no cargó CLIP)", "mixta": "Muestra: validaciones mezcladas (ver cada candidato)"}.get(datos["validacion"], ""), ""]
     nombres = {"old_money": "Old money", "clasico": "Clásico", "lujo": "Lujo ostentoso", "bohemio": "Bohemio", "convencional": "Convencional", "urbano": "Urbano (control)", "geek": "Geek (control)"}
     n = 0
     for estilo in nombres:
@@ -758,7 +766,7 @@ def resumen_texto(datos: dict, por_celda: int = 3) -> str:
                 n += 1
                 c["numero"] = n
                 nombre = {"reddit": f"r/{c['valor']}", "x": f"@{c['valor']}", "noticias": ("«" + c["valor"] + "»") if c["ambito"] == "referente" else c["valor"]}[c["tipo"]]
-                lineas.append(f" {n} {'prensa ' if c['tipo'] == 'noticias' else ''}{nombre}{' (ya en uso)' if c['en_uso'] else ''} — {c['evidencia_texto']}")
+                lineas.append(f" {n} {'📰 ' if c['tipo'] == 'noticias' else ''}{nombre}{' (en uso)' if c['en_uso'] else ''} — {c['evidencia_texto']}")
             resto = len(celda) - min(len(medidos), por_celda)
             if resto:
                 lineas.append(f"   (+{resto} sin datos suficientes o sin medir)")
@@ -790,12 +798,18 @@ def cmd_medir(args) -> int:
         modo = validar(args.validar, args.max_detector)
         cerrados = [cerrar_candidato(c, modo) for c in cands]
         cerrados = [c for c in cerrados if c["mercado"] in args.mercados or c["mercado"] == "?"]
+        red, validacion = RED.informe(), modo
+        SALIDA = Path(args.salida)
+        if args.fusionar and SALIDA.exists():
+            previo = json.loads(SALIDA.read_text(encoding="utf-8"))
+            cerrados += [c for c in previo["candidatos"] if c["tipo"] not in args.fuentes]
+            red = {**previo["red"], **red}
+            validacion = modo if previo["validacion"] == modo else "mixta"
         cerrados.sort(key=lambda c: (c["estilo"], c["mercado"], *clave_orden(c)))
-        datos = {"version": 1, "generado": datetime.now(timezone.utc).isoformat(timespec="seconds"), "ventana_dias": VENTANA, "muestra_max": args.muestra, "validacion": modo,
-                 "red": RED.informe(), "nota": "La muestra se baja a una carpeta temporal y se borra: no se guardan fotos, solo direcciones públicas. `fuente` es la entrada para tendencia_fuentes.json si se acepta.",
+        datos = {"version": 1, "generado": datetime.now(timezone.utc).isoformat(timespec="seconds"), "ventana_dias": VENTANA, "muestra_max": args.muestra, "validacion": validacion,
+                 "red": red, "nota": "La muestra se baja a una carpeta temporal y se borra: no se guardan fotos, solo direcciones públicas. `fuente` es la entrada para tendencia_fuentes.json si se acepta.",
                  "candidatos": cerrados}
         resumen = resumen_texto(datos)
-        SALIDA = Path(args.salida)
         SALIDA.parent.mkdir(parents=True, exist_ok=True)
         m.guardar_json(SALIDA, datos)   # ya con el número que el resumen puso a cada candidato
         SALIDA.with_name(SALIDA.stem + "_resumen.md").write_text(resumen + "\n", encoding="utf-8")
@@ -823,7 +837,9 @@ def main(argv=None) -> int:
     ap.add_argument("--fuentes", type=lambda s: [x for x in s.split(",") if x], default=["reddit", "noticias", "x"], help="reddit,noticias,x")
     ap.add_argument("--validar", choices=["puerta", "prendas", "nada"], default="puerta")
     ap.add_argument("--muestra", type=int, default=MUESTRA)
-    ap.add_argument("--max-subs", type=int, default=4, help="comunidades nuevas que se miden por estilo × mercado")
+    ap.add_argument("--max-subs", type=int, default=2, help="comunidades nuevas que se miden por estilo × mercado")
+    ap.add_argument("--consultas-reddit", type=int, default=1, help="consultas de búsqueda de comunidades por estilo × mercado (cada una son 2 peticiones a Reddit)")
+    ap.add_argument("--fusionar", action="store_true", help="conserva del resultado anterior los candidatos de las fuentes que no se miden ahora (para repetir solo Reddit, por ejemplo)")
     ap.add_argument("--tiempo-reddit", type=float, default=45, help="minutos máximos para todo Reddit (sus límites de peticiones pueden costar minutos por petición); lo que no llega queda «omitido»")
     ap.add_argument("--max-detector", type=int, default=400, help="tope de fotos para el detector de prendas (≈ 10-20 s cada una en CPU)")
     ap.add_argument("--salida", default=str(SALIDA_DIR / "candidatos_referentes.json"))
