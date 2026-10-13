@@ -1,0 +1,1090 @@
+{
+ "version": 1,
+ "generado": "2026-10-13T20:54:57+00:00",
+ "ventana_dias": 30,
+ "muestra_max": 4,
+ "validacion": "puerta",
+ "red": {
+  "bing": {
+   "respuestas": {
+    "ok": 15
+   },
+   "bloqueado": null
+  },
+  "fxtwitter": {
+   "respuestas": {
+    "ok": 1
+   },
+   "bloqueado": null
+  },
+  "google": {
+   "respuestas": {
+    "ok": 15
+   },
+   "bloqueado": null
+  },
+  "reddit": {
+   "respuestas": {
+    "ok": 17,
+    "403": 1,
+    "429": 3
+   },
+   "bloqueado": null
+  }
+ },
+ "nota": "La muestra se baja a una carpeta temporal y se borra: no se guardan fotos, solo direcciones públicas. `fuente` es la entrada para tendencia_fuentes.json si se acepta.",
+ "candidatos": [
+  {
+   "id": "e0600563",
+   "estilo": "old_money",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "Reina Letizia",
+   "ambito": "referente",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 128,
+    "con_imagen_rss": 18,
+    "medios_distintos": 35,
+    "solo_bing": 9,
+    "solo_google": 110,
+    "sin_enlace_real": 110,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "descargas_fallidas": 0,
+    "articulos_probados": 7,
+    "articulos_con_foto": 4,
+    "con_imagen_30d": 73,
+    "con_imagen_30d_estimada": true,
+    "muestra": 4,
+    "repetidas": 0,
+    "con_persona": 3,
+    "validacion": "puerta",
+    "tasa_util": 0.75,
+    "fotos_utiles_est": 54.8
+   },
+   "evidencia_texto": "~73 pub. con imagen/30 d · 3/4 con persona",
+   "ejemplos": [
+    "https://www.diariodenavarra.es/noticias/magazine/sociedad/2026/10/12/reina-letizia-infanta-sofia-apuestan-dia-hispanidad-dos-estilismos-triunfaron-838500-106.html",
+    "https://www.elmundo.es/yodona/moda/reina-letizia/2026/10/12/6acc9db5fdddff6c2a8b459a.html",
+    "https://www.divinity.es/casa-real/20261012/reina-letizia-marca-espana-joya-historica-desfile-hispanidad-detalles-look_18_020411257.html"
+   ],
+   "fuente": {
+    "referente": "Reina Letizia",
+    "estilo": "old_money",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "\"reina Letizia\" look",
+    "consultas": [
+     "\"reina Letizia\" look",
+     "\"reina Letizia\" estilismo"
+    ],
+    "nombre": "reina letizia|letizia ortiz",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 1
+  },
+  {
+   "id": "12da109c",
+   "estilo": "old_money",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "\"lujo silencioso\" moda",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 9,
+    "con_imagen_rss": 0,
+    "medios_distintos": 7,
+    "solo_bing": 0,
+    "solo_google": 9,
+    "sin_enlace_real": 9,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "0 pub. con imagen/30 d",
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: \"lujo silencioso\" moda",
+    "estilo": "old_money",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "\"lujo silencioso\" moda",
+    "consultas": [
+     "\"lujo silencioso\" moda"
+    ],
+    "nombre": "lujo\\ silencioso",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 2
+  },
+  {
+   "id": "384e50d6",
+   "estilo": "old_money",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "\"old money\" moda",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 1,
+    "con_imagen_rss": 0,
+    "medios_distintos": 1,
+    "solo_bing": 0,
+    "solo_google": 1,
+    "sin_enlace_real": 1,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "0 pub. con imagen/30 d",
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: \"old money\" moda",
+    "estilo": "old_money",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "\"old money\" moda",
+    "consultas": [
+     "\"old money\" moda"
+    ],
+    "nombre": "old\\ money",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 3
+  },
+  {
+   "id": "b1540d14",
+   "estilo": "old_money",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "\"quiet luxury\" moda",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 5,
+    "con_imagen_rss": 1,
+    "medios_distintos": 5,
+    "solo_bing": 2,
+    "solo_google": 3,
+    "sin_enlace_real": 3,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "descargas_fallidas": 0,
+    "articulos_probados": 2,
+    "articulos_con_foto": 1,
+    "con_imagen_30d": 2,
+    "con_imagen_30d_estimada": true,
+    "muestra": 1,
+    "repetidas": 0,
+    "con_persona": 0,
+    "validacion": "puerta",
+    "tasa_util": 0.0,
+    "fotos_utiles_est": 0.0
+   },
+   "evidencia_texto": "~2 pub. con imagen/30 d · 0/1 con persona",
+   "ejemplos": [
+    "https://fastcompany.mx/2026/10/10/quiet-luxury-lujo-silencioso-diseno-arquitectura/",
+    "https://www.msn.com/es-ar/estilo-de-vida/other/qué-viene-después-del-quiet-luxury-las-tendencias-que-marcan-la-moda-en-2026/ar-AA2clkuS"
+   ],
+   "fuente": {
+    "referente": "prensa: \"quiet luxury\" moda",
+    "estilo": "old_money",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "\"quiet luxury\" moda",
+    "consultas": [
+     "\"quiet luxury\" moda"
+    ],
+    "nombre": "quiet\\ luxury",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "d12a3589",
+   "estilo": "old_money",
+   "mercado": "ES",
+   "tipo": "reddit",
+   "valor": "DressLikeOldMoney",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "sin_datos",
+   "evidencia": {},
+   "evidencia_texto": "sin publicaciones en 30 días",
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/DressLikeOldMoney",
+    "estilo": "old_money",
+    "mercado": "ES",
+    "tipo": "reddit",
+    "valor": "DressLikeOldMoney"
+   }
+  },
+  {
+   "id": "f54dc694",
+   "estilo": "old_money",
+   "mercado": "ES",
+   "tipo": "reddit",
+   "valor": "newmoneyreps",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "no_disponible",
+   "evidencia": {},
+   "evidencia_texto": "no disponible (404/403: no existe o es privada)",
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/newmoneyreps",
+    "estilo": "old_money",
+    "mercado": "ES",
+    "tipo": "reddit",
+    "valor": "newmoneyreps"
+   }
+  },
+  {
+   "id": "356261f8",
+   "estilo": "old_money",
+   "mercado": "ES",
+   "tipo": "reddit",
+   "valor": "OldMoneyFashion",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "sin_datos",
+   "evidencia": {},
+   "evidencia_texto": "sin publicaciones en 30 días",
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/OldMoneyFashion",
+    "estilo": "old_money",
+    "mercado": "ES",
+    "tipo": "reddit",
+    "valor": "OldMoneyFashion"
+   }
+  },
+  {
+   "id": "e0535441",
+   "estilo": "old_money",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "Rafael Medina",
+   "ambito": "referente",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "sin_datos",
+   "evidencia": {},
+   "evidencia_texto": "sin publicaciones en 30 días",
+   "ejemplos": [],
+   "fuente": {
+    "referente": "Rafael Medina",
+    "estilo": "old_money",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "\"Rafael Medina\" duque de Feria look",
+    "consultas": [
+     "\"Rafael Medina\" duque de Feria look",
+     "\"Rafael Medina\" estilo"
+    ],
+    "nombre": "rafael medina",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "019a75ae",
+   "estilo": "old_money",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "vedicastrologyfree_",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 100,
+    "con_imagen_30d": 73,
+    "tope_100": true,
+    "titulos_es": 2,
+    "titulos_en": 37,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 4,
+    "repetidas": 0,
+    "con_persona": 2,
+    "validacion": "puerta",
+    "tasa_util": 0.5,
+    "fotos_utiles_est": 36.5
+   },
+   "evidencia_texto": "73 pub. con imagen/30 d · 2/4 con persona (mínimo)",
+   "ejemplos": [
+    "https://www.reddit.com/r/vedicastrologyfree_/comments/1wt7jya/nakshatra_series_swati/",
+    "https://www.reddit.com/r/vedicastrologyfree_/comments/1wo8am9/nakshatra_series_magha/",
+    "https://www.reddit.com/r/vedicastrologyfree_/comments/1ww0u69/hanuman_chalisa_bajrang_baan_significance_when_to/"
+   ],
+   "fuente": {
+    "referente": "r/vedicastrologyfree_",
+    "estilo": "old_money",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "vedicastrologyfree_"
+   },
+   "numero": 4
+  },
+  {
+   "id": "ace084f0",
+   "estilo": "old_money",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "Jacob Elordi",
+   "ambito": "referente",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 22,
+    "con_imagen_rss": 1,
+    "medios_distintos": 20,
+    "solo_bing": 3,
+    "solo_google": 15,
+    "sin_enlace_real": 15,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "descargas_fallidas": 0,
+    "articulos_probados": 4,
+    "articulos_con_foto": 4,
+    "con_imagen_30d": 22,
+    "con_imagen_30d_estimada": true,
+    "muestra": 4,
+    "repetidas": 0,
+    "con_persona": 4,
+    "validacion": "puerta",
+    "tasa_util": 1.0,
+    "fotos_utiles_est": 22.0
+   },
+   "evidencia_texto": "~22 pub. con imagen/30 d · 4/4 con persona",
+   "ejemplos": [
+    "https://jang.com.pk/en/74087-jacob-elordis-fashion-evolution-decoded-4-clever-styling-choices-behind-his-polished-looks-news",
+    "https://www.geo.tv/latest/684250-kendall-jenner-and-jacob-elordi-take-matching-style-to-paris",
+    "https://www.vogue.com/article/kendall-jenner-jacob-elordi-couple-style-paris-fashion-week-2026-09-29"
+   ],
+   "fuente": {
+    "referente": "Jacob Elordi",
+    "estilo": "old_money",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"Jacob Elordi\" style",
+    "consultas": [
+     "\"Jacob Elordi\" style",
+     "\"Jacob Elordi\" outfit"
+    ],
+    "nombre": "jacob elordi",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 5
+  },
+  {
+   "id": "62c7060f",
+   "estilo": "old_money",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "Vedic_Astrology_Hub",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 100,
+    "con_imagen_30d": 67,
+    "tope_100": true,
+    "titulos_es": 0,
+    "titulos_en": 42,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 4,
+    "repetidas": 0,
+    "con_persona": 1,
+    "validacion": "puerta",
+    "tasa_util": 0.25,
+    "fotos_utiles_est": 16.8
+   },
+   "evidencia_texto": "67 pub. con imagen/30 d · 1/4 con persona (mínimo)",
+   "ejemplos": [
+    "https://www.reddit.com/r/Vedic_Astrology_Hub/comments/1wh63ad/nakshatra_series_bharani/",
+    "https://www.reddit.com/r/Vedic_Astrology_Hub/comments/1ww0tr2/hanuman_chalisa_bajrang_baan_significance_when_to/",
+    "https://www.reddit.com/r/Vedic_Astrology_Hub/comments/1wqtkur/nakshatra_series_hasta/"
+   ],
+   "fuente": {
+    "referente": "r/Vedic_Astrology_Hub",
+    "estilo": "old_money",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "Vedic_Astrology_Hub"
+   },
+   "numero": 6
+  },
+  {
+   "id": "051cc0d6",
+   "estilo": "old_money",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "astrologyexplore",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 43,
+    "con_imagen_30d": 31,
+    "tope_100": false,
+    "titulos_es": 0,
+    "titulos_en": 10,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 4,
+    "repetidas": 0,
+    "con_persona": 2,
+    "validacion": "puerta",
+    "tasa_util": 0.5,
+    "fotos_utiles_est": 15.5
+   },
+   "evidencia_texto": "31 pub. con imagen/30 d · 2/4 con persona",
+   "ejemplos": [
+    "https://www.reddit.com/r/astrologyexplore/comments/1wi054z/nakshatra_series_krittika/",
+    "https://www.reddit.com/r/astrologyexplore/comments/1wq7ssd/nakshatra_series_uttara_phalguni/",
+    "https://www.reddit.com/r/astrologyexplore/comments/1wkparo/nakshatra_series_ardra/"
+   ],
+   "fuente": {
+    "referente": "r/astrologyexplore",
+    "estilo": "old_money",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "astrologyexplore"
+   }
+  },
+  {
+   "id": "4f13e446",
+   "estilo": "old_money",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "Gwyneth Paltrow",
+   "ambito": "referente",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 25,
+    "con_imagen_rss": 2,
+    "medios_distintos": 15,
+    "solo_bing": 4,
+    "solo_google": 19,
+    "sin_enlace_real": 19,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "descargas_fallidas": 6,
+    "articulos_probados": 6,
+    "articulos_con_foto": 2,
+    "con_imagen_30d": 8,
+    "con_imagen_30d_estimada": true,
+    "muestra": 2,
+    "repetidas": 0,
+    "con_persona": 2,
+    "validacion": "puerta",
+    "tasa_util": 1.0,
+    "fotos_utiles_est": 8.0
+   },
+   "evidencia_texto": "~8 pub. con imagen/30 d · 2/2 con persona",
+   "ejemplos": [
+    "https://pagesix.com/2026/10/01/style/cara-delevingne-goes-shirtless-in-gwyneth-paltrow-style-velvet-suit-at-tom-ford-show/",
+    "https://www.dailymail.com/tvshowbiz/article-16138427/Gwyneth-Paltrow-gardening-hotpants-jumper-collection-GWYN-luxury-fashion-line.html",
+    "https://www.msn.com/en-us/news/other/apple-martin-reimagines-mom-gwyneth-paltrow-s-outfit-from-30-years-ago/ar-AA2dMOI4"
+   ],
+   "fuente": {
+    "referente": "Gwyneth Paltrow",
+    "estilo": "old_money",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"Gwyneth Paltrow\" style",
+    "consultas": [
+     "\"Gwyneth Paltrow\" style",
+     "\"Gwyneth Paltrow\" outfit"
+    ],
+    "nombre": "gwyneth paltrow",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "25d2f59f",
+   "estilo": "old_money",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "dieworkwear",
+   "ambito": "cuenta",
+   "origen": "cuentas_confiables",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 21,
+    "con_imagen_30d": 12,
+    "fotos_30d": 35,
+    "posts_en_el_lote": 21,
+    "tope_lote": true,
+    "ultima_foto_hace_dias": 0,
+    "seguidores": 1566692,
+    "titulos_es": 0,
+    "titulos_en": 21,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 4,
+    "repetidas": 0,
+    "con_persona": 1,
+    "validacion": "puerta",
+    "tasa_util": 0.25,
+    "fotos_utiles_est": 3.0
+   },
+   "evidencia_texto": "12 pub. con imagen/30 d · 1/4 con persona (mínimo)",
+   "ejemplos": [
+    "https://x.com/dieworkwear/status/2109486106244940002",
+    "https://x.com/dieworkwear/status/2110104869080309761",
+    "https://x.com/dieworkwear/status/2109684613492977696"
+   ],
+   "fuente": {
+    "referente": "dieworkwear",
+    "estilo": "old_money",
+    "mercado": "US",
+    "tipo": "x",
+    "valor": "dieworkwear"
+   }
+  },
+  {
+   "id": "30042ef8",
+   "estilo": "old_money",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"old money\" aesthetic outfit",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 3,
+    "con_imagen_rss": 1,
+    "medios_distintos": 2,
+    "solo_bing": 1,
+    "solo_google": 2,
+    "sin_enlace_real": 2,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 1,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "con_imagen_30d_estimada": true,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "~0 pub. con imagen/30 d",
+   "ejemplos": [
+    "https://www.msn.com/en-us/lifestyle/other/get-the-old-money-aesthetic-on-a-budget-with-amazon/ar-AA2dV2hP"
+   ],
+   "fuente": {
+    "referente": "prensa: \"old money\" aesthetic outfit",
+    "estilo": "old_money",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"old money\" aesthetic outfit",
+    "consultas": [
+     "\"old money\" aesthetic outfit"
+    ],
+    "nombre": "old\\ money",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "e555b280",
+   "estilo": "old_money",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"old money\" style men",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 4,
+    "con_imagen_rss": 0,
+    "medios_distintos": 2,
+    "solo_bing": 0,
+    "solo_google": 4,
+    "sin_enlace_real": 4,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "0 pub. con imagen/30 d",
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: \"old money\" style men",
+    "estilo": "old_money",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"old money\" style men",
+    "consultas": [
+     "\"old money\" style men"
+    ],
+    "nombre": "old\\ money",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "4e44993d",
+   "estilo": "old_money",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"quiet luxury\" fashion",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 20,
+    "con_imagen_rss": 0,
+    "medios_distintos": 19,
+    "solo_bing": 0,
+    "solo_google": 20,
+    "sin_enlace_real": 20,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "0 pub. con imagen/30 d",
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: \"quiet luxury\" fashion",
+    "estilo": "old_money",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"quiet luxury\" fashion",
+    "consultas": [
+     "\"quiet luxury\" fashion"
+    ],
+    "nombre": "quiet\\ luxury",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "930d27de",
+   "estilo": "old_money",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "GirlDinnerDiaries",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 100,
+    "con_imagen_30d": 100,
+    "tope_100": true,
+    "titulos_es": 0,
+    "titulos_en": 31,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 4,
+    "repetidas": 0,
+    "con_persona": 0,
+    "validacion": "puerta",
+    "tasa_util": 0.0,
+    "fotos_utiles_est": 0.0
+   },
+   "evidencia_texto": "100 pub. con imagen/30 d · 0/4 con persona (mínimo)",
+   "ejemplos": [
+    "https://www.reddit.com/r/GirlDinnerDiaries/comments/1wr9s18/my_boyfriend_tells_me_every_day_and_i_never/",
+    "https://www.reddit.com/r/GirlDinnerDiaries/comments/1wqci22/heres_what_ive_learned_2_months_after_leaving_my/",
+    "https://www.reddit.com/r/GirlDinnerDiaries/comments/1x2iqe5/no_husband_or_kids_no_right_to_a_personal_life/"
+   ],
+   "fuente": {
+    "referente": "r/GirlDinnerDiaries",
+    "estilo": "old_money",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "GirlDinnerDiaries"
+   }
+  },
+  {
+   "id": "7195ee41",
+   "estilo": "old_money",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "Jackie Kennedy",
+   "ambito": "referente",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 3,
+    "con_imagen_rss": 0,
+    "medios_distintos": 3,
+    "solo_bing": 0,
+    "solo_google": 3,
+    "sin_enlace_real": 3,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "0 pub. con imagen/30 d",
+   "ejemplos": [],
+   "fuente": {
+    "referente": "Jackie Kennedy",
+    "estilo": "old_money",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"Jackie Kennedy\" style",
+    "consultas": [
+     "\"Jackie Kennedy\" style"
+    ],
+    "nombre": "jackie kennedy|jacqueline kennedy",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ],
+    "archivo": true
+   }
+  },
+  {
+   "id": "5401b8ad",
+   "estilo": "old_money",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "TheOldStyle",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 6,
+    "con_imagen_30d": 0,
+    "tope_100": false,
+    "titulos_es": 0,
+    "titulos_en": 0,
+    "mercado_medido": null,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "0 pub. con imagen/30 d",
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/TheOldStyle",
+    "estilo": "old_money",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "TheOldStyle"
+   }
+  },
+  {
+   "id": "f1c2ca6a",
+   "estilo": "old_money",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "ivystyle",
+   "ambito": "comunidad",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "no_disponible",
+   "evidencia": {},
+   "evidencia_texto": "no disponible (404/403: no existe o es privada)",
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/ivystyle",
+    "estilo": "old_money",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "ivystyle"
+   }
+  },
+  {
+   "id": "74e5f79c",
+   "estilo": "old_money",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "OldMoney",
+   "ambito": "comunidad",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "sin_datos",
+   "evidencia": {},
+   "evidencia_texto": "sin publicaciones en 30 días",
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/OldMoney",
+    "estilo": "old_money",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "OldMoney"
+   }
+  },
+  {
+   "id": "65c5f3fa",
+   "estilo": "old_money",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "quietluxury",
+   "ambito": "comunidad",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "sin_datos",
+   "evidencia": {},
+   "evidencia_texto": "sin publicaciones en 30 días",
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/quietluxury",
+    "estilo": "old_money",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "quietluxury"
+   }
+  }
+ ]
+}
