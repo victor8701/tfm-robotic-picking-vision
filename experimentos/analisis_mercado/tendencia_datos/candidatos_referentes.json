@@ -1,31 +1,4116 @@
 {
  "version": 1,
- "generado": "2026-10-13T21:17:56+00:00",
+ "generado": "2026-10-13T22:52:10+00:00",
  "ventana_dias": 30,
- "muestra_max": 4,
+ "muestra_max": 8,
  "validacion": "prendas",
  "red": {
   "bing": {
    "respuestas": {
-    "ok": 15
+    "ok": 129
    },
    "bloqueado": null
   },
   "fxtwitter": {
    "respuestas": {
-    "ok": 1
+    "ok": 24,
+    "404": 10
    },
    "bloqueado": null
   },
   "google": {
    "respuestas": {
-    "ok": 15
+    "ok": 94
+   },
+   "bloqueado": null
+  },
+  "reddit": {
+   "respuestas": {
+    "ok": 46,
+    "omitido": 47
    },
    "bloqueado": null
   }
  },
  "nota": "La muestra se baja a una carpeta temporal y se borra: no se guardan fotos, solo direcciones públicas. `fuente` es la entrada para tendencia_fuentes.json si se acepta.",
  "candidatos": [
+  {
+   "id": "8cbbc420",
+   "estilo": "bohemio",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "estilo boho chic moda",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 35,
+    "con_imagen_rss": 4,
+    "medios_distintos": 23,
+    "solo_bing": 3,
+    "solo_google": 31,
+    "sin_enlace_real": 31,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "descargas_fallidas": 0,
+    "articulos_probados": 4,
+    "articulos_con_foto": 2,
+    "con_imagen_30d": 18,
+    "con_imagen_30d_estimada": true,
+    "muestra": 2,
+    "repetidas": 0,
+    "con_persona": 2,
+    "validacion": "prendas",
+    "con_ropa_visible": 2,
+    "sin_detectar": 0,
+    "tasa_util": 1.0,
+    "fotos_utiles_est": 18.0
+   },
+   "evidencia_texto": "~18 pub. con imagen/30 d · 2/2 con ropa visible",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [
+    "https://www.elmundo.es/yodona/moda/2026/10/12/6ac73639fdddff307d8b45a9.html",
+    "https://www.vogue.mx/articulo/como-llevar-botas-boho-con-jeans-faldas-y-vestidos-en-otono-2026",
+    "https://www.msn.com/es-ar/entretenimiento/famosos/nicole-neumann-mostr%C3%B3-las-claves-para-llevar-el-estilo-boho-chic-esta-temporada/ar-AA2dL6nI"
+   ],
+   "fuente": {
+    "referente": "prensa: estilo boho chic moda",
+    "estilo": "bohemio",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "estilo boho chic moda",
+    "consultas": [
+     "estilo boho chic moda"
+    ],
+    "nombre": ".",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 17
+  },
+  {
+   "id": "7c1aad6c",
+   "estilo": "bohemio",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "moda hippie chic",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 8,
+    "con_imagen_rss": 0,
+    "medios_distintos": 4,
+    "solo_bing": 0,
+    "solo_google": 8,
+    "sin_enlace_real": 8,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "sin_muestra": true,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "8 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: moda hippie chic",
+    "estilo": "bohemio",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "moda hippie chic",
+    "consultas": [
+     "moda hippie chic"
+    ],
+    "nombre": ".",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 18
+  },
+  {
+   "id": "f4bfdea2",
+   "estilo": "bohemio",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "moda ibicenca adlib",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 3,
+    "con_imagen_rss": 0,
+    "medios_distintos": 3,
+    "solo_bing": 0,
+    "solo_google": 3,
+    "sin_enlace_real": 3,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "sin_muestra": true,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "3 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: moda ibicenca adlib",
+    "estilo": "bohemio",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "moda ibicenca adlib",
+    "consultas": [
+     "moda ibicenca adlib"
+    ],
+    "nombre": ".",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 19
+  },
+  {
+   "id": "d67402ee",
+   "estilo": "bohemio",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "Sienna Miller",
+   "ambito": "referente",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 30,
+    "con_imagen_rss": 1,
+    "medios_distintos": 16,
+    "solo_bing": 2,
+    "solo_google": 26,
+    "sin_enlace_real": 26,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "descargas_fallidas": 10,
+    "articulos_probados": 4,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 1,
+    "sin_muestra": true,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "30 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [
+    "https://www.msn.com/en-gb/news/other/sienna-miller-proves-the-burgundy-knitted-co-ord-is-autumn-s-easiest-outfit-formula/ar-AA2e84ny",
+    "https://www.msn.com/en-us/lifestyle/other/sienna-miller-s-easy-autumn-outfit-confirms-red-is-the-colour-of-the-season/ar-AA2ddxbx",
+    "https://uk.style.yahoo.com/sienna-miller-declared-death-slick-151541682.html"
+   ],
+   "fuente": {
+    "referente": "Sienna Miller",
+    "estilo": "bohemio",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"Sienna Miller\" boho style",
+    "consultas": [
+     "\"Sienna Miller\" boho style",
+     "\"Sienna Miller\" outfit"
+    ],
+    "nombre": "sienna miller",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 20
+  },
+  {
+   "id": "82cd6fa2",
+   "estilo": "bohemio",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"bohemian style\" outfit",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 1,
+    "con_imagen_rss": 0,
+    "medios_distintos": 1,
+    "solo_bing": 0,
+    "solo_google": 1,
+    "sin_enlace_real": 1,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "sin_muestra": true,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "1 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: \"bohemian style\" outfit",
+    "estilo": "bohemio",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"bohemian style\" outfit",
+    "consultas": [
+     "\"bohemian style\" outfit"
+    ],
+    "nombre": "bohemian\\ style",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 21
+  },
+  {
+   "id": "f6c68b4e",
+   "estilo": "bohemio",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"boho chic\" fashion",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 1,
+    "con_imagen_rss": 0,
+    "medios_distintos": 1,
+    "solo_bing": 0,
+    "solo_google": 0,
+    "sin_enlace_real": 0,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "descargas_fallidas": 0,
+    "articulos_probados": 1,
+    "articulos_con_foto": 1,
+    "con_imagen_30d": 1,
+    "con_imagen_30d_estimada": true,
+    "muestra": 1,
+    "repetidas": 0,
+    "con_persona": 1,
+    "validacion": "prendas",
+    "con_ropa_visible": 0,
+    "sin_detectar": 0,
+    "tasa_util": 0.0,
+    "fotos_utiles_est": 0.0
+   },
+   "evidencia_texto": "~1 pub. con imagen/30 d · 0/1 con ropa visible",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [
+    "https://www.sortiraparis.com/en/what-to-do-in-paris/shopping-fashion/articles/319184-paris-fashion-week-zimmermann-cultivates-boho-chic-for-spring-summer-2027-video"
+   ],
+   "fuente": {
+    "referente": "prensa: \"boho chic\" fashion",
+    "estilo": "bohemio",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"boho chic\" fashion",
+    "consultas": [
+     "\"boho chic\" fashion"
+    ],
+    "nombre": "boho\\ chic",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 22
+  },
+  {
+   "id": "60bb45e1",
+   "estilo": "bohemio",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"boho\" festival fashion",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 4,
+    "con_imagen_rss": 0,
+    "medios_distintos": 4,
+    "solo_bing": 0,
+    "solo_google": 4,
+    "sin_enlace_real": 4,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "sin_muestra": true,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "4 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: \"boho\" festival fashion",
+    "estilo": "bohemio",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"boho\" festival fashion",
+    "consultas": [
+     "\"boho\" festival fashion"
+    ],
+    "nombre": "boho",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "fef7d4af",
+   "estilo": "bohemio",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "mchburton",
+   "ambito": "cuenta",
+   "origen": "cuentas_confiables",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 0,
+    "con_imagen_30d": 0,
+    "fotos_30d": 0,
+    "posts_en_el_lote": 20,
+    "tope_lote": false,
+    "ultima_foto_hace_dias": 2357,
+    "seguidores": 25,
+    "titulos_es": 0,
+    "titulos_en": 20,
+    "mercado_medido": "US",
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "0 pub. con imagen/30 d",
+   "http": 200,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "mchburton",
+    "estilo": "bohemio",
+    "mercado": "US",
+    "tipo": "x",
+    "valor": "mchburton"
+   }
+  },
+  {
+   "id": "2416a59f",
+   "estilo": "bohemio",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "bohemian",
+   "ambito": "comunidad",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/bohemian",
+    "estilo": "bohemio",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "bohemian"
+   }
+  },
+  {
+   "id": "14dab070",
+   "estilo": "bohemio",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "cottagecore",
+   "ambito": "comunidad",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/cottagecore",
+    "estilo": "bohemio",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "cottagecore"
+   }
+  },
+  {
+   "id": "0b6bd339",
+   "estilo": "bohemio",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "DUfashion",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/DUfashion",
+    "estilo": "bohemio",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "DUfashion"
+   }
+  },
+  {
+   "id": "5cef557f",
+   "estilo": "bohemio",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "EverydayOutfitStyle",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/EverydayOutfitStyle",
+    "estilo": "bohemio",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "EverydayOutfitStyle"
+   }
+  },
+  {
+   "id": "6b6e176e",
+   "estilo": "bohemio",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "Florence Welch",
+   "ambito": "referente",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "sin_datos",
+   "evidencia": {},
+   "evidencia_texto": "sin publicaciones en 30 días",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "Florence Welch",
+    "estilo": "bohemio",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"Florence Welch\" style",
+    "consultas": [
+     "\"Florence Welch\" style",
+     "\"Florence Welch\" outfit"
+    ],
+    "nombre": "florence welch",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "7ace4b5f",
+   "estilo": "bohemio",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "GothStyle",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/GothStyle",
+    "estilo": "bohemio",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "GothStyle"
+   }
+  },
+  {
+   "id": "448132fd",
+   "estilo": "bohemio",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "hippie",
+   "ambito": "comunidad",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/hippie",
+    "estilo": "bohemio",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "hippie"
+   }
+  },
+  {
+   "id": "de9263ae",
+   "estilo": "bohemio",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "indiafitcheck",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/indiafitcheck",
+    "estilo": "bohemio",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "indiafitcheck"
+   }
+  },
+  {
+   "id": "cce22692",
+   "estilo": "clasico",
+   "mercado": "?",
+   "tipo": "reddit",
+   "valor": "Barbour",
+   "ambito": "comunidad",
+   "origen": "biblioteca",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/Barbour",
+    "estilo": "clasico",
+    "mercado": "?",
+    "tipo": "reddit",
+    "valor": "Barbour"
+   }
+  },
+  {
+   "id": "eb223aa2",
+   "estilo": "clasico",
+   "mercado": "?",
+   "tipo": "x",
+   "valor": "BrooksBrothers",
+   "ambito": "cuenta",
+   "origen": "biblioteca (asistente)",
+   "en_uso": false,
+   "estado": "no_disponible",
+   "evidencia": {},
+   "evidencia_texto": "no disponible (HTTP 404): no existe, es privada o limita",
+   "http": 404,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "BrooksBrothers",
+    "estilo": "clasico",
+    "mercado": "?",
+    "tipo": "x",
+    "valor": "BrooksBrothers"
+   }
+  },
+  {
+   "id": "0aca2da5",
+   "estilo": "clasico",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "Tamara Falcó",
+   "ambito": "referente",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 25,
+    "con_imagen_rss": 4,
+    "medios_distintos": 15,
+    "solo_bing": 0,
+    "solo_google": 19,
+    "sin_enlace_real": 19,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "descargas_fallidas": 4,
+    "articulos_probados": 6,
+    "articulos_con_foto": 3,
+    "con_imagen_30d": 12,
+    "con_imagen_30d_estimada": true,
+    "muestra": 3,
+    "repetidas": 0,
+    "con_persona": 3,
+    "validacion": "prendas",
+    "con_ropa_visible": 3,
+    "sin_detectar": 0,
+    "tasa_util": 1.0,
+    "fotos_utiles_est": 12.0
+   },
+   "evidencia_texto": "~12 pub. con imagen/30 d · 3/3 con ropa visible",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [
+    "https://www.europapress.es/chance/moda/noticia-tamara-falco-viaja-chicago-apoyar-inigo-onieva-look-mas-otonal-complemento-perfecto-20261013114110.html",
+    "https://www.elle.com/es/star-style/el-estilo-de/a74114859/dia-hispanidad-invitada-sorprendente-tamara-falco/",
+    "https://www.vanitatis.elconfidencial.com/estilo/moda/2026-10-13/12-octubre-detalles-moda-looks-ministras-zara-marca-espana_4443344/"
+   ],
+   "fuente": {
+    "referente": "Tamara Falcó",
+    "estilo": "clasico",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "\"Tamara Falcó\" look",
+    "consultas": [
+     "\"Tamara Falcó\" look",
+     "\"Tamara Falcó\" estilismo"
+    ],
+    "nombre": "tamara falco",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 7
+  },
+  {
+   "id": "f563139f",
+   "estilo": "clasico",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "\"Barbour\" chaqueta moda",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 5,
+    "con_imagen_rss": 2,
+    "medios_distintos": 4,
+    "solo_bing": 2,
+    "solo_google": 3,
+    "sin_enlace_real": 3,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "descargas_fallidas": 0,
+    "articulos_probados": 2,
+    "articulos_con_foto": 1,
+    "con_imagen_30d": 2,
+    "con_imagen_30d_estimada": true,
+    "muestra": 1,
+    "repetidas": 0,
+    "con_persona": 1,
+    "validacion": "prendas",
+    "con_ropa_visible": 1,
+    "sin_detectar": 0,
+    "tasa_util": 1.0,
+    "fotos_utiles_est": 2.0
+   },
+   "evidencia_texto": "~2 pub. con imagen/30 d · 1/1 con ropa visible",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [
+    "https://woman.elperiodico.com/moda/barbour-carrefour-chaqueta-encerada-pijas-norte-50-anos-botas-impermeables-135289018",
+    "https://www.msn.com/es-es/noticias/otras/victoria-federica-tiene-el-look-que-las-pijas-de-madrid-van-a-copiar-en-octubre-chaqueta-de-punto-y-pantalones-blancos/ar-AA2e7xyA"
+   ],
+   "fuente": {
+    "referente": "prensa: \"Barbour\" chaqueta moda",
+    "estilo": "clasico",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "\"Barbour\" chaqueta moda",
+    "consultas": [
+     "\"Barbour\" chaqueta moda"
+    ],
+    "nombre": "barbour",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 8
+  },
+  {
+   "id": "8248c677",
+   "estilo": "clasico",
+   "mercado": "ES",
+   "tipo": "x",
+   "valor": "envido6",
+   "ambito": "cuenta",
+   "origen": "biblioteca",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 7,
+    "con_imagen_30d": 5,
+    "fotos_30d": 11,
+    "posts_en_el_lote": 7,
+    "tope_lote": true,
+    "ultima_foto_hace_dias": 5,
+    "seguidores": 1762,
+    "titulos_es": 6,
+    "titulos_en": 0,
+    "mercado_medido": "ES",
+    "descargas_fallidas": 0,
+    "muestra": 8,
+    "repetidas": 0,
+    "con_persona": 3,
+    "validacion": "prendas",
+    "con_ropa_visible": 2,
+    "sin_detectar": 0,
+    "tasa_util": 0.25,
+    "fotos_utiles_est": 1.2
+   },
+   "evidencia_texto": "5 pub. con imagen/30 d · 2/8 con ropa visible (mínimo)",
+   "http": 200,
+   "ejemplos": [
+    "https://x.com/envido6/status/2105589226108588321",
+    "https://x.com/envido6/status/2108468245745254650",
+    "https://x.com/envido6/status/2103519177072152605"
+   ],
+   "fuente": {
+    "referente": "envido6",
+    "estilo": "clasico",
+    "mercado": "ES",
+    "tipo": "x",
+    "valor": "envido6"
+   },
+   "numero": 9
+  },
+  {
+   "id": "e53952d2",
+   "estilo": "clasico",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "estilo cayetano moda",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 7,
+    "con_imagen_rss": 0,
+    "medios_distintos": 2,
+    "solo_bing": 0,
+    "solo_google": 7,
+    "sin_enlace_real": 7,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "sin_muestra": true,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "7 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: estilo cayetano moda",
+    "estilo": "clasico",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "estilo cayetano moda",
+    "consultas": [
+     "estilo cayetano moda"
+    ],
+    "nombre": ".",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "8892172f",
+   "estilo": "clasico",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "Marta Pombo",
+   "ambito": "referente",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 4,
+    "con_imagen_rss": 0,
+    "medios_distintos": 4,
+    "solo_bing": 0,
+    "solo_google": 4,
+    "sin_enlace_real": 4,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "sin_muestra": true,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "4 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "Marta Pombo",
+    "estilo": "clasico",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "\"Marta Pombo\" look",
+    "consultas": [
+     "\"Marta Pombo\" look",
+     "\"Marta Pombo\" estilo"
+    ],
+    "nombre": "marta pombo",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "7f4023e5",
+   "estilo": "clasico",
+   "mercado": "ES",
+   "tipo": "x",
+   "valor": "vitoquiles",
+   "ambito": "cuenta",
+   "origen": "biblioteca",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 4,
+    "con_imagen_30d": 1,
+    "fotos_30d": 1,
+    "posts_en_el_lote": 4,
+    "tope_lote": true,
+    "ultima_foto_hace_dias": 0,
+    "seguidores": 579273,
+    "titulos_es": 4,
+    "titulos_en": 0,
+    "mercado_medido": "ES",
+    "descargas_fallidas": 0,
+    "muestra": 1,
+    "repetidas": 0,
+    "con_persona": 0,
+    "validacion": "prendas",
+    "con_ropa_visible": 0,
+    "sin_detectar": 0,
+    "tasa_util": 0.0,
+    "fotos_utiles_est": 0.0
+   },
+   "evidencia_texto": "1 pub. con imagen/30 d · 0/1 con ropa visible (mínimo)",
+   "http": 200,
+   "ejemplos": [
+    "https://x.com/vitoquiles/status/2109981292976603287"
+   ],
+   "fuente": {
+    "referente": "vitoquiles",
+    "estilo": "clasico",
+    "mercado": "ES",
+    "tipo": "x",
+    "valor": "vitoquiles"
+   }
+  },
+  {
+   "id": "1102a574",
+   "estilo": "clasico",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "estilo pijo moda cayetana",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "sin_datos",
+   "evidencia": {},
+   "evidencia_texto": "sin publicaciones en 30 días",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: estilo pijo moda cayetana",
+    "estilo": "clasico",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "estilo pijo moda cayetana",
+    "consultas": [
+     "estilo pijo moda cayetana"
+    ],
+    "nombre": ".",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "4aa4ee7a",
+   "estilo": "clasico",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "RalphLauren",
+   "ambito": "cuenta",
+   "origen": "biblioteca (asistente)",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 20,
+    "con_imagen_30d": 14,
+    "fotos_30d": 48,
+    "posts_en_el_lote": 20,
+    "tope_lote": true,
+    "ultima_foto_hace_dias": 0,
+    "seguidores": 2205263,
+    "titulos_es": 0,
+    "titulos_en": 20,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 8,
+    "repetidas": 0,
+    "con_persona": 8,
+    "validacion": "prendas",
+    "con_ropa_visible": 8,
+    "sin_detectar": 0,
+    "tasa_util": 1.0,
+    "fotos_utiles_est": 14.0
+   },
+   "evidencia_texto": "14 pub. con imagen/30 d · 8/8 con ropa visible (mínimo)",
+   "http": 200,
+   "ejemplos": [
+    "https://x.com/RalphLauren/status/2110026778970607972",
+    "https://x.com/RalphLauren/status/2107678551877013835",
+    "https://x.com/RalphLauren/status/2107660890103251201"
+   ],
+   "fuente": {
+    "referente": "RalphLauren",
+    "estilo": "clasico",
+    "mercado": "US",
+    "tipo": "x",
+    "valor": "RalphLauren"
+   },
+   "numero": 10
+  },
+  {
+   "id": "a3029fe9",
+   "estilo": "clasico",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "HackettLondon",
+   "ambito": "cuenta",
+   "origen": "biblioteca (asistente)",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 20,
+    "con_imagen_30d": 12,
+    "fotos_30d": 24,
+    "posts_en_el_lote": 20,
+    "tope_lote": true,
+    "ultima_foto_hace_dias": 0,
+    "seguidores": 29809,
+    "titulos_es": 0,
+    "titulos_en": 20,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 8,
+    "repetidas": 0,
+    "con_persona": 8,
+    "validacion": "prendas",
+    "con_ropa_visible": 6,
+    "sin_detectar": 0,
+    "tasa_util": 0.75,
+    "fotos_utiles_est": 9.0
+   },
+   "evidencia_texto": "12 pub. con imagen/30 d · 6/8 con ropa visible (mínimo)",
+   "http": 200,
+   "ejemplos": [
+    "https://x.com/HackettLondon/status/2110015208504668259",
+    "https://x.com/HackettLondon/status/2109246408029020661",
+    "https://x.com/HackettLondon/status/2109237603094462858"
+   ],
+   "fuente": {
+    "referente": "HackettLondon",
+    "estilo": "clasico",
+    "mercado": "US",
+    "tipo": "x",
+    "valor": "HackettLondon"
+   },
+   "numero": 11
+  },
+  {
+   "id": "cb571b70",
+   "estilo": "clasico",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "massimodutti",
+   "ambito": "cuenta",
+   "origen": "biblioteca (asistente)",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 7,
+    "con_imagen_30d": 5,
+    "fotos_30d": 19,
+    "posts_en_el_lote": 20,
+    "tope_lote": false,
+    "ultima_foto_hace_dias": 4,
+    "seguidores": 77051,
+    "titulos_es": 0,
+    "titulos_en": 7,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 8,
+    "repetidas": 0,
+    "con_persona": 8,
+    "validacion": "prendas",
+    "con_ropa_visible": 8,
+    "sin_detectar": 0,
+    "tasa_util": 1.0,
+    "fotos_utiles_est": 5.0
+   },
+   "evidencia_texto": "5 pub. con imagen/30 d · 8/8 con ropa visible",
+   "http": 200,
+   "ejemplos": [
+    "https://x.com/massimodutti/status/2108828207340274162",
+    "https://x.com/massimodutti/status/2105692351544922381",
+    "https://x.com/massimodutti/status/2103024168317129071"
+   ],
+   "fuente": {
+    "referente": "massimodutti",
+    "estilo": "clasico",
+    "mercado": "US",
+    "tipo": "x",
+    "valor": "massimodutti"
+   },
+   "numero": 12
+  },
+  {
+   "id": "69886b96",
+   "estilo": "clasico",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"Barbour\" jacket style",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 8,
+    "con_imagen_rss": 2,
+    "medios_distintos": 8,
+    "solo_bing": 2,
+    "solo_google": 5,
+    "sin_enlace_real": 5,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 3,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 2,
+    "sin_muestra": true,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "8 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [
+    "https://www.msn.com/en-us/news/other/sienna-millers-new-barbour-campaign-is-a-masterclass-in-how-to-style-the-heritage-trend/ar-AA2dPYJA",
+    "https://www.msn.com/en-za/news/other/m-s-shoppers-say-this-110-wax-jacket-is-just-as-good-as-barbour-s-299-classic/ar-AA2dmo7X",
+    "https://www.msn.com/en-us/news/other/barbour-s-new-waxed-jacket-is-a-masterclass-in-military-surplus-style/ar-AA2dcZnI"
+   ],
+   "fuente": {
+    "referente": "prensa: \"Barbour\" jacket style",
+    "estilo": "clasico",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"Barbour\" jacket style",
+    "consultas": [
+     "\"Barbour\" jacket style"
+    ],
+    "nombre": "barbour",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "e9dcc6c4",
+   "estilo": "clasico",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"ivy style\" menswear",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 1,
+    "con_imagen_rss": 0,
+    "medios_distintos": 1,
+    "solo_bing": 0,
+    "solo_google": 1,
+    "sin_enlace_real": 1,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "sin_muestra": true,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "1 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: \"ivy style\" menswear",
+    "estilo": "clasico",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"ivy style\" menswear",
+    "consultas": [
+     "\"ivy style\" menswear"
+    ],
+    "nombre": "ivy\\ style",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "a46f6372",
+   "estilo": "clasico",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"preppy\" outfit trend",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 11,
+    "con_imagen_rss": 0,
+    "medios_distintos": 10,
+    "solo_bing": 0,
+    "solo_google": 11,
+    "sin_enlace_real": 11,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "sin_muestra": true,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "11 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: \"preppy\" outfit trend",
+    "estilo": "clasico",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"preppy\" outfit trend",
+    "consultas": [
+     "\"preppy\" outfit trend"
+    ],
+    "nombre": "preppy",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "e3d11d82",
+   "estilo": "clasico",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "Barbour",
+   "ambito": "cuenta",
+   "origen": "biblioteca (asistente)",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 0,
+    "con_imagen_30d": 0,
+    "fotos_30d": 0,
+    "posts_en_el_lote": 20,
+    "tope_lote": false,
+    "ultima_foto_hace_dias": 927,
+    "seguidores": 104145,
+    "titulos_es": 0,
+    "titulos_en": 20,
+    "mercado_medido": "US",
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "0 pub. con imagen/30 d",
+   "http": 200,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "Barbour",
+    "estilo": "clasico",
+    "mercado": "US",
+    "tipo": "x",
+    "valor": "Barbour"
+   }
+  },
+  {
+   "id": "4b1c05e3",
+   "estilo": "clasico",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "Ralph Lauren",
+   "ambito": "referente",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 22,
+    "con_imagen_rss": 0,
+    "medios_distintos": 21,
+    "solo_bing": 0,
+    "solo_google": 22,
+    "sin_enlace_real": 22,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "sin_muestra": true,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "22 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "Ralph Lauren",
+    "estilo": "clasico",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"Ralph Lauren\" style",
+    "consultas": [
+     "\"Ralph Lauren\" style",
+     "\"Ralph Lauren\" collection"
+    ],
+    "nombre": "ralph lauren",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "e845ed30",
+   "estilo": "clasico",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "ivystyle",
+   "ambito": "comunidad",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/ivystyle",
+    "estilo": "clasico",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "ivystyle"
+   }
+  },
+  {
+   "id": "99249dc4",
+   "estilo": "clasico",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "malefashionadvice",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/malefashionadvice",
+    "estilo": "clasico",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "malefashionadvice"
+   }
+  },
+  {
+   "id": "df603729",
+   "estilo": "clasico",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "NavyBlazer",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/NavyBlazer",
+    "estilo": "clasico",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "NavyBlazer"
+   }
+  },
+  {
+   "id": "72c7e38e",
+   "estilo": "clasico",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "preppy",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/preppy",
+    "estilo": "clasico",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "preppy"
+   }
+  },
+  {
+   "id": "846871b7",
+   "estilo": "clasico",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "PreppyStyle",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/PreppyStyle",
+    "estilo": "clasico",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "PreppyStyle"
+   }
+  },
+  {
+   "id": "1e99d259",
+   "estilo": "convencional",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "looks básicos tendencia moda",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 70,
+    "con_imagen_rss": 7,
+    "medios_distintos": 31,
+    "solo_bing": 9,
+    "solo_google": 61,
+    "sin_enlace_real": 61,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "descargas_fallidas": 6,
+    "articulos_probados": 9,
+    "articulos_con_foto": 5,
+    "con_imagen_30d": 39,
+    "con_imagen_30d_estimada": true,
+    "muestra": 5,
+    "repetidas": 0,
+    "con_persona": 5,
+    "validacion": "prendas",
+    "con_ropa_visible": 5,
+    "sin_detectar": 0,
+    "tasa_util": 1.0,
+    "fotos_utiles_est": 39.0
+   },
+   "evidencia_texto": "~39 pub. con imagen/30 d · 5/5 con ropa visible",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [
+    "https://www.vanitatis.elconfidencial.com/estilo/moda/2026-10-13/estampado-camuflaje-tendencia-moda-guia-estilo-2026_4441548/",
+    "https://www.eltrecetv.com.ar/tiempo-libre-y-estilo/2026/10/10/las-5-prendas-retro-que-vuelven-con-fuerza-y-son-tendencia-de-moda-esta-primavera-verano-2026/",
+    "https://www.telva.com/moda/tendencias/2026/10/08/6ac49d4802136e05028b458c.html"
+   ],
+   "fuente": {
+    "referente": "prensa: looks básicos tendencia moda",
+    "estilo": "convencional",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "looks básicos tendencia moda",
+    "consultas": [
+     "looks básicos tendencia moda"
+    ],
+    "nombre": ".",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 23
+  },
+  {
+   "id": "0f629b90",
+   "estilo": "convencional",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "\"normcore\" moda",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 1,
+    "con_imagen_rss": 0,
+    "medios_distintos": 1,
+    "solo_bing": 0,
+    "solo_google": 0,
+    "sin_enlace_real": 0,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "descargas_fallidas": 0,
+    "articulos_probados": 1,
+    "articulos_con_foto": 1,
+    "con_imagen_30d": 1,
+    "con_imagen_30d_estimada": true,
+    "muestra": 1,
+    "repetidas": 0,
+    "con_persona": 1,
+    "validacion": "prendas",
+    "con_ropa_visible": 1,
+    "sin_detectar": 0,
+    "tasa_util": 1.0,
+    "fotos_utiles_est": 1.0
+   },
+   "evidencia_texto": "~1 pub. con imagen/30 d · 1/1 con ropa visible",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [
+    "https://www.vogue.mx/articulo/tenis-otono-invierno-2026"
+   ],
+   "fuente": {
+    "referente": "prensa: \"normcore\" moda",
+    "estilo": "convencional",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "\"normcore\" moda",
+    "consultas": [
+     "\"normcore\" moda"
+    ],
+    "nombre": "normcore",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 24
+  },
+  {
+   "id": "312b7307",
+   "estilo": "convencional",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "looks de calle tendencias",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 54,
+    "con_imagen_rss": 0,
+    "medios_distintos": 38,
+    "solo_bing": 0,
+    "solo_google": 54,
+    "sin_enlace_real": 54,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "sin_muestra": true,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "54 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: looks de calle tendencias",
+    "estilo": "convencional",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "looks de calle tendencias",
+    "consultas": [
+     "looks de calle tendencias"
+    ],
+    "nombre": ".",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 25
+  },
+  {
+   "id": "3475a09d",
+   "estilo": "convencional",
+   "mercado": "ES",
+   "tipo": "reddit",
+   "valor": "DiarioDeUmBanana",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/DiarioDeUmBanana",
+    "estilo": "convencional",
+    "mercado": "ES",
+    "tipo": "reddit",
+    "valor": "DiarioDeUmBanana"
+   }
+  },
+  {
+   "id": "e1341da2",
+   "estilo": "convencional",
+   "mercado": "ES",
+   "tipo": "reddit",
+   "valor": "drossrotzank",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/drossrotzank",
+    "estilo": "convencional",
+    "mercado": "ES",
+    "tipo": "reddit",
+    "valor": "drossrotzank"
+   }
+  },
+  {
+   "id": "2c69bf11",
+   "estilo": "convencional",
+   "mercado": "ES",
+   "tipo": "reddit",
+   "valor": "El_Diario_de_Jonathan",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/El_Diario_de_Jonathan",
+    "estilo": "convencional",
+    "mercado": "ES",
+    "tipo": "reddit",
+    "valor": "El_Diario_de_Jonathan"
+   }
+  },
+  {
+   "id": "4614b21e",
+   "estilo": "convencional",
+   "mercado": "ES",
+   "tipo": "reddit",
+   "valor": "LookeAR",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/LookeAR",
+    "estilo": "convencional",
+    "mercado": "ES",
+    "tipo": "reddit",
+    "valor": "LookeAR"
+   }
+  },
+  {
+   "id": "02965032",
+   "estilo": "convencional",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"basics\" fashion trend outfit",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 6,
+    "con_imagen_rss": 0,
+    "medios_distintos": 5,
+    "solo_bing": 0,
+    "solo_google": 6,
+    "sin_enlace_real": 6,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "sin_muestra": true,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "6 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: \"basics\" fashion trend outfit",
+    "estilo": "convencional",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"basics\" fashion trend outfit",
+    "consultas": [
+     "\"basics\" fashion trend outfit"
+    ],
+    "nombre": "basics",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 26
+  },
+  {
+   "id": "961db513",
+   "estilo": "convencional",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"normcore\" outfit",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 1,
+    "con_imagen_rss": 1,
+    "medios_distintos": 1,
+    "solo_bing": 1,
+    "solo_google": 0,
+    "sin_enlace_real": 0,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "descargas_fallidas": 0,
+    "articulos_probados": 1,
+    "articulos_con_foto": 1,
+    "con_imagen_30d": 1,
+    "con_imagen_30d_estimada": true,
+    "muestra": 1,
+    "repetidas": 0,
+    "con_persona": 0,
+    "validacion": "prendas",
+    "con_ropa_visible": 0,
+    "sin_detectar": 0,
+    "tasa_util": 0.0,
+    "fotos_utiles_est": 0.0
+   },
+   "evidencia_texto": "~1 pub. con imagen/30 d · 0/1 con ropa visible",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [
+    "https://note.com/ryu_bonjin/n/n3b1b1a22032d?hl=en"
+   ],
+   "fuente": {
+    "referente": "prensa: \"normcore\" outfit",
+    "estilo": "convencional",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"normcore\" outfit",
+    "consultas": [
+     "\"normcore\" outfit"
+    ],
+    "nombre": "normcore",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 27
+  },
+  {
+   "id": "8ea38aeb",
+   "estilo": "convencional",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "everyday outfit trends",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 58,
+    "con_imagen_rss": 0,
+    "medios_distintos": 37,
+    "solo_bing": 0,
+    "solo_google": 58,
+    "sin_enlace_real": 58,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "sin_muestra": true,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "58 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: everyday outfit trends",
+    "estilo": "convencional",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "everyday outfit trends",
+    "consultas": [
+     "everyday outfit trends"
+    ],
+    "nombre": ".",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 28
+  },
+  {
+   "id": "772ea526",
+   "estilo": "convencional",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "ErikasStyleJournal",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/ErikasStyleJournal",
+    "estilo": "convencional",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "ErikasStyleJournal"
+   }
+  },
+  {
+   "id": "a0656deb",
+   "estilo": "convencional",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "EverydayOutfitStyle",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/EverydayOutfitStyle",
+    "estilo": "convencional",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "EverydayOutfitStyle"
+   }
+  },
+  {
+   "id": "de4bf003",
+   "estilo": "convencional",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "femalefashionadvice",
+   "ambito": "comunidad",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/femalefashionadvice",
+    "estilo": "convencional",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "femalefashionadvice"
+   }
+  },
+  {
+   "id": "01d795f6",
+   "estilo": "convencional",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "malefashionadvice",
+   "ambito": "comunidad",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/malefashionadvice",
+    "estilo": "convencional",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "malefashionadvice"
+   }
+  },
+  {
+   "id": "b13bbbd2",
+   "estilo": "convencional",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "OUTFITS",
+   "ambito": "comunidad",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/OUTFITS",
+    "estilo": "convencional",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "OUTFITS"
+   }
+  },
+  {
+   "id": "eb541bf5",
+   "estilo": "convencional",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "reddeadfashion",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/reddeadfashion",
+    "estilo": "convencional",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "reddeadfashion"
+   }
+  },
+  {
+   "id": "8d0fb2d5",
+   "estilo": "convencional",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "TodayWithChloe",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/TodayWithChloe",
+    "estilo": "convencional",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "TodayWithChloe"
+   }
+  },
+  {
+   "id": "ecb6dbc6",
+   "estilo": "geek",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "Rojuu",
+   "ambito": "referente",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 3,
+    "con_imagen_rss": 3,
+    "medios_distintos": 2,
+    "solo_bing": 3,
+    "solo_google": 0,
+    "sin_enlace_real": 0,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "descargas_fallidas": 2,
+    "articulos_probados": 3,
+    "articulos_con_foto": 3,
+    "con_imagen_30d": 3,
+    "con_imagen_30d_estimada": true,
+    "muestra": 3,
+    "repetidas": 0,
+    "con_persona": 2,
+    "validacion": "prendas",
+    "con_ropa_visible": 2,
+    "sin_detectar": 0,
+    "tasa_util": 0.67,
+    "fotos_utiles_est": 2.0
+   },
+   "evidencia_texto": "~3 pub. con imagen/30 d · 2/3 con ropa visible",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [
+    "https://los40.com/2026/10/07/el-caso-rojuu-y-el-cambio-en-la-rendicion-de-cuentas-del-genero-urbano-el-silencio-ya-no-es-una-opcion/",
+    "https://www.elplural.com/revista-bando/musica/chats-filtrados-acusan-rojuu-relacionarse-menores-complicidad-grupo-whatsapp-sabe_800478102",
+    "https://www.elplural.com/revista-bando/coctelera/quienes-toyoko-kids-relacion-tiene-rojuu-menores-marginados-kabukicho_800625102"
+   ],
+   "fuente": {
+    "referente": "Rojuu",
+    "estilo": "geek",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "\"Rojuu\"",
+    "consultas": [
+     "\"Rojuu\"",
+     "\"Rojuu\" cantante"
+    ],
+    "nombre": "\\brojuu\\b",
+    "contexto": "musica"
+   },
+   "numero": 35
+  },
+  {
+   "id": "86d3d715",
+   "estilo": "geek",
+   "mercado": "ES",
+   "tipo": "x",
+   "valor": "orslok",
+   "ambito": "cuenta",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 0,
+    "con_imagen_30d": 0,
+    "fotos_30d": 0,
+    "posts_en_el_lote": 20,
+    "tope_lote": false,
+    "ultima_foto_hace_dias": 611,
+    "seguidores": 456031,
+    "titulos_es": 0,
+    "titulos_en": 1,
+    "mercado_medido": "US",
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "0 pub. con imagen/30 d",
+   "http": 200,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "orslok",
+    "estilo": "geek",
+    "mercado": "ES",
+    "tipo": "x",
+    "valor": "orslok"
+   },
+   "numero": 36
+  },
+  {
+   "id": "09720353",
+   "estilo": "geek",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "moda friki geek ropa",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "sin_datos",
+   "evidencia": {},
+   "evidencia_texto": "sin publicaciones en 30 días",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: moda friki geek ropa",
+    "estilo": "geek",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "moda friki geek ropa",
+    "consultas": [
+     "moda friki geek ropa"
+    ],
+    "nombre": ".",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "c2600c7a",
+   "estilo": "geek",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "moda gamer ropa tendencia",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "sin_datos",
+   "evidencia": {},
+   "evidencia_texto": "sin publicaciones en 30 días",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: moda gamer ropa tendencia",
+    "estilo": "geek",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "moda gamer ropa tendencia",
+    "consultas": [
+     "moda gamer ropa tendencia"
+    ],
+    "nombre": ".",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "5fe8e15f",
+   "estilo": "geek",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "orslok",
+   "ambito": "referente",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "sin_datos",
+   "evidencia": {},
+   "evidencia_texto": "sin publicaciones en 30 días",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "orslok",
+    "estilo": "geek",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "\"Orslok\"",
+    "consultas": [
+     "\"Orslok\"",
+     "\"Orslok\" streamer"
+    ],
+    "nombre": "\\borslok\\b",
+    "contexto": "streamer"
+   }
+  },
+  {
+   "id": "9e0059b6",
+   "estilo": "geek",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "SoyUnaPringada",
+   "ambito": "referente",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "sin_datos",
+   "evidencia": {},
+   "evidencia_texto": "sin publicaciones en 30 días",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "SoyUnaPringada",
+    "estilo": "geek",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "\"Soy una pringada\"",
+    "consultas": [
+     "\"Soy una pringada\"",
+     "\"SoyUnaPringada\""
+    ],
+    "nombre": "soy una pringada|soyunapringada",
+    "contexto": "streamer"
+   }
+  },
+  {
+   "id": "5acd7639",
+   "estilo": "geek",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"anime\" fashion collab",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 3,
+    "con_imagen_rss": 0,
+    "medios_distintos": 3,
+    "solo_bing": 0,
+    "solo_google": 3,
+    "sin_enlace_real": 3,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "sin_muestra": true,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "3 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: \"anime\" fashion collab",
+    "estilo": "geek",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"anime\" fashion collab",
+    "consultas": [
+     "\"anime\" fashion collab"
+    ],
+    "nombre": "anime",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 37
+  },
+  {
+   "id": "b1618beb",
+   "estilo": "geek",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"techwear\" fashion",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 1,
+    "con_imagen_rss": 0,
+    "medios_distintos": 1,
+    "solo_bing": 0,
+    "solo_google": 1,
+    "sin_enlace_real": 1,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "sin_muestra": true,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "1 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: \"techwear\" fashion",
+    "estilo": "geek",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"techwear\" fashion",
+    "consultas": [
+     "\"techwear\" fashion"
+    ],
+    "nombre": "techwear",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 38
+  },
+  {
+   "id": "12cb4e62",
+   "estilo": "geek",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "Lilpeep",
+   "ambito": "cuenta",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 1,
+    "con_imagen_30d": 0,
+    "fotos_30d": 0,
+    "posts_en_el_lote": 19,
+    "tope_lote": false,
+    "ultima_foto_hace_dias": 389,
+    "seguidores": 917914,
+    "titulos_es": 0,
+    "titulos_en": 1,
+    "mercado_medido": "US",
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "0 pub. con imagen/30 d",
+   "http": 200,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "Lil Peep",
+    "estilo": "geek",
+    "mercado": "US",
+    "tipo": "x",
+    "valor": "Lilpeep",
+    "archivo": true
+   },
+   "numero": 39
+  },
+  {
+   "id": "19748dba",
+   "estilo": "geek",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "Painthisice",
+   "ambito": "cuenta",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 9,
+    "con_imagen_30d": 5,
+    "fotos_30d": 5,
+    "posts_en_el_lote": 9,
+    "tope_lote": true,
+    "ultima_foto_hace_dias": 1,
+    "seguidores": 4053,
+    "titulos_es": 0,
+    "titulos_en": 9,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 5,
+    "repetidas": 0,
+    "con_persona": 0,
+    "validacion": "prendas",
+    "con_ropa_visible": 0,
+    "sin_detectar": 0,
+    "tasa_util": 0.0,
+    "fotos_utiles_est": 0.0
+   },
+   "evidencia_texto": "5 pub. con imagen/30 d · 0/5 con ropa visible (mínimo)",
+   "http": 200,
+   "ejemplos": [
+    "https://x.com/Painthisice/status/2109703286894776366",
+    "https://x.com/Painthisice/status/2109326001838723531",
+    "https://x.com/Painthisice/status/2109326439904366653"
+   ],
+   "fuente": {
+    "referente": "Painthisice",
+    "estilo": "geek",
+    "mercado": "US",
+    "tipo": "x",
+    "valor": "Painthisice"
+   }
+  },
+  {
+   "id": "3d8fc3f7",
+   "estilo": "geek",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "TechwearClub",
+   "ambito": "cuenta",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 0,
+    "con_imagen_30d": 0,
+    "fotos_30d": 0,
+    "posts_en_el_lote": 20,
+    "tope_lote": false,
+    "ultima_foto_hace_dias": 1957,
+    "seguidores": 428,
+    "titulos_es": 0,
+    "titulos_en": 20,
+    "mercado_medido": "US",
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "0 pub. con imagen/30 d",
+   "http": 200,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "TechwearClub",
+    "estilo": "geek",
+    "mercado": "US",
+    "tipo": "x",
+    "valor": "TechwearClub"
+   }
+  },
+  {
+   "id": "dfc79c3c",
+   "estilo": "geek",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "Lil Peep",
+   "ambito": "referente",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "sin_datos",
+   "evidencia": {},
+   "evidencia_texto": "sin publicaciones en 30 días",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "Lil Peep",
+    "estilo": "geek",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"Lil Peep\" outfit",
+    "consultas": [
+     "\"Lil Peep\" outfit",
+     "\"Lil Peep\" style"
+    ],
+    "nombre": "lil peep",
+    "contexto": "music_en",
+    "archivo": true
+   }
+  },
+  {
+   "id": "c74d931c",
+   "estilo": "geek",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "Lil Xan",
+   "ambito": "referente",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "sin_datos",
+   "evidencia": {},
+   "evidencia_texto": "sin publicaciones en 30 días",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "Lil Xan",
+    "estilo": "geek",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"Lil Xan\" outfit",
+    "consultas": [
+     "\"Lil Xan\" outfit",
+     "\"Lil Xan\" style"
+    ],
+    "nombre": "lil xan",
+    "contexto": "music_en"
+   }
+  },
+  {
+   "id": "0cf7f01e",
+   "estilo": "geek",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "techwearclothing",
+   "ambito": "comunidad",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/techwearclothing",
+    "estilo": "geek",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "techwearclothing"
+   }
+  },
+  {
+   "id": "d7bbb2e4",
+   "estilo": "lujo",
+   "mercado": "?",
+   "tipo": "reddit",
+   "valor": "Gucci",
+   "ambito": "comunidad",
+   "origen": "biblioteca",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/Gucci",
+    "estilo": "lujo",
+    "mercado": "?",
+    "tipo": "reddit",
+    "valor": "Gucci"
+   }
+  },
+  {
+   "id": "76772fba",
+   "estilo": "lujo",
+   "mercado": "?",
+   "tipo": "reddit",
+   "valor": "LouisVuitton",
+   "ambito": "comunidad",
+   "origen": "biblioteca",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/LouisVuitton",
+    "estilo": "lujo",
+    "mercado": "?",
+    "tipo": "reddit",
+    "valor": "LouisVuitton"
+   }
+  },
+  {
+   "id": "53b6b710",
+   "estilo": "lujo",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "Georgina Rodríguez",
+   "ambito": "referente",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 13,
+    "con_imagen_rss": 0,
+    "medios_distintos": 12,
+    "solo_bing": 1,
+    "solo_google": 12,
+    "sin_enlace_real": 12,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "descargas_fallidas": 0,
+    "articulos_probados": 1,
+    "articulos_con_foto": 1,
+    "con_imagen_30d": 13,
+    "con_imagen_30d_estimada": true,
+    "muestra": 1,
+    "repetidas": 0,
+    "con_persona": 1,
+    "validacion": "prendas",
+    "con_ropa_visible": 1,
+    "sin_detectar": 0,
+    "tasa_util": 1.0,
+    "fotos_utiles_est": 13.0
+   },
+   "evidencia_texto": "~13 pub. con imagen/30 d · 1/1 con ropa visible",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [
+    "https://www.vocescriticas.com/noticias/2026/09/27/219403-georgina-rodriguez-sorprendio-con-un-birkin-de-herms-que-esconde-un-precio-impactante"
+   ],
+   "fuente": {
+    "referente": "Georgina Rodríguez",
+    "estilo": "lujo",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "\"Georgina Rodríguez\" look",
+    "consultas": [
+     "\"Georgina Rodríguez\" look",
+     "\"Georgina Rodríguez\" estilismo"
+    ],
+    "nombre": "georgina rodriguez",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 13
+  },
+  {
+   "id": "859cd321",
+   "estilo": "lujo",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "\"logomanía\" moda",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "sin_datos",
+   "evidencia": {},
+   "evidencia_texto": "sin publicaciones en 30 días",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: \"logomanía\" moda",
+    "estilo": "lujo",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "\"logomanía\" moda",
+    "consultas": [
+     "\"logomanía\" moda"
+    ],
+    "nombre": "logomania",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "dc5dd76f",
+   "estilo": "lujo",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "\"Philipp Plein\" look",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "sin_datos",
+   "evidencia": {},
+   "evidencia_texto": "sin publicaciones en 30 días",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: \"Philipp Plein\" look",
+    "estilo": "lujo",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "\"Philipp Plein\" look",
+    "consultas": [
+     "\"Philipp Plein\" look"
+    ],
+    "nombre": "philipp\\ plein",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "d237d52e",
+   "estilo": "lujo",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "Dani Alves",
+   "ambito": "referente",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "sin_datos",
+   "evidencia": {},
+   "evidencia_texto": "sin publicaciones en 30 días",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "Dani Alves",
+    "estilo": "lujo",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "\"Dani Alves\" look",
+    "consultas": [
+     "\"Dani Alves\" look",
+     "\"Dani Alves\" estilo moda"
+    ],
+    "nombre": "dani alves",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "7ffe92ee",
+   "estilo": "lujo",
+   "mercado": "ES",
+   "tipo": "reddit",
+   "valor": "fueradeseries",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/fueradeseries",
+    "estilo": "lujo",
+    "mercado": "ES",
+    "tipo": "reddit",
+    "valor": "fueradeseries"
+   }
+  },
+  {
+   "id": "5f8dcb6d",
+   "estilo": "lujo",
+   "mercado": "ES",
+   "tipo": "reddit",
+   "valor": "LookeAR",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/LookeAR",
+    "estilo": "lujo",
+    "mercado": "ES",
+    "tipo": "reddit",
+    "valor": "LookeAR"
+   }
+  },
+  {
+   "id": "09020298",
+   "estilo": "lujo",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "lujo ostentoso moda",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "sin_datos",
+   "evidencia": {},
+   "evidencia_texto": "sin publicaciones en 30 días",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: lujo ostentoso moda",
+    "estilo": "lujo",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "lujo ostentoso moda",
+    "consultas": [
+     "lujo ostentoso moda"
+    ],
+    "nombre": ".",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "7c8db30e",
+   "estilo": "lujo",
+   "mercado": "ES",
+   "tipo": "reddit",
+   "valor": "SinDormir",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/SinDormir",
+    "estilo": "lujo",
+    "mercado": "ES",
+    "tipo": "reddit",
+    "valor": "SinDormir"
+   }
+  },
+  {
+   "id": "99ddb957",
+   "estilo": "lujo",
+   "mercado": "ES",
+   "tipo": "reddit",
+   "valor": "vidanta",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/vidanta",
+    "estilo": "lujo",
+    "mercado": "ES",
+    "tipo": "reddit",
+    "valor": "vidanta"
+   }
+  },
+  {
+   "id": "7c7cc23a",
+   "estilo": "lujo",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "Cardi B",
+   "ambito": "referente",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 39,
+    "con_imagen_rss": 2,
+    "medios_distintos": 30,
+    "solo_bing": 2,
+    "solo_google": 31,
+    "sin_enlace_real": 31,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "descargas_fallidas": 0,
+    "articulos_probados": 8,
+    "articulos_con_foto": 4,
+    "con_imagen_30d": 20,
+    "con_imagen_30d_estimada": true,
+    "muestra": 4,
+    "repetidas": 0,
+    "con_persona": 4,
+    "validacion": "prendas",
+    "con_ropa_visible": 4,
+    "sin_detectar": 0,
+    "tasa_util": 1.0,
+    "fotos_utiles_est": 20.0
+   },
+   "evidencia_texto": "~20 pub. con imagen/30 d · 4/4 con ropa visible",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [
+    "https://www.marca.com/en/lifestyle/celebrities/2026/10/12/cardi-b-celebrates-her-birthday-and-her-sexiest-looks-continue-to-turn-heads.html",
+    "https://jang.com.pk/en/74452-revisiting-cardi-bs-show-stopping-looks-from-the-little-miss-drama-tour-as-she-turns-34-news",
+    "https://www.yahoo.com/entertainment/celebrity/articles/cardi-b-looks-different-dramatic-223917626.html"
+   ],
+   "fuente": {
+    "referente": "Cardi B",
+    "estilo": "lujo",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"Cardi B\" outfit",
+    "consultas": [
+     "\"Cardi B\" outfit",
+     "\"Cardi B\" fashion"
+    ],
+    "nombre": "cardi b",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 14
+  },
+  {
+   "id": "45e18cbb",
+   "estilo": "lujo",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "DSQUARED2",
+   "ambito": "cuenta",
+   "origen": "biblioteca (asistente)",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 20,
+    "con_imagen_30d": 16,
+    "fotos_30d": 44,
+    "posts_en_el_lote": 20,
+    "tope_lote": true,
+    "ultima_foto_hace_dias": 1,
+    "seguidores": 68819,
+    "titulos_es": 0,
+    "titulos_en": 20,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 8,
+    "repetidas": 0,
+    "con_persona": 8,
+    "validacion": "prendas",
+    "con_ropa_visible": 8,
+    "sin_detectar": 0,
+    "tasa_util": 1.0,
+    "fotos_utiles_est": 16.0
+   },
+   "evidencia_texto": "16 pub. con imagen/30 d · 8/8 con ropa visible (mínimo)",
+   "http": 200,
+   "ejemplos": [
+    "https://x.com/Dsquared2/status/2109921661440889074",
+    "https://x.com/Dsquared2/status/2109250906596450531",
+    "https://x.com/Dsquared2/status/2108471106009280570"
+   ],
+   "fuente": {
+    "referente": "DSQUARED2",
+    "estilo": "lujo",
+    "mercado": "US",
+    "tipo": "x",
+    "valor": "DSQUARED2"
+   },
+   "numero": 15
+  },
+  {
+   "id": "34771617",
+   "estilo": "lujo",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "Balmain",
+   "ambito": "cuenta",
+   "origen": "biblioteca (asistente)",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 20,
+    "con_imagen_30d": 14,
+    "fotos_30d": 17,
+    "posts_en_el_lote": 20,
+    "tope_lote": true,
+    "ultima_foto_hace_dias": 1,
+    "seguidores": 560418,
+    "titulos_es": 0,
+    "titulos_en": 19,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 8,
+    "repetidas": 0,
+    "con_persona": 8,
+    "validacion": "prendas",
+    "con_ropa_visible": 8,
+    "sin_detectar": 0,
+    "tasa_util": 1.0,
+    "fotos_utiles_est": 14.0
+   },
+   "evidencia_texto": "14 pub. con imagen/30 d · 8/8 con ropa visible (mínimo)",
+   "http": 200,
+   "ejemplos": [
+    "https://x.com/Balmain/status/2109623750115172470",
+    "https://x.com/Balmain/status/2108226070692733309",
+    "https://x.com/Balmain/status/2107863724291977463"
+   ],
+   "fuente": {
+    "referente": "Balmain",
+    "estilo": "lujo",
+    "mercado": "US",
+    "tipo": "x",
+    "valor": "Balmain"
+   },
+   "numero": 16
+  },
+  {
+   "id": "07fb63e0",
+   "estilo": "lujo",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "DolceGabbana",
+   "ambito": "cuenta",
+   "origen": "biblioteca (asistente)",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 20,
+    "con_imagen_30d": 15,
+    "fotos_30d": 22,
+    "posts_en_el_lote": 20,
+    "tope_lote": true,
+    "ultima_foto_hace_dias": 0,
+    "seguidores": 4793116,
+    "titulos_es": 0,
+    "titulos_en": 20,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 8,
+    "repetidas": 0,
+    "con_persona": 7,
+    "validacion": "prendas",
+    "con_ropa_visible": 7,
+    "sin_detectar": 0,
+    "tasa_util": 0.88,
+    "fotos_utiles_est": 13.2
+   },
+   "evidencia_texto": "15 pub. con imagen/30 d · 7/8 con ropa visible (mínimo)",
+   "http": 200,
+   "ejemplos": [
+    "https://x.com/dolcegabbana/status/2109992551688163485",
+    "https://x.com/dolcegabbana/status/2108542998946484542",
+    "https://x.com/dolcegabbana/status/2107818225962545183"
+   ],
+   "fuente": {
+    "referente": "DolceGabbana",
+    "estilo": "lujo",
+    "mercado": "US",
+    "tipo": "x",
+    "valor": "DolceGabbana"
+   }
+  },
+  {
+   "id": "f92c08bc",
+   "estilo": "lujo",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "Dior",
+   "ambito": "cuenta",
+   "origen": "biblioteca (asistente)",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 20,
+    "con_imagen_30d": 16,
+    "fotos_30d": 43,
+    "posts_en_el_lote": 20,
+    "tope_lote": true,
+    "ultima_foto_hace_dias": 0,
+    "seguidores": 11062752,
+    "titulos_es": 0,
+    "titulos_en": 20,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 8,
+    "repetidas": 0,
+    "con_persona": 6,
+    "validacion": "prendas",
+    "con_ropa_visible": 5,
+    "sin_detectar": 0,
+    "tasa_util": 0.62,
+    "fotos_utiles_est": 9.9
+   },
+   "evidencia_texto": "16 pub. con imagen/30 d · 5/8 con ropa visible (mínimo)",
+   "http": 200,
+   "ejemplos": [
+    "https://x.com/Dior/status/2108475050886115334",
+    "https://x.com/Dior/status/2107863526027243869",
+    "https://x.com/Dior/status/2107430342453789112"
+   ],
+   "fuente": {
+    "referente": "Dior",
+    "estilo": "lujo",
+    "mercado": "US",
+    "tipo": "x",
+    "valor": "Dior"
+   }
+  },
+  {
+   "id": "95270a92",
+   "estilo": "lujo",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "gucci",
+   "ambito": "cuenta",
+   "origen": "biblioteca (asistente)",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 20,
+    "con_imagen_30d": 19,
+    "fotos_30d": 34,
+    "posts_en_el_lote": 20,
+    "tope_lote": true,
+    "ultima_foto_hace_dias": 0,
+    "seguidores": 9002008,
+    "titulos_es": 0,
+    "titulos_en": 18,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 8,
+    "repetidas": 0,
+    "con_persona": 8,
+    "validacion": "prendas",
+    "con_ropa_visible": 4,
+    "sin_detectar": 0,
+    "tasa_util": 0.5,
+    "fotos_utiles_est": 9.5
+   },
+   "evidencia_texto": "19 pub. con imagen/30 d · 4/8 con ropa visible (mínimo)",
+   "http": 200,
+   "ejemplos": [
+    "https://x.com/gucci/status/2108864556814704984",
+    "https://x.com/gucci/status/2108550584433537274",
+    "https://x.com/gucci/status/2108546378125443339"
+   ],
+   "fuente": {
+    "referente": "gucci",
+    "estilo": "lujo",
+    "mercado": "US",
+    "tipo": "x",
+    "valor": "gucci"
+   }
+  },
+  {
+   "id": "8161e9e7",
+   "estilo": "lujo",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "Versace",
+   "ambito": "cuenta",
+   "origen": "biblioteca (asistente)",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 20,
+    "con_imagen_30d": 19,
+    "fotos_30d": 25,
+    "posts_en_el_lote": 20,
+    "tope_lote": true,
+    "ultima_foto_hace_dias": 0,
+    "seguidores": 4887735,
+    "titulos_es": 0,
+    "titulos_en": 20,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 8,
+    "repetidas": 0,
+    "con_persona": 4,
+    "validacion": "prendas",
+    "con_ropa_visible": 4,
+    "sin_detectar": 0,
+    "tasa_util": 0.5,
+    "fotos_utiles_est": 9.5
+   },
+   "evidencia_texto": "19 pub. con imagen/30 d · 4/8 con ropa visible (mínimo)",
+   "http": 200,
+   "ejemplos": [
+    "https://x.com/Versace/status/2110037849017917562",
+    "https://x.com/Versace/status/2108090017495052341",
+    "https://x.com/Versace/status/2106413969829408800"
+   ],
+   "fuente": {
+    "referente": "Versace",
+    "estilo": "lujo",
+    "mercado": "US",
+    "tipo": "x",
+    "valor": "Versace"
+   }
+  },
+  {
+   "id": "d844030b",
+   "estilo": "lujo",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "Philipp Plein",
+   "ambito": "referente",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 7,
+    "con_imagen_rss": 0,
+    "medios_distintos": 6,
+    "solo_bing": 0,
+    "solo_google": 7,
+    "sin_enlace_real": 7,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "sin_muestra": true,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "7 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "Philipp Plein",
+    "estilo": "lujo",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"Philipp Plein\" style",
+    "consultas": [
+     "\"Philipp Plein\" style",
+     "\"Philipp Plein\" fashion"
+    ],
+    "nombre": "philipp plein",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "c8bdbcec",
+   "estilo": "lujo",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"logomania\" fashion trend",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "sin_datos",
+   "evidencia": {},
+   "evidencia_texto": "sin publicaciones en 30 días",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: \"logomania\" fashion trend",
+    "estilo": "lujo",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"logomania\" fashion trend",
+    "consultas": [
+     "\"logomania\" fashion trend"
+    ],
+    "nombre": "logomania",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "37e572dc",
+   "estilo": "lujo",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"loud luxury\" fashion",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "sin_datos",
+   "evidencia": {},
+   "evidencia_texto": "sin publicaciones en 30 días",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: \"loud luxury\" fashion",
+    "estilo": "lujo",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"loud luxury\" fashion",
+    "consultas": [
+     "\"loud luxury\" fashion"
+    ],
+    "nombre": "loud\\ luxury",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "62246074",
+   "estilo": "lujo",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"new money\" style",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "sin_datos",
+   "evidencia": {},
+   "evidencia_texto": "sin publicaciones en 30 días",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: \"new money\" style",
+    "estilo": "lujo",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"new money\" style",
+    "consultas": [
+     "\"new money\" style"
+    ],
+    "nombre": "new\\ money",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "c4a11627",
+   "estilo": "lujo",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "AC_DesignerFashion",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/AC_DesignerFashion",
+    "estilo": "lujo",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "AC_DesignerFashion"
+   }
+  },
+  {
+   "id": "b7734aeb",
+   "estilo": "lujo",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "handbags",
+   "ambito": "comunidad",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/handbags",
+    "estilo": "lujo",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "handbags"
+   }
+  },
+  {
+   "id": "1315e606",
+   "estilo": "lujo",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "IndianFashionAddicts",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/IndianFashionAddicts",
+    "estilo": "lujo",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "IndianFashionAddicts"
+   }
+  },
+  {
+   "id": "5d53f8c4",
+   "estilo": "lujo",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "LuxuryFashionAddict",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/LuxuryFashionAddict",
+    "estilo": "lujo",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "LuxuryFashionAddict"
+   }
+  },
+  {
+   "id": "e4f24764",
+   "estilo": "lujo",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "offwhite",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/offwhite",
+    "estilo": "lujo",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "offwhite"
+   }
+  },
   {
    "id": "e0600563",
    "estilo": "old_money",
@@ -38,38 +4123,38 @@
    "estado": "medido",
    "evidencia": {
     "publicaciones_30d": 127,
-    "con_imagen_rss": 18,
+    "con_imagen_rss": 17,
     "medios_distintos": 35,
     "solo_bing": 8,
-    "solo_google": 109,
-    "sin_enlace_real": 109,
+    "solo_google": 110,
+    "sin_enlace_real": 110,
     "motores_ok": [
      "bing",
      "google"
     ],
-    "descargas_fallidas": 1,
-    "articulos_probados": 6,
-    "articulos_con_foto": 4,
-    "con_imagen_30d": 85,
+    "descargas_fallidas": 2,
+    "articulos_probados": 10,
+    "articulos_con_foto": 8,
+    "con_imagen_30d": 102,
     "con_imagen_30d_estimada": true,
-    "muestra": 4,
+    "muestra": 8,
     "repetidas": 0,
-    "con_persona": 3,
+    "con_persona": 6,
     "validacion": "prendas",
-    "con_ropa_visible": 3,
+    "con_ropa_visible": 6,
     "sin_detectar": 0,
     "tasa_util": 0.75,
-    "fotos_utiles_est": 63.8
+    "fotos_utiles_est": 76.5
    },
-   "evidencia_texto": "~85 pub. con imagen/30 d · 3/4 con ropa visible",
+   "evidencia_texto": "~102 pub. con imagen/30 d · 6/8 con ropa visible",
    "http": {
     "google": 200,
     "bing": 200
    },
    "ejemplos": [
-    "https://www.diariodenavarra.es/noticias/magazine/sociedad/2026/10/12/reina-letizia-infanta-sofia-apuestan-dia-hispanidad-dos-estilismos-triunfaron-838500-106.html",
-    "https://www.20minutos.es/mujer/moda/reina-letizia-mejor-look-12-octubre-combinacion-colores-atrevida-rosa-burdeos_7047754_0.html",
-    "https://www.telecinco.es/famosos/20261012/infanta-sofia-dia-hispanidad-mudanza-paris-confidencias-letizia-gestos-leonor-look_18_020411627.html"
+    "https://www.libertaddigital.com/chic/casas-reales/2026-10-13/la-reina-letizia-apuesta-por-la-sobriedad-en-ceuta-con-una-chaqueta-de-tweed-camisa-blanca-y-pantalon-palazzo-7474764/",
+    "https://www.europapress.es/chance/moda/noticia-broche-diamantes-perlas-reina-letizia-utilizo-dia-hispanidad-elevar-vestido-20261013095459.html",
+    "https://theobjective.com/lifestyle/moda/2026-10-13/el-vestido-de-la-reina-letizia-que-volvio-a-ponerse-dos-anos-despues-el-diseno-azul-de-una-firma-espanola-que-no-pasa-de-moda/"
    ],
    "fuente": {
     "referente": "Reina Letizia",
@@ -247,39 +4332,29 @@
    "en_uso": false,
    "estado": "medido",
    "evidencia": {
-    "publicaciones_30d": 5,
-    "con_imagen_rss": 1,
-    "medios_distintos": 5,
-    "solo_bing": 2,
+    "publicaciones_30d": 3,
+    "con_imagen_rss": 0,
+    "medios_distintos": 3,
+    "solo_bing": 0,
     "solo_google": 3,
     "sin_enlace_real": 3,
     "motores_ok": [
      "bing",
      "google"
     ],
-    "descargas_fallidas": 0,
-    "articulos_probados": 2,
-    "articulos_con_foto": 1,
-    "con_imagen_30d": 2,
-    "con_imagen_30d_estimada": true,
-    "muestra": 1,
-    "repetidas": 0,
-    "con_persona": 0,
-    "validacion": "prendas",
-    "con_ropa_visible": 0,
-    "sin_detectar": 0,
-    "tasa_util": 0.0,
-    "fotos_utiles_est": 0.0
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "sin_muestra": true,
+    "muestra": 0,
+    "validacion": "ninguna"
    },
-   "evidencia_texto": "~2 pub. con imagen/30 d · 0/1 con ropa visible",
+   "evidencia_texto": "3 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
    "http": {
     "google": 200,
     "bing": 200
    },
-   "ejemplos": [
-    "https://fastcompany.mx/2026/10/10/quiet-luxury-lujo-silencioso-diseno-arquitectura/",
-    "https://www.msn.com/es-ar/estilo-de-vida/other/qué-viene-después-del-quiet-luxury-las-tendencias-que-marcan-la-moda-en-2026/ar-AA2clkuS"
-   ],
+   "ejemplos": [],
    "fuente": {
     "referente": "prensa: \"quiet luxury\" moda",
     "estilo": "old_money",
@@ -309,6 +4384,50 @@
      "red carpet",
      "estilismo"
     ]
+   }
+  },
+  {
+   "id": "d12a3589",
+   "estilo": "old_money",
+   "mercado": "ES",
+   "tipo": "reddit",
+   "valor": "DressLikeOldMoney",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/DressLikeOldMoney",
+    "estilo": "old_money",
+    "mercado": "ES",
+    "tipo": "reddit",
+    "valor": "DressLikeOldMoney"
+   }
+  },
+  {
+   "id": "356261f8",
+   "estilo": "old_money",
+   "mercado": "ES",
+   "tipo": "reddit",
+   "valor": "OldMoneyFashion",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/OldMoneyFashion",
+    "estilo": "old_money",
+    "mercado": "ES",
+    "tipo": "reddit",
+    "valor": "OldMoneyFashion"
    }
   },
   {
@@ -371,10 +4490,10 @@
    "en_uso": false,
    "estado": "medido",
    "evidencia": {
-    "publicaciones_30d": 23,
+    "publicaciones_30d": 22,
     "con_imagen_rss": 1,
-    "medios_distintos": 21,
-    "solo_bing": 4,
+    "medios_distintos": 20,
+    "solo_bing": 3,
     "solo_google": 15,
     "sin_enlace_real": 15,
     "motores_ok": [
@@ -382,20 +4501,20 @@
      "google"
     ],
     "descargas_fallidas": 0,
-    "articulos_probados": 4,
-    "articulos_con_foto": 4,
-    "con_imagen_30d": 23,
+    "articulos_probados": 7,
+    "articulos_con_foto": 6,
+    "con_imagen_30d": 19,
     "con_imagen_30d_estimada": true,
-    "muestra": 4,
+    "muestra": 6,
     "repetidas": 0,
-    "con_persona": 4,
+    "con_persona": 6,
     "validacion": "prendas",
-    "con_ropa_visible": 4,
+    "con_ropa_visible": 6,
     "sin_detectar": 0,
     "tasa_util": 1.0,
-    "fotos_utiles_est": 23.0
+    "fotos_utiles_est": 19.0
    },
-   "evidencia_texto": "~23 pub. con imagen/30 d · 4/4 con ropa visible",
+   "evidencia_texto": "~19 pub. con imagen/30 d · 6/6 con ropa visible",
    "http": {
     "google": 200,
     "bing": 200
@@ -439,6 +4558,53 @@
    "numero": 4
   },
   {
+   "id": "25d2f59f",
+   "estilo": "old_money",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "dieworkwear",
+   "ambito": "cuenta",
+   "origen": "cuentas_confiables",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 20,
+    "con_imagen_30d": 11,
+    "fotos_30d": 31,
+    "posts_en_el_lote": 20,
+    "tope_lote": true,
+    "ultima_foto_hace_dias": 0,
+    "seguidores": 1566714,
+    "titulos_es": 0,
+    "titulos_en": 20,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 8,
+    "repetidas": 0,
+    "con_persona": 3,
+    "validacion": "prendas",
+    "con_ropa_visible": 3,
+    "sin_detectar": 0,
+    "tasa_util": 0.38,
+    "fotos_utiles_est": 4.2
+   },
+   "evidencia_texto": "11 pub. con imagen/30 d · 3/8 con ropa visible (mínimo)",
+   "http": 200,
+   "ejemplos": [
+    "https://x.com/dieworkwear/status/2110063783481876528",
+    "https://x.com/dieworkwear/status/2109486106244940002",
+    "https://x.com/dieworkwear/status/2110126539526570303"
+   ],
+   "fuente": {
+    "referente": "dieworkwear",
+    "estilo": "old_money",
+    "mercado": "US",
+    "tipo": "x",
+    "valor": "dieworkwear"
+   },
+   "numero": 5
+  },
+  {
    "id": "4f13e446",
    "estilo": "old_money",
    "mercado": "US",
@@ -449,39 +4615,39 @@
    "en_uso": false,
    "estado": "medido",
    "evidencia": {
-    "publicaciones_30d": 24,
-    "con_imagen_rss": 2,
-    "medios_distintos": 14,
-    "solo_bing": 3,
+    "publicaciones_30d": 25,
+    "con_imagen_rss": 3,
+    "medios_distintos": 16,
+    "solo_bing": 4,
     "solo_google": 19,
     "sin_enlace_real": 19,
     "motores_ok": [
      "bing",
      "google"
     ],
-    "descargas_fallidas": 6,
-    "articulos_probados": 5,
+    "descargas_fallidas": 5,
+    "articulos_probados": 6,
     "articulos_con_foto": 2,
-    "con_imagen_30d": 10,
+    "con_imagen_30d": 8,
     "con_imagen_30d_estimada": true,
     "muestra": 2,
     "repetidas": 0,
-    "con_persona": 2,
+    "con_persona": 1,
     "validacion": "prendas",
-    "con_ropa_visible": 2,
+    "con_ropa_visible": 1,
     "sin_detectar": 0,
-    "tasa_util": 1.0,
-    "fotos_utiles_est": 10.0
+    "tasa_util": 0.5,
+    "fotos_utiles_est": 4.0
    },
-   "evidencia_texto": "~10 pub. con imagen/30 d · 2/2 con ropa visible",
+   "evidencia_texto": "~8 pub. con imagen/30 d · 1/2 con ropa visible",
    "http": {
     "google": 200,
     "bing": 200
    },
    "ejemplos": [
     "https://pagesix.com/2026/10/01/style/cara-delevingne-goes-shirtless-in-gwyneth-paltrow-style-velvet-suit-at-tom-ford-show/",
-    "https://www.dailymail.com/tvshowbiz/article-16138427/Gwyneth-Paltrow-gardening-hotpants-jumper-collection-GWYN-luxury-fashion-line.html",
-    "https://www.msn.com/en-us/news/other/apple-martin-reimagines-mom-gwyneth-paltrow-s-outfit-from-30-years-ago/ar-AA2dMOI4"
+    "https://www.hellomagazine.com/tags/gwyneth-paltrow/",
+    "https://people.com/gwyneth-paltrow-trousers-sweater-blueprint-september-2026-12067020"
    ],
    "fuente": {
     "referente": "Gwyneth Paltrow",
@@ -514,53 +4680,6 @@
      "estilismo"
     ]
    },
-   "numero": 5
-  },
-  {
-   "id": "25d2f59f",
-   "estilo": "old_money",
-   "mercado": "US",
-   "tipo": "x",
-   "valor": "dieworkwear",
-   "ambito": "cuenta",
-   "origen": "cuentas_confiables",
-   "en_uso": false,
-   "estado": "medido",
-   "evidencia": {
-    "publicaciones_30d": 21,
-    "con_imagen_30d": 12,
-    "fotos_30d": 35,
-    "posts_en_el_lote": 21,
-    "tope_lote": true,
-    "ultima_foto_hace_dias": 0,
-    "seguidores": 1566697,
-    "titulos_es": 0,
-    "titulos_en": 21,
-    "mercado_medido": "US",
-    "descargas_fallidas": 0,
-    "muestra": 4,
-    "repetidas": 0,
-    "con_persona": 1,
-    "validacion": "prendas",
-    "con_ropa_visible": 1,
-    "sin_detectar": 0,
-    "tasa_util": 0.25,
-    "fotos_utiles_est": 3.0
-   },
-   "evidencia_texto": "12 pub. con imagen/30 d · 1/4 con ropa visible (mínimo)",
-   "http": 200,
-   "ejemplos": [
-    "https://x.com/dieworkwear/status/2109486106244940002",
-    "https://x.com/dieworkwear/status/2110104869080309761",
-    "https://x.com/dieworkwear/status/2109684613492977696"
-   ],
-   "fuente": {
-    "referente": "dieworkwear",
-    "estilo": "old_money",
-    "mercado": "US",
-    "tipo": "x",
-    "valor": "dieworkwear"
-   },
    "numero": 6
   },
   {
@@ -574,31 +4693,29 @@
    "en_uso": false,
    "estado": "medido",
    "evidencia": {
-    "publicaciones_30d": 4,
-    "con_imagen_rss": 1,
-    "medios_distintos": 2,
-    "solo_bing": 1,
+    "publicaciones_30d": 3,
+    "con_imagen_rss": 0,
+    "medios_distintos": 1,
+    "solo_bing": 0,
     "solo_google": 3,
     "sin_enlace_real": 3,
     "motores_ok": [
      "bing",
      "google"
     ],
-    "articulos_probados": 1,
+    "articulos_probados": 0,
     "articulos_con_foto": 0,
-    "con_imagen_30d": 1,
+    "con_imagen_30d": 0,
     "sin_muestra": true,
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "4 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "3 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
    "http": {
     "google": 200,
     "bing": 200
    },
-   "ejemplos": [
-    "https://www.msn.com/en-us/lifestyle/other/get-the-old-money-aesthetic-on-a-budget-with-amazon/ar-AA2dV2hP"
-   ],
+   "ejemplos": [],
    "fuente": {
     "referente": "prensa: \"old money\" aesthetic outfit",
     "estilo": "old_money",
@@ -824,6 +4941,1189 @@
      "estilismo"
     ],
     "archivo": true
+   }
+  },
+  {
+   "id": "6750b124",
+   "estilo": "old_money",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "handbags",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/handbags",
+    "estilo": "old_money",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "handbags"
+   }
+  },
+  {
+   "id": "f1c2ca6a",
+   "estilo": "old_money",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "ivystyle",
+   "ambito": "comunidad",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/ivystyle",
+    "estilo": "old_money",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "ivystyle"
+   }
+  },
+  {
+   "id": "e09e2118",
+   "estilo": "old_money",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "LuxeSociety",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/LuxeSociety",
+    "estilo": "old_money",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "LuxeSociety"
+   }
+  },
+  {
+   "id": "74e5f79c",
+   "estilo": "old_money",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "OldMoney",
+   "ambito": "comunidad",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/OldMoney",
+    "estilo": "old_money",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "OldMoney"
+   }
+  },
+  {
+   "id": "65c5f3fa",
+   "estilo": "old_money",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "quietluxury",
+   "ambito": "comunidad",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/quietluxury",
+    "estilo": "old_money",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "quietluxury"
+   }
+  },
+  {
+   "id": "8037be66",
+   "estilo": "old_money",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "QuietLuxury_MensWear",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/QuietLuxury_MensWear",
+    "estilo": "old_money",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "QuietLuxury_MensWear"
+   }
+  },
+  {
+   "id": "5401b8ad",
+   "estilo": "old_money",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "TheOldStyle",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/TheOldStyle",
+    "estilo": "old_money",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "TheOldStyle"
+   }
+  },
+  {
+   "id": "2a832ec4",
+   "estilo": "urbano",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "streetwear España tendencia",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 8,
+    "con_imagen_rss": 1,
+    "medios_distintos": 7,
+    "solo_bing": 1,
+    "solo_google": 7,
+    "sin_enlace_real": 7,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "descargas_fallidas": 0,
+    "articulos_probados": 1,
+    "articulos_con_foto": 1,
+    "con_imagen_30d": 8,
+    "con_imagen_30d_estimada": true,
+    "muestra": 1,
+    "repetidas": 0,
+    "con_persona": 1,
+    "validacion": "prendas",
+    "con_ropa_visible": 1,
+    "sin_detectar": 0,
+    "tasa_util": 1.0,
+    "fotos_utiles_est": 8.0
+   },
+   "evidencia_texto": "~8 pub. con imagen/30 d · 1/1 con ropa visible",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [
+    "https://www.revistagq.com/articulo/acubi-tendencia-que-es-look-moda"
+   ],
+   "fuente": {
+    "referente": "prensa: streetwear España tendencia",
+    "estilo": "urbano",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "streetwear España tendencia",
+    "consultas": [
+     "streetwear España tendencia"
+    ],
+    "nombre": ".",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 29
+  },
+  {
+   "id": "ae7783f4",
+   "estilo": "urbano",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "Morad",
+   "ambito": "referente",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 11,
+    "con_imagen_rss": 0,
+    "medios_distintos": 11,
+    "solo_bing": 2,
+    "solo_google": 5,
+    "sin_enlace_real": 5,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "descargas_fallidas": 0,
+    "articulos_probados": 6,
+    "articulos_con_foto": 4,
+    "con_imagen_30d": 7,
+    "con_imagen_30d_estimada": true,
+    "muestra": 4,
+    "repetidas": 0,
+    "con_persona": 4,
+    "validacion": "prendas",
+    "con_ropa_visible": 4,
+    "sin_detectar": 0,
+    "tasa_util": 1.0,
+    "fotos_utiles_est": 7.0
+   },
+   "evidencia_texto": "~7 pub. con imagen/30 d · 4/4 con ropa visible",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [
+    "https://www.eldebate.com/espana/cataluna/20260922/rapero-morad-detenido-nuevo-acusado-agresion-policial_461282.html",
+    "https://www.telecinco.es/noticias/sucesos/20260922/rapero-morad-detenido-barcelona-agredir-policia_18_020230961.html",
+    "https://es.ara.cat/sociedad/sucesos/detienen-rapero-morad-barcelona-delito-atentado-autoridad_25_5856977.html"
+   ],
+   "fuente": {
+    "referente": "Morad",
+    "estilo": "urbano",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "\"Morad\" rapero",
+    "consultas": [
+     "\"Morad\" rapero",
+     "\"Morad\" rapero concierto"
+    ],
+    "nombre": "\\bmorad\\b",
+    "contexto": "musica",
+    "excluir": [
+     "morad stern"
+    ]
+   },
+   "numero": 30
+  },
+  {
+   "id": "bf7d7697",
+   "estilo": "urbano",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "Quevedo",
+   "ambito": "referente",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 7,
+    "con_imagen_rss": 2,
+    "medios_distintos": 7,
+    "solo_bing": 2,
+    "solo_google": 3,
+    "sin_enlace_real": 3,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "descargas_fallidas": 2,
+    "articulos_probados": 4,
+    "articulos_con_foto": 2,
+    "con_imagen_30d": 4,
+    "con_imagen_30d_estimada": true,
+    "muestra": 2,
+    "repetidas": 0,
+    "con_persona": 2,
+    "validacion": "prendas",
+    "con_ropa_visible": 1,
+    "sin_detectar": 0,
+    "tasa_util": 0.5,
+    "fotos_utiles_est": 2.0
+   },
+   "evidencia_texto": "~4 pub. con imagen/30 d · 1/2 con ropa visible",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [
+    "https://www.lecturas.com/actualidad/quevedo-cantante-no-tengo-recuerdos-cuando-vivia-brasil-pero-si-recuerdo-a-mi-padre-leyendo-periodico-y-comiendo-frutos-secos-sillon_199252",
+    "https://www.lavozdelanzarote.com/actualidad/mas-noticias/quevedo-disfruta-dias-vacaciones-en-lanzarote_246608_102.html",
+    "https://www.laprovincia.es/las-palmas/2026/10/09/quevedo-isleta-inesperada-visita-cantante-135176726.html"
+   ],
+   "fuente": {
+    "referente": "Quevedo",
+    "estilo": "urbano",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "\"Quevedo\" cantante",
+    "consultas": [
+     "\"Quevedo\" cantante",
+     "\"Quevedo\" cantante concierto",
+     "\"Quevedo\" look"
+    ],
+    "nombre": "\\bquevedo\\b",
+    "contexto": "musica",
+    "excluir": [
+     "euge quevedo",
+     "francisco de quevedo"
+    ]
+   },
+   "numero": 31
+  },
+  {
+   "id": "ffdf7331",
+   "estilo": "urbano",
+   "mercado": "ES",
+   "tipo": "x",
+   "valor": "shodamonkas",
+   "ambito": "cuenta",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 7,
+    "con_imagen_30d": 1,
+    "fotos_30d": 1,
+    "posts_en_el_lote": 19,
+    "tope_lote": false,
+    "ultima_foto_hace_dias": 22,
+    "seguidores": 7101,
+    "titulos_es": 5,
+    "titulos_en": 0,
+    "mercado_medido": "ES",
+    "descargas_fallidas": 0,
+    "muestra": 1,
+    "repetidas": 0,
+    "con_persona": 1,
+    "validacion": "prendas",
+    "con_ropa_visible": 1,
+    "sin_detectar": 0,
+    "tasa_util": 1.0,
+    "fotos_utiles_est": 1.0
+   },
+   "evidencia_texto": "1 pub. con imagen/30 d · 1/1 con ropa visible",
+   "http": 200,
+   "ejemplos": [
+    "https://x.com/shodamonkas/status/2102150295375507508"
+   ],
+   "fuente": {
+    "referente": "Shoda Monkas",
+    "estilo": "urbano",
+    "mercado": "ES",
+    "tipo": "x",
+    "valor": "shodamonkas"
+   }
+  },
+  {
+   "id": "c88942c4",
+   "estilo": "urbano",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "Beny Jr",
+   "ambito": "referente",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 1,
+    "con_imagen_rss": 1,
+    "medios_distintos": 1,
+    "solo_bing": 1,
+    "solo_google": 0,
+    "sin_enlace_real": 0,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "descargas_fallidas": 0,
+    "articulos_probados": 1,
+    "articulos_con_foto": 1,
+    "con_imagen_30d": 1,
+    "con_imagen_30d_estimada": true,
+    "muestra": 1,
+    "repetidas": 0,
+    "con_persona": 1,
+    "validacion": "prendas",
+    "con_ropa_visible": 0,
+    "sin_detectar": 0,
+    "tasa_util": 0.0,
+    "fotos_utiles_est": 0.0
+   },
+   "evidencia_texto": "~1 pub. con imagen/30 d · 0/1 con ropa visible",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [
+    "https://www.laganzua.net/conciertos/beny-jr-tercera-fecha-madrid-madrid-1017650"
+   ],
+   "fuente": {
+    "referente": "Beny Jr",
+    "estilo": "urbano",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "\"Beny Jr\" rapero",
+    "consultas": [
+     "\"Beny Jr\" rapero",
+     "\"Beny Jr\" concierto"
+    ],
+    "nombre": "\\bbeny jr\\b",
+    "contexto": "musica"
+   }
+  },
+  {
+   "id": "57db4f44",
+   "estilo": "urbano",
+   "mercado": "ES",
+   "tipo": "x",
+   "valor": "byCaLiTosYT",
+   "ambito": "cuenta",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 3,
+    "con_imagen_30d": 2,
+    "fotos_30d": 2,
+    "posts_en_el_lote": 16,
+    "tope_lote": false,
+    "ultima_foto_hace_dias": 9,
+    "seguidores": 90845,
+    "titulos_es": 3,
+    "titulos_en": 0,
+    "mercado_medido": "ES",
+    "descargas_fallidas": 0,
+    "muestra": 2,
+    "repetidas": 0,
+    "con_persona": 0,
+    "validacion": "prendas",
+    "con_ropa_visible": 0,
+    "sin_detectar": 0,
+    "tasa_util": 0.0,
+    "fotos_utiles_est": 0.0
+   },
+   "evidencia_texto": "2 pub. con imagen/30 d · 0/2 con ropa visible",
+   "http": 200,
+   "ejemplos": [
+    "https://x.com/byCaLiTosYT/status/2106808926721470601",
+    "https://x.com/byCaLiTosYT/status/2102111565373747435"
+   ],
+   "fuente": {
+    "referente": "bycalitos",
+    "estilo": "urbano",
+    "mercado": "ES",
+    "tipo": "x",
+    "valor": "byCaLiTosYT"
+   }
+  },
+  {
+   "id": "e2d66023",
+   "estilo": "urbano",
+   "mercado": "ES",
+   "tipo": "x",
+   "valor": "HokeBBO",
+   "ambito": "cuenta",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 0,
+    "con_imagen_30d": 0,
+    "fotos_30d": 0,
+    "posts_en_el_lote": 7,
+    "tope_lote": false,
+    "ultima_foto_hace_dias": 573,
+    "seguidores": 31647,
+    "titulos_es": 5,
+    "titulos_en": 1,
+    "mercado_medido": "ES",
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "0 pub. con imagen/30 d",
+   "http": 200,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "Hoke",
+    "estilo": "urbano",
+    "mercado": "ES",
+    "tipo": "x",
+    "valor": "HokeBBO"
+   }
+  },
+  {
+   "id": "3cd3f761",
+   "estilo": "urbano",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "Israel B",
+   "ambito": "referente",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 1,
+    "con_imagen_rss": 0,
+    "medios_distintos": 1,
+    "solo_bing": 0,
+    "solo_google": 1,
+    "sin_enlace_real": 1,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "sin_muestra": true,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "1 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "Israel B",
+    "estilo": "urbano",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "\"Israel B\" rapero",
+    "consultas": [
+     "\"Israel B\" rapero",
+     "\"Israel B\" concierto"
+    ],
+    "nombre": "\\bisrael b\\b",
+    "contexto": "musica"
+   }
+  },
+  {
+   "id": "a912a116",
+   "estilo": "urbano",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "Cruz Cafuné",
+   "ambito": "referente",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "sin_datos",
+   "evidencia": {},
+   "evidencia_texto": "sin publicaciones en 30 días",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "Cruz Cafuné",
+    "estilo": "urbano",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "\"Cruz Cafuné\"",
+    "consultas": [
+     "\"Cruz Cafuné\""
+    ],
+    "nombre": "cruz cafune",
+    "contexto": "musica"
+   }
+  },
+  {
+   "id": "4b999fc9",
+   "estilo": "urbano",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "Hoke",
+   "ambito": "referente",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "sin_datos",
+   "evidencia": {},
+   "evidencia_texto": "sin publicaciones en 30 días",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "Hoke",
+    "estilo": "urbano",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "\"Hoke\" rapero",
+    "consultas": [
+     "\"Hoke\" rapero",
+     "\"Hoke\" \"Tres Creus\""
+    ],
+    "nombre": "\\bhoke\\b",
+    "contexto": "musica",
+    "contexto_extra": [
+     "tres creus",
+     "valencia"
+    ]
+   }
+  },
+  {
+   "id": "8167a788",
+   "estilo": "urbano",
+   "mercado": "ES",
+   "tipo": "noticias",
+   "valor": "moda trap rap estilo",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "sin_datos",
+   "evidencia": {},
+   "evidencia_texto": "sin publicaciones en 30 días",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: moda trap rap estilo",
+    "estilo": "urbano",
+    "mercado": "ES",
+    "tipo": "noticias",
+    "valor": "moda trap rap estilo",
+    "consultas": [
+     "moda trap rap estilo"
+    ],
+    "nombre": ".",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   }
+  },
+  {
+   "id": "3f7e083c",
+   "estilo": "urbano",
+   "mercado": "ES",
+   "tipo": "reddit",
+   "valor": "phonk",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/phonk",
+    "estilo": "urbano",
+    "mercado": "ES",
+    "tipo": "reddit",
+    "valor": "phonk"
+   }
+  },
+  {
+   "id": "f29b0d54",
+   "estilo": "urbano",
+   "mercado": "ES",
+   "tipo": "reddit",
+   "valor": "TrapAndRapIta",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/TrapAndRapIta",
+    "estilo": "urbano",
+    "mercado": "ES",
+    "tipo": "reddit",
+    "valor": "TrapAndRapIta"
+   }
+  },
+  {
+   "id": "09030e69",
+   "estilo": "urbano",
+   "mercado": "ES",
+   "tipo": "reddit",
+   "valor": "trapmuzik",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/trapmuzik",
+    "estilo": "urbano",
+    "mercado": "ES",
+    "tipo": "reddit",
+    "valor": "trapmuzik"
+   }
+  },
+  {
+   "id": "5542ce1f",
+   "estilo": "urbano",
+   "mercado": "ES",
+   "tipo": "reddit",
+   "valor": "ukdrill",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/ukdrill",
+    "estilo": "urbano",
+    "mercado": "ES",
+    "tipo": "reddit",
+    "valor": "ukdrill"
+   }
+  },
+  {
+   "id": "3537ded4",
+   "estilo": "urbano",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "Playboi Carti",
+   "ambito": "referente",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 11,
+    "con_imagen_rss": 2,
+    "medios_distintos": 8,
+    "solo_bing": 1,
+    "solo_google": 8,
+    "sin_enlace_real": 8,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "descargas_fallidas": 7,
+    "articulos_probados": 3,
+    "articulos_con_foto": 2,
+    "con_imagen_30d": 7,
+    "con_imagen_30d_estimada": true,
+    "muestra": 2,
+    "repetidas": 0,
+    "con_persona": 2,
+    "validacion": "prendas",
+    "con_ropa_visible": 1,
+    "sin_detectar": 0,
+    "tasa_util": 0.5,
+    "fotos_utiles_est": 3.5
+   },
+   "evidencia_texto": "~7 pub. con imagen/30 d · 1/2 con ropa visible",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [
+    "https://www.complex.com/style/a/backwoodsaltar/ye-playboi-carti-complexcon-fit-check-watch",
+    "https://wwd.com/footwear-news/shoe-industry-news/playboi-carti-giuseppe-zanotti-sneaker-boot-release-date-1239306918/",
+    "https://sports.ndtv.com/us/us-streamers/playboi-carti-surprises-rampage-jackson-in-full-black-outfit-at-complexcon-2026-12139857"
+   ],
+   "fuente": {
+    "referente": "Playboi Carti",
+    "estilo": "urbano",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"Playboi Carti\" outfit",
+    "consultas": [
+     "\"Playboi Carti\" outfit",
+     "\"Playboi Carti\" style"
+    ],
+    "nombre": "playboi carti",
+    "contexto": "music_en"
+   },
+   "numero": 32
+  },
+  {
+   "id": "e98b413f",
+   "estilo": "urbano",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "A$AP Rocky",
+   "ambito": "referente",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 18,
+    "con_imagen_rss": 1,
+    "medios_distintos": 17,
+    "solo_bing": 1,
+    "solo_google": 17,
+    "sin_enlace_real": 17,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 1,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 1,
+    "sin_muestra": true,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "18 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [
+    "https://www.msn.com/en-us/news/other/rihanna-teases-unreleased-amina-muaddi-style-at-a-ap-rockys-awge-show/ar-AA2dmhsE"
+   ],
+   "fuente": {
+    "referente": "A$AP Rocky",
+    "estilo": "urbano",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"ASAP Rocky\" outfit",
+    "consultas": [
+     "\"ASAP Rocky\" outfit",
+     "\"A$AP Rocky\" style"
+    ],
+    "nombre": "a\\$?ap rocky",
+    "contexto": "music_en"
+   },
+   "numero": 33
+  },
+  {
+   "id": "67131fa9",
+   "estilo": "urbano",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"streetwear\" fashion trend",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 4,
+    "con_imagen_rss": 0,
+    "medios_distintos": 3,
+    "solo_bing": 0,
+    "solo_google": 4,
+    "sin_enlace_real": 4,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "sin_muestra": true,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "4 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: \"streetwear\" fashion trend",
+    "estilo": "urbano",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"streetwear\" fashion trend",
+    "consultas": [
+     "\"streetwear\" fashion trend"
+    ],
+    "nombre": "streetwear",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 34
+  },
+  {
+   "id": "f3714c12",
+   "estilo": "urbano",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "Kid Cudi",
+   "ambito": "referente",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 1,
+    "con_imagen_rss": 0,
+    "medios_distintos": 1,
+    "solo_bing": 0,
+    "solo_google": 1,
+    "sin_enlace_real": 1,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "sin_muestra": true,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "1 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "Kid Cudi",
+    "estilo": "urbano",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"Kid Cudi\" outfit",
+    "consultas": [
+     "\"Kid Cudi\" outfit",
+     "\"Kid Cudi\" style"
+    ],
+    "nombre": "kid cudi",
+    "contexto": "music_en"
+   }
+  },
+  {
+   "id": "09211caa",
+   "estilo": "urbano",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "kidcudi",
+   "ambito": "cuenta",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 10,
+    "con_imagen_30d": 0,
+    "fotos_30d": 0,
+    "posts_en_el_lote": 10,
+    "tope_lote": true,
+    "ultima_foto_hace_dias": null,
+    "seguidores": 2393256,
+    "titulos_es": 0,
+    "titulos_en": 6,
+    "mercado_medido": "US",
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "0 pub. con imagen/30 d (mínimo)",
+   "http": 200,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "Kid Cudi",
+    "estilo": "urbano",
+    "mercado": "US",
+    "tipo": "x",
+    "valor": "kidcudi"
+   }
+  },
+  {
+   "id": "a58fa63d",
+   "estilo": "urbano",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "Travis Scott",
+   "ambito": "referente",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 2,
+    "con_imagen_rss": 0,
+    "medios_distintos": 2,
+    "solo_bing": 0,
+    "solo_google": 2,
+    "sin_enlace_real": 2,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "sin_muestra": true,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "2 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "Travis Scott",
+    "estilo": "urbano",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"Travis Scott\" outfit",
+    "consultas": [
+     "\"Travis Scott\" outfit",
+     "\"Travis Scott\" style"
+    ],
+    "nombre": "travis scott",
+    "contexto": "music_en"
+   }
+  },
+  {
+   "id": "3870dc39",
+   "estilo": "urbano",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "trvisXX",
+   "ambito": "cuenta",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 2,
+    "con_imagen_30d": 1,
+    "fotos_30d": 1,
+    "posts_en_el_lote": 20,
+    "tope_lote": false,
+    "ultima_foto_hace_dias": 28,
+    "seguidores": 12730925,
+    "titulos_es": 0,
+    "titulos_en": 1,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 1,
+    "repetidas": 0,
+    "con_persona": 0,
+    "validacion": "prendas",
+    "con_ropa_visible": 0,
+    "sin_detectar": 0,
+    "tasa_util": 0.0,
+    "fotos_utiles_est": 0.0
+   },
+   "evidencia_texto": "1 pub. con imagen/30 d · 0/1 con ropa visible",
+   "http": 200,
+   "ejemplos": [
+    "https://x.com/trvisXX/status/2099905804165890411"
+   ],
+   "fuente": {
+    "referente": "Travis Scott",
+    "estilo": "urbano",
+    "mercado": "US",
+    "tipo": "x",
+    "valor": "trvisXX"
+   }
+  },
+  {
+   "id": "9e79d04d",
+   "estilo": "urbano",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "playboicarti",
+   "ambito": "cuenta",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "sin_datos",
+   "evidencia": {},
+   "evidencia_texto": "sin publicaciones en 30 días (HTTP 200)",
+   "http": 200,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "Playboi Carti",
+    "estilo": "urbano",
+    "mercado": "US",
+    "tipo": "x",
+    "valor": "playboicarti"
+   }
+  },
+  {
+   "id": "599300a6",
+   "estilo": "urbano",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "streetwear",
+   "ambito": "comunidad",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "omitido",
+   "evidencia": {},
+   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
+   "http": -1,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/streetwear",
+    "estilo": "urbano",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "streetwear"
    }
   }
  ]
