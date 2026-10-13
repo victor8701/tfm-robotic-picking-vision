@@ -67,6 +67,7 @@ CTX_MODA = ["moda", "look", "estilo", "outfit", "tendencia", "fashion", "style",
 GENERICAS = {"all", "popular", "pics", "funny", "memes", "askreddit", "aww", "videos", "gaming", "worldnews", "todayilearned", "mildlyinteresting", "interestingasfuck", "movies", "music"}
 ORIGEN_PRIORIDAD = {"en_uso": 0, "biblioteca": 1, "cuentas_confiables": 2, "propuesta": 3, "descubierto": 4}
 SERVICIO = {"reddit": "reddit", "x": "fxtwitter", "noticias": "bing"}
+LIMITE_REDDIT = [None]   # instante (time.time()) a partir del cual no se le pide nada más a Reddit: con sus límites, cada petición puede costar minutos
 AHORA = datetime.now(timezone.utc)
 norm = tp.norm
 
@@ -109,6 +110,9 @@ def pedir(srv: str, url: str, pausa: float | None = None, aceptar: str = "*/*"):
     Ante un 429 espera lo que pida el servicio (máx. 90 s) y reintenta una vez."""
     if RED.cerrado(srv):
         return None, None
+    if srv == "reddit" and LIMITE_REDDIT[0] and time.time() > LIMITE_REDDIT[0]:
+        RED.cuenta[srv]["omitido"] += 1
+        return -1, None
     codigo, retry = 0, None
     for intento in (0, 1):
         time.sleep(PAUSA_WEB if pausa is None else pausa)
@@ -200,21 +204,29 @@ def parsear_atom(xml: str) -> list[dict]:
     return out
 
 
+RE_NOMBRE_EXCLUIDO = re.compile(r"reps?$|replica|fakes?|nsfw", re.I)   # venta de falsificaciones y contenido para adultos: no se proponen
+RE_NOMBRE_MODA = re.compile(r"fashion|style|outfit|wear|cloth|moda|ropa|look|dress|money|luxury|prep|ivy|boho|bohemian|hippie|trad|gucci|vuitton|designer|handbag|normcore|aesthetic|vintage", re.I)
+
+
 def sub_valida(nombre: str | None) -> bool:
-    return bool(nombre) and re.fullmatch(r"[A-Za-z0-9_]{2,21}", nombre) is not None and not nombre.lower().startswith("u_") and nombre.lower() not in GENERICAS
+    return (bool(nombre) and re.fullmatch(r"[A-Za-z0-9_]{2,21}", nombre) is not None and not nombre.lower().startswith("u_") and nombre.lower() not in GENERICAS
+            and not RE_NOMBRE_EXCLUIDO.search(nombre))
 
 
 def descubrir_subs(consultas: list[str]) -> collections.Counter:
-    """Puntos por comunidad: +3 si sale entre las 5 primeras de la búsqueda de comunidades, +1 por cada publicación con imagen que sale en la búsqueda de publicaciones del mes."""
+    """Puntos por comunidad: +3 si sale entre las 5 primeras de la búsqueda de comunidades; +1 por cada publicación con imagen que sale en la búsqueda de publicaciones del mes,
+    pero solo si el NOMBRE de la comunidad habla de moda o de lo buscado (sin esto entraban comunidades de astrología y de comida que solo comparten el texto de la búsqueda)."""
     puntos = collections.Counter()
     for q in consultas:
+        palabras = [w for w in re.findall(r"[A-Za-zÁÉÍÓÚáéíóúñ]{5,}", q) if norm(w) not in {"estilo"}]
+        rx_nombre = re.compile(RE_NOMBRE_MODA.pattern + ("|" + "|".join(re.escape(norm(w)) for w in palabras) if palabras else ""), re.I)
         _, xml = pedir("reddit", f"{BASE['reddit']}/subreddits/search.rss?" + urllib.parse.urlencode({"q": q, "limit": 15}), PAUSA_REDDIT, "application/atom+xml")
         for e in (parsear_atom(xml) if xml else [])[:5]:
             if sub_valida(e["sub"]):
                 puntos[e["sub"]] += 3
         _, xml = pedir("reddit", f"{BASE['reddit']}/search.rss?" + urllib.parse.urlencode({"q": q, "sort": "top", "t": "month", "limit": 100}), PAUSA_REDDIT, "application/atom+xml")
         for e in (parsear_atom(xml) if xml else []):
-            if e["imagen"] and sub_valida(e["sub"]):
+            if e["imagen"] and sub_valida(e["sub"]) and rx_nombre.search(e["sub"]):
                 puntos[e["sub"]] += 1
     return puntos
 
@@ -230,6 +242,8 @@ def nueva_medida(tipo: str, valor: str, **extra) -> dict:
 def estado_por_http(codigo, texto) -> str:
     if texto is not None:
         return "medido"
+    if codigo == -1:
+        return "omitido"   # se acabó el tiempo asignado a ese servicio
     return "bloqueado" if codigo in (None, 0) else "no_disponible"   # 404 o 403 de una dirección concreta; el bloqueo de todo el servicio se decide al final
 
 
@@ -269,6 +283,8 @@ def medir_reddit(sub: str, n: int) -> str:
     es, en = idiomas["es"], idiomas["en"]
     mercado = "ES" if es > 0 and es >= 0.6 * (es + en) else ("US" if en > 0 and en >= 0.6 * (es + en) else None)
     med["estado"] = "medido" if entradas else "sin_datos"
+    if not entradas:
+        print(f"    r/{sub}: respuesta 200 sin entradas ({len(xml)} bytes; empieza por {xml[:90]!r})", flush=True)
     med["datos"] = {"publicaciones_30d": len(dentro), "con_imagen_30d": len(con_img), "tope_100": len(entradas) >= 100, "titulos_es": es, "titulos_en": en, "mercado_medido": mercado}
     med["enlaces"] = [e["enlace"] for e in repartida(con_img, 3)]
     if con_img:
@@ -404,11 +420,12 @@ def medir_noticias(d: dict, n: int) -> str:
         time.sleep(PAUSA_WEB)
     con_foto = len(med["fotos"])
     med["datos"].update({"articulos_probados": probados, "articulos_con_foto": con_foto})
-    if probados:   # estimación: el RSS no dice cuántos artículos traen una foto utilizable; se extrapola de los que se probaron
+    if con_foto:   # estimación: el RSS no dice cuántos artículos traen una foto utilizable; se extrapola de los que se probaron
         med["datos"]["con_imagen_30d"] = round(len(noticias) * con_foto / probados)
         med["datos"]["con_imagen_30d_estimada"] = True
-    else:
-        med["datos"]["con_imagen_30d"] = 0
+    else:   # ningún artículo se pudo abrir (o no hay enlaces reales: los de Google nuevos no se resuelven): solo se sabe lo que dice el RSS de Bing, como mínimo
+        med["datos"]["con_imagen_30d"] = med["datos"]["con_imagen_rss"]
+        med["datos"]["sin_muestra"] = True
     return clave
 
 
@@ -634,9 +651,13 @@ def ejemplos_de(med: dict) -> list[str]:
     return out[:3]
 
 
-def texto_evidencia(ev: dict, estado: str) -> str:
+def texto_evidencia(ev: dict, estado: str, http=None) -> str:
     if estado != "medido":
-        return {"bloqueado": "sin medir: el servicio no contesta desde aquí", "no_disponible": "no disponible (404/403: no existe o es privada)", "sin_datos": "sin publicaciones en 30 días", "error": "error al leer"}.get(estado, estado)
+        motivo = f" (HTTP {http})" if isinstance(http, int) and http > 0 else ""
+        return {"bloqueado": "sin medir: el servicio no contesta desde aquí", "no_disponible": f"no disponible{motivo}: no existe, es privada o limita", "sin_datos": f"sin publicaciones en 30 días{motivo}",
+                "omitido": "omitido: se acabó el tiempo asignado a Reddit", "error": "error al leer"}.get(estado, estado)
+    if ev.get("sin_muestra"):
+        return f"{ev.get('publicaciones_30d', 0)} noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)"
     est = "~" if ev.get("con_imagen_30d_estimada") else ""
     t = f"{est}{ev.get('con_imagen_30d', 0)} pub. con imagen/30 d"
     if "con_ropa_visible" in ev:
@@ -666,10 +687,11 @@ def fase_reddit(cands: list[dict], sem: dict, args) -> None:
                 continue
             puntos = descubrir_subs(qs)
             ya = {c["valor"].lower() for c in cands if c["tipo"] == "reddit" and c["estilo"] == estilo}
-            elegidas = [(s, p) for s, p in puntos.most_common() if p >= 2 and s.lower() not in ya][:args.max_subs]
+            elegidas = [(s, p) for s, p in puntos.most_common() if p >= 3 and s.lower() not in ya][:args.max_subs]
             print(f"  Reddit · {estilo} {mercado}: {len(puntos)} comunidades vistas, {len(elegidas)} candidatas nuevas", flush=True)
             cands += [{"estilo": estilo, "mercado": mercado, "tipo": "reddit", "valor": s, "ambito": "comunidad", "origen": "descubierto", "fuente": None, "puntos_busqueda": p} for s, p in elegidas]
-    todas = sorted({c["valor"] for c in cands if c["tipo"] == "reddit"}, key=str.lower)
+    orden = sorted((c for c in cands if c["tipo"] == "reddit"), key=lambda c: (ORIGEN_PRIORIDAD.get(c["origen"].split(" ")[0], 9), c["valor"].lower()))   # lo conocido y propuesto primero: si se acaba el tiempo, se pierde lo descubierto
+    todas = list(dict.fromkeys(c["valor"] for c in orden))
     for k, sub in enumerate(todas, 1):
         clave = medir_reddit(sub, args.muestra)
         for c in cands:
@@ -707,7 +729,7 @@ def cerrar_candidato(c: dict, modo: str) -> dict:
     fuente = dict(c["fuente"]) if c.get("fuente") else {"referente": ("r/" + c["valor"]) if c["tipo"] == "reddit" else c["valor"], "estilo": c["estilo"], "mercado": mercado, "tipo": c["tipo"], "valor": c["valor"]}
     fuente["mercado"] = mercado
     return {"id": hashlib.sha1(f"{c['estilo']}|{mercado}|{c['tipo']}|{c['valor']}".encode()).hexdigest()[:8], "estilo": c["estilo"], "mercado": mercado, "tipo": c["tipo"], "valor": c["valor"], "ambito": c["ambito"],
-            "origen": c["origen"], "en_uso": c["origen"] == "en_uso", "estado": estado, "evidencia": ev, "evidencia_texto": texto_evidencia(ev, estado), "ejemplos": ejemplos_de(med) if estado == "medido" else [], "fuente": fuente}
+            "origen": c["origen"], "en_uso": c["origen"] == "en_uso", "estado": estado, "evidencia": ev, "evidencia_texto": texto_evidencia(ev, estado, med["http"]), "http": med["http"], "ejemplos": ejemplos_de(med) if estado == "medido" else [], "fuente": fuente}
 
 
 def clave_orden(c: dict):
@@ -756,7 +778,8 @@ def cmd_medir(args) -> int:
     print(f"{len(cands)} candidatos de partida (reddit {por_tipo['reddit']}, noticias {por_tipo['noticias']}, x {por_tipo['x']}); muestra ≤ {args.muestra}, validación «{args.validar}»", flush=True)
     try:
         if "reddit" in args.fuentes:
-            print("Reddit:", flush=True)
+            print(f"Reddit (tope de {args.tiempo_reddit} min):", flush=True)
+            LIMITE_REDDIT[0] = time.time() + 60 * args.tiempo_reddit
             fase_reddit(cands, sem, args)
         if "noticias" in args.fuentes:
             print("Prensa (Bing y Google Noticias):", flush=True)
@@ -801,6 +824,7 @@ def main(argv=None) -> int:
     ap.add_argument("--validar", choices=["puerta", "prendas", "nada"], default="puerta")
     ap.add_argument("--muestra", type=int, default=MUESTRA)
     ap.add_argument("--max-subs", type=int, default=4, help="comunidades nuevas que se miden por estilo × mercado")
+    ap.add_argument("--tiempo-reddit", type=float, default=45, help="minutos máximos para todo Reddit (sus límites de peticiones pueden costar minutos por petición); lo que no llega queda «omitido»")
     ap.add_argument("--max-detector", type=int, default=400, help="tope de fotos para el detector de prendas (≈ 10-20 s cada una en CPU)")
     ap.add_argument("--salida", default=str(SALIDA_DIR / "candidatos_referentes.json"))
     args = ap.parse_args(argv)

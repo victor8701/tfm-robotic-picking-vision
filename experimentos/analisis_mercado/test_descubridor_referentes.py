@@ -83,9 +83,9 @@ class Servidor(BaseHTTPRequestHandler):
                 VISTAS["429"] += 1
                 return self.responder("slow", codigo=429, cabeceras=[("Retry-After", "0")])
             if ruta.startswith("/subreddits"):
-                return self.responder(atom([f'<entry><title>r/{s}</title><link href="https://www.reddit.com/r/{s}/"/><id>t5_{s}</id></entry>' for s in ("ivystyle", "pics", "OldMoney")]))
+                return self.responder(atom([f'<entry><title>r/{s}</title><link href="https://www.reddit.com/r/{s}/"/><id>t5_{s}</id></entry>' for s in ("ivystyle", "pics", "OldMoney", "newmoneyreps")]))   # «pics» es genérica y «…reps» vende réplicas: no deben salir
             if ruta.startswith("/search.rss"):
-                return self.responder(atom([entrada("ivystyle", k, True) for k in range(5)] + [entrada("OldMoney", 40, True)]))
+                return self.responder(atom([entrada("ivystyle", k, True) for k in range(5)] + [entrada("OldMoney", 40, True)] + [entrada("astrologyexplore", k, True) for k in range(60, 66)]))   # astrología: ruido
             sub = ruta.split("/")[2]
             if sub == "quietluxury":
                 return self.responder("no existe", codigo=404)
@@ -93,6 +93,12 @@ class Servidor(BaseHTTPRequestHandler):
             if sub == "ivystyle":
                 return self.responder(atom([entrada(sub, k, True) for k in range(1, 6)] + [entrada(sub, 9, True, dias=40), entrada(sub, 10, False)]))
             return self.responder(atom([entrada(sub, 21, True), entrada(sub, 22, True, img="p21b")]))   # la segunda es la misma imagen que la primera
+        if ruta == "/news/search" and "solo-google" in q:
+            return self.responder(rss([]))
+        if ruta == "/rss/search" and "solo-google" in q:
+            nuevo = base64.urlsafe_b64encode(b"AU_yqLsinurl" * 5).decode().rstrip("=")
+            return self.responder(rss([f"<item><title>Solo google {k} moda - Medio</title><link>https://news.google.com/rss/articles/{nuevo}{k}?oc=5</link><pubDate>{format_datetime(AHORA - timedelta(days=k))}</pubDate>"
+                                       f'<description>moda</description><source url="https://medio.test">Medio</source></item>' for k in (1, 2)]))
         if ruta == "/news/search":
             hace = lambda dias: format_datetime(AHORA - timedelta(days=dias))   # noqa: E731
             items = [f'<item><title>Old money style {k} moda</title><link>http://www.bing.com/news/apiclick.aspx?url=http%3a%2f%2f127.0.0.1%3a{PUERTO}%2fart%2f{k}&amp;aid=x</link>'
@@ -158,6 +164,7 @@ class Pruebas(unittest.TestCase):
     def setUp(self):
         d.MEDIDAS.clear()
         d.RED.__init__()
+        d.LIMITE_REDDIT[0] = None
         MODO.update({"reddit": "ok", "x": "ok"})
         VISTAS["429"] = 0
 
@@ -205,6 +212,8 @@ class Pruebas(unittest.TestCase):
         self.assertEqual(por[("reddit", "quietluxury")]["estado"], "no_disponible")
         self.assertEqual(por[("reddit", "OldMoney")]["origen"], "propuesta", "semilla y descubierta a la vez: gana la semilla")
         self.assertNotIn(("reddit", "pics"), por, "las comunidades genéricas no se proponen")
+        self.assertNotIn(("reddit", "newmoneyreps"), por, "ni las de réplicas")
+        self.assertNotIn(("reddit", "astrologyexplore"), por, "el ruido que solo aparece en la búsqueda de publicaciones y no habla de moda tampoco")
         x = por[("x", "dieworkwear")]
         self.assertEqual((x["estado"], x["evidencia"]["con_imagen_30d"], x["evidencia"]["fotos_30d"]), ("medido", 3, 3), "3 posts con foto en 30 días; el repost no cuenta")
         self.assertTrue(x["evidencia"]["tope_lote"], "el lote llega solo a 20 días atrás: la cifra es un mínimo")
@@ -256,6 +265,23 @@ class Pruebas(unittest.TestCase):
         self.assertTrue(datos["red"]["fxtwitter"]["bloqueado"])
         x = {c["valor"]: c for c in datos["candidatos"] if c["tipo"] == "x"}
         self.assertTrue(x and all(c["estado"] == "bloqueado" for c in x.values()))
+
+    def test_tope_de_tiempo_de_reddit_deja_omitido_lo_que_no_llega(self):
+        datos, _ = self.medir("--validar", "nada", "--fuentes", "reddit,x", "--tiempo-reddit", "0")
+        reddit = [c for c in datos["candidatos"] if c["tipo"] == "reddit"]
+        self.assertTrue(reddit and all(c["estado"] == "omitido" for c in reddit), [c["estado"] for c in reddit])
+        self.assertGreater(datos["red"]["reddit"]["respuestas"]["omitido"], 0)
+        self.assertIsNone(datos["red"]["reddit"]["bloqueado"])
+        self.assertTrue(any(c["tipo"] == "x" and c["estado"] == "medido" for c in datos["candidatos"]), "lo demás sigue")
+
+    def test_prensa_sin_enlaces_reales_dice_sin_comprobar_y_no_cero(self):
+        med = d.MEDIDAS[d.medir_noticias(d.definicion_prensa("US", ["solo-google moda"], None), 4)]
+        self.assertEqual(med["estado"], "medido")
+        self.assertEqual(med["datos"]["publicaciones_30d"], 2)
+        self.assertEqual(med["datos"]["sin_enlace_real"], 2)
+        self.assertTrue(med["datos"]["sin_muestra"])
+        self.assertEqual(med["fotos"], [])
+        self.assertIn("foto sin comprobar", d.texto_evidencia(d.evidencia_de(med, "puerta"), "medido", med["http"]))
 
     def test_sin_clip_solo_cuenta_publicaciones(self):
         antes = d.puntuar_puerta
