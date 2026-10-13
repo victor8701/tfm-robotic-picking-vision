@@ -1,0 +1,87 @@
+name: Descubridor de referentes
+
+# Mide fuentes candidatas (Reddit, prensa, cuentas de X) para los estilos sin referentes: experimentos/analisis_mercado/descubridor_referentes.py (ver su README).
+# Este fichero vive en la rama descubridor-referentes, NO en main: no se programa solo. Se lanza al subir un cambio a experimentos/analisis_mercado/lanzar_descubridor.txt
+# (la primera línea que no empieza por # son los argumentos) o, si algún día se copia a main, con «Run workflow».
+# Resultado: tendencia_datos/candidatos_referentes.json y _resumen.md, que la propia tarea guarda en esta rama, y el resumen en la página de la ejecución.
+# Privacidad: las fotos de la muestra se bajan al ejecutor de GitHub, se miran allí y se borran al terminar; no se suben a ningún otro servicio. No usa secretos.
+
+on:
+  workflow_dispatch:
+    inputs:
+      validar:
+        description: 'Validación de la muestra'
+        type: choice
+        options: [puerta, prendas, nada]
+        default: puerta
+  push:
+    branches: [descubridor-referentes]
+    paths: ['experimentos/analisis_mercado/lanzar_descubridor.txt']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: descubridor-referentes
+  cancel-in-progress: false
+
+jobs:
+  medir:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    env:
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: pip
+          cache-dependency-path: experimentos/analisis_mercado/requirements-nube.txt
+
+      - name: Dependencias
+        shell: bash
+        run: |
+          pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+          pip install -r experimentos/analisis_mercado/requirements-nube.txt
+
+      - name: Modelos en caché (Hugging Face)
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-modelos-${{ runner.os }}-v1
+
+      - name: Pruebas sin red
+        shell: bash
+        working-directory: experimentos/analisis_mercado
+        run: python3 test_descubridor_referentes.py
+
+      - name: Medir
+        shell: bash
+        working-directory: experimentos/analisis_mercado
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            ARGS="--validar ${{ inputs.validar }}"
+          else
+            ARGS="$(grep -v '^#' lanzar_descubridor.txt | head -n 1)"
+          fi
+          case "$ARGS" in *[!A-Za-z0-9_,.\ -]*) echo "Argumentos no válidos"; exit 1;; esac
+          echo "Argumentos: $ARGS"
+          python3 descubridor_referentes.py medir $ARGS
+          cat tendencia_datos/candidatos_referentes_resumen.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Guardar el resultado en esta rama
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add experimentos/analisis_mercado/tendencia_datos/candidatos_referentes.json experimentos/analisis_mercado/tendencia_datos/candidatos_referentes_resumen.md
+          if git diff --staged --quiet; then echo "Sin cambios que guardar."; exit 0; fi
+          git commit -m "Descubridor de referentes: resultado del $(date -u +%F)"
+          for i in 1 2 3 4 5; do
+            git push origin HEAD:descubridor-referentes && exit 0
+            sleep $((i * 5))
+            git pull --rebase origin descubridor-referentes || exit 1
+          done
+          exit 1

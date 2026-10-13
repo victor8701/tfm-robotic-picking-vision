@@ -1,0 +1,125 @@
+{
+ "version": 1,
+ "nota": "Propuestas de Claude (2026-10-13), SIN verificar: comunidades, consultas y nombres que creo asociados a cada estilo. descubridor_referentes.py las mide y Víctor decide con ✓/✕. Lo que él ya dio (tendencia_fuentes.json, cuentas_confiables.json, biblioteca.json) se lee de sus ficheros, no de aquí. Por estilo y mercado: `reddit_busquedas` (texto con el que se buscan comunidades y publicaciones), `reddit_subs` (comunidades concretas que se miden), `prensa` (consultas de prensa por estilo; lo entrecomillado es lo que tiene que aparecer en el titular o el resumen), `referentes` (personas o marcas que se buscan por nombre en prensa; `rx` = nombre sin tildes en minúsculas; `archivo: true` = fallecida o de archivo). Descartados por Víctor y no propuestos: Rubius, TheGrefg, AuronPlay, La Isla de las Tentaciones. Convencional no tiene referentes porque por definición sigue la tendencia dominante: se prueban comunidades y prensa de looks cotidianos.",
+ "estilos": {
+  "old_money": {
+   "ES": {
+    "reddit_busquedas": ["estilo old money", "ropa elegante hombre"],
+    "reddit_subs": [],
+    "prensa": ["\"old money\" moda", "\"quiet luxury\" moda", "\"lujo silencioso\" moda"],
+    "referentes": [
+     {"nombre": "Reina Letizia", "consultas": ["\"reina Letizia\" look", "\"reina Letizia\" estilismo"], "rx": "reina letizia|letizia ortiz"},
+     {"nombre": "Rafael Medina", "consultas": ["\"Rafael Medina\" duque de Feria look", "\"Rafael Medina\" estilo"], "rx": "rafael medina"}
+    ]
+   },
+   "US": {
+    "reddit_busquedas": ["old money style", "quiet luxury"],
+    "reddit_subs": ["OldMoney", "ivystyle", "quietluxury"],
+    "prensa": ["\"old money\" aesthetic outfit", "\"quiet luxury\" fashion", "\"old money\" style men"],
+    "referentes": [
+     {"nombre": "Jacob Elordi", "consultas": ["\"Jacob Elordi\" style", "\"Jacob Elordi\" outfit"], "rx": "jacob elordi"},
+     {"nombre": "Gwyneth Paltrow", "consultas": ["\"Gwyneth Paltrow\" style", "\"Gwyneth Paltrow\" outfit"], "rx": "gwyneth paltrow"},
+     {"nombre": "Jackie Kennedy", "consultas": ["\"Jackie Kennedy\" style"], "rx": "jackie kennedy|jacqueline kennedy", "archivo": true}
+    ]
+   }
+  },
+  "clasico": {
+   "ES": {
+    "reddit_busquedas": ["estilo pijo", "moda cayetana"],
+    "reddit_subs": [],
+    "prensa": ["estilo cayetano moda", "estilo pijo moda cayetana", "\"Barbour\" chaqueta moda"],
+    "referentes": [
+     {"nombre": "Tamara Falcó", "consultas": ["\"Tamara Falcó\" look", "\"Tamara Falcó\" estilismo"], "rx": "tamara falco"},
+     {"nombre": "Marta Pombo", "consultas": ["\"Marta Pombo\" look", "\"Marta Pombo\" estilo"], "rx": "marta pombo"}
+    ]
+   },
+   "US": {
+    "reddit_busquedas": ["preppy style", "ivy style menswear"],
+    "reddit_subs": ["Barbour", "ivystyle"],
+    "prensa": ["\"preppy\" outfit trend", "\"ivy style\" menswear", "\"Barbour\" jacket style"],
+    "referentes": [
+     {"nombre": "Ralph Lauren", "consultas": ["\"Ralph Lauren\" style", "\"Ralph Lauren\" collection"], "rx": "ralph lauren"}
+    ]
+   }
+  },
+  "lujo": {
+   "ES": {
+    "reddit_busquedas": ["ropa de lujo logos", "bolsos de lujo"],
+    "reddit_subs": [],
+    "prensa": ["lujo ostentoso moda", "\"logomanía\" moda", "\"Philipp Plein\" look"],
+    "referentes": [
+     {"nombre": "Dani Alves", "consultas": ["\"Dani Alves\" look", "\"Dani Alves\" estilo moda"], "rx": "dani alves"},
+     {"nombre": "Georgina Rodríguez", "consultas": ["\"Georgina Rodríguez\" look", "\"Georgina Rodríguez\" estilismo"], "rx": "georgina rodriguez"}
+    ]
+   },
+   "US": {
+    "reddit_busquedas": ["luxury fashion haul", "designer logos outfit"],
+    "reddit_subs": ["LouisVuitton", "Gucci", "handbags"],
+    "prensa": ["\"logomania\" fashion trend", "\"loud luxury\" fashion", "\"new money\" style"],
+    "referentes": [
+     {"nombre": "Philipp Plein", "consultas": ["\"Philipp Plein\" style", "\"Philipp Plein\" fashion"], "rx": "philipp plein"},
+     {"nombre": "Cardi B", "consultas": ["\"Cardi B\" outfit", "\"Cardi B\" fashion"], "rx": "cardi b"}
+    ]
+   }
+  },
+  "bohemio": {
+   "ES": {
+    "reddit_busquedas": ["estilo boho", "moda hippie"],
+    "reddit_subs": [],
+    "prensa": ["estilo boho chic moda", "moda hippie chic", "moda ibicenca adlib"],
+    "referentes": []
+   },
+   "US": {
+    "reddit_busquedas": ["boho style outfit", "bohemian fashion"],
+    "reddit_subs": ["bohemian", "hippie", "cottagecore"],
+    "prensa": ["\"boho chic\" fashion", "\"bohemian style\" outfit", "\"boho\" festival fashion"],
+    "referentes": [
+     {"nombre": "Sienna Miller", "consultas": ["\"Sienna Miller\" boho style", "\"Sienna Miller\" outfit"], "rx": "sienna miller"},
+     {"nombre": "Florence Welch", "consultas": ["\"Florence Welch\" style", "\"Florence Welch\" outfit"], "rx": "florence welch"}
+    ]
+   }
+  },
+  "convencional": {
+   "ES": {
+    "reddit_busquedas": ["outfit de diario", "moda hombre outfit"],
+    "reddit_subs": [],
+    "prensa": ["looks básicos tendencia moda", "\"normcore\" moda", "looks de calle tendencias"],
+    "referentes": []
+   },
+   "US": {
+    "reddit_busquedas": ["everyday outfit", "normcore outfit"],
+    "reddit_subs": ["OUTFITS", "malefashionadvice", "femalefashionadvice"],
+    "prensa": ["\"normcore\" outfit", "everyday outfit trends", "\"basics\" fashion trend outfit"],
+    "referentes": []
+   }
+  },
+  "urbano": {
+   "ES": {
+    "reddit_busquedas": ["moda trap rap", "streetwear españa"],
+    "reddit_subs": [],
+    "prensa": ["moda trap rap estilo", "streetwear España tendencia"],
+    "referentes": []
+   },
+   "US": {
+    "reddit_busquedas": [],
+    "reddit_subs": [],
+    "prensa": ["\"streetwear\" fashion trend"],
+    "referentes": []
+   }
+  },
+  "geek": {
+   "ES": {
+    "reddit_busquedas": ["ropa friki geek", "ropa gamer"],
+    "reddit_subs": [],
+    "prensa": ["moda friki geek ropa", "moda gamer ropa tendencia"],
+    "referentes": []
+   },
+   "US": {
+    "reddit_busquedas": [],
+    "reddit_subs": [],
+    "prensa": ["\"techwear\" fashion", "\"anime\" fashion collab"],
+    "referentes": []
+   }
+  }
+ }
+}

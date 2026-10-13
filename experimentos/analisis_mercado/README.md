@@ -140,6 +140,19 @@ tipo entre los 29 de Víctor con el recorte y, sabiendo ese tipo, estampado, tej
 Acierto medido con las 40 fotos de Víctor (prenda principal): estampado 16 de 22, forma 13 de 23, tejido 8 de 15, tipo 24 de 38 (familia 33 de 38); se sustituirá por la medida del **lote ciego** (`hojas_prendas.py crear --ciego`, `tendencia_datos/lote_ciego.json`).
 Las miniaturas (`/prenda/<foto>/<n>.jpg`) son las fotos con más peso de cada tipo: sirven para ver cuándo el modelo se equivoca. Las fotos y las miniaturas se quedan en este ordenador, como el resto de `cache/`.
 
+## Descubridor de referentes (2026-10-13)
+
+`descubridor_referentes.py` propone y mide fuentes de mercado para los estilos que aún no tienen referentes (clásico, old money, lujo, bohemio, convencional; urbano y geek entran como control, con lo que ya hay en `tendencia_fuentes.json`). Sin claves de API:
+**Reddit** (búsqueda de comunidades y de publicaciones por RSS para descubrir nombres, y «top» del mes de cada comunidad, con pausas de 3 s; si contesta 403/429 se anota en `red` y se sigue), **prensa** (Bing y Google Noticias por RSS, por estilo y por referente) y **cuentas de X ya conocidas** (`tendencia_fuentes.json`, `ingesta_x/cuentas_confiables.json`, `biblioteca.json`) vía FxTwitter.
+Las semillas que propone el asistente (comunidades, consultas, personas y marcas; todas **sin verificar**) están en `descubridor_semillas.json` y se editan a mano; no incluye lo que Víctor ya descartó (Rubius, TheGrefg, AuronPlay, La Isla de las Tentaciones).
+
+Por candidato: publicaciones con imagen en 30 días y, en una muestra de ≤ 8 fotos, cuántas tienen persona con ropa. `--validar puerta` (por defecto) usa la puerta CLIP de `tendencia_prenda.py`; `--validar prendas` añade su detector de prendas (`visible`/`valida`: persona con ropa **visible**; ~10-20 s por foto en CPU, va a Actions). Las fotos de la muestra se bajan a una carpeta temporal y **se borran** al terminar: no salen a ningún servicio ni se guardan.
+Salida: `tendencia_datos/candidatos_referentes.json` (estilo, mercado, tipo, valor, evidencia, 3 URLs de ejemplo y `fuente`, la línea lista para pegar en `tendencia_fuentes.json` si se acepta) y `candidatos_referentes_resumen.md` (corto, para contestar ✓/✕ desde el móvil).
+Qué **no** mide: si la comunidad o la prensa encaja con el estilo (solo que tiene fotos de personas con ropa); en prensa, `con_imagen_30d` es una estimación (el RSS no dice qué artículos traen foto: se extrapola de la muestra) y el RSS de Google no trae imágenes ni enlace directo de los artículos nuevos.
+
+`python3 descubridor_referentes.py medir [--estilos old_money,lujo] [--mercados ES,US] [--fuentes reddit,noticias,x] [--validar puerta|prendas|nada]` · `python3 descubridor_referentes.py resumen` · pruebas sin red: `python3 test_descubridor_referentes.py`.
+En GitHub Actions (rama `descubridor-referentes`, `.github/workflows/descubridor_referentes.yml`): se lanza al cambiar `lanzar_descubridor.txt` (la primera línea sin `#` son los argumentos) y guarda el resultado en la propia rama; para lanzarlo con «Run workflow» habría que copiar el fichero a `main`.
+
 ## Privacidad y licencias
 
 Las fotos son de **personas reales** que las subieron a Reddit/X o salen en prensa. Se guardan **solo en `cache/`** (fuera de git); al repositorio van el
@@ -158,6 +171,7 @@ universidad antes de difundir un dataset con fotos de terceros (RGPD). Las pági
 | `biblioteca.json` | descripciones, frases, personas de referencia, cuentas y enlaces por estilo | sí |
 | `tendencias_prenda/` | la página editable de «tendencia por prenda» y el contenido inicial de su base | sí |
 | `tendencia_prenda.py` · `tendencia_fuentes.json` · `sonda_prensa.py` | flujo de tendencia por prenda (v0), sus fuentes y la sonda de prensa por nombre | sí |
+| `descubridor_referentes.py` · `descubridor_semillas.json` · `test_descubridor_referentes.py` | propone y mide fuentes candidatas (Reddit, prensa, X) por estilo × mercado; sus semillas editables y sus pruebas sin red | sí |
 | `fiabilidad_prenda.py` | mide lo que acierta cada atributo (tipo, familia, color) y fija el techo de confianza de sus cifras | sí |
 | `tendencia_datos/` | fotos (`cache/`) y análisis del flujo de tendencia; `fotos.json`, `prendas.json`, `informe.json`, `fiabilidad.json` y las etiquetas de prendas sí van a git | parcial |
 | `cache/` (`img/`, `biblioteca/`) · `candidatos.json` · `informe_mercado.*` | imágenes y trabajo local | no |
