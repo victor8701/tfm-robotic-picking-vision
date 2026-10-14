@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generado": "2026-10-14T00:18:07+00:00",
+ "generado": "2026-10-14T00:53:36+00:00",
  "ventana_dias": 30,
  "muestra_max": 8,
  "validacion": "prendas",
@@ -26,10 +26,9 @@
   },
   "reddit": {
    "respuestas": {
-    "ok": 46,
-    "404": 1,
-    "429": 6,
-    "403": 1
+    "403": 1,
+    "429": 3,
+    "ok": 1
    },
    "bloqueado": null
   }
@@ -71,7 +70,7 @@
     "tasa_util": 1.0,
     "fotos_utiles_est": 18.0
    },
-   "evidencia_texto": "~18 pub. con imagen/30 d · 2/2 con ropa visible",
+   "evidencia_texto": "~18 img/30 d · ropa visible 2/2",
    "http": {
     "google": 200,
     "bing": 200
@@ -141,7 +140,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "8 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "8 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -207,7 +206,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "3 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "3 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -366,7 +365,7 @@
     "tasa_util": 0.0,
     "fotos_utiles_est": 0.0
    },
-   "evidencia_texto": "~1 pub. con imagen/30 d · 0/1 con ropa visible",
+   "evidencia_texto": "~1 img/30 d · ropa visible 0/1",
    "http": {
     "google": 200,
     "bing": 200
@@ -475,7 +474,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "30 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "30 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -546,7 +545,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "1 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "1 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -612,7 +611,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "4 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "4 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -673,7 +672,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "0 pub. con imagen/30 d",
+   "evidencia_texto": "0 img/30 d",
    "http": 200,
    "ejemplos": [],
    "fuente": {
@@ -695,7 +694,7 @@
    "en_uso": false,
    "estado": "sin_datos",
    "evidencia": {},
-   "evidencia_texto": "sin publicaciones en 30 días (HTTP 200)",
+   "evidencia_texto": "sin publicaciones en 30 días",
    "http": 200,
    "ejemplos": [],
    "fuente": {
@@ -834,7 +833,7 @@
     "tasa_util": 1.0,
     "fotos_utiles_est": 12.0
    },
-   "evidencia_texto": "~12 pub. con imagen/30 d · 3/3 con ropa visible",
+   "evidencia_texto": "~12 img/30 d · ropa visible 3/3",
    "http": {
     "google": 200,
     "bing": 200
@@ -912,7 +911,7 @@
     "tasa_util": 1.0,
     "fotos_utiles_est": 2.0
    },
-   "evidencia_texto": "~2 pub. con imagen/30 d · 1/1 con ropa visible",
+   "evidencia_texto": "~2 img/30 d · ropa visible 1/1",
    "http": {
     "google": 200,
     "bing": 200
@@ -984,7 +983,7 @@
     "tasa_util": 0.25,
     "fotos_utiles_est": 1.2
    },
-   "evidencia_texto": "5 pub. con imagen/30 d · 2/8 con ropa visible (mínimo)",
+   "evidencia_texto": "5 img/30 d · ropa visible 2/8 (mín.)",
    "http": 200,
    "ejemplos": [
     "https://x.com/envido6/status/2105589226108588321",
@@ -1031,7 +1030,7 @@
     "tasa_util": 0.0,
     "fotos_utiles_est": 0.0
    },
-   "evidencia_texto": "1 pub. con imagen/30 d · 0/1 con ropa visible (mínimo)",
+   "evidencia_texto": "1 img/30 d · ropa visible 0/1 (mín.)",
    "http": 200,
    "ejemplos": [
     "https://x.com/vitoquiles/status/2109981292976603287"
@@ -1072,7 +1071,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "7 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "7 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -1137,7 +1136,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "4 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "4 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -1310,6 +1309,49 @@
    "numero": 11
   },
   {
+   "id": "72c7e38e",
+   "estilo": "clasico",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "preppy",
+   "ambito": "comunidad",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 66,
+    "con_imagen_30d": 26,
+    "tope_100": false,
+    "titulos_es": 0,
+    "titulos_en": 24,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 8,
+    "repetidas": 0,
+    "con_persona": 8,
+    "validacion": "prendas",
+    "con_ropa_visible": 8,
+    "sin_detectar": 0,
+    "tasa_util": 1.0,
+    "fotos_utiles_est": 26.0
+   },
+   "evidencia_texto": "26 img/30 d · ropa visible 8/8",
+   "http": 200,
+   "ejemplos": [
+    "https://www.reddit.com/r/preppy/comments/1wmhipx/fall_in_new_england/",
+    "https://www.reddit.com/r/preppy/comments/1wsgjlx/playing_matchy_matchy_today/",
+    "https://www.reddit.com/r/preppy/comments/1wxtx7t/watching_a_show_called_an_officer_and_a_gentlemen/"
+   ],
+   "fuente": {
+    "referente": "r/preppy",
+    "estilo": "clasico",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "preppy"
+   },
+   "numero": 12
+  },
+  {
    "id": "4aa4ee7a",
    "estilo": "clasico",
    "mercado": "US",
@@ -1340,7 +1382,7 @@
     "tasa_util": 1.0,
     "fotos_utiles_est": 14.0
    },
-   "evidencia_texto": "14 pub. con imagen/30 d · 8/8 con ropa visible (mínimo)",
+   "evidencia_texto": "14 img/30 d · ropa visible 8/8 (mín.)",
    "http": 200,
    "ejemplos": [
     "https://x.com/RalphLauren/status/2110026778970607972",
@@ -1387,7 +1429,7 @@
     "tasa_util": 0.75,
     "fotos_utiles_est": 9.0
    },
-   "evidencia_texto": "12 pub. con imagen/30 d · 6/8 con ropa visible (mínimo)",
+   "evidencia_texto": "12 img/30 d · ropa visible 6/8 (mín.)",
    "http": 200,
    "ejemplos": [
     "https://x.com/HackettLondon/status/2110015208504668259",
@@ -1434,7 +1476,7 @@
     "tasa_util": 1.0,
     "fotos_utiles_est": 5.0
    },
-   "evidencia_texto": "5 pub. con imagen/30 d · 8/8 con ropa visible",
+   "evidencia_texto": "5 img/30 d · ropa visible 8/8",
    "http": 200,
    "ejemplos": [
     "https://x.com/massimodutti/status/2108828207340274162",
@@ -1478,7 +1520,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "8 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "8 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -1547,7 +1589,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "1 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "1 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -1612,7 +1654,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "11 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "11 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -1673,7 +1715,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "0 pub. con imagen/30 d",
+   "evidencia_texto": "0 img/30 d",
    "http": 200,
    "ejemplos": [],
    "fuente": {
@@ -1712,7 +1754,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "22 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "22 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -1761,8 +1803,8 @@
    "en_uso": false,
    "estado": "no_disponible",
    "evidencia": {},
-   "evidencia_texto": "no disponible (HTTP 429): no existe, es privada o limita",
-   "http": 429,
+   "evidencia_texto": "no disponible (HTTP 403): no existe, es privada o limita",
+   "http": 403,
    "ejemplos": [],
    "fuente": {
     "referente": "r/ivystyle",
@@ -1770,6 +1812,28 @@
     "mercado": "US",
     "tipo": "reddit",
     "valor": "ivystyle"
+   }
+  },
+  {
+   "id": "df603729",
+   "estilo": "clasico",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "NavyBlazer",
+   "ambito": "comunidad",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "no_disponible",
+   "evidencia": {},
+   "evidencia_texto": "no disponible (HTTP 429): no existe, es privada o limita",
+   "http": 429,
+   "ejemplos": [],
+   "fuente": {
+    "referente": "r/NavyBlazer",
+    "estilo": "clasico",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "NavyBlazer"
    }
   },
   {
@@ -1872,7 +1936,7 @@
     "tasa_util": 1.0,
     "fotos_utiles_est": 39.0
    },
-   "evidencia_texto": "~39 pub. con imagen/30 d · 5/5 con ropa visible",
+   "evidencia_texto": "~39 img/30 d · ropa visible 5/5",
    "http": {
     "google": 200,
     "bing": 200
@@ -1949,7 +2013,7 @@
     "tasa_util": 1.0,
     "fotos_utiles_est": 1.0
    },
-   "evidencia_texto": "~1 pub. con imagen/30 d · 1/1 con ropa visible",
+   "evidencia_texto": "~1 img/30 d · ropa visible 1/1",
    "http": {
     "google": 200,
     "bing": 200
@@ -2017,7 +2081,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "54 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "54 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -2066,7 +2130,7 @@
    "en_uso": false,
    "estado": "sin_datos",
    "evidencia": {},
-   "evidencia_texto": "sin publicaciones en 30 días (HTTP 200)",
+   "evidencia_texto": "sin publicaciones en 30 días",
    "http": 200,
    "ejemplos": [],
    "fuente": {
@@ -2283,7 +2347,7 @@
     "tasa_util": 0.0,
     "fotos_utiles_est": 0.0
    },
-   "evidencia_texto": "~1 pub. con imagen/30 d · 0/1 con ropa visible",
+   "evidencia_texto": "~1 img/30 d · ropa visible 0/1",
    "http": {
     "google": 200,
     "bing": 200
@@ -2391,7 +2455,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "6 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "6 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -2457,7 +2521,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "58 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "58 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -2530,7 +2594,7 @@
     "tasa_util": 0.67,
     "fotos_utiles_est": 2.0
    },
-   "evidencia_texto": "~3 pub. con imagen/30 d · 2/3 con ropa visible",
+   "evidencia_texto": "~3 img/30 d · ropa visible 2/3",
    "http": {
     "google": 200,
     "bing": 200
@@ -2579,7 +2643,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "0 pub. con imagen/30 d",
+   "evidencia_texto": "0 img/30 d",
    "http": 200,
    "ejemplos": [],
    "fuente": {
@@ -2780,7 +2844,7 @@
     "tasa_util": 0.0,
     "fotos_utiles_est": 0.0
    },
-   "evidencia_texto": "5 pub. con imagen/30 d · 0/5 con ropa visible (mínimo)",
+   "evidencia_texto": "5 img/30 d · ropa visible 0/5 (mín.)",
    "http": 200,
    "ejemplos": [
     "https://x.com/Painthisice/status/2109703286894776366",
@@ -2824,7 +2888,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "3 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "3 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -2890,7 +2954,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "1 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "1 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -2952,7 +3016,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "0 pub. con imagen/30 d",
+   "evidencia_texto": "0 img/30 d",
    "http": 200,
    "ejemplos": [],
    "fuente": {
@@ -3020,7 +3084,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "0 pub. con imagen/30 d",
+   "evidencia_texto": "0 img/30 d",
    "http": 200,
    "ejemplos": [],
    "fuente": {
@@ -3129,7 +3193,7 @@
     "tasa_util": 1.0,
     "fotos_utiles_est": 13.0
    },
-   "evidencia_texto": "~13 pub. con imagen/30 d · 1/1 con ropa visible",
+   "evidencia_texto": "~13 img/30 d · ropa visible 1/1",
    "http": {
     "google": 200,
     "bing": 200
@@ -3527,7 +3591,7 @@
     "tasa_util": 1.0,
     "fotos_utiles_est": 20.0
    },
-   "evidencia_texto": "~20 pub. con imagen/30 d · 4/4 con ropa visible",
+   "evidencia_texto": "~20 img/30 d · ropa visible 4/4",
    "http": {
     "google": 200,
     "bing": 200
@@ -3601,7 +3665,7 @@
     "tasa_util": 1.0,
     "fotos_utiles_est": 16.0
    },
-   "evidencia_texto": "16 pub. con imagen/30 d · 8/8 con ropa visible (mínimo)",
+   "evidencia_texto": "16 img/30 d · ropa visible 8/8 (mín.)",
    "http": 200,
    "ejemplos": [
     "https://x.com/Dsquared2/status/2109921661440889074",
@@ -3690,7 +3754,7 @@
     "tasa_util": 1.0,
     "fotos_utiles_est": 14.0
    },
-   "evidencia_texto": "14 pub. con imagen/30 d · 8/8 con ropa visible (mínimo)",
+   "evidencia_texto": "14 img/30 d · ropa visible 8/8 (mín.)",
    "http": 200,
    "ejemplos": [
     "https://x.com/Balmain/status/2109623750115172470",
@@ -3737,7 +3801,7 @@
     "tasa_util": 0.88,
     "fotos_utiles_est": 13.2
    },
-   "evidencia_texto": "15 pub. con imagen/30 d · 7/8 con ropa visible (mínimo)",
+   "evidencia_texto": "15 img/30 d · ropa visible 7/8 (mín.)",
    "http": 200,
    "ejemplos": [
     "https://x.com/dolcegabbana/status/2109992551688163485",
@@ -3783,7 +3847,7 @@
     "tasa_util": 0.62,
     "fotos_utiles_est": 9.9
    },
-   "evidencia_texto": "16 pub. con imagen/30 d · 5/8 con ropa visible (mínimo)",
+   "evidencia_texto": "16 img/30 d · ropa visible 5/8 (mín.)",
    "http": 200,
    "ejemplos": [
     "https://x.com/Dior/status/2108475050886115334",
@@ -3829,7 +3893,7 @@
     "tasa_util": 0.5,
     "fotos_utiles_est": 9.5
    },
-   "evidencia_texto": "19 pub. con imagen/30 d · 4/8 con ropa visible (mínimo)",
+   "evidencia_texto": "19 img/30 d · ropa visible 4/8 (mín.)",
    "http": 200,
    "ejemplos": [
     "https://x.com/gucci/status/2108864556814704984",
@@ -3875,7 +3939,7 @@
     "tasa_util": 0.5,
     "fotos_utiles_est": 9.5
    },
-   "evidencia_texto": "19 pub. con imagen/30 d · 4/8 con ropa visible (mínimo)",
+   "evidencia_texto": "19 img/30 d · ropa visible 4/8 (mín.)",
    "http": 200,
    "ejemplos": [
     "https://x.com/Versace/status/2110037849017917562",
@@ -3918,7 +3982,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "7 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "7 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -4111,7 +4175,7 @@
    "en_uso": false,
    "estado": "sin_datos",
    "evidencia": {},
-   "evidencia_texto": "sin publicaciones en 30 días (HTTP 200)",
+   "evidencia_texto": "sin publicaciones en 30 días",
    "http": 200,
    "ejemplos": [],
    "fuente": {
@@ -4157,7 +4221,7 @@
     "tasa_util": 0.75,
     "fotos_utiles_est": 76.5
    },
-   "evidencia_texto": "~102 pub. con imagen/30 d · 6/8 con ropa visible",
+   "evidencia_texto": "~102 img/30 d · ropa visible 6/8",
    "http": {
     "google": 200,
     "bing": 200
@@ -4228,7 +4292,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "9 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "9 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -4294,7 +4358,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "1 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "1 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -4360,7 +4424,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "3 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "3 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -4408,7 +4472,7 @@
    "en_uso": false,
    "estado": "sin_datos",
    "evidencia": {},
-   "evidencia_texto": "sin publicaciones en 30 días (HTTP 200)",
+   "evidencia_texto": "sin publicaciones en 30 días",
    "http": 200,
    "ejemplos": [],
    "fuente": {
@@ -4430,7 +4494,7 @@
    "en_uso": false,
    "estado": "sin_datos",
    "evidencia": {},
-   "evidencia_texto": "sin publicaciones en 30 días (HTTP 200)",
+   "evidencia_texto": "sin publicaciones en 30 días",
    "http": 200,
    "ejemplos": [],
    "fuente": {
@@ -4525,7 +4589,7 @@
     "tasa_util": 1.0,
     "fotos_utiles_est": 19.0
    },
-   "evidencia_texto": "~19 pub. con imagen/30 d · 6/6 con ropa visible",
+   "evidencia_texto": "~19 img/30 d · ropa visible 6/6",
    "http": {
     "google": 200,
     "bing": 200
@@ -4599,7 +4663,7 @@
     "tasa_util": 0.38,
     "fotos_utiles_est": 4.2
    },
-   "evidencia_texto": "11 pub. con imagen/30 d · 3/8 con ropa visible (mínimo)",
+   "evidencia_texto": "11 img/30 d · ropa visible 3/8 (mín.)",
    "http": 200,
    "ejemplos": [
     "https://x.com/dieworkwear/status/2110063783481876528",
@@ -4650,7 +4714,7 @@
     "tasa_util": 0.5,
     "fotos_utiles_est": 4.0
    },
-   "evidencia_texto": "~8 pub. con imagen/30 d · 1/2 con ropa visible",
+   "evidencia_texto": "~8 img/30 d · ropa visible 1/2",
    "http": {
     "google": 200,
     "bing": 200
@@ -4721,7 +4785,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "3 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "3 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -4786,7 +4850,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "4 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "4 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -4851,7 +4915,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "20 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "20 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -4916,7 +4980,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "3 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "3 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -4996,8 +5060,8 @@
    "en_uso": false,
    "estado": "no_disponible",
    "evidencia": {},
-   "evidencia_texto": "no disponible (HTTP 429): no existe, es privada o limita",
-   "http": 429,
+   "evidencia_texto": "no disponible (HTTP 403): no existe, es privada o limita",
+   "http": 403,
    "ejemplos": [],
    "fuente": {
     "referente": "r/ivystyle",
@@ -5018,7 +5082,7 @@
    "en_uso": false,
    "estado": "sin_datos",
    "evidencia": {},
-   "evidencia_texto": "sin publicaciones en 30 días (HTTP 200)",
+   "evidencia_texto": "sin publicaciones en 30 días",
    "http": 200,
    "ejemplos": [],
    "fuente": {
@@ -5040,7 +5104,7 @@
    "en_uso": false,
    "estado": "sin_datos",
    "evidencia": {},
-   "evidencia_texto": "sin publicaciones en 30 días (HTTP 200)",
+   "evidencia_texto": "sin publicaciones en 30 días",
    "http": 200,
    "ejemplos": [],
    "fuente": {
@@ -5086,7 +5150,7 @@
     "tasa_util": 1.0,
     "fotos_utiles_est": 8.0
    },
-   "evidencia_texto": "~8 pub. con imagen/30 d · 1/1 con ropa visible",
+   "evidencia_texto": "~8 img/30 d · ropa visible 1/1",
    "http": {
     "google": 200,
     "bing": 200
@@ -5161,7 +5225,7 @@
     "tasa_util": 1.0,
     "fotos_utiles_est": 7.0
    },
-   "evidencia_texto": "~7 pub. con imagen/30 d · 4/4 con ropa visible",
+   "evidencia_texto": "~7 img/30 d · ropa visible 4/4",
    "http": {
     "google": 200,
     "bing": 200
@@ -5224,7 +5288,7 @@
     "tasa_util": 0.5,
     "fotos_utiles_est": 2.0
    },
-   "evidencia_texto": "~4 pub. con imagen/30 d · 1/2 con ropa visible",
+   "evidencia_texto": "~4 img/30 d · ropa visible 1/2",
    "http": {
     "google": 200,
     "bing": 200
@@ -5285,7 +5349,7 @@
     "tasa_util": 1.0,
     "fotos_utiles_est": 1.0
    },
-   "evidencia_texto": "1 pub. con imagen/30 d · 1/1 con ropa visible",
+   "evidencia_texto": "1 img/30 d · ropa visible 1/1",
    "http": 200,
    "ejemplos": [
     "https://x.com/shodamonkas/status/2102150295375507508"
@@ -5333,7 +5397,7 @@
     "tasa_util": 0.0,
     "fotos_utiles_est": 0.0
    },
-   "evidencia_texto": "~1 pub. con imagen/30 d · 0/1 con ropa visible",
+   "evidencia_texto": "~1 img/30 d · ropa visible 0/1",
    "http": {
     "google": 200,
     "bing": 200
@@ -5386,7 +5450,7 @@
     "tasa_util": 0.0,
     "fotos_utiles_est": 0.0
    },
-   "evidencia_texto": "2 pub. con imagen/30 d · 0/2 con ropa visible",
+   "evidencia_texto": "2 img/30 d · ropa visible 0/2",
    "http": 200,
    "ejemplos": [
     "https://x.com/byCaLiTosYT/status/2106808926721470601",
@@ -5424,7 +5488,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "0 pub. con imagen/30 d",
+   "evidencia_texto": "0 img/30 d",
    "http": 200,
    "ejemplos": [],
    "fuente": {
@@ -5463,7 +5527,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "1 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "1 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -5674,7 +5738,7 @@
     "tasa_util": 0.5,
     "fotos_utiles_est": 3.5
    },
-   "evidencia_texto": "~7 pub. con imagen/30 d · 1/2 con ropa visible",
+   "evidencia_texto": "~7 img/30 d · ropa visible 1/2",
    "http": {
     "google": 200,
     "bing": 200
@@ -5730,7 +5794,7 @@
     "tasa_util": 0.0,
     "fotos_utiles_est": 0.0
    },
-   "evidencia_texto": "1 pub. con imagen/30 d · 0/1 con ropa visible",
+   "evidencia_texto": "1 img/30 d · ropa visible 0/1",
    "http": 200,
    "ejemplos": [
     "https://x.com/trvisXX/status/2099905804165890411"
@@ -5772,7 +5836,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "18 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "18 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -5823,7 +5887,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "4 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "4 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -5889,7 +5953,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "1 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "1 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -5933,7 +5997,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "0 pub. con imagen/30 d (mínimo)",
+   "evidencia_texto": "0 img/30 d (mín.)",
    "http": 200,
    "ejemplos": [],
    "fuente": {
@@ -5972,7 +6036,7 @@
     "muestra": 0,
     "validacion": "ninguna"
    },
-   "evidencia_texto": "2 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "evidencia_texto": "2 noticias/30 d · foto sin comprobar",
    "http": {
     "google": 200,
     "bing": 200
@@ -6003,7 +6067,7 @@
    "en_uso": true,
    "estado": "sin_datos",
    "evidencia": {},
-   "evidencia_texto": "sin publicaciones en 30 días (HTTP 200)",
+   "evidencia_texto": "sin publicaciones en 30 días",
    "http": 200,
    "ejemplos": [],
    "fuente": {
