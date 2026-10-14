@@ -1,6 +1,6 @@
 {
  "version": 1,
- "nota": "Referentes con estado «ok» en el Artifact «Tendencias de prenda» (2026-10-06) y dónde se leen sus fotos. `noticias`: Bing Noticias por nombre; la foto cuenta si el texto nombra a la persona. `archivo: true` = persona fallecida o cuenta de archivo: sus fotos son antiguas aunque se publiquen hoy, así que se guardan sin fecha (cuentan como muestra de referencia, no como tendencia de la temporada).",
+ "nota": "Referentes con estado «ok» en el Artifact «Tendencias de prenda» (2026-10-06) y dónde se leen sus fotos. `noticias`: Bing Noticias por nombre; la foto cuenta si el texto nombra a la persona. `archivo: true` = persona fallecida o cuenta de archivo: sus fotos son antiguas aunque se publiquen hoy, así que se guardan sin fecha (cuentan como muestra de referencia, no como tendencia de la temporada). Añadidas el 14-oct-2026: las 46 fuentes que Víctor aceptó (✓) en la pestaña «Hoy» de «Tendencias de prenda» tras medirlas `descubridor_referentes.py` (prensa, comunidades de Reddit y cuentas de X de old money, clásico, lujo, bohemio y convencional). Las medidas están en `tendencia_datos/candidatos_referentes.json`. r/EverydayOutfitStyle se queda solo en convencional (una comunidad no se puede repartir entre dos estilos).",
  "fuentes": [
   {
    "referente": "bycalitos",
@@ -293,6 +293,889 @@
    ],
    "nombre": "lil xan",
    "contexto": "music_en"
+  },
+  {
+   "consultas": [
+    "\"reina Letizia\" look",
+    "\"reina Letizia\" estilismo"
+   ],
+   "contexto_extra": [
+    "moda",
+    "look",
+    "estilo",
+    "outfit",
+    "tendencia",
+    "fashion",
+    "style",
+    "trend",
+    "vestido",
+    "traje",
+    "prenda",
+    "ropa",
+    "collection",
+    "coleccion",
+    "alfombra roja",
+    "red carpet",
+    "estilismo"
+   ],
+   "estilo": "old_money",
+   "mercado": "ES",
+   "nombre": "reina letizia|letizia ortiz",
+   "referente": "Reina Letizia",
+   "tipo": "noticias",
+   "valor": "\"reina Letizia\" look"
+  },
+  {
+   "consultas": [
+    "\"lujo silencioso\" moda"
+   ],
+   "contexto_extra": [
+    "moda",
+    "look",
+    "estilo",
+    "outfit",
+    "tendencia",
+    "fashion",
+    "style",
+    "trend",
+    "vestido",
+    "traje",
+    "prenda",
+    "ropa",
+    "collection",
+    "coleccion",
+    "alfombra roja",
+    "red carpet",
+    "estilismo"
+   ],
+   "estilo": "old_money",
+   "mercado": "ES",
+   "nombre": "lujo\\ silencioso",
+   "referente": "prensa: \"lujo silencioso\" moda",
+   "tipo": "noticias",
+   "valor": "\"lujo silencioso\" moda"
+  },
+  {
+   "consultas": [
+    "\"Jacob Elordi\" style",
+    "\"Jacob Elordi\" outfit"
+   ],
+   "contexto_extra": [
+    "moda",
+    "look",
+    "estilo",
+    "outfit",
+    "tendencia",
+    "fashion",
+    "style",
+    "trend",
+    "vestido",
+    "traje",
+    "prenda",
+    "ropa",
+    "collection",
+    "coleccion",
+    "alfombra roja",
+    "red carpet",
+    "estilismo"
+   ],
+   "estilo": "old_money",
+   "mercado": "US",
+   "nombre": "jacob elordi",
+   "referente": "Jacob Elordi",
+   "tipo": "noticias",
+   "valor": "\"Jacob Elordi\" style"
+  },
+  {
+   "estilo": "old_money",
+   "mercado": "US",
+   "referente": "dieworkwear",
+   "tipo": "x",
+   "valor": "dieworkwear"
+  },
+  {
+   "consultas": [
+    "\"Gwyneth Paltrow\" style",
+    "\"Gwyneth Paltrow\" outfit"
+   ],
+   "contexto_extra": [
+    "moda",
+    "look",
+    "estilo",
+    "outfit",
+    "tendencia",
+    "fashion",
+    "style",
+    "trend",
+    "vestido",
+    "traje",
+    "prenda",
+    "ropa",
+    "collection",
+    "coleccion",
+    "alfombra roja",
+    "red carpet",
+    "estilismo"
+   ],
+   "estilo": "old_money",
+   "mercado": "US",
+   "nombre": "gwyneth paltrow",
+   "referente": "Gwyneth Paltrow",
+   "tipo": "noticias",
+   "valor": "\"Gwyneth Paltrow\" style"
+  },
+  {
+   "consultas": [
+    "\"quiet luxury\" fashion"
+   ],
+   "contexto_extra": [
+    "moda",
+    "look",
+    "estilo",
+    "outfit",
+    "tendencia",
+    "fashion",
+    "style",
+    "trend",
+    "vestido",
+    "traje",
+    "prenda",
+    "ropa",
+    "collection",
+    "coleccion",
+    "alfombra roja",
+    "red carpet",
+    "estilismo"
+   ],
+   "estilo": "old_money",
+   "mercado": "US",
+   "nombre": "quiet\\ luxury",
+   "referente": "prensa: \"quiet luxury\" fashion",
+   "tipo": "noticias",
+   "valor": "\"quiet luxury\" fashion"
+  },
+  {
+   "consultas": [
+    "\"Tamara Falcó\" look",
+    "\"Tamara Falcó\" estilismo"
+   ],
+   "contexto_extra": [
+    "moda",
+    "look",
+    "estilo",
+    "outfit",
+    "tendencia",
+    "fashion",
+    "style",
+    "trend",
+    "vestido",
+    "traje",
+    "prenda",
+    "ropa",
+    "collection",
+    "coleccion",
+    "alfombra roja",
+    "red carpet",
+    "estilismo"
+   ],
+   "estilo": "clasico",
+   "mercado": "ES",
+   "nombre": "tamara falco",
+   "referente": "Tamara Falcó",
+   "tipo": "noticias",
+   "valor": "\"Tamara Falcó\" look"
+  },
+  {
+   "consultas": [
+    "\"Barbour\" chaqueta moda"
+   ],
+   "contexto_extra": [
+    "moda",
+    "look",
+    "estilo",
+    "outfit",
+    "tendencia",
+    "fashion",
+    "style",
+    "trend",
+    "vestido",
+    "traje",
+    "prenda",
+    "ropa",
+    "collection",
+    "coleccion",
+    "alfombra roja",
+    "red carpet",
+    "estilismo"
+   ],
+   "estilo": "clasico",
+   "mercado": "ES",
+   "nombre": "barbour",
+   "referente": "prensa: \"Barbour\" chaqueta moda",
+   "tipo": "noticias",
+   "valor": "\"Barbour\" chaqueta moda"
+  },
+  {
+   "estilo": "clasico",
+   "mercado": "ES",
+   "referente": "envido6",
+   "tipo": "x",
+   "valor": "envido6"
+  },
+  {
+   "consultas": [
+    "estilo cayetano moda"
+   ],
+   "contexto_extra": [
+    "moda",
+    "look",
+    "estilo",
+    "outfit",
+    "tendencia",
+    "fashion",
+    "style",
+    "trend",
+    "vestido",
+    "traje",
+    "prenda",
+    "ropa",
+    "collection",
+    "coleccion",
+    "alfombra roja",
+    "red carpet",
+    "estilismo"
+   ],
+   "estilo": "clasico",
+   "mercado": "ES",
+   "nombre": ".",
+   "referente": "prensa: estilo cayetano moda",
+   "tipo": "noticias",
+   "valor": "estilo cayetano moda"
+  },
+  {
+   "estilo": "clasico",
+   "mercado": "US",
+   "referente": "r/Barbour",
+   "tipo": "reddit",
+   "valor": "Barbour"
+  },
+  {
+   "estilo": "clasico",
+   "mercado": "US",
+   "referente": "r/preppy",
+   "tipo": "reddit",
+   "valor": "preppy"
+  },
+  {
+   "estilo": "clasico",
+   "mercado": "US",
+   "referente": "RalphLauren",
+   "tipo": "x",
+   "valor": "RalphLauren"
+  },
+  {
+   "estilo": "clasico",
+   "mercado": "US",
+   "referente": "HackettLondon",
+   "tipo": "x",
+   "valor": "HackettLondon"
+  },
+  {
+   "consultas": [
+    "\"Barbour\" jacket style"
+   ],
+   "contexto_extra": [
+    "moda",
+    "look",
+    "estilo",
+    "outfit",
+    "tendencia",
+    "fashion",
+    "style",
+    "trend",
+    "vestido",
+    "traje",
+    "prenda",
+    "ropa",
+    "collection",
+    "coleccion",
+    "alfombra roja",
+    "red carpet",
+    "estilismo"
+   ],
+   "estilo": "clasico",
+   "mercado": "US",
+   "nombre": "barbour",
+   "referente": "prensa: \"Barbour\" jacket style",
+   "tipo": "noticias",
+   "valor": "\"Barbour\" jacket style"
+  },
+  {
+   "consultas": [
+    "\"preppy\" outfit trend"
+   ],
+   "contexto_extra": [
+    "moda",
+    "look",
+    "estilo",
+    "outfit",
+    "tendencia",
+    "fashion",
+    "style",
+    "trend",
+    "vestido",
+    "traje",
+    "prenda",
+    "ropa",
+    "collection",
+    "coleccion",
+    "alfombra roja",
+    "red carpet",
+    "estilismo"
+   ],
+   "estilo": "clasico",
+   "mercado": "US",
+   "nombre": "preppy",
+   "referente": "prensa: \"preppy\" outfit trend",
+   "tipo": "noticias",
+   "valor": "\"preppy\" outfit trend"
+  },
+  {
+   "consultas": [
+    "\"Ralph Lauren\" style",
+    "\"Ralph Lauren\" collection"
+   ],
+   "contexto_extra": [
+    "moda",
+    "look",
+    "estilo",
+    "outfit",
+    "tendencia",
+    "fashion",
+    "style",
+    "trend",
+    "vestido",
+    "traje",
+    "prenda",
+    "ropa",
+    "collection",
+    "coleccion",
+    "alfombra roja",
+    "red carpet",
+    "estilismo"
+   ],
+   "estilo": "clasico",
+   "mercado": "US",
+   "nombre": "ralph lauren",
+   "referente": "Ralph Lauren",
+   "tipo": "noticias",
+   "valor": "\"Ralph Lauren\" style"
+  },
+  {
+   "consultas": [
+    "\"Georgina Rodríguez\" look",
+    "\"Georgina Rodríguez\" estilismo"
+   ],
+   "contexto_extra": [
+    "moda",
+    "look",
+    "estilo",
+    "outfit",
+    "tendencia",
+    "fashion",
+    "style",
+    "trend",
+    "vestido",
+    "traje",
+    "prenda",
+    "ropa",
+    "collection",
+    "coleccion",
+    "alfombra roja",
+    "red carpet",
+    "estilismo"
+   ],
+   "estilo": "lujo",
+   "mercado": "ES",
+   "nombre": "georgina rodriguez",
+   "referente": "Georgina Rodríguez",
+   "tipo": "noticias",
+   "valor": "\"Georgina Rodríguez\" look"
+  },
+  {
+   "estilo": "lujo",
+   "mercado": "US",
+   "referente": "r/LouisVuitton",
+   "tipo": "reddit",
+   "valor": "LouisVuitton"
+  },
+  {
+   "estilo": "lujo",
+   "mercado": "US",
+   "referente": "r/IndianFashionAddicts",
+   "tipo": "reddit",
+   "valor": "IndianFashionAddicts"
+  },
+  {
+   "consultas": [
+    "\"Cardi B\" outfit",
+    "\"Cardi B\" fashion"
+   ],
+   "contexto_extra": [
+    "moda",
+    "look",
+    "estilo",
+    "outfit",
+    "tendencia",
+    "fashion",
+    "style",
+    "trend",
+    "vestido",
+    "traje",
+    "prenda",
+    "ropa",
+    "collection",
+    "coleccion",
+    "alfombra roja",
+    "red carpet",
+    "estilismo"
+   ],
+   "estilo": "lujo",
+   "mercado": "US",
+   "nombre": "cardi b",
+   "referente": "Cardi B",
+   "tipo": "noticias",
+   "valor": "\"Cardi B\" outfit"
+  },
+  {
+   "estilo": "lujo",
+   "mercado": "US",
+   "referente": "DSQUARED2",
+   "tipo": "x",
+   "valor": "DSQUARED2"
+  },
+  {
+   "estilo": "lujo",
+   "mercado": "US",
+   "referente": "r/Gucci",
+   "tipo": "reddit",
+   "valor": "Gucci"
+  },
+  {
+   "estilo": "lujo",
+   "mercado": "US",
+   "referente": "Balmain",
+   "tipo": "x",
+   "valor": "Balmain"
+  },
+  {
+   "estilo": "lujo",
+   "mercado": "US",
+   "referente": "DolceGabbana",
+   "tipo": "x",
+   "valor": "DolceGabbana"
+  },
+  {
+   "estilo": "lujo",
+   "mercado": "US",
+   "referente": "Dior",
+   "tipo": "x",
+   "valor": "Dior"
+  },
+  {
+   "estilo": "lujo",
+   "mercado": "US",
+   "referente": "gucci",
+   "tipo": "x",
+   "valor": "gucci"
+  },
+  {
+   "estilo": "lujo",
+   "mercado": "US",
+   "referente": "Versace",
+   "tipo": "x",
+   "valor": "Versace"
+  },
+  {
+   "consultas": [
+    "\"Philipp Plein\" style",
+    "\"Philipp Plein\" fashion"
+   ],
+   "contexto_extra": [
+    "moda",
+    "look",
+    "estilo",
+    "outfit",
+    "tendencia",
+    "fashion",
+    "style",
+    "trend",
+    "vestido",
+    "traje",
+    "prenda",
+    "ropa",
+    "collection",
+    "coleccion",
+    "alfombra roja",
+    "red carpet",
+    "estilismo"
+   ],
+   "estilo": "lujo",
+   "mercado": "US",
+   "nombre": "philipp plein",
+   "referente": "Philipp Plein",
+   "tipo": "noticias",
+   "valor": "\"Philipp Plein\" style"
+  },
+  {
+   "consultas": [
+    "estilo boho chic moda"
+   ],
+   "contexto_extra": [
+    "moda",
+    "look",
+    "estilo",
+    "outfit",
+    "tendencia",
+    "fashion",
+    "style",
+    "trend",
+    "vestido",
+    "traje",
+    "prenda",
+    "ropa",
+    "collection",
+    "coleccion",
+    "alfombra roja",
+    "red carpet",
+    "estilismo"
+   ],
+   "estilo": "bohemio",
+   "mercado": "ES",
+   "nombre": ".",
+   "referente": "prensa: estilo boho chic moda",
+   "tipo": "noticias",
+   "valor": "estilo boho chic moda"
+  },
+  {
+   "consultas": [
+    "moda hippie chic"
+   ],
+   "contexto_extra": [
+    "moda",
+    "look",
+    "estilo",
+    "outfit",
+    "tendencia",
+    "fashion",
+    "style",
+    "trend",
+    "vestido",
+    "traje",
+    "prenda",
+    "ropa",
+    "collection",
+    "coleccion",
+    "alfombra roja",
+    "red carpet",
+    "estilismo"
+   ],
+   "estilo": "bohemio",
+   "mercado": "ES",
+   "nombre": ".",
+   "referente": "prensa: moda hippie chic",
+   "tipo": "noticias",
+   "valor": "moda hippie chic"
+  },
+  {
+   "estilo": "bohemio",
+   "mercado": "US",
+   "referente": "r/cottagecore",
+   "tipo": "reddit",
+   "valor": "cottagecore"
+  },
+  {
+   "consultas": [
+    "\"boho chic\" fashion"
+   ],
+   "contexto_extra": [
+    "moda",
+    "look",
+    "estilo",
+    "outfit",
+    "tendencia",
+    "fashion",
+    "style",
+    "trend",
+    "vestido",
+    "traje",
+    "prenda",
+    "ropa",
+    "collection",
+    "coleccion",
+    "alfombra roja",
+    "red carpet",
+    "estilismo"
+   ],
+   "estilo": "bohemio",
+   "mercado": "US",
+   "nombre": "boho\\ chic",
+   "referente": "prensa: \"boho chic\" fashion",
+   "tipo": "noticias",
+   "valor": "\"boho chic\" fashion"
+  },
+  {
+   "estilo": "bohemio",
+   "mercado": "US",
+   "referente": "r/bohemian",
+   "tipo": "reddit",
+   "valor": "bohemian"
+  },
+  {
+   "consultas": [
+    "\"Sienna Miller\" boho style",
+    "\"Sienna Miller\" outfit"
+   ],
+   "contexto_extra": [
+    "moda",
+    "look",
+    "estilo",
+    "outfit",
+    "tendencia",
+    "fashion",
+    "style",
+    "trend",
+    "vestido",
+    "traje",
+    "prenda",
+    "ropa",
+    "collection",
+    "coleccion",
+    "alfombra roja",
+    "red carpet",
+    "estilismo"
+   ],
+   "estilo": "bohemio",
+   "mercado": "US",
+   "nombre": "sienna miller",
+   "referente": "Sienna Miller",
+   "tipo": "noticias",
+   "valor": "\"Sienna Miller\" boho style"
+  },
+  {
+   "estilo": "convencional",
+   "mercado": "ES",
+   "referente": "r/LookeAR",
+   "tipo": "reddit",
+   "valor": "LookeAR"
+  },
+  {
+   "consultas": [
+    "looks básicos tendencia moda"
+   ],
+   "contexto_extra": [
+    "moda",
+    "look",
+    "estilo",
+    "outfit",
+    "tendencia",
+    "fashion",
+    "style",
+    "trend",
+    "vestido",
+    "traje",
+    "prenda",
+    "ropa",
+    "collection",
+    "coleccion",
+    "alfombra roja",
+    "red carpet",
+    "estilismo"
+   ],
+   "estilo": "convencional",
+   "mercado": "ES",
+   "nombre": ".",
+   "referente": "prensa: looks básicos tendencia moda",
+   "tipo": "noticias",
+   "valor": "looks básicos tendencia moda"
+  },
+  {
+   "consultas": [
+    "\"normcore\" moda"
+   ],
+   "contexto_extra": [
+    "moda",
+    "look",
+    "estilo",
+    "outfit",
+    "tendencia",
+    "fashion",
+    "style",
+    "trend",
+    "vestido",
+    "traje",
+    "prenda",
+    "ropa",
+    "collection",
+    "coleccion",
+    "alfombra roja",
+    "red carpet",
+    "estilismo"
+   ],
+   "estilo": "convencional",
+   "mercado": "ES",
+   "nombre": "normcore",
+   "referente": "prensa: \"normcore\" moda",
+   "tipo": "noticias",
+   "valor": "\"normcore\" moda"
+  },
+  {
+   "estilo": "convencional",
+   "mercado": "US",
+   "referente": "r/OUTFITS",
+   "tipo": "reddit",
+   "valor": "OUTFITS"
+  },
+  {
+   "estilo": "convencional",
+   "mercado": "US",
+   "referente": "r/reddeadfashion",
+   "tipo": "reddit",
+   "valor": "reddeadfashion"
+  },
+  {
+   "estilo": "convencional",
+   "mercado": "US",
+   "referente": "r/EverydayOutfitStyle",
+   "tipo": "reddit",
+   "valor": "EverydayOutfitStyle"
+  },
+  {
+   "consultas": [
+    "\"normcore\" outfit"
+   ],
+   "contexto_extra": [
+    "moda",
+    "look",
+    "estilo",
+    "outfit",
+    "tendencia",
+    "fashion",
+    "style",
+    "trend",
+    "vestido",
+    "traje",
+    "prenda",
+    "ropa",
+    "collection",
+    "coleccion",
+    "alfombra roja",
+    "red carpet",
+    "estilismo"
+   ],
+   "estilo": "convencional",
+   "mercado": "US",
+   "nombre": "normcore",
+   "referente": "prensa: \"normcore\" outfit",
+   "tipo": "noticias",
+   "valor": "\"normcore\" outfit"
+  },
+  {
+   "estilo": "convencional",
+   "mercado": "US",
+   "referente": "r/femalefashionadvice",
+   "tipo": "reddit",
+   "valor": "femalefashionadvice"
+  },
+  {
+   "consultas": [
+    "everyday outfit trends"
+   ],
+   "contexto_extra": [
+    "moda",
+    "look",
+    "estilo",
+    "outfit",
+    "tendencia",
+    "fashion",
+    "style",
+    "trend",
+    "vestido",
+    "traje",
+    "prenda",
+    "ropa",
+    "collection",
+    "coleccion",
+    "alfombra roja",
+    "red carpet",
+    "estilismo"
+   ],
+   "estilo": "convencional",
+   "mercado": "US",
+   "nombre": ".",
+   "referente": "prensa: everyday outfit trends",
+   "tipo": "noticias",
+   "valor": "everyday outfit trends"
+  },
+  {
+   "consultas": [
+    "\"basics\" fashion trend outfit"
+   ],
+   "contexto_extra": [
+    "moda",
+    "look",
+    "estilo",
+    "outfit",
+    "tendencia",
+    "fashion",
+    "style",
+    "trend",
+    "vestido",
+    "traje",
+    "prenda",
+    "ropa",
+    "collection",
+    "coleccion",
+    "alfombra roja",
+    "red carpet",
+    "estilismo"
+   ],
+   "estilo": "convencional",
+   "mercado": "US",
+   "nombre": "basics",
+   "referente": "prensa: \"basics\" fashion trend outfit",
+   "tipo": "noticias",
+   "valor": "\"basics\" fashion trend outfit"
+  },
+  {
+   "consultas": [
+    "streetwear España tendencia"
+   ],
+   "contexto_extra": [
+    "moda",
+    "look",
+    "estilo",
+    "outfit",
+    "tendencia",
+    "fashion",
+    "style",
+    "trend",
+    "vestido",
+    "traje",
+    "prenda",
+    "ropa",
+    "collection",
+    "coleccion",
+    "alfombra roja",
+    "red carpet",
+    "estilismo"
+   ],
+   "estilo": "urbano",
+   "mercado": "ES",
+   "nombre": ".",
+   "referente": "prensa: streetwear España tendencia",
+   "tipo": "noticias",
+   "valor": "streetwear España tendencia"
   }
  ]
 }

@@ -48,4 +48,5 @@ Desde entonces corre sola cada lunes. Cuando se vea que funciona, se quita la ta
 - *Revista de la semana anterior no llegó*: mirar en *Actions* el último «Tendencia semanal (revista)»; el paso en rojo dice dónde. Los datos de la semana pasada siguen intactos en `datos-tendencia`.
 - *Reddit o X no devuelven nada desde GitHub*: algunas fuentes bloquean las direcciones de los servidores de GitHub. La revista lo cuenta («fuentes con error») y el resto sigue.
 - *Kaggle falla*: el informe sale igual con el tipo de CLIP y las prendas quedan pendientes para la semana siguiente.
+- *La tarea tarda más o dice que quedan fotos pendientes*: desde el 14 de octubre hay 73 fuentes (46 nuevas de old money, clásico, lujo, bohemio y convencional). El análisis en CPU tiene un tope de 120 minutos (`--max-minutos`), con las fuentes por turnos y lo más reciente primero; lo que no da tiempo se analiza la semana siguiente. La tarea guarda los datos solo al final, así que sin tope una tanda grande se podía perder entera.
 - Para repetir a mano: *Actions* → *Run workflow*.

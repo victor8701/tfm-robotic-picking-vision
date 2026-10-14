@@ -1,5 +1,21 @@
 # Estado Actual del Trabajo de Fin de Máster (TFM)
 
+## 0. Cómo vamos y qué te toca (14 de octubre de 2026)
+
+*Panel vivo: se actualiza al final de cada sesión de trabajo y en la pestaña «Hoy» de la página «Tendencias de prenda». No sigue el calendario del Gantt: Víctor lleva su propio orden.*
+
+**Cómo vamos**
+- **Tendencia por prenda (en curso).** La tarea semanal en la nube y la revista por correo funcionan; los siete estilos se separan en las cinco dimensiones con la muestra de referencia (§6.9 de `TFM_tendencias_de_prenda.md`).
+- **Fuentes de mercado de los cinco estilos nuevos: hechas.** Medidas el 13 y 14 de octubre (§6.10); Víctor aceptó 46 y `tendencia_fuentes.json` tiene 73 fuentes. La primera tarea semanal con ellas es el lunes 19 de octubre, con un tope de 120 minutos de análisis para no pasarse de tiempo.
+- **Acierto del modelo grande en los cinco estilos nuevos: sin medir** (solo está medido en geek y urbano). El selector ya admite `--estilos`.
+- **Límites conocidos:** Reddit solo deja unas 1 petición por minuto desde GitHub; para old money no hay comunidad de Reddit activa medible; 29 candidatos de prensa tienen la foto sin comprobar.
+
+**Qué te toca**
+1. **Revisión «OK / más o menos / No» de los cinco estilos nuevos** (15 a 30 min en el móvil). Hay que generarla en el portátil, donde están las fotos: `python3 sincronizar_nube.py bajar`, `python3 revisar_valoraciones.py crear --estilos old_money,clasico,lujo,bohemio,convencional --nuevos 36 --prefijo r2-` y `python3 revisar_valoraciones.py html --salida r2.html`; después se publica como página «Revisar valoraciones» desde una sesión de Claude Code en el portátil.
+2. **El lunes 19 de octubre:** nada que hacer; si la revista no llega o llega con fotos pendientes, mira el último «Tendencia semanal (revista)» en GitHub Actions.
+
+---
+
 ## 1. Evolución y Definición del Proyecto
 
 ### 1.1. Fase Descartada: Manipulación de Prendas en Bolsas de Plástico

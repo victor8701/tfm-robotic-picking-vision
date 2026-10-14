@@ -466,6 +466,26 @@ def visible(caja, cat, W, H) -> bool:
     return True
 
 
+def ordenar_pendientes(fotos: dict, claves: list[str]) -> list[str]:
+    """Orden en que se analizan las fotos pendientes: de cada fuente, primero las más recientes, y las fuentes por turnos (una foto de cada una, luego otra de cada una…).
+    Con un tope de tiempo o de fotos, ninguna fuente se queda sin analizar mientras otra se lleva todo (al añadir muchas fuentes de golpe hay más fotos que tiempo)."""
+    por_fuente = collections.defaultdict(list)
+    for k in claves:
+        v = fotos[k]
+        por_fuente[(str(v.get("fuente")), str(v.get("referente")), str(v.get("estilo")), str(v.get("mercado")))].append(k)
+    colas = []
+    for f in sorted(por_fuente):
+        colas.append(sorted(por_fuente[f], key=lambda k: (fotos[k].get("fecha") or "", k), reverse=True))   # sin fecha, al final
+    out = []
+    for i in range(max((len(c) for c in colas), default=0)):
+        out += [c[i] for c in colas if i < len(c)]
+    return out
+
+
+def tiempo_agotado(t0: float, max_minutos, ahora: float | None = None) -> bool:
+    return bool(max_minutos) and ((time.time() if ahora is None else ahora) - t0) > max_minutos * 60
+
+
 def cmd_analizar(args):
     import torch
     torch.set_grad_enabled(False)
@@ -476,16 +496,21 @@ def cmd_analizar(args):
     pend = [k for k in pend if not fotos[k].get("fecha") or datetime.fromisoformat(fotos[k]["fecha"].replace("Z", "+00:00")) >= limite]
     if antes != len(pend):
         print(f"{antes - len(pend)} fotos de hace más de {args.max_dias} días se dejan sin analizar", flush=True)
+    pend = ordenar_pendientes(fotos, pend)
     if args.max:
         pend = pend[:args.max]
-    print(f"{len(pend)} fotos por analizar")
+    print(f"{len(pend)} fotos por analizar" + (f" (tope de {args.max_minutos:g} min; las que no den tiempo siguen pendientes para la próxima vez)" if getattr(args, "max_minutos", None) else ""))
     if not pend:
         return
     pc, model, prep, T = cargar_tipos()
     alumno = cargar_alumno()
     if alumno and "tipo29" in alumno:
         print("tipo de prenda: capa entrenada con el profesor (alumno.npz)", flush=True)
+    t_ini = time.time()
     for i in range(0, len(pend), 20):
+        if tiempo_agotado(t_ini, getattr(args, "max_minutos", None)):
+            print(f"Tope de {args.max_minutos:g} min alcanzado: {len(pend) - i} fotos quedan pendientes para la próxima vez.", flush=True)
+            break
         lote = pend[i:i + 20]
         carpeta = TD / "lote"
         shutil.rmtree(carpeta, ignore_errors=True)
@@ -763,6 +788,7 @@ def main():
     p = sub.add_parser("analizar")
     p.add_argument("--max", type=int)
     p.add_argument("--max-dias", type=int, default=400)
+    p.add_argument("--max-minutos", type=float, default=None, help="deja de analizar fotos nuevas pasado este tiempo (las demás siguen pendientes)")
     p = sub.add_parser("vlm")
     p.add_argument("--max-vlm", type=int, dest="max_vlm", help="como mucho N prendas (para probar)")
     p.add_argument("--simular", action="store_true", help="solo cuenta lo pendiente, sin subir nada")
@@ -777,6 +803,7 @@ def main():
     p.add_argument("--sin-biblioteca", action="store_true", dest="sin_biblioteca", help="no importar las fotos aprobadas en la app (en la nube no están)")
     p.add_argument("--max", type=int)
     p.add_argument("--max-dias", type=int, default=400)
+    p.add_argument("--max-minutos", type=float, default=120, help="tope para analizar fotos nuevas en CPU (≈ 18 s cada una): la tarea semanal tiene 330 min en total y solo guarda al final")
     p.add_argument("--sin-vlm", action="store_true", help="no usar el modelo grande de Kaggle (nada sale del ordenador)")
     p.add_argument("--max-vlm", type=int, dest="max_vlm")
     a = ap.parse_args()

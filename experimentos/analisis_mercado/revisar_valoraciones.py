@@ -5,11 +5,13 @@ y contesta por cada fila OK, «más o menos» (marcando qué más podría ser) o
 
   crear      elige los recortes (parte A: los del lote ciego en los que no coincidíamos; parte B: recortes nuevos con valoración del modelo) y unos pocos de CONTROL con la valoración de OTRO recorte
              (para medir si el OK se da con demasiada facilidad: sin eso, aceptar lo que se ve inflaría el acierto). Los controles no se marcan en la página.
+             `--estilos old_money,clasico,lujo,bohemio,convencional` (14 de octubre): solo recortes de esos estilos, repartidos por igual, y sin parte A (el lote ciego es de geek y urbano).
+             Necesita las fotos en `cache/img` (las de la Biblioteca solo están en el portátil de Víctor): hay que ejecutarlo allí; `crear` sobrescribe `revision_estado.json` (las respuestas de r1- ya están en `valoraciones.json`).
   html       genera la página «Revisar valoraciones» (Artifact) con los recortes incrustados.
   importar   pasa las respuestas de la base de la página (exportadas con ArtifactData) a `tendencia_datos/valoraciones.json`.
   medir      OK, «más o menos» y No por atributo (estricto = solo OK; aceptable = OK + más o menos), la parte A por separado, los controles y las alternativas que marca.
 
-Uso:  python3 revisar_valoraciones.py crear [--nuevos 30] [--controles 6] [--prefijo r1-] | html --salida X.html | importar --dir DIR | medir
+Uso:  python3 revisar_valoraciones.py crear [--nuevos 30] [--controles 6] [--prefijo r1-] [--estilos a,b,c] | html --salida X.html | importar --dir DIR | medir
 """
 import argparse
 import base64
@@ -57,6 +59,8 @@ def cmd_crear(a):
     ciego = json.loads((TD / "lote_ciego.json").read_text(encoding="utf-8")) if (TD / "lote_ciego.json").exists() else []
     previas = json.loads(RESP.read_text(encoding="utf-8")) if RESP.exists() else {}
     fotos = json.loads((TD / "fotos.json").read_text(encoding="utf-8"))
+    if a.estilos:
+        a.desacuerdos = False   # la parte A es del lote ciego (solo geek y urbano)
 
     def pr(k):
         f, _, i = k.partition("#")
@@ -76,7 +80,7 @@ def cmd_crear(a):
     nuevos = []
     for f, r in prendas.items():
         ficha = fotos.get(f)
-        if not ficha or ficha.get("descartada") or not (hp.CACHE / "img" / f"{f}.jpg").exists():
+        if not ficha or ficha.get("descartada") or not (hp.CACHE / "img" / f"{f}.jpg").exists() or (a.estilos and ficha["estilo"] not in a.estilos):
             continue
         for i, p in enumerate(r["prendas"]):
             x1, y1, x2, y2 = p["caja"]
@@ -86,6 +90,13 @@ def cmd_crear(a):
             nuevos.append(k)
     rnd = random.Random(a.semilla)
     rnd.shuffle(nuevos)
+    if a.estilos:   # por turnos entre estilos, para que cada uno tenga los mismos recortes (±1)
+        colas = {e: [k for k in nuevos if fotos[k.split("#")[0]]["estilo"] == e] for e in a.estilos}
+        nuevos = []
+        while any(colas.values()):
+            for e in a.estilos:
+                if colas[e]:
+                    nuevos.append(colas[e].pop(0))
     vistas = set(usadas)
     for k in nuevos:
         if len([1 for _, parte in elegidos if parte == "B"]) >= a.nuevos:
@@ -205,6 +216,7 @@ def main():
     p.add_argument("--controles", type=int, default=6)
     p.add_argument("--desacuerdos", action=argparse.BooleanOptionalAction, default=True)
     p.add_argument("--prefijo", default="r1-")
+    p.add_argument("--estilos", type=lambda s: [x for x in s.split(",") if x], help="solo estos estilos (old_money,clasico,lujo,bohemio,convencional,urbano,geek), repartidos por igual; sin parte A")
     p.add_argument("--semilla", type=int, default=13)
     p = sub.add_parser("html")
     p.add_argument("--plantilla", default=str(AQUI / "tendencias_prenda" / "revisar_valoraciones.html"))
