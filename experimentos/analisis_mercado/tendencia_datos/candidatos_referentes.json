@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generado": "2026-10-13T22:52:10+00:00",
+ "generado": "2026-10-14T00:18:07+00:00",
  "ventana_dias": 30,
  "muestra_max": 8,
  "validacion": "prendas",
@@ -27,7 +27,9 @@
   "reddit": {
    "respuestas": {
     "ok": 46,
-    "omitido": 47
+    "404": 1,
+    "429": 6,
+    "403": 1
    },
    "bloqueado": null
   }
@@ -244,6 +246,207 @@
    "numero": 19
   },
   {
+   "id": "5cef557f",
+   "estilo": "bohemio",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "EverydayOutfitStyle",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 19,
+    "con_imagen_30d": 7,
+    "tope_100": false,
+    "titulos_es": 0,
+    "titulos_en": 14,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 7,
+    "repetidas": 0,
+    "con_persona": 7,
+    "validacion": "prendas",
+    "con_ropa_visible": 7,
+    "sin_detectar": 0,
+    "tasa_util": 1.0,
+    "fotos_utiles_est": 7.0
+   },
+   "evidencia_texto": "7 img/30 d · ropa visible 7/7",
+   "http": 200,
+   "ejemplos": [
+    "https://www.reddit.com/r/EverydayOutfitStyle/comments/1x29hw4/would_you_change_anything_about_this_outfit/",
+    "https://www.reddit.com/r/EverydayOutfitStyle/comments/1x3675s/do_the_brown_top_and_boots_work_with_this_skirt/",
+    "https://www.reddit.com/r/EverydayOutfitStyle/comments/1x3z6e4/would_you_wear_this_as_it_is_or_change_something/"
+   ],
+   "fuente": {
+    "referente": "r/EverydayOutfitStyle",
+    "estilo": "bohemio",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "EverydayOutfitStyle"
+   },
+   "numero": 20
+  },
+  {
+   "id": "14dab070",
+   "estilo": "bohemio",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "cottagecore",
+   "ambito": "comunidad",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 100,
+    "con_imagen_30d": 27,
+    "tope_100": true,
+    "titulos_es": 0,
+    "titulos_en": 39,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 8,
+    "repetidas": 0,
+    "con_persona": 3,
+    "validacion": "prendas",
+    "con_ropa_visible": 2,
+    "sin_detectar": 0,
+    "tasa_util": 0.25,
+    "fotos_utiles_est": 6.8
+   },
+   "evidencia_texto": "27 img/30 d · ropa visible 2/8 (mín.)",
+   "http": 200,
+   "ejemplos": [
+    "https://www.reddit.com/r/cottagecore/comments/1wplg8q/these_shoes_i_just_got/",
+    "https://www.reddit.com/r/cottagecore/comments/1wl90lu/my_cat_in_our_happy_home/",
+    "https://www.reddit.com/r/cottagecore/comments/1wghqp1/crochet_ren_faire_favors/"
+   ],
+   "fuente": {
+    "referente": "r/cottagecore",
+    "estilo": "bohemio",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "cottagecore"
+   },
+   "numero": 21
+  },
+  {
+   "id": "f6c68b4e",
+   "estilo": "bohemio",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"boho chic\" fashion",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 1,
+    "con_imagen_rss": 0,
+    "medios_distintos": 1,
+    "solo_bing": 0,
+    "solo_google": 0,
+    "sin_enlace_real": 0,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "descargas_fallidas": 0,
+    "articulos_probados": 1,
+    "articulos_con_foto": 1,
+    "con_imagen_30d": 1,
+    "con_imagen_30d_estimada": true,
+    "muestra": 1,
+    "repetidas": 0,
+    "con_persona": 1,
+    "validacion": "prendas",
+    "con_ropa_visible": 0,
+    "sin_detectar": 0,
+    "tasa_util": 0.0,
+    "fotos_utiles_est": 0.0
+   },
+   "evidencia_texto": "~1 pub. con imagen/30 d · 0/1 con ropa visible",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [
+    "https://www.sortiraparis.com/en/what-to-do-in-paris/shopping-fashion/articles/319184-paris-fashion-week-zimmermann-cultivates-boho-chic-for-spring-summer-2027-video"
+   ],
+   "fuente": {
+    "referente": "prensa: \"boho chic\" fashion",
+    "estilo": "bohemio",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"boho chic\" fashion",
+    "consultas": [
+     "\"boho chic\" fashion"
+    ],
+    "nombre": "boho\\ chic",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 22
+  },
+  {
+   "id": "2416a59f",
+   "estilo": "bohemio",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "bohemian",
+   "ambito": "comunidad",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 2,
+    "con_imagen_30d": 1,
+    "tope_100": false,
+    "titulos_es": 0,
+    "titulos_en": 0,
+    "mercado_medido": null,
+    "descargas_fallidas": 0,
+    "muestra": 1,
+    "repetidas": 0,
+    "con_persona": 1,
+    "validacion": "prendas",
+    "con_ropa_visible": 0,
+    "sin_detectar": 0,
+    "tasa_util": 0.0,
+    "fotos_utiles_est": 0.0
+   },
+   "evidencia_texto": "1 img/30 d · ropa visible 0/1",
+   "http": 200,
+   "ejemplos": [
+    "https://www.reddit.com/r/Bohemian/comments/1x30tsn/dream_catchers/"
+   ],
+   "fuente": {
+    "referente": "r/bohemian",
+    "estilo": "bohemio",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "bohemian"
+   }
+  },
+  {
    "id": "d67402ee",
    "estilo": "bohemio",
    "mercado": "US",
@@ -382,81 +585,6 @@
    "numero": 21
   },
   {
-   "id": "f6c68b4e",
-   "estilo": "bohemio",
-   "mercado": "US",
-   "tipo": "noticias",
-   "valor": "\"boho chic\" fashion",
-   "ambito": "estilo",
-   "origen": "propuesta",
-   "en_uso": false,
-   "estado": "medido",
-   "evidencia": {
-    "publicaciones_30d": 1,
-    "con_imagen_rss": 0,
-    "medios_distintos": 1,
-    "solo_bing": 0,
-    "solo_google": 0,
-    "sin_enlace_real": 0,
-    "motores_ok": [
-     "bing",
-     "google"
-    ],
-    "descargas_fallidas": 0,
-    "articulos_probados": 1,
-    "articulos_con_foto": 1,
-    "con_imagen_30d": 1,
-    "con_imagen_30d_estimada": true,
-    "muestra": 1,
-    "repetidas": 0,
-    "con_persona": 1,
-    "validacion": "prendas",
-    "con_ropa_visible": 0,
-    "sin_detectar": 0,
-    "tasa_util": 0.0,
-    "fotos_utiles_est": 0.0
-   },
-   "evidencia_texto": "~1 pub. con imagen/30 d · 0/1 con ropa visible",
-   "http": {
-    "google": 200,
-    "bing": 200
-   },
-   "ejemplos": [
-    "https://www.sortiraparis.com/en/what-to-do-in-paris/shopping-fashion/articles/319184-paris-fashion-week-zimmermann-cultivates-boho-chic-for-spring-summer-2027-video"
-   ],
-   "fuente": {
-    "referente": "prensa: \"boho chic\" fashion",
-    "estilo": "bohemio",
-    "mercado": "US",
-    "tipo": "noticias",
-    "valor": "\"boho chic\" fashion",
-    "consultas": [
-     "\"boho chic\" fashion"
-    ],
-    "nombre": "boho\\ chic",
-    "contexto_extra": [
-     "moda",
-     "look",
-     "estilo",
-     "outfit",
-     "tendencia",
-     "fashion",
-     "style",
-     "trend",
-     "vestido",
-     "traje",
-     "prenda",
-     "ropa",
-     "collection",
-     "coleccion",
-     "alfombra roja",
-     "red carpet",
-     "estilismo"
-    ]
-   },
-   "numero": 22
-  },
-  {
    "id": "60bb45e1",
    "estilo": "bohemio",
    "mercado": "US",
@@ -557,50 +685,6 @@
    }
   },
   {
-   "id": "2416a59f",
-   "estilo": "bohemio",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "bohemian",
-   "ambito": "comunidad",
-   "origen": "propuesta",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/bohemian",
-    "estilo": "bohemio",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "bohemian"
-   }
-  },
-  {
-   "id": "14dab070",
-   "estilo": "bohemio",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "cottagecore",
-   "ambito": "comunidad",
-   "origen": "propuesta",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/cottagecore",
-    "estilo": "bohemio",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "cottagecore"
-   }
-  },
-  {
    "id": "0b6bd339",
    "estilo": "bohemio",
    "mercado": "US",
@@ -609,10 +693,10 @@
    "ambito": "comunidad",
    "origen": "descubierto",
    "en_uso": false,
-   "estado": "omitido",
+   "estado": "sin_datos",
    "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
+   "evidencia_texto": "sin publicaciones en 30 días (HTTP 200)",
+   "http": 200,
    "ejemplos": [],
    "fuente": {
     "referente": "r/DUfashion",
@@ -620,28 +704,6 @@
     "mercado": "US",
     "tipo": "reddit",
     "valor": "DUfashion"
-   }
-  },
-  {
-   "id": "5cef557f",
-   "estilo": "bohemio",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "EverydayOutfitStyle",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/EverydayOutfitStyle",
-    "estilo": "bohemio",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "EverydayOutfitStyle"
    }
   },
   {
@@ -694,28 +756,6 @@
    }
   },
   {
-   "id": "7ace4b5f",
-   "estilo": "bohemio",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "GothStyle",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/GothStyle",
-    "estilo": "bohemio",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "GothStyle"
-   }
-  },
-  {
    "id": "448132fd",
    "estilo": "bohemio",
    "mercado": "US",
@@ -724,10 +764,10 @@
    "ambito": "comunidad",
    "origen": "propuesta",
    "en_uso": false,
-   "estado": "omitido",
+   "estado": "no_disponible",
    "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
+   "evidencia_texto": "no disponible (HTTP 404): no existe, es privada o limita",
+   "http": 404,
    "ejemplos": [],
    "fuente": {
     "referente": "r/hippie",
@@ -735,50 +775,6 @@
     "mercado": "US",
     "tipo": "reddit",
     "valor": "hippie"
-   }
-  },
-  {
-   "id": "de9263ae",
-   "estilo": "bohemio",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "indiafitcheck",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/indiafitcheck",
-    "estilo": "bohemio",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "indiafitcheck"
-   }
-  },
-  {
-   "id": "cce22692",
-   "estilo": "clasico",
-   "mercado": "?",
-   "tipo": "reddit",
-   "valor": "Barbour",
-   "ambito": "comunidad",
-   "origen": "biblioteca",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/Barbour",
-    "estilo": "clasico",
-    "mercado": "?",
-    "tipo": "reddit",
-    "valor": "Barbour"
    }
   },
   {
@@ -1005,6 +1001,50 @@
    "numero": 9
   },
   {
+   "id": "7f4023e5",
+   "estilo": "clasico",
+   "mercado": "ES",
+   "tipo": "x",
+   "valor": "vitoquiles",
+   "ambito": "cuenta",
+   "origen": "biblioteca",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 4,
+    "con_imagen_30d": 1,
+    "fotos_30d": 1,
+    "posts_en_el_lote": 4,
+    "tope_lote": true,
+    "ultima_foto_hace_dias": 0,
+    "seguidores": 579273,
+    "titulos_es": 4,
+    "titulos_en": 0,
+    "mercado_medido": "ES",
+    "descargas_fallidas": 0,
+    "muestra": 1,
+    "repetidas": 0,
+    "con_persona": 0,
+    "validacion": "prendas",
+    "con_ropa_visible": 0,
+    "sin_detectar": 0,
+    "tasa_util": 0.0,
+    "fotos_utiles_est": 0.0
+   },
+   "evidencia_texto": "1 pub. con imagen/30 d · 0/1 con ropa visible (mínimo)",
+   "http": 200,
+   "ejemplos": [
+    "https://x.com/vitoquiles/status/2109981292976603287"
+   ],
+   "fuente": {
+    "referente": "vitoquiles",
+    "estilo": "clasico",
+    "mercado": "ES",
+    "tipo": "x",
+    "valor": "vitoquiles"
+   }
+  },
+  {
    "id": "e53952d2",
    "estilo": "clasico",
    "mercado": "ES",
@@ -1136,50 +1176,6 @@
    }
   },
   {
-   "id": "7f4023e5",
-   "estilo": "clasico",
-   "mercado": "ES",
-   "tipo": "x",
-   "valor": "vitoquiles",
-   "ambito": "cuenta",
-   "origen": "biblioteca",
-   "en_uso": false,
-   "estado": "medido",
-   "evidencia": {
-    "publicaciones_30d": 4,
-    "con_imagen_30d": 1,
-    "fotos_30d": 1,
-    "posts_en_el_lote": 4,
-    "tope_lote": true,
-    "ultima_foto_hace_dias": 0,
-    "seguidores": 579273,
-    "titulos_es": 4,
-    "titulos_en": 0,
-    "mercado_medido": "ES",
-    "descargas_fallidas": 0,
-    "muestra": 1,
-    "repetidas": 0,
-    "con_persona": 0,
-    "validacion": "prendas",
-    "con_ropa_visible": 0,
-    "sin_detectar": 0,
-    "tasa_util": 0.0,
-    "fotos_utiles_est": 0.0
-   },
-   "evidencia_texto": "1 pub. con imagen/30 d · 0/1 con ropa visible (mínimo)",
-   "http": 200,
-   "ejemplos": [
-    "https://x.com/vitoquiles/status/2109981292976603287"
-   ],
-   "fuente": {
-    "referente": "vitoquiles",
-    "estilo": "clasico",
-    "mercado": "ES",
-    "tipo": "x",
-    "valor": "vitoquiles"
-   }
-  },
-  {
    "id": "1102a574",
    "estilo": "clasico",
    "mercado": "ES",
@@ -1228,6 +1224,92 @@
    }
   },
   {
+   "id": "99249dc4",
+   "estilo": "clasico",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "malefashionadvice",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 100,
+    "con_imagen_30d": 52,
+    "tope_100": true,
+    "titulos_es": 0,
+    "titulos_en": 36,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 8,
+    "repetidas": 0,
+    "con_persona": 8,
+    "validacion": "prendas",
+    "con_ropa_visible": 7,
+    "sin_detectar": 0,
+    "tasa_util": 0.88,
+    "fotos_utiles_est": 45.8
+   },
+   "evidencia_texto": "52 img/30 d · ropa visible 7/8 (mín.)",
+   "http": 200,
+   "ejemplos": [
+    "https://www.reddit.com/r/malefashionadvice/comments/1wyy43k/untucked_we_dont_do_that_here/",
+    "https://www.reddit.com/r/malefashionadvice/comments/1wmg4p6/fit_look_ok/",
+    "https://www.reddit.com/r/malefashionadvice/comments/1wwzj2k/accidential_mr_bean/"
+   ],
+   "fuente": {
+    "referente": "r/malefashionadvice",
+    "estilo": "clasico",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "malefashionadvice"
+   },
+   "numero": 10
+  },
+  {
+   "id": "afe9b073",
+   "estilo": "clasico",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "Barbour",
+   "ambito": "comunidad",
+   "origen": "biblioteca",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 100,
+    "con_imagen_30d": 35,
+    "tope_100": true,
+    "titulos_es": 0,
+    "titulos_en": 28,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 8,
+    "repetidas": 0,
+    "con_persona": 8,
+    "validacion": "prendas",
+    "con_ropa_visible": 6,
+    "sin_detectar": 0,
+    "tasa_util": 0.75,
+    "fotos_utiles_est": 26.2
+   },
+   "evidencia_texto": "35 img/30 d · ropa visible 6/8 (mín.)",
+   "http": 200,
+   "ejemplos": [
+    "https://www.reddit.com/r/Barbour/comments/1wl6vbv/first_time_taking_my_barbour_out/",
+    "https://www.reddit.com/r/Barbour/comments/1wpzikn/barbour_models_and_differences/",
+    "https://www.reddit.com/r/Barbour/comments/1wm96l4/barbour_x_zuderschwamm/"
+   ],
+   "fuente": {
+    "referente": "r/Barbour",
+    "estilo": "clasico",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "Barbour"
+   },
+   "numero": 11
+  },
+  {
    "id": "4aa4ee7a",
    "estilo": "clasico",
    "mercado": "US",
@@ -1272,7 +1354,7 @@
     "tipo": "x",
     "valor": "RalphLauren"
    },
-   "numero": 10
+   "numero": 12
   },
   {
    "id": "a3029fe9",
@@ -1677,10 +1759,10 @@
    "ambito": "comunidad",
    "origen": "propuesta",
    "en_uso": false,
-   "estado": "omitido",
+   "estado": "no_disponible",
    "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
+   "evidencia_texto": "no disponible (HTTP 429): no existe, es privada o limita",
+   "http": 429,
    "ejemplos": [],
    "fuente": {
     "referente": "r/ivystyle",
@@ -1688,72 +1770,6 @@
     "mercado": "US",
     "tipo": "reddit",
     "valor": "ivystyle"
-   }
-  },
-  {
-   "id": "99249dc4",
-   "estilo": "clasico",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "malefashionadvice",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/malefashionadvice",
-    "estilo": "clasico",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "malefashionadvice"
-   }
-  },
-  {
-   "id": "df603729",
-   "estilo": "clasico",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "NavyBlazer",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/NavyBlazer",
-    "estilo": "clasico",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "NavyBlazer"
-   }
-  },
-  {
-   "id": "72c7e38e",
-   "estilo": "clasico",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "preppy",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/preppy",
-    "estilo": "clasico",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "preppy"
    }
   },
   {
@@ -1765,10 +1781,10 @@
    "ambito": "comunidad",
    "origen": "descubierto",
    "en_uso": false,
-   "estado": "omitido",
+   "estado": "no_disponible",
    "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
+   "evidencia_texto": "no disponible (HTTP 403): no existe, es privada o limita",
+   "http": 403,
    "ejemplos": [],
    "fuente": {
     "referente": "r/PreppyStyle",
@@ -1777,6 +1793,49 @@
     "tipo": "reddit",
     "valor": "PreppyStyle"
    }
+  },
+  {
+   "id": "4614b21e",
+   "estilo": "convencional",
+   "mercado": "ES",
+   "tipo": "reddit",
+   "valor": "LookeAR",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 100,
+    "con_imagen_30d": 64,
+    "tope_100": true,
+    "titulos_es": 67,
+    "titulos_en": 0,
+    "mercado_medido": "ES",
+    "descargas_fallidas": 0,
+    "muestra": 8,
+    "repetidas": 0,
+    "con_persona": 8,
+    "validacion": "prendas",
+    "con_ropa_visible": 8,
+    "sin_detectar": 0,
+    "tasa_util": 1.0,
+    "fotos_utiles_est": 64.0
+   },
+   "evidencia_texto": "64 img/30 d · ropa visible 8/8 (mín.)",
+   "http": 200,
+   "ejemplos": [
+    "https://www.reddit.com/r/LookeAR/comments/1wi63vm/outfit_de_feria_3/",
+    "https://www.reddit.com/r/LookeAR/comments/1wi89ge/outfit_para_salir_a_la_noche/",
+    "https://www.reddit.com/r/LookeAR/comments/1wv8h23/outfit_de_tuve_que_salir_a_socializar_para_no/"
+   ],
+   "fuente": {
+    "referente": "r/LookeAR",
+    "estilo": "convencional",
+    "mercado": "ES",
+    "tipo": "reddit",
+    "valor": "LookeAR"
+   },
+   "numero": 23
   },
   {
    "id": "1e99d259",
@@ -1853,7 +1912,7 @@
      "estilismo"
     ]
    },
-   "numero": 23
+   "numero": 24
   },
   {
    "id": "0f629b90",
@@ -1928,7 +1987,7 @@
      "estilismo"
     ]
    },
-   "numero": 24
+   "numero": 25
   },
   {
    "id": "312b7307",
@@ -1997,50 +2056,6 @@
    "numero": 25
   },
   {
-   "id": "3475a09d",
-   "estilo": "convencional",
-   "mercado": "ES",
-   "tipo": "reddit",
-   "valor": "DiarioDeUmBanana",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/DiarioDeUmBanana",
-    "estilo": "convencional",
-    "mercado": "ES",
-    "tipo": "reddit",
-    "valor": "DiarioDeUmBanana"
-   }
-  },
-  {
-   "id": "e1341da2",
-   "estilo": "convencional",
-   "mercado": "ES",
-   "tipo": "reddit",
-   "valor": "drossrotzank",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/drossrotzank",
-    "estilo": "convencional",
-    "mercado": "ES",
-    "tipo": "reddit",
-    "valor": "drossrotzank"
-   }
-  },
-  {
    "id": "2c69bf11",
    "estilo": "convencional",
    "mercado": "ES",
@@ -2049,10 +2064,10 @@
    "ambito": "comunidad",
    "origen": "descubierto",
    "en_uso": false,
-   "estado": "omitido",
+   "estado": "sin_datos",
    "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
+   "evidencia_texto": "sin publicaciones en 30 días (HTTP 200)",
+   "http": 200,
    "ejemplos": [],
    "fuente": {
     "referente": "r/El_Diario_de_Jonathan",
@@ -2063,92 +2078,175 @@
    }
   },
   {
-   "id": "4614b21e",
-   "estilo": "convencional",
-   "mercado": "ES",
-   "tipo": "reddit",
-   "valor": "LookeAR",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/LookeAR",
-    "estilo": "convencional",
-    "mercado": "ES",
-    "tipo": "reddit",
-    "valor": "LookeAR"
-   }
-  },
-  {
-   "id": "02965032",
+   "id": "01d795f6",
    "estilo": "convencional",
    "mercado": "US",
-   "tipo": "noticias",
-   "valor": "\"basics\" fashion trend outfit",
-   "ambito": "estilo",
+   "tipo": "reddit",
+   "valor": "malefashionadvice",
+   "ambito": "comunidad",
    "origen": "propuesta",
    "en_uso": false,
    "estado": "medido",
    "evidencia": {
-    "publicaciones_30d": 6,
-    "con_imagen_rss": 0,
-    "medios_distintos": 5,
-    "solo_bing": 0,
-    "solo_google": 6,
-    "sin_enlace_real": 6,
-    "motores_ok": [
-     "bing",
-     "google"
-    ],
-    "articulos_probados": 0,
-    "articulos_con_foto": 0,
-    "con_imagen_30d": 0,
-    "sin_muestra": true,
-    "muestra": 0,
-    "validacion": "ninguna"
+    "publicaciones_30d": 100,
+    "con_imagen_30d": 52,
+    "tope_100": true,
+    "titulos_es": 0,
+    "titulos_en": 36,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 8,
+    "repetidas": 0,
+    "con_persona": 8,
+    "validacion": "prendas",
+    "con_ropa_visible": 7,
+    "sin_detectar": 0,
+    "tasa_util": 0.88,
+    "fotos_utiles_est": 45.8
    },
-   "evidencia_texto": "6 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
-   "http": {
-    "google": 200,
-    "bing": 200
-   },
-   "ejemplos": [],
+   "evidencia_texto": "52 img/30 d · ropa visible 7/8 (mín.)",
+   "http": 200,
+   "ejemplos": [
+    "https://www.reddit.com/r/malefashionadvice/comments/1wyy43k/untucked_we_dont_do_that_here/",
+    "https://www.reddit.com/r/malefashionadvice/comments/1wmg4p6/fit_look_ok/",
+    "https://www.reddit.com/r/malefashionadvice/comments/1wwzj2k/accidential_mr_bean/"
+   ],
    "fuente": {
-    "referente": "prensa: \"basics\" fashion trend outfit",
+    "referente": "r/malefashionadvice",
     "estilo": "convencional",
     "mercado": "US",
-    "tipo": "noticias",
-    "valor": "\"basics\" fashion trend outfit",
-    "consultas": [
-     "\"basics\" fashion trend outfit"
-    ],
-    "nombre": "basics",
-    "contexto_extra": [
-     "moda",
-     "look",
-     "estilo",
-     "outfit",
-     "tendencia",
-     "fashion",
-     "style",
-     "trend",
-     "vestido",
-     "traje",
-     "prenda",
-     "ropa",
-     "collection",
-     "coleccion",
-     "alfombra roja",
-     "red carpet",
-     "estilismo"
-    ]
+    "tipo": "reddit",
+    "valor": "malefashionadvice"
    },
    "numero": 26
+  },
+  {
+   "id": "b13bbbd2",
+   "estilo": "convencional",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "OUTFITS",
+   "ambito": "comunidad",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 100,
+    "con_imagen_30d": 40,
+    "tope_100": true,
+    "titulos_es": 0,
+    "titulos_en": 35,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 8,
+    "repetidas": 0,
+    "con_persona": 8,
+    "validacion": "prendas",
+    "con_ropa_visible": 8,
+    "sin_detectar": 0,
+    "tasa_util": 1.0,
+    "fotos_utiles_est": 40.0
+   },
+   "evidencia_texto": "40 img/30 d · ropa visible 8/8 (mín.)",
+   "http": 200,
+   "ejemplos": [
+    "https://www.reddit.com/r/OUTFITS/comments/1wy9esy/i_love_autumn/",
+    "https://www.reddit.com/r/OUTFITS/comments/1wh99qf/another_one_of_those_feminine_fits/",
+    "https://www.reddit.com/r/OUTFITS/comments/1x12snp/does_this_dress_seem_like_it_fits_me/"
+   ],
+   "fuente": {
+    "referente": "r/OUTFITS",
+    "estilo": "convencional",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "OUTFITS"
+   },
+   "numero": 27
+  },
+  {
+   "id": "eb541bf5",
+   "estilo": "convencional",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "reddeadfashion",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 100,
+    "con_imagen_30d": 18,
+    "tope_100": true,
+    "titulos_es": 1,
+    "titulos_en": 34,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 8,
+    "repetidas": 0,
+    "con_persona": 7,
+    "validacion": "prendas",
+    "con_ropa_visible": 7,
+    "sin_detectar": 0,
+    "tasa_util": 0.88,
+    "fotos_utiles_est": 15.8
+   },
+   "evidencia_texto": "18 img/30 d · ropa visible 7/8 (mín.)",
+   "http": 200,
+   "ejemplos": [
+    "https://www.reddit.com/r/reddeadfashion/comments/1wvzaig/current_outfit/",
+    "https://www.reddit.com/r/reddeadfashion/comments/1wh8fp2/way_down_yonder_on_the_lannahachee/",
+    "https://www.reddit.com/r/reddeadfashion/comments/1wrnp9g/was_thinking_of_historical_figures_of_the_time/"
+   ],
+   "fuente": {
+    "referente": "r/reddeadfashion",
+    "estilo": "convencional",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "reddeadfashion"
+   },
+   "numero": 28
+  },
+  {
+   "id": "a0656deb",
+   "estilo": "convencional",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "EverydayOutfitStyle",
+   "ambito": "comunidad",
+   "origen": "descubierto",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 19,
+    "con_imagen_30d": 7,
+    "tope_100": false,
+    "titulos_es": 0,
+    "titulos_en": 14,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 7,
+    "repetidas": 0,
+    "con_persona": 7,
+    "validacion": "prendas",
+    "con_ropa_visible": 7,
+    "sin_detectar": 0,
+    "tasa_util": 1.0,
+    "fotos_utiles_est": 7.0
+   },
+   "evidencia_texto": "7 img/30 d · ropa visible 7/7",
+   "http": 200,
+   "ejemplos": [
+    "https://www.reddit.com/r/EverydayOutfitStyle/comments/1x29hw4/would_you_change_anything_about_this_outfit/",
+    "https://www.reddit.com/r/EverydayOutfitStyle/comments/1x3675s/do_the_brown_top_and_boots_work_with_this_skirt/",
+    "https://www.reddit.com/r/EverydayOutfitStyle/comments/1x3z6e4/would_you_wear_this_as_it_is_or_change_something/"
+   ],
+   "fuente": {
+    "referente": "r/EverydayOutfitStyle",
+    "estilo": "convencional",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "EverydayOutfitStyle"
+   }
   },
   {
    "id": "961db513",
@@ -2226,6 +2324,112 @@
    "numero": 27
   },
   {
+   "id": "de4bf003",
+   "estilo": "convencional",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "femalefashionadvice",
+   "ambito": "comunidad",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 100,
+    "con_imagen_30d": 1,
+    "tope_100": true,
+    "titulos_es": 0,
+    "titulos_en": 19,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 1,
+    "repetidas": 0,
+    "con_persona": 0,
+    "validacion": "prendas",
+    "con_ropa_visible": 0,
+    "sin_detectar": 0,
+    "tasa_util": 0.0,
+    "fotos_utiles_est": 0.0
+   },
+   "evidencia_texto": "1 img/30 d · ropa visible 0/1 (mín.)",
+   "http": 200,
+   "ejemplos": [
+    "https://www.reddit.com/r/femalefashionadvice/comments/1wx7lrx/pakistani_eid_outfit_inspo_board3/"
+   ],
+   "fuente": {
+    "referente": "r/femalefashionadvice",
+    "estilo": "convencional",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "femalefashionadvice"
+   }
+  },
+  {
+   "id": "02965032",
+   "estilo": "convencional",
+   "mercado": "US",
+   "tipo": "noticias",
+   "valor": "\"basics\" fashion trend outfit",
+   "ambito": "estilo",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 6,
+    "con_imagen_rss": 0,
+    "medios_distintos": 5,
+    "solo_bing": 0,
+    "solo_google": 6,
+    "sin_enlace_real": 6,
+    "motores_ok": [
+     "bing",
+     "google"
+    ],
+    "articulos_probados": 0,
+    "articulos_con_foto": 0,
+    "con_imagen_30d": 0,
+    "sin_muestra": true,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "6 noticias en 30 d · foto sin comprobar (no se pudo abrir ningún artículo)",
+   "http": {
+    "google": 200,
+    "bing": 200
+   },
+   "ejemplos": [],
+   "fuente": {
+    "referente": "prensa: \"basics\" fashion trend outfit",
+    "estilo": "convencional",
+    "mercado": "US",
+    "tipo": "noticias",
+    "valor": "\"basics\" fashion trend outfit",
+    "consultas": [
+     "\"basics\" fashion trend outfit"
+    ],
+    "nombre": "basics",
+    "contexto_extra": [
+     "moda",
+     "look",
+     "estilo",
+     "outfit",
+     "tendencia",
+     "fashion",
+     "style",
+     "trend",
+     "vestido",
+     "traje",
+     "prenda",
+     "ropa",
+     "collection",
+     "coleccion",
+     "alfombra roja",
+     "red carpet",
+     "estilismo"
+    ]
+   },
+   "numero": 26
+  },
+  {
    "id": "8ea38aeb",
    "estilo": "convencional",
    "mercado": "US",
@@ -2290,160 +2494,6 @@
     ]
    },
    "numero": 28
-  },
-  {
-   "id": "772ea526",
-   "estilo": "convencional",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "ErikasStyleJournal",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/ErikasStyleJournal",
-    "estilo": "convencional",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "ErikasStyleJournal"
-   }
-  },
-  {
-   "id": "a0656deb",
-   "estilo": "convencional",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "EverydayOutfitStyle",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/EverydayOutfitStyle",
-    "estilo": "convencional",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "EverydayOutfitStyle"
-   }
-  },
-  {
-   "id": "de4bf003",
-   "estilo": "convencional",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "femalefashionadvice",
-   "ambito": "comunidad",
-   "origen": "propuesta",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/femalefashionadvice",
-    "estilo": "convencional",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "femalefashionadvice"
-   }
-  },
-  {
-   "id": "01d795f6",
-   "estilo": "convencional",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "malefashionadvice",
-   "ambito": "comunidad",
-   "origen": "propuesta",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/malefashionadvice",
-    "estilo": "convencional",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "malefashionadvice"
-   }
-  },
-  {
-   "id": "b13bbbd2",
-   "estilo": "convencional",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "OUTFITS",
-   "ambito": "comunidad",
-   "origen": "propuesta",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/OUTFITS",
-    "estilo": "convencional",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "OUTFITS"
-   }
-  },
-  {
-   "id": "eb541bf5",
-   "estilo": "convencional",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "reddeadfashion",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/reddeadfashion",
-    "estilo": "convencional",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "reddeadfashion"
-   }
-  },
-  {
-   "id": "8d0fb2d5",
-   "estilo": "convencional",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "TodayWithChloe",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/TodayWithChloe",
-    "estilo": "convencional",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "TodayWithChloe"
-   }
   },
   {
    "id": "ecb6dbc6",
@@ -2700,6 +2750,53 @@
    }
   },
   {
+   "id": "19748dba",
+   "estilo": "geek",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "Painthisice",
+   "ambito": "cuenta",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 9,
+    "con_imagen_30d": 5,
+    "fotos_30d": 5,
+    "posts_en_el_lote": 9,
+    "tope_lote": true,
+    "ultima_foto_hace_dias": 1,
+    "seguidores": 4053,
+    "titulos_es": 0,
+    "titulos_en": 9,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 5,
+    "repetidas": 0,
+    "con_persona": 0,
+    "validacion": "prendas",
+    "con_ropa_visible": 0,
+    "sin_detectar": 0,
+    "tasa_util": 0.0,
+    "fotos_utiles_est": 0.0
+   },
+   "evidencia_texto": "5 pub. con imagen/30 d · 0/5 con ropa visible (mínimo)",
+   "http": 200,
+   "ejemplos": [
+    "https://x.com/Painthisice/status/2109703286894776366",
+    "https://x.com/Painthisice/status/2109326001838723531",
+    "https://x.com/Painthisice/status/2109326439904366653"
+   ],
+   "fuente": {
+    "referente": "Painthisice",
+    "estilo": "geek",
+    "mercado": "US",
+    "tipo": "x",
+    "valor": "Painthisice"
+   },
+   "numero": 37
+  },
+  {
    "id": "5acd7639",
    "estilo": "geek",
    "mercado": "US",
@@ -2763,7 +2860,7 @@
      "estilismo"
     ]
    },
-   "numero": 37
+   "numero": 38
   },
   {
    "id": "b1618beb",
@@ -2829,7 +2926,7 @@
      "estilismo"
     ]
    },
-   "numero": 38
+   "numero": 39
   },
   {
    "id": "12cb4e62",
@@ -2869,49 +2966,34 @@
    "numero": 39
   },
   {
-   "id": "19748dba",
+   "id": "0cf7f01e",
    "estilo": "geek",
    "mercado": "US",
-   "tipo": "x",
-   "valor": "Painthisice",
-   "ambito": "cuenta",
+   "tipo": "reddit",
+   "valor": "techwearclothing",
+   "ambito": "comunidad",
    "origen": "en_uso",
    "en_uso": true,
    "estado": "medido",
    "evidencia": {
-    "publicaciones_30d": 9,
-    "con_imagen_30d": 5,
-    "fotos_30d": 5,
-    "posts_en_el_lote": 9,
-    "tope_lote": true,
-    "ultima_foto_hace_dias": 1,
-    "seguidores": 4053,
+    "publicaciones_30d": 2,
+    "con_imagen_30d": 0,
+    "tope_100": false,
     "titulos_es": 0,
-    "titulos_en": 9,
+    "titulos_en": 1,
     "mercado_medido": "US",
-    "descargas_fallidas": 0,
-    "muestra": 5,
-    "repetidas": 0,
-    "con_persona": 0,
-    "validacion": "prendas",
-    "con_ropa_visible": 0,
-    "sin_detectar": 0,
-    "tasa_util": 0.0,
-    "fotos_utiles_est": 0.0
+    "muestra": 0,
+    "validacion": "ninguna"
    },
-   "evidencia_texto": "5 pub. con imagen/30 d · 0/5 con ropa visible (mínimo)",
+   "evidencia_texto": "0 img/30 d",
    "http": 200,
-   "ejemplos": [
-    "https://x.com/Painthisice/status/2109703286894776366",
-    "https://x.com/Painthisice/status/2109326001838723531",
-    "https://x.com/Painthisice/status/2109326439904366653"
-   ],
+   "ejemplos": [],
    "fuente": {
-    "referente": "Painthisice",
+    "referente": "r/techwearclothing",
     "estilo": "geek",
     "mercado": "US",
-    "tipo": "x",
-    "valor": "Painthisice"
+    "tipo": "reddit",
+    "valor": "techwearclothing"
    }
   },
   {
@@ -3010,72 +3092,6 @@
     ],
     "nombre": "lil xan",
     "contexto": "music_en"
-   }
-  },
-  {
-   "id": "0cf7f01e",
-   "estilo": "geek",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "techwearclothing",
-   "ambito": "comunidad",
-   "origen": "en_uso",
-   "en_uso": true,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/techwearclothing",
-    "estilo": "geek",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "techwearclothing"
-   }
-  },
-  {
-   "id": "d7bbb2e4",
-   "estilo": "lujo",
-   "mercado": "?",
-   "tipo": "reddit",
-   "valor": "Gucci",
-   "ambito": "comunidad",
-   "origen": "biblioteca",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/Gucci",
-    "estilo": "lujo",
-    "mercado": "?",
-    "tipo": "reddit",
-    "valor": "Gucci"
-   }
-  },
-  {
-   "id": "76772fba",
-   "estilo": "lujo",
-   "mercado": "?",
-   "tipo": "reddit",
-   "valor": "LouisVuitton",
-   "ambito": "comunidad",
-   "origen": "biblioteca",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/LouisVuitton",
-    "estilo": "lujo",
-    "mercado": "?",
-    "tipo": "reddit",
-    "valor": "LouisVuitton"
    }
   },
   {
@@ -3300,50 +3316,6 @@
    }
   },
   {
-   "id": "7ffe92ee",
-   "estilo": "lujo",
-   "mercado": "ES",
-   "tipo": "reddit",
-   "valor": "fueradeseries",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/fueradeseries",
-    "estilo": "lujo",
-    "mercado": "ES",
-    "tipo": "reddit",
-    "valor": "fueradeseries"
-   }
-  },
-  {
-   "id": "5f8dcb6d",
-   "estilo": "lujo",
-   "mercado": "ES",
-   "tipo": "reddit",
-   "valor": "LookeAR",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/LookeAR",
-    "estilo": "lujo",
-    "mercado": "ES",
-    "tipo": "reddit",
-    "valor": "LookeAR"
-   }
-  },
-  {
    "id": "09020298",
    "estilo": "lujo",
    "mercado": "ES",
@@ -3392,48 +3364,133 @@
    }
   },
   {
-   "id": "7c8db30e",
+   "id": "baf45da9",
    "estilo": "lujo",
-   "mercado": "ES",
+   "mercado": "US",
    "tipo": "reddit",
-   "valor": "SinDormir",
+   "valor": "LouisVuitton",
    "ambito": "comunidad",
-   "origen": "descubierto",
+   "origen": "biblioteca",
    "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 100,
+    "con_imagen_30d": 54,
+    "tope_100": true,
+    "titulos_es": 1,
+    "titulos_en": 19,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 8,
+    "repetidas": 0,
+    "con_persona": 8,
+    "validacion": "prendas",
+    "con_ropa_visible": 5,
+    "sin_detectar": 0,
+    "tasa_util": 0.62,
+    "fotos_utiles_est": 33.5
+   },
+   "evidencia_texto": "54 img/30 d · ropa visible 5/8 (mín.)",
+   "http": 200,
+   "ejemplos": [
+    "https://www.reddit.com/r/Louisvuitton/comments/1wrjm8g/bag_is_basically_free_when_shopping_in_paris_girl/",
+    "https://www.reddit.com/r/Louisvuitton/comments/1wnqgc5/my_first_speedy/",
+    "https://www.reddit.com/r/Louisvuitton/comments/1x2342e/heading_out_for_birthday_drinks/"
+   ],
    "fuente": {
-    "referente": "r/SinDormir",
+    "referente": "r/LouisVuitton",
     "estilo": "lujo",
-    "mercado": "ES",
+    "mercado": "US",
     "tipo": "reddit",
-    "valor": "SinDormir"
-   }
+    "valor": "LouisVuitton"
+   },
+   "numero": 14
   },
   {
-   "id": "99ddb957",
+   "id": "b7734aeb",
    "estilo": "lujo",
-   "mercado": "ES",
+   "mercado": "US",
    "tipo": "reddit",
-   "valor": "vidanta",
+   "valor": "handbags",
+   "ambito": "comunidad",
+   "origen": "propuesta",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 100,
+    "con_imagen_30d": 49,
+    "tope_100": true,
+    "titulos_es": 0,
+    "titulos_en": 41,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 8,
+    "repetidas": 0,
+    "con_persona": 5,
+    "validacion": "prendas",
+    "con_ropa_visible": 5,
+    "sin_detectar": 0,
+    "tasa_util": 0.62,
+    "fotos_utiles_est": 30.4
+   },
+   "evidencia_texto": "49 img/30 d · ropa visible 5/8 (mín.)",
+   "http": 200,
+   "ejemplos": [
+    "https://www.reddit.com/r/handbags/comments/1wms4g6/i_was_a_finalist_for_a_job_after_seven_interviews/",
+    "https://www.reddit.com/r/handbags/comments/1wzggzx/unexpected_metallica_concert_souvenir/",
+    "https://www.reddit.com/r/handbags/comments/1wh9p4s/behold_my_son_the_frurse/"
+   ],
+   "fuente": {
+    "referente": "r/handbags",
+    "estilo": "lujo",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "handbags"
+   },
+   "numero": 15
+  },
+  {
+   "id": "1315e606",
+   "estilo": "lujo",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "IndianFashionAddicts",
    "ambito": "comunidad",
    "origen": "descubierto",
    "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 100,
+    "con_imagen_30d": 27,
+    "tope_100": true,
+    "titulos_es": 0,
+    "titulos_en": 34,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 8,
+    "repetidas": 0,
+    "con_persona": 6,
+    "validacion": "prendas",
+    "con_ropa_visible": 6,
+    "sin_detectar": 0,
+    "tasa_util": 0.75,
+    "fotos_utiles_est": 20.2
+   },
+   "evidencia_texto": "27 img/30 d · ropa visible 6/8 (mín.)",
+   "http": 200,
+   "ejemplos": [
+    "https://www.reddit.com/r/IndianFashionAddicts/comments/1wux5u1/fav_recent_fits/",
+    "https://www.reddit.com/r/IndianFashionAddicts/comments/1wgaemr/dressed_up_for_a_solo_date/",
+    "https://www.reddit.com/r/IndianFashionAddicts/comments/1wrh3sm/tried_making_a_waist_chain_by_myself/"
+   ],
    "fuente": {
-    "referente": "r/vidanta",
+    "referente": "r/IndianFashionAddicts",
     "estilo": "lujo",
-    "mercado": "ES",
+    "mercado": "US",
     "tipo": "reddit",
-    "valor": "vidanta"
-   }
+    "valor": "IndianFashionAddicts"
+   },
+   "numero": 16
   },
   {
    "id": "7c7cc23a",
@@ -3559,6 +3616,48 @@
     "valor": "DSQUARED2"
    },
    "numero": 15
+  },
+  {
+   "id": "94d77631",
+   "estilo": "lujo",
+   "mercado": "US",
+   "tipo": "reddit",
+   "valor": "Gucci",
+   "ambito": "comunidad",
+   "origen": "biblioteca",
+   "en_uso": false,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 100,
+    "con_imagen_30d": 37,
+    "tope_100": true,
+    "titulos_es": 1,
+    "titulos_en": 34,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 8,
+    "repetidas": 0,
+    "con_persona": 3,
+    "validacion": "prendas",
+    "con_ropa_visible": 3,
+    "sin_detectar": 0,
+    "tasa_util": 0.38,
+    "fotos_utiles_est": 14.1
+   },
+   "evidencia_texto": "37 img/30 d · ropa visible 3/8 (mín.)",
+   "http": 200,
+   "ejemplos": [
+    "https://www.reddit.com/r/gucci/comments/1wp4u5l/guccis_new_made_in_china_sneaker_models_break/",
+    "https://www.reddit.com/r/gucci/comments/1ws21ax/large_giglio_straps/",
+    "https://www.reddit.com/r/gucci/comments/1wj7quo/shes_arrived_well_sorta/"
+   ],
+   "fuente": {
+    "referente": "r/Gucci",
+    "estilo": "lujo",
+    "mercado": "US",
+    "tipo": "reddit",
+    "valor": "Gucci"
+   }
   },
   {
    "id": "34771617",
@@ -4002,72 +4101,6 @@
    }
   },
   {
-   "id": "c4a11627",
-   "estilo": "lujo",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "AC_DesignerFashion",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/AC_DesignerFashion",
-    "estilo": "lujo",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "AC_DesignerFashion"
-   }
-  },
-  {
-   "id": "b7734aeb",
-   "estilo": "lujo",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "handbags",
-   "ambito": "comunidad",
-   "origen": "propuesta",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/handbags",
-    "estilo": "lujo",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "handbags"
-   }
-  },
-  {
-   "id": "1315e606",
-   "estilo": "lujo",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "IndianFashionAddicts",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/IndianFashionAddicts",
-    "estilo": "lujo",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "IndianFashionAddicts"
-   }
-  },
-  {
    "id": "5d53f8c4",
    "estilo": "lujo",
    "mercado": "US",
@@ -4076,10 +4109,10 @@
    "ambito": "comunidad",
    "origen": "descubierto",
    "en_uso": false,
-   "estado": "omitido",
+   "estado": "sin_datos",
    "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
+   "evidencia_texto": "sin publicaciones en 30 días (HTTP 200)",
+   "http": 200,
    "ejemplos": [],
    "fuente": {
     "referente": "r/LuxuryFashionAddict",
@@ -4087,28 +4120,6 @@
     "mercado": "US",
     "tipo": "reddit",
     "valor": "LuxuryFashionAddict"
-   }
-  },
-  {
-   "id": "e4f24764",
-   "estilo": "lujo",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "offwhite",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/offwhite",
-    "estilo": "lujo",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "offwhite"
    }
   },
   {
@@ -4395,10 +4406,10 @@
    "ambito": "comunidad",
    "origen": "descubierto",
    "en_uso": false,
-   "estado": "omitido",
+   "estado": "sin_datos",
    "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
+   "evidencia_texto": "sin publicaciones en 30 días (HTTP 200)",
+   "http": 200,
    "ejemplos": [],
    "fuente": {
     "referente": "r/DressLikeOldMoney",
@@ -4417,10 +4428,10 @@
    "ambito": "comunidad",
    "origen": "descubierto",
    "en_uso": false,
-   "estado": "omitido",
+   "estado": "sin_datos",
    "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
+   "evidencia_texto": "sin publicaciones en 30 días (HTTP 200)",
+   "http": 200,
    "ejemplos": [],
    "fuente": {
     "referente": "r/OldMoneyFashion",
@@ -4944,25 +4955,34 @@
    }
   },
   {
-   "id": "6750b124",
+   "id": "5401b8ad",
    "estilo": "old_money",
    "mercado": "US",
    "tipo": "reddit",
-   "valor": "handbags",
+   "valor": "TheOldStyle",
    "ambito": "comunidad",
    "origen": "descubierto",
    "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 6,
+    "con_imagen_30d": 0,
+    "tope_100": false,
+    "titulos_es": 0,
+    "titulos_en": 0,
+    "mercado_medido": null,
+    "muestra": 0,
+    "validacion": "ninguna"
+   },
+   "evidencia_texto": "0 img/30 d",
+   "http": 200,
    "ejemplos": [],
    "fuente": {
-    "referente": "r/handbags",
+    "referente": "r/TheOldStyle",
     "estilo": "old_money",
     "mercado": "US",
     "tipo": "reddit",
-    "valor": "handbags"
+    "valor": "TheOldStyle"
    }
   },
   {
@@ -4974,10 +4994,10 @@
    "ambito": "comunidad",
    "origen": "propuesta",
    "en_uso": false,
-   "estado": "omitido",
+   "estado": "no_disponible",
    "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
+   "evidencia_texto": "no disponible (HTTP 429): no existe, es privada o limita",
+   "http": 429,
    "ejemplos": [],
    "fuente": {
     "referente": "r/ivystyle",
@@ -4985,28 +5005,6 @@
     "mercado": "US",
     "tipo": "reddit",
     "valor": "ivystyle"
-   }
-  },
-  {
-   "id": "e09e2118",
-   "estilo": "old_money",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "LuxeSociety",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/LuxeSociety",
-    "estilo": "old_money",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "LuxeSociety"
    }
   },
   {
@@ -5018,10 +5016,10 @@
    "ambito": "comunidad",
    "origen": "propuesta",
    "en_uso": false,
-   "estado": "omitido",
+   "estado": "sin_datos",
    "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
+   "evidencia_texto": "sin publicaciones en 30 días (HTTP 200)",
+   "http": 200,
    "ejemplos": [],
    "fuente": {
     "referente": "r/OldMoney",
@@ -5040,10 +5038,10 @@
    "ambito": "comunidad",
    "origen": "propuesta",
    "en_uso": false,
-   "estado": "omitido",
+   "estado": "sin_datos",
    "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
+   "evidencia_texto": "sin publicaciones en 30 días (HTTP 200)",
+   "http": 200,
    "ejemplos": [],
    "fuente": {
     "referente": "r/quietluxury",
@@ -5051,50 +5049,6 @@
     "mercado": "US",
     "tipo": "reddit",
     "valor": "quietluxury"
-   }
-  },
-  {
-   "id": "8037be66",
-   "estilo": "old_money",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "QuietLuxury_MensWear",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/QuietLuxury_MensWear",
-    "estilo": "old_money",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "QuietLuxury_MensWear"
-   }
-  },
-  {
-   "id": "5401b8ad",
-   "estilo": "old_money",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "TheOldStyle",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/TheOldStyle",
-    "estilo": "old_money",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "TheOldStyle"
    }
   },
   {
@@ -5643,92 +5597,47 @@
    }
   },
   {
-   "id": "3f7e083c",
+   "id": "599300a6",
    "estilo": "urbano",
-   "mercado": "ES",
+   "mercado": "US",
    "tipo": "reddit",
-   "valor": "phonk",
+   "valor": "streetwear",
    "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 66,
+    "con_imagen_30d": 12,
+    "tope_100": false,
+    "titulos_es": 0,
+    "titulos_en": 17,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 8,
+    "repetidas": 0,
+    "con_persona": 8,
+    "validacion": "prendas",
+    "con_ropa_visible": 8,
+    "sin_detectar": 0,
+    "tasa_util": 1.0,
+    "fotos_utiles_est": 12.0
+   },
+   "evidencia_texto": "12 img/30 d · ropa visible 8/8",
+   "http": 200,
+   "ejemplos": [
+    "https://www.reddit.com/r/streetwear/comments/1wqrdn2/work_fit_went_to_poconos_after_its_raining/",
+    "https://www.reddit.com/r/streetwear/comments/1x1x9cp/the_higher_the_socks_the_downer_the_foo/",
+    "https://www.reddit.com/r/streetwear/comments/1wr0dq0/finally_starting_to_feel_like_fall/"
+   ],
    "fuente": {
-    "referente": "r/phonk",
+    "referente": "r/streetwear",
     "estilo": "urbano",
-    "mercado": "ES",
+    "mercado": "US",
     "tipo": "reddit",
-    "valor": "phonk"
-   }
-  },
-  {
-   "id": "f29b0d54",
-   "estilo": "urbano",
-   "mercado": "ES",
-   "tipo": "reddit",
-   "valor": "TrapAndRapIta",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/TrapAndRapIta",
-    "estilo": "urbano",
-    "mercado": "ES",
-    "tipo": "reddit",
-    "valor": "TrapAndRapIta"
-   }
-  },
-  {
-   "id": "09030e69",
-   "estilo": "urbano",
-   "mercado": "ES",
-   "tipo": "reddit",
-   "valor": "trapmuzik",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/trapmuzik",
-    "estilo": "urbano",
-    "mercado": "ES",
-    "tipo": "reddit",
-    "valor": "trapmuzik"
-   }
-  },
-  {
-   "id": "5542ce1f",
-   "estilo": "urbano",
-   "mercado": "ES",
-   "tipo": "reddit",
-   "valor": "ukdrill",
-   "ambito": "comunidad",
-   "origen": "descubierto",
-   "en_uso": false,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/ukdrill",
-    "estilo": "urbano",
-    "mercado": "ES",
-    "tipo": "reddit",
-    "valor": "ukdrill"
-   }
+    "valor": "streetwear"
+   },
+   "numero": 32
   },
   {
    "id": "3537ded4",
@@ -5788,7 +5697,52 @@
     "nombre": "playboi carti",
     "contexto": "music_en"
    },
-   "numero": 32
+   "numero": 33
+  },
+  {
+   "id": "3870dc39",
+   "estilo": "urbano",
+   "mercado": "US",
+   "tipo": "x",
+   "valor": "trvisXX",
+   "ambito": "cuenta",
+   "origen": "en_uso",
+   "en_uso": true,
+   "estado": "medido",
+   "evidencia": {
+    "publicaciones_30d": 2,
+    "con_imagen_30d": 1,
+    "fotos_30d": 1,
+    "posts_en_el_lote": 20,
+    "tope_lote": false,
+    "ultima_foto_hace_dias": 28,
+    "seguidores": 12730925,
+    "titulos_es": 0,
+    "titulos_en": 1,
+    "mercado_medido": "US",
+    "descargas_fallidas": 0,
+    "muestra": 1,
+    "repetidas": 0,
+    "con_persona": 0,
+    "validacion": "prendas",
+    "con_ropa_visible": 0,
+    "sin_detectar": 0,
+    "tasa_util": 0.0,
+    "fotos_utiles_est": 0.0
+   },
+   "evidencia_texto": "1 pub. con imagen/30 d · 0/1 con ropa visible",
+   "http": 200,
+   "ejemplos": [
+    "https://x.com/trvisXX/status/2099905804165890411"
+   ],
+   "fuente": {
+    "referente": "Travis Scott",
+    "estilo": "urbano",
+    "mercado": "US",
+    "tipo": "x",
+    "valor": "trvisXX"
+   },
+   "numero": 34
   },
   {
    "id": "e98b413f",
@@ -6039,50 +5993,6 @@
    }
   },
   {
-   "id": "3870dc39",
-   "estilo": "urbano",
-   "mercado": "US",
-   "tipo": "x",
-   "valor": "trvisXX",
-   "ambito": "cuenta",
-   "origen": "en_uso",
-   "en_uso": true,
-   "estado": "medido",
-   "evidencia": {
-    "publicaciones_30d": 2,
-    "con_imagen_30d": 1,
-    "fotos_30d": 1,
-    "posts_en_el_lote": 20,
-    "tope_lote": false,
-    "ultima_foto_hace_dias": 28,
-    "seguidores": 12730925,
-    "titulos_es": 0,
-    "titulos_en": 1,
-    "mercado_medido": "US",
-    "descargas_fallidas": 0,
-    "muestra": 1,
-    "repetidas": 0,
-    "con_persona": 0,
-    "validacion": "prendas",
-    "con_ropa_visible": 0,
-    "sin_detectar": 0,
-    "tasa_util": 0.0,
-    "fotos_utiles_est": 0.0
-   },
-   "evidencia_texto": "1 pub. con imagen/30 d · 0/1 con ropa visible",
-   "http": 200,
-   "ejemplos": [
-    "https://x.com/trvisXX/status/2099905804165890411"
-   ],
-   "fuente": {
-    "referente": "Travis Scott",
-    "estilo": "urbano",
-    "mercado": "US",
-    "tipo": "x",
-    "valor": "trvisXX"
-   }
-  },
-  {
    "id": "9e79d04d",
    "estilo": "urbano",
    "mercado": "US",
@@ -6102,28 +6012,6 @@
     "mercado": "US",
     "tipo": "x",
     "valor": "playboicarti"
-   }
-  },
-  {
-   "id": "599300a6",
-   "estilo": "urbano",
-   "mercado": "US",
-   "tipo": "reddit",
-   "valor": "streetwear",
-   "ambito": "comunidad",
-   "origen": "en_uso",
-   "en_uso": true,
-   "estado": "omitido",
-   "evidencia": {},
-   "evidencia_texto": "omitido: se acabó el tiempo asignado a Reddit",
-   "http": -1,
-   "ejemplos": [],
-   "fuente": {
-    "referente": "r/streetwear",
-    "estilo": "urbano",
-    "mercado": "US",
-    "tipo": "reddit",
-    "valor": "streetwear"
    }
   }
  ]
