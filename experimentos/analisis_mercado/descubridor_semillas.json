@@ -35,7 +35,7 @@
    },
    "US": {
     "reddit_busquedas": ["preppy style", "ivy style menswear"],
-    "reddit_subs": ["Barbour", "ivystyle"],
+    "reddit_subs": ["Barbour", "ivystyle", "NavyBlazer", "preppy"],
     "prensa": ["\"preppy\" outfit trend", "\"ivy style\" menswear", "\"Barbour\" jacket style"],
     "referentes": [
      {"nombre": "Ralph Lauren", "consultas": ["\"Ralph Lauren\" style", "\"Ralph Lauren\" collection"], "rx": "ralph lauren"}

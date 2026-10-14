@@ -305,6 +305,21 @@ class Pruebas(unittest.TestCase):
         sin_fusion, _ = self.medir("--validar", "nada", "--fuentes", "reddit")
         self.assertEqual({c["tipo"] for c in sin_fusion["candidatos"]}, {"reddit"}, "sin --fusionar solo queda lo medido ahora")
 
+    def test_solo_reintenta_un_candidato_y_sustituye_solo_ese(self):
+        salida = TMP / "solo.json"
+        MODO["reddit"] = "403"
+        antes, _ = self.medir("--validar", "nada", "--fuentes", "reddit", salida=salida)
+        self.assertTrue(all(c["estado"] != "medido" for c in antes["candidatos"]))
+        d.MEDIDAS.clear()
+        d.RED.__init__()
+        MODO["reddit"] = "ok"
+        datos, _ = self.medir("--validar", "nada", "--fuentes", "reddit", "--solo", "ivystyle", "--fusionar", salida=salida)
+        por = {c["valor"]: c for c in datos["candidatos"]}
+        self.assertEqual(por["ivystyle"]["estado"], "medido", "el reintentado se midió")
+        self.assertEqual(por["OldMoney"]["estado"], "bloqueado", "el resto se queda como estaba")
+        self.assertEqual(len(datos["candidatos"]), len(antes["candidatos"]), "sin duplicados")
+        self.assertNotIn("(HTTP 200)", d.texto_evidencia({}, "sin_datos", 200))
+
     def test_prensa_sin_enlaces_reales_dice_sin_comprobar_y_no_cero(self):
         med = d.MEDIDAS[d.medir_noticias(d.definicion_prensa("US", ["solo-google moda"], None), 4)]
         self.assertEqual(med["estado"], "medido")

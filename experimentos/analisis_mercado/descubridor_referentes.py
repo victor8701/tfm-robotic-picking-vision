@@ -653,7 +653,7 @@ def ejemplos_de(med: dict) -> list[str]:
 
 def texto_evidencia(ev: dict, estado: str, http=None) -> str:
     if estado != "medido":
-        motivo = f" (HTTP {http})" if isinstance(http, int) and http > 0 else ""
+        motivo = f" (HTTP {http})" if isinstance(http, int) and http not in (0, 200) else ""
         return {"bloqueado": "sin medir: el servicio no contesta desde aquí", "no_disponible": f"no disponible{motivo}: no existe, es privada o limita", "sin_datos": f"sin publicaciones en 30 días{motivo}",
                 "omitido": "omitido: se acabó el tiempo asignado a Reddit", "error": "error al leer"}.get(estado, estado)
     if ev.get("sin_muestra"):
@@ -675,7 +675,10 @@ def texto_evidencia(ev: dict, estado: str, http=None) -> str:
 def montar_candidatos(args, sem) -> list[dict]:
     estilos = args.estilos or list(sem)
     cands = candidatos_de_ficheros(estilos) + candidatos_de_semillas(sem, estilos, args.mercados)
-    return [c for c in unir(cands) if c["tipo"] in args.fuentes and c["mercado"] in (*args.mercados, "auto")]
+    cands = [c for c in unir(cands) if c["tipo"] in args.fuentes and c["mercado"] in (*args.mercados, "auto")]
+    if args.solo:
+        cands = [c for c in cands if c["valor"].lower() in {v.lower() for v in args.solo}]
+    return cands
 
 
 def medir_candidatos_reddit(cands: list[dict], lista: list[dict], args, etiqueta: str) -> None:
@@ -695,7 +698,7 @@ def fase_reddit(cands: list[dict], sem: dict, args) -> None:
     medir_candidatos_reddit(cands, primeras, args, "conocidas")
     for c in conocidas:
         c["medida"] = f"reddit:{c['valor'].lower()}"
-    for estilo in sorted(args.estilos, key=lambda e: e in ("urbano", "geek")):   # urbano y geek (control) al final
+    for estilo in ([] if args.solo else sorted(args.estilos, key=lambda e: e in ("urbano", "geek"))):   # urbano y geek (control) al final; con --solo no se busca nada nuevo
         for mercado in args.mercados:
             qs = sem.get(estilo, {}).get(mercado, {}).get("reddit_busquedas", [])[:args.consultas_reddit]
             if not qs or RED.cerrado("reddit"):
@@ -748,6 +751,8 @@ def clave_orden(c: dict):
 def resumen_texto(datos: dict, por_celda: int = 3) -> str:
     """Corto, para leer en el móvil y contestar «1✓ 2✕»."""
     cands = datos["candidatos"]
+    for c in cands:
+        c["evidencia_texto"] = texto_evidencia(c["evidencia"], c["estado"], c.get("http"))
     red = datos["red"]
     caidos = [f"{s} ✕" for s, r in red.items() if r["bloqueado"]]
     sanos = [f"{s} ✓" + (f" ({r['respuestas']['omitido']} omitidas por tiempo)" if r["respuestas"].get("omitido") else "") for s, r in red.items() if not r["bloqueado"]]
@@ -802,7 +807,8 @@ def cmd_medir(args) -> int:
         SALIDA = Path(args.salida)
         if args.fusionar and SALIDA.exists():
             previo = json.loads(SALIDA.read_text(encoding="utf-8"))
-            cerrados += [c for c in previo["candidatos"] if c["tipo"] not in args.fuentes]
+            nuevos = {c["id"] for c in cerrados}
+            cerrados += [c for c in previo["candidatos"] if c["id"] not in nuevos and (args.solo or c["tipo"] not in args.fuentes)]   # con --solo se sustituyen solo los repetidos; si no, se renueva todo el tipo
             red = {**previo["red"], **red}
             validacion = modo if previo["validacion"] == modo else "mixta"
         cerrados.sort(key=lambda c: (c["estilo"], c["mercado"], *clave_orden(c)))
@@ -839,6 +845,7 @@ def main(argv=None) -> int:
     ap.add_argument("--muestra", type=int, default=MUESTRA)
     ap.add_argument("--max-subs", type=int, default=2, help="comunidades nuevas que se miden por estilo × mercado")
     ap.add_argument("--consultas-reddit", type=int, default=1, help="consultas de búsqueda de comunidades por estilo × mercado (cada una son 2 peticiones a Reddit)")
+    ap.add_argument("--solo", type=lambda s: [x for x in s.split(",") if x], help="mide solo los candidatos con estos valores (comunidades, cuentas, referentes), p. ej. para reintentar uno que dio 429")
     ap.add_argument("--fusionar", action="store_true", help="conserva del resultado anterior los candidatos de las fuentes que no se miden ahora (para repetir solo Reddit, por ejemplo)")
     ap.add_argument("--tiempo-reddit", type=float, default=45, help="minutos máximos para todo Reddit (sus límites de peticiones pueden costar minutos por petición); lo que no llega queda «omitido»")
     ap.add_argument("--max-detector", type=int, default=400, help="tope de fotos para el detector de prendas (≈ 10-20 s cada una en CPU)")
