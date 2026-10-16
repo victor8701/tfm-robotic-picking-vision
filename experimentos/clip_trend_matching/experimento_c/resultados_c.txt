@@ -1,0 +1,44 @@
+ANÁLISIS C (inventario de 1 267 prendas, 6 tendencias sin lujo ostentoso; brazo nuevo T_datos_en; primaria declarada en README.md)
+Puntuadas 264 de 264 prendas de este análisis.
+
+===== K = 5 (media sobre 6 tendencias) =====
+método            P@5 estricto(=2)  P@5 laxo(>=1)   NDCG@5
+T_ciego_en                     30%            30%     0.31
+T_ciego_es                     37%            37%     0.34
+T_oraculo_en                   70%            70%     0.66
+V                              33%            33%     0.36
+F_ciego                        40%            40%     0.37
+F_oraculo                      50%            50%     0.50
+T_corto_ciego_en               37%            37%     0.39
+F_corto                        40%            40%     0.41
+T_datos_en                     83%            83%     0.86
+
+Comparaciones emparejadas por tendencia, P@5 estricto (pp). IC95% t con 5 gl; p = permutación exacta de signos:
+  T_datos_en       − T_corto_ciego_en   +47 pp  IC95% [ +30,  +64]  p=0.031  gana 6/empata 0/pierde 0  -> MEJORA   ([C primaria] ¿el texto hecho con datos medidos supera al texto corto de un LLM que solo conoce el nombre?)
+  T_datos_en       − T_oraculo_en       +13 pp  IC95% [  +2,  +24]  p=0.125  gana 4/empata 2/pierde 0  -> MEJORA   (¿se acerca al oráculo (escrito conociendo la taxonomía; cota optimista)?)
+  T_datos_en       − T_ciego_en         +53 pp  IC95% [ +17,  +90]  p=0.062  gana 5/empata 1/pierde 0  -> MEJORA   (¿y al texto largo ciego, el del pipeline actual?)
+  T_datos_en       − V                  +50 pp  IC95% [ +28,  +72]  p=0.031  gana 6/empata 0/pierde 0  -> MEJORA   (¿texto con datos frente a solo imagen?)
+
+Potencia: con 6 tendencias el IC tiene una semianchura típica de ±22 pp, así que solo se puede AFIRMAR una diferencia si es grande; 'neutro' significa 'no se detecta un efecto grande', no 'no hay efecto'.
+
+===== K = 10 (media sobre 6 tendencias) =====
+método           P@10 estricto(=2) P@10 laxo(>=1)  NDCG@10
+T_ciego_en                     37%            37%     0.35
+T_ciego_es                     38%            38%     0.36
+T_oraculo_en                   65%            65%     0.64
+V                              42%            42%     0.41
+F_ciego                        45%            45%     0.42
+F_oraculo                      53%            53%     0.52
+T_corto_ciego_en               35%            35%     0.38
+F_corto                        42%            42%     0.42
+T_datos_en                     68%            68%     0.74
+
+Comparaciones emparejadas por tendencia, P@10 estricto (pp). IC95% t con 5 gl; p = permutación exacta de signos:
+  T_datos_en       − T_corto_ciego_en   +33 pp  IC95% [ +14,  +53]  p=0.062  gana 5/empata 1/pierde 0  -> MEJORA   ([C primaria] ¿el texto hecho con datos medidos supera al texto corto de un LLM que solo conoce el nombre?)
+  T_datos_en       − T_oraculo_en        +3 pp  IC95% [ -25,  +32]  p=0.875  gana 3/empata 1/pierde 2  -> neutro/no concluyente   (¿se acerca al oráculo (escrito conociendo la taxonomía; cota optimista)?)
+  T_datos_en       − T_ciego_en         +32 pp  IC95% [  -8,  +71]  p=0.125  gana 5/empata 0/pierde 1  -> neutro/no concluyente   (¿y al texto largo ciego, el del pipeline actual?)
+  T_datos_en       − V                  +27 pp  IC95% [  -1,  +55]  p=0.125  gana 4/empata 1/pierde 1  -> neutro/no concluyente   (¿texto con datos frente a solo imagen?)
+
+Potencia: con 6 tendencias el IC tiene una semianchura típica de ±29 pp, así que solo se puede AFIRMAR una diferencia si es grande; 'neutro' significa 'no se detecta un efecto grande', no 'no hay efecto'.
+
+Regla fijada antes de puntuar (ver README): MEJORA = media >= +5 pp y el IC95% excluye 0; en otro caso, resultado neutro.

@@ -57,3 +57,27 @@ Un modelo abierto (Qwen, en Kaggle, nunca una API comercial) reformula los mismo
 ## 8. Ficheros
 
 `textos_datos_c.json` (textos y evidencia, congelados) · `experimento_c.py` (preparar / analizar) · `pool_c.json` y `pool_c_clave.json` (prendas por puntuar y qué rango da cada método; se generan) · las puntuaciones se añaden a `../experimento_b/ratings_b.json`.
+
+## 9. Resultado (16 de octubre de 2026; añadido DESPUÉS de puntuar, lo anterior no se ha tocado)
+
+Víctor puntuó a ciegas las 15 prendas nuevas (14 «encaja», 1 «no encaja»); el resto de puntuaciones son las del B. Salida completa del análisis en `resultados_c.txt`.
+
+| Brazo | P@5 estricto | NDCG@5 | P@10 | NDCG@10 |
+|---|---|---|---|---|
+| **`T_datos_en`** | **83 %** | **0,86** | **68 %** | **0,74** |
+| `T_oraculo_en` (escrito conociendo la taxonomía) | 70 % | 0,66 | 65 % | 0,64 |
+| `F_oraculo` | 50 % | 0,50 | 53 % | 0,52 |
+| `T_corto_ciego_en` | 37 % | 0,39 | 35 % | 0,38 |
+| `T_ciego_es` | 37 % | 0,34 | 38 % | 0,36 |
+| `V` (solo imagen) | 33 % | 0,36 | 42 % | 0,41 |
+| `T_ciego_en` (texto largo, el del pipeline actual) | 30 % | 0,31 | 37 % | 0,35 |
+
+**Comparación primaria declarada (`T_datos_en − T_corto_ciego_en`, P@5):** +47 pp, IC95 % [+30, +64], p exacto 0,031, gana en 6 de 6 tendencias → **MEJORA** según la regla fijada (≥ +5 pp e IC sin el 0). A K = 10: +33 pp [+14, +53], p = 0,062, 5/1/0 → MEJORA.
+**Secundarias (exploratorias):** frente al oráculo +13 pp [+2, +24] a K = 5 (4/2/0) y +3 pp [−25, +32] a K = 10 (neutro): al nivel del oráculo, no claramente por encima. Frente al texto largo ciego +53 pp [+17, +90] (K = 5) y +32 pp [−8, +71] (K = 10, neutro). Frente a solo imagen +50 pp [+28, +72] (K = 5) y +27 pp [−1, +55] (K = 10, neutro).
+
+Aciertos de 5 por tendencia en el top-5 (`T_datos_en` / oráculo / corto ciego / largo ciego / solo imagen): old money 3/2/1/1/2 · clásico 4/3/1/0/0 · urbano 5/5/4/3/3 · bohemio 5/4/3/5/2 · geek 3/3/0/0/0 · convencional 5/4/2/0/3. `T_datos_en` nunca pierde frente al corto ciego.
+
+**Sensibilidad.** 26 de las 30 prendas del top-5 de `T_datos_en` ya tenían puntuación del B, dada sin saber nada de este método; solo 4 son nuevas. Contando esas 4 como fallos (el peor caso), `T_datos_en` queda en P@5 = 70 % y la diferencia primaria en +33 pp [+22, +44], p = 0,031: la conclusión no depende de ellas.
+
+**Lectura y límites que hay que declarar.** (1) La misma persona eligió las fotos de referencia de las que salen los textos y puntúa si las prendas encajan: el resultado dice que el análisis recoge *su* criterio de cada estilo, no una verdad externa; haría falta un segundo juez o repetir la puntuación pasado un tiempo. (2) Seis tendencias: solo se detectan diferencias grandes (semianchura típica del IC ≈ ±22 pp en K = 5); el p exacto mínimo con seis victorias es 0,031. (3) El oráculo de esta tabla (70 %) no es el de la v1 de B (51 %): son seis tendencias en vez de siete (sin lujo, que dio techo ≈ 0) y el oráculo de geek se corrigió en la v2. (4) De las 15 prendas nuevas, 14 fueron «encaja» (en B, «encaja» fue el 36 % de lo puntuado): es lo esperable si el brazo recupera bien, pero no se descarta algo de indulgencia dos semanas después. (5) Inventario de miniaturas de 60×80 px de un catálogo de e-commerce; lujo ostentoso sin evaluar. (6) Un solo análisis primario; el resto son exploratorios y no se corrigen por comparaciones múltiples.
+

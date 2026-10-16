@@ -23,6 +23,7 @@
 | 5 | Experimento B | ¿aporta evidencia visual al vector de tendencia? | texto frente a visual frente a fusión, puntuado a ciegas | texto bien especificado 70 %, visual 33 %, fusión 50 % (P@5) | negativo para lo visual |
 | 6 | 7 estilos y «Analizar mercado» | ¿qué estilo domina por mercado? | clasificador de 7 estilos, Biblioteca, informe por mercado | CV 78 %; con fotos nuevas de medios 2 de 10 | útil como herramienta, flojo fuera de su fuente |
 | 7 | Tendencia por prenda | ¿qué prendas, con qué forma, estampado y tejido, se llevan en cada estilo? | flujo semanal, etiquetado a toques, pestaña «Prendas» | tipo 50 → 63 %, estampado 50 → 77 % con el modelo grande; forma 61 %; tejido sin mejora | en curso |
+| 8 | Texto de tendencia con datos medidos | ¿un texto hecho con lo que mide el análisis recupera mejor las prendas de una tendencia que el de un LLM que solo conoce el nombre? | `texto_tendencia.py` + Experimento C (puntuación humana a ciegas, diseño fijado antes) | P@5 83 % frente a 37 % (corto ciego) y 70 % (oráculo); +47 pp, IC95 % [+30, +64], 6 de 6 tendencias | positivo, con un solo juez y 6 tendencias |
 
 ## 2. Cifras por etapa
 
@@ -102,6 +103,16 @@ Familia de prenda (arriba, abrigo, abajo, cuerpo entero, calzado, accesorio): fl
 **Separación por estilo (10 de octubre).** Con las fotos aprobadas de Víctor (geek 91 prendas en 42 fotos, urbano 78 en 39), el geek y el urbano **se separan en forma (p = 0,005), tejido (0,011) y tipo de prenda (0,013)** y no en estampado (0,47) ni en familia (0,14): urbano más oversized (40 % frente a 15 %); geek más corta/cropped (19 % frente a 3 %), ajustada (14 % frente a 1 %), punto (19 % frente a 4 %) y top (15 % frente a 1 %). Con todas las fuentes (261 prendas) el tipo se separa todavía más (p = 0,001). Un acierto del ~70 % encoge las diferencias, no las inventa. Cuello de botella: en el mercado real casi no hay geek (2 fotos en España, ninguna en EEUU). Detalle en §6.7.
 
 **Los siete estilos (12 de octubre).** Con las 404 fotos aprobadas de la Biblioteca (794 prendas etiquetadas por el modelo grande, el 99 al 100 % de cada estilo), cada estilo frente a los demás: **los siete se separan en las cinco dimensiones (familia, tipo, estampado, tejido y forma) con una probabilidad de azar menor del 0,1 %**. Rasgos más marcados: clásico, abrigo y chaqueta (47 % frente a 14 %); old money, americana y liso (84 %); lujo, texto o logo (51 % frente a 4 %) y bolsos; bohemio, estampado «otro», tops y vestidos; convencional, liso (90 %); urbano, oversized (40 % frente a 9 %); geek, gráfico o dibujo (22 % frente a 5 %). Falta medir el acierto del modelo en los cinco estilos nuevos y conseguir fotos de mercado para ellos. Detalle en §6.9. La tarea que lo hace cada lunes en la nube, sin el ordenador de Víctor, y la revista por correo están en §6.8.
+
+### Etapa 8: texto de tendencia con datos medidos (Experimento C)
+
+| Medida | Referencia | Resultado | n | Nota |
+|---|---|---|---|---|
+| P@5 estricto de `T_datos_en` (texto con plantillas a partir de los datos medidos) | texto corto ciego 37 %; texto largo ciego 30 %; oráculo 70 %; solo imagen 33 % | **83 %** (NDCG@5 0,86) | 6 tendencias × 5 prendas | primaria declarada antes de puntuar: +47 pp, IC95 % [+30, +64], p exacto 0,031, 6 de 6 |
+| P@10 | corto ciego 35 %; oráculo 65 % | **68 %** | 6 × 10 | primaria a K = 10: +33 pp [+14, +53] |
+| Sensibilidad | las 4 prendas nuevas del top-5 contadas como fallos | 70 %, +33 pp [+22, +44] | 30 prendas | la conclusión no depende de ellas |
+
+Límites: un solo juez (el que eligió las fotos de referencia), 6 tendencias, miniaturas de 60×80 px, lujo sin evaluar. Detalle en `TFM_experimento_C_texto_con_datos.md`.
 
 ## 3. Lectura transversal
 
