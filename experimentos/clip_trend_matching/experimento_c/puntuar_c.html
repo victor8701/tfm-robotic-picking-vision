@@ -1,0 +1,187 @@
+<title>Puntuar prendas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=DM+Mono:wght@400;500&family=Figtree:wght@400..700&display=swap">
+<style>
+:root{
+  --bg:#f2f3f8; --surface:#ffffff; --surface-2:#eceef5;
+  --ink:#141729; --ink-2:#434964; --ink-3:#636985;
+  --line:#e0e3ec; --line-2:#c8ccdb;
+  --accent:#0b6b68; --on-accent:#ffffff; --accent-soft:#dcf0ee;
+  --ok:#16703d; --no:#ad2a22; --mm:#8a5a00;
+  --shadow:0 1px 2px rgba(20,23,41,.05),0 8px 22px -12px rgba(20,23,41,.18);
+  --stage:#ffffff;
+  --f-display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --f-body:"Figtree","Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+  --f-mono:"DM Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e111b; --surface:#161a28; --surface-2:#1e2335;
+  --ink:#eceff8; --ink-2:#b9bed4; --ink-3:#9097b4;
+  --line:#262c42; --line-2:#363d58;
+  --accent:#52d3c6; --on-accent:#062421; --accent-soft:#12363a;
+  --ok:#62d48e; --no:#ff8f86; --mm:#f0c05a;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 22px -12px rgba(0,0,0,.6);
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e111b; --surface:#161a28; --surface-2:#1e2335;
+  --ink:#eceff8; --ink-2:#b9bed4; --ink-3:#9097b4;
+  --line:#262c42; --line-2:#363d58;
+  --accent:#52d3c6; --on-accent:#062421; --accent-soft:#12363a;
+  --ok:#62d48e; --no:#ff8f86; --mm:#f0c05a;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 22px -12px rgba(0,0,0,.6);
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.45 var(--f-body);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:disabled{cursor:default}
+p{margin:0}
+.wrap{max-width:560px;margin-inline:auto;padding-inline:16px}
+.top{padding-block:14px 8px;display:grid;gap:4px}
+.toprow{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.kicker{font:500 11px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+h1{margin:0;font:700 26px/1.05 var(--f-display);letter-spacing:-.02em}
+.save{display:inline-flex;align-items:center;gap:7px;font:500 12px/1 var(--f-mono);color:var(--ink-2);padding:7px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.save i{width:8px;height:8px;border-radius:50%;background:var(--ink-3)}
+.save[data-s="saved"] i{background:var(--ok)}
+.save[data-s="saving"] i{background:#c98b00}
+.save[data-s="error"] i{background:var(--no)}
+.prog{display:grid;gap:6px;padding-bottom:10px}
+.prog .txt{display:flex;justify-content:space-between;font:500 12px/1 var(--f-mono);color:var(--ink-2)}
+.meter{height:8px;border-radius:4px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent);border-radius:4px;transition:width .2s}
+.stage{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--stage);border-radius:14px;display:grid;place-items:center;height:min(36vh,340px);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line)}
+.stage img{height:100%;width:auto;max-width:100%;object-fit:contain;display:block}
+.stage .num{position:absolute;left:10px;top:10px;font:500 12px/1 var(--f-mono);background:rgba(0,0,0,.66);color:#fff;padding:6px 8px;border-radius:6px}
+.stage .st{position:absolute;right:10px;top:10px;font:500 12px/1 var(--f-mono);padding:6px 8px;border-radius:6px;background:var(--accent);color:var(--on-accent)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:12px;margin-top:12px;box-shadow:var(--shadow);min-width:0}
+.lab{font:500 11px/1.2 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.tend{font:700 24px/1.1 var(--f-display);letter-spacing:-.01em}
+.rasgos{font-size:14px;color:var(--ink-2)}
+.preg{font:600 16px/1.3 var(--f-body)}
+.ver{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.vb{min-height:56px;border-radius:12px;border:1px solid var(--line-2);background:var(--surface);font:600 15px/1.1 var(--f-body);padding:0 6px}
+.vb[aria-pressed="true"][data-r="2"]{background:var(--ok);color:#fff;border-color:transparent}
+.vb[aria-pressed="true"][data-r="1"]{background:var(--mm);color:var(--surface);border-color:transparent}
+.vb[aria-pressed="true"][data-r="0"]{background:var(--no);color:#fff;border-color:transparent}
+.actions{display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:center}
+.btn{min-height:46px;padding:0 16px;border-radius:12px;border:1px solid var(--line-2);background:var(--surface);font:600 15px/1 var(--f-body)}
+.btn.pri{background:var(--accent);color:var(--on-accent);border-color:transparent}
+.btn:disabled{opacity:.45}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:6px}
+.cell{aspect-ratio:1;min-height:40px;border-radius:10px;border:1px solid var(--line-2);background:var(--surface);font:500 13px/1 var(--f-mono)}
+.cell.done{background:var(--accent-soft);border-color:var(--accent);color:var(--ink)}
+.cell.now{outline:2px solid var(--ink);outline-offset:1px}
+.fin{padding:18px 14px;text-align:center;display:grid;gap:6px}
+.fin h2{margin:0;font:700 22px/1.15 var(--f-display)}
+.note{color:var(--ink-3);font-size:13px}
+.empty{padding:22px 14px;display:grid;gap:8px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div id="app">
+  <header class="top wrap">
+    <div class="toprow"><span class="kicker">TFM · Experimento C</span><span id="save" class="save" data-s="load" role="status" aria-live="polite"><i></i><span>Cargando…</span></span></div>
+    <h1>Puntuar prendas</h1>
+  </header>
+  <div class="wrap prog"><div class="txt"><span id="ptxt">0 de 0</span></div><div class="meter"><i id="pbar" style="width:0%"></i></div></div>
+  <main class="wrap" id="view"></main>
+  <div class="wrap" style="padding-block:20px 60px"><p class="note">Cada toque se guarda solo. Puntúa solo si la prenda encaja con la tendencia que se indica (no con el estilo en general). No sabes qué texto ni qué método propuso cada prenda: es a propósito. Las fotos son miniaturas de 60×80 px ampliadas, por eso salen borrosas.</p></div>
+</div>
+
+<script type="application/json" id="items">__ITEMS__</script>
+<script>
+(function(){
+'use strict';
+var ITEMS=[];try{ITEMS=JSON.parse(document.getElementById('items').textContent)||[]}catch(e){}
+var S={db:null,absent:false,r:{},i:0,loaded:false,inflight:{},dirty:{},touched:{},seen:{},tries:{},timers:{},fin:true};
+var $=function(s){return document.querySelector(s)};
+var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+var SAVE={load:'Cargando…',saved:'Guardado',saving:'Guardando…',error:'No se pudo guardar',off:'Sin base de datos'};
+function setSave(s,msg){var el=$('#save');el.setAttribute('data-s',s);el.querySelector('span').textContent=SAVE[s]||s;if(msg)el.title=msg;else el.removeAttribute('title')}
+/* Lo que entrega la base viene CONGELADO: nunca se guarda tal cual, siempre un valor propio. */
+function norm(v){var r=v&&v.r;return (r==='0'||r==='1'||r==='2')?r:''}
+function guard(f){try{f()}catch(e){setSave('error',e&&e.message)}}
+function done(id){return !!S.r[id]}
+function nDone(){var n=0;ITEMS.forEach(function(c){if(done(c.id))n++});return n}
+function firstPending(from){for(var k=0;k<ITEMS.length;k++){var j=(from+k)%ITEMS.length;if(!done(ITEMS[j].id))return j}return -1}
+
+/* ---------- guardado ---------- */
+function busy(){var k;for(k in S.dirty)if(S.dirty[k])return true;for(k in S.inflight)if(S.inflight[k])return true;return false}
+function queue(id){S.touched[id]=true;S.dirty[id]=true;setSave('saving');clearTimeout(S.timers[id]);S.timers[id]=setTimeout(function(){flush(id)},250)}
+function flush(id){
+  if(!S.db||S.inflight[id]||!S.dirty[id])return;
+  S.dirty[id]=false;S.inflight[id]=true;
+  S.db.doc('puntuaciones/p'+id).set({r:S.r[id]||'',t:new Date().toISOString()}).then(function(){
+    S.inflight[id]=false;S.tries[id]=0;
+    if(S.dirty[id])flush(id);else if(!busy())setSave('saved');
+  },function(e){
+    S.inflight[id]=false;S.dirty[id]=true;setSave('error',e&&e.message);
+    if((S.tries[id]=(S.tries[id]||0)+1)<=2){clearTimeout(S.timers[id]);S.timers[id]=setTimeout(function(){flush(id)},2500)}
+  });
+}
+/* Lo que has tocado en esta visita manda sobre lo que llegue de la base; solo se cargan las prendas que aún no has tocado. */
+function onSnap(snap){
+  var changed=false;
+  snap.docs.forEach(function(d){
+    var id=d.id.replace(/^p/,'');
+    if(S.touched[id]||S.dirty[id]||S.inflight[id]||S.seen[id]===d)return;
+    S.seen[id]=d;S.r[id]=norm(d.data());changed=true;
+  });
+  var first=!S.loaded;S.loaded=true;
+  if(first){var p=firstPending(0);S.i=p<0?0:p;S.fin=true;setSave('saved');render()}
+  else if(changed)render();
+}
+
+/* ---------- pintado ---------- */
+function render(){
+  var n=nDone(),tot=ITEMS.length;
+  $('#ptxt').textContent=n+' de '+tot;$('#pbar').style.width=(tot?100*n/tot:0)+'%';
+  var v=$('#view');
+  if(!tot){v.innerHTML='<section class="card empty"><h2 style="margin:0;font:700 20px var(--f-display)">No hay prendas</h2><p class="note">Claude las carga aquí al preparar cada tanda.</p></section>';return}
+  if(S.absent){v.innerHTML='<section class="card empty"><h2 style="margin:0;font:700 20px var(--f-display)">Aquí no se puede guardar</h2><p class="note">Esta página guarda tus respuestas en claude.ai. Ábrela desde allí.</p></section>';return}
+  if(n===tot&&S.fin!==false){
+    v.innerHTML='<section class="card fin"><h2>Hecho: '+tot+' de '+tot+'</h2><p class="note">Ya puedes decírmelo en el chat.</p><button class="btn" id="rev">Repasar</button></section>'+grid();
+    var r=$('#rev');if(r)r.onclick=function(){S.fin=false;S.i=0;render()};
+    wireGrid();return;
+  }
+  var c=ITEMS[S.i],val=S.r[c.id]||'';
+  v.innerHTML=
+   '<div class="stage"><img src="'+c.src+'" alt="Prenda '+(S.i+1)+'"><span class="num">'+(S.i+1)+' / '+tot+'</span>'+(val?'<span class="st">hecho</span>':'')+'</div>'+
+   '<section class="card"><div class="lab">Tendencia</div><div class="tend">'+esc(c.nombre)+'</div><p class="rasgos">'+esc(c.rasgos)+'</p>'+
+   '<p class="preg">¿Esta prenda encaja con esa tendencia?</p>'+
+   '<div class="ver">'+[['2','✓ Encaja'],['1','~ Dudoso'],['0','✗ No encaja']].map(function(b){return '<button class="vb" data-r="'+b[0]+'" aria-pressed="'+(val===b[0])+'">'+b[1]+'</button>'}).join('')+'</div>'+
+   '<div class="actions"><button class="btn" id="ant"'+(S.i===0?' disabled':'')+' aria-label="Anterior">←</button><button class="btn pri" id="sig">Siguiente →</button></div>'+
+   '</section>'+
+   '<section class="card"><div class="lab">Todas las prendas</div>'+grid()+'</section>';
+  $('#ant').onclick=function(){go(S.i-1)};
+  $('#sig').onclick=function(){siguiente()};
+  Array.prototype.forEach.call(document.querySelectorAll('.vb'),function(b){b.onclick=function(){guard(function(){pick(b.getAttribute('data-r'))})}});
+  wireGrid();
+}
+function grid(){
+  return '<div class="grid">'+ITEMS.map(function(c,k){return '<button class="cell'+(done(c.id)?' done':'')+(k===S.i?' now':'')+'" data-k="'+k+'" aria-label="Prenda '+(k+1)+'">'+(k+1)+'</button>'}).join('')+'</div>';
+}
+function wireGrid(){Array.prototype.forEach.call(document.querySelectorAll('.cell'),function(b){b.onclick=function(){S.fin=false;go(+b.getAttribute('data-k'))}})}
+function go(k){if(k<0||k>=ITEMS.length)return;S.i=k;render();window.scrollTo(0,0)}
+function siguiente(){var p=firstPending(S.i+1);if(p>=0&&p!==S.i)go(p);else if(nDone()===ITEMS.length){S.fin=true;render();window.scrollTo(0,0)}else if(S.i+1<ITEMS.length)go(S.i+1);else render()}
+function pick(r){
+  var id=ITEMS[S.i].id,antes=S.r[id]||'';
+  S.r[id]=(antes===r)?'':r;                        // tocar la respuesta marcada la quita
+  queue(id);render();
+  if(S.r[id])setTimeout(function(){if(ITEMS[S.i]&&ITEMS[S.i].id===id)siguiente()},260);
+}
+
+/* ---------- arranque ---------- */
+render();setSave('load');
+var cl=window.claude;
+if(!cl||typeof cl.use!=='function'){S.absent=true;setSave('off');render();return}
+cl.use('db').then(function(db){
+  if(!db){S.absent=true;setSave('off');render();return}
+  S.db=db;
+  db.collection('puntuaciones').onSnapshot(onSnap,function(e){setSave('error',e&&e.message);S.loaded=true;render()});
+}).catch(function(){S.absent=true;setSave('off');render()});
+})();
+</script>

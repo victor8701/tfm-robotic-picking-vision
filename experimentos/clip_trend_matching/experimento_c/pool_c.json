@@ -1,0 +1,107 @@
+[
+ {
+  "clave": "old_money|de_vestir/trousers_28.jpg",
+  "tramo": 1,
+  "nombre": "Old Money",
+  "rasgos": "Elegancia clásica y discreta: americana/chaleco, camisa de corte náutico, punto fino, sin logos visibles (\"lujo silencioso\").",
+  "imagen": "de_vestir/trousers_28.jpg"
+ },
+ {
+  "clave": "alternativo_geek|streetwear/sweatshirts_15.jpg",
+  "tramo": 1,
+  "nombre": "Alternativo-geek",
+  "rasgos": "Ropa ligada a fandom (gaming, anime, cómic); el motivo o estampado pesa más que la silueta.",
+  "imagen": "streetwear/sweatshirts_15.jpg"
+ },
+ {
+  "clave": "convencional|deportivo/leggings_40.jpg",
+  "tramo": 1,
+  "nombre": "Convencional",
+  "rasgos": "Sigue la tendencia dominante del momento, sin rasgo diferenciador propio.",
+  "imagen": "deportivo/leggings_40.jpg"
+ },
+ {
+  "clave": "clasico_tradicional|de_vestir/waistcoat_15.jpg",
+  "tramo": 1,
+  "nombre": "Clásico-tradicional",
+  "rasgos": "Silueta clásica, tonos tierra/neutros, prenda atemporal.",
+  "imagen": "de_vestir/waistcoat_15.jpg"
+ },
+ {
+  "clave": "old_money|de_vestir/trousers_23.jpg",
+  "tramo": 2,
+  "nombre": "Old Money",
+  "rasgos": "Elegancia clásica y discreta: americana/chaleco, camisa de corte náutico, punto fino, sin logos visibles (\"lujo silencioso\").",
+  "imagen": "de_vestir/trousers_23.jpg"
+ },
+ {
+  "clave": "urbano|experimento_b/inventario_extra/geek/sweatshirts_16276.jpg",
+  "tramo": 2,
+  "nombre": "Urbano",
+  "rasgos": "Estética urbana trap/rap español, desde la más cruda hasta la más pulida: marca deportiva o lifestyle de gama alta, ropa de gimnasio, estética de reality.",
+  "imagen": "experimento_b/inventario_extra/geek/sweatshirts_16276.jpg"
+ },
+ {
+  "clave": "convencional|fiesta_noche/dresses_20.jpg",
+  "tramo": 2,
+  "nombre": "Convencional",
+  "rasgos": "Sigue la tendencia dominante del momento, sin rasgo diferenciador propio.",
+  "imagen": "fiesta_noche/dresses_20.jpg"
+ },
+ {
+  "clave": "clasico_tradicional|de_vestir/waistcoat_13.jpg",
+  "tramo": 2,
+  "nombre": "Clásico-tradicional",
+  "rasgos": "Silueta clásica, tonos tierra/neutros, prenda atemporal.",
+  "imagen": "de_vestir/waistcoat_13.jpg"
+ },
+ {
+  "clave": "clasico_tradicional|de_vestir/waistcoat_7.jpg",
+  "tramo": 2,
+  "nombre": "Clásico-tradicional",
+  "rasgos": "Silueta clásica, tonos tierra/neutros, prenda atemporal.",
+  "imagen": "de_vestir/waistcoat_7.jpg"
+ },
+ {
+  "clave": "bohemio|playa_resort/skirts_36.jpg",
+  "tramo": 2,
+  "nombre": "Bohemio",
+  "rasgos": "Telas fluidas, tonos tierra, capas, accesorios artesanales.",
+  "imagen": "playa_resort/skirts_36.jpg"
+ },
+ {
+  "clave": "clasico_tradicional|streetwear/jackets_39.jpg",
+  "tramo": 2,
+  "nombre": "Clásico-tradicional",
+  "rasgos": "Silueta clásica, tonos tierra/neutros, prenda atemporal.",
+  "imagen": "streetwear/jackets_39.jpg"
+ },
+ {
+  "clave": "clasico_tradicional|casual/sweaters_26.jpg",
+  "tramo": 2,
+  "nombre": "Clásico-tradicional",
+  "rasgos": "Silueta clásica, tonos tierra/neutros, prenda atemporal.",
+  "imagen": "casual/sweaters_26.jpg"
+ },
+ {
+  "clave": "convencional|playa_resort/skirts_32.jpg",
+  "tramo": 2,
+  "nombre": "Convencional",
+  "rasgos": "Sigue la tendencia dominante del momento, sin rasgo diferenciador propio.",
+  "imagen": "playa_resort/skirts_32.jpg"
+ },
+ {
+  "clave": "old_money|de_vestir/trousers_30.jpg",
+  "tramo": 2,
+  "nombre": "Old Money",
+  "rasgos": "Elegancia clásica y discreta: americana/chaleco, camisa de corte náutico, punto fino, sin logos visibles (\"lujo silencioso\").",
+  "imagen": "de_vestir/trousers_30.jpg"
+ },
+ {
+  "clave": "convencional|casual/tops_25.jpg",
+  "tramo": 2,
+  "nombre": "Convencional",
+  "rasgos": "Sigue la tendencia dominante del momento, sin rasgo diferenciador propio.",
+  "imagen": "casual/tops_25.jpg"
+ }
+]
