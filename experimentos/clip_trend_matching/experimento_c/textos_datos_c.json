@@ -1,0 +1,565 @@
+{
+ "receta": "R1",
+ "generado": "2026-10-16T17:42:55+00:00",
+ "bloque": "solo_biblioteca",
+ "estilos": {
+  "urbano": {
+   "mercado": "Europa (muestra de referencia)",
+   "sub_estilo": "urbano",
+   "nombre": "Urbano",
+   "genero_objetivo": "Todo",
+   "tipo_prenda": "Todo",
+   "fuentes": [
+    "muestra de referencia aprobada por Víctor"
+   ],
+   "fecha_analisis": "2026-10-16",
+   "descripcion": "Urbano: prendas que lo caracterizan (cuota en el estilo): sudadera (8 %), short (8 %), chaqueta (14 %), hoodie (6 %), camiseta manga corta (8 %). Lo que lo distingue de los demás estilos: oversized (38 % frente a 10 %). Muestra de referencia: 39 fotos.",
+   "descripcion_clip": "urban style outfit, oversized baggy: sweatshirt, shorts, jacket, hoodie, t-shirt",
+   "grupo_estilo_detectado": [
+    "Streetwear"
+   ],
+   "intensidad": null,
+   "estado": "pendiente",
+   "evidencia": {
+    "receta": "R1",
+    "prendas_medidas": 78,
+    "fotos": 39,
+    "prendas": [
+     {
+      "valor": "Sudadera",
+      "estilo": 0.077,
+      "resto": 0.006,
+      "dif": 0.071,
+      "q": 0.011,
+      "n": 10
+     },
+     {
+      "valor": "Short",
+      "estilo": 0.077,
+      "resto": 0.018,
+      "dif": 0.059,
+      "q": 0.0275,
+      "n": 19
+     },
+     {
+      "valor": "Chaqueta",
+      "estilo": 0.141,
+      "resto": 0.086,
+      "dif": 0.055,
+      "q": 0.3831,
+      "n": 73
+     },
+     {
+      "valor": "Hoodie",
+      "estilo": 0.064,
+      "resto": 0.018,
+      "dif": 0.046,
+      "q": 0.1154,
+      "n": 18
+     },
+     {
+      "valor": "Camiseta manga corta",
+      "estilo": 0.077,
+      "resto": 0.042,
+      "dif": 0.035,
+      "q": 0.3738,
+      "n": 36
+     }
+    ],
+    "modificadores": [
+     {
+      "valor": "oversized / baggy",
+      "estilo": 0.385,
+      "resto": 0.096,
+      "dif": 0.288,
+      "q": 0.0025,
+      "n": 99,
+      "dimension": "forma"
+     }
+    ]
+   }
+  },
+  "geek": {
+   "mercado": "Europa (muestra de referencia)",
+   "sub_estilo": "alternativo_geek",
+   "nombre": "Alternativo-geek",
+   "genero_objetivo": "Todo",
+   "tipo_prenda": "Todo",
+   "fuentes": [
+    "muestra de referencia aprobada por Víctor"
+   ],
+   "fecha_analisis": "2026-10-16",
+   "descripcion": "Alternativo-geek: prendas que lo caracterizan (cuota en el estilo): falda (12 %), hoodie (10 %), top (7 %), zapatillas deportivas (8 %), camiseta manga larga (6 %). Lo que lo distingue de los demás estilos: con gráfico (19 % frente a 5 %), de punto (19 % frente a 7 %), técnica (13 % frente a 3 %). Muestra de referencia: 42 fotos.",
+   "descripcion_clip": "alternative geek style outfit, graphic print, knit, technical: skirt, hoodie, crop top, sneakers, long-sleeve t-shirt",
+   "grupo_estilo_detectado": [
+    "Casual"
+   ],
+   "intensidad": null,
+   "estado": "pendiente",
+   "evidencia": {
+    "receta": "R1",
+    "prendas_medidas": 91,
+    "fotos": 42,
+    "prendas": [
+     {
+      "valor": "Falda",
+      "estilo": 0.121,
+      "resto": 0.034,
+      "dif": 0.087,
+      "q": 0.0147,
+      "n": 35
+     },
+     {
+      "valor": "Hoodie",
+      "estilo": 0.099,
+      "resto": 0.013,
+      "dif": 0.086,
+      "q": 0.0147,
+      "n": 18
+     },
+     {
+      "valor": "Top",
+      "estilo": 0.066,
+      "resto": 0.011,
+      "dif": 0.055,
+      "q": 0.0147,
+      "n": 14
+     },
+     {
+      "valor": "Zapatillas deportivas",
+      "estilo": 0.077,
+      "resto": 0.033,
+      "dif": 0.044,
+      "q": 0.0806,
+      "n": 30
+     },
+     {
+      "valor": "Camiseta manga larga",
+      "estilo": 0.055,
+      "resto": 0.011,
+      "dif": 0.044,
+      "q": 0.0352,
+      "n": 13
+     }
+    ],
+    "modificadores": [
+     {
+      "valor": "gráfico / dibujo",
+      "estilo": 0.187,
+      "resto": 0.048,
+      "dif": 0.139,
+      "q": 0.003,
+      "n": 51,
+      "dimension": "estampado"
+     },
+     {
+      "valor": "punto",
+      "estilo": 0.187,
+      "resto": 0.07,
+      "dif": 0.117,
+      "q": 0.0112,
+      "n": 66,
+      "dimension": "tejido"
+     },
+     {
+      "valor": "técnico / impermeable",
+      "estilo": 0.132,
+      "resto": 0.027,
+      "dif": 0.105,
+      "q": 0.0112,
+      "n": 31,
+      "dimension": "tejido"
+     }
+    ]
+   }
+  },
+  "clasico": {
+   "mercado": "Europa (muestra de referencia)",
+   "sub_estilo": "clasico_tradicional",
+   "nombre": "Clásico-tradicional",
+   "genero_objetivo": "Todo",
+   "tipo_prenda": "Todo",
+   "fuentes": [
+    "muestra de referencia aprobada por Víctor"
+   ],
+   "fecha_analisis": "2026-10-16",
+   "descripcion": "Clásico-tradicional: prendas que lo caracterizan (cuota en el estilo): chaqueta (26 %), chaleco sin mangas (7 %), pantalón (23 %). Muestra de referencia: 71 fotos.",
+   "descripcion_clip": "classic traditional style outfit: jacket, sleeveless vest, trousers",
+   "grupo_estilo_detectado": [
+    "Casual",
+    "De vestir"
+   ],
+   "intensidad": null,
+   "estado": "pendiente",
+   "evidencia": {
+    "receta": "R1",
+    "prendas_medidas": 153,
+    "fotos": 71,
+    "prendas": [
+     {
+      "valor": "Chaqueta",
+      "estilo": 0.255,
+      "resto": 0.053,
+      "dif": 0.202,
+      "q": 0.0055,
+      "n": 73
+     },
+     {
+      "valor": "Chaleco sin mangas",
+      "estilo": 0.072,
+      "resto": 0.005,
+      "dif": 0.067,
+      "q": 0.0055,
+      "n": 14
+     },
+     {
+      "valor": "Pantalón",
+      "estilo": 0.229,
+      "resto": 0.229,
+      "dif": -0.0,
+      "q": 0.998,
+      "n": 182
+     }
+    ],
+    "modificadores": []
+   }
+  },
+  "old_money": {
+   "mercado": "Europa (muestra de referencia)",
+   "sub_estilo": "old_money",
+   "nombre": "Old money",
+   "genero_objetivo": "Todo",
+   "tipo_prenda": "Todo",
+   "fuentes": [
+    "muestra de referencia aprobada por Víctor"
+   ],
+   "fecha_analisis": "2026-10-16",
+   "descripcion": "Old money: prendas que lo caracterizan (cuota en el estilo): americana (25 %), pantalón (34 %), zapatos de vestir (18 %), camisa (10 %). Lo que lo distingue de los demás estilos: lisa (85 % frente a 66 %), ajustada (21 % frente a 10 %), de lino (11 % frente a 2 %). Muestra de referencia: 80 fotos.",
+   "descripcion_clip": "old money style outfit, plain solid-color, slim-fit, linen: blazer, trousers, dress shoes, button-up shirt",
+   "grupo_estilo_detectado": [
+    "De vestir",
+    "Casual"
+   ],
+   "intensidad": null,
+   "estado": "pendiente",
+   "evidencia": {
+    "receta": "R1",
+    "prendas_medidas": 184,
+    "fotos": 80,
+    "prendas": [
+     {
+      "valor": "Americana",
+      "estilo": 0.25,
+      "resto": 0.038,
+      "dif": 0.212,
+      "q": 0.0037,
+      "n": 69
+     },
+     {
+      "valor": "Pantalón",
+      "estilo": 0.342,
+      "resto": 0.195,
+      "dif": 0.148,
+      "q": 0.0037,
+      "n": 182
+     },
+     {
+      "valor": "Zapatos de vestir",
+      "estilo": 0.185,
+      "resto": 0.044,
+      "dif": 0.141,
+      "q": 0.0037,
+      "n": 61
+     },
+     {
+      "valor": "Camisa",
+      "estilo": 0.098,
+      "resto": 0.067,
+      "dif": 0.031,
+      "q": 0.2248,
+      "n": 59
+     }
+    ],
+    "modificadores": [
+     {
+      "valor": "liso",
+      "estilo": 0.848,
+      "resto": 0.663,
+      "dif": 0.185,
+      "q": 0.0015,
+      "n": 561,
+      "dimension": "estampado"
+     },
+     {
+      "valor": "ajustada",
+      "estilo": 0.207,
+      "resto": 0.105,
+      "dif": 0.102,
+      "q": 0.0075,
+      "n": 102,
+      "dimension": "forma"
+     },
+     {
+      "valor": "lino",
+      "estilo": 0.114,
+      "resto": 0.015,
+      "dif": 0.099,
+      "q": 0.0045,
+      "n": 30,
+      "dimension": "tejido"
+     }
+    ]
+   }
+  },
+  "lujo": {
+   "mercado": "Europa (muestra de referencia)",
+   "sub_estilo": "lujo_ostentoso",
+   "nombre": "Lujo ostentoso",
+   "genero_objetivo": "Todo",
+   "tipo_prenda": "Todo",
+   "fuentes": [
+    "muestra de referencia aprobada por Víctor"
+   ],
+   "fecha_analisis": "2026-10-16",
+   "descripcion": "Lujo ostentoso: prendas que lo caracterizan (cuota en el estilo): bolso (32 %), camiseta manga corta (9 %), chaqueta (12 %). Lo que lo distingue de los demás estilos: con texto o logo (48 % frente a 3 %), de cuero (34 % frente a 14 %), con gráfico (17 % frente a 5 %). Muestra de referencia: 56 fotos.",
+   "descripcion_clip": "ostentatious luxury style outfit, logo print, leather, graphic print: handbag, t-shirt, jacket",
+   "grupo_estilo_detectado": [
+    "De vestir",
+    "Fiesta/Noche"
+   ],
+   "intensidad": null,
+   "estado": "pendiente",
+   "evidencia": {
+    "receta": "R1",
+    "prendas_medidas": 77,
+    "fotos": 56,
+    "prendas": [
+     {
+      "valor": "Bolso",
+      "estilo": 0.325,
+      "resto": 0.0,
+      "dif": 0.325,
+      "q": 0.0055,
+      "n": 25
+     },
+     {
+      "valor": "Camiseta manga corta",
+      "estilo": 0.091,
+      "resto": 0.04,
+      "dif": 0.051,
+      "q": 0.1264,
+      "n": 36
+     },
+     {
+      "valor": "Chaqueta",
+      "estilo": 0.117,
+      "resto": 0.089,
+      "dif": 0.028,
+      "q": 0.7483,
+      "n": 73
+     }
+    ],
+    "modificadores": [
+     {
+      "valor": "texto / logo",
+      "estilo": 0.481,
+      "resto": 0.033,
+      "dif": 0.447,
+      "q": 0.0015,
+      "n": 61,
+      "dimension": "estampado"
+     },
+     {
+      "valor": "cuero / vinilo",
+      "estilo": 0.338,
+      "resto": 0.139,
+      "dif": 0.198,
+      "q": 0.0045,
+      "n": 126,
+      "dimension": "tejido"
+     },
+     {
+      "valor": "gráfico / dibujo",
+      "estilo": 0.169,
+      "resto": 0.053,
+      "dif": 0.116,
+      "q": 0.002,
+      "n": 51,
+      "dimension": "estampado"
+     }
+    ]
+   }
+  },
+  "bohemio": {
+   "mercado": "Europa (muestra de referencia)",
+   "sub_estilo": "bohemio",
+   "nombre": "Bohemio",
+   "genero_objetivo": "Todo",
+   "tipo_prenda": "Todo",
+   "fuentes": [
+    "muestra de referencia aprobada por Víctor"
+   ],
+   "fecha_analisis": "2026-10-16",
+   "descripcion": "Bohemio: prendas que lo caracterizan (cuota en el estilo): falda (14 %), vestido (13 %), camiseta de tirantes (10 %), sandalias (7 %), botas (7 %). Lo que lo distingue de los demás estilos: con estampado (29 % frente a 4 %), oversized (22 % frente a 11 %), corta (10 % frente a 2 %). Muestra de referencia: 38 fotos.",
+   "descripcion_clip": "bohemian style outfit, patterned, oversized baggy, cropped: skirt, dress, tank top, sandals, boots",
+   "grupo_estilo_detectado": [
+    "Casual",
+    "Playa/Resort"
+   ],
+   "intensidad": null,
+   "estado": "pendiente",
+   "evidencia": {
+    "receta": "R1",
+    "prendas_medidas": 76,
+    "fotos": 38,
+    "prendas": [
+     {
+      "valor": "Falda",
+      "estilo": 0.145,
+      "resto": 0.033,
+      "dif": 0.111,
+      "q": 0.0055,
+      "n": 35
+     },
+     {
+      "valor": "Vestido",
+      "estilo": 0.132,
+      "resto": 0.024,
+      "dif": 0.108,
+      "q": 0.0055,
+      "n": 27
+     },
+     {
+      "valor": "Camiseta de tirantes",
+      "estilo": 0.105,
+      "resto": 0.019,
+      "dif": 0.086,
+      "q": 0.0073,
+      "n": 22
+     },
+     {
+      "valor": "Sandalias",
+      "estilo": 0.066,
+      "resto": 0.007,
+      "dif": 0.059,
+      "q": 0.0082,
+      "n": 10
+     },
+     {
+      "valor": "Botas",
+      "estilo": 0.066,
+      "resto": 0.026,
+      "dif": 0.039,
+      "q": 0.1223,
+      "n": 24
+     }
+    ],
+    "modificadores": [
+     {
+      "valor": "otro",
+      "estilo": 0.289,
+      "resto": 0.043,
+      "dif": 0.246,
+      "q": 0.003,
+      "n": 53,
+      "dimension": "estampado"
+     },
+     {
+      "valor": "oversized / baggy",
+      "estilo": 0.224,
+      "resto": 0.114,
+      "dif": 0.11,
+      "q": 0.0375,
+      "n": 99,
+      "dimension": "forma"
+     },
+     {
+      "valor": "corta / cropped",
+      "estilo": 0.105,
+      "resto": 0.019,
+      "dif": 0.086,
+      "q": 0.0075,
+      "n": 22,
+      "dimension": "forma"
+     }
+    ]
+   }
+  },
+  "convencional": {
+   "mercado": "Europa (muestra de referencia)",
+   "sub_estilo": "convencional",
+   "nombre": "Convencional",
+   "genero_objetivo": "Todo",
+   "tipo_prenda": "Todo",
+   "fuentes": [
+    "muestra de referencia aprobada por Víctor"
+   ],
+   "fecha_analisis": "2026-10-16",
+   "descripcion": "Convencional: prendas que lo caracterizan (cuota en el estilo): vestido (9 %), zapatillas deportivas (9 %), zapatos de tacón (5 %), camiseta manga corta (8 %), camisa (10 %). Lo que lo distingue de los demás estilos: lisa (92 % frente a 66 %). Muestra de referencia: 60 fotos.",
+   "descripcion_clip": "conventional style outfit, plain solid-color: dress, sneakers, high heels, t-shirt, button-up shirt",
+   "grupo_estilo_detectado": [
+    "Casual"
+   ],
+   "intensidad": null,
+   "estado": "pendiente",
+   "evidencia": {
+    "receta": "R1",
+    "prendas_medidas": 136,
+    "fotos": 60,
+    "prendas": [
+     {
+      "valor": "Vestido",
+      "estilo": 0.088,
+      "resto": 0.023,
+      "dif": 0.065,
+      "q": 0.011,
+      "n": 27
+     },
+     {
+      "valor": "Zapatillas deportivas",
+      "estilo": 0.088,
+      "resto": 0.027,
+      "dif": 0.061,
+      "q": 0.0183,
+      "n": 30
+     },
+     {
+      "valor": "Zapatos de tacón",
+      "estilo": 0.051,
+      "resto": 0.005,
+      "dif": 0.047,
+      "q": 0.011,
+      "n": 10
+     },
+     {
+      "valor": "Camiseta manga corta",
+      "estilo": 0.081,
+      "resto": 0.038,
+      "dif": 0.043,
+      "q": 0.1635,
+      "n": 36
+     },
+     {
+      "valor": "Camisa",
+      "estilo": 0.103,
+      "resto": 0.068,
+      "dif": 0.035,
+      "q": 0.3828,
+      "n": 59
+     }
+    ],
+    "modificadores": [
+     {
+      "valor": "liso",
+      "estilo": 0.919,
+      "resto": 0.662,
+      "dif": 0.258,
+      "q": 0.003,
+      "n": 561,
+      "dimension": "estampado"
+     }
+    ]
+   }
+  }
+ }
+}
