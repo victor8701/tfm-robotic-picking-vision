@@ -1,91 +1,91 @@
 {
- "recortes": 54,
- "inservibles": 6,
+ "recortes": 90,
+ "inservibles": 13,
  "recortes reales (partes A y B)": {
   "tipo": {
-   "n": 46,
-   "ok": 40,
+   "n": 74,
+   "ok": 66,
    "mas_o_menos": 1,
-   "no": 5,
+   "no": 7,
    "estricto": [
-    40,
-    46,
+    66,
+    74,
     [
-     74,
+     80,
      94
     ]
    ],
    "aceptable": [
-    41,
-    46,
+    67,
+    74,
     [
-     77,
+     82,
      95
     ]
    ]
   },
   "estampado": {
-   "n": 46,
-   "ok": 43,
-   "mas_o_menos": 0,
+   "n": 74,
+   "ok": 70,
+   "mas_o_menos": 1,
    "no": 3,
    "estricto": [
-    43,
-    46,
+    70,
+    74,
     [
-     82,
+     87,
      98
     ]
    ],
    "aceptable": [
-    43,
-    46,
+    71,
+    74,
     [
-     82,
-     98
+     89,
+     99
     ]
    ]
   },
   "tejido": {
-   "n": 45,
-   "ok": 33,
+   "n": 73,
+   "ok": 58,
    "mas_o_menos": 5,
-   "no": 7,
+   "no": 10,
    "estricto": [
-    33,
-    45,
+    58,
+    73,
     [
-     59,
-     84
+     69,
+     87
     ]
    ],
    "aceptable": [
-    38,
-    45,
+    63,
+    73,
     [
-     71,
+     77,
      92
     ]
    ]
   },
   "forma": {
-   "n": 46,
-   "ok": 41,
-   "mas_o_menos": 4,
+   "n": 74,
+   "ok": 68,
+   "mas_o_menos": 5,
    "no": 1,
    "estricto": [
-    41,
-    46,
+    68,
+    74,
     [
-     77,
-     95
+     83,
+     96
     ]
    ],
    "aceptable": [
-    45,
-    46,
+    73,
+    74,
     [
-     89,
+     93,
      100
     ]
    ]
@@ -183,98 +183,104 @@
  },
  "parte B: recortes nuevos": {
   "tipo": {
-   "n": 24,
-   "ok": 20,
+   "n": 52,
+   "ok": 46,
    "mas_o_menos": 1,
-   "no": 3,
+   "no": 5,
    "estricto": [
-    20,
-    24,
+    46,
+    52,
     [
-     64,
-     93
+     77,
+     95
     ]
    ],
    "aceptable": [
-    21,
-    24,
+    47,
+    52,
     [
-     69,
+     79,
      96
     ]
    ]
   },
   "estampado": {
-   "n": 24,
-   "ok": 22,
-   "mas_o_menos": 0,
+   "n": 52,
+   "ok": 49,
+   "mas_o_menos": 1,
    "no": 2,
    "estricto": [
-    22,
-    24,
+    49,
+    52,
     [
-     74,
+     84,
      98
     ]
    ],
    "aceptable": [
-    22,
-    24,
+    50,
+    52,
     [
-     74,
-     98
+     87,
+     99
     ]
    ]
   },
   "tejido": {
-   "n": 23,
-   "ok": 20,
+   "n": 51,
+   "ok": 45,
    "mas_o_menos": 0,
-   "no": 3,
+   "no": 6,
    "estricto": [
-    20,
-    23,
+    45,
+    51,
     [
-     68,
-     95
+     77,
+     94
     ]
    ],
    "aceptable": [
-    20,
-    23,
+    45,
+    51,
     [
-     68,
-     95
+     77,
+     94
     ]
    ]
   },
   "forma": {
-   "n": 24,
-   "ok": 22,
-   "mas_o_menos": 1,
+   "n": 52,
+   "ok": 49,
+   "mas_o_menos": 2,
    "no": 1,
    "estricto": [
-    22,
-    24,
+    49,
+    52,
     [
-     74,
+     84,
      98
     ]
    ],
    "aceptable": [
-    23,
-    24,
+    51,
+    52,
     [
-     80,
-     99
+     90,
+     100
     ]
    ]
   }
  },
+ "controles_resumen": {
+  "n": 12,
+  "no_sirve": 9,
+  "tipo_no": 1,
+  "tipo_aceptado_estando_mal": 2
+ },
  "controles": {
   "tipo": {
-   "n": 2,
-   "no": 0,
+   "n": 3,
+   "no": 1,
    "mas_o_menos": 0,
    "ok": 2
   },
@@ -285,8 +291,8 @@
    "ok": 1
   },
   "tejido": {
-   "n": 2,
-   "no": 1,
+   "n": 3,
+   "no": 2,
    "mas_o_menos": 0,
    "ok": 1
   },
@@ -297,28 +303,853 @@
    "ok": 2
   }
  },
+ "por_ronda": {
+  "r1-": {
+   "recortes": 46,
+   "tipo": {
+    "n": 46,
+    "ok": 40,
+    "mas_o_menos": 1,
+    "no": 5,
+    "estricto": [
+     40,
+     46,
+     [
+      74,
+      94
+     ]
+    ],
+    "aceptable": [
+     41,
+     46,
+     [
+      77,
+      95
+     ]
+    ]
+   },
+   "estampado": {
+    "n": 46,
+    "ok": 43,
+    "mas_o_menos": 0,
+    "no": 3,
+    "estricto": [
+     43,
+     46,
+     [
+      82,
+      98
+     ]
+    ],
+    "aceptable": [
+     43,
+     46,
+     [
+      82,
+      98
+     ]
+    ]
+   },
+   "tejido": {
+    "n": 45,
+    "ok": 33,
+    "mas_o_menos": 5,
+    "no": 7,
+    "estricto": [
+     33,
+     45,
+     [
+      59,
+      84
+     ]
+    ],
+    "aceptable": [
+     38,
+     45,
+     [
+      71,
+      92
+     ]
+    ]
+   },
+   "forma": {
+    "n": 46,
+    "ok": 41,
+    "mas_o_menos": 4,
+    "no": 1,
+    "estricto": [
+     41,
+     46,
+     [
+      77,
+      95
+     ]
+    ],
+    "aceptable": [
+     45,
+     46,
+     [
+      89,
+      100
+     ]
+    ]
+   }
+  },
+  "r2-": {
+   "recortes": 28,
+   "tipo": {
+    "n": 28,
+    "ok": 26,
+    "mas_o_menos": 0,
+    "no": 2,
+    "estricto": [
+     26,
+     28,
+     [
+      77,
+      98
+     ]
+    ],
+    "aceptable": [
+     26,
+     28,
+     [
+      77,
+      98
+     ]
+    ]
+   },
+   "estampado": {
+    "n": 28,
+    "ok": 27,
+    "mas_o_menos": 1,
+    "no": 0,
+    "estricto": [
+     27,
+     28,
+     [
+      82,
+      99
+     ]
+    ],
+    "aceptable": [
+     28,
+     28,
+     [
+      88,
+      100
+     ]
+    ]
+   },
+   "tejido": {
+    "n": 28,
+    "ok": 25,
+    "mas_o_menos": 0,
+    "no": 3,
+    "estricto": [
+     25,
+     28,
+     [
+      73,
+      96
+     ]
+    ],
+    "aceptable": [
+     25,
+     28,
+     [
+      73,
+      96
+     ]
+    ]
+   },
+   "forma": {
+    "n": 28,
+    "ok": 27,
+    "mas_o_menos": 1,
+    "no": 0,
+    "estricto": [
+     27,
+     28,
+     [
+      82,
+      99
+     ]
+    ],
+    "aceptable": [
+     28,
+     28,
+     [
+      88,
+      100
+     ]
+    ]
+   }
+  }
+ },
+ "por_estilo": {
+  "bohemio": {
+   "recortes": 5,
+   "tipo": {
+    "n": 5,
+    "ok": 5,
+    "mas_o_menos": 0,
+    "no": 0,
+    "estricto": [
+     5,
+     5,
+     [
+      57,
+      100
+     ]
+    ],
+    "aceptable": [
+     5,
+     5,
+     [
+      57,
+      100
+     ]
+    ]
+   },
+   "estampado": {
+    "n": 5,
+    "ok": 5,
+    "mas_o_menos": 0,
+    "no": 0,
+    "estricto": [
+     5,
+     5,
+     [
+      57,
+      100
+     ]
+    ],
+    "aceptable": [
+     5,
+     5,
+     [
+      57,
+      100
+     ]
+    ]
+   },
+   "tejido": {
+    "n": 5,
+    "ok": 5,
+    "mas_o_menos": 0,
+    "no": 0,
+    "estricto": [
+     5,
+     5,
+     [
+      57,
+      100
+     ]
+    ],
+    "aceptable": [
+     5,
+     5,
+     [
+      57,
+      100
+     ]
+    ]
+   },
+   "forma": {
+    "n": 5,
+    "ok": 5,
+    "mas_o_menos": 0,
+    "no": 0,
+    "estricto": [
+     5,
+     5,
+     [
+      57,
+      100
+     ]
+    ],
+    "aceptable": [
+     5,
+     5,
+     [
+      57,
+      100
+     ]
+    ]
+   }
+  },
+  "clasico": {
+   "recortes": 5,
+   "tipo": {
+    "n": 5,
+    "ok": 5,
+    "mas_o_menos": 0,
+    "no": 0,
+    "estricto": [
+     5,
+     5,
+     [
+      57,
+      100
+     ]
+    ],
+    "aceptable": [
+     5,
+     5,
+     [
+      57,
+      100
+     ]
+    ]
+   },
+   "estampado": {
+    "n": 5,
+    "ok": 5,
+    "mas_o_menos": 0,
+    "no": 0,
+    "estricto": [
+     5,
+     5,
+     [
+      57,
+      100
+     ]
+    ],
+    "aceptable": [
+     5,
+     5,
+     [
+      57,
+      100
+     ]
+    ]
+   },
+   "tejido": {
+    "n": 5,
+    "ok": 4,
+    "mas_o_menos": 0,
+    "no": 1,
+    "estricto": [
+     4,
+     5,
+     [
+      38,
+      96
+     ]
+    ],
+    "aceptable": [
+     4,
+     5,
+     [
+      38,
+      96
+     ]
+    ]
+   },
+   "forma": {
+    "n": 5,
+    "ok": 5,
+    "mas_o_menos": 0,
+    "no": 0,
+    "estricto": [
+     5,
+     5,
+     [
+      57,
+      100
+     ]
+    ],
+    "aceptable": [
+     5,
+     5,
+     [
+      57,
+      100
+     ]
+    ]
+   }
+  },
+  "convencional": {
+   "recortes": 6,
+   "tipo": {
+    "n": 6,
+    "ok": 4,
+    "mas_o_menos": 0,
+    "no": 2,
+    "estricto": [
+     4,
+     6,
+     [
+      30,
+      90
+     ]
+    ],
+    "aceptable": [
+     4,
+     6,
+     [
+      30,
+      90
+     ]
+    ]
+   },
+   "estampado": {
+    "n": 6,
+    "ok": 6,
+    "mas_o_menos": 0,
+    "no": 0,
+    "estricto": [
+     6,
+     6,
+     [
+      61,
+      100
+     ]
+    ],
+    "aceptable": [
+     6,
+     6,
+     [
+      61,
+      100
+     ]
+    ]
+   },
+   "tejido": {
+    "n": 6,
+    "ok": 5,
+    "mas_o_menos": 0,
+    "no": 1,
+    "estricto": [
+     5,
+     6,
+     [
+      44,
+      97
+     ]
+    ],
+    "aceptable": [
+     5,
+     6,
+     [
+      44,
+      97
+     ]
+    ]
+   },
+   "forma": {
+    "n": 6,
+    "ok": 5,
+    "mas_o_menos": 1,
+    "no": 0,
+    "estricto": [
+     5,
+     6,
+     [
+      44,
+      97
+     ]
+    ],
+    "aceptable": [
+     6,
+     6,
+     [
+      61,
+      100
+     ]
+    ]
+   }
+  },
+  "geek": {
+   "recortes": 19,
+   "tipo": {
+    "n": 19,
+    "ok": 17,
+    "mas_o_menos": 0,
+    "no": 2,
+    "estricto": [
+     17,
+     19,
+     [
+      69,
+      97
+     ]
+    ],
+    "aceptable": [
+     17,
+     19,
+     [
+      69,
+      97
+     ]
+    ]
+   },
+   "estampado": {
+    "n": 19,
+    "ok": 18,
+    "mas_o_menos": 0,
+    "no": 1,
+    "estricto": [
+     18,
+     19,
+     [
+      75,
+      99
+     ]
+    ],
+    "aceptable": [
+     18,
+     19,
+     [
+      75,
+      99
+     ]
+    ]
+   },
+   "tejido": {
+    "n": 19,
+    "ok": 14,
+    "mas_o_menos": 3,
+    "no": 2,
+    "estricto": [
+     14,
+     19,
+     [
+      51,
+      88
+     ]
+    ],
+    "aceptable": [
+     17,
+     19,
+     [
+      69,
+      97
+     ]
+    ]
+   },
+   "forma": {
+    "n": 19,
+    "ok": 17,
+    "mas_o_menos": 1,
+    "no": 1,
+    "estricto": [
+     17,
+     19,
+     [
+      69,
+      97
+     ]
+    ],
+    "aceptable": [
+     18,
+     19,
+     [
+      75,
+      99
+     ]
+    ]
+   }
+  },
+  "lujo": {
+   "recortes": 5,
+   "tipo": {
+    "n": 5,
+    "ok": 5,
+    "mas_o_menos": 0,
+    "no": 0,
+    "estricto": [
+     5,
+     5,
+     [
+      57,
+      100
+     ]
+    ],
+    "aceptable": [
+     5,
+     5,
+     [
+      57,
+      100
+     ]
+    ]
+   },
+   "estampado": {
+    "n": 5,
+    "ok": 4,
+    "mas_o_menos": 1,
+    "no": 0,
+    "estricto": [
+     4,
+     5,
+     [
+      38,
+      96
+     ]
+    ],
+    "aceptable": [
+     5,
+     5,
+     [
+      57,
+      100
+     ]
+    ]
+   },
+   "tejido": {
+    "n": 5,
+    "ok": 4,
+    "mas_o_menos": 0,
+    "no": 1,
+    "estricto": [
+     4,
+     5,
+     [
+      38,
+      96
+     ]
+    ],
+    "aceptable": [
+     4,
+     5,
+     [
+      38,
+      96
+     ]
+    ]
+   },
+   "forma": {
+    "n": 5,
+    "ok": 5,
+    "mas_o_menos": 0,
+    "no": 0,
+    "estricto": [
+     5,
+     5,
+     [
+      57,
+      100
+     ]
+    ],
+    "aceptable": [
+     5,
+     5,
+     [
+      57,
+      100
+     ]
+    ]
+   }
+  },
+  "old_money": {
+   "recortes": 7,
+   "tipo": {
+    "n": 7,
+    "ok": 7,
+    "mas_o_menos": 0,
+    "no": 0,
+    "estricto": [
+     7,
+     7,
+     [
+      65,
+      100
+     ]
+    ],
+    "aceptable": [
+     7,
+     7,
+     [
+      65,
+      100
+     ]
+    ]
+   },
+   "estampado": {
+    "n": 7,
+    "ok": 7,
+    "mas_o_menos": 0,
+    "no": 0,
+    "estricto": [
+     7,
+     7,
+     [
+      65,
+      100
+     ]
+    ],
+    "aceptable": [
+     7,
+     7,
+     [
+      65,
+      100
+     ]
+    ]
+   },
+   "tejido": {
+    "n": 7,
+    "ok": 7,
+    "mas_o_menos": 0,
+    "no": 0,
+    "estricto": [
+     7,
+     7,
+     [
+      65,
+      100
+     ]
+    ],
+    "aceptable": [
+     7,
+     7,
+     [
+      65,
+      100
+     ]
+    ]
+   },
+   "forma": {
+    "n": 7,
+    "ok": 7,
+    "mas_o_menos": 0,
+    "no": 0,
+    "estricto": [
+     7,
+     7,
+     [
+      65,
+      100
+     ]
+    ],
+    "aceptable": [
+     7,
+     7,
+     [
+      65,
+      100
+     ]
+    ]
+   }
+  },
+  "urbano": {
+   "recortes": 27,
+   "tipo": {
+    "n": 27,
+    "ok": 23,
+    "mas_o_menos": 1,
+    "no": 3,
+    "estricto": [
+     23,
+     27,
+     [
+      68,
+      94
+     ]
+    ],
+    "aceptable": [
+     24,
+     27,
+     [
+      72,
+      96
+     ]
+    ]
+   },
+   "estampado": {
+    "n": 27,
+    "ok": 25,
+    "mas_o_menos": 0,
+    "no": 2,
+    "estricto": [
+     25,
+     27,
+     [
+      77,
+      98
+     ]
+    ],
+    "aceptable": [
+     25,
+     27,
+     [
+      77,
+      98
+     ]
+    ]
+   },
+   "tejido": {
+    "n": 26,
+    "ok": 19,
+    "mas_o_menos": 2,
+    "no": 5,
+    "estricto": [
+     19,
+     26,
+     [
+      54,
+      86
+     ]
+    ],
+    "aceptable": [
+     21,
+     26,
+     [
+      62,
+      91
+     ]
+    ]
+   },
+   "forma": {
+    "n": 27,
+    "ok": 24,
+    "mas_o_menos": 3,
+    "no": 0,
+    "estricto": [
+     24,
+     27,
+     [
+      72,
+      96
+     ]
+    ],
+    "aceptable": [
+     27,
+     27,
+     [
+      88,
+      100
+     ]
+    ]
+   }
+  }
+ },
  "alternativas_marcadas": {
   "tipo": {
    "Sudadera": 1,
    "Chaqueta": 1,
    "Falda": 1,
-   "Pantalón": 2,
-   "Camiseta manga corta": 1
+   "Pantalón": 3,
+   "Camiseta manga corta": 1,
+   "Americana": 1
   },
   "tejido": {
    "tul / encaje": 1,
-   "algodón": 3,
+   "algodón": 4,
    "pana": 1,
    "lino": 3,
    "técnico / impermeable": 2,
-   "denim (vaquero)": 2
+   "denim (vaquero)": 4
   },
   "forma": {
-   "oversized / baggy": 3,
+   "oversized / baggy": 4,
    "ajustada": 2
   },
   "estampado": {
-   "liso": 3
+   "liso": 3,
+   "cuadros": 1
   }
  },
  "coherencia_con_etiqueta_anterior": [

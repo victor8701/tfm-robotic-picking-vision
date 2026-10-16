@@ -164,6 +164,8 @@ Familia de prenda (arriba, abrigo, abajo, cuerpo entero, calzado, accesorio): fl
 
 La confianza de cada cifra del informe es el mínimo entre las fotos que la sostienen (≥ 30 alta, 15 a 29 media, 5 a 14 baja) y el techo que fija el acierto del atributo. El techo sale del mejor de dos criterios: a ciegas (≥ 85 % con 30 o más etiquetas alta, ≥ 65 % media, menos baja) y la revisión (límite inferior del intervalo de «aceptable» ≥ 65 % → media; «alta» solo se alcanza a ciegas, porque la revisión ve la respuesta del modelo). Desde el 10 de octubre se aplica la revisión; los tipos con 6 o más revisados y menos del 65 % aceptado («Camisa», 4 de 8) salen con confianza baja y un aviso.
 
+**Desde el 16 de octubre (método `semanal_pista`, §6.11 de `TFM_tendencias_de_prenda.md`).** La tabla de arriba es del método anterior. Con el nuevo, sobre el mismo lote ciego: tipo 20 de 32 (62 %), familia 32 de 32, estampado 25 de 27 (93 %), tejido 15 de 26 (58 %), forma 14 de 27 (52 %). Revisión de Víctor en dos rondas (74 recortes reales, aceptable; los 28 de la ronda 2 son de los cinco estilos nuevos): tipo 91 %, estampado 96 %, tejido 86 %, forma 99 %; los 6 controles de la ronda 2 se rechazaron todos. Techo de confianza en el informe: sin cambios (media en los cuatro).
+
 ## 5. Qué falta medir
 
 0. **Fotos geek del mercado** (2 en España, ninguna en EEUU): hoy solo se puede separar por estilo con las fotos aprobadas de Víctor. Es lo que más limita.

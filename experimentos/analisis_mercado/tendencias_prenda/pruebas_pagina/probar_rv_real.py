@@ -1,14 +1,15 @@
 """
 Prueba de «Revisar valoraciones» con la base falsa que congela los datos (fakedb_real.js), en móvil (390 px, táctil):
 marcar / desmarcar OK, abrir «Entonces es», marcar y quitar alternativas, pasar al apartado siguiente, «No sirve», volver atrás, recargar con lo guardado y seguir editando.
-La ronda 1 usa los ids r1-1…; para otra ronda, cambiar «vr1-» por su prefijo.
+La ronda 1 usa los ids r1-1…; para otra ronda, pasar su prefijo en la variable de entorno RV_PREFIJO (por ejemplo r2-).
 
 Uso:  python3 probar_rv_real.py DIR_CON_fakedb_real.js PAGINA.html [stale]
   (la página se genera con `revisar_valoraciones.py html --salida PAGINA.html`)
 """
-import json, sys
+import json, os, sys
 from playwright.sync_api import sync_playwright
 SC, HTML = sys.argv[1], sys.argv[2]
+PREF = "v" + os.environ.get("RV_PREFIJO", "r1-")   # ids de los documentos de la base: v<prefijo><n>
 STALE = len(sys.argv) > 3 and sys.argv[3] == "stale"
 FAKE = open(SC + "/fakedb_real.js", encoding="utf-8").read()
 fallos = []
@@ -44,13 +45,13 @@ with sync_playwright() as p:
     paso(lambda: fv(2).locator('.vb[data-r="mm"]').tap());                 comprobar(vb(2)[1] and marcados(2) == 0, "cambiar tejido de No a Más o menos vacía las marcas anteriores")
     paso(lambda: fv(1).locator('.vb[data-r="ok"]').tap());                 comprobar(vb(1)[0], "estampado → OK")
     guardado = pg.evaluate("window.__docs")
-    d = guardado.get("vr1-1", {})
+    d = guardado.get(PREF + "1", {})
     comprobar(d.get("r") == {"tipo": "ok", "estampado": "ok", "tejido": "mm", "forma": "mm"}, f"el documento guardado tiene las 4 respuestas: {d.get('r')}")
     comprobar(d.get("alt", {}).get("forma") == ["regular"] and d["alt"]["tejido"] == [], f"y las alternativas: {d.get('alt')}")
     comprobar(pg.inner_text("#ptxt").startswith("1 de"), "el progreso cuenta el recorte hecho: " + pg.inner_text("#ptxt"))
     # siguiente recorte, «No sirve» y volver atrás
     paso(lambda: pg.click("#sig"), 300);                                   comprobar(pg.inner_text(".num").startswith("2 /"), "Siguiente lleva al recorte 2")
-    paso(lambda: pg.click("#nos"), 900);                                   comprobar("vr1-2" in pg.evaluate("window.__docs") and pg.evaluate("window.__docs")["vr1-2"]["x"] is True, "«No sirve» se guarda")
+    paso(lambda: pg.click("#nos"), 900);                                   comprobar(PREF + "2" in pg.evaluate("window.__docs") and pg.evaluate("window.__docs")[PREF + "2"]["x"] is True, "«No sirve» se guarda")
     paso(lambda: pg.locator(".cell").nth(0).tap(), 300);                   comprobar(vb(0)[0] and vb(1)[0] and vb(2)[1] and vb(3)[1], "volver al recorte 1 muestra lo que marcaste")
     print("  errores de la página:", [e for e in errores if "font" not in e.lower()][:5])
     comprobar(not [e for e in errores if "font" not in e.lower()], "sin errores en la consola")

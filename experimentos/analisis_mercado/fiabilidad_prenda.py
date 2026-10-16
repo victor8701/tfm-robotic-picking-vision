@@ -132,7 +132,9 @@ def revision_por_tipo() -> dict:
 
 def aplicar_revision(fiab: dict) -> None:
     """Añade la revisión a cada `vlm_*` y sube el techo de confianza a «media» cuando el límite inferior del intervalo de «aceptable» pasa del 65 % (mismo umbral que a ciegas).
-    «Alta» solo se alcanza a ciegas: la revisión ve la respuesta del modelo, y sus controles (6 con la valoración de otro recorte) no resultaron concluyentes."""
+    «Alta» solo se alcanza a ciegas: la revisión ve la respuesta del modelo. Sus controles (valoración de otro recorte, de otra familia de prenda) no fueron concluyentes en la ronda 1 (6, cuatro «no sirve») y sí en la
+    ronda 2 (6 de 6 rechazados, cinco con «no sirve» y uno con No), así que sus OK no son automáticos; aun así el techo por la revisión se queda en «media». Las cifras de la ciega son del método anterior del modelo
+    grande (config «semanal»); desde el 16 de octubre la tarea semanal usa «semanal_pista» (ver `evaluar_zona.py`)."""
     sys.path.insert(0, str(AQUI))
     import tendencia_prenda as tp
     orden = ["baja", "media", "alta"]

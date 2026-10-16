@@ -1,0 +1,36 @@
+name: Prueba de Instagram
+
+# Prueba de viabilidad (memoria §6.11): ¿deja Meta leer fotos de otras cuentas profesionales con una app en modo desarrollo? experimentos/analisis_mercado/instagram_prueba.py
+# No se programa sola. Se lanza al subir un cambio a experimentos/analisis_mercado/lanzar_instagram.txt (la primera línea que no empieza por # son los @usuarios, separados por espacios;
+# vacía = la lista de ejemplo) o con «Run workflow» si algún día este fichero está en main.
+# Privacidad: usa el secreto META_IG_TOKEN (nunca se imprime) y no guarda ninguna foto: solo comprueba que la dirección responde.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [analisis-mercado]
+    paths: ['experimentos/analisis_mercado/lanzar_instagram.txt']
+
+permissions:
+  contents: read
+
+jobs:
+  probar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      META_IG_TOKEN: ${{ secrets.META_IG_TOKEN }}
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Probar Business Discovery
+        shell: bash
+        working-directory: experimentos/analisis_mercado
+        run: |
+          ARGS=""
+          if [ -f lanzar_instagram.txt ]; then ARGS="$(grep -v '^#' lanzar_instagram.txt | head -n 1)"; fi
+          case "$ARGS" in *[!A-Za-z0-9_.\ -]*) echo "Argumentos no válidos"; exit 1;; esac
+          python3 instagram_prueba.py $ARGS

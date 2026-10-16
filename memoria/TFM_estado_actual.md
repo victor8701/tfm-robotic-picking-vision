@@ -1,18 +1,22 @@
 # Estado Actual del Trabajo de Fin de Máster (TFM)
 
-## 0. Cómo vamos y qué te toca (14 de octubre de 2026)
+## 0. Cómo vamos y qué te toca (16 de octubre de 2026)
 
 *Panel vivo: se actualiza al final de cada sesión de trabajo y en la pestaña «Hoy» de la página «Tendencias de prenda». No sigue el calendario del Gantt: Víctor lleva su propio orden.*
 
 **Cómo vamos**
 - **Tendencia por prenda (en curso).** La tarea semanal en la nube y la revista por correo funcionan; los siete estilos se separan en las cinco dimensiones con la muestra de referencia (§6.9 de `TFM_tendencias_de_prenda.md`).
 - **Fuentes de mercado de los cinco estilos nuevos: hechas.** Medidas el 13 y 14 de octubre (§6.10); Víctor aceptó 46 y `tendencia_fuentes.json` tiene 73 fuentes. La primera tarea semanal con ellas es el lunes 19 de octubre, con un tope de 120 minutos de análisis para no pasarse de tiempo.
-- **Acierto del modelo grande en los cinco estilos nuevos: sin medir** (solo está medido en geek y urbano). El selector ya admite `--estilos`.
-- **Límites conocidos:** Reddit solo deja unas 1 petición por minuto desde GitHub; para old money no hay comunidad de Reddit activa medible; 29 candidatos de prensa tienen la foto sin comprobar.
+- **Acierto del modelo grande en los cinco estilos nuevos: medido el 15 de octubre** (ronda 2; 28 recortes reales con respuesta: tipo 93 %, estampado 96 %, tejido 89 %, forma 96 %; los 6 controles rechazados).
+- **Pantalones y vaqueros: arreglado el 16 de octubre (§6.11).** El modelo grande nombraba la prenda de arriba en 146 de 291 recortes de ropa inferior; con una pista de la zona del cuerpo, «Pantalón» pasa de 68 a 202 y el denim de 7 a 53. La tarea semanal usa `semanal_pista` y los 916 recortes están reetiquetados.
+- **Instagram: aparcado por Víctor** (muy importante, pero ahora no puede). `instagram_prueba.py` y su tarea de GitHub están preparados.
+- **Siguiente (propuesto, sin empezar):** el texto de tendencia en lenguaje natural hecho con los datos medidos → vector CLIP → puntuación de SKUs, comparado con el texto ciego del Experimento B (Experimento C). Decisiones en la pestaña «Hoy».
+- **Límites conocidos:** Reddit solo deja unas 1 petición por minuto desde GitHub; para old money no hay comunidad de Reddit activa medible; 29 candidatos de prensa tienen la foto sin comprobar; el color es el atributo más flojo (70 % a ojo).
 
 **Qué te toca**
-1. **Revisión «OK / más o menos / No» de los cinco estilos nuevos** (15 a 30 min en el móvil). Hay que generarla en el portátil, donde están las fotos: `python3 sincronizar_nube.py bajar`, `python3 revisar_valoraciones.py crear --estilos old_money,clasico,lujo,bohemio,convencional --nuevos 36 --prefijo r2-` y `python3 revisar_valoraciones.py html --salida r2.html`; después se publica como página «Revisar valoraciones» desde una sesión de Claude Code en el portátil.
-2. **El lunes 19 de octubre:** nada que hacer; si la revista no llega o llega con fotos pendientes, mira el último «Tendencia semanal (revista)» en GitHub Actions.
+1. **Tres toques en «Decisiones» de la pestaña «Hoy»** sobre el texto de tendencia en lenguaje natural (1 min).
+2. **Instagram,** cuando puedas (30 a 40 min en el portátil).
+3. **El lunes 19 de octubre:** nada que hacer; si la revista no llega o llega con fotos pendientes, mira el último «Tendencia semanal (revista)» en GitHub Actions.
 
 ---
 

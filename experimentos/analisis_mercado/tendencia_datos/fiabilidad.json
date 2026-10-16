@@ -1,5 +1,5 @@
 {
- "generado": "2026-10-10T17:22:58+00:00",
+ "generado": "2026-10-16T17:23:54+00:00",
  "tipo_fino": {
   "acierto": 19,
   "n": 38,
@@ -39,60 +39,68 @@
   "fuente": "memoria/TFM_tendencias_de_prenda.md §6"
  },
  "vlm_tipo": {
-  "acierto": 17,
+  "acierto": 20,
   "n": 32,
-  "cualquiera": 17,
+  "cualquiera": 20,
   "fuente": "lote ciego de Víctor (etiquetado después de que el modelo etiquetara esos recortes)",
   "revision": {
-   "ok": 40,
+   "ok": 66,
    "mas_o_menos": 1,
-   "no": 5,
-   "n": 46,
-   "aceptable": 41,
+   "no": 7,
+   "n": 74,
+   "aceptable": 67,
    "ic_aceptable": [
-    77,
+    82,
     95
    ],
    "ic_estricto": [
-    74,
+    80,
     94
    ],
    "parte_b_nuevos": {
-    "n": 24,
-    "ok": 20,
-    "aceptable": 21
+    "n": 52,
+    "ok": 46,
+    "aceptable": 47
    },
-   "recortes": 46,
+   "recortes": 74,
    "fuente": "revisión de Víctor (OK / más o menos / No) viendo la valoración del modelo, 10 de octubre de 2026"
   },
   "techo": "media",
-  "techo_regla": "a ciegas: baja; por la revisión (límite inferior de «aceptable» 77 % ≥ 65 % → media): media; manda el más alto, y «alta» solo se alcanza a ciegas",
+  "techo_regla": "a ciegas: baja; por la revisión (límite inferior de «aceptable» 82 % ≥ 65 % → media): media; manda el más alto, y «alta» solo se alcanza a ciegas",
   "por_tipo": {
    "Camisa": {
-    "aceptado": 4,
-    "n": 8
+    "aceptado": 10,
+    "n": 15
    },
    "Pantalón": {
+    "aceptado": 9,
+    "n": 9
+   },
+   "Chaqueta": {
     "aceptado": 7,
     "n": 7
    },
    "Top": {
-    "aceptado": 3,
-    "n": 4
+    "aceptado": 4,
+    "n": 5
    },
    "Camiseta manga larga": {
     "aceptado": 4,
-    "n": 4
-   },
-   "Chaqueta": {
-    "aceptado": 4,
-    "n": 4
+    "n": 5
    },
    "Camiseta manga corta": {
+    "aceptado": 5,
+    "n": 5
+   },
+   "Americana": {
+    "aceptado": 5,
+    "n": 5
+   },
+   "Short": {
     "aceptado": 4,
     "n": 4
    },
-   "Short": {
+   "Zapatos de vestir": {
     "aceptado": 3,
     "n": 3
    },
@@ -100,11 +108,11 @@
     "aceptado": 2,
     "n": 2
    },
-   "Americana": {
+   "Polo": {
     "aceptado": 2,
     "n": 2
    },
-   "Polo": {
+   "Camiseta de tirantes": {
     "aceptado": 2,
     "n": 2
    },
@@ -120,10 +128,6 @@
     "aceptado": 1,
     "n": 1
    },
-   "Camiseta de tirantes": {
-    "aceptado": 1,
-    "n": 1
-   },
    "Zapatillas deportivas": {
     "aceptado": 1,
     "n": 1
@@ -131,19 +135,39 @@
    "Plumas": {
     "aceptado": 1,
     "n": 1
+   },
+   "Chaleco sin mangas": {
+    "aceptado": 1,
+    "n": 1
+   },
+   "Sandalias": {
+    "aceptado": 1,
+    "n": 1
+   },
+   "Vestido": {
+    "aceptado": 1,
+    "n": 1
+   },
+   "Zapatillas casual/lifestyle": {
+    "aceptado": 1,
+    "n": 1
+   },
+   "Bolso": {
+    "aceptado": 1,
+    "n": 1
    }
   }
  },
  "vlm_familia": {
-  "acierto": 27,
+  "acierto": 32,
   "n": 32,
   "cualquiera": 0,
   "fuente": "lote ciego de Víctor (etiquetado después de que el modelo etiquetara esos recortes)"
  },
  "vlm_estampado": {
-  "acierto": 23,
+  "acierto": 25,
   "n": 27,
-  "cualquiera": 23,
+  "cualquiera": 25,
   "fuente": "lote ciego de Víctor (etiquetado después de que el modelo etiquetara esos recortes)",
   "mas_frecuente": [
    "liso",
@@ -151,34 +175,34 @@
    27
   ],
   "revision": {
-   "ok": 43,
-   "mas_o_menos": 0,
+   "ok": 70,
+   "mas_o_menos": 1,
    "no": 3,
-   "n": 46,
-   "aceptable": 43,
+   "n": 74,
+   "aceptable": 71,
    "ic_aceptable": [
-    82,
-    98
+    89,
+    99
    ],
    "ic_estricto": [
-    82,
+    87,
     98
    ],
    "parte_b_nuevos": {
-    "n": 24,
-    "ok": 22,
-    "aceptable": 22
+    "n": 52,
+    "ok": 49,
+    "aceptable": 50
    },
-   "recortes": 46,
+   "recortes": 74,
    "fuente": "revisión de Víctor (OK / más o menos / No) viendo la valoración del modelo, 10 de octubre de 2026"
   },
   "techo": "media",
-  "techo_regla": "a ciegas: media; por la revisión (límite inferior de «aceptable» 82 % ≥ 65 % → media): media; manda el más alto, y «alta» solo se alcanza a ciegas"
+  "techo_regla": "a ciegas: media; por la revisión (límite inferior de «aceptable» 89 % ≥ 65 % → media): media; manda el más alto, y «alta» solo se alcanza a ciegas"
  },
  "vlm_tejido": {
-  "acierto": 14,
+  "acierto": 15,
   "n": 26,
-  "cualquiera": 14,
+  "cualquiera": 15,
   "fuente": "lote ciego de Víctor (etiquetado después de que el modelo etiquetara esos recortes)",
   "mas_frecuente": [
    "algodón",
@@ -186,34 +210,34 @@
    26
   ],
   "revision": {
-   "ok": 33,
+   "ok": 58,
    "mas_o_menos": 5,
-   "no": 7,
-   "n": 45,
-   "aceptable": 38,
+   "no": 10,
+   "n": 73,
+   "aceptable": 63,
    "ic_aceptable": [
-    71,
+    77,
     92
    ],
    "ic_estricto": [
-    59,
-    84
+    69,
+    87
    ],
    "parte_b_nuevos": {
-    "n": 23,
-    "ok": 20,
-    "aceptable": 20
+    "n": 51,
+    "ok": 45,
+    "aceptable": 45
    },
-   "recortes": 46,
+   "recortes": 74,
    "fuente": "revisión de Víctor (OK / más o menos / No) viendo la valoración del modelo, 10 de octubre de 2026"
   },
   "techo": "media",
-  "techo_regla": "a ciegas: baja; por la revisión (límite inferior de «aceptable» 71 % ≥ 65 % → media): media; manda el más alto, y «alta» solo se alcanza a ciegas"
+  "techo_regla": "a ciegas: baja; por la revisión (límite inferior de «aceptable» 77 % ≥ 65 % → media): media; manda el más alto, y «alta» solo se alcanza a ciegas"
  },
  "vlm_forma": {
-  "acierto": 15,
+  "acierto": 14,
   "n": 27,
-  "cualquiera": 15,
+  "cualquiera": 14,
   "fuente": "lote ciego de Víctor (etiquetado después de que el modelo etiquetara esos recortes)",
   "mas_frecuente": [
    "regular",
@@ -221,28 +245,28 @@
    27
   ],
   "revision": {
-   "ok": 41,
-   "mas_o_menos": 4,
+   "ok": 68,
+   "mas_o_menos": 5,
    "no": 1,
-   "n": 46,
-   "aceptable": 45,
+   "n": 74,
+   "aceptable": 73,
    "ic_aceptable": [
-    89,
+    93,
     100
    ],
    "ic_estricto": [
-    77,
-    95
+    83,
+    96
    ],
    "parte_b_nuevos": {
-    "n": 24,
-    "ok": 22,
-    "aceptable": 23
+    "n": 52,
+    "ok": 49,
+    "aceptable": 51
    },
-   "recortes": 46,
+   "recortes": 74,
    "fuente": "revisión de Víctor (OK / más o menos / No) viendo la valoración del modelo, 10 de octubre de 2026"
   },
   "techo": "media",
-  "techo_regla": "a ciegas: baja; por la revisión (límite inferior de «aceptable» 89 % ≥ 65 % → media): media; manda el más alto, y «alta» solo se alcanza a ciegas"
+  "techo_regla": "a ciegas: baja; por la revisión (límite inferior de «aceptable» 93 % ≥ 65 % → media): media; manda el más alto, y «alta» solo se alcanza a ciegas"
  }
 }

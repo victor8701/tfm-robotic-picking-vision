@@ -1576,5 +1576,977 @@
   "previo": null,
   "estilo": "geek",
   "mercado": "Biblioteca"
+ },
+ "r2-1": {
+  "foto": "bib_6c6207ee92",
+  "idx": 0,
+  "caja": [
+   113.5,
+   82.6,
+   299.8,
+   245.2
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Chaleco sin mangas",
+   "estampado": "gráfico / dibujo",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Chaleco sin mangas",
+   "estampado": "gráfico / dibujo",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "bohemio",
+  "mercado": "Biblioteca"
+ },
+ "r2-2": {
+  "foto": "bib_8b9eee11bb",
+  "idx": 0,
+  "caja": [
+   75.2,
+   519.4,
+   462.9,
+   944.3
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Top",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "corta / cropped"
+  },
+  "real": {
+   "tipo": "Top",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "corta / cropped"
+  },
+  "previo": null,
+  "estilo": "bohemio",
+  "mercado": "Biblioteca"
+ },
+ "r2-3": {
+  "foto": "bib_d012ebc224",
+  "idx": 0,
+  "caja": [
+   106.5,
+   121.2,
+   326.2,
+   426.4
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Camiseta manga corta",
+   "estampado": "texto / logo",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Camiseta manga corta",
+   "estampado": "texto / logo",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "lujo",
+  "mercado": "Biblioteca"
+ },
+ "r2-4": {
+  "foto": "bib_dd5e6ce2a3",
+  "idx": 2,
+  "caja": [
+   203.9,
+   896.5,
+   459.6,
+   1020.4
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Zapatos de vestir",
+   "estampado": "liso",
+   "tejido": "cuero / vinilo",
+   "forma": "no aplica"
+  },
+  "real": {
+   "tipo": "Zapatos de vestir",
+   "estampado": "liso",
+   "tejido": "cuero / vinilo",
+   "forma": "no aplica"
+  },
+  "previo": null,
+  "estilo": "old_money",
+  "mercado": "Biblioteca"
+ },
+ "r2-5": {
+  "foto": "bib_3d1886f6af",
+  "idx": 1,
+  "caja": [
+   548.9,
+   296.3,
+   1029.8,
+   775.2
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Americana",
+   "estampado": "liso",
+   "tejido": "punto",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Americana",
+   "estampado": "liso",
+   "tejido": "punto",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "old_money",
+  "mercado": "Biblioteca"
+ },
+ "r2-6": {
+  "foto": "bib_bf71a9d74d",
+  "idx": 1,
+  "caja": [
+   224.4,
+   428.0,
+   431.0,
+   935.1
+  ],
+  "parte": "B",
+  "control": true,
+  "mostrar": {
+   "tipo": "Camiseta manga larga",
+   "estampado": "rayas",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Pantalón",
+   "estampado": "liso",
+   "tejido": "denim (vaquero)",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "lujo",
+  "mercado": "Biblioteca"
+ },
+ "r2-7": {
+  "foto": "bib_3d723dd006",
+  "idx": 0,
+  "caja": [
+   36.4,
+   395.2,
+   449.0,
+   835.8
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Zapatos de vestir",
+   "estampado": "liso",
+   "tejido": "cuero / vinilo",
+   "forma": "no aplica"
+  },
+  "real": {
+   "tipo": "Zapatos de vestir",
+   "estampado": "liso",
+   "tejido": "cuero / vinilo",
+   "forma": "no aplica"
+  },
+  "previo": null,
+  "estilo": "clasico",
+  "mercado": "Biblioteca"
+ },
+ "r2-8": {
+  "foto": "bib_843d5259f3",
+  "idx": 0,
+  "caja": [
+   8.0,
+   508.0,
+   625.8,
+   1198.4
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Americana",
+   "estampado": "liso",
+   "tejido": "no se distingue",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Americana",
+   "estampado": "liso",
+   "tejido": "no se distingue",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "old_money",
+  "mercado": "Biblioteca"
+ },
+ "r2-9": {
+  "foto": "bib_4e13154ee4",
+  "idx": 0,
+  "caja": [
+   137.7,
+   18.9,
+   795.1,
+   495.1
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Bolso",
+   "estampado": "texto / logo",
+   "tejido": "cuero / vinilo",
+   "forma": "no aplica"
+  },
+  "real": {
+   "tipo": "Bolso",
+   "estampado": "texto / logo",
+   "tejido": "cuero / vinilo",
+   "forma": "no aplica"
+  },
+  "previo": null,
+  "estilo": "lujo",
+  "mercado": "Biblioteca"
+ },
+ "r2-10": {
+  "foto": "bib_9b6fbc47d6",
+  "idx": 0,
+  "caja": [
+   141.2,
+   91.4,
+   386.7,
+   346.1
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Camisa",
+   "estampado": "otro",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Camisa",
+   "estampado": "otro",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "lujo",
+  "mercado": "Biblioteca"
+ },
+ "r2-11": {
+  "foto": "bib_d9ed54dc5b",
+  "idx": 1,
+  "caja": [
+   341.5,
+   498.0,
+   539.4,
+   751.6
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Americana",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Americana",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "old_money",
+  "mercado": "Biblioteca"
+ },
+ "r2-12": {
+  "foto": "bib_870256f238",
+  "idx": 0,
+  "caja": [
+   288.8,
+   512.4,
+   520.1,
+   961.6
+  ],
+  "parte": "B",
+  "control": true,
+  "mostrar": {
+   "tipo": "Botas",
+   "estampado": "liso",
+   "tejido": "cuero / vinilo",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Camiseta manga corta",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "convencional",
+  "mercado": "Biblioteca"
+ },
+ "r2-13": {
+  "foto": "bib_8bf30b94c4",
+  "idx": 1,
+  "caja": [
+   391.0,
+   512.0,
+   618.2,
+   776.8
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Pantalón",
+   "estampado": "otro",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Pantalón",
+   "estampado": "otro",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "clasico",
+  "mercado": "Biblioteca"
+ },
+ "r2-14": {
+  "foto": "bib_b6564a40cf",
+  "idx": 0,
+  "caja": [
+   44.6,
+   175.5,
+   434.2,
+   591.8
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Chaqueta",
+   "estampado": "gráfico / dibujo",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Chaqueta",
+   "estampado": "gráfico / dibujo",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "lujo",
+  "mercado": "Biblioteca"
+ },
+ "r2-15": {
+  "foto": "bib_5aa953a075",
+  "idx": 0,
+  "caja": [
+   269.1,
+   410.1,
+   495.0,
+   655.2
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Camisa",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "oversized / baggy"
+  },
+  "real": {
+   "tipo": "Camisa",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "oversized / baggy"
+  },
+  "previo": null,
+  "estilo": "convencional",
+  "mercado": "Biblioteca"
+ },
+ "r2-16": {
+  "foto": "bib_04fd1d9e7f",
+  "idx": 0,
+  "caja": [
+   401.9,
+   181.7,
+   641.5,
+   544.6
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Botas",
+   "estampado": "liso",
+   "tejido": "cuero / vinilo",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Botas",
+   "estampado": "liso",
+   "tejido": "cuero / vinilo",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "bohemio",
+  "mercado": "Biblioteca"
+ },
+ "r2-17": {
+  "foto": "bib_c711f91dce",
+  "idx": 0,
+  "caja": [
+   271.0,
+   72.6,
+   405.6,
+   315.4
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Camisa",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Camisa",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "convencional",
+  "mercado": "Biblioteca"
+ },
+ "r2-18": {
+  "foto": "bib_d6d1f4b603",
+  "idx": 1,
+  "caja": [
+   117.0,
+   155.1,
+   459.7,
+   564.1
+  ],
+  "parte": "B",
+  "control": true,
+  "mostrar": {
+   "tipo": "Chaqueta",
+   "estampado": "gráfico / dibujo",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Polo",
+   "estampado": "gráfico / dibujo",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "lujo",
+  "mercado": "Biblioteca"
+ },
+ "r2-19": {
+  "foto": "bib_58f06c7c12",
+  "idx": 1,
+  "caja": [
+   283.0,
+   336.3,
+   532.5,
+   630.4
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Camisa",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Camisa",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "old_money",
+  "mercado": "Biblioteca"
+ },
+ "r2-20": {
+  "foto": "bib_c042a358b5",
+  "idx": 1,
+  "caja": [
+   451.5,
+   500.8,
+   647.0,
+   695.9
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Chaqueta",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Chaqueta",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "clasico",
+  "mercado": "Biblioteca"
+ },
+ "r2-21": {
+  "foto": "bib_6c25448483",
+  "idx": 1,
+  "caja": [
+   354.6,
+   496.8,
+   533.4,
+   635.8
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Short",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Short",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "bohemio",
+  "mercado": "Biblioteca"
+ },
+ "r2-22": {
+  "foto": "bib_cec4e3ad21",
+  "idx": 0,
+  "caja": [
+   180.5,
+   136.3,
+   506.4,
+   559.7
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Chaqueta",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Chaqueta",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "clasico",
+  "mercado": "Biblioteca"
+ },
+ "r2-23": {
+  "foto": "bib_dd7630edc9",
+  "idx": 2,
+  "caja": [
+   174.2,
+   831.0,
+   311.3,
+   967.2
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Zapatos de vestir",
+   "estampado": "liso",
+   "tejido": "cuero / vinilo",
+   "forma": "no aplica"
+  },
+  "real": {
+   "tipo": "Zapatos de vestir",
+   "estampado": "liso",
+   "tejido": "cuero / vinilo",
+   "forma": "no aplica"
+  },
+  "previo": null,
+  "estilo": "old_money",
+  "mercado": "Biblioteca"
+ },
+ "r2-24": {
+  "foto": "bib_562a204896",
+  "idx": 0,
+  "caja": [
+   487.4,
+   622.3,
+   729.3,
+   893.1
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Camiseta de tirantes",
+   "estampado": "liso",
+   "tejido": "punto",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Camiseta de tirantes",
+   "estampado": "liso",
+   "tejido": "punto",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "lujo",
+  "mercado": "Biblioteca"
+ },
+ "r2-25": {
+  "foto": "bib_0fa4b0d907",
+  "idx": 1,
+  "caja": [
+   245.7,
+   344.9,
+   519.9,
+   720.3
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Camiseta manga larga",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Camiseta manga larga",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "convencional",
+  "mercado": "Biblioteca"
+ },
+ "r2-26": {
+  "foto": "bib_54c649e8b8",
+  "idx": 3,
+  "caja": [
+   259.6,
+   257.6,
+   383.1,
+   484.2
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Polo",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Polo",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "clasico",
+  "mercado": "Biblioteca"
+ },
+ "r2-27": {
+  "foto": "bib_1d7861e2c6",
+  "idx": 0,
+  "caja": [
+   311.7,
+   524.8,
+   709.3,
+   1003.4
+  ],
+  "parte": "B",
+  "control": true,
+  "mostrar": {
+   "tipo": "Chaqueta",
+   "estampado": "gráfico / dibujo",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Vestido",
+   "estampado": "rayas",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "bohemio",
+  "mercado": "Biblioteca"
+ },
+ "r2-28": {
+  "foto": "bib_0b45976f6a",
+  "idx": 2,
+  "caja": [
+   349.8,
+   804.4,
+   472.7,
+   928.3
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Sandalias",
+   "estampado": "otro",
+   "tejido": "no se distingue",
+   "forma": "no aplica"
+  },
+  "real": {
+   "tipo": "Sandalias",
+   "estampado": "otro",
+   "tejido": "no se distingue",
+   "forma": "no aplica"
+  },
+  "previo": null,
+  "estilo": "convencional",
+  "mercado": "Biblioteca"
+ },
+ "r2-29": {
+  "foto": "bib_5c6e8f8355",
+  "idx": 0,
+  "caja": [
+   275.0,
+   40.4,
+   560.0,
+   542.8
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Vestido",
+   "estampado": "otro",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Vestido",
+   "estampado": "otro",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "bohemio",
+  "mercado": "Biblioteca"
+ },
+ "r2-30": {
+  "foto": "bib_629814d2a5",
+  "idx": 1,
+  "caja": [
+   450.2,
+   484.7,
+   646.7,
+   671.8
+  ],
+  "parte": "B",
+  "control": true,
+  "mostrar": {
+   "tipo": "Zapatos de vestir",
+   "estampado": "liso",
+   "tejido": "cuero / vinilo",
+   "forma": "no aplica"
+  },
+  "real": {
+   "tipo": "Camiseta manga larga",
+   "estampado": "rayas",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "clasico",
+  "mercado": "Biblioteca"
+ },
+ "r2-31": {
+  "foto": "bib_36f145a6b6",
+  "idx": 1,
+  "caja": [
+   276.0,
+   378.0,
+   507.4,
+   820.7
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Pantalón",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "oversized / baggy"
+  },
+  "real": {
+   "tipo": "Pantalón",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "oversized / baggy"
+  },
+  "previo": null,
+  "estilo": "bohemio",
+  "mercado": "Biblioteca"
+ },
+ "r2-32": {
+  "foto": "bib_f0bb47c5f4",
+  "idx": 0,
+  "caja": [
+   211.7,
+   434.4,
+   442.4,
+   914.0
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Camisa",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Camisa",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "convencional",
+  "mercado": "Biblioteca"
+ },
+ "r2-33": {
+  "foto": "bib_427e6cfb8d",
+  "idx": 1,
+  "caja": [
+   70.6,
+   0.1,
+   408.8,
+   267.7
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Camisa",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Camisa",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "old_money",
+  "mercado": "Biblioteca"
+ },
+ "r2-34": {
+  "foto": "bib_8d7d61a54e",
+  "idx": 0,
+  "caja": [
+   217.0,
+   268.3,
+   536.1,
+   585.8
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Camisa",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Camisa",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "clasico",
+  "mercado": "Biblioteca"
+ },
+ "r2-35": {
+  "foto": "bib_a9c49e07bd",
+  "idx": 1,
+  "caja": [
+   374.5,
+   674.4,
+   519.9,
+   969.9
+  ],
+  "parte": "B",
+  "control": true,
+  "mostrar": {
+   "tipo": "Camisa",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "regular"
+  },
+  "real": {
+   "tipo": "Chaqueta",
+   "estampado": "liso",
+   "tejido": "denim (vaquero)",
+   "forma": "regular"
+  },
+  "previo": null,
+  "estilo": "clasico",
+  "mercado": "Biblioteca"
+ },
+ "r2-36": {
+  "foto": "bib_1c71e3d28f",
+  "idx": 2,
+  "caja": [
+   189.2,
+   924.6,
+   446.0,
+   1159.8
+  ],
+  "parte": "B",
+  "control": false,
+  "mostrar": {
+   "tipo": "Zapatillas casual/lifestyle",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "no aplica"
+  },
+  "real": {
+   "tipo": "Zapatillas casual/lifestyle",
+   "estampado": "liso",
+   "tejido": "algodón",
+   "forma": "no aplica"
+  },
+  "previo": null,
+  "estilo": "convencional",
+  "mercado": "Biblioteca"
  }
 }

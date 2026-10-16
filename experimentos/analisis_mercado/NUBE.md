@@ -43,6 +43,16 @@ Desde entonces corre sola cada lunes. Cuando se vea que funciona, se quita la ta
 - Las fotos nuevas salen del runner de GitHub a un dataset **privado** de Kaggle, que se borra en la misma pasada (como en la tarea de antes).
 - La revista pasa por el servicio de correo de Google. Las miniaturas de prendas son recortes de fotos públicas de personas; se pueden quitar con la opción `--sin-fotos` del paso «Revista por correo».
 
+## El modelo grande: qué configuración usa la tarea (16 de octubre)
+
+La tarea etiqueta los recortes nuevos con Qwen3-VL-8B en Kaggle usando la configuración `semanal_pista` (`CONFIG_VLM` en `tendencia_prenda.py`). Antes usaba `semanal`, que en los recortes de pantalón nombraba a menudo la prenda de arriba que asoma por el borde (camisa, chaqueta, americana) y daba el tejido de esa otra prenda: los vaqueros salían «camisa de algodón». `semanal_pista` le dice qué zona del cuerpo marcó el detector y le pide la prenda que ocupa casi toda la caja (memoria §6.11; `evaluar_zona.py`).
+- Probar otra configuración sobre recortes elegidos, sin tocar los datos: `python3 tendencia_prenda.py vlm-prueba --claves CLAVES.json --configs semanal_pista --salida CARPETA` (sube un dataset PRIVADO de Kaggle y lo borra siempre).
+- Pasar esas respuestas a `prendas.json` (el etiquetado anterior queda en `vlm_anterior`): `python3 tendencia_prenda.py vlm-aplicar --dir CARPETA --config semanal_pista`.
+
+## Prueba de Instagram (opcional, 16 de octubre)
+
+`instagram_prueba.py` + `.github/workflows/instagram_prueba.yml` comprueban si Meta deja leer fotos de OTRAS cuentas profesionales (Business Discovery) con una app en modo desarrollo. Necesita un secreto de GitHub `META_IG_TOKEN` (token de usuario de Facebook de larga duración con `instagram_basic`, `pages_show_list`, `pages_read_engagement` e `instagram_manage_insights`, de un usuario que administre una Página de Facebook enlazada a una cuenta de Instagram Creador o Empresa). Se lanza creando `experimentos/analisis_mercado/lanzar_instagram.txt` y subiéndolo a la rama `analisis-mercado`; no guarda ninguna foto ni imprime el token. Si funciona, se integra como un tipo de fuente más (`instagram`) en `tendencia_fuentes.json`; si no, se descarta.
+
 ## Si algo falla
 
 - *Revista de la semana anterior no llegó*: mirar en *Actions* el último «Tendencia semanal (revista)»; el paso en rojo dice dónde. Los datos de la semana pasada siguen intactos en `datos-tendencia`.

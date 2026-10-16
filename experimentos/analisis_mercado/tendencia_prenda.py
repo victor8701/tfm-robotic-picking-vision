@@ -55,6 +55,7 @@ FUENTES, FOTOS, PRENDAS, INFORME = AQUI / "tendencia_fuentes.json", TD / "fotos.
 DET = AQUI.parent / "vlm_atributos_prenda" / "herramientas"
 VLMP = DET / "vlm_profesor"
 LADO_VLM = 1024           # las fotos se reducen a este lado largo antes de subirlas a Kaggle
+CONFIG_VLM = "semanal_pista"  # configuración del modelo grande que usa la tarea semanal (kernel_profesor.py). «semanal» era la anterior: nombraba la prenda de arriba en los recortes de pantalón (ver evaluar_zona.py)
 MAX_POR_KERNEL = 700      # prendas por kernel (~2,5 s cada una): con más se reparten en varios kernels en paralelo
 MIN_FOTOS = 5            # decisión de Víctor: por debajo de 5 fotos no se enseña una cifra
 VIDA_MEDIA = 10.0        # días, como el informe de estilos
@@ -74,6 +75,7 @@ FAMILIA = {"Camiseta manga corta": "Arriba", "Camiseta de tirantes": "Arriba", "
 # de esos cinco solo hay, por ahora, la muestra de referencia de su Biblioteca (fotos aprobadas, sin fecha ni mercado).
 ESTILOS_FLUJO = {"urbano": "urbano", "alternativo_geek": "geek", "clasico_tradicional": "clasico", "old_money": "old_money", "lujo_ostentoso": "lujo", "bohemio": "bohemio", "convencional": "convencional"}
 NOMBRE_ESTILO = {"urbano": "Urbano", "geek": "Geek", "clasico": "Clásico", "old_money": "Old money", "lujo": "Lujo ostentoso", "bohemio": "Bohemio", "convencional": "Convencional"}
+ZONAS = {"ropa_superior": "superior", "abrigo": "superior", "ropa_inferior": "inferior", "cuerpo_entero": "cuerpo_entero", "calzado": "calzado", "accesorio": "accesorio"}   # categoría del detector → zona del cuerpo
 NIVELES = ["baja", "media", "alta"]
 ATRIBUTOS = ("estampado", "forma", "tejido")
 ALUMNO = TD / "alumno.npz"           # capas sobre CLIP B/32 entrenadas con el profesor (vlm_profesor/entrenar_alumno.py --guardar); si no existe, se usa CLIP sin entrenar
@@ -572,7 +574,8 @@ def paquete_vlm(pend, destino: Path, slug: str) -> list[dict]:
             if escala[k] < 1:
                 im = im.resize((round(im.width * escala[k]), round(im.height * escala[k])), Image.LANCZOS)
             im.save(tmp / nombre, quality=90)
-        manifiesto.append({"id": f"w:{k}#{i}", "origen": "semanal", "foto": nombre, "caja": [round(c * escala[k], 1) for c in p["caja"]], "tipo": p["tipo"], "tipo_en": "a garment"})
+        manifiesto.append({"id": f"w:{k}#{i}", "origen": "semanal", "foto": nombre, "caja": [round(c * escala[k], 1) for c in p["caja"]], "tipo": p["tipo"], "tipo_en": "a garment",
+                           "zona": ZONAS.get(p.get("cat"))})
     with zipfile.ZipFile(destino / "fotos.zip", "w", zipfile.ZIP_STORED) as z:
         for f in sorted(tmp.glob("*.jpg")):
             z.write(f, f.name)
@@ -583,10 +586,10 @@ def paquete_vlm(pend, destino: Path, slug: str) -> list[dict]:
     return manifiesto
 
 
-def texto_kernel(parte=None) -> str:
-    """El código de `kernel_profesor.py` con las constantes de la tanda semanal: solo la configuración «semanal», solo Qwen3-VL-8B y, si hace falta, una parte (k, n)."""
+def texto_kernel(parte=None, configs=(CONFIG_VLM,)) -> str:
+    """El código de `kernel_profesor.py` con las constantes de la tanda semanal: solo la configuración «semanal» (o las que se pidan, en las pruebas), solo Qwen3-VL-8B y, si hace falta, una parte (k, n)."""
     s = (VLMP / "kernel_profesor.py").read_text(encoding="utf-8")
-    s, n1 = re.subn(r"(?m)^SOLO = None ", 'SOLO = ["semanal"] ', s, count=1)
+    s, n1 = re.subn(r"(?m)^SOLO = None ", f"SOLO = {list(configs)!r} ", s, count=1)
     s, n2 = re.subn(r"(?m)^MODELOS_SOLO = None ", 'MODELOS_SOLO = ["qwen3vl8b"] ', s, count=1)
     if parte:
         s, n3 = re.subn(r"(?m)^PARTE = None ", f"PARTE = {tuple(parte)} ", s, count=1)
@@ -636,7 +639,7 @@ def cmd_vlm(args):
                     raise RuntimeError(f"el kernel {sl} terminó en {est}: {ko.kernel_log(sl)[-400:]}")
                 salida = Path(tmp) / f"salida_{sl}"
                 ko.kernel_bajar(salida, sl)
-                f = salida / "pred_qwen3vl8b_semanal.jsonl"
+                f = salida / f"pred_qwen3vl8b_{CONFIG_VLM}.jsonl"
                 if not f.exists():
                     raise RuntimeError(f"el kernel {sl} no devolvió resultados: {ko.kernel_log(sl)[-400:]}")
                 resultados += [json.loads(linea) for linea in open(f, encoding="utf-8")]
@@ -656,10 +659,96 @@ def cmd_vlm(args):
             continue   # sin respuesta válida: queda pendiente para la próxima pasada
         p.setdefault("tipo_clip", p["tipo"])   # el tipo de CLIP sin entrenar queda aparte, para compararlos
         p["tipo"] = r["tipo29"]
-        p["vlm"] = {"tipo": r["tipo29"], "estampado": r.get("estampado"), "tejido": r.get("tejido"), "forma": r.get("forma"), "modelo": "qwen3vl8b", "config": "semanal", "fecha": ahora}
+        p["vlm"] = {"tipo": r["tipo29"], "estampado": r.get("estampado"), "tejido": r.get("tejido"), "forma": r.get("forma"), "modelo": "qwen3vl8b", "config": CONFIG_VLM, "fecha": ahora}
         n_ok += 1
     guardar(PRENDAS, prendas)
     print(f"Etiquetadas con el modelo grande: {n_ok} de {len(pend)} prendas.", flush=True)
+
+
+def cmd_vlm_prueba(args):
+    """Prueba de otras configuraciones del modelo grande sobre recortes elegidos (`--claves`: lista JSON de «foto#idx»). NO toca prendas.json: sube un dataset PRIVADO de Kaggle
+    (`tfm-prueba-prendas-…`, se borra siempre), corre las configuraciones y deja en `--salida` un `pred_qwen3vl8b_<config>.jsonl` por configuración."""
+    prendas, fotos_d, hay, pend = cargar(PRENDAS), cargar(FOTOS), {}, []
+    for c in json.loads(Path(args.claves).read_text(encoding="utf-8")):
+        k, _, i = c.partition("#")
+        if k in prendas and i.isdigit() and int(i) < len(prendas[k]["prendas"]) and hay.setdefault(k, asegurar_imagen(k, fotos_d)):
+            pend.append((k, int(i), prendas[k]["prendas"][int(i)]))
+    configs = [c for c in args.configs.split(",") if c]
+    print(f"{len(pend)} recortes de {len({k for k, _, _ in pend})} fotos con imagen; configuraciones: {configs}", flush=True)
+    if not pend or args.simular:
+        return
+    salida_dir = Path(args.salida)
+    salida_dir.mkdir(parents=True, exist_ok=True)
+    sys.path.insert(0, str(VLMP))
+    import kaggle_ops as ko
+    for ref, _, _ in ko.datasets():   # restos de una prueba anterior que falló: las fotos de personas no se quedan en Kaggle
+        if ref.split("/")[-1].startswith("tfm-prueba-prendas-"):
+            try:
+                ko.dataset_borrar(ref.split("/")[-1])
+                print(f"Borrado un dataset que quedó de una prueba anterior: {ref}", flush=True)
+            except Exception as e:  # noqa: BLE001
+                print(f"⚠ No pude borrar {ref} ({type(e).__name__}): bórralo a mano en kaggle.com/datasets", flush=True)
+    slug = "tfm-prueba-prendas-" + datetime.now().strftime("%Y%m%d-%H%M")
+    n_partes = max(1, math.ceil(len(pend) * len(configs) / MAX_POR_KERNEL))
+    with tempfile.TemporaryDirectory(prefix="vlm_prueba_") as tmp:
+        carpeta = Path(tmp) / "paquete"
+        paquete_vlm(pend, carpeta, slug)
+        print(f"Paquete de {(carpeta / 'fotos.zip').stat().st_size / 1e6:.0f} MB: dataset PRIVADO de Kaggle ({slug}), se borra al terminar. Kernels: {n_partes}.", flush=True)
+        creado = False
+        try:
+            ko.dataset_crear(carpeta, quiet=True)
+            creado = True
+            ko.esperar_dataset(slug)
+            slugs = [ko.kernel_push(texto_kernel((j, n_partes) if n_partes > 1 else None, configs), f"TFM prueba zona prendas {j + 1}", [slug]) for j in range(n_partes)]
+            print(f"Lanzado en Kaggle: {', '.join(slugs)}", flush=True)
+            for sl in slugs:
+                est = ko.esperar_kernel(sl, avisar=lambda t: print("  " + t, flush=True))
+                if est != "COMPLETE":
+                    raise RuntimeError(f"el kernel {sl} terminó en {est}: {ko.kernel_log(sl)[-400:]}")
+                salida = Path(tmp) / f"salida_{sl}"
+                ko.kernel_bajar(salida, sl)
+                for c in configs:
+                    f = salida / f"pred_qwen3vl8b_{c}.jsonl"
+                    if not f.exists():
+                        raise RuntimeError(f"el kernel {sl} no devolvió la configuración {c}: {ko.kernel_log(sl)[-400:]}")
+                    with open(salida_dir / f"pred_qwen3vl8b_{c}.jsonl", "a", encoding="utf-8") as g:
+                        g.write(f.read_text(encoding="utf-8"))
+        finally:
+            if creado:
+                try:
+                    ko.dataset_borrar(slug)
+                    print("Dataset borrado de Kaggle.", flush=True)
+                except Exception as e:  # noqa: BLE001
+                    print(f"⚠ NO se pudo borrar el dataset {slug} de Kaggle ({type(e).__name__}: {e}): bórralo a mano en kaggle.com/datasets", flush=True)
+    print(f"Respuestas en {salida_dir}", flush=True)
+
+
+def cmd_vlm_aplicar(args):
+    """Pasa a prendas.json las respuestas de `vlm-prueba` de UNA configuración: el etiquetado anterior queda en `vlm_anterior` (para comparar o deshacer) y el tipo pasa a ser el nuevo.
+    Las respuestas sin tipo válido no cambian nada. Con --simular solo cuenta."""
+    prendas = cargar(PRENDAS)
+    ahora, n, cambia_tipo, cambia_tejido = ahora_iso(), 0, 0, 0
+    for linea in open(Path(args.dir) / f"pred_qwen3vl8b_{args.config}.jsonl", encoding="utf-8"):
+        r = json.loads(linea)
+        k, _, i = r["id"][2:].partition("#")
+        if not r.get("tipo29") or k not in prendas:
+            continue
+        p = prendas[k]["prendas"][int(i)]
+        ant = p.get("vlm")
+        if ant:
+            cambia_tipo += ant["tipo"] != r["tipo29"]
+            cambia_tejido += ant.get("tejido") != r.get("tejido")
+            if ant.get("config") != args.config:
+                p["vlm_anterior"] = ant
+        else:
+            p.setdefault("tipo_clip", p["tipo"])   # el tipo de CLIP sin entrenar queda aparte; si ya había etiquetado del modelo grande, `tipo` ya no es el de CLIP
+        p["tipo"] = r["tipo29"]
+        p["vlm"] = {"tipo": r["tipo29"], "estampado": r.get("estampado"), "tejido": r.get("tejido"), "forma": r.get("forma"), "modelo": "qwen3vl8b", "config": args.config, "fecha": ahora}
+        n += 1
+    print(f"{n} prendas con respuesta de {args.config}: cambia el tipo en {cambia_tipo} y el tejido en {cambia_tejido}.", flush=True)
+    if not args.simular:
+        guardar(PRENDAS, prendas)
+        print("prendas.json actualizado (lo anterior queda en `vlm_anterior`).", flush=True)
 
 
 # ---------------------------------------------------------------- informe
@@ -792,6 +881,15 @@ def main():
     p = sub.add_parser("vlm")
     p.add_argument("--max-vlm", type=int, dest="max_vlm", help="como mucho N prendas (para probar)")
     p.add_argument("--simular", action="store_true", help="solo cuenta lo pendiente, sin subir nada")
+    p = sub.add_parser("vlm-prueba", help="prueba otras configuraciones del modelo grande sobre recortes elegidos, sin tocar los datos")
+    p.add_argument("--claves", required=True, help="fichero JSON con la lista de recortes «foto#idx»")
+    p.add_argument("--configs", default="semanal_zona,semanal_pista")
+    p.add_argument("--salida", required=True, help="carpeta donde quedan los pred_*.jsonl")
+    p.add_argument("--simular", action="store_true")
+    p = sub.add_parser("vlm-aplicar", help="pasa a prendas.json las respuestas de vlm-prueba (el etiquetado anterior queda en vlm_anterior)")
+    p.add_argument("--dir", required=True)
+    p.add_argument("--config", default="semanal_pista")
+    p.add_argument("--simular", action="store_true")
     sub.add_parser("informe")
     sub.add_parser("embeddings")
     p = sub.add_parser("fotos-kaggle")
@@ -807,6 +905,10 @@ def main():
     p.add_argument("--sin-vlm", action="store_true", help="no usar el modelo grande de Kaggle (nada sale del ordenador)")
     p.add_argument("--max-vlm", type=int, dest="max_vlm")
     a = ap.parse_args()
+    if a.cmd == "vlm-prueba":
+        return cmd_vlm_prueba(a)
+    if a.cmd == "vlm-aplicar":
+        return cmd_vlm_aplicar(a)
     if a.cmd in ("cosechar", "todo"):
         cmd_cosechar(a)
     if a.cmd == "biblioteca" or (a.cmd == "todo" and not getattr(a, "solo", None) and not getattr(a, "sin_biblioteca", False)):

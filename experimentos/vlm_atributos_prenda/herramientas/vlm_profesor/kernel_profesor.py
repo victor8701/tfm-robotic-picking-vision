@@ -43,6 +43,8 @@ CONFIGS = [  # (nombre, imágenes, razona, máximo de prendas, tarea)
     ("profesor", "foto", False, None, "profesor"),
     ("profesor_v2", "foto", False, None, "profesor"),
     ("semanal", "recorte", False, None, "semanal"),
+    ("semanal_zona", "recorte", False, None, "semanal"),    # prueba (octubre de 2026): el tipo se elige solo entre los de la zona del cuerpo que marcó el detector
+    ("semanal_pista", "foto", False, None, "semanal"),      # prueba: foto con la caja roja + recorte y una pista suave de la zona; entran los 29 tipos
     ("usable_a", "foto", False, None, "usable"),
     ("usable_b", "foto", False, None, "usable"),
 ]
@@ -143,6 +145,43 @@ def parsear_usable(texto: str) -> dict:
 
 def parsear_tipo(texto: str, origen: str, tarea: str = "tipo") -> str | None:
     lista = lista_tipos(origen, tarea)
+    m = re.search(r"\d+", texto or "")
+    return lista[int(m.group(0)) - 1][0] if m and 1 <= int(m.group(0)) <= len(lista) else None
+
+
+# Prueba de octubre de 2026 (la revisión de Víctor vio vaqueros etiquetados como «camisa»): en los recortes de «ropa inferior» el modelo grande nombra a menudo la prenda de arriba que
+# asoma por el borde (146 de 291 recortes de ropa inferior salieron como camisa, chaqueta, americana…), y entonces el tejido, el estampado y la forma son los de esa otra prenda.
+# Se le dice qué zona del cuerpo marcó el detector. `semanal_zona`: solo caben los tipos de esa zona (con el recorte); `semanal_pista`: caben los 29, con la foto y la caja roja,
+# y se le pide el que ocupa casi toda la caja (para los casos en que el detector se equivoca de zona y lo que se ve es otra cosa).
+ZONA_TIPOS = {
+    "superior": ["Camiseta manga corta", "Camiseta de tirantes", "Camiseta manga larga", "Top", "Camisa", "Polo", "Sudadera", "Hoodie", "Jersey", "Chaleco sin mangas", "Chaqueta", "Americana",
+                 "Abrigo", "Plumas"],
+    "inferior": ["Pantalón", "Falda", "Short", "Legging/Malla"],
+    "cuerpo_entero": ["Vestido", "Mono"],
+    "calzado": ["Zapatillas deportivas", "Zapatillas casual/lifestyle", "Zapatos de vestir", "Zapatos de tacón", "Sandalias", "Botas"],
+    "accesorio": ["Bolso", "Riñonera", "Gorra/Gorro/Sombrero"],
+}
+ZONA_EN = {"superior": "an upper-body garment (shirt, t-shirt, sweater, jacket, blazer or coat)", "inferior": "a lower-body garment (trousers, jeans, shorts, skirt or leggings)",
+           "cuerpo_entero": "a full-body garment (a dress or a jumpsuit)", "calzado": "footwear", "accesorio": "a bag or headwear"}
+assert sorted(t for ts in ZONA_TIPOS.values() for t in ts) == sorted(n for n, _ in TIPOS_V)
+
+
+def prompt_tipo_zona(it: dict, duro: bool):
+    """(texto, lista de tipos) del paso «¿qué prenda es?» con la zona que marcó el detector. duro: solo caben los tipos de esa zona (con el recorte); suave: caben los 29 (con la foto y la caja)."""
+    zona = it.get("zona")
+    en = ZONA_EN.get(zona)
+    lista = [t for t in TIPOS_V if t[0] in ZONA_TIPOS[zona]] if (duro and zona in ZONA_TIPOS) else TIPOS_V
+    opciones = "\n".join(f"{i}. {t[1]}" for i, t in enumerate(lista, 1))
+    if duro:
+        intro = "The image is a close-up crop of one garment worn by a person."
+        pista = f" A detector says it is {en}. Other garments may peek in at the edges of the crop; ignore them and name only the garment of that kind." if en else ""
+    else:
+        intro = "Image 1 is a photo of a person; the red box marks one garment. Image 2 is a close-up crop of that box."
+        pista = f" A detector says the box is {en}, but other garments can peek in at the edges; name the garment that fills most of the box." if en else ""
+    return f"You are an expert fashion analyst. {intro}{pista} Which of these is that garment?\n{opciones}\nAnswer with ONLY the number.", lista
+
+
+def parsear_lista(texto: str, lista: list):
     m = re.search(r"\d+", texto or "")
     return lista[int(m.group(0)) - 1][0] if m and 1 <= int(m.group(0)) <= len(lista) else None
 
@@ -324,8 +363,13 @@ def correr_config(m, proc, items, cfg, nombre_modelo, generador, t_inicio):
                             except Exception:
                                 salida.append("")
                         return salida
-                crudos_t = pedir_seguro([prompt_tipo("recorte", it["origen"], "profesor") for it in lote], 8, "recorte")
-                tipos = [parsear_tipo(c, it["origen"], "profesor") for c, it in zip(crudos_t, lote)]
+                if nombre in ("semanal_zona", "semanal_pista"):   # pruebas con la zona del detector (ver ZONA_TIPOS); la producción sigue con la rama de abajo
+                    pares = [prompt_tipo_zona(it, nombre == "semanal_zona") for it in lote]
+                    crudos_t = pedir_seguro([texto_ for texto_, _ in pares], 8, variante)
+                    tipos = [parsear_lista(c, lista_) for c, (_, lista_) in zip(crudos_t, pares)]
+                else:
+                    crudos_t = pedir_seguro([prompt_tipo("recorte", it["origen"], "profesor") for it in lote], 8, "recorte")
+                    tipos = [parsear_tipo(c, it["origen"], "profesor") for c, it in zip(crudos_t, lote)]
                 en = dict(TIPOS_V)
                 crudos_a = pedir_seguro([prompt("foto", False, en.get(t, "a garment"), GUIA_V3) for t in tipos], 70, "foto")
                 for it, ct, t, ca in zip(lote, crudos_t, tipos, crudos_a):
