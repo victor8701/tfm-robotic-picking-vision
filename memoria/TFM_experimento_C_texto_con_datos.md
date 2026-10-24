@@ -1,12 +1,14 @@
 # Experimento C — un texto de tendencia hecho con datos medidos frente al de un LLM que solo conoce el nombre
 
-**Autor:** Víctor Martín Parra, con el asistente · **Fecha:** 16 de octubre de 2026 · **Estado:** cerrado (primera vuelta)
+**Autor:** Víctor Martín Parra, con el asistente · **Fecha:** 16 de octubre de 2026 · **Estado:** cerrado (primera vuelta y repetición de la puntuación)
 **Código y datos:** `experimentos/clip_trend_matching/experimento_c/` (su README tiene el diseño fijado antes de puntuar y el resultado) y `experimentos/analisis_mercado/texto_tendencia.py` (el generador). Reutiliza el Experimento B (`TFM_experimento_B_vectores_visuales.md`).
 **Relacionados:** `Estado_arte.md` §6–7 y §11 (solo lectura), `TFM_tendencias_de_prenda.md` §6.9 y §6.11.
 
 ## Resumen
 
 En el Experimento B el emparejamiento prenda ↔ tendencia dependía del **texto** (un texto largo escrito por un LLM que solo conocía el nombre de la tendencia: P@5 de 23 a 34 %; un texto corto informado: 51 %) y la evidencia visual no aportaba. Aquí el texto se escribe con **plantillas, sin LLM**, a partir de lo que mide el análisis de prendas sobre la muestra de referencia de cada estilo (qué prendas, formas, estampados y tejidos lo distinguen de los demás). Con puntuación humana a ciegas y la regla de decisión fijada de antemano, ese texto recupera prendas que Víctor juzga acordes con la tendencia en el **83 %** de los cinco primeros puestos (P@5), frente al **37 %** del texto corto de un LLM que solo conoce el nombre (+47 pp, IC95 % [+30, +64], p exacto 0,031, gana en 6 de 6 tendencias) y al **70 %** de un texto escrito a mano conociendo la taxonomía (+13 pp, [+2, +24]; a K = 10, +3 pp, neutro).
+
+**Repetición (24 de octubre): el resultado NO queda confirmado como robusto.** Víctor volvió a puntuar a ciegas las 67 prendas de los cinco primeros puestos de tres brazos, sin ver su primera puntuación: coincide consigo mismo en el 76 % (kappa 0,43) y esta vez dio «encaja» a 57 de 67 prendas (la primera vez, 41): 16 prendas pasaron de «no encaja» a «encaja» y ninguna al revés. Con esa segunda puntuación sola, `T_datos_en` 93 %, oráculo 93 %, corto ciego 73 %: la comparación primaria es **+20 pp, IC95 % [−7, +47], 3 victorias, 3 empates, 0 derrotas (neutro)**, así que la regla de robustez fijada de antemano no se cumple. Se mantiene la dirección (el texto con datos no pierde en ninguna tendencia), pero la magnitud depende de lo estricto que sea el criterio. Lo que se puede afirmar: **tan bueno como el oráculo escrito a mano y nunca peor que el texto corto de un LLM que solo conoce el nombre**; no se puede afirmar «+47 pp». Detalle en el §7 de este documento y en `experimento_c/README.md` §11.
 
 ## 1. Pregunta e hipótesis
 
@@ -54,3 +56,13 @@ Aciertos de 5 por tendencia (datos / oráculo / corto ciego / largo ciego / solo
 ## 6. Qué sigue
 
 Brazo opcional con modelo abierto (Qwen, nunca API comercial) que reformule los mismos hechos, congelado antes de puntuar; Trend JSON de producción por estilo y mercado con las fotos de mercado (la primera tanda grande llega el 19 de octubre); puntuación de SKUs con el §7 de `Estado_arte.md` más coincidencia de atributos y los casos borde del §7.5; página de aprobación del operario (HMI simulado); un segundo juez o una repetición de la puntuación; catálogo con prendas de lujo.
+
+## 7. Repetición de la puntuación (24 de octubre; diseño fijado antes, `experimento_c/README.md` §10)
+
+| Puntuación | `T_datos_en` | `T_oraculo_en` | `T_corto_ciego_en` | `T_datos_en − T_corto_ciego_en` (P@5) |
+|---|---|---|---|---|
+| Primera (16 de octubre) | 83 % | 70 % | 37 % | +47 pp [+30, +64], 6-0-0 → MEJORA |
+| Segunda sola (24 de octubre) | 93 % | 93 % | 73 % | +20 pp [−7, +47], 3-3-0 → neutro |
+| Conservadora (encaja las dos veces) | 83 % | 70 % | 37 % | +47 pp [+30, +64] → MEJORA |
+
+Acuerdo consigo mismo: 76 %, kappa 0,43; «encaja» 41 → 57 de 67; ningún cambio de «encaja» a «no encaja». **Lectura:** una puntuación más indulgente satura la escala (93 % / 93 % / 73 %) y con 6 tendencias las diferencias dejan de distinguirse; la fiabilidad intrapersonal es moderada. La dirección es estable; la magnitud no. Para afirmar más haría falta una guía de puntuación escrita antes, una escala con más resolución o puntuar por pares y un segundo juez independiente; Víctor decidió no ampliar el experimento.

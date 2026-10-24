@@ -1,0 +1,26 @@
+Repetición: 67 de 67 prendas puntuadas de nuevo.
+
+Acuerdo con la primera puntuación (misma persona): 76 % de 67 prendas; kappa de Cohen 0.43 (3 categorías), 0.43 (encaja / no encaja)
+   «encaja»: primera vez 41, segunda 57; cambian de «encaja» a otra cosa 0 y al revés 16
+
+== SOLO LA SEGUNDA puntuación (el análisis primario repetido)
+   P@5 estricto medio: T_datos_en 93 % · T_corto_ciego_en 73 % · T_oraculo_en 93 %
+   T_datos_en − T_corto_ciego_en: +20 pp IC95% [-7, +47] p=0.250 gana 3/empata 3/pierde 0 -> neutro/no concluyente (primaria)
+   T_datos_en − T_oraculo_en: +0 pp IC95% [-13, +13] p=1.000 gana 1/empata 4/pierde 1 -> neutro/no concluyente (frente al oráculo)
+
+== CONSERVADORA: encaja solo si lo fue las dos veces
+   P@5 estricto medio: T_datos_en 83 % · T_corto_ciego_en 37 % · T_oraculo_en 70 %
+   T_datos_en − T_corto_ciego_en: +47 pp IC95% [+30, +64] p=0.031 gana 6/empata 0/pierde 0 -> MEJORA (primaria)
+   T_datos_en − T_oraculo_en: +13 pp IC95% [+2, +24] p=0.125 gana 4/empata 2/pierde 0 -> MEJORA (frente al oráculo)
+
+== INDULGENTE: encaja si lo fue alguna de las dos veces
+   P@5 estricto medio: T_datos_en 93 % · T_corto_ciego_en 73 % · T_oraculo_en 93 %
+   T_datos_en − T_corto_ciego_en: +20 pp IC95% [-7, +47] p=0.250 gana 3/empata 3/pierde 0 -> neutro/no concluyente (primaria)
+   T_datos_en − T_oraculo_en: +0 pp IC95% [-13, +13] p=1.000 gana 1/empata 4/pierde 1 -> neutro/no concluyente (frente al oráculo)
+
+== (referencia) la primera puntuación sola
+   P@5 estricto medio: T_datos_en 83 % · T_corto_ciego_en 37 % · T_oraculo_en 70 %
+   T_datos_en − T_corto_ciego_en: +47 pp IC95% [+30, +64] p=0.031 gana 6/empata 0/pierde 0 -> MEJORA (primaria)
+   T_datos_en − T_oraculo_en: +13 pp IC95% [+2, +24] p=0.125 gana 4/empata 2/pierde 0 -> MEJORA (frente al oráculo)
+
+Regla fijada antes de puntuar (README §10): la conclusión es ROBUSTA si la comparación primaria con la SEGUNDA puntuación sola sigue siendo MEJORA (≥ +5 pp e IC95 % sin el 0).

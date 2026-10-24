@@ -92,3 +92,14 @@ Aciertos de 5 por tendencia en el top-5 (`T_datos_en` / oráculo / corto ciego /
 
 **Lo que NO responde:** la dependencia del criterio de una sola persona (hace falta otra persona) ni la de las seis tendencias.
 
+## 11. Resultado de la repetición (24 de octubre de 2026; añadido DESPUÉS de puntuar, lo anterior no se ha tocado)
+
+Salida completa en `resultados_c_retest.txt`; puntuaciones en `ratings_c_retest.json` (67 prendas; `ratings_b.json` intacto).
+
+- **Acuerdo consigo mismo:** 76 % de las 67 prendas; kappa de Cohen **0,43** (moderado). **El criterio se desplazó hacia «encaja»:** primera vez 41 de 67 «encaja», segunda 57 de 67; 16 prendas pasaron de «no encaja» a «encaja» y **ninguna** en sentido contrario.
+- **Con la segunda puntuación sola** (la que fija la regla de robustez): P@5 estricto `T_datos_en` 93 %, `T_oraculo_en` 93 %, `T_corto_ciego_en` 73 %. Comparación primaria **+20 pp, IC95 % [−7, +47], p = 0,250, 3 victorias, 3 empates, 0 derrotas → neutro / no concluyente.** Frente al oráculo, 0 pp [−13, +13].
+- **Conservadora** (encaja solo si lo fue las dos veces): idéntica a la primera puntuación (nada pasó de «encaja» a otra cosa): +47 pp [+30, +64], MEJORA. **Indulgente:** idéntica a la segunda sola.
+- **Veredicto según la regla fijada: la conclusión de §9 NO queda confirmada como robusta.** La dirección se mantiene (el texto con datos no pierde en ninguna tendencia, ni frente al corto ciego ni frente al oráculo), pero con una puntuación más indulgente casi todo encaja (efecto techo: 93 % / 93 % / 73 %) y las diferencias dejan de distinguirse con 6 tendencias.
+- **Lectura:** el resultado de §9 depende de lo estricto que sea el criterio al puntuar; la medida tiene una fiabilidad intrapersonal moderada (kappa 0,43). Afirmaciones que sí se sostienen: el texto con datos es, como mínimo, tan bueno como el oráculo escrito a mano y nunca peor que el texto corto de un LLM que solo conoce el nombre. Afirmación que no se sostiene como firme: «+47 pp».
+- **Qué haría falta para afirmar más:** una guía de puntuación escrita antes (qué cuenta como «encaja»), una escala con más resolución que 0/2 o puntuar por comparación entre pares, y un segundo juez independiente. Víctor decidió no ampliar el experimento.
+

@@ -23,7 +23,7 @@
 | 5 | Experimento B | ¿aporta evidencia visual al vector de tendencia? | texto frente a visual frente a fusión, puntuado a ciegas | texto bien especificado 70 %, visual 33 %, fusión 50 % (P@5) | negativo para lo visual |
 | 6 | 7 estilos y «Analizar mercado» | ¿qué estilo domina por mercado? | clasificador de 7 estilos, Biblioteca, informe por mercado | CV 78 %; con fotos nuevas de medios 2 de 10 | útil como herramienta, flojo fuera de su fuente |
 | 7 | Tendencia por prenda | ¿qué prendas, con qué forma, estampado y tejido, se llevan en cada estilo? | flujo semanal, etiquetado a toques, pestaña «Prendas» | tipo 50 → 63 %, estampado 50 → 77 % con el modelo grande; forma 61 %; tejido sin mejora | en curso |
-| 8 | Texto de tendencia con datos medidos | ¿un texto hecho con lo que mide el análisis recupera mejor las prendas de una tendencia que el de un LLM que solo conoce el nombre? | `texto_tendencia.py` + Experimento C (puntuación humana a ciegas, diseño fijado antes) | P@5 83 % frente a 37 % (corto ciego) y 70 % (oráculo); +47 pp, IC95 % [+30, +64], 6 de 6 tendencias | positivo, con un solo juez y 6 tendencias |
+| 8 | Texto de tendencia con datos medidos | ¿un texto hecho con lo que mide el análisis recupera mejor las prendas de una tendencia que el de un LLM que solo conoce el nombre? | `texto_tendencia.py` + Experimento C (puntuación humana a ciegas, diseño fijado antes) | P@5 83 % frente a 37 % (corto ciego) y 70 % (oráculo) la primera vez (+47 pp); repetido por la misma persona, 93 % frente a 73 % (+20 pp, IC [−7, +47], neutro) | dirección estable, magnitud no robusta |
 
 ## 2. Cifras por etapa
 
@@ -111,6 +111,8 @@ Familia de prenda (arriba, abrigo, abajo, cuerpo entero, calzado, accesorio): fl
 | P@5 estricto de `T_datos_en` (texto con plantillas a partir de los datos medidos) | texto corto ciego 37 %; texto largo ciego 30 %; oráculo 70 %; solo imagen 33 % | **83 %** (NDCG@5 0,86) | 6 tendencias × 5 prendas | primaria declarada antes de puntuar: +47 pp, IC95 % [+30, +64], p exacto 0,031, 6 de 6 |
 | P@10 | corto ciego 35 %; oráculo 65 % | **68 %** | 6 × 10 | primaria a K = 10: +33 pp [+14, +53] |
 | Sensibilidad | las 4 prendas nuevas del top-5 contadas como fallos | 70 %, +33 pp [+22, +44] | 30 prendas | la conclusión no depende de ellas |
+
+| Repetición de la puntuación (24 de octubre, misma persona, 67 prendas) | acuerdo consigo mismo | 76 %, kappa 0,43; «encaja» 41 → 57 de 67 | 67 prendas | con la segunda puntuación sola: `T_datos_en` 93 %, oráculo 93 %, corto ciego 73 %; primaria +20 pp [−7, +47], 3-3-0 → neutro: la regla de robustez no se cumple |
 
 Límites: un solo juez (el que eligió las fotos de referencia), 6 tendencias, miniaturas de 60×80 px, lujo sin evaluar. Detalle en `TFM_experimento_C_texto_con_datos.md`.
 

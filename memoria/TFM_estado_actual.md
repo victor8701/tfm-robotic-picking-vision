@@ -1,6 +1,6 @@
 # Estado Actual del Trabajo de Fin de Máster (TFM)
 
-## 0. Cómo vamos y qué te toca (16 de octubre de 2026, noche)
+## 0. Cómo vamos y qué te toca (24 de octubre de 2026)
 
 *Panel vivo: se actualiza al final de cada sesión de trabajo y en la pestaña «Hoy» de la página «Tendencias de prenda». No sigue el calendario del Gantt: Víctor lleva su propio orden.*
 
@@ -10,7 +10,7 @@
 - **Acierto del modelo grande en los cinco estilos nuevos: medido el 15 de octubre** (ronda 2; 28 recortes reales con respuesta: tipo 93 %, estampado 96 %, tejido 89 %, forma 96 %; los 6 controles rechazados).
 - **Pantalones y vaqueros: arreglado el 16 de octubre (§6.11).** El modelo grande nombraba la prenda de arriba en 146 de 291 recortes de ropa inferior; con una pista de la zona del cuerpo, «Pantalón» pasa de 68 a 202 y el denim de 7 a 53. La tarea semanal usa `semanal_pista` y los 916 recortes están reetiquetados.
 - **Instagram: aparcado por Víctor** (muy importante, pero ahora no puede). `instagram_prueba.py` y su tarea de GitHub están preparados.
-- **Texto de tendencia en lenguaje natural hecho con datos medidos: probado (Experimento C, 16 de octubre; `TFM_experimento_C_texto_con_datos.md`).** P@5 de 83 % frente a 37 % del texto corto de un LLM que solo conoce el nombre y 70 % del oráculo (6 tendencias, un juez, puntuación a ciegas). Siguiente: Trend JSON de producción con fotos de mercado, brazo opcional con modelo abierto, puntuación de SKUs y página de aprobación.
+- **Texto de tendencia en lenguaje natural hecho con datos medidos: probado (Experimento C, 16 de octubre; `TFM_experimento_C_texto_con_datos.md`).** P@5 de 83 % frente a 37 % del texto corto de un LLM que solo conoce el nombre y 70 % del oráculo (6 tendencias, un juez, puntuación a ciegas); **repetida la puntuación (24 de octubre) la dirección se mantiene pero no se confirma la magnitud** (93 % frente a 73 %, +20 pp, IC [−7, +47]). Siguiente: Trend JSON de producción con fotos de mercado, brazo opcional con modelo abierto, puntuación de SKUs y página de aprobación.
 - **Límites conocidos:** Reddit solo deja unas 1 petición por minuto desde GitHub; para old money no hay comunidad de Reddit activa medible; 29 candidatos de prensa tienen la foto sin comprobar; el color es el atributo más flojo (70 % a ojo).
 
 **Qué te toca**
