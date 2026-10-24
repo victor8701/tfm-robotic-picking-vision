@@ -182,23 +182,42 @@ def kernel_log(slug) -> str:
         return c.kernels.kernels_api_client.list_kernel_session_output(out).log or ""
 
 
-def kernel_bajar(destino, slug) -> list[str]:
+def _transitorio(e: Exception) -> bool:
+    """¿Merece reintento? Errores de red y de servidor (5xx, 429) sí; los de cliente (401, 403, 404…) no."""
+    r = getattr(e, "response", None)
+    codigo = getattr(r, "status_code", None)
+    if codigo is not None:
+        return codigo >= 500 or codigo == 429
+    return True
+
+
+def kernel_bajar(destino, slug, intentos=8, pausas=(15, 30, 60, 120, 120, 120, 120)) -> list[str]:
+    """Baja los ficheros de salida del kernel. El 19 de octubre de 2026 la tarea semanal perdió media hora de GPU porque la descarga dio un 502 de Kaggle (Bad Gateway) y no se reintentaba:
+    ahora se repite (volviendo a pedir la lista, por si la dirección firmada caduca) con pausas crecientes; en total unos 10 minutos antes de rendirse."""
     destino = Path(destino)
     destino.mkdir(parents=True, exist_ok=True)
-    bajados = []
-    with KaggleClient() as c:
-        out = ApiListKernelSessionOutputRequest()
-        out.user_name, out.kernel_slug = USUARIO, slug
-        resp = c.kernels.kernels_api_client.list_kernel_session_output(out)
-        sesion = c.http_client()._session
-        for f in resp.files:
-            if "/" in f.file_name:
-                continue
-            r = sesion.get(f.url)
-            r.raise_for_status()
-            (destino / f.file_name).write_bytes(r.content)
-            bajados.append(f.file_name)
-    return bajados
+    for intento in range(1, intentos + 1):
+        try:
+            bajados = []
+            with KaggleClient() as c:
+                out = ApiListKernelSessionOutputRequest()
+                out.user_name, out.kernel_slug = USUARIO, slug
+                resp = c.kernels.kernels_api_client.list_kernel_session_output(out)
+                sesion = c.http_client()._session
+                for f in resp.files:
+                    if "/" in f.file_name:
+                        continue
+                    r = sesion.get(f.url, timeout=300)
+                    r.raise_for_status()
+                    (destino / f.file_name).write_bytes(r.content)
+                    bajados.append(f.file_name)
+            return bajados
+        except Exception as e:  # noqa: BLE001
+            if intento == intentos or not _transitorio(e):
+                raise
+            pausa = pausas[min(intento - 1, len(pausas) - 1)]
+            print(f"  descarga de la salida del kernel: intento {intento} de {intentos} fallido ({type(e).__name__}: {str(e)[:90]}); se reintenta en {pausa} s", flush=True)
+            time.sleep(pausa)
 
 
 # ---------------------------------------------------------------- línea de comandos
