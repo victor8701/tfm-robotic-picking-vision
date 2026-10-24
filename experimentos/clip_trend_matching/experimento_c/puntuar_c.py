@@ -2,8 +2,11 @@
 """
 Página de toques para puntuar a ciegas las prendas nuevas del Experimento C (0 = no encaja, 1 = dudoso, 2 = encaja), con el mismo método que `../experimento_b/evaluar_b.py` pero desde el móvil.
 
-  python3 puntuar_c.py html --salida PAGINA.html     incrusta las prendas de `pool_c.json` (miniaturas de 60×80 px ampliadas ×3) y guarda `pool_c_ids.json` (c1… → clave)
-  python3 puntuar_c.py importar --dir DIR            pasa las respuestas de la base de la página (exportadas con ArtifactData `puntuaciones`) a `../experimento_b/ratings_b.json`
+  python3 puntuar_c.py html --salida PAGINA.html [--pool pool_c.json --ids pool_c_ids.json --kicker TEXTO]
+        incrusta las prendas del pool (miniaturas de 60×80 px ampliadas ×3) y guarda el fichero de ids (c1… → clave)
+  python3 puntuar_c.py importar --dir DIR [--ids pool_c_ids.json --destino ../experimento_b/ratings_b.json]
+        pasa las respuestas de la base de la página (exportadas con ArtifactData `puntuaciones`) al fichero de puntuaciones indicado
+La repetición de la puntuación (test–retest, README §10) usa `--pool pool_c2.json --ids pool_c2_ids.json` y guarda en `ratings_c_retest.json`, sin tocar las puntuaciones originales.
 
 La página no enseña qué texto ni qué método propuso cada prenda: solo el nombre y los rasgos de la tendencia, como en B.
 """
@@ -32,7 +35,7 @@ def ruta_imagen(rel: str) -> Path:
 
 
 def cmd_html(a):
-    pool = json.loads(POOL.read_text(encoding="utf-8"))
+    pool = json.loads(Path(a.pool).read_text(encoding="utf-8"))
     items, ids = [], {}
     for n, p in enumerate(pool, 1):
         im = Image.open(ruta_imagen(p["imagen"])).convert("RGB")
@@ -41,14 +44,20 @@ def cmd_html(a):
         im.save(b, "JPEG", quality=88)
         items.append({"id": f"c{n}", "src": "data:image/jpeg;base64," + base64.b64encode(b.getvalue()).decode(), "nombre": p["nombre"], "rasgos": p["rasgos"]})
         ids[f"c{n}"] = p["clave"]
-    IDS.write_text(json.dumps(ids, ensure_ascii=False, indent=1), encoding="utf-8")
-    Path(a.salida).write_text(PLANTILLA.read_text(encoding="utf-8").replace("__ITEMS__", json.dumps(items, ensure_ascii=False)), encoding="utf-8")
-    print(f"{len(items)} prendas incrustadas en {a.salida} ({Path(a.salida).stat().st_size // 1024} KB); ids en {IDS.name}")
+    Path(a.ids).write_text(json.dumps(ids, ensure_ascii=False, indent=1), encoding="utf-8")
+    pagina = PLANTILLA.read_text(encoding="utf-8").replace("__ITEMS__", json.dumps(items, ensure_ascii=False))
+    if a.kicker:
+        pagina = pagina.replace("TFM · Experimento C</span>", a.kicker + "</span>", 1)
+    if a.titulo:   # otra tanda = otro Artifact con nombre distinto
+        pagina = pagina.replace("<title>Puntuar prendas</title>", f"<title>{a.titulo}</title>", 1).replace("<h1>Puntuar prendas</h1>", f"<h1>{a.titulo}</h1>", 1)
+    Path(a.salida).write_text(pagina, encoding="utf-8")
+    print(f"{len(items)} prendas incrustadas en {a.salida} ({Path(a.salida).stat().st_size // 1024} KB); ids en {Path(a.ids).name}")
 
 
 def cmd_importar(a):
-    ids = json.loads(IDS.read_text(encoding="utf-8"))
-    ratings = json.loads(RATINGS.read_text(encoding="utf-8")) if RATINGS.exists() else {}
+    ids = json.loads(Path(a.ids).read_text(encoding="utf-8"))
+    destino = Path(a.destino)
+    ratings = json.loads(destino.read_text(encoding="utf-8")) if destino.exists() else {}
     n = nuevas = 0
     for f in sorted(Path(a.dir).rglob("p*.json")):
         d = json.loads(f.read_text(encoding="utf-8"))
@@ -59,8 +68,8 @@ def cmd_importar(a):
         nuevas += clave not in ratings
         ratings[clave] = int(d["r"])
         n += 1
-    RATINGS.write_text(json.dumps(ratings, ensure_ascii=False, indent=1, sort_keys=True), encoding="utf-8")
-    print(f"Importadas {n} puntuaciones ({nuevas} nuevas); en total {len(ratings)} en {RATINGS}")
+    destino.write_text(json.dumps(ratings, ensure_ascii=False, indent=1, sort_keys=True), encoding="utf-8")
+    print(f"Importadas {n} puntuaciones ({nuevas} nuevas); en total {len(ratings)} en {destino}")
 
 
 def main():
@@ -68,8 +77,14 @@ def main():
     sub = ap.add_subparsers(dest="cmd", required=True)
     p = sub.add_parser("html")
     p.add_argument("--salida", required=True)
+    p.add_argument("--pool", default=str(POOL))
+    p.add_argument("--ids", default=str(IDS))
+    p.add_argument("--kicker", default=None, help="texto pequeño de la cabecera (por defecto «TFM · Experimento C»)")
+    p.add_argument("--titulo", default=None, help="título de la página (por defecto «Puntuar prendas»)")
     p = sub.add_parser("importar")
     p.add_argument("--dir", required=True)
+    p.add_argument("--ids", default=str(IDS))
+    p.add_argument("--destino", default=str(RATINGS))
     a = ap.parse_args()
     {"html": cmd_html, "importar": cmd_importar}[a.cmd](a)
 

@@ -1,0 +1,471 @@
+[
+ {
+  "clave": "clasico_tradicional|de_vestir/waistcoat_10.jpg",
+  "tramo": 1,
+  "nombre": "Clásico-tradicional",
+  "rasgos": "Silueta clásica, tonos tierra/neutros, prenda atemporal.",
+  "imagen": "de_vestir/waistcoat_10.jpg"
+ },
+ {
+  "clave": "urbano|streetwear/sweatshirts_21.jpg",
+  "tramo": 1,
+  "nombre": "Urbano",
+  "rasgos": "Estética urbana trap/rap español, desde la más cruda hasta la más pulida: marca deportiva o lifestyle de gama alta, ropa de gimnasio, estética de reality.",
+  "imagen": "streetwear/sweatshirts_21.jpg"
+ },
+ {
+  "clave": "old_money|de_vestir/trousers_7.jpg",
+  "tramo": 1,
+  "nombre": "Old Money",
+  "rasgos": "Elegancia clásica y discreta: americana/chaleco, camisa de corte náutico, punto fino, sin logos visibles (\"lujo silencioso\").",
+  "imagen": "de_vestir/trousers_7.jpg"
+ },
+ {
+  "clave": "alternativo_geek|streetwear/sweatshirts_15.jpg",
+  "tramo": 1,
+  "nombre": "Alternativo-geek",
+  "rasgos": "Ropa ligada a fandom (gaming, anime, cómic); el motivo o estampado pesa más que la silueta.",
+  "imagen": "streetwear/sweatshirts_15.jpg"
+ },
+ {
+  "clave": "bohemio|de_vestir/trousers_4.jpg",
+  "tramo": 1,
+  "nombre": "Bohemio",
+  "rasgos": "Telas fluidas, tonos tierra, capas, accesorios artesanales.",
+  "imagen": "de_vestir/trousers_4.jpg"
+ },
+ {
+  "clave": "urbano|streetwear/sweatshirts_6.jpg",
+  "tramo": 1,
+  "nombre": "Urbano",
+  "rasgos": "Estética urbana trap/rap español, desde la más cruda hasta la más pulida: marca deportiva o lifestyle de gama alta, ropa de gimnasio, estética de reality.",
+  "imagen": "streetwear/sweatshirts_6.jpg"
+ },
+ {
+  "clave": "convencional|de_vestir/trousers_29.jpg",
+  "tramo": 1,
+  "nombre": "Convencional",
+  "rasgos": "Sigue la tendencia dominante del momento, sin rasgo diferenciador propio.",
+  "imagen": "de_vestir/trousers_29.jpg"
+ },
+ {
+  "clave": "bohemio|playa_resort/skirts_29.jpg",
+  "tramo": 1,
+  "nombre": "Bohemio",
+  "rasgos": "Telas fluidas, tonos tierra, capas, accesorios artesanales.",
+  "imagen": "playa_resort/skirts_29.jpg"
+ },
+ {
+  "clave": "clasico_tradicional|streetwear/jackets_1.jpg",
+  "tramo": 1,
+  "nombre": "Clásico-tradicional",
+  "rasgos": "Silueta clásica, tonos tierra/neutros, prenda atemporal.",
+  "imagen": "streetwear/jackets_1.jpg"
+ },
+ {
+  "clave": "convencional|casual/jeans_19.jpg",
+  "tramo": 1,
+  "nombre": "Convencional",
+  "rasgos": "Sigue la tendencia dominante del momento, sin rasgo diferenciador propio.",
+  "imagen": "casual/jeans_19.jpg"
+ },
+ {
+  "clave": "clasico_tradicional|de_vestir/waistcoat_12.jpg",
+  "tramo": 1,
+  "nombre": "Clásico-tradicional",
+  "rasgos": "Silueta clásica, tonos tierra/neutros, prenda atemporal.",
+  "imagen": "de_vestir/waistcoat_12.jpg"
+ },
+ {
+  "clave": "convencional|streetwear/jackets_1.jpg",
+  "tramo": 1,
+  "nombre": "Convencional",
+  "rasgos": "Sigue la tendencia dominante del momento, sin rasgo diferenciador propio.",
+  "imagen": "streetwear/jackets_1.jpg"
+ },
+ {
+  "clave": "old_money|de_vestir/waistcoat_12.jpg",
+  "tramo": 1,
+  "nombre": "Old Money",
+  "rasgos": "Elegancia clásica y discreta: americana/chaleco, camisa de corte náutico, punto fino, sin logos visibles (\"lujo silencioso\").",
+  "imagen": "de_vestir/waistcoat_12.jpg"
+ },
+ {
+  "clave": "convencional|deportivo/leggings_25.jpg",
+  "tramo": 1,
+  "nombre": "Convencional",
+  "rasgos": "Sigue la tendencia dominante del momento, sin rasgo diferenciador propio.",
+  "imagen": "deportivo/leggings_25.jpg"
+ },
+ {
+  "clave": "clasico_tradicional|deportivo/leggings_25.jpg",
+  "tramo": 1,
+  "nombre": "Clásico-tradicional",
+  "rasgos": "Silueta clásica, tonos tierra/neutros, prenda atemporal.",
+  "imagen": "deportivo/leggings_25.jpg"
+ },
+ {
+  "clave": "alternativo_geek|experimento_b/inventario_extra/geek/tshirts_57427.jpg",
+  "tramo": 1,
+  "nombre": "Alternativo-geek",
+  "rasgos": "Ropa ligada a fandom (gaming, anime, cómic); el motivo o estampado pesa más que la silueta.",
+  "imagen": "experimento_b/inventario_extra/geek/tshirts_57427.jpg"
+ },
+ {
+  "clave": "urbano|streetwear/sweatshirts_5.jpg",
+  "tramo": 1,
+  "nombre": "Urbano",
+  "rasgos": "Estética urbana trap/rap español, desde la más cruda hasta la más pulida: marca deportiva o lifestyle de gama alta, ropa de gimnasio, estética de reality.",
+  "imagen": "streetwear/sweatshirts_5.jpg"
+ },
+ {
+  "clave": "bohemio|deportivo/leggings_24.jpg",
+  "tramo": 1,
+  "nombre": "Bohemio",
+  "rasgos": "Telas fluidas, tonos tierra, capas, accesorios artesanales.",
+  "imagen": "deportivo/leggings_24.jpg"
+ },
+ {
+  "clave": "convencional|de_vestir/trousers_39.jpg",
+  "tramo": 1,
+  "nombre": "Convencional",
+  "rasgos": "Sigue la tendencia dominante del momento, sin rasgo diferenciador propio.",
+  "imagen": "de_vestir/trousers_39.jpg"
+ },
+ {
+  "clave": "convencional|deportivo/track_pants_12.jpg",
+  "tramo": 1,
+  "nombre": "Convencional",
+  "rasgos": "Sigue la tendencia dominante del momento, sin rasgo diferenciador propio.",
+  "imagen": "deportivo/track_pants_12.jpg"
+ },
+ {
+  "clave": "alternativo_geek|deportivo/leggings_24.jpg",
+  "tramo": 1,
+  "nombre": "Alternativo-geek",
+  "rasgos": "Ropa ligada a fandom (gaming, anime, cómic); el motivo o estampado pesa más que la silueta.",
+  "imagen": "deportivo/leggings_24.jpg"
+ },
+ {
+  "clave": "old_money|deportivo/leggings_3.jpg",
+  "tramo": 1,
+  "nombre": "Old Money",
+  "rasgos": "Elegancia clásica y discreta: americana/chaleco, camisa de corte náutico, punto fino, sin logos visibles (\"lujo silencioso\").",
+  "imagen": "deportivo/leggings_3.jpg"
+ },
+ {
+  "clave": "alternativo_geek|casual/tshirts_27.jpg",
+  "tramo": 1,
+  "nombre": "Alternativo-geek",
+  "rasgos": "Ropa ligada a fandom (gaming, anime, cómic); el motivo o estampado pesa más que la silueta.",
+  "imagen": "casual/tshirts_27.jpg"
+ },
+ {
+  "clave": "clasico_tradicional|de_vestir/waistcoat_1.jpg",
+  "tramo": 1,
+  "nombre": "Clásico-tradicional",
+  "rasgos": "Silueta clásica, tonos tierra/neutros, prenda atemporal.",
+  "imagen": "de_vestir/waistcoat_1.jpg"
+ },
+ {
+  "clave": "convencional|casual/jeans_14.jpg",
+  "tramo": 1,
+  "nombre": "Convencional",
+  "rasgos": "Sigue la tendencia dominante del momento, sin rasgo diferenciador propio.",
+  "imagen": "casual/jeans_14.jpg"
+ },
+ {
+  "clave": "alternativo_geek|experimento_b/inventario_extra/geek/tshirts_4408.jpg",
+  "tramo": 1,
+  "nombre": "Alternativo-geek",
+  "rasgos": "Ropa ligada a fandom (gaming, anime, cómic); el motivo o estampado pesa más que la silueta.",
+  "imagen": "experimento_b/inventario_extra/geek/tshirts_4408.jpg"
+ },
+ {
+  "clave": "urbano|deportivo/tracksuits_15.jpg",
+  "tramo": 1,
+  "nombre": "Urbano",
+  "rasgos": "Estética urbana trap/rap español, desde la más cruda hasta la más pulida: marca deportiva o lifestyle de gama alta, ropa de gimnasio, estética de reality.",
+  "imagen": "deportivo/tracksuits_15.jpg"
+ },
+ {
+  "clave": "urbano|streetwear/sweatshirts_36.jpg",
+  "tramo": 1,
+  "nombre": "Urbano",
+  "rasgos": "Estética urbana trap/rap español, desde la más cruda hasta la más pulida: marca deportiva o lifestyle de gama alta, ropa de gimnasio, estética de reality.",
+  "imagen": "streetwear/sweatshirts_36.jpg"
+ },
+ {
+  "clave": "alternativo_geek|experimento_b/inventario_extra/geek/tshirts_57446.jpg",
+  "tramo": 1,
+  "nombre": "Alternativo-geek",
+  "rasgos": "Ropa ligada a fandom (gaming, anime, cómic); el motivo o estampado pesa más que la silueta.",
+  "imagen": "experimento_b/inventario_extra/geek/tshirts_57446.jpg"
+ },
+ {
+  "clave": "urbano|experimento_b/inventario_extra/geek/sweatshirts_16281.jpg",
+  "tramo": 1,
+  "nombre": "Urbano",
+  "rasgos": "Estética urbana trap/rap español, desde la más cruda hasta la más pulida: marca deportiva o lifestyle de gama alta, ropa de gimnasio, estética de reality.",
+  "imagen": "experimento_b/inventario_extra/geek/sweatshirts_16281.jpg"
+ },
+ {
+  "clave": "bohemio|fiesta_noche/jumpsuit_1.jpg",
+  "tramo": 1,
+  "nombre": "Bohemio",
+  "rasgos": "Telas fluidas, tonos tierra, capas, accesorios artesanales.",
+  "imagen": "fiesta_noche/jumpsuit_1.jpg"
+ },
+ {
+  "clave": "alternativo_geek|deportivo/leggings_25.jpg",
+  "tramo": 1,
+  "nombre": "Alternativo-geek",
+  "rasgos": "Ropa ligada a fandom (gaming, anime, cómic); el motivo o estampado pesa más que la silueta.",
+  "imagen": "deportivo/leggings_25.jpg"
+ },
+ {
+  "clave": "convencional|deportivo/leggings_24.jpg",
+  "tramo": 1,
+  "nombre": "Convencional",
+  "rasgos": "Sigue la tendencia dominante del momento, sin rasgo diferenciador propio.",
+  "imagen": "deportivo/leggings_24.jpg"
+ },
+ {
+  "clave": "bohemio|playa_resort/skirts_19.jpg",
+  "tramo": 1,
+  "nombre": "Bohemio",
+  "rasgos": "Telas fluidas, tonos tierra, capas, accesorios artesanales.",
+  "imagen": "playa_resort/skirts_19.jpg"
+ },
+ {
+  "clave": "convencional|deportivo/leggings_3.jpg",
+  "tramo": 1,
+  "nombre": "Convencional",
+  "rasgos": "Sigue la tendencia dominante del momento, sin rasgo diferenciador propio.",
+  "imagen": "deportivo/leggings_3.jpg"
+ },
+ {
+  "clave": "bohemio|fiesta_noche/dresses_21.jpg",
+  "tramo": 1,
+  "nombre": "Bohemio",
+  "rasgos": "Telas fluidas, tonos tierra, capas, accesorios artesanales.",
+  "imagen": "fiesta_noche/dresses_21.jpg"
+ },
+ {
+  "clave": "urbano|de_vestir/trousers_37.jpg",
+  "tramo": 1,
+  "nombre": "Urbano",
+  "rasgos": "Estética urbana trap/rap español, desde la más cruda hasta la más pulida: marca deportiva o lifestyle de gama alta, ropa de gimnasio, estética de reality.",
+  "imagen": "de_vestir/trousers_37.jpg"
+ },
+ {
+  "clave": "old_money|deportivo/leggings_24.jpg",
+  "tramo": 1,
+  "nombre": "Old Money",
+  "rasgos": "Elegancia clásica y discreta: americana/chaleco, camisa de corte náutico, punto fino, sin logos visibles (\"lujo silencioso\").",
+  "imagen": "deportivo/leggings_24.jpg"
+ },
+ {
+  "clave": "bohemio|playa_resort/skirts_18.jpg",
+  "tramo": 1,
+  "nombre": "Bohemio",
+  "rasgos": "Telas fluidas, tonos tierra, capas, accesorios artesanales.",
+  "imagen": "playa_resort/skirts_18.jpg"
+ },
+ {
+  "clave": "old_money|deportivo/track_pants_8.jpg",
+  "tramo": 1,
+  "nombre": "Old Money",
+  "rasgos": "Elegancia clásica y discreta: americana/chaleco, camisa de corte náutico, punto fino, sin logos visibles (\"lujo silencioso\").",
+  "imagen": "deportivo/track_pants_8.jpg"
+ },
+ {
+  "clave": "clasico_tradicional|playa_resort/skirts_11.jpg",
+  "tramo": 1,
+  "nombre": "Clásico-tradicional",
+  "rasgos": "Silueta clásica, tonos tierra/neutros, prenda atemporal.",
+  "imagen": "playa_resort/skirts_11.jpg"
+ },
+ {
+  "clave": "urbano|streetwear/sweatshirts_15.jpg",
+  "tramo": 1,
+  "nombre": "Urbano",
+  "rasgos": "Estética urbana trap/rap español, desde la más cruda hasta la más pulida: marca deportiva o lifestyle de gama alta, ropa de gimnasio, estética de reality.",
+  "imagen": "streetwear/sweatshirts_15.jpg"
+ },
+ {
+  "clave": "clasico_tradicional|streetwear/jackets_6.jpg",
+  "tramo": 1,
+  "nombre": "Clásico-tradicional",
+  "rasgos": "Silueta clásica, tonos tierra/neutros, prenda atemporal.",
+  "imagen": "streetwear/jackets_6.jpg"
+ },
+ {
+  "clave": "alternativo_geek|casual/sweaters_7.jpg",
+  "tramo": 1,
+  "nombre": "Alternativo-geek",
+  "rasgos": "Ropa ligada a fandom (gaming, anime, cómic); el motivo o estampado pesa más que la silueta.",
+  "imagen": "casual/sweaters_7.jpg"
+ },
+ {
+  "clave": "alternativo_geek|experimento_b/inventario_extra/geek/tshirts_57420.jpg",
+  "tramo": 1,
+  "nombre": "Alternativo-geek",
+  "rasgos": "Ropa ligada a fandom (gaming, anime, cómic); el motivo o estampado pesa más que la silueta.",
+  "imagen": "experimento_b/inventario_extra/geek/tshirts_57420.jpg"
+ },
+ {
+  "clave": "convencional|deportivo/leggings_27.jpg",
+  "tramo": 1,
+  "nombre": "Convencional",
+  "rasgos": "Sigue la tendencia dominante del momento, sin rasgo diferenciador propio.",
+  "imagen": "deportivo/leggings_27.jpg"
+ },
+ {
+  "clave": "old_money|deportivo/leggings_25.jpg",
+  "tramo": 1,
+  "nombre": "Old Money",
+  "rasgos": "Elegancia clásica y discreta: americana/chaleco, camisa de corte náutico, punto fino, sin logos visibles (\"lujo silencioso\").",
+  "imagen": "deportivo/leggings_25.jpg"
+ },
+ {
+  "clave": "clasico_tradicional|deportivo/leggings_24.jpg",
+  "tramo": 1,
+  "nombre": "Clásico-tradicional",
+  "rasgos": "Silueta clásica, tonos tierra/neutros, prenda atemporal.",
+  "imagen": "deportivo/leggings_24.jpg"
+ },
+ {
+  "clave": "clasico_tradicional|de_vestir/waistcoat_3.jpg",
+  "tramo": 1,
+  "nombre": "Clásico-tradicional",
+  "rasgos": "Silueta clásica, tonos tierra/neutros, prenda atemporal.",
+  "imagen": "de_vestir/waistcoat_3.jpg"
+ },
+ {
+  "clave": "alternativo_geek|casual/sweaters_36.jpg",
+  "tramo": 1,
+  "nombre": "Alternativo-geek",
+  "rasgos": "Ropa ligada a fandom (gaming, anime, cómic); el motivo o estampado pesa más que la silueta.",
+  "imagen": "casual/sweaters_36.jpg"
+ },
+ {
+  "clave": "urbano|streetwear/track_pants_7.jpg",
+  "tramo": 1,
+  "nombre": "Urbano",
+  "rasgos": "Estética urbana trap/rap español, desde la más cruda hasta la más pulida: marca deportiva o lifestyle de gama alta, ropa de gimnasio, estética de reality.",
+  "imagen": "streetwear/track_pants_7.jpg"
+ },
+ {
+  "clave": "convencional|playa_resort/skirts_22.jpg",
+  "tramo": 1,
+  "nombre": "Convencional",
+  "rasgos": "Sigue la tendencia dominante del momento, sin rasgo diferenciador propio.",
+  "imagen": "playa_resort/skirts_22.jpg"
+ },
+ {
+  "clave": "bohemio|playa_resort/skirts_10.jpg",
+  "tramo": 1,
+  "nombre": "Bohemio",
+  "rasgos": "Telas fluidas, tonos tierra, capas, accesorios artesanales.",
+  "imagen": "playa_resort/skirts_10.jpg"
+ },
+ {
+  "clave": "old_money|streetwear/track_pants_11.jpg",
+  "tramo": 1,
+  "nombre": "Old Money",
+  "rasgos": "Elegancia clásica y discreta: americana/chaleco, camisa de corte náutico, punto fino, sin logos visibles (\"lujo silencioso\").",
+  "imagen": "streetwear/track_pants_11.jpg"
+ },
+ {
+  "clave": "old_money|de_vestir/trousers_8.jpg",
+  "tramo": 1,
+  "nombre": "Old Money",
+  "rasgos": "Elegancia clásica y discreta: americana/chaleco, camisa de corte náutico, punto fino, sin logos visibles (\"lujo silencioso\").",
+  "imagen": "de_vestir/trousers_8.jpg"
+ },
+ {
+  "clave": "alternativo_geek|experimento_b/inventario_extra/geek/tshirts_57429.jpg",
+  "tramo": 1,
+  "nombre": "Alternativo-geek",
+  "rasgos": "Ropa ligada a fandom (gaming, anime, cómic); el motivo o estampado pesa más que la silueta.",
+  "imagen": "experimento_b/inventario_extra/geek/tshirts_57429.jpg"
+ },
+ {
+  "clave": "old_money|de_vestir/shirts_22.jpg",
+  "tramo": 1,
+  "nombre": "Old Money",
+  "rasgos": "Elegancia clásica y discreta: americana/chaleco, camisa de corte náutico, punto fino, sin logos visibles (\"lujo silencioso\").",
+  "imagen": "de_vestir/shirts_22.jpg"
+ },
+ {
+  "clave": "convencional|deportivo/track_pants_8.jpg",
+  "tramo": 1,
+  "nombre": "Convencional",
+  "rasgos": "Sigue la tendencia dominante del momento, sin rasgo diferenciador propio.",
+  "imagen": "deportivo/track_pants_8.jpg"
+ },
+ {
+  "clave": "alternativo_geek|deportivo/leggings_27.jpg",
+  "tramo": 1,
+  "nombre": "Alternativo-geek",
+  "rasgos": "Ropa ligada a fandom (gaming, anime, cómic); el motivo o estampado pesa más que la silueta.",
+  "imagen": "deportivo/leggings_27.jpg"
+ },
+ {
+  "clave": "convencional|deportivo/leggings_40.jpg",
+  "tramo": 1,
+  "nombre": "Convencional",
+  "rasgos": "Sigue la tendencia dominante del momento, sin rasgo diferenciador propio.",
+  "imagen": "deportivo/leggings_40.jpg"
+ },
+ {
+  "clave": "convencional|deportivo/leggings_32.jpg",
+  "tramo": 1,
+  "nombre": "Convencional",
+  "rasgos": "Sigue la tendencia dominante del momento, sin rasgo diferenciador propio.",
+  "imagen": "deportivo/leggings_32.jpg"
+ },
+ {
+  "clave": "alternativo_geek|experimento_b/inventario_extra/geek/tshirts_57434.jpg",
+  "tramo": 1,
+  "nombre": "Alternativo-geek",
+  "rasgos": "Ropa ligada a fandom (gaming, anime, cómic); el motivo o estampado pesa más que la silueta.",
+  "imagen": "experimento_b/inventario_extra/geek/tshirts_57434.jpg"
+ },
+ {
+  "clave": "alternativo_geek|playa_resort/skirts_11.jpg",
+  "tramo": 1,
+  "nombre": "Alternativo-geek",
+  "rasgos": "Ropa ligada a fandom (gaming, anime, cómic); el motivo o estampado pesa más que la silueta.",
+  "imagen": "playa_resort/skirts_11.jpg"
+ },
+ {
+  "clave": "bohemio|playa_resort/skirts_23.jpg",
+  "tramo": 1,
+  "nombre": "Bohemio",
+  "rasgos": "Telas fluidas, tonos tierra, capas, accesorios artesanales.",
+  "imagen": "playa_resort/skirts_23.jpg"
+ },
+ {
+  "clave": "clasico_tradicional|de_vestir/waistcoat_15.jpg",
+  "tramo": 1,
+  "nombre": "Clásico-tradicional",
+  "rasgos": "Silueta clásica, tonos tierra/neutros, prenda atemporal.",
+  "imagen": "de_vestir/waistcoat_15.jpg"
+ },
+ {
+  "clave": "clasico_tradicional|de_vestir/trousers_23.jpg",
+  "tramo": 1,
+  "nombre": "Clásico-tradicional",
+  "rasgos": "Silueta clásica, tonos tierra/neutros, prenda atemporal.",
+  "imagen": "de_vestir/trousers_23.jpg"
+ },
+ {
+  "clave": "old_money|de_vestir/trousers_28.jpg",
+  "tramo": 1,
+  "nombre": "Old Money",
+  "rasgos": "Elegancia clásica y discreta: americana/chaleco, camisa de corte náutico, punto fino, sin logos visibles (\"lujo silencioso\").",
+  "imagen": "de_vestir/trousers_28.jpg"
+ }
+]
