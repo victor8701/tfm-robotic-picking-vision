@@ -6,7 +6,7 @@ Qué mide: dentro de un estilo (geek, urbano) y un mercado (España, EEUU), qué
 (el estilo lo da la persona, no la foto) y cuánto pesan, por temporada (6 meses). Decisiones de Víctor: ver memoria/TFM_tendencias_de_prenda.md.
 
 Flujo (todo en `tendencia_datos/`, aparte de los datos de la app «Analizar mercado»; las fotos no van a git):
-  cosechar   fuentes de `tendencia_fuentes.json` (X vía FxTwitter, prensa por nombre vía Bing Noticias, comunidades de Reddit) -> fotos + `fotos.json`
+  cosechar   fuentes de `tendencia_fuentes.json` (X vía FxTwitter, prensa por nombre vía Bing Noticias, comunidades de Reddit, Instagram vía Windsor) -> fotos + `fotos.json`
   biblioteca incorpora como muestra de referencia las fotos que Víctor aprobó como urbano / geek en la app
   analizar   detector de prendas (analizar_outfit.py: DeepFashion2 + Florence) + tipo fino con CLIP sobre el recorte -> `prendas.json`
   vlm        un modelo abierto grande de lenguaje y visión (Qwen3-VL-8B, en una GPU de Kaggle) etiqueta cada prenda nueva: tipo entre los 29 de Víctor, estampado, tejido y forma.
@@ -34,6 +34,7 @@ import tarfile
 import tempfile
 import time
 import unicodedata
+import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -207,7 +208,109 @@ def cosechar_noticias(s, existentes):
     return out, {"articulos": leidas}
 
 
-COSECHA = {"x": cosechar_x, "reddit": cosechar_reddit, "noticias": cosechar_noticias}
+# --- Instagram: lectura oficial de Meta (Business Discovery) a través del conector `instagram_public` de Windsor.
+# Solo cuentas profesionales (Creador/Empresa) que ya conocemos por su @; no descubre cuentas ni hashtags. Las direcciones de las fotos caducan a los ~5 días: se bajan en el acto.
+WINDSOR_URL = "https://connectors.windsor.ai/instagram_public"
+WINDSOR_CAMPOS = ("account_name,media_id,media_type,media_url,media_thumbnail_url,media_permalink,media_timestamp,"
+                  "media_like_count,media_comments_count,profile_followers_count,media_caption")
+IG_DIAS = 35               # ventana de cada pasada semanal: se solapa con la anterior y lo ya conocido se salta por identificador
+IG_MAX_POR_CUENTA = 8      # fotos nuevas como mucho por cuenta y pasada (el análisis tiene tope de tiempo y las direcciones caducan)
+_IG_CACHE: dict = {}       # la respuesta de Windsor de esta ejecución (una sola petición para todas las cuentas)
+
+
+def windsor_filas(handles: list[str], dias: int = IG_DIAS, abrir=urllib.request.urlopen) -> dict[str, list[dict]]:
+    """Una petición a Windsor con todas las cuentas; devuelve {usuario en minúsculas: [publicaciones]}.
+    La clave llega por la variable WINDSOR_API_KEY (un secreto de GitHub que mete Víctor); no se imprime nunca ni se deja en los mensajes de error."""
+    clave = os.environ.get("WINDSOR_API_KEY", "").strip()
+    if not clave:
+        raise ValueError("falta el secreto WINDSOR_API_KEY")
+    hoy = datetime.now(timezone.utc).date()
+    q = {"api_key": clave, "fields": WINDSOR_CAMPOS, "date_from": (hoy - timedelta(days=dias)).isoformat(), "date_to": hoy.isoformat(),
+         "select_accounts": ",".join(handles), "_renderer": "json"}
+
+    def pedir(consulta):
+        try:
+            with abrir(urllib.request.Request(WINDSOR_URL + "?" + urllib.parse.urlencode(consulta), headers={"User-Agent": m.UA}), timeout=180) as r:
+                return json.load(r)
+        except urllib.error.HTTPError as e:   # sin la dirección: lleva la clave
+            if e.code in (400, 404, 422) and "select_accounts" in consulta:
+                return None   # alguna cuenta pedida no está dada de alta en Windsor: se vuelve a pedir sin filtro y se filtra aquí
+            raise ValueError(f"Windsor contestó HTTP {e.code}") from None
+        except Exception as e:  # noqa: BLE001
+            raise ValueError(f"Windsor no contestó ({type(e).__name__})") from None
+
+    datos = pedir(q)
+    if datos is None:
+        datos = pedir({k: v for k, v in q.items() if k != "select_accounts"})
+    filas = datos.get("data", []) if isinstance(datos, dict) else datos
+    quiero = set(handles)
+    por = collections.defaultdict(list)
+    for f in filas or []:
+        cuenta = str(f.get("account_name") or "").lower()
+        if cuenta in quiero:
+            por[cuenta].append(f)
+    return por
+
+
+def _fecha_ig(ts) -> str | None:
+    for fmt in ("%Y-%m-%dT%H:%M:%S%z", "%Y-%m-%dT%H:%M:%S.%f%z"):
+        try:
+            return datetime.strptime(str(ts), fmt).astimezone(timezone.utc).isoformat(timespec="seconds")
+        except ValueError:
+            continue
+    try:
+        return datetime.fromisoformat(str(ts).replace("Z", "+00:00")).astimezone(timezone.utc).isoformat(timespec="seconds")
+    except ValueError:
+        return None
+
+
+def instagram_registros(filas: list[dict], s: dict, existentes: dict, bajar=None, max_nuevas: int = IG_MAX_POR_CUENTA) -> tuple[dict, dict]:
+    """Publicaciones de una cuenta → fotos nuevas (id `ig_<media_id>`). Primero las imágenes y carruseles, más recientes antes; los vídeos usan su miniatura.
+    Lo ya conocido solo actualiza su popularidad. Devuelve (nuevas, info)."""
+    bajar = bajar or m.descargar_imagen
+    es_video = lambda f: str(f.get("media_type") or "").upper() in ("VIDEO", "REEL")  # noqa: E731
+    orden = sorted(sorted(filas, key=lambda f: f.get("media_timestamp") or "", reverse=True), key=es_video)
+    out, sin_foto = {}, 0
+    for f in orden:
+        mid = str(f.get("media_id") or "").strip()
+        if not mid:
+            continue
+        cid = "ig_" + mid
+        pop = {"likes": f.get("media_like_count"), "comentarios": f.get("media_comments_count"), "seguidores_autor": f.get("profile_followers_count")}
+        if cid in existentes:
+            existentes[cid].update({k: v for k, v in pop.items() if v is not None})
+            continue
+        if len(out) >= max_nuevas:
+            continue
+        url = f.get("media_thumbnail_url") if es_video(f) else f.get("media_url")
+        try:
+            ok = bool(url) and bajar(url, m.IMG / f"{cid}.jpg", min_lado=400, proporcion=(0.4, 2.5))
+        except Exception:  # noqa: BLE001 -- dirección caducada o no es una imagen
+            ok = False
+        if not ok:
+            sin_foto += 1
+            continue
+        out[cid] = registro(cid, s, _fecha_ig(f.get("media_timestamp")), url, f.get("media_permalink"), f.get("media_caption"), **pop)
+    return out, {"publicaciones": len(filas), "sin_foto": sin_foto}
+
+
+def cosechar_instagram(s, existentes):
+    if "error" in _IG_CACHE:
+        raise ValueError(_IG_CACHE["error"])
+    if "filas" not in _IG_CACHE:
+        cfg = json.loads(FUENTES.read_text(encoding="utf-8"))["fuentes"]
+        try:
+            _IG_CACHE["filas"] = windsor_filas(sorted({x["valor"].lstrip("@").lower() for x in cfg if x["tipo"] == "instagram"}))
+        except ValueError as e:
+            _IG_CACHE["error"] = str(e)
+            raise
+    filas = _IG_CACHE["filas"].get(s["valor"].lstrip("@").lower(), [])
+    if not filas:
+        raise ValueError("Windsor no devolvió publicaciones de esta cuenta (no es profesional, es privada o no publicó en la ventana)")
+    return instagram_registros(filas, s, existentes)
+
+
+COSECHA = {"x": cosechar_x, "reddit": cosechar_reddit, "noticias": cosechar_noticias, "instagram": cosechar_instagram}
 
 
 FOTOS_KAGGLE = TD / "fotos_kaggle.txt"   # nombre de un dataset PRIVADO de Kaggle con fotos que solo están en el portátil de Víctor (su Biblioteca): la tarea de la nube las baja, las analiza y lo borra al terminar bien

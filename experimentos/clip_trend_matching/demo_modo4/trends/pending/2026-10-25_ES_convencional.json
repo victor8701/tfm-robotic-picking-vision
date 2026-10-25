@@ -1,0 +1,71 @@
+{
+ "id": "2026-10-25_ES_convencional",
+ "mercado": "España",
+ "mercado_codigo": "ES",
+ "temporada": "OI 2026/27",
+ "genero_objetivo": "Todo",
+ "tipo_prenda": "Todo",
+ "sub_estilo": "convencional",
+ "nombre": "Convencional · España · OI 2026/27",
+ "fuentes": [
+  "prensa: \"normcore\" moda",
+  "prensa: looks básicos tendencia moda",
+  "r/LookeAR"
+ ],
+ "fecha_analisis": "2026-10-25",
+ "descripcion": "Convencional en España, OI 2026/27: las prendas más presentes en las fotos de los referentes del estilo son falda (26 % de las fotos con prenda, 9 fotos, confianza baja); pantalón (24 % de las fotos con prenda, 12 fotos, confianza baja); zapatillas deportivas (14 % de las fotos con prenda, 12 fotos, confianza baja). Rasgos que distinguen al estilo de los demás: lisa (medidos en la muestra de referencia). Base: 35 fotos (22 efectivas) de 3 fuentes.",
+ "descripcion_clip": "conventional style outfit, plain solid-color: skirt, trousers, sneakers",
+ "grupo_estilo_detectado": [
+  "Casual"
+ ],
+ "intensidad": null,
+ "intensidad_nota": "sin medida de viralidad todavía: no se inventa una cifra",
+ "estado": "pendiente",
+ "evidencia": {
+  "receta": "R1 (rasgos del estilo) + cuota por prenda de la casilla",
+  "fotos": 35,
+  "fotos_efectivas": 21.9,
+  "prendas": [
+   {
+    "tipo": "Falda",
+    "cuota": 0.256,
+    "ic": [
+     0.12,
+     0.465
+    ],
+    "fotos": 9,
+    "confianza": "baja"
+   },
+   {
+    "tipo": "Pantalón",
+    "cuota": 0.238,
+    "ic": [
+     0.108,
+     0.446
+    ],
+    "fotos": 12,
+    "confianza": "baja"
+   },
+   {
+    "tipo": "Zapatillas deportivas",
+    "cuota": 0.137,
+    "ic": [
+     0.048,
+     0.334
+    ],
+    "fotos": 12,
+    "confianza": "baja"
+   }
+  ],
+  "modificadores": [
+   {
+    "dimension": "estampado",
+    "valor": "liso",
+    "estilo": 0.919,
+    "resto": 0.662,
+    "dif": 0.258,
+    "q": 0.003
+   }
+  ]
+ }
+}

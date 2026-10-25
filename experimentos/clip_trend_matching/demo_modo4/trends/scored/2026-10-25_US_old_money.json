@@ -1,0 +1,104 @@
+{
+ "id": "2026-10-25_US_old_money",
+ "beta": 0.1,
+ "theta": 0.2,
+ "n_sku": 1267,
+ "n_alineados": 628,
+ "distribucion_semantica": {
+  "p50": 0.199,
+  "p90": 0.25,
+  "max": 0.304
+ },
+ "top": [
+  {
+   "i": 496,
+   "semantico": 0.2887,
+   "boost": 0.1,
+   "score": 0.3887,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/shirts_15.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 55,
+   "semantico": 0.2856,
+   "boost": 0.1,
+   "score": 0.3856,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/casual/jeans_14.jpg",
+   "grupo": "Casual"
+  },
+  {
+   "i": 527,
+   "semantico": 0.2829,
+   "boost": 0.1,
+   "score": 0.3829,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/shirts_7.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 608,
+   "semantico": 0.2802,
+   "boost": 0.1,
+   "score": 0.3802,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/trousers_8.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 515,
+   "semantico": 0.2778,
+   "boost": 0.1,
+   "score": 0.3778,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/shirts_32.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 187,
+   "semantico": 0.2775,
+   "boost": 0.1,
+   "score": 0.3775,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/casual/tops_25.jpg",
+   "grupo": "Casual"
+  },
+  {
+   "i": 528,
+   "semantico": 0.2775,
+   "boost": 0.1,
+   "score": 0.3775,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/shirts_8.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 7,
+   "semantico": 0.2764,
+   "boost": 0.1,
+   "score": 0.3764,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/casual/capris_7.jpg",
+   "grupo": "Casual"
+  },
+  {
+   "i": 591,
+   "semantico": 0.273,
+   "boost": 0.1,
+   "score": 0.373,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/trousers_29.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 205,
+   "semantico": 0.2723,
+   "boost": 0.1,
+   "score": 0.3723,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/casual/tops_5.jpg",
+   "grupo": "Casual"
+  }
+ ]
+}

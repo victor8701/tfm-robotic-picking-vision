@@ -1,0 +1,87 @@
+{
+ "id": "2026-10-25_ES_old_money",
+ "mercado": "España",
+ "mercado_codigo": "ES",
+ "temporada": "OI 2026/27",
+ "genero_objetivo": "Todo",
+ "tipo_prenda": "Todo",
+ "sub_estilo": "old_money",
+ "nombre": "Old money · España · OI 2026/27",
+ "fuentes": [
+  "Reina Letizia",
+  "prensa: \"lujo silencioso\" moda"
+ ],
+ "fecha_analisis": "2026-10-25",
+ "descripcion": "Old money en España, OI 2026/27: las prendas más presentes en las fotos de los referentes del estilo son pantalón (28 % de las fotos con prenda, 7 fotos, confianza baja); americana (23 % de las fotos con prenda, 6 fotos, confianza baja); bolso (23 % de las fotos con prenda, 5 fotos, confianza baja). Rasgos que distinguen al estilo de los demás: lisa, ajustada, de lino (medidos en la muestra de referencia). Base: 24 fotos (24 efectivas) de 2 fuentes.",
+ "descripcion_clip": "old money style outfit, plain solid-color, slim-fit, linen: trousers, blazer, handbag",
+ "grupo_estilo_detectado": [
+  "De vestir",
+  "Casual"
+ ],
+ "intensidad": null,
+ "intensidad_nota": "sin medida de viralidad todavía: no se inventa una cifra",
+ "estado": "pendiente",
+ "evidencia": {
+  "receta": "R1 (rasgos del estilo) + cuota por prenda de la casilla",
+  "fotos": 24,
+  "fotos_efectivas": 23.8,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "cuota": 0.279,
+    "ic": [
+     0.14,
+     0.48
+    ],
+    "fotos": 7,
+    "confianza": "baja"
+   },
+   {
+    "tipo": "Americana",
+    "cuota": 0.229,
+    "ic": [
+     0.106,
+     0.428
+    ],
+    "fotos": 6,
+    "confianza": "baja"
+   },
+   {
+    "tipo": "Bolso",
+    "cuota": 0.229,
+    "ic": [
+     0.105,
+     0.427
+    ],
+    "fotos": 5,
+    "confianza": "baja"
+   }
+  ],
+  "modificadores": [
+   {
+    "dimension": "estampado",
+    "valor": "liso",
+    "estilo": 0.848,
+    "resto": 0.663,
+    "dif": 0.185,
+    "q": 0.0015
+   },
+   {
+    "dimension": "forma",
+    "valor": "ajustada",
+    "estilo": 0.207,
+    "resto": 0.105,
+    "dif": 0.102,
+    "q": 0.0075
+   },
+   {
+    "dimension": "tejido",
+    "valor": "lino",
+    "estilo": 0.114,
+    "resto": 0.015,
+    "dif": 0.099,
+    "q": 0.0045
+   }
+  ]
+ }
+}

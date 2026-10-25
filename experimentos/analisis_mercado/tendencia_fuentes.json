@@ -1176,6 +1176,83 @@
    "referente": "prensa: streetwear España tendencia",
    "tipo": "noticias",
    "valor": "streetwear España tendencia"
+  },
+  {
+   "referente": "abercrombie",
+   "estilo": "convencional",
+   "mercado": "US",
+   "tipo": "instagram",
+   "valor": "abercrombie"
+  },
+  {
+   "referente": "britishcountryheritage",
+   "estilo": "old_money",
+   "mercado": "US",
+   "tipo": "instagram",
+   "valor": "britishcountryheritage"
+  },
+  {
+   "referente": "gucci",
+   "estilo": "lujo",
+   "mercado": "US",
+   "tipo": "instagram",
+   "valor": "gucci"
+  },
+  {
+   "referente": "hottopic",
+   "estilo": "geek",
+   "mercado": "US",
+   "tipo": "instagram",
+   "valor": "hottopic"
+  },
+  {
+   "referente": "killstar",
+   "estilo": "geek",
+   "mercado": "US",
+   "tipo": "instagram",
+   "valor": "killstar"
+  },
+  {
+   "referente": "loewe",
+   "estilo": "lujo",
+   "mercado": "ES",
+   "tipo": "instagram",
+   "valor": "loewe"
+  },
+  {
+   "referente": "massimodutti",
+   "estilo": "clasico",
+   "mercado": "ES",
+   "tipo": "instagram",
+   "valor": "massimodutti"
+  },
+  {
+   "referente": "ralphlauren",
+   "estilo": "clasico",
+   "mercado": "US",
+   "tipo": "instagram",
+   "valor": "ralphlauren"
+  },
+  {
+   "referente": "stussy",
+   "estilo": "urbano",
+   "mercado": "US",
+   "tipo": "instagram",
+   "valor": "stussy"
+  },
+  {
+   "referente": "thehippieshake",
+   "estilo": "bohemio",
+   "mercado": "US",
+   "tipo": "instagram",
+   "valor": "thehippieshake"
+  },
+  {
+   "referente": "zara",
+   "estilo": "convencional",
+   "mercado": "ES",
+   "tipo": "instagram",
+   "valor": "zara"
   }
  ]
 }

@@ -1,0 +1,88 @@
+{
+ "id": "2026-10-25_US_old_money",
+ "mercado": "EEUU",
+ "mercado_codigo": "US",
+ "temporada": "OI 2026/27",
+ "genero_objetivo": "Todo",
+ "tipo_prenda": "Todo",
+ "sub_estilo": "old_money",
+ "nombre": "Old money · EEUU · OI 2026/27",
+ "fuentes": [
+  "Gwyneth Paltrow",
+  "Jacob Elordi",
+  "dieworkwear"
+ ],
+ "fecha_analisis": "2026-10-25",
+ "descripcion": "Old money en EEUU, OI 2026/27: las prendas más presentes en las fotos de los referentes del estilo son vestido (33 % de las fotos con prenda, 9 fotos, confianza baja); pantalón (14 % de las fotos con prenda, 8 fotos, confianza baja); camisa (13 % de las fotos con prenda, 5 fotos, confianza baja). Rasgos que distinguen al estilo de los demás: lisa, ajustada, de lino (medidos en la muestra de referencia). Base: 31 fotos (24 efectivas) de 3 fuentes.",
+ "descripcion_clip": "old money style outfit, plain solid-color, slim-fit, linen: dress, trousers, button-up shirt",
+ "grupo_estilo_detectado": [
+  "De vestir",
+  "Casual"
+ ],
+ "intensidad": null,
+ "intensidad_nota": "sin medida de viralidad todavía: no se inventa una cifra",
+ "estado": "pendiente",
+ "evidencia": {
+  "receta": "R1 (rasgos del estilo) + cuota por prenda de la casilla",
+  "fotos": 31,
+  "fotos_efectivas": 23.6,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "cuota": 0.329,
+    "ic": [
+     0.176,
+     0.531
+    ],
+    "fotos": 9,
+    "confianza": "baja"
+   },
+   {
+    "tipo": "Pantalón",
+    "cuota": 0.14,
+    "ic": [
+     0.051,
+     0.33
+    ],
+    "fotos": 8,
+    "confianza": "baja"
+   },
+   {
+    "tipo": "Camisa",
+    "cuota": 0.13,
+    "ic": [
+     0.046,
+     0.317
+    ],
+    "fotos": 5,
+    "confianza": "baja"
+   }
+  ],
+  "modificadores": [
+   {
+    "dimension": "estampado",
+    "valor": "liso",
+    "estilo": 0.848,
+    "resto": 0.663,
+    "dif": 0.185,
+    "q": 0.0015
+   },
+   {
+    "dimension": "forma",
+    "valor": "ajustada",
+    "estilo": 0.207,
+    "resto": 0.105,
+    "dif": 0.102,
+    "q": 0.0075
+   },
+   {
+    "dimension": "tejido",
+    "valor": "lino",
+    "estilo": 0.114,
+    "resto": 0.015,
+    "dif": 0.099,
+    "q": 0.0045
+   }
+  ]
+ }
+}

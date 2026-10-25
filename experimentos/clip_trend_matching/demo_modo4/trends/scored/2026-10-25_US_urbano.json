@@ -1,0 +1,104 @@
+{
+ "id": "2026-10-25_US_urbano",
+ "beta": 0.1,
+ "theta": 0.2,
+ "n_sku": 1267,
+ "n_alineados": 601,
+ "distribucion_semantica": {
+  "p50": 0.198,
+  "p90": 0.236,
+  "max": 0.28
+ },
+ "top": [
+  {
+   "i": 330,
+   "semantico": 0.2784,
+   "boost": 0.1,
+   "score": 0.3784,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/streetwear/jackets_1.jpg",
+   "grupo": "Streetwear"
+  },
+  {
+   "i": 376,
+   "semantico": 0.2549,
+   "boost": 0.1,
+   "score": 0.3549,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/streetwear/sweatshirts_15.jpg",
+   "grupo": "Streetwear"
+  },
+  {
+   "i": 354,
+   "semantico": 0.2501,
+   "boost": 0.1,
+   "score": 0.3501,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/streetwear/jackets_31.jpg",
+   "grupo": "Streetwear"
+  },
+  {
+   "i": 447,
+   "semantico": 0.2499,
+   "boost": 0.1,
+   "score": 0.3499,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/streetwear/track_pants_7.jpg",
+   "grupo": "Streetwear"
+  },
+  {
+   "i": 429,
+   "semantico": 0.2494,
+   "boost": 0.1,
+   "score": 0.3494,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/streetwear/track_pants_27.jpg",
+   "grupo": "Streetwear"
+  },
+  {
+   "i": 437,
+   "semantico": 0.2493,
+   "boost": 0.1,
+   "score": 0.3493,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/streetwear/track_pants_34.jpg",
+   "grupo": "Streetwear"
+  },
+  {
+   "i": 430,
+   "semantico": 0.2487,
+   "boost": 0.1,
+   "score": 0.3487,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/streetwear/track_pants_28.jpg",
+   "grupo": "Streetwear"
+  },
+  {
+   "i": 431,
+   "semantico": 0.2484,
+   "boost": 0.1,
+   "score": 0.3484,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/streetwear/track_pants_29.jpg",
+   "grupo": "Streetwear"
+  },
+  {
+   "i": 412,
+   "semantico": 0.2462,
+   "boost": 0.1,
+   "score": 0.3462,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/streetwear/track_pants_11.jpg",
+   "grupo": "Streetwear"
+  },
+  {
+   "i": 364,
+   "semantico": 0.2455,
+   "boost": 0.1,
+   "score": 0.3455,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/streetwear/jackets_40.jpg",
+   "grupo": "Streetwear"
+  }
+ ]
+}

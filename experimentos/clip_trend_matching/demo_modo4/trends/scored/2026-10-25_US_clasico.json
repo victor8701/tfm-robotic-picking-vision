@@ -1,0 +1,104 @@
+{
+ "id": "2026-10-25_US_clasico",
+ "beta": 0.1,
+ "theta": 0.2,
+ "n_sku": 1267,
+ "n_alineados": 534,
+ "distribucion_semantica": {
+  "p50": 0.191,
+  "p90": 0.246,
+  "max": 0.294
+ },
+ "top": [
+  {
+   "i": 602,
+   "semantico": 0.2869,
+   "boost": 0.1,
+   "score": 0.3869,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/trousers_39.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 578,
+   "semantico": 0.2859,
+   "boost": 0.1,
+   "score": 0.3859,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/trousers_17.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 592,
+   "semantico": 0.285,
+   "boost": 0.1,
+   "score": 0.385,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/trousers_3.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 595,
+   "semantico": 0.2846,
+   "boost": 0.1,
+   "score": 0.3846,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/trousers_32.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 608,
+   "semantico": 0.2829,
+   "boost": 0.1,
+   "score": 0.3829,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/trousers_8.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 577,
+   "semantico": 0.2817,
+   "boost": 0.1,
+   "score": 0.3817,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/trousers_16.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 589,
+   "semantico": 0.2814,
+   "boost": 0.1,
+   "score": 0.3814,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/trousers_27.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 576,
+   "semantico": 0.2809,
+   "boost": 0.1,
+   "score": 0.3809,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/trousers_15.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 55,
+   "semantico": 0.2808,
+   "boost": 0.1,
+   "score": 0.3808,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/casual/jeans_14.jpg",
+   "grupo": "Casual"
+  },
+  {
+   "i": 618,
+   "semantico": 0.2793,
+   "boost": 0.1,
+   "score": 0.3793,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/waistcoat_3.jpg",
+   "grupo": "De vestir"
+  }
+ ]
+}

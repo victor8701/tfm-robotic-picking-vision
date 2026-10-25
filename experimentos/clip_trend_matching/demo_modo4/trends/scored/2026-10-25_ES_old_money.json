@@ -1,0 +1,104 @@
+{
+ "id": "2026-10-25_ES_old_money",
+ "beta": 0.1,
+ "theta": 0.2,
+ "n_sku": 1267,
+ "n_alineados": 567,
+ "distribucion_semantica": {
+  "p50": 0.195,
+  "p90": 0.247,
+  "max": 0.294
+ },
+ "top": [
+  {
+   "i": 603,
+   "semantico": 0.2889,
+   "boost": 0.1,
+   "score": 0.3889,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/trousers_4.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 608,
+   "semantico": 0.2819,
+   "boost": 0.1,
+   "score": 0.3819,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/trousers_8.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 55,
+   "semantico": 0.2813,
+   "boost": 0.1,
+   "score": 0.3813,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/casual/jeans_14.jpg",
+   "grupo": "Casual"
+  },
+  {
+   "i": 7,
+   "semantico": 0.2775,
+   "boost": 0.1,
+   "score": 0.3775,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/casual/capris_7.jpg",
+   "grupo": "Casual"
+  },
+  {
+   "i": 69,
+   "semantico": 0.2761,
+   "boost": 0.1,
+   "score": 0.3761,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/casual/jeans_27.jpg",
+   "grupo": "Casual"
+  },
+  {
+   "i": 620,
+   "semantico": 0.2732,
+   "boost": 0.1,
+   "score": 0.3732,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/waistcoat_5.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 590,
+   "semantico": 0.2688,
+   "boost": 0.1,
+   "score": 0.3688,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/trousers_28.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 570,
+   "semantico": 0.2685,
+   "boost": 0.1,
+   "score": 0.3685,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/trousers_1.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 575,
+   "semantico": 0.2665,
+   "boost": 0.1,
+   "score": 0.3665,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/trousers_14.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 607,
+   "semantico": 0.2653,
+   "boost": 0.1,
+   "score": 0.3653,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/trousers_7.jpg",
+   "grupo": "De vestir"
+  }
+ ]
+}

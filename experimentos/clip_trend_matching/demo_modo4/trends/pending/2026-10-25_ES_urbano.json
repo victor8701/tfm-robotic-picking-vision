@@ -1,0 +1,73 @@
+{
+ "id": "2026-10-25_ES_urbano",
+ "mercado": "España",
+ "mercado_codigo": "ES",
+ "temporada": "OI 2026/27",
+ "genero_objetivo": "Todo",
+ "tipo_prenda": "Todo",
+ "sub_estilo": "urbano",
+ "nombre": "Urbano · España · OI 2026/27",
+ "fuentes": [
+  "Beny Jr",
+  "Morad",
+  "Quevedo",
+  "bycalitos",
+  "prensa: streetwear España tendencia"
+ ],
+ "fecha_analisis": "2026-10-25",
+ "descripcion": "Urbano en España, OI 2026/27: las prendas más presentes en las fotos de los referentes del estilo son pantalón (40 % de las fotos con prenda, 13 fotos, confianza baja); chaqueta (26 % de las fotos con prenda, 7 fotos, confianza baja); camiseta manga corta (26 % de las fotos con prenda, 13 fotos, confianza baja). Rasgos que distinguen al estilo de los demás: oversized (medidos en la muestra de referencia). Base: 38 fotos (28 efectivas) de 5 fuentes.",
+ "descripcion_clip": "urban style outfit, oversized baggy: trousers, jacket, t-shirt",
+ "grupo_estilo_detectado": [
+  "Streetwear"
+ ],
+ "intensidad": null,
+ "intensidad_nota": "sin medida de viralidad todavía: no se inventa una cifra",
+ "estado": "pendiente",
+ "evidencia": {
+  "receta": "R1 (rasgos del estilo) + cuota por prenda de la casilla",
+  "fotos": 38,
+  "fotos_efectivas": 28.1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "cuota": 0.396,
+    "ic": [
+     0.238,
+     0.579
+    ],
+    "fotos": 13,
+    "confianza": "baja"
+   },
+   {
+    "tipo": "Chaqueta",
+    "cuota": 0.257,
+    "ic": [
+     0.132,
+     0.441
+    ],
+    "fotos": 7,
+    "confianza": "baja"
+   },
+   {
+    "tipo": "Camiseta manga corta",
+    "cuota": 0.255,
+    "ic": [
+     0.13,
+     0.438
+    ],
+    "fotos": 13,
+    "confianza": "baja"
+   }
+  ],
+  "modificadores": [
+   {
+    "dimension": "forma",
+    "valor": "oversized / baggy",
+    "estilo": 0.385,
+    "resto": 0.096,
+    "dif": 0.288,
+    "q": 0.0025
+   }
+  ]
+ }
+}

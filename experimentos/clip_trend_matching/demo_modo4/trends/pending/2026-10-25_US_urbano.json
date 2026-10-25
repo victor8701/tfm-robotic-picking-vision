@@ -1,0 +1,80 @@
+{
+ "id": "2026-10-25_US_urbano",
+ "mercado": "EEUU",
+ "mercado_codigo": "US",
+ "temporada": "OI 2026/27",
+ "genero_objetivo": "Todo",
+ "tipo_prenda": "Todo",
+ "sub_estilo": "urbano",
+ "nombre": "Urbano · EEUU · OI 2026/27",
+ "fuentes": [
+  "Playboi Carti",
+  "r/streetwear"
+ ],
+ "fecha_analisis": "2026-10-25",
+ "descripcion": "Urbano en EEUU, OI 2026/27: las prendas más presentes en las fotos de los referentes del estilo son pantalón (53 % de las fotos con prenda, 21 fotos, confianza media); chaqueta (34 % de las fotos con prenda, 14 fotos, confianza baja); zapatillas deportivas (17 % de las fotos con prenda, 8 fotos, confianza baja); zapatos de vestir (11 % de las fotos con prenda, 7 fotos, confianza baja). Rasgos que distinguen al estilo de los demás: oversized (medidos en la muestra de referencia). Base: 34 fotos (21 efectivas) de 2 fuentes.",
+ "descripcion_clip": "urban style outfit, oversized baggy: trousers, jacket, sneakers, dress shoes",
+ "grupo_estilo_detectado": [
+  "Streetwear"
+ ],
+ "intensidad": null,
+ "intensidad_nota": "sin medida de viralidad todavía: no se inventa una cifra",
+ "estado": "pendiente",
+ "evidencia": {
+  "receta": "R1 (rasgos del estilo) + cuota por prenda de la casilla",
+  "fotos": 34,
+  "fotos_efectivas": 21.1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "cuota": 0.53,
+    "ic": [
+     0.329,
+     0.721
+    ],
+    "fotos": 21,
+    "confianza": "media"
+   },
+   {
+    "tipo": "Chaqueta",
+    "cuota": 0.343,
+    "ic": [
+     0.179,
+     0.555
+    ],
+    "fotos": 14,
+    "confianza": "baja"
+   },
+   {
+    "tipo": "Zapatillas deportivas",
+    "cuota": 0.17,
+    "ic": [
+     0.065,
+     0.377
+    ],
+    "fotos": 8,
+    "confianza": "baja"
+   },
+   {
+    "tipo": "Zapatos de vestir",
+    "cuota": 0.112,
+    "ic": [
+     0.034,
+     0.31
+    ],
+    "fotos": 7,
+    "confianza": "baja"
+   }
+  ],
+  "modificadores": [
+   {
+    "dimension": "forma",
+    "valor": "oversized / baggy",
+    "estilo": 0.385,
+    "resto": 0.096,
+    "dif": 0.288,
+    "q": 0.0025
+   }
+  ]
+ }
+}

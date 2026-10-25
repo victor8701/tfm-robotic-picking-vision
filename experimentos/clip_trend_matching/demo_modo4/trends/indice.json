@@ -1,0 +1,132 @@
+{
+ "fecha": "2026-10-25",
+ "temporada": "OI 2026/27",
+ "casillas": [
+  {
+   "estilo": "bohemio",
+   "mercado": "ES",
+   "temporada": "OI 2026/27",
+   "fotos": 6,
+   "generada": false,
+   "motivo": "solo 1 prendas con al menos 5 fotos (hacen falta 3); fotos de la casilla: 6",
+   "id": null
+  },
+  {
+   "estilo": "bohemio",
+   "mercado": "US",
+   "temporada": "OI 2026/27",
+   "fotos": 10,
+   "generada": false,
+   "motivo": "solo 0 prendas con al menos 5 fotos (hacen falta 3); fotos de la casilla: 10",
+   "id": null
+  },
+  {
+   "estilo": "clasico",
+   "mercado": "ES",
+   "temporada": "OI 2026/27",
+   "fotos": 12,
+   "generada": false,
+   "motivo": "solo 1 prendas con al menos 5 fotos (hacen falta 3); fotos de la casilla: 12",
+   "id": null
+  },
+  {
+   "estilo": "clasico",
+   "mercado": "US",
+   "temporada": "OI 2026/27",
+   "fotos": 45,
+   "generada": true,
+   "motivo": null,
+   "id": "2026-10-25_US_clasico"
+  },
+  {
+   "estilo": "convencional",
+   "mercado": "ES",
+   "temporada": "OI 2026/27",
+   "fotos": 35,
+   "generada": true,
+   "motivo": null,
+   "id": "2026-10-25_ES_convencional"
+  },
+  {
+   "estilo": "convencional",
+   "mercado": "US",
+   "temporada": "OI 2026/27",
+   "fotos": 26,
+   "generada": false,
+   "motivo": "solo 2 prendas con al menos 5 fotos (hacen falta 3); fotos de la casilla: 26",
+   "id": null
+  },
+  {
+   "estilo": "geek",
+   "mercado": "ES",
+   "temporada": "OI 2026/27",
+   "fotos": 8,
+   "generada": false,
+   "motivo": "solo 0 prendas con al menos 5 fotos (hacen falta 3); fotos de la casilla: 8",
+   "id": null
+  },
+  {
+   "estilo": "geek",
+   "mercado": "US",
+   "temporada": "OI 2026/27",
+   "fotos": 0,
+   "generada": false,
+   "motivo": "ninguna foto de este estilo y mercado en la temporada",
+   "id": null
+  },
+  {
+   "estilo": "lujo",
+   "mercado": "ES",
+   "temporada": "OI 2026/27",
+   "fotos": 5,
+   "generada": false,
+   "motivo": "solo 1 prendas con al menos 5 fotos (hacen falta 3); fotos de la casilla: 5",
+   "id": null
+  },
+  {
+   "estilo": "lujo",
+   "mercado": "US",
+   "temporada": "OI 2026/27",
+   "fotos": 111,
+   "generada": true,
+   "motivo": null,
+   "id": "2026-10-25_US_lujo"
+  },
+  {
+   "estilo": "old_money",
+   "mercado": "ES",
+   "temporada": "OI 2026/27",
+   "fotos": 24,
+   "generada": true,
+   "motivo": null,
+   "id": "2026-10-25_ES_old_money"
+  },
+  {
+   "estilo": "old_money",
+   "mercado": "US",
+   "temporada": "OI 2026/27",
+   "fotos": 31,
+   "generada": true,
+   "motivo": null,
+   "id": "2026-10-25_US_old_money"
+  },
+  {
+   "estilo": "urbano",
+   "mercado": "ES",
+   "temporada": "OI 2026/27",
+   "fotos": 38,
+   "generada": true,
+   "motivo": null,
+   "id": "2026-10-25_ES_urbano"
+  },
+  {
+   "estilo": "urbano",
+   "mercado": "US",
+   "temporada": "OI 2026/27",
+   "fotos": 34,
+   "generada": true,
+   "motivo": null,
+   "id": "2026-10-25_US_urbano"
+  }
+ ]
+}

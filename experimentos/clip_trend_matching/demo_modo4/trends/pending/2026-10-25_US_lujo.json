@@ -1,0 +1,115 @@
+{
+ "id": "2026-10-25_US_lujo",
+ "mercado": "EEUU",
+ "mercado_codigo": "US",
+ "temporada": "OI 2026/27",
+ "genero_objetivo": "Todo",
+ "tipo_prenda": "Todo",
+ "sub_estilo": "lujo_ostentoso",
+ "nombre": "Lujo ostentoso · EEUU · OI 2026/27",
+ "fuentes": [
+  "Balmain",
+  "Cardi B",
+  "DSQUARED2",
+  "Dior",
+  "DolceGabbana",
+  "Versace",
+  "gucci",
+  "r/Gucci",
+  "r/IndianFashionAddicts",
+  "r/LouisVuitton"
+ ],
+ "fecha_analisis": "2026-10-25",
+ "descripcion": "Lujo ostentoso en EEUU, OI 2026/27: las prendas más presentes en las fotos de los referentes del estilo son vestido (18 % de las fotos con prenda, 15 fotos, confianza baja); pantalón (17 % de las fotos con prenda, 19 fotos, confianza baja); chaqueta (12 % de las fotos con prenda, 12 fotos, confianza baja); americana (11 % de las fotos con prenda, 10 fotos, confianza baja); abrigo (11 % de las fotos con prenda, 9 fotos, confianza baja). Rasgos que distinguen al estilo de los demás: con texto o logo, de cuero, con gráfico (medidos en la muestra de referencia). Base: 111 fotos (62 efectivas) de 10 fuentes.",
+ "descripcion_clip": "ostentatious luxury style outfit, logo print, leather, graphic print: dress, trousers, jacket, blazer, long coat",
+ "grupo_estilo_detectado": [
+  "De vestir",
+  "Fiesta/Noche"
+ ],
+ "intensidad": null,
+ "intensidad_nota": "sin medida de viralidad todavía: no se inventa una cifra",
+ "estado": "pendiente",
+ "evidencia": {
+  "receta": "R1 (rasgos del estilo) + cuota por prenda de la casilla",
+  "fotos": 111,
+  "fotos_efectivas": 62.1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "cuota": 0.18,
+    "ic": [
+     0.104,
+     0.293
+    ],
+    "fotos": 15,
+    "confianza": "baja"
+   },
+   {
+    "tipo": "Pantalón",
+    "cuota": 0.17,
+    "ic": [
+     0.097,
+     0.282
+    ],
+    "fotos": 19,
+    "confianza": "baja"
+   },
+   {
+    "tipo": "Chaqueta",
+    "cuota": 0.118,
+    "ic": [
+     0.06,
+     0.222
+    ],
+    "fotos": 12,
+    "confianza": "baja"
+   },
+   {
+    "tipo": "Americana",
+    "cuota": 0.108,
+    "ic": [
+     0.053,
+     0.209
+    ],
+    "fotos": 10,
+    "confianza": "baja"
+   },
+   {
+    "tipo": "Abrigo",
+    "cuota": 0.106,
+    "ic": [
+     0.051,
+     0.207
+    ],
+    "fotos": 9,
+    "confianza": "baja"
+   }
+  ],
+  "modificadores": [
+   {
+    "dimension": "estampado",
+    "valor": "texto / logo",
+    "estilo": 0.481,
+    "resto": 0.033,
+    "dif": 0.447,
+    "q": 0.0015
+   },
+   {
+    "dimension": "tejido",
+    "valor": "cuero / vinilo",
+    "estilo": 0.338,
+    "resto": 0.139,
+    "dif": 0.198,
+    "q": 0.0045
+   },
+   {
+    "dimension": "estampado",
+    "valor": "gráfico / dibujo",
+    "estilo": 0.169,
+    "resto": 0.053,
+    "dif": 0.116,
+    "q": 0.002
+   }
+  ]
+ }
+}

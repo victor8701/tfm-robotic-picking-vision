@@ -1,0 +1,104 @@
+{
+ "id": "2026-10-25_US_lujo",
+ "beta": 0.1,
+ "theta": 0.2,
+ "n_sku": 1267,
+ "n_alineados": 316,
+ "distribucion_semantica": {
+  "p50": 0.175,
+  "p90": 0.219,
+  "max": 0.294
+ },
+ "top": [
+  {
+   "i": 592,
+   "semantico": 0.2606,
+   "boost": 0.1,
+   "score": 0.3606,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/trousers_3.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 678,
+   "semantico": 0.258,
+   "boost": 0.1,
+   "score": 0.358,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/fiesta_noche/dresses_21.jpg",
+   "grupo": "Fiesta/Noche"
+  },
+  {
+   "i": 623,
+   "semantico": 0.2561,
+   "boost": 0.1,
+   "score": 0.3561,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/waistcoat_8.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 673,
+   "semantico": 0.2505,
+   "boost": 0.1,
+   "score": 0.3505,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/fiesta_noche/dresses_17.jpg",
+   "grupo": "Fiesta/Noche"
+  },
+  {
+   "i": 750,
+   "semantico": 0.2464,
+   "boost": 0.1,
+   "score": 0.3464,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/fiesta_noche/jumpsuit_14.jpg",
+   "grupo": "Fiesta/Noche"
+  },
+  {
+   "i": 608,
+   "semantico": 0.2456,
+   "boost": 0.1,
+   "score": 0.3456,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/trousers_8.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 620,
+   "semantico": 0.2441,
+   "boost": 0.1,
+   "score": 0.3441,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/waistcoat_5.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 615,
+   "semantico": 0.2415,
+   "boost": 0.1,
+   "score": 0.3415,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/waistcoat_14.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 589,
+   "semantico": 0.2393,
+   "boost": 0.1,
+   "score": 0.3393,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/de_vestir/trousers_27.jpg",
+   "grupo": "De vestir"
+  },
+  {
+   "i": 677,
+   "semantico": 0.2362,
+   "boost": 0.1,
+   "score": 0.3362,
+   "alineado": true,
+   "ruta": "experimentos/clip_trend_matching/fiesta_noche/dresses_20.jpg",
+   "grupo": "Fiesta/Noche"
+  }
+ ]
+}

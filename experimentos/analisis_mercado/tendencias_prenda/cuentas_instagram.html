@@ -1,0 +1,231 @@
+<title>Cuentas de Instagram</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=DM+Mono:wght@400;500&family=Figtree:wght@400..700&display=swap">
+<style>
+:root{
+  --bg:#f2f3f8; --surface:#ffffff; --surface-2:#eceef5;
+  --ink:#141729; --ink-2:#434964; --ink-3:#636985;
+  --line:#e0e3ec; --line-2:#c8ccdb;
+  --accent:#0b6b68; --on-accent:#ffffff; --accent-soft:#dcf0ee;
+  --ok:#16703d; --ok-soft:#dcf1e4; --no:#ad2a22; --no-soft:#fbe3e0; --warn:#8a5a00; --warn-soft:#fbefd2;
+  --shadow:0 1px 2px rgba(20,23,41,.05),0 8px 22px -12px rgba(20,23,41,.18);
+  --f-display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --f-body:"Figtree","Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+  --f-mono:"DM Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e111b; --surface:#161a28; --surface-2:#1e2335;
+  --ink:#eceff8; --ink-2:#b9bed4; --ink-3:#9097b4;
+  --line:#262c42; --line-2:#363d58;
+  --accent:#52d3c6; --on-accent:#062421; --accent-soft:#12363a;
+  --ok:#62d48e; --ok-soft:#14301f; --no:#ff8f86; --no-soft:#401d1a; --warn:#f0c15a; --warn-soft:#3a2d0c;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 22px -12px rgba(0,0,0,.6);
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e111b; --surface:#161a28; --surface-2:#1e2335;
+  --ink:#eceff8; --ink-2:#b9bed4; --ink-3:#9097b4;
+  --line:#262c42; --line-2:#363d58;
+  --accent:#52d3c6; --on-accent:#062421; --accent-soft:#12363a;
+  --ok:#62d48e; --ok-soft:#14301f; --no:#ff8f86; --no-soft:#401d1a; --warn:#f0c15a; --warn-soft:#3a2d0c;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 22px -12px rgba(0,0,0,.6);
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.45 var(--f-body);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+p{margin:0}
+a{color:inherit}
+.wrap{max-width:560px;margin-inline:auto;padding-inline:16px;padding-block-end:48px}
+
+.top{padding-block:14px 8px;display:grid;gap:6px}
+.toprow{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.kicker{font:500 11px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+h1{margin:0;font:700 26px/1.05 var(--f-display);letter-spacing:-.02em;text-wrap:balance}
+.save{display:inline-flex;align-items:center;gap:7px;font:500 12px/1 var(--f-mono);color:var(--ink-2);padding:7px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.save i{width:8px;height:8px;border-radius:50%;background:var(--ink-3)}
+.save[data-s="saved"] i{background:var(--ok)}
+.save[data-s="saving"] i{background:#c98b00}
+.save[data-s="error"] i{background:var(--no)}
+.intro{color:var(--ink-2);font-size:14.5px;max-width:60ch}
+
+.prog{display:grid;gap:6px;padding-block:6px 10px}
+.prog .txt{display:flex;justify-content:space-between;font:500 12px/1 var(--f-mono);color:var(--ink-2)}
+.meter{height:8px;border-radius:4px;background:var(--surface-2);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent);border-radius:4px;transition:width .2s}
+
+.filtros{display:flex;gap:8px;overflow-x:auto;padding-block:4px 10px;margin-inline:-16px;padding-inline:16px;scrollbar-width:none}
+.filtros::-webkit-scrollbar{display:none}
+.fch{flex:none;border:1px solid var(--line-2);background:var(--surface);border-radius:999px;padding:8px 12px;font:600 13px/1 var(--f-body);color:var(--ink-2)}
+.fch[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.solo{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-2);padding-block:2px 10px}
+.solo input{width:20px;height:20px;accent-color:var(--accent)}
+
+.lista{display:grid;gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:8px;box-shadow:var(--shadow)}
+.card[data-r="si"]{border-color:var(--ok)}
+.card[data-r="no"]{opacity:.72}
+.head{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.user{font:700 18px/1.1 var(--f-display);text-decoration:none;color:var(--accent);word-break:break-all}
+.user:hover{text-decoration:underline}
+.star{font-size:18px;line-height:1;color:var(--warn)}
+.tag{border:1px solid var(--line-2);background:var(--surface-2);border-radius:999px;padding:5px 9px;font:600 12px/1 var(--f-body);color:var(--ink-2)}
+.meta{font:500 12.5px/1.35 var(--f-mono);color:var(--ink-2)}
+.bio{font-size:14px;color:var(--ink-2)}
+.win{font-size:13.5px;border-radius:10px;padding:7px 10px}
+.win.ok{background:var(--ok-soft);color:var(--ok)}
+.win.sin{background:var(--warn-soft);color:var(--warn)}
+.nota{font-size:13.5px;color:var(--ink-3)}
+.resp{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.rb{border:1.5px solid var(--line-2);background:var(--surface);border-radius:12px;padding:12px 10px;font:700 15px/1 var(--f-body);min-height:48px}
+.rb[data-a="si"][aria-pressed="true"]{background:var(--ok);border-color:var(--ok);color:#fff}
+.rb[data-a="no"][aria-pressed="true"]{background:var(--no);border-color:var(--no);color:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .rb[data-a="si"][aria-pressed="true"],:root:not([data-theme="light"]) .rb[data-a="no"][aria-pressed="true"]{color:#0e111b}}
+:root[data-theme="dark"] .rb[data-a="si"][aria-pressed="true"],:root[data-theme="dark"] .rb[data-a="no"][aria-pressed="true"]{color:#0e111b}
+.seg{display:flex;align-items:center;gap:10px;font-size:14.5px;color:var(--ink-2);min-height:36px}
+.seg input{width:22px;height:22px;accent-color:var(--accent)}
+.fotos{margin:0;border-radius:12px;overflow:hidden;background:var(--surface-2);line-height:0}
+.fotos img{display:block;width:100%;height:auto;aspect-ratio:634/280;object-fit:cover}
+.bulk{display:grid;gap:10px;background:var(--accent-soft);border:1px solid var(--line-2);border-radius:14px;padding:14px}
+.bulk p{margin:0;font-size:14.5px;color:var(--ink-2)}
+.bulk button{border:0;border-radius:12px;min-height:48px;padding:12px;background:var(--accent);color:var(--on-accent);font:700 15px/1.2 var(--f-body)}
+.vacio,.pie{background:var(--surface);border:1px dashed var(--line-2);border-radius:14px;padding:16px;color:var(--ink-2);font-size:14.5px}
+.pie{margin-top:16px;display:grid;gap:8px}
+.pie b{font-family:var(--f-display)}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="toprow"><span class="kicker">TFM · Instagram</span><span class="save" id="save" data-s="load"><i></i><span>Cargando…</span></span></div>
+    <h1>Cuentas de Instagram</h1>
+    <p class="intro">Toca el @ para abrir su perfil (y seguirla, si quieres educar tu feed). <b>✓ Fuente</b> = quiero que entre en la revista semanal; <b>✕ No</b> = descartada. El estilo y el mercado propuestos se cambian tocándolos. Las cifras son de Windsor (últimos 14 días). Las fotos son de sus publicaciones más recientes (tira de 3), donde las tengo. <b>★</b> = mi propuesta para los 14 huecos de Instagram público de la prueba (el hueco 15 lo ocupa tu cuenta de estadísticas): las que más fotos aportan, repartidas por estilo; tú decides.</p>
+  </header>
+  <div class="prog"><div class="txt"><span>Respondidas</span><span id="ptxt">0 de 0</span></div><div class="meter"><i id="pbar" style="width:0%"></i></div></div>
+  <nav class="filtros" id="filtros" aria-label="Filtrar por estilo"></nav>
+  <label class="solo"><input type="checkbox" id="solo"> Solo las que faltan por responder</label>
+  <main class="lista" id="lista"></main>
+  <section class="pie" id="pie"></section>
+</div>
+
+<script type="application/json" id="cuentas">__CUENTAS__</script>
+<script>window.__NO=__NO__;</script>
+<script>
+(function(){
+'use strict';
+var CU=[];try{CU=JSON.parse(document.getElementById('cuentas').textContent)||[]}catch(e){}
+var EST=[['old_money','Old money'],['clasico','Clásico'],['urbano','Urbano'],['geek','Geek'],['lujo','Lujo ostentoso'],['bohemio','Bohemio'],['convencional','Convencional']];
+var NOM={};EST.forEach(function(x){NOM[x[0]]=x[1]});
+var S={db:null,absent:false,a:{},loaded:false,filtro:'todas',pend:false,inflight:{},dirty:{},touched:{},seen:{},tries:{},timers:{}};
+var $=function(s){return document.querySelector(s)};
+var esc=function(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+var SAVE={load:'Cargando…',saved:'Guardado',saving:'Guardando…',error:'No se pudo guardar',off:'Sin base de datos'};
+function setSave(s,msg){var el=$('#save');el.setAttribute('data-s',s);el.querySelector('span').textContent=SAVE[s]||s;if(msg)el.title=msg;else el.removeAttribute('title')}
+function key(u){return String(u).replace(/[^A-Za-z0-9_.-]/g,'_')}
+function blank(){return {r:'',f:false,e:'',m:''}}
+/* Lo que entrega la base viene CONGELADO: siempre una copia propia. */
+function norm(v){var o=blank();if(!v)return o;o.r=(v.r==='si'||v.r==='no')?v.r:'';o.f=v.f===true;o.e=(typeof v.e==='string'&&NOM[v.e])?v.e:'';o.m=(v.m==='ES'||v.m==='US')?v.m:'';return o}
+function ac(u){return S.a[u]||(S.a[u]=blank())}
+function est(c){var l=S.a[c.u];return (l&&l.e)||c.e}
+function mkt(c){var l=S.a[c.u];return (l&&l.m)||c.m}
+function guard(f){try{f()}catch(e){setSave('error',e&&e.message)}}
+function nResp(){var n=0;CU.forEach(function(c){var l=S.a[c.u];if(l&&l.r)n++});return n}
+
+/* ---------- guardado ---------- */
+function queue(u){S.touched[u]=true;S.dirty[u]=true;setSave('saving');clearTimeout(S.timers[u]);S.timers[u]=setTimeout(function(){flush(u)},250)}
+function busy(){var k;for(k in S.dirty)if(S.dirty[k])return true;for(k in S.inflight)if(S.inflight[k])return true;return false}
+function flush(u){
+  if(!S.db||S.inflight[u]||!S.dirty[u])return;
+  S.dirty[u]=false;S.inflight[u]=true;
+  var l=ac(u);
+  S.db.doc('ig/'+key(u)).set({u:u,r:l.r||'',f:!!l.f,e:l.e||'',m:l.m||'',t:new Date().toISOString()}).then(function(){
+    S.inflight[u]=false;S.tries[u]=0;
+    if(S.dirty[u])flush(u);else if(!busy())setSave('saved');
+  },function(e){
+    S.inflight[u]=false;S.dirty[u]=true;setSave('error',e&&e.message);
+    if((S.tries[u]=(S.tries[u]||0)+1)<=2){clearTimeout(S.timers[u]);S.timers[u]=setTimeout(function(){flush(u)},2500)}
+  });
+}
+/* Lo que tocas en esta visita manda sobre lo que llegue de la base. */
+function onSnap(snap){
+  var changed=false;
+  snap.docs.forEach(function(d){
+    var v=d.data(),u=v&&v.u;if(!u)return;
+    if(S.touched[u]||S.dirty[u]||S.inflight[u]||S.seen[u]===d)return;
+    S.seen[u]=d;S.a[u]=norm(v);changed=true;
+  });
+  var first=!S.loaded;S.loaded=true;
+  if(first){setSave('saved');render()}else if(changed)render();
+}
+
+/* ---------- pintado ---------- */
+function visible(c){
+  if(S.filtro==='rec'){if(!c.r)return false}
+  else if(S.filtro!=='todas'&&est(c)!==S.filtro)return false;
+  if(S.pend){var l=S.a[c.u];if(l&&l.r)return false}
+  return true;
+}
+function filtros(){
+  var cuenta={todas:CU.length};EST.forEach(function(x){cuenta[x[0]]=0});CU.forEach(function(c){cuenta[est(c)]=(cuenta[est(c)]||0)+1});
+  var nr=CU.filter(function(c){return c.r}).length;
+  var h='<button class="fch" data-f="todas" aria-pressed="'+(S.filtro==='todas')+'">Todas · '+cuenta.todas+'</button>'+(nr?'<button class="fch" data-f="rec" aria-pressed="'+(S.filtro==='rec')+'">★ Mi propuesta · '+nr+'</button>':'');
+  EST.forEach(function(x){h+='<button class="fch" data-f="'+x[0]+'" aria-pressed="'+(S.filtro===x[0])+'">'+esc(x[1])+' · '+(cuenta[x[0]]||0)+'</button>'});
+  $('#filtros').innerHTML=h;
+  Array.prototype.forEach.call(document.querySelectorAll('.fch'),function(b){b.onclick=function(){S.filtro=b.getAttribute('data-f');render()}});
+}
+function medidas(c){
+  var p=[];if(c.t)p.push(esc(c.t));if(c.s)p.push(esc(c.s)+' seguidores');
+  if(c.p!==''&&c.p!=null)p.push(esc(c.p)+' publicaciones en 14 días'+(c.g&&c.g!=='—'&&c.g!=='(sin medir)'?' ('+esc(c.g)+' buenas)':''));
+  return p.join(' · ');
+}
+function card(c){
+  var l=S.a[c.u]||blank();
+  var win=c.w==='leida'?'<p class="win ok">✓ Windsor la lee</p>':'<p class="win sin">Sin probar en Windsor (su perfil tiene categoría de cuenta profesional)</p>';
+  return '<article class="card" data-u="'+esc(c.u)+'" data-r="'+(l.r||'')+'">'+
+   '<div class="head">'+(c.r?'<span class="star" title="Mi propuesta para los huecos de la prueba">★</span>':'')+'<a class="user" href="https://www.instagram.com/'+esc(c.u)+'/" target="_blank" rel="noopener">@'+esc(c.u)+'</a>'+
+   '<button class="tag" data-a="est">'+esc(NOM[est(c)])+'</button><button class="tag" data-a="mkt">'+esc(mkt(c))+'</button></div>'+
+   (c.i?'<div class="fotos"><img loading="lazy" decoding="async" src="f/'+esc(c.u)+'.jpg" alt="Últimas publicaciones de @'+esc(c.u)+'"></div>':'')+'<p class="meta">'+medidas(c)+'</p>'+(c.c?'<p class="bio">'+esc(c.c)+'</p>':'')+win+(c.k?'<p class="nota">'+esc(c.k)+'</p>':'')+
+   '<div class="resp"><button class="rb" data-a="si" aria-pressed="'+(l.r==='si')+'">✓ Fuente</button><button class="rb" data-a="no" aria-pressed="'+(l.r==='no')+'">✕ No</button></div>'+
+   '<label class="seg"><input type="checkbox" data-a="f"'+(l.f?' checked':'')+'> Ya la sigo en Instagram</label></article>';
+}
+function render(){
+  var n=nResp(),tot=CU.length;
+  $('#ptxt').textContent=n+' de '+tot;$('#pbar').style.width=(tot?100*n/tot:0)+'%';
+  filtros();
+  var L=$('#lista');
+  if(!tot){L.innerHTML='<div class="vacio">No hay cuentas todavía. Claude las carga aquí al preparar cada tanda.</div>'}
+  else if(S.absent){L.innerHTML='<div class="vacio"><b>Aquí no se puede guardar.</b> Esta página guarda tus respuestas en claude.ai; ábrela desde el enlace del Artifact.</div>'}
+  else{
+    var v=CU.filter(visible);
+    var bulk='';
+    if(S.filtro==='rec'){
+      var nRec=CU.filter(function(c){return c.r}).length,pendRec=CU.filter(function(c){return c.r&&!(S.a[c.u]&&S.a[c.u].r)}).length;
+      bulk='<div class="bulk"><p><b>Mi propuesta: '+nRec+' cuentas</b>, una o dos por casilla de estilo × mercado, ya dadas de alta en Windsor.</p>'+(pendRec?'<button id="bulk">✓ Aceptar las '+pendRec+' que faltan</button><p>No pisa lo que ya hayas marcado; luego puedes quitar o cambiar cualquiera.</p>':'<p>Ya has respondido todas las de mi propuesta.</p>')+'</div>';
+    }
+    L.innerHTML=bulk+(v.length?v.map(card).join(''):'<div class="vacio">'+(S.pend?'No queda ninguna por responder en este filtro.':'No hay cuentas en este filtro.')+'</div>');
+    var bb=$('#bulk');if(bb)bb.onclick=function(){guard(function(){CU.forEach(function(c){if(c.r){var l=ac(c.u);if(!l.r){l.r='si';queue(c.u)}}});render()})};
+    Array.prototype.forEach.call(L.querySelectorAll('.card'),function(el){
+      var u=el.getAttribute('data-u');
+      Array.prototype.forEach.call(el.querySelectorAll('.rb'),function(b){b.onclick=function(){guard(function(){var l=ac(u),r=b.getAttribute('data-a');l.r=(l.r===r)?'':r;queue(u);render()})}});
+      var f=el.querySelector('input[data-a="f"]');if(f)f.onchange=function(){guard(function(){ac(u).f=f.checked;queue(u)})};
+      var e=el.querySelector('button[data-a="est"]');if(e)e.onclick=function(){guard(function(){var c=CU.filter(function(x){return x.u===u})[0],i=0;EST.forEach(function(x,k){if(x[0]===est(c))i=k});ac(u).e=EST[(i+1)%EST.length][0];queue(u);render()})};
+      var m=el.querySelector('button[data-a="mkt"]');if(m)m.onclick=function(){guard(function(){var c=CU.filter(function(x){return x.u===u})[0];ac(u).m=mkt(c)==='ES'?'US':'ES';queue(u);render()})};
+    });
+  }
+  var NO=(window.__NO||[]);
+  $('#pie').innerHTML='<p><b>Cómo se usan tus respuestas.</b> Las ✓ pasan a la lista de fuentes de la revista; las cuentas que Windsor lee entran en la tarea semanal (la prueba gratuita admite 15 cuentas en total; después, plan de pago o app propia de Meta).</p>'+
+   '<p>No se pudieron leer (personales, inactivas o con otro @): '+(NO.length?esc(NO.join(', ')):'—')+'.</p>';
+}
+$('#solo').onchange=function(){S.pend=this.checked;render()};
+
+/* ---------- arranque ---------- */
+render();setSave('load');
+var cl=window.claude;
+if(!cl||typeof cl.use!=='function'){S.absent=true;setSave('off');render();return}
+cl.use('db').then(function(db){
+  if(!db){S.absent=true;setSave('off');render();return}
+  S.db=db;
+  db.collection('ig').onSnapshot(onSnap,function(e){setSave('error',e&&e.message);S.loaded=true;render()});
+}).catch(function(){S.absent=true;setSave('off');render()});
+})();
+</script>

@@ -1,0 +1,84 @@
+{
+ "id": "2026-10-25_US_clasico",
+ "mercado": "EEUU",
+ "mercado_codigo": "US",
+ "temporada": "OI 2026/27",
+ "genero_objetivo": "Todo",
+ "tipo_prenda": "Todo",
+ "sub_estilo": "clasico_tradicional",
+ "nombre": "Clásico-tradicional · EEUU · OI 2026/27",
+ "fuentes": [
+  "HackettLondon",
+  "RalphLauren",
+  "r/Barbour",
+  "r/preppy"
+ ],
+ "fecha_analisis": "2026-10-25",
+ "descripcion": "Clásico-tradicional en EEUU, OI 2026/27: las prendas más presentes en las fotos de los referentes del estilo son pantalón (39 % de las fotos con prenda, 19 fotos, confianza baja); chaqueta (37 % de las fotos con prenda, 18 fotos, confianza baja); americana (31 % de las fotos con prenda, 13 fotos, confianza baja); botas (13 % de las fotos con prenda, 5 fotos, confianza baja); jersey (10 % de las fotos con prenda, 6 fotos, confianza baja). Base: 45 fotos (31 efectivas) de 4 fuentes.",
+ "descripcion_clip": "classic traditional style outfit: trousers, jacket, blazer, boots, knit sweater",
+ "grupo_estilo_detectado": [
+  "Casual",
+  "De vestir"
+ ],
+ "intensidad": null,
+ "intensidad_nota": "sin medida de viralidad todavía: no se inventa una cifra",
+ "estado": "pendiente",
+ "evidencia": {
+  "receta": "R1 (rasgos del estilo) + cuota por prenda de la casilla",
+  "fotos": 45,
+  "fotos_efectivas": 31.4,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "cuota": 0.386,
+    "ic": [
+     0.238,
+     0.56
+    ],
+    "fotos": 19,
+    "confianza": "baja"
+   },
+   {
+    "tipo": "Chaqueta",
+    "cuota": 0.369,
+    "ic": [
+     0.223,
+     0.543
+    ],
+    "fotos": 18,
+    "confianza": "baja"
+   },
+   {
+    "tipo": "Americana",
+    "cuota": 0.309,
+    "ic": [
+     0.176,
+     0.484
+    ],
+    "fotos": 13,
+    "confianza": "baja"
+   },
+   {
+    "tipo": "Botas",
+    "cuota": 0.134,
+    "ic": [
+     0.055,
+     0.293
+    ],
+    "fotos": 5,
+    "confianza": "baja"
+   },
+   {
+    "tipo": "Jersey",
+    "cuota": 0.103,
+    "ic": [
+     0.037,
+     0.256
+    ],
+    "fotos": 6,
+    "confianza": "baja"
+   }
+  ],
+  "modificadores": []
+ }
+}
