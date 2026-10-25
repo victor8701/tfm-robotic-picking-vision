@@ -1,0 +1,28 @@
+name: Prueba de Instagram
+
+# Comprueba en un minuto, sin esperar a la revista del lunes, que las claves de Instagram (Windsor, y Meta cuando exista) están bien puestas.
+# Se lanza a mano: pestaña Actions → «Prueba de Instagram» → Run workflow. El resultado sale en español en el resumen de la ejecución.
+# Este fichero tiene que estar en la rama principal (main); el código de la prueba se toma de la rama analisis-mercado.
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  prueba:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      WINDSOR_API_KEY: ${{ secrets.WINDSOR_API_KEY }}
+    steps:
+      - name: Código (rama analisis-mercado)
+        uses: actions/checkout@v4
+        with:
+          ref: analisis-mercado
+          path: codigo
+      - name: Probar las claves
+        shell: bash
+        working-directory: codigo/experimentos/analisis_mercado
+        run: python3 prueba_instagram.py
