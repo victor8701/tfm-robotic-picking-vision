@@ -233,6 +233,12 @@ def windsor_filas(handles: list[str], dias: int = IG_DIAS, abrir=urllib.request.
             with abrir(urllib.request.Request(WINDSOR_URL + "?" + urllib.parse.urlencode(consulta), headers={"User-Agent": m.UA}), timeout=180) as r:
                 return json.load(r)
         except urllib.error.HTTPError as e:   # sin la dirección: lleva la clave
+            try:
+                cuerpo = e.read().decode("utf-8", "replace") if getattr(e, "fp", None) else ""
+            except Exception:  # noqa: BLE001
+                cuerpo = ""
+            if e.code == 400 and "API key" in cuerpo:   # Windsor repite la clave en su mensaje: no se imprime nada del cuerpo
+                raise ValueError("Windsor rechazó la clave WINDSOR_API_KEY (¿está mal copiada? Cópiala de nuevo en Windsor → Data preview → API key)") from None
             if e.code in (400, 404, 422) and "select_accounts" in consulta:
                 return None   # alguna cuenta pedida no está dada de alta en Windsor: se vuelve a pedir sin filtro y se filtra aquí
             raise ValueError(f"Windsor contestó HTTP {e.code}") from None
@@ -299,14 +305,18 @@ def cosechar_instagram(s, existentes):
         raise ValueError(_IG_CACHE["error"])
     if "filas" not in _IG_CACHE:
         cfg = json.loads(FUENTES.read_text(encoding="utf-8"))["fuentes"]
+        pedidas = sorted({x["valor"].lstrip("@").lower() for x in cfg if x["tipo"] == "instagram"})
         try:
-            _IG_CACHE["filas"] = windsor_filas(sorted({x["valor"].lstrip("@").lower() for x in cfg if x["tipo"] == "instagram"}))
+            _IG_CACHE["filas"] = windsor_filas(pedidas)
         except ValueError as e:
             _IG_CACHE["error"] = str(e)
             raise
+        print(f"   Instagram: Windsor devolvió publicaciones de {len(_IG_CACHE['filas'])} de las {len(pedidas)} cuentas de las fuentes", flush=True)
     filas = _IG_CACHE["filas"].get(s["valor"].lstrip("@").lower(), [])
     if not filas:
-        raise ValueError("Windsor no devolvió publicaciones de esta cuenta (no es profesional, es privada o no publicó en la ventana)")
+        # No es un fallo: lo normal es que la cuenta no esté dada de alta en el plan actual (la prueba gratuita de Windsor lee 14) o no haya publicado en la ventana.
+        # Se anota como «sin lectura» (la revista lo cuenta aparte) y no como error para no llenar de rojo la revista cada lunes.
+        return {}, {"publicaciones": 0, "sin_lectura": True}
     return instagram_registros(filas, s, existentes)
 
 

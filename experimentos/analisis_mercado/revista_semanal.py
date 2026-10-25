@@ -546,7 +546,7 @@ def componer(as_of: dt.date, con_fotos: bool) -> tuple[str, str, Fotos, dict]:
     # --- 05 qué ha considerado
     h.append(seccion("05", "Qué ha considerado", "De dónde salen las fotos y qué filtros pasan antes de contar."))
     util = collections.Counter((v.get("referente") or "Biblioteca") for v in fotos_d.values() if not v.get("descartada"))
-    filas_c, sin_fotos, vistos = [], [], set()
+    filas_c, sin_fotos, sin_lectura, vistos = [], [], [], set()
     for s_ in fuentes_cfg:
         sid = hashlib.sha1(f"{s_['tipo']}|{s_['valor']}|{s_['referente']}".encode()).hexdigest()[:8]
         e = estado.get(sid, {})
@@ -562,6 +562,9 @@ def componer(as_of: dt.date, con_fotos: bool) -> tuple[str, str, Fotos, dict]:
         else:
             est = f'<span style="color:{OK}">ok</span>'
         n_ = util.get(s_["referente"], 0)
+        if e.get("sin_lectura") and n_ == 0 and not e.get("error"):
+            sin_lectura.append(s_["referente"])
+            continue
         if n_ == 0 and not e.get("error"):
             sin_fotos.append(f'{s_["referente"]} ({medio})')
             continue
@@ -573,7 +576,8 @@ def componer(as_of: dt.date, con_fotos: bool) -> tuple[str, str, Fotos, dict]:
     cab_c = f'<td style="font:700 11px {SANS};letter-spacing:.06em;color:{SUAVE}">FUENTE</td><td align="right" style="font:700 11px {SANS};letter-spacing:.06em;color:{SUAVE}">FOTOS ÚTILES</td><td align="right" style="font:700 11px {SANS};letter-spacing:.06em;color:{SUAVE}">ESTADO</td>'
     h.append(caja(f'<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>{cab_c}</tr>{"".join(t for _, t in filas_c)}</table>'
                   + nota(f'Además, tus {util.get("Biblioteca", 0)} fotos aprobadas (galería) sirven de muestra de referencia, sin fecha ni mercado. '
-                         + ("Sin ninguna foto útil hasta ahora: " + esc(", ".join(sin_fotos)) + "." if sin_fotos else "")), "14px 28px 0"))
+                         + ("Sin ninguna foto útil hasta ahora: " + esc(", ".join(sin_fotos)) + "." if sin_fotos else "")
+                         + (f' Instagram: {len(sin_lectura)} cuentas de las fuentes todavía no se leen (no están dadas de alta en el plan de lectura actual; no es un fallo).' if sin_lectura else "")), "14px 28px 0"))
     metodo = ["<b>Quién da el estilo:</b> la persona de referencia (la cuenta o el nombre en el titular), no la foto. No hay reconocimiento facial.",
               "<b>Qué foto entra:</b> persona con ropa visible (CLIP) y no repetida; las prendas se localizan con un detector DeepFashion2 y Florence-2; se ignoran los recuadros del «torso» y las prendas vistas a medias.",
               "<b>Qué dice cada prenda:</b> tipo, estampado, tejido y forma los estima Qwen3-VL de 8 000 millones en Kaggle, con tu vocabulario. Las fotos se suben a un dataset privado que se borra al terminar.",

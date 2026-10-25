@@ -80,6 +80,18 @@ class Pruebas(unittest.TestCase):
         self.assertIn("429", str(cm.exception))
         self.assertNotIn(CLAVE, str(cm.exception))
 
+    def test_clave_rechazada_por_windsor_da_mensaje_claro_sin_repetir_la_clave(self):
+        def abrir(req, timeout=0):
+            cuerpo = ('{"error":"Please check the API key used: ' + CLAVE + '","code":"user_error"}').encode()
+            raise urllib.error.HTTPError(req.full_url, 400, "Bad Request", {}, io.BytesIO(cuerpo))
+
+        with self.assertRaises(ValueError) as cm:
+            tp.windsor_filas(["gucci"], abrir=abrir)
+        msg = str(cm.exception)
+        self.assertIn("WINDSOR_API_KEY", msg)
+        self.assertIn("rechaz", msg)
+        self.assertNotIn(CLAVE, msg, "Windsor repite la clave en su mensaje: no puede acabar en el registro")
+
     def test_sin_clave_falla_con_mensaje_claro(self):
         del os.environ["WINDSOR_API_KEY"]
         with self.assertRaises(ValueError) as cm:
@@ -151,8 +163,8 @@ class Pruebas(unittest.TestCase):
             tp.windsor_filas = lambda handles, **kw: llamadas.append(handles) or {"gucci": [fila("gucci", "1")], "kidcudi": []}
             tp.instagram_registros = lambda filas, s, ex, **kw: ({"ig_1": {}}, {"publicaciones": len(filas)})
             self.assertEqual(tp.cosechar_instagram(fuente("gucci"), {})[1], {"publicaciones": 1})
-            with self.assertRaises(ValueError):
-                tp.cosechar_instagram(fuente("@KidCudi"), {})   # sin publicaciones: error legible, no silencio
+            # sin publicaciones (no dada de alta en el plan o sin publicar): NO es un error, se anota «sin lectura» y la revista lo cuenta aparte
+            self.assertEqual(tp.cosechar_instagram(fuente("@KidCudi"), {}), ({}, {"publicaciones": 0, "sin_lectura": True}))
             self.assertEqual(llamadas, [["gucci", "kidcudi"]], "una sola petición con las cuentas de tipo instagram, sin @ y en minúsculas")
             tp._IG_CACHE.clear()
 
