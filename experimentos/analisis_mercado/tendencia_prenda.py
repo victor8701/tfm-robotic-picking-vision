@@ -49,6 +49,7 @@ from PIL import Image
 AQUI = Path(__file__).resolve().parent
 sys.path.insert(0, str(AQUI))
 import mercado as m  # noqa: E402  (helpers de red, descarga, CLIP y pesos de la app)
+import instagram_meta as im  # noqa: E402  (lectura de Instagram con la app propia de Meta: Business Discovery)
 
 TD = Path(os.environ.get("TENDENCIA_DATOS") or AQUI / "tendencia_datos")
 m.CACHE, m.IMG = TD / "cache", TD / "cache" / "img"   # las funciones de cosecha de mercado.py escriben aquí, no en los datos de la app
@@ -258,6 +259,36 @@ def windsor_filas(handles: list[str], dias: int = IG_DIAS, abrir=urllib.request.
     return por
 
 
+def instagram_filas(handles: list[str], dias: int = IG_DIAS) -> dict[str, list[dict]]:
+    """De dónde salen las publicaciones: la app propia de Meta si hay META_IG_TOKEN (gratis, sin tope de cuentas) y Windsor (WINDSOR_API_KEY) para lo que Meta no lea o si Meta falla.
+    Si solo hay una de las dos claves se usa esa. Con las dos, lo de Meta manda. Solo falla si no se lee NADA y alguna de las dos dio error."""
+    meta, windsor = os.environ.get("META_IG_TOKEN", "").strip(), os.environ.get("WINDSOR_API_KEY", "").strip()
+    if not meta and not windsor:
+        raise ValueError("falta una clave de Instagram: META_IG_TOKEN (app propia de Meta) o WINDSOR_API_KEY (Windsor)")
+    por, fallos = {}, []
+    if meta:
+        try:
+            por, res = im.meta_filas(handles, meta, os.environ.get("META_IG_USER_ID", ""), dias)
+            print(f"   Instagram · Meta (token de {res['tipo_token']}, {res['detalle']}): publicaciones de {res['leidas']} de las {len(handles)} cuentas", flush=True)
+            for a in res["avisos"]:
+                print(f"   ⚠ Meta: {a}", flush=True)
+        except ValueError as e:   # im.MetaError es un ValueError: sin token ni direcciones en el texto
+            fallos.append(f"Meta: {e}")
+            print(f"   ⚠ {fallos[-1]}", flush=True)
+    faltan = [h for h in handles if h not in por]
+    if windsor and faltan:
+        try:
+            w = windsor_filas(faltan, dias=dias)
+            print(f"   Instagram · Windsor: publicaciones de {len(w)} de las {len(faltan)} cuentas que faltaban", flush=True)
+            por = {**w, **por}
+        except ValueError as e:
+            fallos.append(f"Windsor: {e}")
+            print(f"   ⚠ {fallos[-1]}", flush=True)
+    if not por and fallos:
+        raise ValueError("; ".join(fallos))
+    return por
+
+
 def _fecha_ig(ts) -> str | None:
     for fmt in ("%Y-%m-%dT%H:%M:%S%z", "%Y-%m-%dT%H:%M:%S.%f%z"):
         try:
@@ -307,11 +338,11 @@ def cosechar_instagram(s, existentes):
         cfg = json.loads(FUENTES.read_text(encoding="utf-8"))["fuentes"]
         pedidas = sorted({x["valor"].lstrip("@").lower() for x in cfg if x["tipo"] == "instagram"})
         try:
-            _IG_CACHE["filas"] = windsor_filas(pedidas)
+            _IG_CACHE["filas"] = instagram_filas(pedidas)
         except ValueError as e:
             _IG_CACHE["error"] = str(e)
             raise
-        print(f"   Instagram: Windsor devolvió publicaciones de {len(_IG_CACHE['filas'])} de las {len(pedidas)} cuentas de las fuentes", flush=True)
+        print(f"   Instagram: hay publicaciones de {len(_IG_CACHE['filas'])} de las {len(pedidas)} cuentas de las fuentes", flush=True)
     filas = _IG_CACHE["filas"].get(s["valor"].lstrip("@").lower(), [])
     if not filas:
         # No es un fallo: lo normal es que la cuenta no esté dada de alta en el plan actual (la prueba gratuita de Windsor lee 14) o no haya publicado en la ventana.
