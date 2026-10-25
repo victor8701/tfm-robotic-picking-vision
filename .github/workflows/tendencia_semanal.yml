@@ -76,7 +76,10 @@ jobs:
         shell: bash
         working-directory: codigo/experimentos/analisis_mercado
         env:
-          WINDSOR_API_KEY: ${{ secrets.WINDSOR_API_KEY }}   # fuente «instagram» (lectura oficial de Meta vía Windsor); si falta, esas fuentes se saltan con un aviso y el resto sigue
+          # fuente «instagram»: lectura oficial de Meta (Business Discovery) con la app propia (META_IG_TOKEN) y/o a través de Windsor (WINDSOR_API_KEY); si faltan las dos, esas fuentes se saltan con un aviso y el resto sigue
+          META_IG_TOKEN: ${{ secrets.META_IG_TOKEN }}
+          META_IG_USER_ID: ${{ secrets.META_IG_USER_ID }}
+          WINDSOR_API_KEY: ${{ secrets.WINDSOR_API_KEY }}
         run: python3 tendencia_prenda.py todo --sin-biblioteca 2>&1 | tee "$GITHUB_WORKSPACE/registro_semanal.txt"
 
       - name: Guardar los datos en la rama datos-tendencia
