@@ -293,6 +293,46 @@ class PruebasCombinacion(unittest.TestCase):
         self.tp.instagram_filas(["a"])
         self.assertNotIn("instagram", json.loads(f.read_text(encoding="utf-8")))
 
+    def test_un_fallo_imprevisto_del_lector_de_meta_no_quita_windsor(self):
+        os.environ["META_IG_TOKEN"] = TOKEN
+        os.environ["WINDSOR_API_KEY"] = "w" * 30
+        self._falsos(meta=KeyError("media"), windsor={"a": [{"de": "windsor"}]})
+        self.assertEqual(self.tp.instagram_filas(["a"])["a"][0]["de"], "windsor")
+        av = json.loads((self.tp.TD / "avisos.json").read_text(encoding="utf-8"))["instagram"]
+        self.assertIn("KeyError", av)
+        self.assertNotIn(TOKEN, av)
+
+    def test_si_el_lector_de_meta_falla_de_forma_imprevista_y_no_hay_windsor_se_dice_claro(self):
+        os.environ["META_IG_TOKEN"] = TOKEN
+        self._falsos(meta=TypeError("raro"))
+        with self.assertRaises(ValueError) as cm:
+            self.tp.instagram_filas(["a"])
+        self.assertIn("TypeError", str(cm.exception))
+        self.assertNotIn(TOKEN, str(cm.exception))
+
+    def test_cosechar_no_repite_la_lectura_tras_un_fallo_imprevisto(self):
+        os.environ["META_IG_TOKEN"] = TOKEN
+        cfg = Path(tempfile.mkdtemp()) / "f.json"
+        cfg.write_text(json.dumps({"fuentes": [{"tipo": "instagram", "valor": v, "referente": "R", "estilo": "lujo", "mercado": "US"} for v in ("a", "b", "c")]}), encoding="utf-8")
+        antes_f, antes_i = self.tp.FUENTES, self.tp.instagram_filas
+        veces = []
+        try:
+            self.tp.FUENTES = cfg
+            self.tp._IG_CACHE.clear()
+
+            def rota(handles, **kw):
+                veces.append(1)
+                raise RuntimeError("no debería ocurrir")
+
+            self.tp.instagram_filas = rota
+            for v in ("a", "b", "c"):
+                with self.assertRaises(Exception):
+                    self.tp.cosechar_instagram({"tipo": "instagram", "valor": v, "referente": "R", "estilo": "lujo", "mercado": "US"}, {})
+            self.assertEqual(len(veces), 1, "se lee una sola vez y el fallo se recuerda para el resto de cuentas")
+        finally:
+            self.tp.FUENTES, self.tp.instagram_filas = antes_f, antes_i
+            self.tp._IG_CACHE.clear()
+
     def test_meta_bien_y_windsor_caducado_no_es_un_error(self):
         os.environ["META_IG_TOKEN"] = TOKEN
         os.environ["WINDSOR_API_KEY"] = "w" * 30

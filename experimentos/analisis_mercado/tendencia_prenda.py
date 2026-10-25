@@ -292,6 +292,10 @@ def instagram_filas(handles: list[str], dias: int = IG_DIAS) -> dict[str, list[d
             fallos.append(f"Meta: {e}")
             print(f"   ⚠ {fallos[-1]}", flush=True)
             aviso_instagram(f"Instagram (app de Meta): {e}")
+        except Exception as e:  # noqa: BLE001 -- el lector de Meta es nuevo: un fallo imprevisto suyo no debe quitarnos Windsor
+            fallos.append(f"Meta: fallo imprevisto del lector ({type(e).__name__})")
+            print(f"   ⚠ {fallos[-1]}", flush=True)
+            aviso_instagram(f"Instagram (app de Meta): fallo imprevisto del lector ({type(e).__name__}); esa semana se lee solo con Windsor. Díselo a Claude.")
     faltan = [h for h in handles if h not in por]
     if windsor and faltan:
         try:
@@ -356,8 +360,8 @@ def cosechar_instagram(s, existentes):
         pedidas = sorted({x["valor"].lstrip("@").lower() for x in cfg if x["tipo"] == "instagram"})
         try:
             _IG_CACHE["filas"] = instagram_filas(pedidas)
-        except ValueError as e:
-            _IG_CACHE["error"] = str(e)
+        except Exception as e:  # noqa: BLE001 -- también un fallo imprevisto se recuerda: la lectura no se repite en cada una de las cuentas
+            _IG_CACHE["error"] = str(e) if isinstance(e, ValueError) else f"fallo imprevisto de la lectura de Instagram ({type(e).__name__})"
             raise
         print(f"   Instagram: hay publicaciones de {len(_IG_CACHE['filas'])} de las {len(pedidas)} cuentas de las fuentes", flush=True)
     filas = _IG_CACHE["filas"].get(s["valor"].lstrip("@").lower(), [])
