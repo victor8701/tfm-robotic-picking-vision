@@ -10,6 +10,8 @@ on:
   schedule:
     # Lunes 02:30 UTC (04:30 en España en horario de verano, 03:30 en invierno). En este repositorio GitHub suele retrasar las tareas programadas entre 2 y 7 horas.
     - cron: '30 2 * * 1'
+    # Segundo intento: GitHub retrasa o se salta a veces las tareas programadas. Si la primera ya mandó la revista de la semana, esta no la repite.
+    - cron: '30 5 * * 1'
 
 permissions:
   contents: write
@@ -103,6 +105,24 @@ jobs:
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
           MAIL_TO: ${{ secrets.MAIL_TO }}
         run: python3 revista_semanal.py enviar
+
+      - name: Marcar la edición como enviada
+        shell: bash
+        run: |
+          [ -f "$TENDENCIA_DATOS/ultima_revista.txt" ] || exit 0
+          cp "$TENDENCIA_DATOS/ultima_revista.txt" datos/ultima_revista.txt
+          cd datos
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add ultima_revista.txt
+          if git diff --staged --quiet; then exit 0; fi
+          git commit -m "Revista enviada: edición $(cat ultima_revista.txt)"
+          for i in 1 2 3 4 5; do
+            git push origin HEAD:datos-tendencia && exit 0
+            sleep $((i * 5))
+            git pull --rebase origin datos-tendencia || exit 1
+          done
+          exit 1
 
       - name: Aviso por correo si algo falla
         if: failure()
