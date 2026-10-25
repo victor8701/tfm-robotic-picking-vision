@@ -69,33 +69,45 @@ def prueba_meta() -> bool | None:
     if len(token) < 40 or " " in token or token.startswith(("'", '"')):
         dice(f"✘ El token guardado tiene un aspecto raro (longitud {len(token)}, con espacios o comillas). Un token de Meta mide ~200 caracteres y empieza por «EAA»: vuelve a copiarlo entero, sin comillas ni espacios.")
         return False
-    # 1) qué token es
-    st, d, _ = im.llamar("debug_token", {"input_token": token}, token)
-    info = d.get("data") if st == 200 and isinstance(d.get("data"), dict) else {}
-    if info:
-        tipo = {"USER": "de persona", "PAGE": "de página"}.get(str(info.get("type")), str(info.get("type")))
-        exp = info.get("expires_at")
-        caduca = "no caduca" if not exp else f"caduca el {datetime.fromtimestamp(exp, timezone.utc):%d-%m-%Y} (en {(datetime.fromtimestamp(exp, timezone.utc) - datetime.now(timezone.utc)).days} días)"
-        dice(f"Token {tipo}; {'válido' if info.get('is_valid') else 'NO válido'}; {caduca}.")
-        if not info.get("is_valid"):
+    # 1) qué token es (Meta deja mirar un token con él mismo)
+    ficha = im.ficha_token(token)
+    if ficha:
+        tipo = {"USER": "de persona", "PAGE": "de página"}.get(ficha["tipo"], ficha["tipo"] or "de tipo desconocido")
+        caduca = "no caduca" if not ficha["expira"] else f"caduca el {datetime.fromtimestamp(ficha['expira'], timezone.utc):%d-%m-%Y} (dentro de {ficha['dias']} días)"
+        dice(f"Token {tipo}; {'válido' if ficha['valido'] else 'NO válido'}; {caduca}.")
+        if not ficha["valido"]:
             dice("✘ Meta dice que el token ya no es válido: genera otro (guía, parte 4).")
             return False
-        faltan = [p for p in PERMISOS_NECESARIOS if p not in (info.get("scopes") or [])]
-        dice("Permisos del token: " + (", ".join(info.get("scopes") or []) or "(no se pudieron leer)"))
-        if faltan and info.get("scopes"):
+        dice("Permisos del token: " + (", ".join(ficha["permisos"]) or "(no se pudieron leer)"))
+        faltan = [p for p in PERMISOS_NECESARIOS if p not in ficha["permisos"]]
+        if faltan and ficha["permisos"]:
             dice(f"⚠ Faltan permisos: {', '.join(faltan)}. Al generar el token (guía, parte 3) hay que marcarlos todos; si no te dejaba, dímelo.")
+        if ficha["dias"] is not None and ficha["dias"] < 15:
+            dice(f"⚠ Al token le quedan {ficha['dias']} días: renuévalo pronto (guía, parte 4).")
     else:
         dice("(No se pudo leer la ficha del token; se sigue probando.)")
     # 2) qué cuenta de Instagram usa
     try:
-        tok, ig_id, tipo_tok, detalle = im.preparar(token, os.environ.get("META_IG_USER_ID", "").strip())
+        candidatos, ig_id, tipo_tok, detalle = im.preparar(token, os.environ.get("META_IG_USER_ID", "").strip())
     except im.MetaError as e:
         dice(f"✘ {e}")
         return False
-    dice(f"✔ Cuenta de Instagram encontrada: {ig_id} ({detalle}; token {'de página' if tipo_tok == 'página' else 'de persona, la tarea usa el token de la página que cuelga de él'}).")
-    # 3) Business Discovery con cuentas de muestra
+    dice(f"✔ Cuenta de Instagram encontrada: {ig_id} ({detalle}; el token es {'de página' if tipo_tok == 'página' else 'de persona: la tarea prueba primero ese y, si no vale, el de su página'}).")
     corte = datetime.now(timezone.utc) - timedelta(days=35)
     cuentas = cuentas_de_instagram()
+    tok = None
+    for k, cand in enumerate(candidatos):
+        nombre = "el token tal cual" if k == 0 else "el token de la página que cuelga de él"
+        try:
+            filas, _ = im.leer_cuenta(ig_id, "zara", cand, corte)
+            dice(f"✔ Business Discovery funciona con {nombre} (prueba con @zara: {len(filas)} filas).")
+            tok = tok or cand
+        except im.MetaError as e:
+            dice(f"✘ Con {nombre} no funciona: {e}")
+    if tok is None:
+        dice("✘ Ningún token vale para Business Discovery. Si el mensaje habla de permisos, repite la parte 3 marcando todos; si habla de «app review» o similar, dímelo.")
+        return False
+    # 3) Business Discovery con cuentas de muestra
     pruebas = cuentas if os.environ.get("PRUEBA_TODAS") == "1" else muestra(cuentas)
     dice(f"Business Discovery con {len(pruebas)} cuentas ({'todas las de las fuentes' if len(pruebas) == len(cuentas) else 'de muestra, una por casilla estilo/mercado'}):")
     leidas, sin, bajables, probadas, cab = 0, {}, 0, 0, {}

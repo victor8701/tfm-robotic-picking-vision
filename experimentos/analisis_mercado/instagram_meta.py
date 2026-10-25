@@ -36,7 +36,11 @@ COD_NO_DISPONIBLE = {110, 24}                # «Invalid user id»: la cuenta pe
 
 
 class MetaError(ValueError):
-    """Error que se puede enseñar tal cual: nunca lleva el token."""
+    """Error que se puede enseñar tal cual: nunca lleva el token. `tipo`: token | permisos | cupo | otro."""
+
+    def __init__(self, msg: str, tipo: str = "otro"):
+        super().__init__(msg)
+        self.tipo = tipo
 
 
 def _limpiar(txt: str, token: str) -> str:
@@ -94,9 +98,10 @@ def explicar(tipo: str, cod, msg: str) -> str:
     return f"Meta contestó con un error (código {cod}): {msg}"
 
 
-def preparar(token: str, ig_id_env: str = "", abrir=urllib.request.urlopen) -> tuple[str, str, str, str]:
+def preparar(token: str, ig_id_env: str = "", abrir=urllib.request.urlopen) -> tuple[list[str], str, str, str]:
     """Con el token que haya (de persona o de página) averigua la cuenta de Instagram a usar.
-    Devuelve (token de trabajo, id de la cuenta de Instagram, 'persona'|'página'|'desconocido', detalle). Lanza MetaError con un mensaje legible."""
+    Devuelve (tokens a probar por orden, id de la cuenta de Instagram, 'persona'|'página'|'desconocido', detalle). Lanza MetaError con un mensaje legible.
+    Con un token de persona se prueba primero ese (lo que dice la documentación de Business Discovery) y después el de la página que cuelga de él."""
     st, d, _ = llamar("me/accounts", {"fields": "name,access_token,instagram_business_account"}, token, abrir)
     if st == 200 and isinstance(d.get("data"), list):
         con_ig = [p for p in d["data"] if p.get("instagram_business_account")]
@@ -104,20 +109,33 @@ def preparar(token: str, ig_id_env: str = "", abrir=urllib.request.urlopen) -> t
             con_ig = [p for p in con_ig if str(p["instagram_business_account"].get("id")) == ig_id_env] or con_ig
         if not con_ig:
             raise MetaError("El token vale, pero ninguna de tus páginas de Facebook tiene una cuenta de Instagram profesional enlazada (o al generarlo no elegiste la página). "
-                            "Repite la parte 3 de la guía eligiendo la página «Tendencias Moda» y su Instagram.")
+                            "Repite la parte 3 de la guía eligiendo la página «Tendencias Moda» y su Instagram.", "permisos")
         p = con_ig[0]
-        return p.get("access_token") or token, str(p["instagram_business_account"]["id"]), "persona", f"página «{p.get('name', '?')}»"
+        candidatos = [token] + ([p["access_token"]] if p.get("access_token") and p["access_token"] != token else [])
+        return candidatos, str(p["instagram_business_account"]["id"]), "persona", f"página «{p.get('name', '?')}»"
     tipo, cod, msg = clasificar(d, token)
     if tipo in ("token", "cupo"):
-        raise MetaError(explicar(tipo, cod, msg))
+        raise MetaError(explicar(tipo, cod, msg), tipo)
     # ¿token de página? (me/accounts no existe para una página)
     st2, d2, _ = llamar("me", {"fields": "id,name,instagram_business_account"}, token, abrir)
     if st2 == 200 and isinstance(d2.get("instagram_business_account"), dict):
-        return token, str(d2["instagram_business_account"]["id"]), "página", f"página «{d2.get('name', '?')}»"
+        return [token], str(d2["instagram_business_account"]["id"]), "página", f"página «{d2.get('name', '?')}»"
     if ig_id_env and st2 == 200:
-        return token, ig_id_env, "desconocido", ""
+        return [token], ig_id_env, "desconocido", ""
     tipo2, cod2, msg2 = clasificar(d2, token)
-    raise MetaError(explicar(tipo2 if tipo2 != "otro" else tipo, cod2 or cod, msg2 or msg))
+    t = tipo2 if tipo2 != "otro" else tipo
+    raise MetaError(explicar(t, cod2 or cod, msg2 or msg), t)
+
+
+def ficha_token(token: str, abrir=urllib.request.urlopen) -> dict:
+    """Datos del token según Meta (`debug_token`; un token se puede mirar con él mismo): tipo, validez, caducidad y permisos. {} si no se pudo leer."""
+    st, d, _ = llamar("debug_token", {"input_token": token}, token, abrir)
+    info = d.get("data") if st == 200 and isinstance(d.get("data"), dict) else {}
+    if not info:
+        return {}
+    exp = info.get("expires_at") or 0
+    dias = None if not exp else (datetime.fromtimestamp(exp, timezone.utc) - datetime.now(timezone.utc)).days
+    return {"tipo": str(info.get("type") or ""), "valido": bool(info.get("is_valid")), "expira": exp or None, "dias": dias, "permisos": list(info.get("scopes") or [])}
 
 
 def _fecha_ok(ts, corte: datetime) -> bool:
@@ -159,7 +177,7 @@ def leer_cuenta(ig_id: str, usuario: str, token: str, corte: datetime, abrir=url
         if st != 200 or "business_discovery" not in d:
             tipo, cod, msg = clasificar(d, token)
             if tipo in ("token", "permisos", "cupo"):
-                raise MetaError(explicar(tipo, cod, msg))
+                raise MetaError(explicar(tipo, cod, msg), tipo)
             if tipo == "no_disponible":
                 return filas, {"motivo": "no es una cuenta profesional pública (o no existe)", "seguidores": seguidores, "cabeceras": cab}
             if st >= 500 or st == 0:
@@ -185,18 +203,33 @@ def leer_cuenta(ig_id: str, usuario: str, token: str, corte: datetime, abrir=url
 def meta_filas(handles: list[str], token: str, ig_id_env: str = "", dias: int = 35, abrir=urllib.request.urlopen, pausa: float = 0.4,
                ahora: datetime | None = None) -> tuple[dict[str, list[dict]], dict]:
     """Todas las cuentas por Business Discovery. Devuelve ({usuario en minúsculas: [filas]}, resumen) con resumen =
-    {'tipo_token', 'detalle', 'leidas', 'sin_lectura': {usuario: motivo}, 'avisos': [..]}. Un fallo de token/permisos al principio lanza MetaError;
-    si el cupo se agota a mitad, se devuelve lo leído y se avisa."""
+    {'tipo_token', 'detalle', 'leidas', 'sin_lectura': {usuario: motivo}, 'avisos': [..], 'ig_id', 'dias_restantes'}. Un fallo de token/permisos al principio lanza MetaError;
+    si el cupo se agota a mitad, se devuelve lo leído y se avisa. Si el token de persona no vale para Business Discovery pero el de su página sí, se cambia solo."""
     token = (token or "").strip()
     if not token:
-        raise MetaError("falta el secreto META_IG_TOKEN")
+        raise MetaError("falta el secreto META_IG_TOKEN", "token")
     ahora = ahora or datetime.now(timezone.utc)
     corte = ahora - timedelta(days=dias)
-    tok, ig_id, tipo_tok, detalle = preparar(token, (ig_id_env or "").strip(), abrir)
+    candidatos, ig_id, tipo_tok, detalle = preparar(token, (ig_id_env or "").strip(), abrir)
+    ficha = ficha_token(token, abrir)
     por, sin_lectura, avisos = collections.defaultdict(list), {}, []
+    usado = 0   # índice del token que funciona
+
+    def leer(h):
+        nonlocal usado
+        while True:
+            try:
+                return leer_cuenta(ig_id, h, candidatos[usado], corte, abrir)
+            except MetaError as e:
+                if e.tipo in ("permisos", "token") and usado + 1 < len(candidatos):
+                    usado += 1
+                    avisos.append("el token de persona no sirvió para Business Discovery; se usa el de la página")
+                    continue
+                raise
+
     for i, h in enumerate(handles):
         try:
-            filas, info = leer_cuenta(ig_id, h, tok, corte, abrir)
+            filas, info = leer(h)
         except MetaError as e:
             if i == 0:
                 raise
@@ -209,4 +242,5 @@ def meta_filas(handles: list[str], token: str, ig_id_env: str = "", dias: int = 
         else:
             sin_lectura[h] = info.get("motivo") or "sin publicaciones en la ventana"
         time.sleep(pausa)
-    return dict(por), {"tipo_token": tipo_tok, "detalle": detalle, "leidas": len(por), "sin_lectura": sin_lectura, "avisos": avisos, "ig_id": ig_id}
+    return dict(por), {"tipo_token": tipo_tok, "detalle": detalle, "leidas": len(por), "sin_lectura": sin_lectura, "avisos": sorted(set(avisos)), "ig_id": ig_id,
+                       "dias_restantes": ficha.get("dias"), "ficha": ficha, "token_usado": "persona" if usado == 0 and tipo_tok == "persona" else "página"}

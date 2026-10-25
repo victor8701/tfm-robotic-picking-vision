@@ -591,6 +591,11 @@ def componer(as_of: dt.date, con_fotos: bool) -> tuple[str, str, Fotos, dict]:
         pend.append("Conseguir fotos geek del mercado: hoy casi no hay (X, prensa y Reddit dan muy poco).")
     if sin_fuentes:
         pend.append("Elegir personas de referencia y fuentes de mercado para " + ", ".join(ESTILO[e] for e in sin_fuentes) + ".")
+    try:   # avisos de la cosecha (p. ej. el token de Instagram a punto de caducar): arriba del todo, en ámbar
+        for aviso in (json.loads((TD / "avisos.json").read_text(encoding="utf-8")) if (TD / "avisos.json").exists() else {}).values():
+            pend.insert(0, f'<b style="color:{AVISO}">Aviso:</b> {esc(str(aviso))}')
+    except Exception:  # noqa: BLE001
+        pass
     pend.append("Repetir la revisión «OK / más o menos / No» cada mes con recortes nuevos para seguir midiendo el acierto.")
     h.append(seccion("06", "Para la próxima", ""))
     h.append(caja('<ul style="margin:0;padding-left:18px;font:14px/1.55 ' + SANS + '">' + "".join(f'<li style="margin:0 0 6px">{s}</li>' for s in pend) + "</ul>", "10px 28px 0"))

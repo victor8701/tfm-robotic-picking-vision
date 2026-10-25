@@ -45,8 +45,9 @@ def media(i, tipo="IMAGE", ts="2026-10-20T10:00:00+0000", **extra):
 class Grafo:
     """Graph API de mentira: contesta por ruta y mira el campo `fields` pedido."""
 
-    def __init__(self, cuentas=None, accounts=None, me=None, errores=None):
+    def __init__(self, cuentas=None, accounts=None, me=None, errores=None, rechaza=None, debug=None):
         self.cuentas, self.accounts, self.me, self.errores = cuentas or {}, accounts, me, errores or {}
+        self.rechaza, self.debug = rechaza or {}, debug   # rechaza: {token: (HTTP, código, mensaje)} solo para Business Discovery
         self.peticiones = []
 
     def __call__(self, req, timeout=0):
@@ -55,6 +56,10 @@ class Grafo:
         ruta = u.path.split("/", 2)[2]
         campos = q.get("fields", [""])[0]
         self.peticiones.append((ruta, campos))
+        if ruta == "debug_token":
+            if self.debug is None:
+                raise error_http(req.full_url, 400, 100, "no")
+            return Resp(json.dumps({"data": self.debug}).encode())
         if ruta == "me/accounts":
             if self.accounts is None:
                 raise error_http(req.full_url, 400, 100, "(#100) Tried accessing nonexisting field (accounts) on node type (Page)")
@@ -65,6 +70,8 @@ class Grafo:
             return Resp(json.dumps(self.me).encode())
         m = re.search(r"business_discovery\.username\(([^)]+)\)", campos)
         usuario = m.group(1)
+        if q.get("access_token", [""])[0] in self.rechaza:
+            raise error_http(req.full_url, *self.rechaza[q["access_token"][0]])
         if usuario in self.errores:
             raise error_http(req.full_url, 400, *self.errores[usuario])
         paginas = self.cuentas.get(usuario)
@@ -84,13 +91,13 @@ PAGINA = [{"id": "pg1", "name": "Tendencias Moda", "access_token": "PAGTOKEN-no-
 class PruebasMeta(unittest.TestCase):
     def test_token_de_persona_busca_la_pagina_y_usa_su_token(self):
         g = Grafo(accounts=PAGINA)
-        tok, ig, tipo, det = im.preparar(TOKEN, abrir=g)
-        self.assertEqual((tok, ig, tipo), ("PAGTOKEN-no-caduca", "17841400000", "persona"))
+        cands, ig, tipo, det = im.preparar(TOKEN, abrir=g)
+        self.assertEqual((cands, ig, tipo), ([TOKEN, "PAGTOKEN-no-caduca"], "17841400000", "persona"), "primero el de persona (lo que dice la documentación), después el de la página")
         self.assertIn("Tendencias Moda", det)
 
     def test_token_de_pagina_se_reconoce(self):
         g = Grafo(accounts=None, me={"id": "pg1", "name": "Tendencias Moda", "instagram_business_account": {"id": "17841400000"}})
-        self.assertEqual(im.preparar(TOKEN, abrir=g)[:3], (TOKEN, "17841400000", "página"))
+        self.assertEqual(im.preparar(TOKEN, abrir=g)[:3], ([TOKEN], "17841400000", "página"))
 
     def test_persona_sin_paginas_con_instagram_da_un_mensaje_accionable(self):
         g = Grafo(accounts=[{"id": "p", "name": "Otra"}])
@@ -151,6 +158,28 @@ class PruebasMeta(unittest.TestCase):
         g2 = Grafo(accounts=PAGINA, cuentas={"zara": [[media(1), media(2)], [media(100)]]})
         im.meta_filas(["zara"], TOKEN, abrir=g2, pausa=0, ahora=AHORA)
         self.assertFalse(any(".after(" in c for _, c in g2.peticiones), "una página corta no pide más")
+
+    def test_si_el_token_de_persona_no_sirve_se_usa_el_de_la_pagina(self):
+        g = Grafo(accounts=PAGINA, cuentas={"gucci": [[media(1)]], "zara": [[media(2)]]}, rechaza={TOKEN: (403, 10, "(#10) Application does not have permission for this action")})
+        por, res = im.meta_filas(["gucci", "zara"], TOKEN, abrir=g, pausa=0, ahora=AHORA)
+        self.assertEqual(sorted(por), ["gucci", "zara"])
+        self.assertEqual(res["token_usado"], "página")
+        self.assertTrue(any("página" in a for a in res["avisos"]))
+
+    def test_si_ninguno_de_los_dos_tokens_sirve_el_error_dice_que_faltan_permisos(self):
+        g = Grafo(accounts=PAGINA, cuentas={"gucci": [[media(1)]]}, rechaza={TOKEN: (403, 10, "(#10) sin permiso"), "PAGTOKEN-no-caduca": (403, 10, "(#10) sin permiso")})
+        with self.assertRaises(im.MetaError) as cm:
+            im.meta_filas(["gucci"], TOKEN, abrir=g, pausa=0, ahora=AHORA)
+        self.assertEqual(cm.exception.tipo, "permisos")
+        self.assertIn("permiso", str(cm.exception))
+
+    def test_dias_restantes_del_token_de_persona(self):
+        import time as _t
+        g = Grafo(accounts=PAGINA, cuentas={"gucci": [[media(1)]]}, debug={"type": "USER", "is_valid": True, "expires_at": int(_t.time()) + 10 * 86400 + 600, "scopes": ["instagram_basic"]})
+        _, res = im.meta_filas(["gucci"], TOKEN, abrir=g, pausa=0, ahora=AHORA)
+        self.assertEqual(res["dias_restantes"], 10)
+        g2 = Grafo(accounts=PAGINA, cuentas={"gucci": [[media(1)]]}, debug={"type": "PAGE", "is_valid": True, "expires_at": 0, "scopes": []})
+        self.assertIsNone(im.meta_filas(["gucci"], TOKEN, abrir=g2, pausa=0, ahora=AHORA)[1]["dias_restantes"], "un token de página sin caducidad no avisa")
 
     def test_el_token_no_sale_en_ningun_error(self):
         def abrir_red(req, timeout=0):
@@ -231,6 +260,19 @@ class PruebasCombinacion(unittest.TestCase):
             self.tp.instagram_filas(["a"])
         self.assertIn("Meta", str(cm.exception))
         self.assertIn("Windsor", str(cm.exception))
+
+    def test_aviso_de_caducidad_se_guarda_y_se_quita(self):
+        os.environ["META_IG_TOKEN"] = TOKEN
+        f = self.tp.TD / "avisos.json"
+        if f.exists():
+            f.unlink()
+        llam = self._falsos(meta={"a": [{"x": 1}]})
+        self.tp.im.meta_filas = lambda handles, token, ig_id="", dias=35, **kw: ({"a": [{"x": 1}]}, {"tipo_token": "persona", "detalle": "x", "leidas": 1, "avisos": [], "dias_restantes": 7})
+        self.tp.instagram_filas(["a"])
+        self.assertIn("caduca en 7 días", json.loads(f.read_text(encoding="utf-8"))["instagram"])
+        self.tp.im.meta_filas = lambda handles, token, ig_id="", dias=35, **kw: ({"a": [{"x": 1}]}, {"tipo_token": "persona", "detalle": "x", "leidas": 1, "avisos": [], "dias_restantes": 50})
+        self.tp.instagram_filas(["a"])
+        self.assertNotIn("instagram", json.loads(f.read_text(encoding="utf-8")))
 
     def test_meta_bien_y_windsor_caducado_no_es_un_error(self):
         os.environ["META_IG_TOKEN"] = TOKEN

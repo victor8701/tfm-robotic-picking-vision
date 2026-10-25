@@ -259,6 +259,20 @@ def windsor_filas(handles: list[str], dias: int = IG_DIAS, abrir=urllib.request.
     return por
 
 
+def aviso_instagram(texto: str | None) -> None:
+    """Deja (o quita) un aviso de Instagram en `avisos.json`; la revista lo enseña en «Para la próxima». Nunca lleva claves."""
+    try:
+        f = TD / "avisos.json"
+        av = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+        if texto:
+            av["instagram"] = texto
+        else:
+            av.pop("instagram", None)
+        f.write_text(json.dumps(av, ensure_ascii=False, indent=1), encoding="utf-8")
+    except Exception:  # noqa: BLE001 -- un aviso no puede romper la cosecha
+        pass
+
+
 def instagram_filas(handles: list[str], dias: int = IG_DIAS) -> dict[str, list[dict]]:
     """De dónde salen las publicaciones: la app propia de Meta si hay META_IG_TOKEN (gratis, sin tope de cuentas) y Windsor (WINDSOR_API_KEY) para lo que Meta no lea o si Meta falla.
     Si solo hay una de las dos claves se usa esa. Con las dos, lo de Meta manda. Solo falla si no se lee NADA y alguna de las dos dio error."""
@@ -272,9 +286,12 @@ def instagram_filas(handles: list[str], dias: int = IG_DIAS) -> dict[str, list[d
             print(f"   Instagram · Meta (token de {res['tipo_token']}, {res['detalle']}): publicaciones de {res['leidas']} de las {len(handles)} cuentas", flush=True)
             for a in res["avisos"]:
                 print(f"   ⚠ Meta: {a}", flush=True)
+            d_ = res.get("dias_restantes")
+            aviso_instagram("Instagram (app de Meta): el token caduca en " + str(d_) + " días; renuévalo (guía de la app de Meta, parte 4)." if d_ is not None and d_ < 15 else None)
         except ValueError as e:   # im.MetaError es un ValueError: sin token ni direcciones en el texto
             fallos.append(f"Meta: {e}")
             print(f"   ⚠ {fallos[-1]}", flush=True)
+            aviso_instagram(f"Instagram (app de Meta): {e}")
     faltan = [h for h in handles if h not in por]
     if windsor and faltan:
         try:
