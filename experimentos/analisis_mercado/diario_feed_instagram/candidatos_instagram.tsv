@@ -47,7 +47,7 @@ cyber_techwear	geek	US	curaduría	61K	103	Cyber Techwear	leída	1	1 imagen		poco
 yugen.techwear	geek	US	marca	15K	323	YUGEN TECHWEAR	sin probar					
 zara	convencional	ES	marca (Inditex)	61,7M		Zara (marca)	leída	22	13 carruseles, 9 vídeos	8/8	fotos de la colección con modelos; mercado de Inditex	★
 bershka	urbano	ES	marca (Inditex)	11,5M		Bershka (marca)	leída	18	10 carruseles, 8 vídeos	8/8	línea joven/urbana	★
-pullandbear	urbano	ES	marca (Inditex)	7,7M		Pull&Bear (marca)	leída	13	10 carruseles, 3 vídeos	5/8	streetwear de Inditex · fuera de ★ v2: bershka cubre urbano ES	
+pullandbear	urbano	ES	marca (Inditex)	7,7M		Pull&Bear (marca)	leída	13	10 carruseles, 3 vídeos	5/8	streetwear de Inditex; tras tu ✕ a bershka, urbano España se queda sin fuente: esta es la que más fotos da de las españolas urbanas	★
 massimodutti	clasico	ES	marca (Inditex)	5,9M		Massimo Dutti (marca)	leída	16	10 carruseles, 6 vídeos	6/8	línea clásica/old money de Inditex	★
 ralphlauren	clasico	US	marca			Ralph Lauren (marca)	leída	16	12 carruseles, 3 vídeos, 1 imagen	(sin medir)	ya era fuente en X (clásico EEUU)	★
 hackettlondon	clasico	US	marca			Hackett London (marca)	leída	13	8 carruseles, 3 vídeos, 2 imágenes	(sin medir)	ya era fuente en X (clásico EEUU) · fuera de ★ v2: clásico EEUU ya cubierto por Ralph Lauren y Barbour	
@@ -74,11 +74,11 @@ scalperscompany	clasico	ES	marca (preppy español)	601K		marca	leída	10	4 carru
 thegrefg	geek	ES	streamer	7,7M		persona	leída	8	1 carrusel, 7 vídeos	(sin medir)	7 de 8 son vídeo: solo miniaturas, poco útil para prendas	
 ibai	geek	ES					NO se lee (personal, @ mal escrito o inactiva)				streamer: el @ bueno es ibaillanos (ibai no se lee)	
 koi	geek	ES					NO se lee (personal, @ mal escrito o inactiva)				equipo de esports: no se lee	
-elganso	clasico	ES					NO se lee (personal, @ mal escrito o inactiva)				marca: no se lee (¿@ distinto?)	
+elgansoinsta	old_money	ES	marca (moda preppy)	182K	4041	Ropa (marca)	leída	6	3 carruseles, 3 vídeos	(sin medir)	El @ bueno de El Ganso (antes probé «elganso», mal escrito): chaquetas acolchadas, punto de ochos, abrigos de paño; única candidata de old money España	★
 bimbaylola	bohemio	ES	marca (boho-chic español)	2,3M		marca	leída	13	9 carruseles, 3 imágenes, 1 vídeo	5/9	estilo femenino boho-chic; unas 6 fotos por semana; llena «bohemio España», que estaba vacía	★
 desigual	bohemio	ES	marca (colorista)	1,9M		marca	leída	7	4 carruseles, 3 vídeos	2/2	estampados de colores, estilo boho; unas 2 fotos por semana	
 g2esports	geek	US	equipo de esports (fundado en España)	1,4M		marca	leída	24	9 carruseles, 15 vídeos	5/8	contenido en inglés y de competición, poca ropa; no llena «geek España»	
-pedrodelhierro	clasico	ES					NO se lee (personal, @ mal escrito o inactiva)				marca: no se lee	
+pedrodelhierro_official	clasico	ES	marca (moda elegante)	240K	4135	Ropa (marca)	leída	12	6 carruseles, 6 vídeos	(sin medir)	El @ bueno de Pedro del Hierro (antes «pedrodelhierro», que no existe): punto, faldas y pantalones de pinza	
 ibaillanos	geek	ES	streamer	16,5M		persona	leída	9	2 carruseles, 7 vídeos	(sin medir)	streamer más grande de España: casi todo vídeo (2 fotos en 14 días)	
 auronplay	geek	ES	streamer	16,7M		persona	leída	3	3 vídeos	(sin medir)	solo vídeos en 14 días	
 knekro	geek	ES	streamer			persona	leída	0	—	—	sin publicaciones en 14 días	
@@ -87,3 +87,9 @@ boxlunchgifts	geek	US	tienda friki (Funko, Disney, Marvel, anime)	1,0M		marca	le
 blackcraftcult	geek	US	marca (alternativa/oculta)	1,3M		marca	leída	6	3 imágenes, 3 vídeos	1/1	poca producción: 1,5 fotos por semana	
 mango	convencional	ES	marca	15,7M		marca	leída	6	3 carruseles, 3 vídeos	2/2	sorprende la baja producción de fotos (1,5 por semana; el resto son vídeos)	
 stradivarius	urbano	ES	marca (Inditex, joven)	8,5M		marca	leída	15	8 carruseles, 7 vídeos	6/6	unas 4 fotos por semana y todas con persona; alternativa a bershka/pullandbear	
+adolfodominguezofficial	clasico	ES	marca (moda minimalista)	546K	4842	Ropa (marca)	leída	13	5 carruseles, 8 vídeos	(sin medir)	El @ bueno de Adolfo Domínguez; las últimas fotos enseñan sobre todo bolsos y punto	
+cortefiel_official	clasico	ES	marca (moda clásica)	307K	4045	Ropa (marca)	leída	12	12 carruseles	(sin medir)	Todo carruseles: camisas de cuadros, chinos, americanas y mocasines; el mejor ritmo de fotos de las españolas clásicas	★
+nudeproject	urbano	ES	marca (streetwear español)	1,6M	952	Comunidad	leída	5	3 carruseles, 2 vídeos	(sin medir)	Mezcla campañas con fotos de artistas; solo una parte enseña la ropa	
+scuffers.co	urbano	ES	marca (streetwear español)			Ropa (marca)	leída	6	5 carruseles, 1 vídeo	(sin medir)	Marca española de streetwear que Instagram sugirió tras seguir a Nude Project: plumíferos, vaqueros anchos, bolsos	★
+twojeys	urbano	ES	marca (denim y workwear español)			Ropa (marca)	leída	8	5 carruseles, 3 vídeos	(sin medir)	Denim y workwear con campañas en carretera; alguna foto es solo un accesorio	
+coldculture	urbano	ES	marca (streetwear español)			Ropa (marca)	leída	7	4 carruseles, 1 imagen, 2 vídeos	(sin medir)	Campañas de estudio con camuflaje, pantalones anchos y camisetas blancas	★

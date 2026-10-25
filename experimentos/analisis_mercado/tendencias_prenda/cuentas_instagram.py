@@ -33,8 +33,10 @@ def cargar(tsv: Path):
 def cmd_html(a):
     cuentas, no = cargar(Path(a.tsv))
     if getattr(a, "fotos", None):
+        p = Path(a.fotos)   # carpeta con <usuario>.jpg, o un .txt con un usuario por línea (las fotos ya están publicadas junto a la página)
+        con = {x.strip() for x in p.read_text(encoding="utf-8").splitlines() if x.strip()} if p.is_file() else {f.stem for f in p.glob("*.jpg")}
         for c in cuentas:
-            c["i"] = 1 if (Path(a.fotos) / f"{c['u']}.jpg").exists() else 0
+            c["i"] = 1 if c["u"] in con else 0
     pagina = PLANTILLA.read_text(encoding="utf-8").replace("__CUENTAS__", json.dumps(cuentas, ensure_ascii=False).replace("</", "<\\/")).replace("__NO__", json.dumps(no, ensure_ascii=False))
     Path(a.salida).write_text(pagina, encoding="utf-8")
     print(f"{len(cuentas)} cuentas ({sum(c['w'] == 'leida' for c in cuentas)} leídas por Windsor) y {len(no)} no legibles → {a.salida} ({len(pagina) // 1024} KB)")
@@ -79,7 +81,7 @@ def main():
     p = sub.add_parser("html")
     p.add_argument("--tsv", required=True)
     p.add_argument("--salida", required=True)
-    p.add_argument("--fotos", default=None, help="carpeta con una tira <usuario>.jpg por cuenta (se publica como f/<usuario>.jpg junto a la página)")
+    p.add_argument("--fotos", default=None, help="carpeta con una tira <usuario>.jpg por cuenta (se publica como f/<usuario>.jpg junto a la página) o un .txt con los usuarios que ya tienen foto")
     p = sub.add_parser("importar")
     p.add_argument("--dir", required=True)
     p.add_argument("--tsv", default=None, help="candidatos_instagram.tsv (necesario con --aplicar para el estilo/mercado propuestos)")

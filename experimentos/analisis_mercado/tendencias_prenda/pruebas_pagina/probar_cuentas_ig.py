@@ -1,7 +1,7 @@
 """
 Prueba de «Cuentas de Instagram» con la base falsa que congela los datos (fakedb_real.js), en móvil (390 px, táctil):
 ✓ / ✕ y deselección, cambiar estilo y mercado, «Ya la sigo», filtros, «solo las que faltan», recargar con lo guardado y seguir editando, sin desbordes ni errores.
-Uso:  python3 probar_cuentas_ig.py DIR_CON_fakedb_real.js PAGINA.html [capturas_dir]
+Uso:  [TOT=80] [ESTRELLAS=17] [FOTOS=77] python3 probar_cuentas_ig.py DIR_CON_fakedb_real.js PAGINA.html [capturas_dir]
 """
 import json, os, sys
 from pathlib import Path
@@ -30,6 +30,7 @@ with sync_playwright() as p:
         print("== esquema", esquema)
         n = pg.locator(".card").count()
         TOT = int(os.environ.get("TOT", "75"))
+        EST = int(os.environ.get("ESTRELLAS", "14"))  # cuentas con ★ en la propuesta
         comprobar(n == TOT, f"se pintan las {TOT} cuentas ({n})")
         comprobar(pg.evaluate("document.documentElement.scrollWidth <= window.innerWidth + 1"), "sin desborde horizontal en 390 px")
         if os.environ.get("FOTOS"):
@@ -71,11 +72,13 @@ with sync_playwright() as p:
         pg.locator("#solo").uncheck(); pg.wait_for_timeout(200)
         pg.locator('.fch[data-f="rec"]').tap(); pg.wait_for_timeout(200)
         nr = pg.locator(".card").count()
-        comprobar(nr == 14 and pg.locator(".card .star").count() == nr, f"el filtro ★ deja {nr} cuentas, todas con estrella")
+        comprobar(nr == EST and pg.locator(".card .star").count() == nr, f"el filtro ★ deja {nr} cuentas, todas con estrella")
         pg.locator('.fch[data-f="todas"]').tap(); pg.wait_for_timeout(200)
         if CAP and esquema == "dark":
             pg.screenshot(path=f"{CAP}/cuentas_{esquema}_arriba.png")
-        comprobar(not [e for e in errores if "font" not in e.lower()], "sin errores en la consola: " + str([e for e in errores if "font" not in e.lower()][:3]))
+        # sin las tiras de fotos en local (FOTOS sin definir) los ficheros f/*.jpg no existen: no cuenta como error
+        errs = [e for e in errores if "font" not in e.lower() and (os.environ.get("FOTOS") or "ERR_FILE_NOT_FOUND" not in e)]
+        comprobar(not errs, "sin errores en la consola: " + str(errs[:3]))
         # recargar con lo guardado
         seed = json.dumps(pg.evaluate("window.__docs"))
         pg2 = ctx.new_page()
@@ -92,7 +95,7 @@ with sync_playwright() as p:
             pg3.goto("file://" + str(envuelta)); pg3.wait_for_selector(".card", timeout=10000); pg3.wait_for_timeout(400)
             comprobar(pg3.locator("#bulk").count() == 0, f"fuera del filtro ★ no hay botón de aceptar ({nombre})")
             pg3.locator('.fch[data-f="rec"]').tap(); pg3.wait_for_timeout(300)
-            falta = 14 - len(seed3)
+            falta = EST - len(seed3)
             comprobar(pg3.locator("#bulk").count() == 1 and str(falta) in pg3.locator("#bulk").inner_text(), f"en el filtro ★ aparece «Aceptar las {falta} que faltan» ({nombre})")
             pg3.locator("#bulk").tap(); pg3.wait_for_timeout(1800)
             docs3 = pg3.evaluate("window.__docs")
@@ -100,7 +103,7 @@ with sync_playwright() as p:
             comprobar(len(si) == falta and all(pg3.locator(f'.card[data-u="{k}"] .star').count() == 1 for k in si), f"se guardan {falta} ✓ y solo de cuentas ★ ({len(si)})")
             if seed3:
                 comprobar(docs3["britishcountryheritage"]["r"] == "no", "no pisa el ✕ que ya había")
-            comprobar(pg3.locator("#bulk").count() == 0 and pg3.locator('.card[data-r="si"], .card[data-r="no"]').count() == 14, "el botón desaparece y las 14 quedan respondidas")
+            comprobar(pg3.locator("#bulk").count() == 0 and pg3.locator('.card[data-r="si"], .card[data-r="no"]').count() == EST, f"el botón desaparece y las {EST} quedan respondidas")
             comprobar(pg3.evaluate("document.documentElement.scrollWidth <= window.innerWidth + 1"), "sin desborde horizontal con el bloque nuevo")
             pg3.close()
         ctx.close()
