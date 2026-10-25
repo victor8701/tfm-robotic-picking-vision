@@ -5,7 +5,12 @@ name: Prueba de Instagram
 # Este fichero tiene que estar en la rama principal (main); el código de la prueba se toma de la rama analisis-mercado.
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      todas:
+        description: 'Probar con Meta las 68 cuentas de las fuentes (gasta unas 70 de las ~200 peticiones por hora de la app); si no, solo unas cuentas de muestra'
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -15,7 +20,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
+      META_IG_TOKEN: ${{ secrets.META_IG_TOKEN }}
+      META_IG_USER_ID: ${{ secrets.META_IG_USER_ID }}
       WINDSOR_API_KEY: ${{ secrets.WINDSOR_API_KEY }}
+      PRUEBA_TODAS: ${{ inputs.todas && '1' || '0' }}
     steps:
       - name: Código (rama analisis-mercado)
         uses: actions/checkout@v4
