@@ -26,7 +26,9 @@ BASE = f"https://graph.facebook.com/{VERSION}/"
 MEDIA_POR_PAGINA = 50     # publicaciones por petición (con 35 días de ventana casi todas las cuentas caben en una página)
 PAGINAS_MAX = 2           # páginas como mucho por cuenta
 HIJOS_MAX = 4             # fotos de un carrusel que se leen como filas aparte (como hace Windsor)
-CAMPOS_MEDIA = "id,media_type,media_url,thumbnail_url,permalink,timestamp,caption,like_count,comments_count,children{id,media_type,media_url}"
+CAMPOS_MEDIA = ["id", "media_type", "media_url", "thumbnail_url", "permalink", "timestamp", "caption", "like_count", "comments_count", "children{id,media_type,media_url}"]
+CAMPOS_PRESCINDIBLES = {"thumbnail_url", "caption", "like_count", "comments_count", "children{id,media_type,media_url}", "permalink"}   # si Meta dice que uno no existe en Business Discovery, se quita y se sigue
+_CAMPOS_VIVOS = list(CAMPOS_MEDIA)   # los que funcionan (se van quitando los que Meta rechace); se arranca de cero en cada ejecución
 
 # códigos de error de la API de Meta que importan aquí
 COD_TOKEN = {190, 102, 2500}                 # token caducado, sin sesión o mal copiado
@@ -166,14 +168,29 @@ def filas_de_media(usuario: str, seguidores, medios: list[dict], corte: datetime
     return out
 
 
+def _campo_inexistente(cuerpo: dict) -> str | None:
+    """Si Meta dice «Tried accessing nonexisting field (X)» devuelve el campo X (se quita de la consulta y se repite)."""
+    import re
+    msg = str(((cuerpo or {}).get("error") or {}).get("message") or "")
+    m = re.search(r"nonexisting field \(([^)]+)\)", msg)
+    return m.group(1) if m else None
+
+
 def leer_cuenta(ig_id: str, usuario: str, token: str, corte: datetime, abrir=urllib.request.urlopen) -> tuple[list[dict], dict]:
     """Una cuenta por Business Discovery (hasta PAGINAS_MAX páginas). Devuelve (filas, info) con info = {'seguidores', 'cabeceras'} o lanza MetaError si el fallo es de token/permisos/cupo.
-    Si la cuenta no se puede leer (no profesional, privada, inexistente) devuelve ([], {'motivo': ...})."""
+    Si la cuenta no se puede leer (no profesional, privada, inexistente) devuelve ([], {'motivo': ...}). Si Meta rechaza algún campo opcional, se quita y se repite la petición."""
     filas, seguidores, cursor, cab = [], None, None, {}
     for pagina in range(PAGINAS_MAX):
-        media = f"media.limit({MEDIA_POR_PAGINA})" + (f".after({cursor})" if cursor else "") + "{" + CAMPOS_MEDIA + "}"
-        campos = f"business_discovery.username({usuario}){{username,followers_count,media_count,{media}}}"
-        st, d, cab = llamar(ig_id, {"fields": campos}, token, abrir)
+        for _intento in range(len(CAMPOS_PRESCINDIBLES) + 2):
+            media = f"media.limit({MEDIA_POR_PAGINA})" + (f".after({cursor})" if cursor else "") + "{" + ",".join(_CAMPOS_VIVOS) + "}"
+            campos = f"business_discovery.username({usuario}){{username,followers_count,media_count,{media}}}"
+            st, d, cab = llamar(ig_id, {"fields": campos}, token, abrir)
+            malo = _campo_inexistente(d) if st != 200 else None
+            hijo = next((c for c in _CAMPOS_VIVOS if malo and (c == malo or c.startswith(malo + "{"))), None)
+            if hijo and hijo in CAMPOS_PRESCINDIBLES:
+                _CAMPOS_VIVOS.remove(hijo)   # p. ej. «thumbnail_url» o «children» no existen en Business Discovery: se sigue sin ellos
+                continue
+            break
         if st != 200 or "business_discovery" not in d:
             tipo, cod, msg = clasificar(d, token)
             if tipo in ("token", "permisos", "cupo"):
@@ -183,9 +200,7 @@ def leer_cuenta(ig_id: str, usuario: str, token: str, corte: datetime, abrir=url
             if st >= 500 or st == 0:
                 time.sleep(3)
                 st, d, cab = llamar(ig_id, {"fields": campos}, token, abrir)
-                if st == 200 and "business_discovery" in d:
-                    pass
-                else:
+                if not (st == 200 and "business_discovery" in d):
                     return filas, {"motivo": f"Meta falló (HTTP {st})", "seguidores": seguidores, "cabeceras": cab}
             else:
                 return filas, {"motivo": f"error de Meta {cod}: {msg}"[:160], "seguidores": seguidores, "cabeceras": cab}
@@ -210,6 +225,7 @@ def meta_filas(handles: list[str], token: str, ig_id_env: str = "", dias: int = 
         raise MetaError("falta el secreto META_IG_TOKEN", "token")
     ahora = ahora or datetime.now(timezone.utc)
     corte = ahora - timedelta(days=dias)
+    _CAMPOS_VIVOS[:] = CAMPOS_MEDIA   # cada ejecución empieza pidiendo todos los campos
     candidatos, ig_id, tipo_tok, detalle = preparar(token, (ig_id_env or "").strip(), abrir)
     ficha = ficha_token(token, abrir)
     por, sin_lectura, avisos = collections.defaultdict(list), {}, []

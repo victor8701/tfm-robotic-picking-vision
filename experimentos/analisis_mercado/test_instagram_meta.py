@@ -181,6 +181,25 @@ class PruebasMeta(unittest.TestCase):
         g2 = Grafo(accounts=PAGINA, cuentas={"gucci": [[media(1)]]}, debug={"type": "PAGE", "is_valid": True, "expires_at": 0, "scopes": []})
         self.assertIsNone(im.meta_filas(["gucci"], TOKEN, abrir=g2, pausa=0, ahora=AHORA)[1]["dias_restantes"], "un token de página sin caducidad no avisa")
 
+    def test_si_meta_rechaza_un_campo_opcional_se_quita_y_se_sigue(self):
+        veces = {"n": 0}
+        base = Grafo(accounts=PAGINA, cuentas={"zara": [[media(1)]]})
+
+        def abrir(req, timeout=0):
+            campos = urllib.parse.parse_qs(urllib.parse.urlparse(req.full_url).query).get("fields", [""])[0]
+            if "business_discovery" in campos and ("thumbnail_url" in campos or "children" in campos):
+                veces["n"] += 1
+                malo = "thumbnail_url" if "thumbnail_url" in campos else "children"
+                raise urllib.error.HTTPError(req.full_url, 400, "x", {}, io.BytesIO(json.dumps({"error": {"code": 100, "message": f"(#100) Tried accessing nonexisting field ({malo}) on node type (IGMedia)"}}).encode()))
+            return base(req, timeout)
+
+        por, _ = im.meta_filas(["zara"], TOKEN, abrir=abrir, pausa=0, ahora=AHORA)
+        self.assertEqual(len(por["zara"]), 1)
+        self.assertEqual(veces["n"], 2, "una vez por campo rechazado; después se recuerda")
+        por2, _ = im.meta_filas(["zara"], TOKEN, abrir=abrir, pausa=0, ahora=AHORA)
+        self.assertEqual(veces["n"], 4, "cada ejecución vuelve a empezar pidiéndolos todos")
+        self.assertEqual(len(por2["zara"]), 1)
+
     def test_el_token_no_sale_en_ningun_error(self):
         def abrir_red(req, timeout=0):
             raise OSError("fallo con " + req.full_url)
