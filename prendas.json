@@ -67651,5 +67651,5457 @@
     }
    }
   ]
+ },
+ "ig_17882521305626058": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Jersey",
+    "p_tipo": 0.546,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "beige",
+    "visible": true,
+    "caja": [
+     220.6,
+     291.8,
+     712.7,
+     781.6
+    ],
+    "tipo_clip": "Jersey",
+    "vlm": {
+     "tipo": "Jersey",
+     "estampado": "otro",
+     "tejido": "punto",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.589,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     291.5,
+     647.8,
+     582.7,
+     1006.7
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "denim (vaquero)",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17960343828251458": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.887,
+    "cat": "cuerpo_entero",
+    "deteccion": "long_sleeved_dress",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     346.7,
+     268.2,
+     487.1,
+     499.9
+    ],
+    "tipo_clip": "Mono",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17909674188591388": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Plumas",
+    "p_tipo": 0.857,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "rojo",
+    "visible": true,
+    "caja": [
+     49.0,
+     403.9,
+     502.0,
+     841.5
+    ],
+    "tipo_clip": "Plumas",
+    "vlm": {
+     "tipo": "Plumas",
+     "estampado": "liso",
+     "tejido": "técnico / impermeable",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.753,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     128.7,
+     782.0,
+     435.1,
+     1023.5
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "denim (vaquero)",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18125953622482550": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.849,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     213.1,
+     96.7,
+     547.3,
+     845.6
+    ],
+    "tipo_clip": "Abrigo",
+    "vlm": {
+     "tipo": "Vestido",
+     "estampado": "cuadros",
+     "tejido": "punto",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.724,
+    "cat": "cuerpo_entero",
+    "deteccion": "vest_dress",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     277.3,
+     105.2,
+     500.4,
+     845.6
+    ],
+    "tipo_clip": "Vestido",
+    "vlm": {
+     "tipo": "Vestido",
+     "estampado": "cuadros",
+     "tejido": "punto",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.604,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "negro",
+    "visible": false,
+    "caja": [
+     340.6,
+     845.3,
+     420.5,
+     1022.5
+    ]
+   }
+  ]
+ },
+ "ig_17905434477356120": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.903,
+    "cat": "cuerpo_entero",
+    "deteccion": "long_sleeved_dress",
+    "color": "lavanda",
+    "visible": true,
+    "caja": [
+     52.7,
+     201.4,
+     424.7,
+     1021.8
+    ],
+    "tipo_clip": "Mono",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "denim (vaquero)",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18426090160149052": {
+  "n_personas": 3,
+  "prendas": [
+   {
+    "tipo": "Zapatos de vestir",
+    "p_tipo": 0.58,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     3.5,
+     721.4,
+     142.0,
+     841.2
+    ],
+    "tipo_clip": "Zapatos planos de vestir",
+    "vlm": {
+     "tipo": "Zapatos de vestir",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "no aplica",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.858,
+    "cat": "ropa_inferior",
+    "deteccion": "pants (grounding)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     0.1,
+     520.7,
+     132.1,
+     813.9
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.537,
+    "cat": "ropa_superior",
+    "deteccion": "shirt (grounding)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     0.1,
+     304.1,
+     83.7,
+     534.3
+    ],
+    "tipo_clip": "Abrigo",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18101565623279907": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Plumas",
+    "p_tipo": 0.728,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     255.3,
+     179.6,
+     575.8,
+     535.4
+    ],
+    "tipo_clip": "Plumas",
+    "vlm": {
+     "tipo": "Plumas",
+     "estampado": "liso",
+     "tejido": "técnico / impermeable",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.951,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     295.2,
+     468.8,
+     519.5,
+     951.1
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.705,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     311.6,
+     916.0,
+     504.9,
+     962.0
+    ],
+    "tipo_clip": "Zapatos planos de vestir",
+    "vlm": {
+     "tipo": "Botas",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "no aplica",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18629223586036059": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.856,
+    "cat": "ropa_inferior",
+    "deteccion": "skirt",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     0.0,
+     6.1,
+     818.8,
+     608.2
+    ],
+    "tipo_clip": "Short",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18428415055149586": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.48,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "rojo",
+    "visible": true,
+    "caja": [
+     134.5,
+     308.8,
+     273.1,
+     404.9
+    ],
+    "tipo_clip": "Abrigo",
+    "vlm": {
+     "tipo": "Camisa",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.473,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "rojo",
+    "visible": true,
+    "caja": [
+     356.2,
+     274.0,
+     452.2,
+     405.0
+    ],
+    "tipo_clip": "Abrigo",
+    "vlm": {
+     "tipo": "Camisa",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Abrigo",
+    "p_tipo": 0.346,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "rojo",
+    "visible": false,
+    "caja": [
+     270.2,
+     324.2,
+     402.0,
+     405.0
+    ]
+   },
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.283,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "rojo",
+    "visible": true,
+    "caja": [
+     0.4,
+     320.1,
+     124.1,
+     405.0
+    ],
+    "tipo_clip": "Chaqueta",
+    "vlm": {
+     "tipo": "Camisa",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.303,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "rojo",
+    "visible": true,
+    "caja": [
+     424.2,
+     323.0,
+     543.2,
+     404.9
+    ],
+    "tipo_clip": "Chaqueta",
+    "vlm": {
+     "tipo": "Camisa",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Abrigo",
+    "p_tipo": 0.233,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "rojo",
+    "visible": false,
+    "caja": [
+     565.5,
+     327.9,
+     681.9,
+     404.7
+    ]
+   }
+  ]
+ },
+ "ig_18119041822760728": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.542,
+    "cat": "ropa_inferior",
+    "deteccion": "pants (grounding)",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     72.1,
+     591.4,
+     676.3,
+     1022.5
+    ],
+    "tipo_clip": "Short",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18394444165164518": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Plumas",
+    "p_tipo": 0.265,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     142.6,
+     171.9,
+     521.5,
+     557.5
+    ],
+    "tipo_clip": "Chaqueta",
+    "vlm": {
+     "tipo": "Plumas",
+     "estampado": "liso",
+     "tejido": "técnico / impermeable",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.469,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": false,
+    "caja": [
+     196.6,
+     491.9,
+     467.7,
+     575.6
+    ]
+   }
+  ]
+ },
+ "ig_18077752457573853": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.423,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     136.6,
+     248.2,
+     476.8,
+     595.2
+    ],
+    "tipo_clip": "Abrigo",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "otro",
+     "tejido": "cuero / vinilo",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.956,
+    "cat": "ropa_inferior",
+    "deteccion": "skirt",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     223.7,
+     436.4,
+     438.0,
+     657.8
+    ],
+    "tipo_clip": "Falda",
+    "vlm": {
+     "tipo": "Falda",
+     "estampado": "otro",
+     "tejido": "cuero / vinilo",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.987,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     245.7,
+     757.2,
+     382.8,
+     1006.1
+    ],
+    "tipo_clip": "Botas",
+    "vlm": {
+     "tipo": "Botas",
+     "estampado": "otro",
+     "tejido": "cuero / vinilo",
+     "forma": "no aplica",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18118309702992984": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Jersey",
+    "p_tipo": 0.293,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     326.2,
+     234.1,
+     661.1,
+     529.0
+    ],
+    "tipo_clip": "Polo",
+    "vlm": {
+     "tipo": "Jersey",
+     "estampado": "liso",
+     "tejido": "punto",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.401,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     418.1,
+     519.7,
+     572.0,
+     888.2
+    ],
+    "tipo_clip": "Legging/Malla",
+    "vlm": {
+     "tipo": "Falda",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.862,
+    "cat": "ropa_inferior",
+    "deteccion": "skirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     358.0,
+     515.6,
+     603.6,
+     726.4
+    ],
+    "tipo_clip": "Falda",
+    "vlm": {
+     "tipo": "Falda",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Zapatos de vestir",
+    "p_tipo": 0.475,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     391.3,
+     887.3,
+     601.0,
+     997.9
+    ],
+    "tipo_clip": "Zapatos planos de vestir",
+    "vlm": {
+     "tipo": "Zapatos de vestir",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "pr_c37f350ffd": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.602,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     291.2,
+     249.2,
+     543.6,
+     449.5
+    ],
+    "tipo_clip": "Chaqueta",
+    "vlm": {
+     "tipo": "Camiseta manga larga",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "pr_2ddaeb8e7f": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.978,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     219.6,
+     144.0,
+     473.9,
+     766.1
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.317,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     123.1,
+     0.5,
+     564.9,
+     264.4
+    ],
+    "tipo_clip": "Camisa",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Zapatos planos de vestir",
+    "p_tipo": 0.538,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "negro",
+    "visible": false,
+    "caja": [
+     272.9,
+     690.0,
+     374.3,
+     766.8
+    ]
+   }
+  ]
+ },
+ "rd_1xf684v": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.602,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     259.0,
+     453.4,
+     470.8,
+     908.9
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "rd_1xf1s32": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.457,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     84.6,
+     246.0,
+     671.3,
+     746.2
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Botas",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "no aplica",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.499,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     261.7,
+     289.3,
+     674.4,
+     754.2
+    ],
+    "tipo_clip": "Botas",
+    "vlm": {
+     "tipo": "Botas",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "no aplica",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.228,
+    "cat": "ropa_superior",
+    "deteccion": "shirt (grounding)",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     263.4,
+     288.3,
+     674.4,
+     753.2
+    ],
+    "tipo_clip": "Americana",
+    "vlm": {
+     "tipo": "Botas",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "no aplica",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "tw_2114653141325299732_4": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.754,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "rojo",
+    "visible": true,
+    "caja": [
+     0.2,
+     601.4,
+     817.1,
+     1021.6
+    ],
+    "tipo_clip": "Plumas",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "técnico / impermeable",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17870804697646093": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Jersey",
+    "p_tipo": 0.86,
+    "cat": "cuerpo_entero",
+    "deteccion": "long_sleeved_dress",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     49.6,
+     345.5,
+     759.3,
+     1001.6
+    ],
+    "tipo_clip": "Vestido",
+    "vlm": {
+     "tipo": "Jersey",
+     "estampado": "gráfico / dibujo",
+     "tejido": "punto",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Jersey",
+    "p_tipo": 0.719,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     101.3,
+     347.6,
+     765.9,
+     747.3
+    ],
+    "tipo_clip": "Jersey",
+    "vlm": {
+     "tipo": "Jersey",
+     "estampado": "gráfico / dibujo",
+     "tejido": "punto",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18384140350225779": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Jersey",
+    "p_tipo": 0.72,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "navy",
+    "visible": true,
+    "caja": [
+     176.0,
+     215.7,
+     328.8,
+     397.3
+    ],
+    "tipo_clip": "Jersey",
+    "vlm": {
+     "tipo": "Jersey",
+     "estampado": "liso",
+     "tejido": "punto",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.728,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "beige",
+    "visible": true,
+    "caja": [
+     211.1,
+     362.9,
+     339.2,
+     511.2
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.992,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "verde",
+    "visible": true,
+    "caja": [
+     294.8,
+     489.8,
+     367.8,
+     605.7
+    ],
+    "tipo_clip": "Botas",
+    "vlm": {
+     "tipo": "Botas",
+     "estampado": "liso",
+     "tejido": "no se distingue",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17972613870026965": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Hoodie",
+    "p_tipo": 0.894,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "navy",
+    "visible": true,
+    "caja": [
+     390.7,
+     147.2,
+     738.4,
+     514.7
+    ],
+    "tipo_clip": "Sudadera",
+    "vlm": {
+     "tipo": "Hoodie",
+     "estampado": "texto / logo",
+     "tejido": "algodón",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.97,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     468.4,
+     482.3,
+     720.8,
+     943.2
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "felpa / polar",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Zapatillas deportivas",
+    "p_tipo": 0.64,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     496.7,
+     902.7,
+     703.1,
+     1010.2
+    ],
+    "tipo_clip": "Zapatillas casual/lifestyle",
+    "vlm": {
+     "tipo": "Zapatillas deportivas",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18099485195539667": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Jersey",
+    "p_tipo": 0.816,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     57.3,
+     289.8,
+     734.6,
+     1024.0
+    ],
+    "tipo_clip": "Jersey",
+    "vlm": {
+     "tipo": "Jersey",
+     "estampado": "liso",
+     "tejido": "punto",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Jersey",
+    "p_tipo": 0.838,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     52.8,
+     301.9,
+     720.2,
+     1024.0
+    ],
+    "tipo_clip": "Jersey",
+    "vlm": {
+     "tipo": "Jersey",
+     "estampado": "liso",
+     "tejido": "punto",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18047512211816171": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.562,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     187.7,
+     259.4,
+     526.8,
+     478.2
+    ],
+    "tipo_clip": "Sudadera",
+    "vlm": {
+     "tipo": "Camiseta manga larga",
+     "estampado": "gráfico / dibujo",
+     "tejido": "algodón",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.824,
+    "cat": "ropa_inferior",
+    "deteccion": "skirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     285.3,
+     447.7,
+     446.0,
+     554.1
+    ],
+    "tipo_clip": "Short",
+    "vlm": {
+     "tipo": "Falda",
+     "estampado": "liso",
+     "tejido": "punto",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Sandalias",
+    "p_tipo": 0.802,
+    "cat": "calzado",
+    "deteccion": "footwear (x3)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     188.1,
+     847.4,
+     436.9,
+     901.6
+    ],
+    "tipo_clip": "Sandalias",
+    "vlm": {
+     "tipo": "Sandalias",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "no aplica",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18108028940262934": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.471,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     2.8,
+     1.6,
+     464.4,
+     574.5
+    ],
+    "tipo_clip": "Abrigo",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17987836412877952": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.466,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     79.3,
+     0.6,
+     753.9,
+     719.6
+    ],
+    "tipo_clip": "Chaqueta",
+    "vlm": {
+     "tipo": "Camisa",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.878,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     177.7,
+     475.4,
+     622.4,
+     1021.5
+    ],
+    "tipo_clip": "Falda",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18109454792332440": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camiseta de tirantes",
+    "p_tipo": 0.405,
+    "cat": "ropa_superior",
+    "deteccion": "vest",
+    "color": "amarillo",
+    "visible": true,
+    "caja": [
+     114.8,
+     574.6,
+     654.9,
+     1023.4
+    ],
+    "tipo_clip": "Camiseta de tirantes",
+    "vlm": {
+     "tipo": "Camiseta de tirantes",
+     "estampado": "gráfico / dibujo",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Camiseta de tirantes",
+    "p_tipo": 0.575,
+    "cat": "ropa_inferior",
+    "deteccion": "pants (grounding)",
+    "color": "amarillo",
+    "visible": true,
+    "caja": [
+     115.6,
+     564.7,
+     667.9,
+     1022.5
+    ],
+    "tipo_clip": "Short",
+    "vlm": {
+     "tipo": "Camiseta de tirantes",
+     "estampado": "gráfico / dibujo",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17994446745034500": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.526,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "rosa",
+    "visible": true,
+    "caja": [
+     49.3,
+     24.4,
+     514.9,
+     432.0
+    ],
+    "tipo_clip": "Camisa",
+    "vlm": {
+     "tipo": "Camisa",
+     "estampado": "texto / logo",
+     "tejido": "algodón",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.874,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     274.2,
+     361.8,
+     528.7,
+     704.6
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "rayas",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Zapatos de vestir",
+    "p_tipo": 0.585,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     459.3,
+     669.3,
+     507.4,
+     711.3
+    ],
+    "tipo_clip": "Botas",
+    "vlm": {
+     "tipo": "Zapatos de vestir",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "no aplica",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17883581907524181": {
+  "n_personas": 1,
+  "prendas": []
+ },
+ "ig_17871193977645511": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.939,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     142.0,
+     411.6,
+     532.5,
+     1023.2
+    ],
+    "tipo_clip": "Falda",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.227,
+    "cat": "ropa_superior",
+    "deteccion": "shirt (grounding)",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     138.4,
+     340.5,
+     545.3,
+     1022.5
+    ],
+    "tipo_clip": "Camiseta manga larga",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18137909161711399": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.539,
+    "cat": "cuerpo_entero",
+    "deteccion": "long_sleeved_dress",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     87.1,
+     58.3,
+     480.8,
+     883.3
+    ],
+    "tipo_clip": "Vestido",
+    "vlm": {
+     "tipo": "Vestido",
+     "estampado": "rayas",
+     "tejido": "algodón",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.932,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     265.2,
+     816.6,
+     385.6,
+     975.4
+    ],
+    "tipo_clip": "Botas",
+    "vlm": {
+     "tipo": "Botas",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "no aplica",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18132830851751639": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Camiseta de tirantes",
+    "p_tipo": 0.533,
+    "cat": "ropa_superior",
+    "deteccion": "vest",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     291.6,
+     173.0,
+     536.4,
+     471.7
+    ],
+    "tipo_clip": "Chaleco sin mangas",
+    "vlm": {
+     "tipo": "Camiseta de tirantes",
+     "estampado": "otro",
+     "tejido": "seda / satén",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.888,
+    "cat": "ropa_inferior",
+    "deteccion": "skirt",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     350.4,
+     440.7,
+     579.2,
+     715.6
+    ],
+    "tipo_clip": "Falda",
+    "vlm": {
+     "tipo": "Falda",
+     "estampado": "otro",
+     "tejido": "seda / satén",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "pr_38d9f7757a": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.537,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     371.8,
+     318.5,
+     695.4,
+     575.3
+    ],
+    "tipo_clip": "Chaqueta",
+    "vlm": {
+     "tipo": "Camiseta manga larga",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "tw_2114653141325299732_3": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Legging/Malla",
+    "p_tipo": 0.83,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     209.1,
+     391.2,
+     819.0,
+     1008.8
+    ],
+    "tipo_clip": "Legging/Malla",
+    "vlm": {
+     "tipo": "Legging/Malla",
+     "estampado": "gráfico / dibujo",
+     "tejido": "técnico / impermeable",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Zapatos de tacón",
+    "p_tipo": 0.868,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "negro",
+    "visible": false,
+    "caja": [
+     133.1,
+     821.8,
+     368.1,
+     1022.5
+    ]
+   },
+   {
+    "tipo": "Legging/Malla",
+    "p_tipo": 0.365,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     741.3,
+     817.7,
+     818.1,
+     1023.1
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Legging/Malla",
+     "estampado": "liso",
+     "tejido": "punto",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18021227243875718": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.559,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     186.7,
+     378.7,
+     620.3,
+     845.0
+    ],
+    "tipo_clip": "Sudadera",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.879,
+    "cat": "ropa_inferior",
+    "deteccion": "skirt",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     233.7,
+     752.2,
+     534.2,
+     1023.5
+    ],
+    "tipo_clip": "Falda",
+    "vlm": {
+     "tipo": "Falda",
+     "estampado": "cuadros",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17902969947598421": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.297,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "verde",
+    "visible": true,
+    "caja": [
+     345.7,
+     254.0,
+     659.0,
+     519.5
+    ],
+    "tipo_clip": "Americana",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.897,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     446.6,
+     475.4,
+     593.6,
+     764.9
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.985,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     508.5,
+     713.2,
+     562.9,
+     820.7
+    ],
+    "tipo_clip": "Botas",
+    "vlm": {
+     "tipo": "Botas",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17880428991534091": {
+  "n_personas": 3,
+  "prendas": [
+   {
+    "tipo": "Zapatillas deportivas",
+    "p_tipo": 0.501,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "rojo",
+    "visible": true,
+    "caja": [
+     466.6,
+     185.9,
+     701.6,
+     389.6
+    ],
+    "tipo_clip": "Botas",
+    "vlm": {
+     "tipo": "Zapatillas deportivas",
+     "estampado": "texto / logo",
+     "tejido": "algodón",
+     "forma": "no aplica",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18470463277138477": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Jersey",
+    "p_tipo": 0.959,
+    "cat": "cuerpo_entero",
+    "deteccion": "long_sleeved_dress",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     159.5,
+     288.5,
+     546.3,
+     1014.5
+    ],
+    "tipo_clip": "Mono",
+    "vlm": {
+     "tipo": "Jersey",
+     "estampado": "liso",
+     "tejido": "punto",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Sudadera",
+    "p_tipo": 0.551,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     160.6,
+     290.7,
+     547.1,
+     1015.5
+    ],
+    "tipo_clip": "Abrigo",
+    "vlm": {
+     "tipo": "Sudadera",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18436273876178716": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.576,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     88.4,
+     325.9,
+     571.5,
+     971.0
+    ],
+    "tipo_clip": "Camisa",
+    "vlm": {
+     "tipo": "Camiseta manga larga",
+     "estampado": "texto / logo",
+     "tejido": "algodón",
+     "forma": "corta / cropped",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Top",
+    "p_tipo": 0.619,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     223.5,
+     757.6,
+     565.1,
+     956.4
+    ],
+    "tipo_clip": "Short",
+    "vlm": {
+     "tipo": "Top",
+     "estampado": "texto / logo",
+     "tejido": "algodón",
+     "forma": "corta / cropped",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18149686786559597": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.609,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     169.5,
+     138.0,
+     544.1,
+     528.5
+    ],
+    "tipo_clip": "Abrigo",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.789,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     243.6,
+     462.4,
+     451.8,
+     1023.2
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "denim (vaquero)",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.633,
+    "cat": "calzado",
+    "deteccion": "footwear (x3)",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     222.3,
+     612.9,
+     567.9,
+     840.2
+    ],
+    "tipo_clip": "Zapatos planos de vestir",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "denim (vaquero)",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18102354749048148": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Jersey",
+    "p_tipo": 0.374,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     204.1,
+     179.9,
+     470.1,
+     604.6
+    ],
+    "tipo_clip": "Jersey",
+    "vlm": {
+     "tipo": "Jersey",
+     "estampado": "rayas",
+     "tejido": "punto",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.611,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     275.2,
+     485.4,
+     417.2,
+     836.4
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "punto",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.95,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     246.1,
+     778.8,
+     445.8,
+     973.3
+    ],
+    "tipo_clip": "Botas",
+    "vlm": {
+     "tipo": "Botas",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18160592626495189": {
+  "n_personas": 3,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.522,
+    "cat": "ropa_inferior",
+    "deteccion": "pants (grounding)",
+    "color": "negro",
+    "visible": false,
+    "caja": [
+     0.1,
+     853.7,
+     141.6,
+     1023.1
+    ]
+   },
+   {
+    "tipo": "Americana",
+    "p_tipo": 0.408,
+    "cat": "ropa_superior",
+    "deteccion": "shirt (grounding)",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     0.1,
+     589.3,
+     147.0,
+     855.3
+    ],
+    "tipo_clip": "Americana",
+    "vlm": {
+     "tipo": "Americana",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18115552315811516": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.564,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     320.5,
+     550.9,
+     495.3,
+     844.6
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Zapatillas deportivas",
+    "p_tipo": 0.807,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     364.3,
+     807.4,
+     463.4,
+     897.5
+    ],
+    "tipo_clip": "Zapatillas casual/lifestyle",
+    "vlm": {
+     "tipo": "Zapatillas deportivas",
+     "estampado": "texto / logo",
+     "tejido": "algodón",
+     "forma": "no aplica",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Camiseta manga corta",
+    "p_tipo": 0.365,
+    "cat": "ropa_superior",
+    "deteccion": "shirt (grounding)",
+    "color": "rojo",
+    "visible": true,
+    "caja": [
+     413.9,
+     487.8,
+     568.4,
+     696.9
+    ],
+    "tipo_clip": "Camiseta manga larga",
+    "vlm": {
+     "tipo": "Camiseta manga corta",
+     "estampado": "texto / logo",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18097792697552523": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.62,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "navy",
+    "visible": true,
+    "caja": [
+     49.6,
+     236.6,
+     772.8,
+     1019.1
+    ],
+    "tipo_clip": "Abrigo",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "no se distingue",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.535,
+    "cat": "ropa_inferior",
+    "deteccion": "shorts",
+    "color": "camel",
+    "visible": false,
+    "caja": [
+     175.9,
+     847.5,
+     674.9,
+     1023.2
+    ]
+   }
+  ]
+ },
+ "ig_18644027461030692": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.498,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     30.0,
+     788.8,
+     572.0,
+     1023.5
+    ],
+    "tipo_clip": "Short",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "denim (vaquero)",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Zapatos de vestir",
+    "p_tipo": 0.352,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     154.9,
+     624.1,
+     272.1,
+     830.0
+    ],
+    "tipo_clip": "Zapatos planos de vestir",
+    "vlm": {
+     "tipo": "Zapatos de vestir",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "no aplica",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18021944990941909": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Jersey",
+    "p_tipo": 0.478,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     0.8,
+     308.0,
+     573.2,
+     1021.2
+    ],
+    "tipo_clip": "Chaqueta",
+    "vlm": {
+     "tipo": "Jersey",
+     "estampado": "liso",
+     "tejido": "punto",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.48,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     0.0,
+     312.0,
+     573.7,
+     1021.3
+    ],
+    "tipo_clip": "Chaqueta",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17989668663079145": {
+  "n_personas": 1,
+  "prendas": []
+ },
+ "pr_ace540559c": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.217,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     336.2,
+     266.9,
+     745.8,
+     767.0
+    ],
+    "tipo_clip": "Camiseta manga larga",
+    "vlm": {
+     "tipo": "Camiseta manga larga",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.22,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     335.4,
+     269.0,
+     746.2,
+     761.6
+    ],
+    "tipo_clip": "Camiseta manga larga",
+    "vlm": {
+     "tipo": "Camiseta manga larga",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.833,
+    "cat": "ropa_inferior",
+    "deteccion": "shorts",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     426.8,
+     566.0,
+     714.0,
+     764.6
+    ],
+    "tipo_clip": "Falda",
+    "vlm": {
+     "tipo": "Falda",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "tw_2114653141325299732_2": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.928,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     0.0,
+     340.4,
+     782.1,
+     1022.0
+    ],
+    "tipo_clip": "Plumas",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "técnico / impermeable",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18124488865914628": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.293,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     120.8,
+     202.4,
+     767.3,
+     1020.0
+    ],
+    "tipo_clip": "Chaqueta",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.299,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "rojo",
+    "visible": true,
+    "caja": [
+     102.3,
+     635.4,
+     583.1,
+     1023.4
+    ],
+    "tipo_clip": "Short",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18369090232209291": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.52,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     320.1,
+     387.1,
+     544.0,
+     656.2
+    ],
+    "tipo_clip": "Abrigo",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Legging/Malla",
+    "p_tipo": 0.633,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     361.6,
+     529.7,
+     499.0,
+     839.6
+    ],
+    "tipo_clip": "Legging/Malla",
+    "vlm": {
+     "tipo": "Legging/Malla",
+     "estampado": "liso",
+     "tejido": "punto",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.965,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     415.7,
+     726.5,
+     495.7,
+     900.6
+    ],
+    "tipo_clip": "Botas",
+    "vlm": {
+     "tipo": "Botas",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18095478608203209": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.529,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     388.5,
+     393.4,
+     914.8,
+     630.3
+    ],
+    "tipo_clip": "Legging/Malla",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "denim (vaquero)",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.412,
+    "cat": "ropa_superior",
+    "deteccion": "short_sleeved_shirt",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     250.3,
+     224.1,
+     525.5,
+     508.5
+    ],
+    "tipo_clip": "Camiseta manga corta",
+    "vlm": {
+     "tipo": "Camiseta manga larga",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17868105372663313": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Zapatos de vestir",
+    "p_tipo": 0.755,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     97.2,
+     285.2,
+     694.7,
+     500.2
+    ],
+    "tipo_clip": "Zapatos planos de vestir",
+    "vlm": {
+     "tipo": "Zapatos de vestir",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "no aplica",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Zapatos de vestir",
+    "p_tipo": 0.854,
+    "cat": "ropa_superior",
+    "deteccion": "shirt (grounding)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     95.6,
+     458.2,
+     693.1,
+     625.2
+    ],
+    "tipo_clip": "Americana",
+    "vlm": {
+     "tipo": "Zapatos de vestir",
+     "estampado": "otro",
+     "tejido": "cuero / vinilo",
+     "forma": "no aplica",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17989994841026383": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.541,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "amarillo",
+    "visible": true,
+    "caja": [
+     74.7,
+     252.6,
+     720.5,
+     817.6
+    ],
+    "tipo_clip": "Camiseta manga larga",
+    "vlm": {
+     "tipo": "Camiseta manga larga",
+     "estampado": "gráfico / dibujo",
+     "tejido": "punto",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.611,
+    "cat": "ropa_inferior",
+    "deteccion": "skirt",
+    "color": "verde",
+    "visible": true,
+    "caja": [
+     378.9,
+     717.5,
+     740.5,
+     1023.6
+    ],
+    "tipo_clip": "Falda",
+    "vlm": {
+     "tipo": "Falda",
+     "estampado": "gráfico / dibujo",
+     "tejido": "terciopelo",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18202165687382136": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.579,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     414.4,
+     280.6,
+     773.4,
+     1022.5
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "no se distingue",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Zapatos de tacón",
+    "p_tipo": 0.503,
+    "cat": "calzado",
+    "deteccion": "footwear (x4)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     205.5,
+     648.7,
+     426.1,
+     731.6
+    ],
+    "tipo_clip": "Zapatos de tacón",
+    "vlm": {
+     "tipo": "Zapatos de tacón",
+     "estampado": "liso",
+     "tejido": "seda / satén",
+     "forma": "no aplica",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18123452560898910": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.469,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     3.3,
+     166.3,
+     764.2,
+     1022.3
+    ],
+    "tipo_clip": "Camiseta manga larga",
+    "vlm": {
+     "tipo": "Camiseta manga larga",
+     "estampado": "gráfico / dibujo",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17910808593555205": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.976,
+    "cat": "cuerpo_entero",
+    "deteccion": "sling_dress",
+    "color": "verde",
+    "visible": true,
+    "caja": [
+     103.0,
+     208.3,
+     714.2,
+     896.9
+    ],
+    "tipo_clip": "Vestido",
+    "vlm": {
+     "tipo": "Vestido",
+     "estampado": "liso",
+     "tejido": "seda / satén",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18016709534942586": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Hoodie",
+    "p_tipo": 0.158,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     319.1,
+     277.8,
+     502.6,
+     475.3
+    ],
+    "tipo_clip": "Abrigo",
+    "vlm": {
+     "tipo": "Hoodie",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.925,
+    "cat": "ropa_inferior",
+    "deteccion": "pants (grounding)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     357.7,
+     451.4,
+     522.9,
+     736.6
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18131163274682775": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Abrigo",
+    "p_tipo": 0.792,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "navy",
+    "visible": true,
+    "caja": [
+     113.4,
+     213.7,
+     663.3,
+     1022.9
+    ],
+    "tipo_clip": "Abrigo",
+    "vlm": {
+     "tipo": "Abrigo",
+     "estampado": "liso",
+     "tejido": "felpa / polar",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Abrigo",
+    "p_tipo": 0.926,
+    "cat": "cuerpo_entero",
+    "deteccion": "long_sleeved_dress",
+    "color": "navy",
+    "visible": true,
+    "caja": [
+     113.2,
+     268.3,
+     661.2,
+     1023.4
+    ],
+    "tipo_clip": "Mono",
+    "vlm": {
+     "tipo": "Abrigo",
+     "estampado": "liso",
+     "tejido": "felpa / polar",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17906261817592588": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.506,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     62.0,
+     392.4,
+     204.8,
+     578.9
+    ],
+    "tipo_clip": "Short",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "denim (vaquero)",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.569,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     627.4,
+     471.3,
+     750.1,
+     665.1
+    ],
+    "tipo_clip": "Short",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "denim (vaquero)",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Short",
+    "p_tipo": 0.857,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "navy",
+    "visible": false,
+    "caja": [
+     468.9,
+     852.8,
+     598.1,
+     1023.9
+    ]
+   },
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.853,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     502.8,
+     752.2,
+     692.2,
+     862.8
+    ],
+    "tipo_clip": "Chaqueta",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "terciopelo",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18219018769360478": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.88,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     44.7,
+     311.9,
+     310.5,
+     754.5
+    ],
+    "tipo_clip": "Abrigo",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "otro",
+     "tejido": "terciopelo",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.977,
+    "cat": "ropa_inferior",
+    "deteccion": "skirt",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     72.0,
+     670.7,
+     285.8,
+     925.8
+    ],
+    "tipo_clip": "Falda",
+    "vlm": {
+     "tipo": "Falda",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.53,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     131.6,
+     906.8,
+     241.1,
+     1001.0
+    ],
+    "tipo_clip": "Botas",
+    "vlm": {
+     "tipo": "Botas",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17979833406131193": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.47,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     192.5,
+     183.7,
+     536.3,
+     817.6
+    ],
+    "tipo_clip": "Abrigo",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "cuadros",
+     "tejido": "algodón",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.893,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "negro",
+    "visible": false,
+    "caja": [
+     528.8,
+     909.8,
+     632.4,
+     1022.5
+    ]
+   },
+   {
+    "tipo": "Short",
+    "p_tipo": 0.555,
+    "cat": "ropa_inferior",
+    "deteccion": "pants (grounding)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     322.9,
+     761.3,
+     528.6,
+     850.4
+    ],
+    "tipo_clip": "Short",
+    "vlm": {
+     "tipo": "Short",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "corta / cropped",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "pr_abab86b0ed": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.367,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     265.9,
+     228.8,
+     512.1,
+     540.0
+    ],
+    "tipo_clip": "Chaqueta",
+    "vlm": {
+     "tipo": "Camiseta manga larga",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Zapatos de tacón",
+    "p_tipo": 0.542,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     247.5,
+     817.7,
+     479.1,
+     976.4
+    ],
+    "tipo_clip": "Zapatos de tacón",
+    "vlm": {
+     "tipo": "Zapatos de tacón",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "no aplica",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.683,
+    "cat": "ropa_inferior",
+    "deteccion": "shorts",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     324.6,
+     406.7,
+     493.4,
+     524.7
+    ],
+    "tipo_clip": "Falda",
+    "vlm": {
+     "tipo": "Falda",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18098214860317545": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Legging/Malla",
+    "p_tipo": 0.823,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "rojo",
+    "visible": true,
+    "caja": [
+     170.6,
+     600.6,
+     550.9,
+     1023.3
+    ],
+    "tipo_clip": "Legging/Malla",
+    "vlm": {
+     "tipo": "Legging/Malla",
+     "estampado": "liso",
+     "tejido": "punto",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Top",
+    "p_tipo": 0.442,
+    "cat": "ropa_superior",
+    "deteccion": "sling",
+    "color": "rojo",
+    "visible": true,
+    "caja": [
+     284.8,
+     371.9,
+     484.3,
+     576.3
+    ],
+    "tipo_clip": "Top",
+    "vlm": {
+     "tipo": "Top",
+     "estampado": "liso",
+     "tejido": "punto",
+     "forma": "corta / cropped",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18459956341139940": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.665,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     180.5,
+     498.7,
+     581.8,
+     715.9
+    ],
+    "tipo_clip": "Falda",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "pana",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Americana",
+    "p_tipo": 0.784,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     386.5,
+     284.9,
+     596.9,
+     578.7
+    ],
+    "tipo_clip": "Abrigo",
+    "vlm": {
+     "tipo": "Americana",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.975,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "verde",
+    "visible": true,
+    "caja": [
+     309.7,
+     708.1,
+     461.9,
+     859.6
+    ],
+    "tipo_clip": "Botas",
+    "vlm": {
+     "tipo": "Botas",
+     "estampado": "liso",
+     "tejido": "técnico / impermeable",
+     "forma": "no aplica",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18120397832058700": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camiseta de tirantes",
+    "p_tipo": 0.606,
+    "cat": "ropa_superior",
+    "deteccion": "short_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     246.8,
+     255.8,
+     564.8,
+     550.1
+    ],
+    "tipo_clip": "Top",
+    "vlm": {
+     "tipo": "Camiseta de tirantes",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "no aplica",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.656,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     185.8,
+     489.5,
+     488.2,
+     769.6
+    ],
+    "tipo_clip": "Short",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "texto / logo",
+     "tejido": "denim (vaquero)",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17911800819492301": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.384,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     259.6,
+     125.1,
+     622.3,
+     579.0
+    ],
+    "tipo_clip": "Abrigo",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.839,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     252.5,
+     451.6,
+     510.5,
+     1021.3
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17888936181616067": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.892,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     184.4,
+     229.3,
+     768.0,
+     775.6
+    ],
+    "tipo_clip": "Camisa",
+    "vlm": {
+     "tipo": "Camisa",
+     "estampado": "gráfico / dibujo",
+     "tejido": "denim (vaquero)",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.61,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     368.7,
+     654.8,
+     726.2,
+     1023.4
+    ],
+    "tipo_clip": "Short",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "gráfico / dibujo",
+     "tejido": "denim (vaquero)",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17997913584030332": {
+  "n_personas": 3,
+  "prendas": [
+   {
+    "tipo": "Polo",
+    "p_tipo": 0.417,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     391.3,
+     152.0,
+     767.8,
+     614.8
+    ],
+    "tipo_clip": "Abrigo",
+    "vlm": {
+     "tipo": "Polo",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.81,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     483.0,
+     439.3,
+     681.0,
+     1004.0
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Zapatos planos de vestir",
+    "p_tipo": 0.397,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": false,
+    "caja": [
+     514.2,
+     930.3,
+     663.2,
+     1022.5
+    ]
+   }
+  ]
+ },
+ "ig_18115056209041396": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.941,
+    "cat": "cuerpo_entero",
+    "deteccion": "long_sleeved_dress",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     400.7,
+     73.8,
+     818.0,
+     530.6
+    ],
+    "tipo_clip": "Vestido",
+    "vlm": {
+     "tipo": "Vestido",
+     "estampado": "gráfico / dibujo",
+     "tejido": "punto",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.962,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": false,
+    "caja": [
+     463.1,
+     828.9,
+     726.9,
+     1022.5
+    ]
+   }
+  ]
+ },
+ "ig_18444833422193642": {
+  "n_personas": 1,
+  "prendas": []
+ },
+ "ig_17966390997183768": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Plumas",
+    "p_tipo": 0.74,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     73.9,
+     194.1,
+     401.2,
+     520.9
+    ],
+    "tipo_clip": "Plumas",
+    "vlm": {
+     "tipo": "Plumas",
+     "estampado": "liso",
+     "tejido": "técnico / impermeable",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.988,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     115.8,
+     468.1,
+     318.7,
+     951.7
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Zapatillas deportivas",
+    "p_tipo": 0.794,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     134.3,
+     818.7,
+     468.6,
+     1014.3
+    ],
+    "tipo_clip": "Zapatillas casual/lifestyle",
+    "vlm": {
+     "tipo": "Zapatillas deportivas",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "no aplica",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17935325505392821": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.803,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     217.4,
+     445.4,
+     501.6,
+     1023.6
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Americana",
+    "p_tipo": 0.46,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "navy",
+    "visible": true,
+    "caja": [
+     254.8,
+     201.1,
+     630.0,
+     610.4
+    ],
+    "tipo_clip": "Americana",
+    "vlm": {
+     "tipo": "Americana",
+     "estampado": "liso",
+     "tejido": "terciopelo",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18247599607313435": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.566,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     2.3,
+     318.0,
+     413.4,
+     1018.1
+    ],
+    "tipo_clip": "Abrigo",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "cuadros",
+     "tejido": "terciopelo",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.406,
+    "cat": "ropa_inferior",
+    "deteccion": "pants (grounding)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     0.2,
+     760.2,
+     177.1,
+     1022.7
+    ],
+    "tipo_clip": "Falda",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "terciopelo",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17985964823892207": {
+  "n_personas": 3,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.823,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "verde",
+    "visible": true,
+    "caja": [
+     682.2,
+     229.6,
+     1023.5,
+     724.3
+    ],
+    "tipo_clip": "Plumas",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "técnico / impermeable",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Short",
+    "p_tipo": 0.506,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "verde",
+    "visible": false,
+    "caja": [
+     736.2,
+     652.4,
+     1021.2,
+     767.4
+    ]
+   }
+  ]
+ },
+ "pr_6103721673": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Legging/Malla",
+    "p_tipo": 0.906,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     278.4,
+     360.7,
+     514.7,
+     843.1
+    ],
+    "tipo_clip": "Legging/Malla",
+    "vlm": {
+     "tipo": "Legging/Malla",
+     "estampado": "otro",
+     "tejido": "tul / encaje",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Zapatos de tacón",
+    "p_tipo": 0.618,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     204.9,
+     809.5,
+     523.7,
+     972.3
+    ],
+    "tipo_clip": "Zapatos de tacón",
+    "vlm": {
+     "tipo": "Zapatos de tacón",
+     "estampado": "liso",
+     "tejido": "tul / encaje",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.287,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     359.3,
+     177.9,
+     512.3,
+     467.8
+    ],
+    "tipo_clip": "Camiseta manga larga",
+    "vlm": {
+     "tipo": "Vestido",
+     "estampado": "liso",
+     "tejido": "tul / encaje",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18436800973177225": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Hoodie",
+    "p_tipo": 0.259,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     40.6,
+     193.5,
+     584.8,
+     742.2
+    ],
+    "tipo_clip": "Jersey",
+    "vlm": {
+     "tipo": "Hoodie",
+     "estampado": "liso",
+     "tejido": "felpa / polar",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.624,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     13.9,
+     658.4,
+     768.0,
+     1024.0
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "felpa / polar",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17900328291374163": {
+  "n_personas": 1,
+  "prendas": []
+ },
+ "ig_18110737532582716": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.77,
+    "cat": "cuerpo_entero",
+    "deteccion": "long_sleeved_dress",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     170.1,
+     82.4,
+     516.6,
+     744.6
+    ],
+    "tipo_clip": "Vestido",
+    "vlm": {
+     "tipo": "Vestido",
+     "estampado": "cuadros",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18076219730410783": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.625,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "rojo",
+    "visible": true,
+    "caja": [
+     58.5,
+     659.5,
+     682.1,
+     1023.5
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "denim (vaquero)",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Camiseta de tirantes",
+    "p_tipo": 0.433,
+    "cat": "ropa_superior",
+    "deteccion": "short_sleeved_shirt",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     192.3,
+     261.3,
+     570.3,
+     653.0
+    ],
+    "tipo_clip": "Camiseta de tirantes",
+    "vlm": {
+     "tipo": "Camiseta de tirantes",
+     "estampado": "gráfico / dibujo",
+     "tejido": "algodón",
+     "forma": "corta / cropped",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17905710921605068": {
+  "n_personas": 3,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.488,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     91.6,
+     77.4,
+     452.4,
+     601.4
+    ],
+    "tipo_clip": "Plumas",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.839,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     153.0,
+     443.8,
+     417.6,
+     1022.6
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "denim (vaquero)",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18073710179768586": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Legging/Malla",
+    "p_tipo": 0.598,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     95.0,
+     304.0,
+     609.5,
+     1022.4
+    ],
+    "tipo_clip": "Legging/Malla",
+    "vlm": {
+     "tipo": "Legging/Malla",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Americana",
+    "p_tipo": 0.424,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     1.2,
+     0.7,
+     496.4,
+     356.7
+    ],
+    "tipo_clip": "Chaqueta",
+    "vlm": {
+     "tipo": "Americana",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "corta / cropped",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17953716960038019": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.76,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "verde",
+    "visible": true,
+    "caja": [
+     187.5,
+     194.4,
+     542.7,
+     633.9
+    ],
+    "tipo_clip": "Camisa",
+    "vlm": {
+     "tipo": "Camisa",
+     "estampado": "rayas",
+     "tejido": "algodón",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.899,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     263.4,
+     507.0,
+     479.5,
+     899.4
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18166188451485711": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Americana",
+    "p_tipo": 0.81,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     202.8,
+     125.9,
+     610.6,
+     590.5
+    ],
+    "tipo_clip": "Camisa",
+    "vlm": {
+     "tipo": "Americana",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.998,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     265.4,
+     425.9,
+     486.5,
+     983.9
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Zapatos planos de vestir",
+    "p_tipo": 0.434,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": false,
+    "caja": [
+     263.3,
+     958.0,
+     559.8,
+     1022.5
+    ]
+   }
+  ]
+ },
+ "ig_18200352169384025": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.342,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     0.0,
+     169.5,
+     614.6,
+     874.2
+    ],
+    "tipo_clip": "Chaqueta",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "otro",
+     "tejido": "cuero / vinilo",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.416,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     187.1,
+     569.8,
+     766.9,
+     1023.2
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "denim (vaquero)",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18162101728498432": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.589,
+    "cat": "cuerpo_entero",
+    "deteccion": "long_sleeved_dress",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     228.2,
+     305.9,
+     568.6,
+     871.3
+    ],
+    "tipo_clip": "Vestido",
+    "vlm": {
+     "tipo": "Vestido",
+     "estampado": "otro",
+     "tejido": "tul / encaje",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "pr_49a69f3763": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.253,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     338.8,
+     266.0,
+     746.4,
+     767.8
+    ],
+    "tipo_clip": "Camiseta manga larga",
+    "vlm": {
+     "tipo": "Camiseta manga larga",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.736,
+    "cat": "ropa_inferior",
+    "deteccion": "shorts",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     428.4,
+     566.6,
+     713.5,
+     764.4
+    ],
+    "tipo_clip": "Falda",
+    "vlm": {
+     "tipo": "Falda",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18116870221971889": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Top",
+    "p_tipo": 0.63,
+    "cat": "ropa_superior",
+    "deteccion": "short_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     165.8,
+     202.9,
+     596.7,
+     768.9
+    ],
+    "tipo_clip": "Camiseta manga larga",
+    "vlm": {
+     "tipo": "Top",
+     "estampado": "texto / logo",
+     "tejido": "algodón",
+     "forma": "corta / cropped",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.782,
+    "cat": "ropa_inferior",
+    "deteccion": "shorts",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     155.6,
+     790.0,
+     646.9,
+     1023.4
+    ],
+    "tipo_clip": "Short",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "gráfico / dibujo",
+     "tejido": "denim (vaquero)",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18346301653284242": {
+  "n_personas": 1,
+  "prendas": []
+ },
+ "ig_18075329330718691": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.786,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     218.8,
+     377.3,
+     514.4,
+     930.8
+    ],
+    "tipo_clip": "Legging/Malla",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "rayas",
+     "tejido": "técnico / impermeable",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Camiseta manga corta",
+    "p_tipo": 0.45,
+    "cat": "ropa_superior",
+    "deteccion": "short_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     288.0,
+     153.7,
+     492.9,
+     455.7
+    ],
+    "tipo_clip": "Camiseta manga larga",
+    "vlm": {
+     "tipo": "Camiseta manga corta",
+     "estampado": "gráfico / dibujo",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Zapatillas deportivas",
+    "p_tipo": 0.356,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     164.0,
+     844.3,
+     514.9,
+     1013.2
+    ],
+    "tipo_clip": "Zapatos planos de vestir",
+    "vlm": {
+     "tipo": "Zapatillas deportivas",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18081777356352283": {
+  "n_personas": 3,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.958,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     421.1,
+     296.2,
+     772.9,
+     1021.3
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "denim (vaquero)",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Camiseta manga corta",
+    "p_tipo": 0.288,
+    "cat": "ropa_superior",
+    "deteccion": "short_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     145.3,
+     141.3,
+     687.2,
+     595.5
+    ],
+    "tipo_clip": "Plumas",
+    "vlm": {
+     "tipo": "Camiseta manga corta",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Zapatos planos de vestir",
+    "p_tipo": 0.438,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "negro",
+    "visible": false,
+    "caja": [
+     389.7,
+     955.9,
+     440.0,
+     1022.5
+    ]
+   }
+  ]
+ },
+ "ig_17927668953184477": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.988,
+    "cat": "cuerpo_entero",
+    "deteccion": "sling_dress",
+    "color": "rojo",
+    "visible": true,
+    "caja": [
+     296.3,
+     356.6,
+     499.5,
+     772.6
+    ],
+    "tipo_clip": "Vestido",
+    "vlm": {
+     "tipo": "Vestido",
+     "estampado": "liso",
+     "tejido": "terciopelo",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Camiseta manga corta",
+    "p_tipo": 0.542,
+    "cat": "ropa_superior",
+    "deteccion": "short_sleeved_shirt",
+    "color": "rojo",
+    "visible": true,
+    "caja": [
+     289.1,
+     354.5,
+     503.6,
+     497.6
+    ],
+    "tipo_clip": "Chaleco sin mangas",
+    "vlm": {
+     "tipo": "Camiseta manga corta",
+     "estampado": "liso",
+     "tejido": "terciopelo",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.835,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     354.2,
+     768.5,
+     440.2,
+     931.3
+    ],
+    "tipo_clip": "Botas",
+    "vlm": {
+     "tipo": "Botas",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18102357761367853": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.401,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     31.8,
+     9.9,
+     801.0,
+     876.2
+    ],
+    "tipo_clip": "Chaqueta",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "corta / cropped",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.803,
+    "cat": "ropa_inferior",
+    "deteccion": "shorts",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     109.4,
+     779.5,
+     673.3,
+     1023.2
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18125064043804535": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.556,
+    "cat": "cuerpo_entero",
+    "deteccion": "long_sleeved_dress",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     35.6,
+     243.6,
+     661.4,
+     1013.5
+    ],
+    "tipo_clip": "Vestido",
+    "vlm": {
+     "tipo": "Vestido",
+     "estampado": "otro",
+     "tejido": "técnico / impermeable",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Zapatos de tacón",
+    "p_tipo": 0.335,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     622.1,
+     825.9,
+     730.1,
+     907.8
+    ],
+    "tipo_clip": "Zapatos de tacón",
+    "vlm": {
+     "tipo": "Zapatos de tacón",
+     "estampado": "liso",
+     "tejido": "cuero / vinilo",
+     "forma": "no aplica",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18477724924117131": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.889,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     312.3,
+     503.4,
+     518.5,
+     928.8
+    ],
+    "tipo_clip": "Pantalón",
+    "vlm": {
+     "tipo": "Pantalón",
+     "estampado": "liso",
+     "tejido": "denim (vaquero)",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.672,
+    "cat": "ropa_superior",
+    "deteccion": "short_sleeved_shirt",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     358.8,
+     360.7,
+     565.2,
+     506.8
+    ],
+    "tipo_clip": "Chaleco sin mangas",
+    "vlm": {
+     "tipo": "Camisa",
+     "estampado": "liso",
+     "tejido": "denim (vaquero)",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Zapatillas deportivas",
+    "p_tipo": 0.524,
+    "cat": "calzado",
+    "deteccion": "footwear (x3)",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     290.7,
+     809.5,
+     467.3,
+     934.4
+    ],
+    "tipo_clip": "Zapatillas casual/lifestyle",
+    "vlm": {
+     "tipo": "Zapatillas deportivas",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "no aplica",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17878618749632315": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.548,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     0.5,
+     382.9,
+     765.2,
+     1020.2
+    ],
+    "tipo_clip": "Chaqueta",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "técnico / impermeable",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "pr_28b7199357": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Legging/Malla",
+    "p_tipo": 0.558,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     172.0,
+     449.1,
+     427.1,
+     811.8
+    ],
+    "tipo_clip": "Falda",
+    "vlm": {
+     "tipo": "Legging/Malla",
+     "estampado": "liso",
+     "tejido": "punto",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Zapatos de tacón",
+    "p_tipo": 0.948,
+    "cat": "calzado",
+    "deteccion": "footwear (x3)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     101.6,
+     721.4,
+     473.7,
+     897.5
+    ],
+    "tipo_clip": "Zapatos de tacón",
+    "vlm": {
+     "tipo": "Zapatos de tacón",
+     "estampado": "liso",
+     "tejido": "seda / satén",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Americana",
+    "p_tipo": 0.375,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     233.8,
+     220.2,
+     447.3,
+     507.0
+    ],
+    "tipo_clip": "Abrigo",
+    "vlm": {
+     "tipo": "Americana",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.478,
+    "cat": "ropa_inferior",
+    "deteccion": "skirt",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     267.7,
+     443.4,
+     409.6,
+     553.5
+    ],
+    "tipo_clip": "Falda",
+    "vlm": {
+     "tipo": "Falda",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "ajustada",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18111116564613508": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.55,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "verde",
+    "visible": true,
+    "caja": [
+     0.0,
+     304.5,
+     703.4,
+     1022.7
+    ],
+    "tipo_clip": "Plumas",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "liso",
+     "tejido": "algodón",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18115413604975269": {
+  "n_personas": 3,
+  "prendas": [
+   {
+    "tipo": "Abrigo",
+    "p_tipo": 0.522,
+    "cat": "cuerpo_entero",
+    "deteccion": "long_sleeved_dress",
+    "color": "lavanda",
+    "visible": true,
+    "caja": [
+     3.5,
+     452.0,
+     177.6,
+     810.8
+    ],
+    "tipo_clip": "Mono",
+    "vlm": {
+     "tipo": "Abrigo",
+     "estampado": "liso",
+     "tejido": "terciopelo",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18151565464483518": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.356,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     0.0,
+     59.9,
+     817.8,
+     1024.0
+    ],
+    "tipo_clip": "Camiseta manga larga",
+    "vlm": {
+     "tipo": "Camiseta manga larga",
+     "estampado": "texto / logo",
+     "tejido": "algodón",
+     "forma": "oversized / baggy",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_17950683045268959": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.702,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     202.7,
+     77.8,
+     680.5,
+     744.3
+    ],
+    "tipo_clip": "Abrigo",
+    "vlm": {
+     "tipo": "Chaqueta",
+     "estampado": "otro",
+     "tejido": "cuero / vinilo",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.696,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "camel",
+    "visible": false,
+    "caja": [
+     319.1,
+     835.1,
+     491.1,
+     1022.5
+    ]
+   },
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.724,
+    "cat": "ropa_inferior",
+    "deteccion": "pants (grounding)",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     339.4,
+     472.6,
+     572.3,
+     767.5
+    ],
+    "tipo_clip": "Falda",
+    "vlm": {
+     "tipo": "Falda",
+     "estampado": "otro",
+     "tejido": "cuero / vinilo",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
+ },
+ "ig_18248038132311965": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.887,
+    "cat": "cuerpo_entero",
+    "deteccion": "vest_dress",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     279.3,
+     224.1,
+     555.5,
+     888.3
+    ],
+    "tipo_clip": "Vestido",
+    "vlm": {
+     "tipo": "Vestido",
+     "estampado": "liso",
+     "tejido": "seda / satén",
+     "forma": "regular",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   },
+   {
+    "tipo": "Zapatos de tacón",
+    "p_tipo": 0.636,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     275.3,
+     838.1,
+     563.3,
+     1005.1
+    ],
+    "tipo_clip": "Zapatos de tacón",
+    "vlm": {
+     "tipo": "Zapatos de tacón",
+     "estampado": "liso",
+     "tejido": "seda / satén",
+     "forma": "no aplica",
+     "modelo": "qwen3vl8b",
+     "config": "semanal_pista",
+     "fecha": "2026-10-26T12:30:13+00:00"
+    }
+   }
+  ]
  }
 }

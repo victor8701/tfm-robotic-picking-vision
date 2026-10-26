@@ -3,19 +3,15 @@
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [2/141] Shoda Monkas · x shodamonkas → urbano ES
   19 posts propios, 5 con foto; la última foto es de hace 4 días
-Cargando CLIP (ViT-B-32, pesos openai)... (primera vez tarda por la descarga)
-  calculando embeddings de 2 imágenes (tendencia)...
-   2 fotos bajadas → 0 nuevas con persona y ropa (2 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [3/141] Hoke · x HokeBBO → urbano ES
   7 posts propios, 4 con foto; la última foto es de hace 586 días
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [4/141] Quevedo · noticias "Quevedo" cantante → urbano ES
    ✖ www.laprovincia.es: HTTPError
-  calculando embeddings de 1 imágenes (tendencia)...
-   1 fotos bajadas → 0 nuevas con persona y ropa (1 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [5/141] Morad · noticias "Morad" rapero → urbano ES
-  calculando embeddings de 4 imágenes (tendencia)...
-   4 fotos bajadas → 0 nuevas con persona y ropa (3 sin persona, 1 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [6/141] Beny Jr · noticias "Beny Jr" rapero → urbano ES
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [7/141] Israel B · noticias "Israel B" rapero → urbano ES
@@ -23,15 +19,16 @@ Cargando CLIP (ViT-B-32, pesos openai)... (primera vez tarda por la descarga)
 [8/141] Hoke · noticias "Hoke" rapero → urbano ES
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [9/141] Cruz Cafuné · noticias "Cruz Cafuné" → urbano ES
-   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
+Cargando CLIP (ViT-B-32, pesos openai)... (primera vez tarda por la descarga)
+  calculando embeddings de 1 imágenes (tendencia)...
+   1 fotos bajadas → 0 nuevas con persona y ropa (1 sin persona, 0 repetidas)
 [10/141] orslok · x orslok → geek ES
   20 posts propios, 4 con foto; la última foto es de hace 624 días
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [11/141] orslok · noticias "Orslok" → geek ES
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [12/141] Rojuu · noticias "Rojuu" → geek ES
-  calculando embeddings de 13 imágenes (tendencia)...
-   13 fotos bajadas → 11 nuevas con persona y ropa (2 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [13/141] SoyUnaPringada · noticias "Soy una pringada" → geek ES
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [14/141] Travis Scott · x trvisXX → urbano US
@@ -42,20 +39,17 @@ Cargando CLIP (ViT-B-32, pesos openai)... (primera vez tarda por la descarga)
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [16/141] Kid Cudi · x kidcudi → urbano US
   6 posts propios, 1 con foto; la última foto es de hace 3 días
-  calculando embeddings de 1 imágenes (tendencia)...
-   1 fotos bajadas → 0 nuevas con persona y ropa (1 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [17/141] Travis Scott · noticias "Travis Scott" outfit → urbano US
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [18/141] Playboi Carti · noticias "Playboi Carti" outfit → urbano US
-  calculando embeddings de 19 imágenes (tendencia)...
-   19 fotos bajadas → 12 nuevas con persona y ropa (4 sin persona, 3 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [19/141] Kid Cudi · noticias "Kid Cudi" outfit → urbano US
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [20/141] A$AP Rocky · noticias "ASAP Rocky" outfit → urbano US
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [21/141] r/streetwear · reddit streetwear → urbano US
-  calculando embeddings de 2 imágenes (tendencia)...
-   2 fotos bajadas → 2 nuevas con persona y ropa (0 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [22/141] Painthisice · x Painthisice → geek US
   2 posts propios, 1 con foto; la última foto es de hace 9 días
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
@@ -72,101 +66,79 @@ Cargando CLIP (ViT-B-32, pesos openai)... (primera vez tarda por la descarga)
 [27/141] Lil Xan · noticias "Lil Xan" outfit → geek US
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [28/141] Reina Letizia · noticias "reina Letizia" look → old_money ES
-/opt/hostedtoolcache/Python/3.10.22/x64/lib/python3.10/site-packages/PIL/Image.py:1136: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
-  warnings.warn(
-  calculando embeddings de 171 imágenes (tendencia)...
-   171 fotos bajadas → 102 nuevas con persona y ropa (15 sin persona, 54 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [29/141] prensa: "lujo silencioso" moda · noticias "lujo silencioso" moda → old_money ES
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [30/141] Jacob Elordi · noticias "Jacob Elordi" style → old_money US
-  calculando embeddings de 14 imágenes (tendencia)...
-   14 fotos bajadas → 7 nuevas con persona y ropa (5 sin persona, 2 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [31/141] dieworkwear · x dieworkwear → old_money US
   21 posts propios, 10 con foto; la última foto es de hace 1 días
-  calculando embeddings de 20 imágenes (tendencia)...
-   20 fotos bajadas → 10 nuevas con persona y ropa (10 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [32/141] Gwyneth Paltrow · noticias "Gwyneth Paltrow" style → old_money US
-   ✖ people.com: HTTPError
    ✖ www.instyle.com: HTTPError
+   ✖ people.com: HTTPError
    ✖ www.aol.com: HTTPError
-  calculando embeddings de 12 imágenes (tendencia)...
-   12 fotos bajadas → 7 nuevas con persona y ropa (0 sin persona, 5 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [33/141] prensa: "quiet luxury" fashion · noticias "quiet luxury" fashion → old_money US
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [34/141] Tamara Falcó · noticias "Tamara Falcó" look → clasico ES
-  calculando embeddings de 6 imágenes (tendencia)...
-   6 fotos bajadas → 2 nuevas con persona y ropa (4 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [35/141] prensa: "Barbour" chaqueta moda · noticias "Barbour" chaqueta moda → clasico ES
-  calculando embeddings de 17 imágenes (tendencia)...
-   17 fotos bajadas → 14 nuevas con persona y ropa (2 sin persona, 1 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [36/141] envido6 · x envido6 → clasico ES
   9 posts propios, 6 con foto; la última foto es de hace 5 días
-  calculando embeddings de 1 imágenes (tendencia)...
-   1 fotos bajadas → 0 nuevas con persona y ropa (1 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [37/141] prensa: estilo cayetano moda · noticias estilo cayetano moda → clasico ES
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [38/141] r/Barbour · reddit Barbour → clasico US
-  calculando embeddings de 7 imágenes (tendencia)...
-   7 fotos bajadas → 7 nuevas con persona y ropa (0 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [39/141] r/preppy · reddit preppy → clasico US
-  calculando embeddings de 6 imágenes (tendencia)...
-   6 fotos bajadas → 6 nuevas con persona y ropa (0 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [40/141] RalphLauren · x RalphLauren → clasico US
   20 posts propios, 10 con foto; la última foto es de hace 1 días
-  calculando embeddings de 20 imágenes (tendencia)...
-   20 fotos bajadas → 18 nuevas con persona y ropa (2 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [41/141] HackettLondon · x HackettLondon → clasico US
   20 posts propios, 14 con foto; la última foto es de hace 3 días
-  calculando embeddings de 11 imágenes (tendencia)...
-   11 fotos bajadas → 11 nuevas con persona y ropa (0 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [42/141] prensa: "Barbour" jacket style · noticias "Barbour" jacket style → clasico US
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [43/141] prensa: "preppy" outfit trend · noticias "preppy" outfit trend → clasico US
+/opt/hostedtoolcache/Python/3.10.22/x64/lib/python3.10/site-packages/PIL/Image.py:1136: UserWarning: Palette images with Transparency expressed in bytes should be converted to RGBA images
+  warnings.warn(
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [44/141] Ralph Lauren · noticias "Ralph Lauren" style → clasico US
-  calculando embeddings de 11 imágenes (tendencia)...
-   11 fotos bajadas → 2 nuevas con persona y ropa (9 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [45/141] Georgina Rodríguez · noticias "Georgina Rodríguez" look → lujo ES
-  calculando embeddings de 23 imágenes (tendencia)...
-   23 fotos bajadas → 15 nuevas con persona y ropa (5 sin persona, 3 repetidas)
+  calculando embeddings de 15 imágenes (tendencia)...
+   15 fotos bajadas → 7 nuevas con persona y ropa (1 sin persona, 7 repetidas)
 [46/141] r/LouisVuitton · reddit LouisVuitton → lujo US
-  calculando embeddings de 7 imágenes (tendencia)...
-   7 fotos bajadas → 4 nuevas con persona y ropa (3 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [47/141] r/IndianFashionAddicts · reddit IndianFashionAddicts → lujo US
-  calculando embeddings de 8 imágenes (tendencia)...
-   8 fotos bajadas → 7 nuevas con persona y ropa (1 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [48/141] Cardi B · noticias "Cardi B" outfit → lujo US
-   ✖ hollywoodlife.com: HTTPError
    ✖ people.com: HTTPError
-  calculando embeddings de 5 imágenes (tendencia)...
-   5 fotos bajadas → 2 nuevas con persona y ropa (3 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [49/141] DSQUARED2 · x DSQUARED2 → lujo US
-  18 posts propios, 15 con foto; la última foto es de hace 4 días
-  calculando embeddings de 10 imágenes (tendencia)...
-   10 fotos bajadas → 10 nuevas con persona y ropa (0 sin persona, 0 repetidas)
+  18 posts propios, 16 con foto; la última foto es de hace 0 días
+  calculando embeddings de 4 imágenes (tendencia)...
+   4 fotos bajadas → 3 nuevas con persona y ropa (1 sin persona, 0 repetidas)
 [50/141] r/Gucci · reddit Gucci → lujo US
-  calculando embeddings de 9 imágenes (tendencia)...
-   9 fotos bajadas → 9 nuevas con persona y ropa (0 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [51/141] Balmain · x Balmain → lujo US
   20 posts propios, 18 con foto; la última foto es de hace 1 días
-  calculando embeddings de 8 imágenes (tendencia)...
-   8 fotos bajadas → 8 nuevas con persona y ropa (0 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [52/141] DolceGabbana · x DolceGabbana → lujo US
   20 posts propios, 16 con foto; la última foto es de hace 4 días
-  calculando embeddings de 14 imágenes (tendencia)...
-   14 fotos bajadas → 10 nuevas con persona y ropa (4 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [53/141] Dior · x Dior → lujo US
   17 posts propios, 15 con foto; la última foto es de hace 3 días
-  calculando embeddings de 36 imágenes (tendencia)...
-   36 fotos bajadas → 32 nuevas con persona y ropa (4 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [54/141] gucci · x gucci → lujo US
   20 posts propios, 19 con foto; la última foto es de hace 1 días
-  calculando embeddings de 22 imágenes (tendencia)...
-   22 fotos bajadas → 22 nuevas con persona y ropa (0 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [55/141] Versace · x Versace → lujo US
   20 posts propios, 20 con foto; la última foto es de hace 1 días
-  calculando embeddings de 7 imágenes (tendencia)...
-   7 fotos bajadas → 3 nuevas con persona y ropa (4 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [56/141] Philipp Plein · noticias "Philipp Plein" style → lujo US
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [57/141] prensa: estilo boho chic moda · noticias estilo boho chic moda → bohemio ES
@@ -174,36 +146,32 @@ Cargando CLIP (ViT-B-32, pesos openai)... (primera vez tarda por la descarga)
 [58/141] prensa: moda hippie chic · noticias moda hippie chic → bohemio ES
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [59/141] r/cottagecore · reddit cottagecore → bohemio US
-  calculando embeddings de 13 imágenes (tendencia)...
-   13 fotos bajadas → 4 nuevas con persona y ropa (9 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [60/141] prensa: "boho chic" fashion · noticias "boho chic" fashion → bohemio US
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [61/141] r/bohemian · reddit bohemian → bohemio US
-  calculando embeddings de 1 imágenes (tendencia)...
-   1 fotos bajadas → 1 nuevas con persona y ropa (0 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [62/141] Sienna Miller · noticias "Sienna Miller" boho style → bohemio US
-  calculando embeddings de 35 imágenes (tendencia)...
-   35 fotos bajadas → 30 nuevas con persona y ropa (3 sin persona, 2 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [63/141] r/LookeAR · reddit LookeAR → convencional ES
-  calculando embeddings de 14 imágenes (tendencia)...
-   14 fotos bajadas → 14 nuevas con persona y ropa (0 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [64/141] prensa: looks básicos tendencia moda · noticias looks básicos tendencia moda → convencional ES
-  calculando embeddings de 81 imágenes (tendencia)...
-   81 fotos bajadas → 51 nuevas con persona y ropa (1 sin persona, 29 repetidas)
+  calculando embeddings de 3 imágenes (tendencia)...
+   3 fotos bajadas → 1 nuevas con persona y ropa (0 sin persona, 2 repetidas)
 [65/141] prensa: "normcore" moda · noticias "normcore" moda → convencional ES
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [66/141] r/OUTFITS · reddit OUTFITS → convencional US
-  calculando embeddings de 16 imágenes (tendencia)...
-   16 fotos bajadas → 16 nuevas con persona y ropa (0 sin persona, 0 repetidas)
+  calculando embeddings de 1 imágenes (tendencia)...
+   1 fotos bajadas → 1 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [67/141] r/reddeadfashion · reddit reddeadfashion → convencional US
-  calculando embeddings de 2 imágenes (tendencia)...
-   2 fotos bajadas → 2 nuevas con persona y ropa (0 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [68/141] r/EverydayOutfitStyle · reddit EverydayOutfitStyle → convencional US
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [69/141] prensa: "normcore" outfit · noticias "normcore" outfit → convencional US
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [70/141] r/femalefashionadvice · reddit femalefashionadvice → convencional US
-   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
+  calculando embeddings de 1 imágenes (tendencia)...
+   1 fotos bajadas → 1 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [71/141] prensa: everyday outfit trends · noticias everyday outfit trends → convencional US
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [72/141] prensa: "basics" fashion trend outfit · noticias "basics" fashion trend outfit → convencional US
@@ -214,35 +182,34 @@ Cargando CLIP (ViT-B-32, pesos openai)... (primera vez tarda por la descarga)
    Instagram · Windsor: publicaciones de 14 de las 68 cuentas que faltaban
    Instagram: hay publicaciones de 14 de las 68 cuentas de las fuentes
   calculando embeddings de 8 imágenes (tendencia)...
-   8 fotos bajadas → 7 nuevas con persona y ropa (1 sin persona, 0 repetidas)
+   8 fotos bajadas → 6 nuevas con persona y ropa (2 sin persona, 0 repetidas)
 [75/141] britishcountryheritage · instagram britishcountryheritage → old_money US
   calculando embeddings de 8 imágenes (tendencia)...
    8 fotos bajadas → 5 nuevas con persona y ropa (3 sin persona, 0 repetidas)
 [76/141] gucci · instagram gucci → lujo US
   calculando embeddings de 8 imágenes (tendencia)...
-   8 fotos bajadas → 8 nuevas con persona y ropa (0 sin persona, 0 repetidas)
+   8 fotos bajadas → 7 nuevas con persona y ropa (0 sin persona, 1 repetidas)
 [77/141] hottopic · instagram hottopic → geek US
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [78/141] killstar · instagram killstar → geek US
   calculando embeddings de 8 imágenes (tendencia)...
-   8 fotos bajadas → 7 nuevas con persona y ropa (1 sin persona, 0 repetidas)
+   8 fotos bajadas → 8 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [79/141] loewe · instagram loewe → lujo ES
   calculando embeddings de 8 imágenes (tendencia)...
-   8 fotos bajadas → 5 nuevas con persona y ropa (3 sin persona, 0 repetidas)
+   8 fotos bajadas → 7 nuevas con persona y ropa (1 sin persona, 0 repetidas)
 [80/141] massimodutti · instagram massimodutti → clasico ES
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [81/141] ralphlauren · instagram ralphlauren → clasico US
   calculando embeddings de 8 imágenes (tendencia)...
-   8 fotos bajadas → 6 nuevas con persona y ropa (0 sin persona, 2 repetidas)
+   8 fotos bajadas → 7 nuevas con persona y ropa (1 sin persona, 0 repetidas)
 [82/141] stussy · instagram stussy → urbano US
-  calculando embeddings de 6 imágenes (tendencia)...
-   6 fotos bajadas → 5 nuevas con persona y ropa (1 sin persona, 0 repetidas)
+   0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [83/141] thehippieshake · instagram thehippieshake → bohemio US
   calculando embeddings de 8 imágenes (tendencia)...
-   8 fotos bajadas → 5 nuevas con persona y ropa (3 sin persona, 0 repetidas)
+   8 fotos bajadas → 8 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [84/141] zara · instagram zara → convencional ES
   calculando embeddings de 8 imágenes (tendencia)...
-   8 fotos bajadas → 7 nuevas con persona y ropa (1 sin persona, 0 repetidas)
+   8 fotos bajadas → 8 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [85/141] adrianoromanini_ · instagram adrianoromanini_ → old_money US
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [86/141] allen_issy · instagram allen_issy → bohemio US
@@ -315,7 +282,7 @@ Cargando CLIP (ViT-B-32, pesos openai)... (primera vez tarda por la descarga)
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [119/141] nudeproject · instagram nudeproject → urbano ES
   calculando embeddings de 8 imágenes (tendencia)...
-   8 fotos bajadas → 6 nuevas con persona y ropa (2 sin persona, 0 repetidas)
+   8 fotos bajadas → 5 nuevas con persona y ropa (3 sin persona, 0 repetidas)
 [120/141] oliverbrynnum · instagram oliverbrynnum → old_money US
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [121/141] oxfordandchino · instagram oxfordandchino → clasico US
@@ -356,40 +323,29 @@ Cargando CLIP (ViT-B-32, pesos openai)... (primera vez tarda por la descarga)
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [139/141] coldculture · instagram coldculture → urbano ES
   calculando embeddings de 8 imágenes (tendencia)...
-   8 fotos bajadas → 6 nuevas con persona y ropa (2 sin persona, 0 repetidas)
-[140/141] scuffers.co · instagram scuffers.co → urbano ES
-  calculando embeddings de 8 imágenes (tendencia)...
    8 fotos bajadas → 7 nuevas con persona y ropa (1 sin persona, 0 repetidas)
+[140/141] scuffers.co · instagram scuffers.co → urbano ES
+  calculando embeddings de 4 imágenes (tendencia)...
+   4 fotos bajadas → 4 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 [141/141] twojeys · instagram twojeys → urbano ES
    0 fotos bajadas → 0 nuevas con persona y ropa (0 sin persona, 0 repetidas)
 
-Fotos útiles acumuladas: 1925 (2587 vistas en total)
-541 fotos por analizar (tope de 120 min; las que no den tiempo siguen pendientes para la próxima vez)
-  lote 1/28: 20 fotos en 547 s
-  lote 2/28: 20 fotos en 489 s
-  lote 3/28: 20 fotos en 545 s
-  lote 4/28: 20 fotos en 520 s
-  lote 5/28: 20 fotos en 579 s
-  lote 6/28: 20 fotos en 440 s
-  lote 7/28: 20 fotos en 427 s
-  lote 8/28: 20 fotos en 430 s
-  lote 9/28: 20 fotos en 464 s
-  lote 10/28: 20 fotos en 516 s
-  lote 11/28: 20 fotos en 467 s
-  lote 12/28: 20 fotos en 417 s
-  lote 13/28: 20 fotos en 443 s
-  lote 14/28: 20 fotos en 442 s
-  lote 15/28: 20 fotos en 411 s
-  lote 16/28: 20 fotos en 473 s
-Tope de 120 min alcanzado: 221 fotos quedan pendientes para la próxima vez.
-621 prendas visibles de 310 fotos sin etiquetar con el modelo grande
-Paquete de 47 MB: se sube a un dataset PRIVADO de Kaggle (tfm-semanal-prendas-20261026-1035) y se borra al terminar. Kernels: 1.
-Lanzado en Kaggle: tfm-semanal-vlm-prendas-1 (unos 30 minutos)
+Fotos útiles acumuladas: 2026 (2712 vistas en total)
+101 fotos por analizar (tope de 120 min; las que no den tiempo siguen pendientes para la próxima vez)
+  lote 1/6: 20 fotos en 358 s
+  lote 2/6: 20 fotos en 357 s
+  lote 3/6: 20 fotos en 370 s
+  lote 4/6: 20 fotos en 420 s
+  lote 5/6: 20 fotos en 364 s
+  lote 6/6: 1 fotos en 17 s
+201 prendas visibles de 100 fotos sin etiquetar con el modelo grande
+Paquete de 16 MB: se sube a un dataset PRIVADO de Kaggle (tfm-semanal-prendas-20261026-1215) y se borra al terminar. Kernels: 1.
+Lanzado en Kaggle: tfm-semanal-vlm-prendas-1 (unos 13 minutos)
   tfm-semanal-vlm-prendas-1: QUEUED
   tfm-semanal-vlm-prendas-1: RUNNING
   tfm-semanal-vlm-prendas-1: COMPLETE
 Dataset borrado de Kaggle.
-Etiquetadas con el modelo grande: 617 de 621 prendas.
+Etiquetadas con el modelo grande: 197 de 201 prendas.
 
 bohemio · Biblioteca · muestra: 38 fotos (38 con prenda visible)  fuentes: {'Biblioteca': 38}
    Pantalón                      11 fotos  29% (entre 17% y 45%) confianza baja
@@ -405,16 +361,19 @@ bohemio · Biblioteca · muestra: 38 fotos (38 con prenda visible)  fuentes: {'B
    Short                          2 fotos  pocos datos
    Jersey                         2 fotos  pocos datos
 
-bohemio · ES · OI 2026/27: 14 fotos (13 con prenda visible)  fuentes: {'desigual': 8, 'prensa: estilo boho chic moda': 6}
-   Vestido                        7 fotos  53% (entre 27% y 78%) confianza baja
-   Sandalias                      5 fotos  35% (entre 14% y 63%) confianza baja
+bohemio · ES · OI 2026/27: 22 fotos (21 con prenda visible)  fuentes: {'desigual': 16, 'prensa: estilo boho chic moda': 6}
+   Vestido                        7 fotos  40% (entre 20% y 64%) confianza baja
+   Sandalias                      6 fotos  32% (entre 15% y 56%) confianza baja
    Botas                          2 fotos  pocos datos
-   Pantalón                       3 fotos  pocos datos
-   Falda                          2 fotos  pocos datos
-   Chaqueta                       1 fotos  pocos datos
-   Abrigo                         1 fotos  pocos datos
-   Camiseta manga larga           1 fotos  pocos datos
+   Camiseta manga larga           4 fotos  pocos datos
+   Falda                          4 fotos  pocos datos
+   Pantalón                       6 fotos  15% (entre 5% y 40%) confianza baja
+   Chaqueta                       2 fotos  pocos datos
+   Abrigo                         2 fotos  pocos datos
+   Top                            1 fotos  pocos datos
    Zapatos de tacón               1 fotos  pocos datos
+   Camisa                         1 fotos  pocos datos
+   Camiseta de tirantes           1 fotos  pocos datos
 
 bohemio · ES · PV 2026: 13 fotos (13 con prenda visible)  fuentes: {'prensa: moda hippie chic': 7, 'prensa: estilo boho chic moda': 6}
    Vestido                        5 fotos  38% (entre 17% y 64%) confianza baja
@@ -430,19 +389,19 @@ bohemio · ES · PV 2026: 13 fotos (13 con prenda visible)  fuentes: {'prensa: m
    Botas                          1 fotos  pocos datos
    Zapatillas deportivas          1 fotos  pocos datos
 
-bohemio · US · OI 2026/27: 30 fotos (25 con prenda visible)  fuentes: {'r/cottagecore': 12, 'Sienna Miller': 10, 'thehippieshake': 5, 'r/bohemian': 2, 'prensa: "boho chic" fashion': 1}
-   Jersey                         8 fotos  32% (entre 15% y 55%) confianza baja
-   Pantalón                       7 fotos  30% (entre 14% y 53%) confianza baja
+bohemio · US · OI 2026/27: 38 fotos (33 con prenda visible)  fuentes: {'thehippieshake': 13, 'r/cottagecore': 12, 'Sienna Miller': 10, 'r/bohemian': 2, 'prensa: "boho chic" fashion': 1}
+   Jersey                         9 fotos  29% (entre 15% y 49%) confianza baja
+   Botas                          8 fotos  28% (entre 14% y 48%) confianza baja
+   Chaqueta                      10 fotos  28% (entre 14% y 48%) confianza baja
+   Pantalón                       9 fotos  26% (entre 13% y 46%) confianza baja
    Short                          4 fotos  pocos datos
-   Botas                          5 fotos  21% (entre 8% y 44%) confianza baja
-   Chaqueta                       4 fotos  pocos datos
+   Falda                          4 fotos  pocos datos
    Zapatos de vestir              3 fotos  pocos datos
    Polo                           1 fotos  pocos datos
+   Camisa                         2 fotos  pocos datos
    Americana                      1 fotos  pocos datos
-   Camisa                         1 fotos  pocos datos
+   Vestido                        3 fotos  pocos datos
    Bolso                          1 fotos  pocos datos
-   Abrigo                         1 fotos  pocos datos
-   Falda                          1 fotos  pocos datos
 
 clasico · Biblioteca · muestra: 72 fotos (71 con prenda visible)  fuentes: {'Biblioteca': 72}
    Pantalón                      35 fotos  49% (entre 38% y 61%) confianza media
@@ -458,19 +417,19 @@ clasico · Biblioteca · muestra: 72 fotos (71 con prenda visible)  fuentes: {'B
    Falda                          3 fotos  pocos datos
    Polo                           2 fotos  pocos datos
 
-clasico · ES · OI 2026/27: 30 fotos (30 con prenda visible)  fuentes: {'prensa: "Barbour" chaqueta moda': 17, 'cortefiel_official': 8, 'envido6': 3, 'Tamara Falcó': 2}
-   Chaqueta                      13 fotos  51% (entre 34% y 69%) confianza baja
-   Pantalón                      12 fotos  38% (entre 22% y 56%) confianza baja
-   Americana                      5 fotos  14% (entre 5% y 31%) confianza baja
+clasico · ES · OI 2026/27: 38 fotos (37 con prenda visible)  fuentes: {'prensa: "Barbour" chaqueta moda': 17, 'cortefiel_official': 16, 'envido6': 3, 'Tamara Falcó': 2}
+   Chaqueta                      15 fotos  49% (entre 32% y 65%) confianza media
+   Pantalón                      13 fotos  36% (entre 21% y 53%) confianza baja
+   Americana                      5 fotos  12% (entre 5% y 28%) confianza baja
    Camisa                         4 fotos  pocos datos
+   Jersey                         4 fotos  pocos datos
+   Zapatos de vestir              4 fotos  pocos datos
    Falda                          2 fotos  pocos datos
-   Zapatos de vestir              3 fotos  pocos datos
    Camiseta manga corta           3 fotos  pocos datos
-   Jersey                         2 fotos  pocos datos
    Botas                          1 fotos  pocos datos
+   Vestido                        2 fotos  pocos datos
    Camiseta manga larga           1 fotos  pocos datos
    Camiseta de tirantes           1 fotos  pocos datos
-   Polo                           1 fotos  pocos datos
 
 clasico · ES · PV 2026: 2 fotos (2 con prenda visible)  fuentes: {'Tamara Falcó': 2}
    Chaqueta                       1 fotos  pocos datos
@@ -479,15 +438,15 @@ clasico · ES · PV 2026: 2 fotos (2 con prenda visible)  fuentes: {'Tamara Falc
    Chaleco sin mangas             1 fotos  pocos datos
    Sandalias                      1 fotos  pocos datos
 
-clasico · US · OI 2026/27: 85 fotos (80 con prenda visible)  fuentes: {'HackettLondon': 21, 'RalphLauren': 20, 'r/Barbour': 19, 'r/preppy': 17, 'ralphlauren': 6, 'Ralph Lauren': 2}
-   Pantalón                      43 fotos  54% (entre 41% y 67%) confianza baja
-   Chaqueta                      32 fotos  40% (entre 29% y 54%) confianza baja
-   Americana                     18 fotos  19% (entre 11% y 31%) confianza baja
-   Botas                          9 fotos  12% (entre 6% y 24%) confianza baja
-   Jersey                        12 fotos  12% (entre 6% y 23%) confianza baja
-   Zapatos de vestir              9 fotos  9% (entre 4% y 20%) confianza baja
-   Vestido                        4 fotos  pocos datos
-   Abrigo                         6 fotos  8% (entre 3% y 18%) confianza baja
+clasico · US · OI 2026/27: 92 fotos (86 con prenda visible)  fuentes: {'HackettLondon': 21, 'RalphLauren': 20, 'r/Barbour': 19, 'r/preppy': 17, 'ralphlauren': 13, 'Ralph Lauren': 2}
+   Pantalón                      45 fotos  53% (entre 40% y 65%) confianza baja
+   Chaqueta                      34 fotos  41% (entre 29% y 53%) confianza baja
+   Americana                     20 fotos  19% (entre 11% y 31%) confianza baja
+   Botas                          9 fotos  12% (entre 6% y 23%) confianza baja
+   Jersey                        12 fotos  11% (entre 5% y 22%) confianza baja
+   Vestido                        5 fotos  9% (entre 4% y 19%) confianza baja
+   Zapatos de vestir              9 fotos  9% (entre 4% y 19%) confianza baja
+   Abrigo                         7 fotos  8% (entre 4% y 18%) confianza baja
    Camisa                         3 fotos  pocos datos
    Zapatillas deportivas          2 fotos  pocos datos
    Camiseta manga corta           1 fotos  pocos datos
@@ -507,33 +466,33 @@ convencional · Biblioteca · muestra: 60 fotos (60 con prenda visible)  fuentes
    Short                          4 fotos  pocos datos
    Camiseta de tirantes           4 fotos  pocos datos
 
-convencional · ES · OI 2026/27: 62 fotos (62 con prenda visible)  fuentes: {'prensa: looks básicos tendencia moda': 22, 'r/LookeAR': 21, 'prensa: "normcore" moda': 12, 'zara': 7}
-   Pantalón                      30 fotos  44% (entre 30% y 58%) confianza media
-   Camisa                         8 fotos  16% (entre 8% y 30%) confianza baja
-   Vestido                        6 fotos  15% (entre 7% y 29%) confianza baja
-   Zapatos de vestir              9 fotos  13% (entre 6% y 27%) confianza baja
-   Chaqueta                       8 fotos  12% (entre 6% y 26%) confianza baja
-   Falda                         10 fotos  12% (entre 5% y 26%) confianza baja
+convencional · ES · OI 2026/27: 71 fotos (70 con prenda visible)  fuentes: {'prensa: looks básicos tendencia moda': 23, 'r/LookeAR': 21, 'zara': 15, 'prensa: "normcore" moda': 12}
+   Pantalón                      31 fotos  43% (entre 30% y 57%) confianza media
+   Chaqueta                      12 fotos  18% (entre 10% y 31%) confianza baja
+   Vestido                        8 fotos  15% (entre 8% y 28%) confianza baja
+   Camisa                         8 fotos  14% (entre 7% y 27%) confianza baja
+   Falda                         12 fotos  14% (entre 6% y 26%) confianza baja
+   Zapatos de vestir             10 fotos  13% (entre 6% y 26%) confianza baja
+   Jersey                         7 fotos  11% (entre 5% y 22%) confianza baja
    Americana                      3 fotos  pocos datos
-   Jersey                         6 fotos  10% (entre 4% y 23%) confianza baja
-   Zapatos de tacón               3 fotos  pocos datos
-   Camiseta de tirantes           4 fotos  pocos datos
-   Zapatillas deportivas         12 fotos  6% (entre 2% y 17%) confianza baja
-   Botas                          5 fotos  5% (entre 2% y 16%) confianza baja
+   Zapatos de tacón               4 fotos  pocos datos
+   Camiseta de tirantes           5 fotos  6% (entre 2% y 17%) confianza baja
+   Zapatillas deportivas         12 fotos  5% (entre 2% y 15%) confianza baja
+   Botas                          5 fotos  5% (entre 1% y 15%) confianza baja
 
-convencional · US · OI 2026/27: 45 fotos (45 con prenda visible)  fuentes: {'r/OUTFITS': 21, 'r/reddeadfashion': 13, 'abercrombie': 7, 'prensa: everyday outfit trends': 3, 'prensa: "normcore" outfit': 1}
-   Pantalón                      19 fotos  37% (entre 21% y 55%) confianza baja
-   Top                           10 fotos  36% (entre 21% y 55%) confianza baja
-   Vestido                       10 fotos  24% (entre 12% y 42%) confianza baja
-   Chaqueta                       6 fotos  20% (entre 9% y 38%) confianza baja
-   Falda                          5 fotos  16% (entre 7% y 34%) confianza baja
+convencional · US · OI 2026/27: 53 fotos (53 con prenda visible)  fuentes: {'r/OUTFITS': 22, 'r/reddeadfashion': 13, 'abercrombie': 13, 'prensa: everyday outfit trends': 3, 'prensa: "normcore" outfit': 1, 'r/femalefashionadvice': 1}
+   Pantalón                      22 fotos  36% (entre 22% y 53%) confianza baja
+   Top                           11 fotos  31% (entre 18% y 48%) confianza baja
+   Chaqueta                       8 fotos  20% (entre 10% y 37%) confianza baja
+   Vestido                       10 fotos  20% (entre 10% y 36%) confianza baja
+   Falda                          6 fotos  15% (entre 6% y 30%) confianza baja
    Short                          4 fotos  pocos datos
    Zapatillas deportivas          3 fotos  pocos datos
+   Botas                          6 fotos  10% (entre 4% y 24%) confianza baja
    Sandalias                      4 fotos  pocos datos
    Camiseta de tirantes           4 fotos  pocos datos
-   Legging/Malla                  2 fotos  pocos datos
-   Camisa                         6 fotos  7% (entre 2% y 23%) confianza baja
-   Zapatos de tacón               3 fotos  pocos datos
+   Legging/Malla                  3 fotos  pocos datos
+   Camisa                         6 fotos  6% (entre 2% y 20%) confianza baja
 
 convencional · US · PV 2026: 15 fotos (14 con prenda visible)  fuentes: {'prensa: everyday outfit trends': 9, 'prensa: "basics" fashion trend outfit': 6}
    Chaqueta                       5 fotos  62% (entre 30% y 86%) confianza baja
@@ -585,17 +544,19 @@ geek · ES · PV 2026: 10 fotos (10 con prenda visible)  fuentes: {'Rojuu': 10}
    Polo                           1 fotos  pocos datos
    Americana                      1 fotos  pocos datos
 
-geek · US · OI 2026/27: 7 fotos (7 con prenda visible)  fuentes: {'killstar': 7}
-   Pantalón                       3 fotos  pocos datos
+geek · US · OI 2026/27: 15 fotos (15 con prenda visible)  fuentes: {'killstar': 15}
+   Pantalón                       6 fotos  50% (entre 25% y 76%) confianza baja
    Chaqueta                       2 fotos  pocos datos
+   Botas                          4 fotos  pocos datos
    Zapatillas casual/lifestyle    1 fotos  pocos datos
    Hoodie                         2 fotos  pocos datos
-   Camiseta manga corta           1 fotos  pocos datos
-   Botas                          1 fotos  pocos datos
+   Camiseta manga larga           3 fotos  pocos datos
+   Vestido                        3 fotos  pocos datos
+   Camiseta manga corta           2 fotos  pocos datos
    Chaleco sin mangas             1 fotos  pocos datos
    Falda                          1 fotos  pocos datos
-   Camiseta manga larga           1 fotos  pocos datos
-   Vestido                        1 fotos  pocos datos
+   Plumas                         1 fotos  pocos datos
+   Camisa                         1 fotos  pocos datos
 
 lujo · Biblioteca · muestra: 72 fotos (56 con prenda visible)  fuentes: {'Biblioteca': 72}
    Bolso                         24 fotos  43% (entre 31% y 56%) confianza media
@@ -611,16 +572,19 @@ lujo · Biblioteca · muestra: 72 fotos (56 con prenda visible)  fuentes: {'Bibl
    Zapatos de vestir              2 fotos  pocos datos
    Falda                          2 fotos  pocos datos
 
-lujo · ES · OI 2026/27: 13 fotos (12 con prenda visible)  fuentes: {'Georgina Rodríguez': 8, 'loewe': 5}
-   Vestido                        2 fotos  pocos datos
-   Pantalón                       3 fotos  pocos datos
+lujo · ES · OI 2026/27: 27 fotos (25 con prenda visible)  fuentes: {'Georgina Rodríguez': 15, 'loewe': 12}
+   Camiseta manga larga           5 fotos  46% (entre 23% y 70%) confianza baja
+   Falda                          4 fotos  pocos datos
+   Zapatos de tacón               3 fotos  pocos datos
+   Vestido                        4 fotos  pocos datos
+   Legging/Malla                  2 fotos  pocos datos
+   Americana                      7 fotos  12% (entre 3% y 37%) confianza baja
+   Pantalón                       5 fotos  8% (entre 2% y 32%) confianza baja
+   Chaqueta                       3 fotos  pocos datos
    Zapatillas deportivas          2 fotos  pocos datos
-   Chaqueta                       1 fotos  pocos datos
    Jersey                         1 fotos  pocos datos
    Hoodie                         1 fotos  pocos datos
    Plumas                         1 fotos  pocos datos
-   Bolso                          1 fotos  pocos datos
-   Americana                      5 fotos  5% (entre 0% y 44%) confianza baja
 
 lujo · ES · PV 2026: 10 fotos (10 con prenda visible)  fuentes: {'Georgina Rodríguez': 10}
    Camisa                         8 fotos  80% (entre 49% y 94%) confianza baja
@@ -631,19 +595,19 @@ lujo · ES · PV 2026: 10 fotos (10 con prenda visible)  fuentes: {'Georgina Rod
    Sandalias                      1 fotos  pocos datos
    Hoodie                         1 fotos  pocos datos
 
-lujo · US · OI 2026/27: 190 fotos (167 con prenda visible)  fuentes: {'gucci': 28, 'DSQUARED2': 21, 'DolceGabbana': 21, 'Dior': 21, 'r/Gucci': 20, 'Balmain': 19, 'r/IndianFashionAddicts': 18, 'r/LouisVuitton': 15, 'Versace': 14, 'Cardi B': 13}
-   Pantalón                      48 fotos  33% (entre 26% y 42%) confianza baja
-   Americana                     23 fotos  16% (entre 11% y 23%) confianza baja
-   Vestido                       25 fotos  15% (entre 10% y 23%) confianza baja
-   Chaqueta                      22 fotos  14% (entre 9% y 21%) confianza baja
-   Botas                         14 fotos  10% (entre 6% y 16%) confianza baja
-   Plumas                         9 fotos  8% (entre 5% y 14%) confianza baja
-   Camisa                        12 fotos  8% (entre 4% y 14%) confianza baja
-   Zapatillas deportivas         11 fotos  7% (entre 4% y 13%) confianza baja
-   Falda                         11 fotos  7% (entre 4% y 13%) confianza baja
-   Abrigo                        10 fotos  6% (entre 3% y 11%) confianza baja
-   Bolso                         15 fotos  5% (entre 3% y 11%) confianza baja
-   Zapatos de tacón               9 fotos  5% (entre 2% y 10%) confianza baja
+lujo · US · OI 2026/27: 200 fotos (177 con prenda visible)  fuentes: {'gucci': 35, 'DSQUARED2': 24, 'DolceGabbana': 21, 'Dior': 21, 'r/Gucci': 20, 'Balmain': 19, 'r/IndianFashionAddicts': 18, 'r/LouisVuitton': 15, 'Versace': 14, 'Cardi B': 13}
+   Pantalón                      55 fotos  36% (entre 28% y 44%) confianza baja
+   Chaqueta                      27 fotos  17% (entre 12% y 24%) confianza baja
+   Americana                     23 fotos  15% (entre 10% y 22%) confianza baja
+   Vestido                       25 fotos  14% (entre 9% y 21%) confianza baja
+   Botas                         14 fotos  9% (entre 5% y 15%) confianza baja
+   Plumas                         9 fotos  8% (entre 4% y 13%) confianza baja
+   Camisa                        12 fotos  7% (entre 4% y 12%) confianza baja
+   Zapatillas deportivas         11 fotos  6% (entre 3% y 12%) confianza baja
+   Falda                         11 fotos  6% (entre 3% y 12%) confianza baja
+   Zapatos de tacón              10 fotos  6% (entre 3% y 11%) confianza baja
+   Zapatos de vestir             12 fotos  6% (entre 3% y 11%) confianza baja
+   Abrigo                        10 fotos  5% (entre 2% y 10%) confianza baja
 
 lujo · US · PV 2026: 1 fotos (1 con prenda visible)  fuentes: {'Cardi B': 1}
    Mono                           1 fotos  pocos datos
@@ -675,19 +639,19 @@ old_money · ES · OI 2026/27: 34 fotos (34 con prenda visible)  fuentes: {'Rein
    Sudadera                       1 fotos  pocos datos
    Camiseta manga corta           1 fotos  pocos datos
 
-old_money · US · OI 2026/27: 55 fotos (51 con prenda visible)  fuentes: {'Jacob Elordi': 19, 'dieworkwear': 16, 'Gwyneth Paltrow': 15, 'britishcountryheritage': 5}
-   Chaqueta                      14 fotos  43% (entre 28% y 60%) confianza baja
-   Pantalón                      14 fotos  32% (entre 18% y 49%) confianza baja
-   Botas                          4 fotos  pocos datos
-   Vestido                        9 fotos  15% (entre 7% y 31%) confianza baja
-   Camiseta de tirantes           5 fotos  11% (entre 4% y 26%) confianza baja
-   Camisa                         9 fotos  10% (entre 4% y 25%) confianza baja
-   Americana                      8 fotos  10% (entre 3% y 24%) confianza baja
+old_money · US · OI 2026/27: 60 fotos (56 con prenda visible)  fuentes: {'Jacob Elordi': 19, 'dieworkwear': 16, 'Gwyneth Paltrow': 15, 'britishcountryheritage': 10}
+   Chaqueta                      17 fotos  46% (entre 31% y 61%) confianza media
+   Pantalón                      17 fotos  35% (entre 22% y 51%) confianza media
+   Botas                          8 fotos  28% (entre 17% y 44%) confianza baja
+   Vestido                        9 fotos  13% (entre 6% y 28%) confianza baja
+   Americana                      9 fotos  10% (entre 4% y 24%) confianza baja
+   Camiseta de tirantes           5 fotos  10% (entre 4% y 23%) confianza baja
+   Camisa                         9 fotos  9% (entre 3% y 22%) confianza baja
    Abrigo                         2 fotos  pocos datos
    Chaleco sin mangas             2 fotos  pocos datos
+   Jersey                         2 fotos  pocos datos
    Falda                          2 fotos  pocos datos
-   Top                            1 fotos  pocos datos
-   Mono                           1 fotos  pocos datos
+   Legging/Malla                  1 fotos  pocos datos
 
 old_money · US · PV 2026: 4 fotos (4 con prenda visible)  fuentes: {'Gwyneth Paltrow': 4}
    Camisa                         3 fotos  pocos datos
@@ -707,19 +671,19 @@ urbano · Biblioteca · muestra: 40 fotos (39 con prenda visible)  fuentes: {'Bi
    Camiseta manga larga           2 fotos  pocos datos
    Americana                      2 fotos  pocos datos
 
-urbano · ES · OI 2026/27: 57 fotos (54 con prenda visible)  fuentes: {'Morad': 12, 'Quevedo': 11, 'prensa: streetwear España tendencia': 11, 'scuffers.co': 7, 'nudeproject': 6, 'coldculture': 6, 'bycalitos': 3, 'Beny Jr': 1}
-   Pantalón                      25 fotos  47% (entre 30% y 64%) confianza media
-   Chaqueta                      13 fotos  30% (entre 17% y 48%) confianza baja
-   Zapatos de vestir              9 fotos  19% (entre 9% y 36%) confianza baja
-   Camiseta manga corta          13 fotos  11% (entre 4% y 27%) confianza baja
+urbano · ES · OI 2026/27: 73 fotos (69 con prenda visible)  fuentes: {'coldculture': 13, 'Morad': 12, 'Quevedo': 11, 'prensa: streetwear España tendencia': 11, 'nudeproject': 11, 'scuffers.co': 11, 'bycalitos': 3, 'Beny Jr': 1}
+   Pantalón                      37 fotos  49% (entre 33% y 64%) confianza media
+   Chaqueta                      15 fotos  27% (entre 15% y 43%) confianza media
+   Zapatos de vestir             11 fotos  18% (entre 9% y 34%) confianza baja
+   Plumas                         4 fotos  pocos datos
+   Camiseta manga corta          14 fotos  10% (entre 4% y 24%) confianza baja
    Jersey                         3 fotos  pocos datos
-   Plumas                         1 fotos  pocos datos
+   Hoodie                         6 fotos  7% (entre 2% y 20%) confianza baja
+   Zapatillas deportivas          6 fotos  6% (entre 2% y 18%) confianza baja
    Sudadera                       3 fotos  pocos datos
-   Hoodie                         4 fotos  pocos datos
-   Camiseta de tirantes           2 fotos  pocos datos
-   Top                            4 fotos  pocos datos
-   Short                          3 fotos  pocos datos
-   Zapatillas deportivas          2 fotos  pocos datos
+   Camiseta de tirantes           3 fotos  pocos datos
+   Top                            5 fotos  5% (entre 1% y 17%) confianza baja
+   Camisa                         5 fotos  5% (entre 1% y 16%) confianza baja
 
 urbano · ES · PV 2026: 9 fotos (9 con prenda visible)  fuentes: {'bycalitos': 4, 'Quevedo': 4, 'Israel B': 1}
    Polo                           3 fotos  pocos datos

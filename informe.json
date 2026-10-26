@@ -1,5 +1,5 @@
 {
- "generado": "2026-10-26T11:10:57+00:00",
+ "generado": "2026-10-26T12:30:13+00:00",
  "min_fotos": 5,
  "vida_media_dias": 10.0,
  "fiabilidad": {
@@ -1144,18 +1144,18 @@
    "estilo": "bohemio",
    "mercado": "ES",
    "temporada": "OI 2026/27",
-   "fotos": 14,
-   "fotos_con_prenda": 13,
-   "fotos_efectivas": 11.1,
+   "fotos": 22,
+   "fotos_con_prenda": 21,
+   "fotos_efectivas": 15.9,
    "prendas": [
     {
      "tipo": "Vestido",
      "familia": "Cuerpo entero",
      "fotos": 7,
-     "cuota": 0.532,
+     "cuota": 0.402,
      "ic": [
-      0.271,
-      0.777
+      0.204,
+      0.638
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -1205,11 +1205,11 @@
     {
      "tipo": "Sandalias",
      "familia": "Calzado",
-     "fotos": 5,
-     "cuota": 0.35,
+     "fotos": 6,
+     "cuota": 0.322,
      "ic": [
-      0.144,
-      0.634
+      0.147,
+      0.565
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -1229,26 +1229,26 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 5,
+       "n": 6,
        "reparto": {
-        "liso": 4,
+        "liso": 5,
         "otro": 1
        },
        "confianza": "baja"
       },
       "forma": {
-       "n": 5,
+       "n": 6,
        "reparto": {
-        "no aplica": 3,
+        "no aplica": 4,
         "regular": 2
        },
        "confianza": "baja"
       },
       "tejido": {
-       "n": 5,
+       "n": 6,
        "reparto": {
+        "cuero / vinilo": 3,
         "algodón": 2,
-        "cuero / vinilo": 2,
         "no se distingue": 1
        },
        "confianza": "baja"
@@ -1276,13 +1276,64 @@
      "atributos": {}
     },
     {
-     "tipo": "Pantalón",
-     "familia": "Abajo",
-     "fotos": 3,
+     "tipo": "Camiseta manga larga",
+     "familia": "Arriba",
+     "fotos": 4,
      "cuota": null,
      "ic": null,
      "confianza": null,
      "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_18047512211816171",
+       0
+      ],
+      [
+       "ig_18436273876178716",
+       0
+      ],
+      [
+       "ig_18093065822177264",
+       0
+      ]
+     ],
+     "atributos": {}
+    },
+    {
+     "tipo": "Falda",
+     "familia": "Abajo",
+     "fotos": 4,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_18047512211816171",
+       1
+      ],
+      [
+       "pr_70176b22e5",
+       1
+      ],
+      [
+       "ig_17988532494102763",
+       0
+      ]
+     ],
+     "atributos": {}
+    },
+    {
+     "tipo": "Pantalón",
+     "familia": "Abajo",
+     "fotos": 6,
+     "cuota": 0.154,
+     "ic": [
+      0.049,
+      0.395
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
      "ejemplos": [
       [
        "ig_18093065822177264",
@@ -1297,11 +1348,40 @@
        1
       ]
      ],
-     "atributos": {}
+     "atributos": {
+      "estampado": {
+       "n": 6,
+       "reparto": {
+        "otro": 2,
+        "liso": 2,
+        "gráfico / dibujo": 1,
+        "rayas": 1
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 6,
+       "reparto": {
+        "ajustada": 4,
+        "oversized / baggy": 1,
+        "regular": 1
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 6,
+       "reparto": {
+        "denim (vaquero)": 4,
+        "seda / satén": 1,
+        "técnico / impermeable": 1
+       },
+       "confianza": "baja"
+      }
+     }
     },
     {
-     "tipo": "Falda",
-     "familia": "Abajo",
+     "tipo": "Chaqueta",
+     "familia": "Abrigo",
      "fotos": 2,
      "cuota": null,
      "ic": null,
@@ -1309,25 +1389,9 @@
      "pocos_datos": true,
      "ejemplos": [
       [
-       "pr_70176b22e5",
-       1
-      ],
-      [
-       "ig_17988532494102763",
+       "ig_17905434477356120",
        0
-      ]
-     ],
-     "atributos": {}
-    },
-    {
-     "tipo": "Chaqueta",
-     "familia": "Abrigo",
-     "fotos": 1,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
-     "ejemplos": [
+      ],
       [
        "ig_18469138180185712",
        0
@@ -1338,7 +1402,7 @@
     {
      "tipo": "Abrigo",
      "familia": "Abrigo",
-     "fotos": 1,
+     "fotos": 2,
      "cuota": null,
      "ic": null,
      "confianza": null,
@@ -1347,12 +1411,16 @@
       [
        "ig_17868133662658011",
        0
+      ],
+      [
+       "ig_18115413604975269",
+       0
       ]
      ],
      "atributos": {}
     },
     {
-     "tipo": "Camiseta manga larga",
+     "tipo": "Top",
      "familia": "Arriba",
      "fotos": 1,
      "cuota": null,
@@ -1361,8 +1429,8 @@
      "pocos_datos": true,
      "ejemplos": [
       [
-       "ig_18093065822177264",
-       0
+       "ig_18436273876178716",
+       1
       ]
      ],
      "atributos": {}
@@ -1382,16 +1450,80 @@
       ]
      ],
      "atributos": {}
+    },
+    {
+     "tipo": "Camisa",
+     "familia": "Arriba",
+     "fotos": 1,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_17888936181616067",
+       0
+      ]
+     ],
+     "atributos": {}
+    },
+    {
+     "tipo": "Camiseta de tirantes",
+     "familia": "Arriba",
+     "fotos": 1,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_18076219730410783",
+       1
+      ]
+     ],
+     "atributos": {}
+    },
+    {
+     "tipo": "Camiseta manga corta",
+     "familia": "Arriba",
+     "fotos": 1,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_18075329330718691",
+       1
+      ]
+     ],
+     "atributos": {}
+    },
+    {
+     "tipo": "Zapatillas deportivas",
+     "familia": "Calzado",
+     "fotos": 1,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_18075329330718691",
+       2
+      ]
+     ],
+     "atributos": {}
     }
    ],
    "familias": [
     {
      "familia": "Calzado",
-     "fotos": 7,
-     "cuota": 0.585,
+     "fotos": 9,
+     "cuota": 0.509,
      "ic": [
-      0.312,
-      0.814
+      0.287,
+      0.728
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -1411,26 +1543,26 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 8,
+       "n": 10,
        "reparto": {
-        "liso": 5,
+        "liso": 7,
         "otro": 3
        },
        "confianza": "baja"
       },
       "forma": {
-       "n": 8,
+       "n": 10,
        "reparto": {
-        "no aplica": 6,
-        "regular": 2
+        "no aplica": 7,
+        "regular": 3
        },
        "confianza": "baja"
       },
       "tejido": {
-       "n": 8,
+       "n": 10,
        "reparto": {
-        "cuero / vinilo": 3,
-        "algodón": 2,
+        "cuero / vinilo": 4,
+        "algodón": 3,
         "no se distingue": 2,
         "seda / satén": 1
        },
@@ -1441,10 +1573,10 @@
     {
      "familia": "Cuerpo entero",
      "fotos": 7,
-     "cuota": 0.532,
+     "cuota": 0.402,
      "ic": [
-      0.271,
-      0.777
+      0.204,
+      0.638
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -1493,15 +1625,19 @@
     },
     {
      "familia": "Abajo",
-     "fotos": 5,
-     "cuota": 0.268,
+     "fotos": 10,
+     "cuota": 0.313,
      "ic": [
-      0.095,
-      0.56
+      0.142,
+      0.557
      ],
      "confianza": "baja",
      "pocos_datos": false,
      "ejemplos": [
+      [
+       "ig_18047512211816171",
+       1
+      ],
       [
        "pr_70176b22e5",
        1
@@ -1509,36 +1645,37 @@
       [
        "ig_18093065822177264",
        1
-      ],
-      [
-       "ig_18116314228956817",
-       1
       ]
      ],
      "atributos": {
       "estampado": {
-       "n": 5,
+       "n": 10,
        "reparto": {
+        "liso": 4,
         "otro": 3,
-        "liso": 2
+        "gráfico / dibujo": 2,
+        "rayas": 1
        },
        "confianza": "baja"
       },
       "forma": {
-       "n": 5,
+       "n": 10,
        "reparto": {
-        "ajustada": 3,
-        "oversized / baggy": 1,
-        "regular": 1
+        "ajustada": 7,
+        "regular": 2,
+        "oversized / baggy": 1
        },
        "confianza": "baja"
       },
       "tejido": {
-       "n": 5,
+       "n": 10,
        "reparto": {
+        "denim (vaquero)": 4,
         "tul / encaje": 2,
-        "denim (vaquero)": 2,
-        "seda / satén": 1
+        "seda / satén": 1,
+        "terciopelo": 1,
+        "técnico / impermeable": 1,
+        "punto": 1
        },
        "confianza": "baja"
       }
@@ -1546,12 +1683,16 @@
     },
     {
      "familia": "Abrigo",
-     "fotos": 2,
+     "fotos": 4,
      "cuota": null,
      "ic": null,
      "confianza": null,
      "pocos_datos": true,
      "ejemplos": [
+      [
+       "ig_17905434477356120",
+       0
+      ],
       [
        "ig_17868133662658011",
        0
@@ -1565,68 +1706,113 @@
     },
     {
      "familia": "Arriba",
-     "fotos": 1,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
+     "fotos": 7,
+     "cuota": 0.195,
+     "ic": [
+      0.07,
+      0.439
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
      "ejemplos": [
       [
-       "ig_18093065822177264",
+       "ig_18047512211816171",
+       0
+      ],
+      [
+       "ig_18436273876178716",
+       1
+      ],
+      [
+       "ig_18436273876178716",
        0
       ]
      ],
-     "atributos": {}
+     "atributos": {
+      "estampado": {
+       "n": 8,
+       "reparto": {
+        "gráfico / dibujo": 5,
+        "texto / logo": 2,
+        "otro": 1
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 8,
+       "reparto": {
+        "corta / cropped": 3,
+        "ajustada": 2,
+        "oversized / baggy": 2,
+        "regular": 1
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 8,
+       "reparto": {
+        "algodón": 5,
+        "punto": 2,
+        "denim (vaquero)": 1
+       },
+       "confianza": "baja"
+      }
+     }
     }
    ],
    "atributos": {
     "estampado": {
-     "n": 23,
+     "n": 39,
      "reparto": {
+      "liso": 15,
       "otro": 13,
-      "liso": 9,
-      "texto / logo": 1
+      "gráfico / dibujo": 7,
+      "texto / logo": 3,
+      "rayas": 1
      },
      "confianza": "media"
     },
     "forma": {
-     "n": 23,
+     "n": 39,
      "reparto": {
-      "ajustada": 9,
-      "regular": 6,
-      "no aplica": 6,
-      "oversized / baggy": 2
+      "ajustada": 14,
+      "regular": 11,
+      "no aplica": 7,
+      "oversized / baggy": 4,
+      "corta / cropped": 3
      },
      "confianza": "media"
     },
     "tejido": {
-     "n": 23,
+     "n": 39,
      "reparto": {
-      "algodón": 6,
+      "algodón": 12,
+      "denim (vaquero)": 6,
       "tul / encaje": 4,
+      "cuero / vinilo": 4,
+      "punto": 4,
       "no se distingue": 4,
-      "cuero / vinilo": 3,
-      "punto": 2,
       "seda / satén": 2,
-      "denim (vaquero)": 2
+      "terciopelo": 2,
+      "técnico / impermeable": 1
      },
      "confianza": "media"
     }
    },
    "etiquetadas_con_modelo_grande": true,
    "colores": {
-    "negro": 8,
-    "lavanda": 2,
+    "negro": 14,
+    "azul": 6,
+    "lavanda": 4,
+    "blanco": 3,
+    "rojo": 3,
+    "verde": 3,
     "rosa": 2,
-    "blanco": 2,
-    "camel": 2,
-    "rojo": 2,
-    "verde": 2,
-    "azul": 2
+    "camel": 2
    },
    "confianza_color": "baja",
    "fuentes": {
-    "desigual": 8,
+    "desigual": 16,
     "prensa: estilo boho chic moda": 6
    }
   },
@@ -2152,18 +2338,18 @@
    "estilo": "bohemio",
    "mercado": "US",
    "temporada": "OI 2026/27",
-   "fotos": 30,
-   "fotos_con_prenda": 25,
-   "fotos_efectivas": 17.9,
+   "fotos": 38,
+   "fotos_con_prenda": 33,
+   "fotos_efectivas": 23.9,
    "prendas": [
     {
      "tipo": "Jersey",
      "familia": "Arriba",
-     "fotos": 8,
-     "cuota": 0.319,
+     "fotos": 9,
+     "cuota": 0.29,
      "ic": [
-      0.153,
-      0.55
+      0.147,
+      0.49
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -2183,26 +2369,134 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 7,
+       "n": 8,
        "reparto": {
-        "liso": 5,
+        "liso": 6,
         "gráfico / dibujo": 1,
         "rayas": 1
        },
        "confianza": "baja"
       },
       "forma": {
-       "n": 7,
+       "n": 8,
        "reparto": {
-        "oversized / baggy": 4,
+        "oversized / baggy": 5,
         "regular": 3
        },
        "confianza": "baja"
       },
       "tejido": {
-       "n": 7,
+       "n": 8,
        "reparto": {
-        "punto": 7
+        "punto": 8
+       },
+       "confianza": "baja"
+      }
+     }
+    },
+    {
+     "tipo": "Botas",
+     "familia": "Calzado",
+     "fotos": 8,
+     "cuota": 0.282,
+     "ic": [
+      0.142,
+      0.482
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
+     "ejemplos": [
+      [
+       "pr_3b64597dc7",
+       0
+      ],
+      [
+       "ig_18077752457573853",
+       2
+      ],
+      [
+       "ig_18137909161711399",
+       1
+      ]
+     ],
+     "atributos": {
+      "estampado": {
+       "n": 9,
+       "reparto": {
+        "liso": 8,
+        "otro": 1
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 9,
+       "reparto": {
+        "no aplica": 5,
+        "regular": 4
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 9,
+       "reparto": {
+        "cuero / vinilo": 8,
+        "punto": 1
+       },
+       "confianza": "baja"
+      }
+     }
+    },
+    {
+     "tipo": "Chaqueta",
+     "familia": "Abrigo",
+     "fotos": 10,
+     "cuota": 0.281,
+     "ic": [
+      0.142,
+      0.481
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
+     "ejemplos": [
+      [
+       "ig_18219018769360478",
+       0
+      ],
+      [
+       "pr_f335ce5301",
+       0
+      ],
+      [
+       "ig_18077752457573853",
+       0
+      ]
+     ],
+     "atributos": {
+      "estampado": {
+       "n": 11,
+       "reparto": {
+        "otro": 5,
+        "liso": 3,
+        "gráfico / dibujo": 2,
+        "cuadros": 1
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 11,
+       "reparto": {
+        "regular": 6,
+        "oversized / baggy": 5
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 11,
+       "reparto": {
+        "terciopelo": 4,
+        "algodón": 3,
+        "cuero / vinilo": 3,
+        "no se distingue": 1
        },
        "confianza": "baja"
       }
@@ -2211,11 +2505,11 @@
     {
      "tipo": "Pantalón",
      "familia": "Abajo",
-     "fotos": 7,
-     "cuota": 0.302,
+     "fotos": 9,
+     "cuota": 0.258,
      "ic": [
-      0.141,
-      0.533
+      0.126,
+      0.458
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -2235,25 +2529,25 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 7,
+       "n": 9,
        "reparto": {
-        "liso": 5,
+        "liso": 7,
         "gráfico / dibujo": 2
        },
        "confianza": "baja"
       },
       "forma": {
-       "n": 7,
+       "n": 9,
        "reparto": {
-        "regular": 5,
-        "oversized / baggy": 2
+        "regular": 6,
+        "oversized / baggy": 3
        },
        "confianza": "baja"
       },
       "tejido": {
-       "n": 7,
+       "n": 9,
        "reparto": {
-        "denim (vaquero)": 3,
+        "denim (vaquero)": 5,
         "punto": 1,
         "no se distingue": 1,
         "algodón": 1,
@@ -2288,59 +2582,8 @@
      "atributos": {}
     },
     {
-     "tipo": "Botas",
-     "familia": "Calzado",
-     "fotos": 5,
-     "cuota": 0.21,
-     "ic": [
-      0.083,
-      0.44
-     ],
-     "confianza": "baja",
-     "pocos_datos": false,
-     "ejemplos": [
-      [
-       "pr_3b64597dc7",
-       0
-      ],
-      [
-       "pr_3b64597dc7",
-       1
-      ],
-      [
-       "pr_57bf5a6562",
-       2
-      ]
-     ],
-     "atributos": {
-      "estampado": {
-       "n": 6,
-       "reparto": {
-        "liso": 6
-       },
-       "confianza": "baja"
-      },
-      "forma": {
-       "n": 6,
-       "reparto": {
-        "regular": 3,
-        "no aplica": 3
-       },
-       "confianza": "baja"
-      },
-      "tejido": {
-       "n": 6,
-       "reparto": {
-        "cuero / vinilo": 5,
-        "punto": 1
-       },
-       "confianza": "baja"
-      }
-     }
-    },
-    {
-     "tipo": "Chaqueta",
-     "familia": "Abrigo",
+     "tipo": "Falda",
+     "familia": "Abajo",
      "fotos": 4,
      "cuota": null,
      "ic": null,
@@ -2348,16 +2591,16 @@
      "pocos_datos": true,
      "ejemplos": [
       [
-       "pr_f335ce5301",
-       0
+       "ig_18077752457573853",
+       1
       ],
       [
-       "ig_17919427779447594",
-       0
+       "ig_18219018769360478",
+       1
       ],
       [
-       "ig_17907346110667723",
-       0
+       "rd_1xbvv25",
+       1
       ]
      ],
      "atributos": {}
@@ -2403,6 +2646,26 @@
      "atributos": {}
     },
     {
+     "tipo": "Camisa",
+     "familia": "Arriba",
+     "fotos": 2,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "pr_ef47c1d4ad",
+       0
+      ],
+      [
+       "ig_18477724924117131",
+       1
+      ]
+     ],
+     "atributos": {}
+    },
+    {
      "tipo": "Americana",
      "familia": "Abrigo",
      "fotos": 1,
@@ -2419,16 +2682,24 @@
      "atributos": {}
     },
     {
-     "tipo": "Camisa",
-     "familia": "Arriba",
-     "fotos": 1,
+     "tipo": "Vestido",
+     "familia": "Cuerpo entero",
+     "fotos": 3,
      "cuota": null,
      "ic": null,
      "confianza": null,
      "pocos_datos": true,
      "ejemplos": [
       [
-       "pr_ef47c1d4ad",
+       "ig_18137909161711399",
+       0
+      ],
+      [
+       "rd_1x0fr79",
+       1
+      ],
+      [
+       "rd_1wqoyde",
        0
       ]
      ],
@@ -2467,8 +2738,8 @@
      "atributos": {}
     },
     {
-     "tipo": "Falda",
-     "familia": "Abajo",
+     "tipo": "Zapatillas deportivas",
+     "familia": "Calzado",
      "fotos": 1,
      "cuota": null,
      "ic": null,
@@ -2476,32 +2747,8 @@
      "pocos_datos": true,
      "ejemplos": [
       [
-       "rd_1xbvv25",
-       1
-      ]
-     ],
-     "atributos": {}
-    },
-    {
-     "tipo": "Vestido",
-     "familia": "Cuerpo entero",
-     "fotos": 2,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
-     "ejemplos": [
-      [
-       "rd_1x0fr79",
-       1
-      ],
-      [
-       "rd_1wqoyde",
-       0
-      ],
-      [
-       "rd_1x0fr79",
-       0
+       "ig_18477724924117131",
+       2
       ]
      ],
      "atributos": {}
@@ -2526,13 +2773,13 @@
    "familias": [
     {
      "familia": "Abajo",
-     "fotos": 12,
-     "cuota": 0.561,
+     "fotos": 17,
+     "cuota": 0.55,
      "ic": [
-      0.342,
-      0.759
+      0.358,
+      0.728
      ],
-     "confianza": "baja",
+     "confianza": "media",
      "pocos_datos": false,
      "ejemplos": [
       [
@@ -2540,51 +2787,53 @@
        1
       ],
       [
-       "pr_f335ce5301",
+       "ig_18077752457573853",
        1
       ],
       [
-       "pr_4ba6d0d186",
+       "pr_f335ce5301",
        1
       ]
      ],
      "atributos": {
       "estampado": {
-       "n": 12,
+       "n": 17,
        "reparto": {
-        "liso": 8,
-        "gráfico / dibujo": 4
+        "liso": 11,
+        "gráfico / dibujo": 4,
+        "otro": 2
        },
-       "confianza": "baja"
+       "confianza": "media"
       },
       "forma": {
-       "n": 12,
+       "n": 17,
        "reparto": {
-        "regular": 9,
-        "oversized / baggy": 3
+        "regular": 13,
+        "oversized / baggy": 4
        },
-       "confianza": "baja"
+       "confianza": "media"
       },
       "tejido": {
-       "n": 12,
+       "n": 17,
        "reparto": {
-        "algodón": 5,
-        "denim (vaquero)": 4,
+        "denim (vaquero)": 6,
+        "algodón": 6,
+        "cuero / vinilo": 2,
         "punto": 1,
         "no se distingue": 1,
         "terciopelo": 1
        },
-       "confianza": "baja"
+       "confianza": "media"
       }
      }
     },
     {
      "familia": "Arriba",
-     "fotos": 11,
-     "cuota": 0.473,
+     "fotos": 13,
+     "cuota": 0.421,
      "ic": [
-      0.268,
-      0.688
+      0.248,
+      0.616
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -2604,9 +2853,9 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 10,
+       "n": 12,
        "reparto": {
-        "liso": 7,
+        "liso": 9,
         "otro": 1,
         "gráfico / dibujo": 1,
         "rayas": 1
@@ -2614,18 +2863,19 @@
        "confianza": "baja"
       },
       "forma": {
-       "n": 10,
+       "n": 12,
        "reparto": {
-        "regular": 5,
-        "oversized / baggy": 5
+        "regular": 6,
+        "oversized / baggy": 6
        },
        "confianza": "baja"
       },
       "tejido": {
-       "n": 10,
+       "n": 12,
        "reparto": {
-        "punto": 7,
-        "algodón": 3
+        "punto": 8,
+        "algodón": 3,
+        "denim (vaquero)": 1
        },
        "confianza": "baja"
       }
@@ -2633,11 +2883,11 @@
     },
     {
      "familia": "Calzado",
-     "fotos": 8,
-     "cuota": 0.308,
+     "fotos": 12,
+     "cuota": 0.37,
      "ic": [
-      0.145,
-      0.539
+      0.208,
+      0.569
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -2647,53 +2897,59 @@
        0
       ],
       [
-       "pr_3b64597dc7",
-       1
+       "ig_18077752457573853",
+       2
       ],
       [
-       "pr_57bf5a6562",
-       2
+       "ig_18137909161711399",
+       1
       ]
      ],
      "atributos": {
       "estampado": {
-       "n": 11,
+       "n": 15,
        "reparto": {
-        "liso": 8,
-        "gráfico / dibujo": 3
+        "liso": 11,
+        "gráfico / dibujo": 3,
+        "otro": 1
        },
-       "confianza": "baja"
+       "confianza": "media"
       },
       "forma": {
-       "n": 11,
+       "n": 15,
        "reparto": {
-        "no aplica": 8,
-        "regular": 3
+        "no aplica": 11,
+        "regular": 4
        },
-       "confianza": "baja"
+       "confianza": "media"
       },
       "tejido": {
-       "n": 11,
+       "n": 15,
        "reparto": {
-        "cuero / vinilo": 7,
+        "cuero / vinilo": 10,
         "terciopelo": 3,
-        "punto": 1
+        "punto": 1,
+        "algodón": 1
        },
-       "confianza": "baja"
+       "confianza": "media"
       }
      }
     },
     {
      "familia": "Abrigo",
-     "fotos": 6,
-     "cuota": 0.243,
+     "fotos": 12,
+     "cuota": 0.357,
      "ic": [
-      0.103,
-      0.475
+      0.198,
+      0.556
      ],
      "confianza": "baja",
      "pocos_datos": false,
      "ejemplos": [
+      [
+       "ig_18219018769360478",
+       0
+      ],
       [
        "pr_f335ce5301",
        0
@@ -2701,40 +2957,61 @@
       [
        "pr_7900081a92",
        0
-      ],
-      [
-       "ig_17919427779447594",
-       0
       ]
      ],
      "atributos": {
       "estampado": {
-       "n": 5,
+       "n": 12,
        "reparto": {
-        "liso": 2,
+        "otro": 5,
+        "liso": 4,
         "gráfico / dibujo": 2,
-        "otro": 1
+        "cuadros": 1
        },
        "confianza": "baja"
       },
       "forma": {
-       "n": 5,
+       "n": 12,
        "reparto": {
-        "oversized / baggy": 4,
-        "regular": 1
+        "regular": 7,
+        "oversized / baggy": 5
        },
        "confianza": "baja"
       },
       "tejido": {
-       "n": 5,
+       "n": 12,
        "reparto": {
-        "algodón": 3,
-        "no se distingue": 1,
-        "terciopelo": 1
+        "algodón": 4,
+        "terciopelo": 4,
+        "cuero / vinilo": 3,
+        "no se distingue": 1
        },
        "confianza": "baja"
       }
      }
+    },
+    {
+     "familia": "Cuerpo entero",
+     "fotos": 3,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_18137909161711399",
+       0
+      ],
+      [
+       "rd_1x0fr79",
+       1
+      ],
+      [
+       "rd_1wqoyde",
+       0
+      ]
+     ],
+     "atributos": {}
     },
     {
      "familia": "Accesorio",
@@ -2750,59 +3027,37 @@
       ]
      ],
      "atributos": {}
-    },
-    {
-     "familia": "Cuerpo entero",
-     "fotos": 2,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
-     "ejemplos": [
-      [
-       "rd_1x0fr79",
-       1
-      ],
-      [
-       "rd_1wqoyde",
-       0
-      ],
-      [
-       "rd_1x0fr79",
-       0
-      ]
-     ],
-     "atributos": {}
     }
    ],
    "atributos": {
     "estampado": {
-     "n": 42,
+     "n": 61,
      "reparto": {
-      "liso": 27,
+      "liso": 37,
+      "otro": 11,
       "gráfico / dibujo": 10,
-      "otro": 4,
-      "rayas": 1
+      "rayas": 2,
+      "cuadros": 1
      },
      "confianza": "media"
     },
     "forma": {
-     "n": 42,
+     "n": 61,
      "reparto": {
-      "regular": 20,
-      "oversized / baggy": 13,
-      "no aplica": 9
+      "regular": 32,
+      "oversized / baggy": 17,
+      "no aplica": 12
      },
      "confianza": "media"
     },
     "tejido": {
-     "n": 42,
+     "n": 61,
      "reparto": {
-      "algodón": 13,
-      "punto": 9,
-      "cuero / vinilo": 7,
-      "terciopelo": 5,
-      "denim (vaquero)": 4,
+      "algodón": 17,
+      "cuero / vinilo": 15,
+      "punto": 10,
+      "terciopelo": 8,
+      "denim (vaquero)": 7,
       "tul / encaje": 2,
       "no se distingue": 2
      },
@@ -2811,20 +3066,20 @@
    },
    "etiquetadas_con_modelo_grande": false,
    "colores": {
-    "negro": 20,
+    "negro": 28,
+    "camel": 10,
     "verde": 7,
+    "azul": 6,
     "blanco": 4,
     "navy": 4,
-    "camel": 3,
-    "azul": 3,
-    "gris": 1,
+    "gris": 2,
     "rosa": 1
    },
    "confianza_color": "baja",
    "fuentes": {
+    "thehippieshake": 13,
     "r/cottagecore": 12,
     "Sienna Miller": 10,
-    "thehippieshake": 5,
     "r/bohemian": 2,
     "prensa: \"boho chic\" fashion": 1
    }
@@ -3756,20 +4011,20 @@
    "estilo": "clasico",
    "mercado": "ES",
    "temporada": "OI 2026/27",
-   "fotos": 30,
-   "fotos_con_prenda": 30,
-   "fotos_efectivas": 27.4,
+   "fotos": 38,
+   "fotos_con_prenda": 37,
+   "fotos_efectivas": 32.0,
    "prendas": [
     {
      "tipo": "Chaqueta",
      "familia": "Abrigo",
-     "fotos": 13,
-     "cuota": 0.513,
+     "fotos": 15,
+     "cuota": 0.486,
      "ic": [
-      0.336,
-      0.686
+      0.324,
+      0.651
      ],
-     "confianza": "baja",
+     "confianza": "media",
      "pocos_datos": false,
      "ejemplos": [
       [
@@ -3787,24 +4042,24 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 15,
+       "n": 17,
        "reparto": {
-        "liso": 11,
+        "liso": 13,
         "cuadros": 4
        },
        "confianza": "media"
       },
       "forma": {
-       "n": 15,
+       "n": 17,
        "reparto": {
-        "regular": 15
+        "regular": 17
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 15,
+       "n": 17,
        "reparto": {
-        "algodón": 12,
+        "algodón": 14,
         "técnico / impermeable": 2,
         "cuero / vinilo": 1
        },
@@ -3815,11 +4070,11 @@
     {
      "tipo": "Pantalón",
      "familia": "Abajo",
-     "fotos": 12,
-     "cuota": 0.378,
+     "fotos": 13,
+     "cuota": 0.355,
      "ic": [
-      0.222,
-      0.563
+      0.213,
+      0.528
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -3839,26 +4094,26 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 13,
+       "n": 14,
        "reparto": {
-        "liso": 12,
+        "liso": 13,
         "camuflaje": 1
        },
        "confianza": "baja"
       },
       "forma": {
-       "n": 13,
+       "n": 14,
        "reparto": {
-        "regular": 9,
+        "regular": 10,
         "ajustada": 3,
         "oversized / baggy": 1
        },
        "confianza": "baja"
       },
       "tejido": {
-       "n": 13,
+       "n": 14,
        "reparto": {
-        "algodón": 11,
+        "algodón": 12,
         "técnico / impermeable": 1,
         "denim (vaquero)": 1
        },
@@ -3870,10 +4125,10 @@
      "tipo": "Americana",
      "familia": "Abrigo",
      "fotos": 5,
-     "cuota": 0.137,
+     "cuota": 0.124,
      "ic": [
-      0.053,
-      0.31
+      0.049,
+      0.279
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -3943,6 +4198,54 @@
      "atributos": {}
     },
     {
+     "tipo": "Jersey",
+     "familia": "Arriba",
+     "fotos": 4,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_18132141496771933",
+       0
+      ],
+      [
+       "pr_6e6c8edb59",
+       0
+      ],
+      [
+       "ig_18470463277138477",
+       0
+      ]
+     ],
+     "atributos": {}
+    },
+    {
+     "tipo": "Zapatos de vestir",
+     "familia": "Calzado",
+     "fotos": 4,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "pr_709ca330ab",
+       2
+      ],
+      [
+       "ig_18195959947394411",
+       2
+      ],
+      [
+       "ig_18110877179580748",
+       2
+      ]
+     ],
+     "atributos": {}
+    },
+    {
      "tipo": "Falda",
      "familia": "Abajo",
      "fotos": 2,
@@ -3962,30 +4265,6 @@
       [
        "pr_d7ce1a5438",
        1
-      ]
-     ],
-     "atributos": {}
-    },
-    {
-     "tipo": "Zapatos de vestir",
-     "familia": "Calzado",
-     "fotos": 3,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
-     "ejemplos": [
-      [
-       "pr_709ca330ab",
-       2
-      ],
-      [
-       "ig_18195959947394411",
-       2
-      ],
-      [
-       "ig_18110877179580748",
-       2
       ]
      ],
      "atributos": {}
@@ -4015,26 +4294,6 @@
      "atributos": {}
     },
     {
-     "tipo": "Jersey",
-     "familia": "Arriba",
-     "fotos": 2,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
-     "ejemplos": [
-      [
-       "ig_18132141496771933",
-       0
-      ],
-      [
-       "pr_6e6c8edb59",
-       0
-      ]
-     ],
-     "atributos": {}
-    },
-    {
      "tipo": "Botas",
      "familia": "Calzado",
      "fotos": 1,
@@ -4046,6 +4305,30 @@
       [
        "pr_9dddfbde88",
        3
+      ]
+     ],
+     "atributos": {}
+    },
+    {
+     "tipo": "Vestido",
+     "familia": "Cuerpo entero",
+     "fotos": 2,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_18125953622482550",
+       0
+      ],
+      [
+       "ig_18125953622482550",
+       1
+      ],
+      [
+       "ig_18110737532582716",
+       0
       ]
      ],
      "atributos": {}
@@ -4099,6 +4382,22 @@
      "atributos": {}
     },
     {
+     "tipo": "Sudadera",
+     "familia": "Arriba",
+     "fotos": 1,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_18470463277138477",
+       1
+      ]
+     ],
+     "atributos": {}
+    },
+    {
      "tipo": "Short",
      "familia": "Abajo",
      "fotos": 1,
@@ -4118,11 +4417,11 @@
    "familias": [
     {
      "familia": "Abrigo",
-     "fotos": 18,
-     "cuota": 0.649,
+     "fotos": 20,
+     "cuota": 0.61,
      "ic": [
-      0.463,
-      0.799
+      0.438,
+      0.758
      ],
      "confianza": "media",
      "pocos_datos": false,
@@ -4142,24 +4441,24 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 22,
+       "n": 24,
        "reparto": {
-        "liso": 17,
+        "liso": 19,
         "cuadros": 5
        },
        "confianza": "media"
       },
       "forma": {
-       "n": 22,
+       "n": 24,
        "reparto": {
-        "regular": 22
+        "regular": 24
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 22,
+       "n": 24,
        "reparto": {
-        "algodón": 16,
+        "algodón": 18,
         "no se distingue": 2,
         "técnico / impermeable": 2,
         "seda / satén": 1,
@@ -4171,11 +4470,11 @@
     },
     {
      "familia": "Abajo",
-     "fotos": 15,
-     "cuota": 0.481,
+     "fotos": 16,
+     "cuota": 0.448,
      "ic": [
-      0.308,
-      0.658
+      0.291,
+      0.616
      ],
      "confianza": "media",
      "pocos_datos": false,
@@ -4195,27 +4494,27 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 17,
+       "n": 18,
        "reparto": {
-        "liso": 14,
+        "liso": 15,
         "cuadros": 2,
         "camuflaje": 1
        },
        "confianza": "media"
       },
       "forma": {
-       "n": 17,
+       "n": 18,
        "reparto": {
-        "regular": 13,
+        "regular": 14,
         "ajustada": 3,
         "oversized / baggy": 1
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 17,
+       "n": 18,
        "reparto": {
-        "algodón": 13,
+        "algodón": 14,
         "no se distingue": 2,
         "técnico / impermeable": 1,
         "denim (vaquero)": 1
@@ -4226,11 +4525,11 @@
     },
     {
      "familia": "Arriba",
-     "fotos": 11,
+     "fotos": 13,
      "cuota": 0.32,
      "ic": [
-      0.177,
-      0.507
+      0.185,
+      0.493
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -4250,41 +4549,44 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 14,
+       "n": 18,
        "reparto": {
-        "liso": 7,
+        "liso": 11,
         "gráfico / dibujo": 3,
         "rayas": 2,
         "camuflaje": 1,
         "cuadros": 1
        },
-       "confianza": "baja"
+       "confianza": "media"
       },
       "forma": {
-       "n": 14,
+       "n": 18,
        "reparto": {
-        "regular": 12,
+        "regular": 16,
         "oversized / baggy": 2
        },
-       "confianza": "baja"
+       "confianza": "media"
       },
       "tejido": {
-       "n": 14,
+       "n": 18,
        "reparto": {
-        "algodón": 12,
-        "punto": 2
+        "algodón": 13,
+        "punto": 5
        },
-       "confianza": "baja"
+       "confianza": "media"
       }
      }
     },
     {
      "familia": "Calzado",
-     "fotos": 4,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
+     "fotos": 5,
+     "cuota": 0.134,
+     "ic": [
+      0.055,
+      0.291
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
      "ejemplos": [
       [
        "pr_709ca330ab",
@@ -4299,39 +4601,87 @@
        2
       ]
      ],
+     "atributos": {
+      "estampado": {
+       "n": 6,
+       "reparto": {
+        "liso": 5,
+        "otro": 1
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 6,
+       "reparto": {
+        "no aplica": 4,
+        "regular": 2
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 6,
+       "reparto": {
+        "cuero / vinilo": 6
+       },
+       "confianza": "baja"
+      }
+     }
+    },
+    {
+     "familia": "Cuerpo entero",
+     "fotos": 2,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_18125953622482550",
+       0
+      ],
+      [
+       "ig_18125953622482550",
+       1
+      ],
+      [
+       "ig_18110737532582716",
+       0
+      ]
+     ],
      "atributos": {}
     }
    ],
    "atributos": {
     "estampado": {
-     "n": 57,
+     "n": 69,
      "reparto": {
-      "liso": 42,
-      "cuadros": 8,
+      "liso": 50,
+      "cuadros": 11,
       "gráfico / dibujo": 3,
       "camuflaje": 2,
-      "rayas": 2
+      "rayas": 2,
+      "otro": 1
      },
      "confianza": "media"
     },
     "forma": {
-     "n": 57,
+     "n": 69,
      "reparto": {
-      "regular": 49,
+      "regular": 59,
+      "no aplica": 4,
       "ajustada": 3,
-      "oversized / baggy": 3,
-      "no aplica": 2
+      "oversized / baggy": 3
      },
      "confianza": "media"
     },
     "tejido": {
-     "n": 57,
+     "n": 69,
      "reparto": {
-      "algodón": 41,
-      "cuero / vinilo": 5,
+      "algodón": 46,
+      "cuero / vinilo": 7,
+      "punto": 7,
       "no se distingue": 4,
       "técnico / impermeable": 3,
-      "punto": 2,
       "seda / satén": 1,
       "denim (vaquero)": 1
      },
@@ -4340,11 +4690,11 @@
    },
    "etiquetadas_con_modelo_grande": true,
    "colores": {
-    "negro": 20,
+    "negro": 24,
+    "camel": 13,
     "gris": 9,
     "navy": 7,
-    "camel": 6,
-    "verde": 4,
+    "verde": 5,
     "beige": 4,
     "blanco": 3,
     "rojo": 2
@@ -4352,7 +4702,7 @@
    "confianza_color": "baja",
    "fuentes": {
     "prensa: \"Barbour\" chaqueta moda": 17,
-    "cortefiel_official": 8,
+    "cortefiel_official": 16,
     "envido6": 3,
     "Tamara Falcó": 2
    }
@@ -4553,18 +4903,18 @@
    "estilo": "clasico",
    "mercado": "US",
    "temporada": "OI 2026/27",
-   "fotos": 85,
-   "fotos_con_prenda": 80,
-   "fotos_efectivas": 55.1,
+   "fotos": 92,
+   "fotos_con_prenda": 86,
+   "fotos_efectivas": 59.3,
    "prendas": [
     {
      "tipo": "Pantalón",
      "familia": "Abajo",
-     "fotos": 43,
-     "cuota": 0.543,
+     "fotos": 45,
+     "cuota": 0.53,
      "ic": [
-      0.413,
-      0.667
+      0.405,
+      0.652
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -4584,9 +4934,9 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 45,
+       "n": 47,
        "reparto": {
-        "liso": 38,
+        "liso": 40,
         "cuadros": 3,
         "gráfico / dibujo": 2,
         "otro": 1,
@@ -4595,18 +4945,18 @@
        "confianza": "media"
       },
       "forma": {
-       "n": 45,
+       "n": 47,
        "reparto": {
-        "regular": 36,
-        "ajustada": 7,
+        "regular": 37,
+        "ajustada": 8,
         "oversized / baggy": 2
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 45,
+       "n": 47,
        "reparto": {
-        "algodón": 20,
+        "algodón": 22,
         "denim (vaquero)": 11,
         "pana": 6,
         "no se distingue": 3,
@@ -4621,11 +4971,11 @@
     {
      "tipo": "Chaqueta",
      "familia": "Abrigo",
-     "fotos": 32,
-     "cuota": 0.405,
+     "fotos": 34,
+     "cuota": 0.406,
      "ic": [
-      0.286,
-      0.537
+      0.29,
+      0.533
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -4645,9 +4995,9 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 36,
+       "n": 38,
        "reparto": {
-        "liso": 27,
+        "liso": 29,
         "cuadros": 6,
         "gráfico / dibujo": 1,
         "otro": 1,
@@ -4656,22 +5006,23 @@
        "confianza": "media"
       },
       "forma": {
-       "n": 36,
+       "n": 38,
        "reparto": {
-        "regular": 33,
+        "regular": 35,
         "oversized / baggy": 3
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 36,
+       "n": 38,
        "reparto": {
         "algodón": 24,
         "felpa / polar": 4,
         "denim (vaquero)": 4,
-        "cuero / vinilo": 2,
+        "cuero / vinilo": 3,
         "pana": 1,
-        "punto": 1
+        "punto": 1,
+        "no se distingue": 1
        },
        "confianza": "media"
       }
@@ -4680,10 +5031,10 @@
     {
      "tipo": "Americana",
      "familia": "Abrigo",
-     "fotos": 18,
-     "cuota": 0.19,
+     "fotos": 20,
+     "cuota": 0.194,
      "ic": [
-      0.108,
+      0.113,
       0.312
      ],
      "confianza": "baja",
@@ -4704,31 +5055,31 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 21,
+       "n": 23,
        "reparto": {
-        "liso": 11,
+        "liso": 13,
         "cuadros": 8,
         "otro": 2
        },
        "confianza": "media"
       },
       "forma": {
-       "n": 21,
+       "n": 23,
        "reparto": {
-        "regular": 16,
-        "ajustada": 3,
+        "regular": 17,
+        "ajustada": 4,
         "oversized / baggy": 2
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 21,
+       "n": 23,
        "reparto": {
-        "algodón": 10,
+        "algodón": 11,
         "no se distingue": 6,
         "punto": 2,
+        "terciopelo": 2,
         "pana": 1,
-        "terciopelo": 1,
         "seda / satén": 1
        },
        "confianza": "media"
@@ -4739,10 +5090,10 @@
      "tipo": "Botas",
      "familia": "Calzado",
      "fotos": 9,
-     "cuota": 0.125,
+     "cuota": 0.119,
      "ic": [
-      0.062,
-      0.237
+      0.059,
+      0.226
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -4791,10 +5142,10 @@
      "tipo": "Jersey",
      "familia": "Arriba",
      "fotos": 12,
-     "cuota": 0.117,
+     "cuota": 0.112,
      "ic": [
-      0.057,
-      0.228
+      0.054,
+      0.217
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -4840,13 +5191,64 @@
      }
     },
     {
+     "tipo": "Vestido",
+     "familia": "Cuerpo entero",
+     "fotos": 5,
+     "cuota": 0.093,
+     "ic": [
+      0.042,
+      0.194
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
+     "ejemplos": [
+      [
+       "tw_2111805381005504774_3",
+       0
+      ],
+      [
+       "tw_2111805381005504774_1",
+       0
+      ],
+      [
+       "ig_18081258512348034",
+       0
+      ]
+     ],
+     "atributos": {
+      "estampado": {
+       "n": 5,
+       "reparto": {
+        "liso": 4,
+        "otro": 1
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 5,
+       "reparto": {
+        "ajustada": 5
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 5,
+       "reparto": {
+        "seda / satén": 4,
+        "técnico / impermeable": 1
+       },
+       "confianza": "baja"
+      }
+     }
+    },
+    {
      "tipo": "Zapatos de vestir",
      "familia": "Calzado",
      "fotos": 9,
-     "cuota": 0.093,
+     "cuota": 0.089,
      "ic": [
-      0.041,
-      0.198
+      0.039,
+      0.188
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -4889,37 +5291,13 @@
      }
     },
     {
-     "tipo": "Vestido",
-     "familia": "Cuerpo entero",
-     "fotos": 4,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
-     "ejemplos": [
-      [
-       "tw_2111805381005504774_3",
-       0
-      ],
-      [
-       "tw_2111805381005504774_1",
-       0
-      ],
-      [
-       "ig_18081258512348034",
-       0
-      ]
-     ],
-     "atributos": {}
-    },
-    {
      "tipo": "Abrigo",
      "familia": "Abrigo",
-     "fotos": 6,
-     "cuota": 0.08,
+     "fotos": 7,
+     "cuota": 0.084,
      "ic": [
-      0.033,
-      0.181
+      0.037,
+      0.183
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -4939,25 +5317,25 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 8,
+       "n": 10,
        "reparto": {
-        "liso": 8
+        "liso": 10
        },
        "confianza": "baja"
       },
       "forma": {
-       "n": 8,
+       "n": 10,
        "reparto": {
-        "regular": 7,
+        "regular": 9,
         "oversized / baggy": 1
        },
        "confianza": "baja"
       },
       "tejido": {
-       "n": 8,
+       "n": 10,
        "reparto": {
         "no se distingue": 5,
-        "felpa / polar": 1,
+        "felpa / polar": 3,
         "técnico / impermeable": 1,
         "algodón": 1
        },
@@ -5050,6 +5428,22 @@
      "atributos": {}
     },
     {
+     "tipo": "Zapatos de tacón",
+     "familia": "Calzado",
+     "fotos": 1,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_18125064043804535",
+       1
+      ]
+     ],
+     "atributos": {}
+    },
+    {
      "tipo": "Camiseta manga larga",
      "familia": "Arriba",
      "fotos": 1,
@@ -5069,11 +5463,11 @@
    "familias": [
     {
      "familia": "Abrigo",
-     "fotos": 56,
-     "cuota": 0.675,
+     "fotos": 61,
+     "cuota": 0.684,
      "ic": [
-      0.544,
-      0.784
+      0.558,
+      0.788
      ],
      "confianza": "media",
      "pocos_datos": false,
@@ -5093,9 +5487,9 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 65,
+       "n": 71,
        "reparto": {
-        "liso": 46,
+        "liso": 52,
         "cuadros": 14,
         "otro": 3,
         "gráfico / dibujo": 1,
@@ -5104,25 +5498,25 @@
        "confianza": "media"
       },
       "forma": {
-       "n": 65,
+       "n": 71,
        "reparto": {
-        "regular": 56,
+        "regular": 61,
         "oversized / baggy": 6,
-        "ajustada": 3
+        "ajustada": 4
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 65,
+       "n": 71,
        "reparto": {
-        "algodón": 35,
-        "no se distingue": 11,
-        "felpa / polar": 5,
+        "algodón": 36,
+        "no se distingue": 12,
+        "felpa / polar": 7,
         "denim (vaquero)": 4,
+        "cuero / vinilo": 3,
         "punto": 3,
         "pana": 2,
-        "cuero / vinilo": 2,
-        "terciopelo": 1,
+        "terciopelo": 2,
         "seda / satén": 1,
         "técnico / impermeable": 1
        },
@@ -5132,11 +5526,11 @@
     },
     {
      "familia": "Abajo",
-     "fotos": 43,
-     "cuota": 0.543,
+     "fotos": 45,
+     "cuota": 0.53,
      "ic": [
-      0.413,
-      0.667
+      0.405,
+      0.652
      ],
      "confianza": "media",
      "pocos_datos": false,
@@ -5156,9 +5550,9 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 45,
+       "n": 47,
        "reparto": {
-        "liso": 38,
+        "liso": 40,
         "cuadros": 3,
         "gráfico / dibujo": 2,
         "otro": 1,
@@ -5167,18 +5561,18 @@
        "confianza": "media"
       },
       "forma": {
-       "n": 45,
+       "n": 47,
        "reparto": {
-        "regular": 36,
-        "ajustada": 7,
+        "regular": 37,
+        "ajustada": 8,
         "oversized / baggy": 2
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 45,
+       "n": 47,
        "reparto": {
-        "algodón": 20,
+        "algodón": 22,
         "denim (vaquero)": 11,
         "pana": 6,
         "no se distingue": 3,
@@ -5192,11 +5586,11 @@
     },
     {
      "familia": "Calzado",
-     "fotos": 20,
-     "cuota": 0.268,
+     "fotos": 21,
+     "cuota": 0.261,
      "ic": [
-      0.169,
-      0.397
+      0.166,
+      0.385
      ],
      "confianza": "media",
      "pocos_datos": false,
@@ -5216,25 +5610,25 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 23,
+       "n": 24,
        "reparto": {
-        "liso": 23
+        "liso": 24
        },
        "confianza": "media"
       },
       "forma": {
-       "n": 23,
+       "n": 24,
        "reparto": {
-        "no aplica": 14,
+        "no aplica": 15,
         "regular": 8,
         "ajustada": 1
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 23,
+       "n": 24,
        "reparto": {
-        "cuero / vinilo": 20,
+        "cuero / vinilo": 21,
         "algodón": 2,
         "técnico / impermeable": 1
        },
@@ -5245,10 +5639,10 @@
     {
      "familia": "Arriba",
      "fotos": 19,
-     "cuota": 0.245,
+     "cuota": 0.234,
      "ic": [
-      0.15,
-      0.372
+      0.144,
+      0.356
      ],
      "confianza": "media",
      "pocos_datos": false,
@@ -5300,11 +5694,14 @@
     },
     {
      "familia": "Cuerpo entero",
-     "fotos": 4,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
+     "fotos": 5,
+     "cuota": 0.093,
+     "ic": [
+      0.042,
+      0.194
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
      "ejemplos": [
       [
        "tw_2111805381005504774_3",
@@ -5319,56 +5716,80 @@
        0
       ]
      ],
-     "atributos": {}
+     "atributos": {
+      "estampado": {
+       "n": 5,
+       "reparto": {
+        "liso": 4,
+        "otro": 1
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 5,
+       "reparto": {
+        "ajustada": 5
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 5,
+       "reparto": {
+        "seda / satén": 4,
+        "técnico / impermeable": 1
+       },
+       "confianza": "baja"
+      }
+     }
     }
    ],
    "atributos": {
     "estampado": {
-     "n": 160,
+     "n": 170,
      "reparto": {
-      "liso": 124,
+      "liso": 133,
       "cuadros": 17,
       "gráfico / dibujo": 9,
-      "otro": 6,
+      "otro": 7,
       "rayas": 2,
       "texto / logo": 2
      },
      "confianza": "media"
     },
     "forma": {
-     "n": 160,
+     "n": 170,
      "reparto": {
-      "regular": 120,
-      "ajustada": 15,
-      "no aplica": 14,
+      "regular": 126,
+      "ajustada": 18,
+      "no aplica": 15,
       "oversized / baggy": 11
      },
      "confianza": "media"
     },
     "tejido": {
-     "n": 160,
+     "n": 170,
      "reparto": {
-      "algodón": 61,
-      "cuero / vinilo": 24,
+      "algodón": 64,
+      "cuero / vinilo": 26,
       "punto": 19,
       "denim (vaquero)": 15,
-      "no se distingue": 14,
+      "no se distingue": 15,
       "pana": 8,
+      "felpa / polar": 8,
       "seda / satén": 7,
-      "felpa / polar": 6,
-      "técnico / impermeable": 3,
-      "terciopelo": 3
+      "técnico / impermeable": 4,
+      "terciopelo": 4
      },
      "confianza": "media"
     }
    },
    "etiquetadas_con_modelo_grande": false,
    "colores": {
-    "negro": 38,
-    "camel": 38,
-    "gris": 21,
+    "negro": 41,
+    "camel": 39,
+    "gris": 23,
     "azul": 20,
-    "navy": 15,
+    "navy": 19,
     "verde": 10,
     "beige": 5,
     "rojo": 5
@@ -5379,7 +5800,7 @@
     "RalphLauren": 20,
     "r/Barbour": 19,
     "r/preppy": 17,
-    "ralphlauren": 6,
+    "ralphlauren": 13,
     "Ralph Lauren": 2
    }
   },
@@ -6424,22 +6845,26 @@
    "estilo": "convencional",
    "mercado": "ES",
    "temporada": "OI 2026/27",
-   "fotos": 62,
-   "fotos_con_prenda": 62,
-   "fotos_efectivas": 41.9,
+   "fotos": 71,
+   "fotos_con_prenda": 70,
+   "fotos_efectivas": 47.2,
    "prendas": [
     {
      "tipo": "Pantalón",
      "familia": "Abajo",
-     "fotos": 30,
-     "cuota": 0.436,
+     "fotos": 31,
+     "cuota": 0.428,
      "ic": [
-      0.298,
-      0.585
+      0.297,
+      0.569
      ],
      "confianza": "media",
      "pocos_datos": false,
      "ejemplos": [
+      [
+       "pr_2ddaeb8e7f",
+       0
+      ],
       [
        "pr_fbd1f881d7",
        0
@@ -6447,34 +6872,30 @@
       [
        "pr_5a04acac7e",
        0
-      ],
-      [
-       "pr_c32b058599",
-       0
       ]
      ],
      "atributos": {
       "estampado": {
-       "n": 34,
+       "n": 35,
        "reparto": {
-        "liso": 33,
+        "liso": 34,
         "rayas": 1
        },
        "confianza": "media"
       },
       "forma": {
-       "n": 34,
+       "n": 35,
        "reparto": {
-        "regular": 17,
+        "regular": 18,
         "oversized / baggy": 16,
         "ajustada": 1
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 34,
+       "n": 35,
        "reparto": {
-        "algodón": 14,
+        "algodón": 15,
         "denim (vaquero)": 11,
         "seda / satén": 4,
         "no se distingue": 2,
@@ -6487,13 +6908,124 @@
      }
     },
     {
+     "tipo": "Chaqueta",
+     "familia": "Abrigo",
+     "fotos": 12,
+     "cuota": 0.178,
+     "ic": [
+      0.095,
+      0.31
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
+     "ejemplos": [
+      [
+       "pr_7079be4968",
+       0
+      ],
+      [
+       "pr_2ddaeb8e7f",
+       1
+      ],
+      [
+       "ig_18113037473173714",
+       0
+      ]
+     ],
+     "atributos": {
+      "estampado": {
+       "n": 12,
+       "reparto": {
+        "liso": 11,
+        "cuadros": 1
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 12,
+       "reparto": {
+        "regular": 8,
+        "oversized / baggy": 3,
+        "ajustada": 1
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 12,
+       "reparto": {
+        "cuero / vinilo": 5,
+        "felpa / polar": 2,
+        "algodón": 2,
+        "técnico / impermeable": 2,
+        "no se distingue": 1
+       },
+       "confianza": "baja"
+      }
+     }
+    },
+    {
+     "tipo": "Vestido",
+     "familia": "Cuerpo entero",
+     "fotos": 8,
+     "cuota": 0.152,
+     "ic": [
+      0.076,
+      0.28
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
+     "ejemplos": [
+      [
+       "pr_f54eaf8b27",
+       0
+      ],
+      [
+       "pr_d8763fc2c6",
+       1
+      ],
+      [
+       "pr_3bc905777c",
+       0
+      ]
+     ],
+     "atributos": {
+      "estampado": {
+       "n": 8,
+       "reparto": {
+        "liso": 5,
+        "otro": 3
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 8,
+       "reparto": {
+        "ajustada": 4,
+        "oversized / baggy": 2,
+        "regular": 2
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 8,
+       "reparto": {
+        "seda / satén": 3,
+        "algodón": 2,
+        "tul / encaje": 2,
+        "no se distingue": 1
+       },
+       "confianza": "baja"
+      }
+     }
+    },
+    {
      "tipo": "Camisa",
      "familia": "Arriba",
      "fotos": 8,
-     "cuota": 0.159,
+     "cuota": 0.142,
      "ic": [
-      0.078,
-      0.298
+      0.07,
+      0.269
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -6542,172 +7074,13 @@
      }
     },
     {
-     "tipo": "Vestido",
-     "familia": "Cuerpo entero",
-     "fotos": 6,
-     "cuota": 0.152,
-     "ic": [
-      0.073,
-      0.289
-     ],
-     "confianza": "baja",
-     "pocos_datos": false,
-     "ejemplos": [
-      [
-       "pr_f54eaf8b27",
-       0
-      ],
-      [
-       "pr_d8763fc2c6",
-       1
-      ],
-      [
-       "pr_3bc905777c",
-       0
-      ]
-     ],
-     "atributos": {
-      "estampado": {
-       "n": 6,
-       "reparto": {
-        "liso": 4,
-        "otro": 2
-       },
-       "confianza": "baja"
-      },
-      "forma": {
-       "n": 6,
-       "reparto": {
-        "ajustada": 3,
-        "oversized / baggy": 2,
-        "regular": 1
-       },
-       "confianza": "baja"
-      },
-      "tejido": {
-       "n": 6,
-       "reparto": {
-        "algodón": 2,
-        "seda / satén": 2,
-        "tul / encaje": 1,
-        "no se distingue": 1
-       },
-       "confianza": "baja"
-      }
-     }
-    },
-    {
-     "tipo": "Zapatos de vestir",
-     "familia": "Calzado",
-     "fotos": 9,
-     "cuota": 0.134,
-     "ic": [
-      0.062,
-      0.269
-     ],
-     "confianza": "baja",
-     "pocos_datos": false,
-     "ejemplos": [
-      [
-       "pr_8d8b1898bc",
-       0
-      ],
-      [
-       "pr_ee2cf4bc5a",
-       2
-      ],
-      [
-       "ig_18119677384968671",
-       2
-      ]
-     ],
-     "atributos": {
-      "estampado": {
-       "n": 9,
-       "reparto": {
-        "liso": 8,
-        "rayas": 1
-       },
-       "confianza": "baja"
-      },
-      "forma": {
-       "n": 9,
-       "reparto": {
-        "no aplica": 8,
-        "regular": 1
-       },
-       "confianza": "baja"
-      },
-      "tejido": {
-       "n": 9,
-       "reparto": {
-        "cuero / vinilo": 9
-       },
-       "confianza": "baja"
-      }
-     }
-    },
-    {
-     "tipo": "Chaqueta",
-     "familia": "Abrigo",
-     "fotos": 8,
-     "cuota": 0.125,
-     "ic": [
-      0.056,
-      0.257
-     ],
-     "confianza": "baja",
-     "pocos_datos": false,
-     "ejemplos": [
-      [
-       "pr_7079be4968",
-       0
-      ],
-      [
-       "ig_18113037473173714",
-       0
-      ],
-      [
-       "pr_ee2cf4bc5a",
-       0
-      ]
-     ],
-     "atributos": {
-      "estampado": {
-       "n": 8,
-       "reparto": {
-        "liso": 8
-       },
-       "confianza": "baja"
-      },
-      "forma": {
-       "n": 8,
-       "reparto": {
-        "regular": 5,
-        "oversized / baggy": 3
-       },
-       "confianza": "baja"
-      },
-      "tejido": {
-       "n": 8,
-       "reparto": {
-        "cuero / vinilo": 4,
-        "felpa / polar": 2,
-        "no se distingue": 1,
-        "algodón": 1
-       },
-       "confianza": "baja"
-      }
-     }
-    },
-    {
      "tipo": "Falda",
      "familia": "Abajo",
-     "fotos": 10,
-     "cuota": 0.123,
+     "fotos": 12,
+     "cuota": 0.135,
      "ic": [
-      0.054,
-      0.255
+      0.065,
+      0.26
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -6727,35 +7100,138 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 16,
+       "n": 19,
        "reparto": {
-        "liso": 12,
-        "otro": 3,
+        "liso": 14,
+        "otro": 4,
         "cuadros": 1
        },
        "confianza": "media"
       },
       "forma": {
-       "n": 16,
+       "n": 19,
        "reparto": {
-        "regular": 10,
-        "ajustada": 3,
+        "regular": 12,
+        "ajustada": 4,
         "no aplica": 2,
         "corta / cropped": 1
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 16,
+       "n": 19,
        "reparto": {
-        "algodón": 5,
-        "seda / satén": 3,
+        "algodón": 7,
+        "seda / satén": 4,
         "denim (vaquero)": 2,
         "tul / encaje": 2,
         "punto": 2,
         "felpa / polar": 2
        },
        "confianza": "media"
+      }
+     }
+    },
+    {
+     "tipo": "Zapatos de vestir",
+     "familia": "Calzado",
+     "fotos": 10,
+     "cuota": 0.133,
+     "ic": [
+      0.063,
+      0.257
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
+     "ejemplos": [
+      [
+       "pr_8d8b1898bc",
+       0
+      ],
+      [
+       "pr_ee2cf4bc5a",
+       2
+      ],
+      [
+       "ig_18119677384968671",
+       2
+      ]
+     ],
+     "atributos": {
+      "estampado": {
+       "n": 10,
+       "reparto": {
+        "liso": 9,
+        "rayas": 1
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 10,
+       "reparto": {
+        "no aplica": 8,
+        "regular": 2
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 10,
+       "reparto": {
+        "cuero / vinilo": 10
+       },
+       "confianza": "baja"
+      }
+     }
+    },
+    {
+     "tipo": "Jersey",
+     "familia": "Arriba",
+     "fotos": 7,
+     "cuota": 0.106,
+     "ic": [
+      0.046,
+      0.225
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
+     "ejemplos": [
+      [
+       "ig_18108127310123912",
+       1
+      ],
+      [
+       "pr_675d5f4d3d",
+       1
+      ],
+      [
+       "ig_18035939234667836",
+       0
+      ]
+     ],
+     "atributos": {
+      "estampado": {
+       "n": 7,
+       "reparto": {
+        "liso": 5,
+        "texto / logo": 1,
+        "otro": 1
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 7,
+       "reparto": {
+        "regular": 6,
+        "oversized / baggy": 1
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 7,
+       "reparto": {
+        "punto": 7
+       },
+       "confianza": "baja"
       }
      }
     },
@@ -6784,61 +7260,9 @@
      "atributos": {}
     },
     {
-     "tipo": "Jersey",
-     "familia": "Arriba",
-     "fotos": 6,
-     "cuota": 0.104,
-     "ic": [
-      0.043,
-      0.232
-     ],
-     "confianza": "baja",
-     "pocos_datos": false,
-     "ejemplos": [
-      [
-       "ig_18108127310123912",
-       1
-      ],
-      [
-       "pr_675d5f4d3d",
-       1
-      ],
-      [
-       "ig_18035939234667836",
-       0
-      ]
-     ],
-     "atributos": {
-      "estampado": {
-       "n": 6,
-       "reparto": {
-        "liso": 4,
-        "texto / logo": 1,
-        "otro": 1
-       },
-       "confianza": "baja"
-      },
-      "forma": {
-       "n": 6,
-       "reparto": {
-        "regular": 5,
-        "oversized / baggy": 1
-       },
-       "confianza": "baja"
-      },
-      "tejido": {
-       "n": 6,
-       "reparto": {
-        "punto": 6
-       },
-       "confianza": "baja"
-      }
-     }
-    },
-    {
      "tipo": "Zapatos de tacón",
      "familia": "Calzado",
-     "fotos": 3,
+     "fotos": 4,
      "cuota": null,
      "ic": null,
      "confianza": null,
@@ -6862,35 +7286,63 @@
     {
      "tipo": "Camiseta de tirantes",
      "familia": "Arriba",
-     "fotos": 4,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
+     "fotos": 5,
+     "cuota": 0.065,
+     "ic": [
+      0.022,
+      0.172
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
      "ejemplos": [
       [
        "pr_d8763fc2c6",
        0
       ],
       [
-       "rd_1xdhg4a",
+       "ig_18132830851751639",
        0
       ],
       [
-       "rd_1xdnist",
-       1
+       "rd_1xdhg4a",
+       0
       ]
      ],
-     "atributos": {}
+     "atributos": {
+      "estampado": {
+       "n": 5,
+       "reparto": {
+        "liso": 4,
+        "otro": 1
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 5,
+       "reparto": {
+        "regular": 5
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 5,
+       "reparto": {
+        "algodón": 2,
+        "seda / satén": 2,
+        "cuero / vinilo": 1
+       },
+       "confianza": "baja"
+      }
+     }
     },
     {
      "tipo": "Zapatillas deportivas",
      "familia": "Calzado",
      "fotos": 12,
-     "cuota": 0.057,
+     "cuota": 0.051,
      "ic": [
-      0.017,
-      0.171
+      0.015,
+      0.153
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -6944,10 +7396,10 @@
      "tipo": "Botas",
      "familia": "Calzado",
      "fotos": 5,
-     "cuota": 0.052,
+     "cuota": 0.047,
      "ic": [
-      0.015,
-      0.165
+      0.014,
+      0.148
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -7039,6 +7491,26 @@
      "atributos": {}
     },
     {
+     "tipo": "Short",
+     "familia": "Abajo",
+     "fotos": 2,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "rd_1x5974x",
+       2
+      ],
+      [
+       "ig_17979833406131193",
+       2
+      ]
+     ],
+     "atributos": {}
+    },
+    {
      "tipo": "Hoodie",
      "familia": "Arriba",
      "fotos": 2,
@@ -7074,22 +7546,6 @@
       [
        "rd_1x7jk1d",
        0
-      ]
-     ],
-     "atributos": {}
-    },
-    {
-     "tipo": "Short",
-     "familia": "Abajo",
-     "fotos": 1,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
-     "ejemplos": [
-      [
-       "rd_1x5974x",
-       2
       ]
      ],
      "atributos": {}
@@ -7162,15 +7618,19 @@
    "familias": [
     {
      "familia": "Abajo",
-     "fotos": 42,
-     "cuota": 0.578,
+     "fotos": 46,
+     "cuota": 0.589,
      "ic": [
-      0.428,
-      0.715
+      0.447,
+      0.718
      ],
      "confianza": "alta",
      "pocos_datos": false,
      "ejemplos": [
+      [
+       "pr_2ddaeb8e7f",
+       0
+      ],
       [
        "pr_fbd1f881d7",
        0
@@ -7178,47 +7638,44 @@
       [
        "pr_5a04acac7e",
        0
-      ],
-      [
-       "pr_c32b058599",
-       0
       ]
      ],
      "atributos": {
       "estampado": {
-       "n": 52,
+       "n": 57,
        "reparto": {
-        "liso": 47,
-        "otro": 3,
+        "liso": 51,
+        "otro": 4,
         "cuadros": 1,
         "rayas": 1
        },
        "confianza": "media"
       },
       "forma": {
-       "n": 52,
+       "n": 57,
        "reparto": {
-        "regular": 27,
+        "regular": 30,
         "oversized / baggy": 16,
-        "ajustada": 6,
-        "no aplica": 2,
-        "corta / cropped": 1
+        "ajustada": 7,
+        "corta / cropped": 2,
+        "no aplica": 2
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 52,
+       "n": 57,
        "reparto": {
-        "algodón": 20,
+        "algodón": 23,
         "denim (vaquero)": 13,
-        "seda / satén": 7,
+        "seda / satén": 8,
         "punto": 3,
         "tul / encaje": 2,
         "felpa / polar": 2,
         "no se distingue": 2,
         "lino": 1,
         "técnico / impermeable": 1,
-        "pana": 1
+        "pana": 1,
+        "cuero / vinilo": 1
        },
        "confianza": "media"
       }
@@ -7226,13 +7683,13 @@
     },
     {
      "familia": "Arriba",
-     "fotos": 29,
-     "cuota": 0.42,
+     "fotos": 31,
+     "cuota": 0.4,
      "ic": [
-      0.284,
-      0.57
+      0.273,
+      0.542
      ],
-     "confianza": "media",
+     "confianza": "alta",
      "pocos_datos": false,
      "ejemplos": [
       [
@@ -7250,10 +7707,10 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 31,
+       "n": 33,
        "reparto": {
-        "liso": 22,
-        "otro": 5,
+        "liso": 23,
+        "otro": 6,
         "rayas": 2,
         "gráfico / dibujo": 1,
         "texto / logo": 1
@@ -7261,9 +7718,9 @@
        "confianza": "media"
       },
       "forma": {
-       "n": 31,
+       "n": 33,
        "reparto": {
-        "regular": 22,
+        "regular": 24,
         "oversized / baggy": 5,
         "corta / cropped": 3,
         "ajustada": 1
@@ -7271,11 +7728,11 @@
        "confianza": "media"
       },
       "tejido": {
-       "n": 31,
+       "n": 33,
        "reparto": {
         "algodón": 16,
-        "punto": 9,
-        "seda / satén": 3,
+        "punto": 10,
+        "seda / satén": 4,
         "tul / encaje": 2,
         "cuero / vinilo": 1
        },
@@ -7285,11 +7742,11 @@
     },
     {
      "familia": "Calzado",
-     "fotos": 30,
-     "cuota": 0.329,
+     "fotos": 32,
+     "cuota": 0.314,
      "ic": [
-      0.207,
-      0.48
+      0.2,
+      0.456
      ],
      "confianza": "alta",
      "pocos_datos": false,
@@ -7309,9 +7766,9 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 33,
+       "n": 35,
        "reparto": {
-        "liso": 25,
+        "liso": 27,
         "texto / logo": 4,
         "gráfico / dibujo": 2,
         "rayas": 1,
@@ -7320,22 +7777,22 @@
        "confianza": "media"
       },
       "forma": {
-       "n": 33,
+       "n": 35,
        "reparto": {
-        "no aplica": 25,
-        "regular": 8
+        "no aplica": 26,
+        "regular": 9
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 32,
+       "n": 34,
        "reparto": {
-        "cuero / vinilo": 22,
+        "cuero / vinilo": 23,
         "algodón": 5,
         "técnico / impermeable": 2,
+        "seda / satén": 2,
         "punto": 1,
-        "terciopelo": 1,
-        "seda / satén": 1
+        "terciopelo": 1
        },
        "confianza": "media"
       }
@@ -7343,13 +7800,13 @@
     },
     {
      "familia": "Abrigo",
-     "fotos": 11,
-     "cuota": 0.231,
+     "fotos": 15,
+     "cuota": 0.273,
      "ic": [
-      0.13,
-      0.378
+      0.167,
+      0.414
      ],
-     "confianza": "baja",
+     "confianza": "media",
      "pocos_datos": false,
      "ejemplos": [
       [
@@ -7367,41 +7824,43 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 12,
+       "n": 16,
        "reparto": {
-        "liso": 12
+        "liso": 15,
+        "cuadros": 1
        },
-       "confianza": "baja"
+       "confianza": "media"
       },
       "forma": {
-       "n": 12,
+       "n": 16,
        "reparto": {
-        "regular": 5,
+        "regular": 8,
         "oversized / baggy": 5,
-        "ajustada": 2
+        "ajustada": 3
        },
-       "confianza": "baja"
+       "confianza": "media"
       },
       "tejido": {
-       "n": 12,
+       "n": 16,
        "reparto": {
-        "cuero / vinilo": 4,
+        "cuero / vinilo": 5,
         "seda / satén": 3,
         "felpa / polar": 2,
         "no se distingue": 2,
-        "algodón": 1
+        "algodón": 2,
+        "técnico / impermeable": 2
        },
-       "confianza": "baja"
+       "confianza": "media"
       }
      }
     },
     {
      "familia": "Cuerpo entero",
-     "fotos": 6,
+     "fotos": 8,
      "cuota": 0.152,
      "ic": [
-      0.073,
-      0.289
+      0.076,
+      0.28
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -7421,28 +7880,28 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 6,
+       "n": 8,
        "reparto": {
-        "liso": 4,
-        "otro": 2
+        "liso": 5,
+        "otro": 3
        },
        "confianza": "baja"
       },
       "forma": {
-       "n": 6,
+       "n": 8,
        "reparto": {
-        "ajustada": 3,
+        "ajustada": 4,
         "oversized / baggy": 2,
-        "regular": 1
+        "regular": 2
        },
        "confianza": "baja"
       },
       "tejido": {
-       "n": 6,
+       "n": 8,
        "reparto": {
+        "seda / satén": 3,
         "algodón": 2,
-        "seda / satén": 2,
-        "tul / encaje": 1,
+        "tul / encaje": 2,
         "no se distingue": 1
        },
        "confianza": "baja"
@@ -7452,40 +7911,40 @@
    ],
    "atributos": {
     "estampado": {
-     "n": 134,
+     "n": 149,
      "reparto": {
-      "liso": 110,
-      "otro": 11,
+      "liso": 121,
+      "otro": 14,
       "texto / logo": 5,
       "rayas": 4,
       "gráfico / dibujo": 3,
-      "cuadros": 1
+      "cuadros": 2
      },
      "confianza": "media"
     },
     "forma": {
-     "n": 134,
+     "n": 149,
      "reparto": {
-      "regular": 63,
+      "regular": 73,
       "oversized / baggy": 28,
-      "no aplica": 27,
-      "ajustada": 12,
-      "corta / cropped": 4
+      "no aplica": 28,
+      "ajustada": 15,
+      "corta / cropped": 5
      },
      "confianza": "media"
     },
     "tejido": {
-     "n": 133,
+     "n": 148,
      "reparto": {
-      "algodón": 44,
-      "cuero / vinilo": 27,
-      "seda / satén": 16,
-      "punto": 13,
+      "algodón": 48,
+      "cuero / vinilo": 30,
+      "seda / satén": 20,
+      "punto": 14,
       "denim (vaquero)": 13,
+      "tul / encaje": 6,
       "no se distingue": 5,
-      "tul / encaje": 5,
+      "técnico / impermeable": 5,
       "felpa / polar": 4,
-      "técnico / impermeable": 3,
       "lino": 1,
       "terciopelo": 1,
       "pana": 1
@@ -7495,10 +7954,10 @@
    },
    "etiquetadas_con_modelo_grande": true,
    "colores": {
-    "negro": 58,
-    "blanco": 16,
-    "camel": 15,
-    "azul": 14,
+    "negro": 68,
+    "camel": 17,
+    "blanco": 17,
+    "azul": 15,
     "navy": 7,
     "gris": 7,
     "beige": 4,
@@ -7506,28 +7965,28 @@
    },
    "confianza_color": "baja",
    "fuentes": {
-    "prensa: looks básicos tendencia moda": 22,
+    "prensa: looks básicos tendencia moda": 23,
     "r/LookeAR": 21,
-    "prensa: \"normcore\" moda": 12,
-    "zara": 7
+    "zara": 15,
+    "prensa: \"normcore\" moda": 12
    }
   },
   {
    "estilo": "convencional",
    "mercado": "US",
    "temporada": "OI 2026/27",
-   "fotos": 45,
-   "fotos_con_prenda": 45,
-   "fotos_efectivas": 27.2,
+   "fotos": 53,
+   "fotos_con_prenda": 53,
+   "fotos_efectivas": 33.8,
    "prendas": [
     {
      "tipo": "Pantalón",
      "familia": "Abajo",
-     "fotos": 19,
-     "cuota": 0.367,
+     "fotos": 22,
+     "cuota": 0.361,
      "ic": [
-      0.213,
-      0.554
+      0.221,
+      0.53
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -7547,30 +8006,31 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 19,
+       "n": 22,
        "reparto": {
-        "liso": 16,
+        "liso": 19,
         "rayas": 2,
         "cuadros": 1
        },
        "confianza": "media"
       },
       "forma": {
-       "n": 19,
+       "n": 22,
        "reparto": {
-        "regular": 15,
-        "oversized / baggy": 4
+        "regular": 17,
+        "oversized / baggy": 5
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 19,
+       "n": 22,
        "reparto": {
-        "algodón": 8,
-        "denim (vaquero)": 7,
+        "algodón": 9,
+        "denim (vaquero)": 8,
         "cuero / vinilo": 2,
         "técnico / impermeable": 1,
-        "lino": 1
+        "lino": 1,
+        "felpa / polar": 1
        },
        "confianza": "media"
       }
@@ -7579,11 +8039,11 @@
     {
      "tipo": "Top",
      "familia": "Arriba",
-     "fotos": 10,
-     "cuota": 0.361,
+     "fotos": 11,
+     "cuota": 0.312,
      "ic": [
-      0.208,
-      0.548
+      0.182,
+      0.481
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -7603,27 +8063,81 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 11,
+       "n": 12,
        "reparto": {
-        "liso": 5,
+        "liso": 6,
         "otro": 3,
         "cuadros": 3
        },
        "confianza": "baja"
       },
       "forma": {
-       "n": 11,
+       "n": 12,
        "reparto": {
-        "corta / cropped": 11
+        "corta / cropped": 12
        },
        "confianza": "baja"
       },
       "tejido": {
-       "n": 11,
+       "n": 12,
        "reparto": {
         "algodón": 8,
         "tul / encaje": 2,
-        "seda / satén": 1
+        "seda / satén": 1,
+        "punto": 1
+       },
+       "confianza": "baja"
+      }
+     }
+    },
+    {
+     "tipo": "Chaqueta",
+     "familia": "Abrigo",
+     "fotos": 8,
+     "cuota": 0.204,
+     "ic": [
+      0.102,
+      0.367
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
+     "ejemplos": [
+      [
+       "pr_a6602285b4",
+       2
+      ],
+      [
+       "ig_18041233088641526",
+       1
+      ],
+      [
+       "ig_18041233088641526",
+       0
+      ]
+     ],
+     "atributos": {
+      "estampado": {
+       "n": 10,
+       "reparto": {
+        "liso": 9,
+        "cuadros": 1
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 10,
+       "reparto": {
+        "regular": 8,
+        "oversized / baggy": 2
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 10,
+       "reparto": {
+        "cuero / vinilo": 5,
+        "algodón": 3,
+        "pana": 2
        },
        "confianza": "baja"
       }
@@ -7633,10 +8147,10 @@
      "tipo": "Vestido",
      "familia": "Cuerpo entero",
      "fotos": 10,
-     "cuota": 0.236,
+     "cuota": 0.195,
      "ic": [
-      0.116,
-      0.422
+      0.096,
+      0.357
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -7685,66 +8199,13 @@
      }
     },
     {
-     "tipo": "Chaqueta",
-     "familia": "Abrigo",
-     "fotos": 6,
-     "cuota": 0.195,
-     "ic": [
-      0.089,
-      0.377
-     ],
-     "confianza": "baja",
-     "pocos_datos": false,
-     "ejemplos": [
-      [
-       "pr_a6602285b4",
-       2
-      ],
-      [
-       "ig_18041233088641526",
-       1
-      ],
-      [
-       "ig_18041233088641526",
-       0
-      ]
-     ],
-     "atributos": {
-      "estampado": {
-       "n": 7,
-       "reparto": {
-        "liso": 6,
-        "cuadros": 1
-       },
-       "confianza": "baja"
-      },
-      "forma": {
-       "n": 7,
-       "reparto": {
-        "regular": 6,
-        "oversized / baggy": 1
-       },
-       "confianza": "baja"
-      },
-      "tejido": {
-       "n": 7,
-       "reparto": {
-        "algodón": 3,
-        "cuero / vinilo": 2,
-        "pana": 2
-       },
-       "confianza": "baja"
-      }
-     }
-    },
-    {
      "tipo": "Falda",
      "familia": "Abajo",
-     "fotos": 5,
-     "cuota": 0.159,
+     "fotos": 6,
+     "cuota": 0.149,
      "ic": [
-      0.066,
-      0.336
+      0.065,
+      0.304
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -7764,26 +8225,26 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 5,
+       "n": 6,
        "reparto": {
+        "cuadros": 2,
         "liso": 2,
-        "otro": 2,
-        "cuadros": 1
+        "otro": 2
        },
        "confianza": "baja"
       },
       "forma": {
-       "n": 5,
+       "n": 6,
        "reparto": {
         "ajustada": 4,
-        "regular": 1
+        "regular": 2
        },
        "confianza": "baja"
       },
       "tejido": {
-       "n": 5,
+       "n": 6,
        "reparto": {
-        "algodón": 1,
+        "algodón": 2,
         "terciopelo": 1,
         "cuero / vinilo": 1,
         "no se distingue": 1,
@@ -7842,6 +8303,59 @@
      "atributos": {}
     },
     {
+     "tipo": "Botas",
+     "familia": "Calzado",
+     "fotos": 6,
+     "cuota": 0.1,
+     "ic": [
+      0.037,
+      0.245
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
+     "ejemplos": [
+      [
+       "rd_1xf1s32",
+       1
+      ],
+      [
+       "rd_1xf1s32",
+       0
+      ],
+      [
+       "rd_1xearso",
+       2
+      ]
+     ],
+     "atributos": {
+      "estampado": {
+       "n": 8,
+       "reparto": {
+        "liso": 8
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 8,
+       "reparto": {
+        "no aplica": 5,
+        "regular": 2,
+        "ajustada": 1
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 8,
+       "reparto": {
+        "cuero / vinilo": 6,
+        "terciopelo": 1,
+        "seda / satén": 1
+       },
+       "confianza": "baja"
+      }
+     }
+    },
+    {
      "tipo": "Sandalias",
      "familia": "Calzado",
      "fotos": 4,
@@ -7892,7 +8406,7 @@
     {
      "tipo": "Legging/Malla",
      "familia": "Abajo",
-     "fotos": 2,
+     "fotos": 3,
      "cuota": null,
      "ic": null,
      "confianza": null,
@@ -7905,6 +8419,10 @@
       [
        "ig_17973332709155672",
        0
+      ],
+      [
+       "ig_18098214860317545",
+       0
       ]
      ],
      "atributos": {}
@@ -7913,10 +8431,10 @@
      "tipo": "Camisa",
      "familia": "Arriba",
      "fotos": 6,
-     "cuota": 0.074,
+     "cuota": 0.061,
      "ic": [
-      0.021,
-      0.233
+      0.017,
+      0.195
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -7985,57 +8503,52 @@
      "atributos": {}
     },
     {
-     "tipo": "Botas",
-     "familia": "Calzado",
-     "fotos": 5,
-     "cuota": 0.069,
-     "ic": [
-      0.018,
-      0.226
-     ],
-     "confianza": "baja",
-     "pocos_datos": false,
+     "tipo": "Jersey",
+     "familia": "Arriba",
+     "fotos": 3,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
      "ejemplos": [
       [
-       "rd_1xearso",
-       2
+       "ig_18113711867115372",
+       4
       ],
       [
-       "rd_1x6364e",
-       2
+       "ig_18113711867115372",
+       9
       ],
       [
-       "rd_1x4hrkt",
-       1
+       "ig_18113711867115372",
+       5
       ]
      ],
-     "atributos": {
-      "estampado": {
-       "n": 5,
-       "reparto": {
-        "liso": 5
-       },
-       "confianza": "baja"
-      },
-      "forma": {
-       "n": 5,
-       "reparto": {
-        "no aplica": 2,
-        "regular": 2,
-        "ajustada": 1
-       },
-       "confianza": "baja"
-      },
-      "tejido": {
-       "n": 5,
-       "reparto": {
-        "cuero / vinilo": 3,
-        "terciopelo": 1,
-        "seda / satén": 1
-       },
-       "confianza": "baja"
-      }
-     }
+     "atributos": {}
+    },
+    {
+     "tipo": "Hoodie",
+     "familia": "Arriba",
+     "fotos": 2,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_18154994155523404",
+       3
+      ],
+      [
+       "ig_18154994155523404",
+       0
+      ],
+      [
+       "ig_18436800973177225",
+       0
+      ]
+     ],
+     "atributos": {}
     },
     {
      "tipo": "Zapatos de vestir",
@@ -8057,26 +8570,6 @@
       [
        "rd_1wrnp9g",
        2
-      ]
-     ],
-     "atributos": {}
-    },
-    {
-     "tipo": "Hoodie",
-     "familia": "Arriba",
-     "fotos": 1,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
-     "ejemplos": [
-      [
-       "ig_18154994155523404",
-       3
-      ],
-      [
-       "ig_18154994155523404",
-       0
       ]
      ],
      "atributos": {}
@@ -8158,30 +8651,6 @@
      "atributos": {}
     },
     {
-     "tipo": "Jersey",
-     "familia": "Arriba",
-     "fotos": 1,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
-     "ejemplos": [
-      [
-       "ig_18113711867115372",
-       4
-      ],
-      [
-       "ig_18113711867115372",
-       9
-      ],
-      [
-       "ig_18113711867115372",
-       5
-      ]
-     ],
-     "atributos": {}
-    },
-    {
      "tipo": "Polo",
      "familia": "Arriba",
      "fotos": 1,
@@ -8252,72 +8721,12 @@
    ],
    "familias": [
     {
-     "familia": "Arriba",
-     "fotos": 27,
-     "cuota": 0.682,
-     "ic": [
-      0.495,
-      0.825
-     ],
-     "confianza": "media",
-     "pocos_datos": false,
-     "ejemplos": [
-      [
-       "pr_a6602285b4",
-       4
-      ],
-      [
-       "rd_1xdhj3h",
-       1
-      ],
-      [
-       "ig_18154994155523404",
-       3
-      ]
-     ],
-     "atributos": {
-      "estampado": {
-       "n": 39,
-       "reparto": {
-        "liso": 25,
-        "rayas": 4,
-        "otro": 4,
-        "cuadros": 4,
-        "gráfico / dibujo": 1,
-        "texto / logo": 1
-       },
-       "confianza": "media"
-      },
-      "forma": {
-       "n": 39,
-       "reparto": {
-        "regular": 23,
-        "corta / cropped": 13,
-        "ajustada": 2,
-        "oversized / baggy": 1
-       },
-       "confianza": "media"
-      },
-      "tejido": {
-       "n": 39,
-       "reparto": {
-        "algodón": 22,
-        "punto": 11,
-        "seda / satén": 3,
-        "tul / encaje": 2,
-        "denim (vaquero)": 1
-       },
-       "confianza": "media"
-      }
-     }
-    },
-    {
      "familia": "Abajo",
-     "fotos": 29,
-     "cuota": 0.677,
+     "fotos": 34,
+     "cuota": 0.649,
      "ic": [
-      0.489,
-      0.821
+      0.48,
+      0.787
      ],
      "confianza": "media",
      "pocos_datos": false,
@@ -8337,35 +8746,97 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 30,
+       "n": 35,
        "reparto": {
-        "liso": 23,
-        "cuadros": 3,
+        "liso": 27,
+        "cuadros": 4,
         "rayas": 2,
         "otro": 2
        },
        "confianza": "media"
       },
       "forma": {
-       "n": 30,
+       "n": 35,
        "reparto": {
-        "regular": 17,
-        "ajustada": 9,
-        "oversized / baggy": 4
+        "regular": 20,
+        "ajustada": 10,
+        "oversized / baggy": 5
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 30,
+       "n": 35,
        "reparto": {
-        "denim (vaquero)": 11,
-        "algodón": 10,
+        "denim (vaquero)": 12,
+        "algodón": 12,
         "cuero / vinilo": 3,
-        "punto": 2,
+        "punto": 3,
         "terciopelo": 1,
         "no se distingue": 1,
         "técnico / impermeable": 1,
-        "lino": 1
+        "lino": 1,
+        "felpa / polar": 1
+       },
+       "confianza": "media"
+      }
+     }
+    },
+    {
+     "familia": "Arriba",
+     "fotos": 31,
+     "cuota": 0.624,
+     "ic": [
+      0.456,
+      0.766
+     ],
+     "confianza": "media",
+     "pocos_datos": false,
+     "ejemplos": [
+      [
+       "pr_a6602285b4",
+       4
+      ],
+      [
+       "rd_1xdhj3h",
+       1
+      ],
+      [
+       "ig_18154994155523404",
+       3
+      ]
+     ],
+     "atributos": {
+      "estampado": {
+       "n": 44,
+       "reparto": {
+        "liso": 27,
+        "otro": 5,
+        "rayas": 4,
+        "cuadros": 4,
+        "gráfico / dibujo": 3,
+        "texto / logo": 1
+       },
+       "confianza": "media"
+      },
+      "forma": {
+       "n": 44,
+       "reparto": {
+        "regular": 24,
+        "corta / cropped": 14,
+        "oversized / baggy": 4,
+        "ajustada": 2
+       },
+       "confianza": "media"
+      },
+      "tejido": {
+       "n": 44,
+       "reparto": {
+        "algodón": 22,
+        "punto": 15,
+        "seda / satén": 3,
+        "tul / encaje": 2,
+        "denim (vaquero)": 1,
+        "felpa / polar": 1
        },
        "confianza": "media"
       }
@@ -8373,11 +8844,11 @@
     },
     {
      "familia": "Calzado",
-     "fotos": 17,
-     "cuota": 0.405,
+     "fotos": 18,
+     "cuota": 0.378,
      "ic": [
-      0.244,
-      0.59
+      0.235,
+      0.546
      ],
      "confianza": "media",
      "pocos_datos": false,
@@ -8397,27 +8868,27 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 18,
+       "n": 21,
        "reparto": {
-        "liso": 16,
+        "liso": 19,
         "otro": 1,
         "texto / logo": 1
        },
        "confianza": "media"
       },
       "forma": {
-       "n": 18,
+       "n": 21,
        "reparto": {
-        "no aplica": 10,
+        "no aplica": 13,
         "regular": 7,
         "ajustada": 1
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 18,
+       "n": 21,
        "reparto": {
-        "cuero / vinilo": 10,
+        "cuero / vinilo": 13,
         "seda / satén": 4,
         "no se distingue": 1,
         "terciopelo": 1,
@@ -8430,11 +8901,11 @@
     },
     {
      "familia": "Abrigo",
-     "fotos": 11,
-     "cuota": 0.295,
+     "fotos": 13,
+     "cuota": 0.286,
      "ic": [
-      0.158,
-      0.483
+      0.162,
+      0.454
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -8454,40 +8925,40 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 12,
+       "n": 15,
        "reparto": {
-        "liso": 11,
+        "liso": 14,
         "cuadros": 1
        },
-       "confianza": "baja"
+       "confianza": "media"
       },
       "forma": {
-       "n": 12,
+       "n": 15,
        "reparto": {
-        "regular": 10,
-        "oversized / baggy": 2
+        "regular": 12,
+        "oversized / baggy": 3
        },
-       "confianza": "baja"
+       "confianza": "media"
       },
       "tejido": {
-       "n": 12,
+       "n": 15,
        "reparto": {
         "algodón": 6,
+        "cuero / vinilo": 5,
         "pana": 3,
-        "cuero / vinilo": 2,
         "técnico / impermeable": 1
        },
-       "confianza": "baja"
+       "confianza": "media"
       }
      }
     },
     {
      "familia": "Cuerpo entero",
      "fotos": 11,
-     "cuota": 0.259,
+     "cuota": 0.215,
      "ic": [
-      0.132,
-      0.446
+      0.109,
+      0.378
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -8538,41 +9009,42 @@
    ],
    "atributos": {
     "estampado": {
-     "n": 110,
+     "n": 126,
      "reparto": {
-      "liso": 83,
-      "otro": 9,
-      "cuadros": 8,
+      "liso": 95,
+      "otro": 10,
+      "cuadros": 9,
       "rayas": 6,
-      "gráfico / dibujo": 2,
+      "gráfico / dibujo": 4,
       "texto / logo": 2
      },
      "confianza": "media"
     },
     "forma": {
-     "n": 110,
+     "n": 126,
      "reparto": {
-      "regular": 59,
-      "ajustada": 21,
-      "corta / cropped": 13,
-      "no aplica": 10,
-      "oversized / baggy": 7
+      "regular": 65,
+      "ajustada": 22,
+      "corta / cropped": 14,
+      "no aplica": 13,
+      "oversized / baggy": 12
      },
      "confianza": "media"
     },
     "tejido": {
-     "n": 110,
+     "n": 126,
      "reparto": {
-      "algodón": 40,
+      "algodón": 42,
+      "cuero / vinilo": 21,
+      "punto": 19,
       "seda / satén": 15,
-      "cuero / vinilo": 15,
-      "punto": 14,
-      "denim (vaquero)": 12,
+      "denim (vaquero)": 13,
       "no se distingue": 3,
       "pana": 3,
       "técnico / impermeable": 3,
       "terciopelo": 2,
       "tul / encaje": 2,
+      "felpa / polar": 2,
       "lino": 1
      },
      "confianza": "media"
@@ -8580,22 +9052,23 @@
    },
    "etiquetadas_con_modelo_grande": false,
    "colores": {
-    "negro": 36,
-    "camel": 18,
+    "negro": 40,
+    "camel": 20,
+    "blanco": 14,
     "azul": 12,
-    "blanco": 11,
-    "gris": 9,
+    "gris": 12,
+    "beige": 9,
     "navy": 9,
-    "beige": 8,
-    "verde": 3
+    "rojo": 4
    },
    "confianza_color": "baja",
    "fuentes": {
-    "r/OUTFITS": 21,
+    "r/OUTFITS": 22,
     "r/reddeadfashion": 13,
-    "abercrombie": 7,
+    "abercrombie": 13,
     "prensa: everyday outfit trends": 3,
-    "prensa: \"normcore\" outfit": 1
+    "prensa: \"normcore\" outfit": 1,
+    "r/femalefashionadvice": 1
    }
   },
   {
@@ -10716,33 +11189,63 @@
    "estilo": "geek",
    "mercado": "US",
    "temporada": "OI 2026/27",
-   "fotos": 7,
-   "fotos_con_prenda": 7,
-   "fotos_efectivas": 6.2,
+   "fotos": 15,
+   "fotos_con_prenda": 15,
+   "fotos_efectivas": 10.9,
    "prendas": [
     {
      "tipo": "Pantalón",
      "familia": "Abajo",
-     "fotos": 3,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
+     "fotos": 6,
+     "cuota": 0.501,
+     "ic": [
+      0.246,
+      0.756
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
      "ejemplos": [
       [
        "ig_18121785242472039",
        0
       ],
       [
-       "ig_17921621400449295",
+       "ig_18101565623279907",
        1
       ],
       [
-       "ig_18178601806448838",
+       "ig_17921621400449295",
        1
       ]
      ],
-     "atributos": {}
+     "atributos": {
+      "estampado": {
+       "n": 6,
+       "reparto": {
+        "liso": 4,
+        "texto / logo": 1,
+        "gráfico / dibujo": 1
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 6,
+       "reparto": {
+        "ajustada": 2,
+        "regular": 2,
+        "oversized / baggy": 2
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 6,
+       "reparto": {
+        "algodón": 4,
+        "punto": 2
+       },
+       "confianza": "baja"
+      }
+     }
     },
     {
      "tipo": "Chaqueta",
@@ -10759,6 +11262,30 @@
       ],
       [
        "ig_18075110669739885",
+       2
+      ]
+     ],
+     "atributos": {}
+    },
+    {
+     "tipo": "Botas",
+     "familia": "Calzado",
+     "fotos": 4,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_18102354749048148",
+       2
+      ],
+      [
+       "ig_18075110669739885",
+       1
+      ],
+      [
+       "ig_18101565623279907",
        2
       ]
      ],
@@ -10801,9 +11328,57 @@
      "atributos": {}
     },
     {
+     "tipo": "Camiseta manga larga",
+     "familia": "Arriba",
+     "fotos": 3,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_17921621400449295",
+       0
+      ],
+      [
+       "ig_18123452560898910",
+       0
+      ],
+      [
+       "ig_18151565464483518",
+       0
+      ]
+     ],
+     "atributos": {}
+    },
+    {
+     "tipo": "Vestido",
+     "familia": "Cuerpo entero",
+     "fotos": 3,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_18034686131897080",
+       0
+      ],
+      [
+       "ig_18115056209041396",
+       0
+      ],
+      [
+       "ig_17927668953184477",
+       0
+      ]
+     ],
+     "atributos": {}
+    },
+    {
      "tipo": "Camiseta manga corta",
      "familia": "Arriba",
-     "fotos": 1,
+     "fotos": 2,
      "cuota": null,
      "ic": null,
      "confianza": null,
@@ -10812,21 +11387,9 @@
       [
        "ig_18178601806448838",
        0
-      ]
-     ],
-     "atributos": {}
-    },
-    {
-     "tipo": "Botas",
-     "familia": "Calzado",
-     "fotos": 1,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
-     "ejemplos": [
+      ],
       [
-       "ig_18075110669739885",
+       "ig_17927668953184477",
        1
       ]
      ],
@@ -10865,7 +11428,23 @@
      "atributos": {}
     },
     {
-     "tipo": "Camiseta manga larga",
+     "tipo": "Plumas",
+     "familia": "Abrigo",
+     "fotos": 1,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_18101565623279907",
+       0
+      ]
+     ],
+     "atributos": {}
+    },
+    {
+     "tipo": "Camisa",
      "familia": "Arriba",
      "fotos": 1,
      "cuota": null,
@@ -10874,15 +11453,15 @@
      "pocos_datos": true,
      "ejemplos": [
       [
-       "ig_17921621400449295",
+       "ig_17987836412877952",
        0
       ]
      ],
      "atributos": {}
     },
     {
-     "tipo": "Vestido",
-     "familia": "Cuerpo entero",
+     "tipo": "Jersey",
+     "familia": "Arriba",
      "fotos": 1,
      "cuota": null,
      "ic": null,
@@ -10890,8 +11469,40 @@
      "pocos_datos": true,
      "ejemplos": [
       [
-       "ig_18034686131897080",
+       "ig_18102354749048148",
        0
+      ]
+     ],
+     "atributos": {}
+    },
+    {
+     "tipo": "Legging/Malla",
+     "familia": "Abajo",
+     "fotos": 1,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_18073710179768586",
+       0
+      ]
+     ],
+     "atributos": {}
+    },
+    {
+     "tipo": "Americana",
+     "familia": "Abrigo",
+     "fotos": 1,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_18073710179768586",
+       1
       ]
      ],
      "atributos": {}
@@ -10900,11 +11511,14 @@
    "familias": [
     {
      "familia": "Abajo",
-     "fotos": 4,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
+     "fotos": 8,
+     "cuota": 0.625,
+     "ic": [
+      0.343,
+      0.842
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
      "ejemplos": [
       [
        "ig_18121785242472039",
@@ -10915,19 +11529,48 @@
        1
       ],
       [
-       "ig_17921621400449295",
+       "ig_18101565623279907",
        1
       ]
      ],
-     "atributos": {}
+     "atributos": {
+      "estampado": {
+       "n": 8,
+       "reparto": {
+        "liso": 6,
+        "texto / logo": 1,
+        "gráfico / dibujo": 1
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 8,
+       "reparto": {
+        "regular": 3,
+        "ajustada": 3,
+        "oversized / baggy": 2
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 8,
+       "reparto": {
+        "algodón": 4,
+        "punto": 2,
+        "terciopelo": 1,
+        "cuero / vinilo": 1
+       },
+       "confianza": "baja"
+      }
+     }
     },
     {
      "familia": "Arriba",
-     "fotos": 5,
-     "cuota": 0.625,
+     "fotos": 10,
+     "cuota": 0.62,
      "ic": [
-      0.273,
-      0.881
+      0.339,
+      0.839
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -10947,26 +11590,31 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 5,
+       "n": 10,
        "reparto": {
-        "gráfico / dibujo": 3,
-        "liso": 2
+        "liso": 4,
+        "gráfico / dibujo": 4,
+        "rayas": 1,
+        "texto / logo": 1
        },
        "confianza": "baja"
       },
       "forma": {
-       "n": 5,
+       "n": 10,
        "reparto": {
-        "oversized / baggy": 3,
+        "oversized / baggy": 5,
+        "regular": 3,
         "ajustada": 2
        },
        "confianza": "baja"
       },
       "tejido": {
-       "n": 5,
+       "n": 10,
        "reparto": {
-        "algodón": 4,
-        "cuero / vinilo": 1
+        "algodón": 7,
+        "cuero / vinilo": 1,
+        "punto": 1,
+        "terciopelo": 1
        },
        "confianza": "baja"
       }
@@ -10974,14 +11622,21 @@
     },
     {
      "familia": "Calzado",
-     "fotos": 2,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
+     "fotos": 5,
+     "cuota": 0.396,
+     "ic": [
+      0.172,
+      0.674
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
      "ejemplos": [
       [
        "ig_18121785242472039",
+       2
+      ],
+      [
+       "ig_18102354749048148",
        2
       ],
       [
@@ -10989,11 +11644,36 @@
        1
       ]
      ],
-     "atributos": {}
+     "atributos": {
+      "estampado": {
+       "n": 5,
+       "reparto": {
+        "liso": 5
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 5,
+       "reparto": {
+        "no aplica": 3,
+        "regular": 2
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 5,
+       "reparto": {
+        "cuero / vinilo": 3,
+        "no se distingue": 1,
+        "algodón": 1
+       },
+       "confianza": "baja"
+      }
+     }
     },
     {
      "familia": "Abrigo",
-     "fotos": 2,
+     "fotos": 4,
      "cuota": null,
      "ic": null,
      "confianza": null,
@@ -11006,13 +11686,17 @@
       [
        "ig_18075110669739885",
        2
+      ],
+      [
+       "ig_18101565623279907",
+       0
       ]
      ],
      "atributos": {}
     },
     {
      "familia": "Cuerpo entero",
-     "fotos": 1,
+     "fotos": 3,
      "cuota": null,
      "ic": null,
      "confianza": null,
@@ -11021,6 +11705,14 @@
       [
        "ig_18034686131897080",
        0
+      ],
+      [
+       "ig_18115056209041396",
+       0
+      ],
+      [
+       "ig_17927668953184477",
+       0
       ]
      ],
      "atributos": {}
@@ -11028,44 +11720,48 @@
    ],
    "atributos": {
     "estampado": {
-     "n": 14,
+     "n": 30,
      "reparto": {
-      "liso": 7,
-      "gráfico / dibujo": 6,
-      "texto / logo": 1
+      "liso": 19,
+      "gráfico / dibujo": 8,
+      "texto / logo": 2,
+      "rayas": 1
      },
-     "confianza": "baja"
+     "confianza": "media"
     },
     "forma": {
-     "n": 14,
+     "n": 30,
      "reparto": {
-      "oversized / baggy": 6,
-      "ajustada": 4,
-      "regular": 2,
-      "no aplica": 2
+      "oversized / baggy": 10,
+      "regular": 9,
+      "ajustada": 7,
+      "no aplica": 3,
+      "corta / cropped": 1
      },
-     "confianza": "baja"
+     "confianza": "media"
     },
     "tejido": {
-     "n": 14,
+     "n": 30,
      "reparto": {
-      "algodón": 8,
-      "cuero / vinilo": 2,
-      "terciopelo": 1,
-      "punto": 1,
+      "algodón": 14,
+      "cuero / vinilo": 6,
+      "punto": 4,
+      "terciopelo": 3,
       "no se distingue": 1,
-      "seda / satén": 1
+      "seda / satén": 1,
+      "técnico / impermeable": 1
      },
-     "confianza": "baja"
+     "confianza": "media"
     }
    },
    "etiquetadas_con_modelo_grande": true,
    "colores": {
-    "negro": 14
+    "negro": 28,
+    "rojo": 2
    },
    "confianza_color": "baja",
    "fuentes": {
-    "killstar": 7
+    "killstar": 15
    }
   },
   {
@@ -11917,14 +12613,111 @@
    "estilo": "lujo",
    "mercado": "ES",
    "temporada": "OI 2026/27",
-   "fotos": 13,
-   "fotos_con_prenda": 12,
-   "fotos_efectivas": 6.2,
+   "fotos": 27,
+   "fotos_con_prenda": 25,
+   "fotos_efectivas": 14.0,
    "prendas": [
+    {
+     "tipo": "Camiseta manga larga",
+     "familia": "Arriba",
+     "fotos": 5,
+     "cuota": 0.455,
+     "ic": [
+      0.233,
+      0.696
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
+     "ejemplos": [
+      [
+       "pr_c37f350ffd",
+       0
+      ],
+      [
+       "pr_38d9f7757a",
+       0
+      ],
+      [
+       "pr_abab86b0ed",
+       0
+      ]
+     ],
+     "atributos": {
+      "estampado": {
+       "n": 6,
+       "reparto": {
+        "liso": 6
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 6,
+       "reparto": {
+        "regular": 6
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 6,
+       "reparto": {
+        "algodón": 6
+       },
+       "confianza": "baja"
+      }
+     }
+    },
+    {
+     "tipo": "Falda",
+     "familia": "Abajo",
+     "fotos": 4,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "pr_ace540559c",
+       2
+      ],
+      [
+       "pr_49a69f3763",
+       1
+      ],
+      [
+       "pr_abab86b0ed",
+       2
+      ]
+     ],
+     "atributos": {}
+    },
+    {
+     "tipo": "Zapatos de tacón",
+     "familia": "Calzado",
+     "fotos": 3,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "pr_28b7199357",
+       1
+      ],
+      [
+       "pr_6103721673",
+       1
+      ],
+      [
+       "pr_abab86b0ed",
+       1
+      ]
+     ],
+     "atributos": {}
+    },
     {
      "tipo": "Vestido",
      "familia": "Cuerpo entero",
-     "fotos": 2,
+     "fotos": 4,
      "cuota": null,
      "ic": null,
      "confianza": null,
@@ -11946,13 +12739,87 @@
      "atributos": {}
     },
     {
-     "tipo": "Pantalón",
+     "tipo": "Legging/Malla",
      "familia": "Abajo",
-     "fotos": 3,
+     "fotos": 2,
      "cuota": null,
      "ic": null,
      "confianza": null,
      "pocos_datos": true,
+     "ejemplos": [
+      [
+       "pr_6103721673",
+       0
+      ],
+      [
+       "pr_28b7199357",
+       0
+      ]
+     ],
+     "atributos": {}
+    },
+    {
+     "tipo": "Americana",
+     "familia": "Abrigo",
+     "fotos": 7,
+     "cuota": 0.118,
+     "ic": [
+      0.029,
+      0.371
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
+     "ejemplos": [
+      [
+       "pr_28b7199357",
+       2
+      ],
+      [
+       "ig_18160592626495189",
+       1
+      ],
+      [
+       "pr_0969c061f8",
+       1
+      ]
+     ],
+     "atributos": {
+      "estampado": {
+       "n": 8,
+       "reparto": {
+        "liso": 8
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 8,
+       "reparto": {
+        "ajustada": 7,
+        "regular": 1
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 8,
+       "reparto": {
+        "seda / satén": 6,
+        "algodón": 2
+       },
+       "confianza": "baja"
+      }
+     }
+    },
+    {
+     "tipo": "Pantalón",
+     "familia": "Abajo",
+     "fotos": 5,
+     "cuota": 0.079,
+     "ic": [
+      0.015,
+      0.325
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
      "ejemplos": [
       [
        "ig_18383127199235394",
@@ -11963,8 +12830,56 @@
        2
       ],
       [
-       "pr_a0f565c3db",
+       "ig_17953716960038019",
        1
+      ]
+     ],
+     "atributos": {
+      "estampado": {
+       "n": 5,
+       "reparto": {
+        "liso": 5
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 5,
+       "reparto": {
+        "regular": 4,
+        "ajustada": 1
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 5,
+       "reparto": {
+        "algodón": 4,
+        "técnico / impermeable": 1
+       },
+       "confianza": "baja"
+      }
+     }
+    },
+    {
+     "tipo": "Chaqueta",
+     "familia": "Abrigo",
+     "fotos": 3,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_18629223586036059",
+       0
+      ],
+      [
+       "ig_18114819206027847",
+       0
+      ],
+      [
+       "ig_18102357761367853",
+       0
       ]
      ],
      "atributos": {}
@@ -11985,22 +12900,6 @@
       [
        "ig_18383127199235394",
        2
-      ]
-     ],
-     "atributos": {}
-    },
-    {
-     "tipo": "Chaqueta",
-     "familia": "Abrigo",
-     "fotos": 1,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
-     "ejemplos": [
-      [
-       "ig_18114819206027847",
-       0
       ]
      ],
      "atributos": {}
@@ -12070,59 +12969,205 @@
      "atributos": {}
     },
     {
-     "tipo": "Americana",
-     "familia": "Abrigo",
-     "fotos": 5,
-     "cuota": 0.048,
+     "tipo": "Camisa",
+     "familia": "Arriba",
+     "fotos": 1,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_17953716960038019",
+       0
+      ]
+     ],
+     "atributos": {}
+    },
+    {
+     "tipo": "Camiseta de tirantes",
+     "familia": "Arriba",
+     "fotos": 1,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_18109454792332440",
+       1
+      ],
+      [
+       "ig_18109454792332440",
+       0
+      ]
+     ],
+     "atributos": {}
+    }
+   ],
+   "familias": [
+    {
+     "familia": "Arriba",
+     "fotos": 9,
+     "cuota": 0.541,
      "ic": [
-      0.003,
-      0.439
+      0.3,
+      0.764
      ],
      "confianza": "baja",
      "pocos_datos": false,
      "ejemplos": [
       [
-       "pr_0969c061f8",
-       1
-      ],
-      [
-       "pr_8dad588894",
+       "pr_c37f350ffd",
        0
       ],
       [
-       "pr_a0f565c3db",
+       "pr_38d9f7757a",
+       0
+      ],
+      [
+       "pr_abab86b0ed",
        0
       ]
      ],
      "atributos": {
       "estampado": {
-       "n": 6,
+       "n": 11,
        "reparto": {
-        "liso": 6
+        "liso": 7,
+        "gráfico / dibujo": 3,
+        "rayas": 1
        },
        "confianza": "baja"
       },
       "forma": {
-       "n": 6,
+       "n": 11,
        "reparto": {
-        "ajustada": 6
+        "regular": 9,
+        "oversized / baggy": 2
        },
        "confianza": "baja"
       },
       "tejido": {
-       "n": 6,
+       "n": 11,
        "reparto": {
-        "seda / satén": 6
+        "algodón": 10,
+        "punto": 1
        },
        "confianza": "baja"
       }
      }
-    }
-   ],
-   "familias": [
+    },
+    {
+     "familia": "Abajo",
+     "fotos": 10,
+     "cuota": 0.534,
+     "ic": [
+      0.295,
+      0.759
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
+     "ejemplos": [
+      [
+       "pr_6103721673",
+       0
+      ],
+      [
+       "pr_ace540559c",
+       2
+      ],
+      [
+       "pr_49a69f3763",
+       1
+      ]
+     ],
+     "atributos": {
+      "estampado": {
+       "n": 11,
+       "reparto": {
+        "liso": 10,
+        "otro": 1
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 11,
+       "reparto": {
+        "ajustada": 7,
+        "regular": 4
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 11,
+       "reparto": {
+        "algodón": 5,
+        "cuero / vinilo": 3,
+        "técnico / impermeable": 1,
+        "tul / encaje": 1,
+        "punto": 1
+       },
+       "confianza": "baja"
+      }
+     }
+    },
+    {
+     "familia": "Calzado",
+     "fotos": 5,
+     "cuota": 0.322,
+     "ic": [
+      0.14,
+      0.581
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
+     "ejemplos": [
+      [
+       "pr_28b7199357",
+       1
+      ],
+      [
+       "pr_6103721673",
+       1
+      ],
+      [
+       "pr_abab86b0ed",
+       1
+      ]
+     ],
+     "atributos": {
+      "estampado": {
+       "n": 5,
+       "reparto": {
+        "liso": 5
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 5,
+       "reparto": {
+        "no aplica": 3,
+        "ajustada": 2
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 5,
+       "reparto": {
+        "técnico / impermeable": 1,
+        "algodón": 1,
+        "cuero / vinilo": 1,
+        "tul / encaje": 1,
+        "seda / satén": 1
+       },
+       "confianza": "baja"
+      }
+     }
+    },
     {
      "familia": "Cuerpo entero",
-     "fotos": 2,
+     "fotos": 4,
      "cuota": null,
      "ic": null,
      "confianza": null,
@@ -12145,115 +13190,58 @@
     },
     {
      "familia": "Abrigo",
-     "fotos": 7,
-     "cuota": 0.262,
+     "fotos": 11,
+     "cuota": 0.211,
      "ic": [
-      0.066,
-      0.64
+      0.074,
+      0.473
      ],
      "confianza": "baja",
      "pocos_datos": false,
      "ejemplos": [
       [
+       "pr_28b7199357",
+       2
+      ],
+      [
+       "ig_18629223586036059",
+       0
+      ],
+      [
        "ig_18383127199235394",
        0
-      ],
-      [
-       "ig_18114819206027847",
-       0
-      ],
-      [
-       "pr_0969c061f8",
-       1
       ]
      ],
      "atributos": {
       "estampado": {
-       "n": 8,
+       "n": 12,
        "reparto": {
-        "liso": 7,
+        "liso": 11,
         "texto / logo": 1
        },
        "confianza": "baja"
       },
       "forma": {
-       "n": 8,
+       "n": 12,
        "reparto": {
-        "ajustada": 6,
-        "oversized / baggy": 2
+        "ajustada": 7,
+        "oversized / baggy": 2,
+        "regular": 2,
+        "corta / cropped": 1
        },
        "confianza": "baja"
       },
       "tejido": {
-       "n": 8,
+       "n": 12,
        "reparto": {
         "seda / satén": 6,
-        "técnico / impermeable": 2
+        "técnico / impermeable": 2,
+        "algodón": 2,
+        "cuero / vinilo": 2
        },
        "confianza": "baja"
       }
      }
-    },
-    {
-     "familia": "Arriba",
-     "fotos": 2,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
-     "ejemplos": [
-      [
-       "ig_18050381810606532",
-       0
-      ],
-      [
-       "ig_18645584377033292",
-       0
-      ]
-     ],
-     "atributos": {}
-    },
-    {
-     "familia": "Abajo",
-     "fotos": 3,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
-     "ejemplos": [
-      [
-       "ig_18383127199235394",
-       1
-      ],
-      [
-       "ig_18050381810606532",
-       2
-      ],
-      [
-       "pr_a0f565c3db",
-       1
-      ]
-     ],
-     "atributos": {}
-    },
-    {
-     "familia": "Calzado",
-     "fotos": 2,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
-     "ejemplos": [
-      [
-       "ig_18050381810606532",
-       1
-      ],
-      [
-       "ig_18383127199235394",
-       2
-      ]
-     ],
-     "atributos": {}
     },
     {
      "familia": "Accesorio",
@@ -12273,53 +13261,55 @@
    ],
    "atributos": {
     "estampado": {
-     "n": 19,
+     "n": 45,
      "reparto": {
-      "liso": 14,
-      "otro": 2,
+      "liso": 36,
+      "otro": 3,
+      "gráfico / dibujo": 3,
       "texto / logo": 2,
-      "gráfico / dibujo": 1
+      "rayas": 1
      },
      "confianza": "media"
     },
     "forma": {
-     "n": 19,
+     "n": 45,
      "reparto": {
-      "ajustada": 10,
-      "regular": 3,
-      "oversized / baggy": 3,
-      "no aplica": 3
+      "ajustada": 20,
+      "regular": 16,
+      "oversized / baggy": 4,
+      "no aplica": 4,
+      "corta / cropped": 1
      },
      "confianza": "media"
     },
     "tejido": {
-     "n": 19,
+     "n": 45,
      "reparto": {
-      "seda / satén": 8,
+      "algodón": 18,
+      "seda / satén": 10,
+      "cuero / vinilo": 7,
       "técnico / impermeable": 4,
-      "algodón": 4,
-      "tul / encaje": 1,
-      "punto": 1,
-      "cuero / vinilo": 1
+      "tul / encaje": 4,
+      "punto": 2
      },
      "confianza": "media"
     }
    },
    "etiquetadas_con_modelo_grande": true,
    "colores": {
-    "azul": 7,
-    "negro": 4,
-    "gris": 3,
+    "negro": 14,
+    "gris": 12,
+    "azul": 8,
+    "verde": 3,
+    "camel": 2,
+    "amarillo": 2,
     "navy": 1,
-    "verde": 1,
-    "naranja": 1,
-    "camel": 1,
-    "beige": 1
+    "naranja": 1
    },
    "confianza_color": "baja",
    "fuentes": {
-    "Georgina Rodríguez": 8,
-    "loewe": 5
+    "Georgina Rodríguez": 15,
+    "loewe": 12
    }
   },
   {
@@ -12704,18 +13694,18 @@
    "estilo": "lujo",
    "mercado": "US",
    "temporada": "OI 2026/27",
-   "fotos": 190,
-   "fotos_con_prenda": 167,
-   "fotos_efectivas": 129.3,
+   "fotos": 200,
+   "fotos_con_prenda": 177,
+   "fotos_efectivas": 138.8,
    "prendas": [
     {
      "tipo": "Pantalón",
      "familia": "Abajo",
-     "fotos": 48,
-     "cuota": 0.332,
+     "fotos": 55,
+     "cuota": 0.357,
      "ic": [
-      0.257,
-      0.417
+      0.282,
+      0.44
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -12735,9 +13725,9 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 50,
+       "n": 58,
        "reparto": {
-        "liso": 43,
+        "liso": 51,
         "otro": 3,
         "rayas": 2,
         "texto / logo": 2
@@ -12745,22 +13735,22 @@
        "confianza": "media"
       },
       "forma": {
-       "n": 50,
+       "n": 58,
        "reparto": {
-        "regular": 22,
-        "ajustada": 20,
-        "oversized / baggy": 8
+        "regular": 25,
+        "ajustada": 24,
+        "oversized / baggy": 9
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 50,
+       "n": 58,
        "reparto": {
-        "denim (vaquero)": 22,
-        "algodón": 13,
+        "denim (vaquero)": 26,
+        "algodón": 16,
         "cuero / vinilo": 6,
+        "no se distingue": 4,
         "seda / satén": 3,
-        "no se distingue": 3,
         "pana": 1,
         "técnico / impermeable": 1,
         "punto": 1
@@ -12770,13 +13760,75 @@
      }
     },
     {
+     "tipo": "Chaqueta",
+     "familia": "Abrigo",
+     "fotos": 27,
+     "cuota": 0.17,
+     "ic": [
+      0.116,
+      0.241
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
+     "ejemplos": [
+      [
+       "tw_2114653141325299732_2",
+       0
+      ],
+      [
+       "ig_18081465038376450",
+       0
+      ],
+      [
+       "tw_2114653141325299732_4",
+       0
+      ]
+     ],
+     "atributos": {
+      "estampado": {
+       "n": 29,
+       "reparto": {
+        "liso": 25,
+        "texto / logo": 1,
+        "otro": 1,
+        "gráfico / dibujo": 1,
+        "cuadros": 1
+       },
+       "confianza": "media"
+      },
+      "forma": {
+       "n": 29,
+       "reparto": {
+        "regular": 22,
+        "oversized / baggy": 4,
+        "ajustada": 2,
+        "corta / cropped": 1
+       },
+       "confianza": "media"
+      },
+      "tejido": {
+       "n": 29,
+       "reparto": {
+        "cuero / vinilo": 9,
+        "algodón": 8,
+        "técnico / impermeable": 5,
+        "denim (vaquero)": 3,
+        "felpa / polar": 2,
+        "seda / satén": 1,
+        "no se distingue": 1
+       },
+       "confianza": "media"
+      }
+     }
+    },
+    {
      "tipo": "Americana",
      "familia": "Abrigo",
      "fotos": 23,
-     "cuota": 0.161,
+     "cuota": 0.147,
      "ic": [
-      0.107,
-      0.234
+      0.098,
+      0.216
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -12834,10 +13886,10 @@
      "tipo": "Vestido",
      "familia": "Cuerpo entero",
      "fotos": 25,
-     "cuota": 0.154,
+     "cuota": 0.141,
      "ic": [
-      0.102,
-      0.226
+      0.093,
+      0.209
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -12891,75 +13943,13 @@
      }
     },
     {
-     "tipo": "Chaqueta",
-     "familia": "Abrigo",
-     "fotos": 22,
-     "cuota": 0.138,
-     "ic": [
-      0.089,
-      0.208
-     ],
-     "confianza": "baja",
-     "pocos_datos": false,
-     "ejemplos": [
-      [
-       "ig_18081465038376450",
-       0
-      ],
-      [
-       "tw_2113186802924441682_3",
-       1
-      ],
-      [
-       "pr_30287f1d96",
-       1
-      ]
-     ],
-     "atributos": {
-      "estampado": {
-       "n": 24,
-       "reparto": {
-        "liso": 20,
-        "texto / logo": 1,
-        "otro": 1,
-        "gráfico / dibujo": 1,
-        "cuadros": 1
-       },
-       "confianza": "media"
-      },
-      "forma": {
-       "n": 24,
-       "reparto": {
-        "regular": 17,
-        "oversized / baggy": 4,
-        "ajustada": 2,
-        "corta / cropped": 1
-       },
-       "confianza": "media"
-      },
-      "tejido": {
-       "n": 24,
-       "reparto": {
-        "cuero / vinilo": 8,
-        "algodón": 6,
-        "denim (vaquero)": 3,
-        "técnico / impermeable": 3,
-        "felpa / polar": 2,
-        "seda / satén": 1,
-        "no se distingue": 1
-       },
-       "confianza": "media"
-      }
-     }
-    },
-    {
      "tipo": "Botas",
      "familia": "Calzado",
      "fotos": 14,
-     "cuota": 0.096,
+     "cuota": 0.088,
      "ic": [
-      0.056,
-      0.159
+      0.051,
+      0.147
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -13012,10 +14002,10 @@
      "tipo": "Plumas",
      "familia": "Abrigo",
      "fotos": 9,
-     "cuota": 0.082,
+     "cuota": 0.075,
      "ic": [
-      0.046,
-      0.142
+      0.042,
+      0.131
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -13064,10 +14054,10 @@
      "tipo": "Camisa",
      "familia": "Arriba",
      "fotos": 12,
-     "cuota": 0.076,
+     "cuota": 0.07,
      "ic": [
-      0.042,
-      0.135
+      0.038,
+      0.125
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -13121,10 +14111,10 @@
      "tipo": "Zapatillas deportivas",
      "familia": "Calzado",
      "fotos": 11,
-     "cuota": 0.069,
+     "cuota": 0.064,
      "ic": [
-      0.037,
-      0.127
+      0.034,
+      0.117
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -13175,10 +14165,10 @@
      "tipo": "Falda",
      "familia": "Abajo",
      "fotos": 11,
-     "cuota": 0.069,
+     "cuota": 0.063,
      "ic": [
-      0.037,
-      0.126
+      0.033,
+      0.117
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -13229,13 +14219,117 @@
      }
     },
     {
-     "tipo": "Abrigo",
-     "familia": "Abrigo",
+     "tipo": "Zapatos de tacón",
+     "familia": "Calzado",
      "fotos": 10,
      "cuota": 0.055,
      "ic": [
+      0.028,
+      0.106
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
+     "ejemplos": [
+      [
+       "tw_2113669308337557589_1",
+       2
+      ],
+      [
+       "tw_2113677085302751697_2",
+       2
+      ],
+      [
+       "tw_2113238950907163107_3",
+       1
+      ]
+     ],
+     "atributos": {
+      "estampado": {
+       "n": 10,
+       "reparto": {
+        "liso": 8,
+        "texto / logo": 1,
+        "otro": 1
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 10,
+       "reparto": {
+        "no aplica": 10
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 10,
+       "reparto": {
+        "cuero / vinilo": 6,
+        "seda / satén": 3,
+        "denim (vaquero)": 1
+       },
+       "confianza": "baja"
+      }
+     }
+    },
+    {
+     "tipo": "Zapatos de vestir",
+     "familia": "Calzado",
+     "fotos": 12,
+     "cuota": 0.055,
+     "ic": [
       0.027,
-      0.108
+      0.106
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
+     "ejemplos": [
+      [
+       "tw_2113677085302751697_1",
+       2
+      ],
+      [
+       "rd_1xdxkxt",
+       2
+      ],
+      [
+       "ig_18426090160149052",
+       0
+      ]
+     ],
+     "atributos": {
+      "estampado": {
+       "n": 13,
+       "reparto": {
+        "liso": 13
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 13,
+       "reparto": {
+        "no aplica": 11,
+        "regular": 2
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 13,
+       "reparto": {
+        "cuero / vinilo": 12,
+        "terciopelo": 1
+       },
+       "confianza": "baja"
+      }
+     }
+    },
+    {
+     "tipo": "Abrigo",
+     "familia": "Abrigo",
+     "fotos": 10,
+     "cuota": 0.05,
+     "ic": [
+      0.024,
+      0.1
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -13285,10 +14379,10 @@
      "tipo": "Bolso",
      "familia": "Accesorio",
      "fotos": 15,
-     "cuota": 0.053,
+     "cuota": 0.049,
      "ic": [
-      0.026,
-      0.107
+      0.024,
+      0.099
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -13335,27 +14429,27 @@
      }
     },
     {
-     "tipo": "Zapatos de tacón",
-     "familia": "Calzado",
-     "fotos": 9,
-     "cuota": 0.052,
+     "tipo": "Legging/Malla",
+     "familia": "Abajo",
+     "fotos": 8,
+     "cuota": 0.047,
      "ic": [
-      0.025,
-      0.104
+      0.023,
+      0.097
      ],
      "confianza": "baja",
      "pocos_datos": false,
      "ejemplos": [
       [
+       "tw_2114653141325299732_3",
+       0
+      ],
+      [
        "tw_2113669308337557589_1",
-       2
+       0
       ],
       [
-       "tw_2113677085302751697_2",
-       2
-      ],
-      [
-       "tw_2113238950907163107_3",
+       "tw_2111125015177359578_2",
        1
       ]
      ],
@@ -13363,76 +14457,27 @@
       "estampado": {
        "n": 9,
        "reparto": {
-        "liso": 7,
+        "otro": 3,
+        "gráfico / dibujo": 2,
+        "liso": 2,
         "texto / logo": 1,
-        "otro": 1
+        "rayas": 1
        },
        "confianza": "baja"
       },
       "forma": {
        "n": 9,
        "reparto": {
-        "no aplica": 9
+        "ajustada": 9
        },
        "confianza": "baja"
       },
       "tejido": {
        "n": 9,
        "reparto": {
-        "cuero / vinilo": 6,
-        "seda / satén": 2,
-        "denim (vaquero)": 1
-       },
-       "confianza": "baja"
-      }
-     }
-    },
-    {
-     "tipo": "Zapatos de vestir",
-     "familia": "Calzado",
-     "fotos": 11,
-     "cuota": 0.051,
-     "ic": [
-      0.024,
-      0.103
-     ],
-     "confianza": "baja",
-     "pocos_datos": false,
-     "ejemplos": [
-      [
-       "tw_2113677085302751697_1",
-       2
-      ],
-      [
-       "rd_1xdxkxt",
-       2
-      ],
-      [
-       "ig_18081465038376450",
-       2
-      ]
-     ],
-     "atributos": {
-      "estampado": {
-       "n": 12,
-       "reparto": {
-        "liso": 12
-       },
-       "confianza": "baja"
-      },
-      "forma": {
-       "n": 12,
-       "reparto": {
-        "no aplica": 10,
-        "regular": 2
-       },
-       "confianza": "baja"
-      },
-      "tejido": {
-       "n": 12,
-       "reparto": {
-        "cuero / vinilo": 11,
-        "terciopelo": 1
+        "punto": 5,
+        "técnico / impermeable": 2,
+        "tul / encaje": 2
        },
        "confianza": "baja"
       }
@@ -13442,10 +14487,10 @@
      "tipo": "Jersey",
      "familia": "Arriba",
      "fotos": 8,
-     "cuota": 0.05,
+     "cuota": 0.046,
      "ic": [
-      0.024,
-      0.102
+      0.022,
+      0.095
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -13497,10 +14542,10 @@
      "tipo": "Chaleco sin mangas",
      "familia": "Arriba",
      "fotos": 5,
-     "cuota": 0.044,
+     "cuota": 0.04,
      "ic": [
-      0.02,
-      0.094
+      0.018,
+      0.087
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -13524,10 +14569,10 @@
      "tipo": "Camiseta manga larga",
      "familia": "Arriba",
      "fotos": 5,
-     "cuota": 0.042,
+     "cuota": 0.038,
      "ic": [
-      0.019,
-      0.092
+      0.017,
+      0.085
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -13574,68 +14619,13 @@
      }
     },
     {
-     "tipo": "Legging/Malla",
-     "familia": "Abajo",
-     "fotos": 7,
-     "cuota": 0.041,
-     "ic": [
-      0.018,
-      0.09
-     ],
-     "confianza": "baja",
-     "pocos_datos": false,
-     "ejemplos": [
-      [
-       "tw_2113669308337557589_1",
-       0
-      ],
-      [
-       "tw_2111125015177359578_2",
-       1
-      ],
-      [
-       "tw_2113186802924441682_4",
-       0
-      ]
-     ],
-     "atributos": {
-      "estampado": {
-       "n": 7,
-       "reparto": {
-        "otro": 3,
-        "texto / logo": 1,
-        "gráfico / dibujo": 1,
-        "liso": 1,
-        "rayas": 1
-       },
-       "confianza": "baja"
-      },
-      "forma": {
-       "n": 7,
-       "reparto": {
-        "ajustada": 7
-       },
-       "confianza": "baja"
-      },
-      "tejido": {
-       "n": 7,
-       "reparto": {
-        "punto": 4,
-        "tul / encaje": 2,
-        "técnico / impermeable": 1
-       },
-       "confianza": "baja"
-      }
-     }
-    },
-    {
      "tipo": "Camiseta de tirantes",
      "familia": "Arriba",
      "fotos": 8,
-     "cuota": 0.035,
+     "cuota": 0.032,
      "ic": [
-      0.015,
-      0.083
+      0.013,
+      0.077
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -13687,10 +14677,10 @@
      "tipo": "Top",
      "familia": "Arriba",
      "fotos": 6,
-     "cuota": 0.034,
+     "cuota": 0.031,
      "ic": [
-      0.014,
-      0.081
+      0.013,
+      0.075
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -13736,6 +14726,58 @@
      }
     },
     {
+     "tipo": "Camiseta manga corta",
+     "familia": "Arriba",
+     "fotos": 5,
+     "cuota": 0.027,
+     "ic": [
+      0.01,
+      0.07
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
+     "ejemplos": [
+      [
+       "tw_2113677085302751697_2",
+       1
+      ],
+      [
+       "tw_2112163151441510789_4",
+       0
+      ],
+      [
+       "ig_18081777356352283",
+       1
+      ]
+     ],
+     "atributos": {
+      "estampado": {
+       "n": 5,
+       "reparto": {
+        "liso": 3,
+        "gráfico / dibujo": 1,
+        "texto / logo": 1
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 5,
+       "reparto": {
+        "regular": 4,
+        "ajustada": 1
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 5,
+       "reparto": {
+        "algodón": 5
+       },
+       "confianza": "baja"
+      }
+     }
+    },
+    {
      "tipo": "Sandalias",
      "familia": "Calzado",
      "fotos": 4,
@@ -13760,37 +14802,13 @@
      "atributos": {}
     },
     {
-     "tipo": "Camiseta manga corta",
-     "familia": "Arriba",
-     "fotos": 4,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
-     "ejemplos": [
-      [
-       "tw_2113677085302751697_2",
-       1
-      ],
-      [
-       "tw_2112163151441510789_4",
-       0
-      ],
-      [
-       "rd_1x0adm1",
-       0
-      ]
-     ],
-     "atributos": {}
-    },
-    {
      "tipo": "Short",
      "familia": "Abajo",
      "fotos": 6,
-     "cuota": 0.022,
+     "cuota": 0.02,
      "ic": [
       0.007,
-      0.064
+      0.059
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -13866,12 +14884,16 @@
     {
      "tipo": "Polo",
      "familia": "Arriba",
-     "fotos": 1,
+     "fotos": 2,
      "cuota": null,
      "ic": null,
      "confianza": null,
      "pocos_datos": true,
      "ejemplos": [
+      [
+       "ig_17997913584030332",
+       0
+      ],
       [
        "tw_2107520076752801847_1",
        1
@@ -13899,11 +14921,11 @@
    "familias": [
     {
      "familia": "Abajo",
-     "fotos": 72,
-     "cuota": 0.463,
+     "fotos": 80,
+     "cuota": 0.488,
      "ic": [
-      0.38,
-      0.549
+      0.406,
+      0.57
      ],
      "confianza": "media",
      "pocos_datos": false,
@@ -13913,48 +14935,48 @@
        1
       ],
       [
-       "tw_2113677085302751697_2",
+       "tw_2114653141325299732_3",
        0
       ],
       [
-       "ig_17970851745219624",
+       "tw_2113677085302751697_2",
        0
       ]
      ],
      "atributos": {
       "estampado": {
-       "n": 74,
+       "n": 84,
        "reparto": {
-        "liso": 54,
+        "liso": 63,
         "otro": 11,
         "texto / logo": 4,
         "rayas": 3,
-        "gráfico / dibujo": 1,
+        "gráfico / dibujo": 2,
         "cuadros": 1
        },
        "confianza": "media"
       },
       "forma": {
-       "n": 74,
+       "n": 84,
        "reparto": {
-        "regular": 34,
-        "ajustada": 31,
-        "oversized / baggy": 8,
+        "regular": 37,
+        "ajustada": 37,
+        "oversized / baggy": 9,
         "corta / cropped": 1
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 74,
+       "n": 84,
        "reparto": {
-        "denim (vaquero)": 23,
-        "algodón": 18,
-        "no se distingue": 8,
+        "denim (vaquero)": 27,
+        "algodón": 21,
+        "no se distingue": 9,
+        "punto": 7,
         "cuero / vinilo": 7,
-        "punto": 6,
         "seda / satén": 5,
+        "técnico / impermeable": 3,
         "tul / encaje": 3,
-        "técnico / impermeable": 2,
         "pana": 1,
         "terciopelo": 1
        },
@@ -13964,15 +14986,19 @@
     },
     {
      "familia": "Abrigo",
-     "fotos": 62,
-     "cuota": 0.419,
+     "fotos": 67,
+     "cuota": 0.427,
      "ic": [
-      0.337,
-      0.505
+      0.348,
+      0.51
      ],
      "confianza": "media",
      "pocos_datos": false,
      "ejemplos": [
+      [
+       "tw_2114653141325299732_2",
+       0
+      ],
       [
        "tw_2111787581423636704_2",
        0
@@ -13980,17 +15006,13 @@
       [
        "ig_18081465038376450",
        0
-      ],
-      [
-       "tw_2113186802924441682_4",
-       3
       ]
      ],
      "atributos": {
       "estampado": {
-       "n": 71,
+       "n": 76,
        "reparto": {
-        "liso": 53,
+        "liso": 58,
         "rayas": 7,
         "texto / logo": 5,
         "otro": 3,
@@ -14000,9 +15022,9 @@
        "confianza": "media"
       },
       "forma": {
-       "n": 71,
+       "n": 76,
        "reparto": {
-        "regular": 37,
+        "regular": 42,
         "oversized / baggy": 21,
         "ajustada": 11,
         "corta / cropped": 2
@@ -14010,12 +15032,12 @@
        "confianza": "media"
       },
       "tejido": {
-       "n": 71,
+       "n": 76,
        "reparto": {
+        "técnico / impermeable": 16,
+        "algodón": 16,
         "no se distingue": 15,
-        "técnico / impermeable": 14,
-        "algodón": 14,
-        "cuero / vinilo": 11,
+        "cuero / vinilo": 12,
         "seda / satén": 5,
         "punto": 4,
         "denim (vaquero)": 3,
@@ -14028,11 +15050,11 @@
     },
     {
      "familia": "Arriba",
-     "fotos": 51,
-     "cuota": 0.314,
+     "fotos": 53,
+     "cuota": 0.303,
      "ic": [
-      0.241,
-      0.399
+      0.232,
+      0.384
      ],
      "confianza": "media",
      "pocos_datos": false,
@@ -14052,9 +15074,9 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 59,
+       "n": 61,
        "reparto": {
-        "liso": 37,
+        "liso": 39,
         "texto / logo": 9,
         "otro": 7,
         "gráfico / dibujo": 3,
@@ -14063,9 +15085,9 @@
        "confianza": "media"
       },
       "forma": {
-       "n": 59,
+       "n": 61,
        "reparto": {
-        "regular": 32,
+        "regular": 34,
         "corta / cropped": 11,
         "ajustada": 10,
         "oversized / baggy": 6
@@ -14073,9 +15095,9 @@
        "confianza": "media"
       },
       "tejido": {
-       "n": 59,
+       "n": 61,
        "reparto": {
-        "algodón": 31,
+        "algodón": 33,
         "punto": 13,
         "seda / satén": 5,
         "tul / encaje": 4,
@@ -14089,11 +15111,11 @@
     },
     {
      "familia": "Calzado",
-     "fotos": 49,
-     "cuota": 0.294,
+     "fotos": 51,
+     "cuota": 0.285,
      "ic": [
-      0.222,
-      0.377
+      0.217,
+      0.366
      ],
      "confianza": "media",
      "pocos_datos": false,
@@ -14113,9 +15135,9 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 58,
+       "n": 60,
        "reparto": {
-        "liso": 41,
+        "liso": 43,
         "texto / logo": 15,
         "rayas": 1,
         "otro": 1
@@ -14123,9 +15145,9 @@
        "confianza": "media"
       },
       "forma": {
-       "n": 58,
+       "n": 60,
        "reparto": {
-        "no aplica": 45,
+        "no aplica": 47,
         "regular": 8,
         "ajustada": 4,
         "oversized / baggy": 1
@@ -14133,13 +15155,13 @@
        "confianza": "media"
       },
       "tejido": {
-       "n": 58,
+       "n": 60,
        "reparto": {
-        "cuero / vinilo": 35,
+        "cuero / vinilo": 36,
         "algodón": 6,
         "terciopelo": 6,
         "técnico / impermeable": 4,
-        "seda / satén": 3,
+        "seda / satén": 4,
         "felpa / polar": 2,
         "no se distingue": 1,
         "denim (vaquero)": 1
@@ -14151,10 +15173,10 @@
     {
      "familia": "Cuerpo entero",
      "fotos": 26,
-     "cuota": 0.157,
+     "cuota": 0.144,
      "ic": [
-      0.104,
-      0.229
+      0.095,
+      0.212
      ],
      "confianza": "media",
      "pocos_datos": false,
@@ -14210,10 +15232,10 @@
     {
      "familia": "Accesorio",
      "fotos": 15,
-     "cuota": 0.053,
+     "cuota": 0.049,
      "ic": [
-      0.026,
-      0.107
+      0.024,
+      0.099
      ],
      "confianza": "media",
      "pocos_datos": false,
@@ -14262,38 +15284,38 @@
    ],
    "atributos": {
     "estampado": {
-     "n": 306,
+     "n": 325,
      "reparto": {
-      "liso": 204,
+      "liso": 222,
       "texto / logo": 41,
       "otro": 31,
+      "gráfico / dibujo": 12,
       "rayas": 12,
-      "gráfico / dibujo": 11,
       "cuadros": 7
      },
      "confianza": "media"
     },
     "forma": {
-     "n": 306,
+     "n": 325,
      "reparto": {
-      "regular": 119,
-      "ajustada": 74,
-      "no aplica": 61,
-      "oversized / baggy": 38,
+      "regular": 129,
+      "ajustada": 80,
+      "no aplica": 63,
+      "oversized / baggy": 39,
       "corta / cropped": 14
      },
      "confianza": "media"
     },
     "tejido": {
-     "n": 306,
+     "n": 325,
      "reparto": {
-      "algodón": 76,
-      "cuero / vinilo": 65,
-      "seda / satén": 35,
-      "denim (vaquero)": 30,
-      "no se distingue": 27,
-      "punto": 24,
-      "técnico / impermeable": 23,
+      "algodón": 83,
+      "cuero / vinilo": 67,
+      "seda / satén": 36,
+      "denim (vaquero)": 34,
+      "no se distingue": 28,
+      "técnico / impermeable": 26,
+      "punto": 25,
       "terciopelo": 12,
       "tul / encaje": 8,
       "felpa / polar": 4,
@@ -14304,19 +15326,19 @@
    },
    "etiquetadas_con_modelo_grande": false,
    "colores": {
-    "negro": 152,
+    "negro": 169,
     "blanco": 33,
-    "azul": 24,
+    "azul": 25,
     "camel": 22,
     "gris": 14,
     "verde": 12,
     "navy": 12,
-    "rojo": 10
+    "rojo": 11
    },
    "confianza_color": "baja",
    "fuentes": {
-    "gucci": 28,
-    "DSQUARED2": 21,
+    "gucci": 35,
+    "DSQUARED2": 24,
     "DolceGabbana": 21,
     "Dior": 21,
     "r/Gucci": 20,
@@ -15930,22 +16952,26 @@
    "estilo": "old_money",
    "mercado": "US",
    "temporada": "OI 2026/27",
-   "fotos": 55,
-   "fotos_con_prenda": 51,
-   "fotos_efectivas": 33.2,
+   "fotos": 60,
+   "fotos_con_prenda": 56,
+   "fotos_efectivas": 38.1,
    "prendas": [
     {
      "tipo": "Chaqueta",
      "familia": "Abrigo",
-     "fotos": 14,
-     "cuota": 0.429,
+     "fotos": 17,
+     "cuota": 0.456,
      "ic": [
-      0.277,
-      0.596
+      0.309,
+      0.611
      ],
-     "confianza": "baja",
+     "confianza": "media",
      "pocos_datos": false,
      "ejemplos": [
+      [
+       "ig_17960343828251458",
+       0
+      ],
       [
        "ig_17991191976116426",
        0
@@ -15953,33 +16979,29 @@
       [
        "ig_18015062819994365",
        0
-      ],
-      [
-       "ig_18108528530245395",
-       1
       ]
      ],
      "atributos": {
       "estampado": {
-       "n": 17,
+       "n": 20,
        "reparto": {
-        "liso": 15,
+        "liso": 18,
         "cuadros": 2
        },
        "confianza": "media"
       },
       "forma": {
-       "n": 17,
+       "n": 20,
        "reparto": {
-        "regular": 14,
+        "regular": 17,
         "oversized / baggy": 3
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 17,
+       "n": 20,
        "reparto": {
-        "algodón": 8,
+        "algodón": 11,
         "técnico / impermeable": 5,
         "cuero / vinilo": 2,
         "seda / satén": 1,
@@ -15992,13 +17014,13 @@
     {
      "tipo": "Pantalón",
      "familia": "Abajo",
-     "fotos": 14,
-     "cuota": 0.316,
+     "fotos": 17,
+     "cuota": 0.35,
      "ic": [
-      0.185,
-      0.486
+      0.219,
+      0.509
      ],
-     "confianza": "baja",
+     "confianza": "media",
      "pocos_datos": false,
      "ejemplos": [
       [
@@ -16016,41 +17038,45 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 14,
+       "n": 17,
        "reparto": {
-        "liso": 14
+        "liso": 17
        },
-       "confianza": "baja"
+       "confianza": "media"
       },
       "forma": {
-       "n": 14,
+       "n": 17,
        "reparto": {
-        "regular": 8,
+        "regular": 11,
         "oversized / baggy": 3,
         "ajustada": 3
        },
-       "confianza": "baja"
+       "confianza": "media"
       },
       "tejido": {
-       "n": 14,
+       "n": 17,
        "reparto": {
-        "algodón": 11,
+        "algodón": 13,
         "denim (vaquero)": 1,
         "seda / satén": 1,
-        "técnico / impermeable": 1
+        "técnico / impermeable": 1,
+        "pana": 1
        },
-       "confianza": "baja"
+       "confianza": "media"
       }
      }
     },
     {
      "tipo": "Botas",
      "familia": "Calzado",
-     "fotos": 4,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
+     "fotos": 8,
+     "cuota": 0.284,
+     "ic": [
+      0.166,
+      0.442
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
      "ejemplos": [
       [
        "ig_18015062819994365",
@@ -16065,16 +17091,43 @@
        1
       ]
      ],
-     "atributos": {}
+     "atributos": {
+      "estampado": {
+       "n": 9,
+       "reparto": {
+        "liso": 7,
+        "texto / logo": 1,
+        "rayas": 1
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 9,
+       "reparto": {
+        "regular": 7,
+        "no aplica": 2
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 9,
+       "reparto": {
+        "cuero / vinilo": 5,
+        "técnico / impermeable": 2,
+        "no se distingue": 2
+       },
+       "confianza": "baja"
+      }
+     }
     },
     {
      "tipo": "Vestido",
      "familia": "Cuerpo entero",
      "fotos": 9,
-     "cuota": 0.153,
+     "cuota": 0.133,
      "ic": [
-      0.068,
-      0.311
+      0.058,
+      0.275
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -16122,13 +17175,65 @@
      }
     },
     {
+     "tipo": "Americana",
+     "familia": "Abrigo",
+     "fotos": 9,
+     "cuota": 0.104,
+     "ic": [
+      0.041,
+      0.24
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
+     "ejemplos": [
+      [
+       "ig_18459956341139940",
+       1
+      ],
+      [
+       "tw_2114080945565519987_2",
+       1
+      ],
+      [
+       "tw_2112058036613517365_1",
+       0
+      ]
+     ],
+     "atributos": {
+      "estampado": {
+       "n": 10,
+       "reparto": {
+        "liso": 10
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 10,
+       "reparto": {
+        "regular": 8,
+        "ajustada": 1,
+        "oversized / baggy": 1
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 10,
+       "reparto": {
+        "algodón": 8,
+        "seda / satén": 2
+       },
+       "confianza": "baja"
+      }
+     }
+    },
+    {
      "tipo": "Camiseta de tirantes",
      "familia": "Arriba",
      "fotos": 5,
-     "cuota": 0.111,
+     "cuota": 0.096,
      "ic": [
-      0.043,
-      0.261
+      0.037,
+      0.23
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -16177,10 +17282,10 @@
      "tipo": "Camisa",
      "familia": "Arriba",
      "fotos": 9,
-     "cuota": 0.102,
+     "cuota": 0.089,
      "ic": [
-      0.038,
-      0.249
+      0.032,
+      0.22
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -16219,58 +17324,6 @@
        "n": 10,
        "reparto": {
         "algodón": 10
-       },
-       "confianza": "baja"
-      }
-     }
-    },
-    {
-     "tipo": "Americana",
-     "familia": "Abrigo",
-     "fotos": 8,
-     "cuota": 0.096,
-     "ic": [
-      0.034,
-      0.241
-     ],
-     "confianza": "baja",
-     "pocos_datos": false,
-     "ejemplos": [
-      [
-       "tw_2114080945565519987_2",
-       1
-      ],
-      [
-       "tw_2112058036613517365_1",
-       0
-      ],
-      [
-       "tw_2111993099669168221_1",
-       0
-      ]
-     ],
-     "atributos": {
-      "estampado": {
-       "n": 9,
-       "reparto": {
-        "liso": 9
-       },
-       "confianza": "baja"
-      },
-      "forma": {
-       "n": 9,
-       "reparto": {
-        "regular": 7,
-        "ajustada": 1,
-        "oversized / baggy": 1
-       },
-       "confianza": "baja"
-      },
-      "tejido": {
-       "n": 9,
-       "reparto": {
-        "algodón": 7,
-        "seda / satén": 2
        },
        "confianza": "baja"
       }
@@ -16321,6 +17374,26 @@
      "atributos": {}
     },
     {
+     "tipo": "Jersey",
+     "familia": "Arriba",
+     "fotos": 2,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_18384140350225779",
+       0
+      ],
+      [
+       "pr_7c74a2487a",
+       0
+      ]
+     ],
+     "atributos": {}
+    },
+    {
      "tipo": "Falda",
      "familia": "Abajo",
      "fotos": 2,
@@ -16336,6 +17409,22 @@
       [
        "tw_2114080945565519987_1",
        0
+      ]
+     ],
+     "atributos": {}
+    },
+    {
+     "tipo": "Legging/Malla",
+     "familia": "Abajo",
+     "fotos": 1,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_18369090232209291",
+       1
       ]
      ],
      "atributos": {}
@@ -16425,22 +17514,6 @@
      "atributos": {}
     },
     {
-     "tipo": "Jersey",
-     "familia": "Arriba",
-     "fotos": 1,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
-     "ejemplos": [
-      [
-       "pr_7c74a2487a",
-       0
-      ]
-     ],
-     "atributos": {}
-    },
-    {
      "tipo": "Zapatos de tacón",
      "familia": "Calzado",
      "fotos": 1,
@@ -16492,15 +17565,19 @@
    "familias": [
     {
      "familia": "Abrigo",
-     "fotos": 23,
-     "cuota": 0.548,
+     "fotos": 27,
+     "cuota": 0.58,
      "ic": [
-      0.383,
-      0.703
+      0.423,
+      0.722
      ],
      "confianza": "media",
      "pocos_datos": false,
      "ejemplos": [
+      [
+       "ig_17960343828251458",
+       0
+      ],
       [
        "ig_17991191976116426",
        0
@@ -16508,34 +17585,30 @@
       [
        "ig_18015062819994365",
        0
-      ],
-      [
-       "ig_18108528530245395",
-       1
       ]
      ],
      "atributos": {
       "estampado": {
-       "n": 29,
+       "n": 33,
        "reparto": {
-        "liso": 27,
+        "liso": 31,
         "cuadros": 2
        },
        "confianza": "media"
       },
       "forma": {
-       "n": 29,
+       "n": 33,
        "reparto": {
-        "regular": 23,
+        "regular": 27,
         "oversized / baggy": 5,
         "ajustada": 1
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 29,
+       "n": 33,
        "reparto": {
-        "algodón": 18,
+        "algodón": 22,
         "técnico / impermeable": 5,
         "seda / satén": 3,
         "cuero / vinilo": 2,
@@ -16547,11 +17620,11 @@
     },
     {
      "familia": "Abajo",
-     "fotos": 17,
-     "cuota": 0.37,
+     "fotos": 21,
+     "cuota": 0.419,
      "ic": [
-      0.227,
-      0.539
+      0.277,
+      0.576
      ],
      "confianza": "media",
      "pocos_datos": false,
@@ -16571,85 +17644,31 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 17,
+       "n": 21,
        "reparto": {
-        "liso": 17
+        "liso": 21
        },
        "confianza": "media"
       },
       "forma": {
-       "n": 17,
+       "n": 21,
        "reparto": {
-        "regular": 10,
+        "regular": 13,
+        "ajustada": 4,
         "oversized / baggy": 3,
-        "ajustada": 3,
         "corta / cropped": 1
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 17,
+       "n": 21,
        "reparto": {
-        "algodón": 12,
+        "algodón": 14,
         "técnico / impermeable": 3,
         "denim (vaquero)": 1,
-        "seda / satén": 1
-       },
-       "confianza": "media"
-      }
-     }
-    },
-    {
-     "familia": "Arriba",
-     "fotos": 21,
-     "cuota": 0.309,
-     "ic": [
-      0.179,
-      0.479
-     ],
-     "confianza": "media",
-     "pocos_datos": false,
-     "ejemplos": [
-      [
-       "tw_2114159457672614209_1",
-       0
-      ],
-      [
-       "pr_c1ac20f0f8",
-       0
-      ],
-      [
-       "pr_fd3ec5f2c4",
-       0
-      ]
-     ],
-     "atributos": {
-      "estampado": {
-       "n": 26,
-       "reparto": {
-        "liso": 24,
-        "texto / logo": 1,
-        "cuadros": 1
-       },
-       "confianza": "media"
-      },
-      "forma": {
-       "n": 26,
-       "reparto": {
-        "regular": 19,
-        "ajustada": 3,
-        "oversized / baggy": 2,
-        "corta / cropped": 2
-       },
-       "confianza": "media"
-      },
-      "tejido": {
-       "n": 26,
-       "reparto": {
-        "algodón": 19,
-        "punto": 4,
-        "seda / satén": 2,
-        "terciopelo": 1
+        "seda / satén": 1,
+        "punto": 1,
+        "pana": 1
        },
        "confianza": "media"
       }
@@ -16657,11 +17676,11 @@
     },
     {
      "familia": "Calzado",
-     "fotos": 6,
-     "cuota": 0.24,
+     "fotos": 10,
+     "cuota": 0.306,
      "ic": [
-      0.127,
-      0.407
+      0.183,
+      0.465
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -16681,40 +17700,96 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 7,
+       "n": 11,
        "reparto": {
-        "liso": 5,
+        "liso": 9,
         "texto / logo": 1,
         "rayas": 1
        },
        "confianza": "baja"
       },
       "forma": {
-       "n": 7,
+       "n": 11,
        "reparto": {
-        "regular": 4,
-        "no aplica": 3
+        "regular": 7,
+        "no aplica": 4
        },
        "confianza": "baja"
       },
       "tejido": {
-       "n": 7,
+       "n": 11,
        "reparto": {
-        "cuero / vinilo": 5,
-        "técnico / impermeable": 1,
-        "no se distingue": 1
+        "cuero / vinilo": 7,
+        "técnico / impermeable": 2,
+        "no se distingue": 2
        },
        "confianza": "baja"
       }
      }
     },
     {
+     "familia": "Arriba",
+     "fotos": 22,
+     "cuota": 0.296,
+     "ic": [
+      0.175,
+      0.454
+     ],
+     "confianza": "media",
+     "pocos_datos": false,
+     "ejemplos": [
+      [
+       "ig_18384140350225779",
+       0
+      ],
+      [
+       "tw_2114159457672614209_1",
+       0
+      ],
+      [
+       "pr_c1ac20f0f8",
+       0
+      ]
+     ],
+     "atributos": {
+      "estampado": {
+       "n": 27,
+       "reparto": {
+        "liso": 25,
+        "texto / logo": 1,
+        "cuadros": 1
+       },
+       "confianza": "media"
+      },
+      "forma": {
+       "n": 27,
+       "reparto": {
+        "regular": 20,
+        "ajustada": 3,
+        "oversized / baggy": 2,
+        "corta / cropped": 2
+       },
+       "confianza": "media"
+      },
+      "tejido": {
+       "n": 27,
+       "reparto": {
+        "algodón": 19,
+        "punto": 5,
+        "seda / satén": 2,
+        "terciopelo": 1
+       },
+       "confianza": "media"
+      }
+     }
+    },
+    {
      "familia": "Cuerpo entero",
      "fotos": 10,
-     "cuota": 0.174,
+     "cuota": 0.151,
      "ic": [
-      0.081,
-      0.334
+      0.07,
+      0.296
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -16764,9 +17839,9 @@
    ],
    "atributos": {
     "estampado": {
-     "n": 91,
+     "n": 104,
      "reparto": {
-      "liso": 81,
+      "liso": 94,
       "otro": 3,
       "cuadros": 3,
       "texto / logo": 2,
@@ -16776,40 +17851,41 @@
      "confianza": "media"
     },
     "forma": {
-     "n": 91,
+     "n": 104,
      "reparto": {
-      "regular": 57,
-      "ajustada": 18,
+      "regular": 68,
+      "ajustada": 19,
       "oversized / baggy": 10,
-      "no aplica": 3,
+      "no aplica": 4,
       "corta / cropped": 3
      },
      "confianza": "media"
     },
     "tejido": {
-     "n": 91,
+     "n": 104,
      "reparto": {
-      "algodón": 51,
+      "algodón": 57,
       "seda / satén": 13,
-      "técnico / impermeable": 9,
-      "punto": 7,
-      "cuero / vinilo": 7,
+      "técnico / impermeable": 10,
+      "punto": 9,
+      "cuero / vinilo": 9,
+      "no se distingue": 2,
       "denim (vaquero)": 1,
       "lino": 1,
       "terciopelo": 1,
-      "no se distingue": 1
+      "pana": 1
      },
      "confianza": "media"
     }
    },
    "etiquetadas_con_modelo_grande": true,
    "colores": {
-    "negro": 43,
+    "negro": 46,
     "blanco": 13,
-    "camel": 10,
-    "gris": 9,
-    "beige": 7,
-    "verde": 4,
+    "gris": 12,
+    "camel": 12,
+    "beige": 8,
+    "verde": 7,
     "azul": 3,
     "amarillo": 2
    },
@@ -16818,7 +17894,7 @@
     "Jacob Elordi": 19,
     "dieworkwear": 16,
     "Gwyneth Paltrow": 15,
-    "britishcountryheritage": 5
+    "britishcountryheritage": 10
    }
   },
   {
@@ -17790,18 +18866,18 @@
    "estilo": "urbano",
    "mercado": "ES",
    "temporada": "OI 2026/27",
-   "fotos": 57,
-   "fotos_con_prenda": 54,
-   "fotos_efectivas": 30.3,
+   "fotos": 73,
+   "fotos_con_prenda": 69,
+   "fotos_efectivas": 37.0,
    "prendas": [
     {
      "tipo": "Pantalón",
      "familia": "Abajo",
-     "fotos": 25,
-     "cuota": 0.469,
+     "fotos": 37,
+     "cuota": 0.486,
      "ic": [
-      0.305,
-      0.64
+      0.334,
+      0.641
      ],
      "confianza": "media",
      "pocos_datos": false,
@@ -17821,30 +18897,31 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 26,
+       "n": 39,
        "reparto": {
-        "liso": 20,
-        "rayas": 4,
+        "liso": 30,
+        "rayas": 5,
+        "texto / logo": 2,
         "camuflaje": 1,
-        "texto / logo": 1
+        "gráfico / dibujo": 1
        },
        "confianza": "media"
       },
       "forma": {
-       "n": 26,
+       "n": 39,
        "reparto": {
-        "oversized / baggy": 14,
-        "regular": 11,
-        "ajustada": 1
+        "regular": 19,
+        "oversized / baggy": 18,
+        "ajustada": 2
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 26,
+       "n": 39,
        "reparto": {
-        "denim (vaquero)": 14,
-        "algodón": 11,
-        "felpa / polar": 1
+        "denim (vaquero)": 21,
+        "algodón": 16,
+        "felpa / polar": 2
        },
        "confianza": "media"
       }
@@ -17853,13 +18930,13 @@
     {
      "tipo": "Chaqueta",
      "familia": "Abrigo",
-     "fotos": 13,
-     "cuota": 0.301,
+     "fotos": 15,
+     "cuota": 0.266,
      "ic": [
-      0.168,
-      0.479
+      0.151,
+      0.426
      ],
-     "confianza": "baja",
+     "confianza": "media",
      "pocos_datos": false,
      "ejemplos": [
       [
@@ -17877,9 +18954,9 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 15,
+       "n": 17,
        "reparto": {
-        "liso": 9,
+        "liso": 11,
         "texto / logo": 2,
         "cuadros": 2,
         "rayas": 1,
@@ -17888,23 +18965,23 @@
        "confianza": "media"
       },
       "forma": {
-       "n": 15,
+       "n": 17,
        "reparto": {
+        "regular": 8,
         "oversized / baggy": 7,
-        "regular": 6,
         "corta / cropped": 2
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 15,
+       "n": 17,
        "reparto": {
+        "algodón": 6,
         "cuero / vinilo": 5,
-        "algodón": 5,
+        "terciopelo": 2,
         "técnico / impermeable": 1,
         "denim (vaquero)": 1,
         "punto": 1,
-        "terciopelo": 1,
         "felpa / polar": 1
        },
        "confianza": "media"
@@ -17914,11 +18991,11 @@
     {
      "tipo": "Zapatos de vestir",
      "familia": "Calzado",
-     "fotos": 9,
-     "cuota": 0.194,
+     "fotos": 11,
+     "cuota": 0.183,
      "ic": [
       0.091,
-      0.365
+      0.335
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -17938,23 +19015,23 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 9,
+       "n": 11,
        "reparto": {
-        "liso": 9
+        "liso": 11
        },
        "confianza": "baja"
       },
       "forma": {
-       "n": 9,
+       "n": 11,
        "reparto": {
-        "no aplica": 9
+        "no aplica": 11
        },
        "confianza": "baja"
       },
       "tejido": {
-       "n": 9,
+       "n": 11,
        "reparto": {
-        "cuero / vinilo": 8,
+        "cuero / vinilo": 10,
         "algodón": 1
        },
        "confianza": "baja"
@@ -17962,13 +19039,37 @@
      }
     },
     {
+     "tipo": "Plumas",
+     "familia": "Abrigo",
+     "fotos": 4,
+     "cuota": null,
+     "ic": null,
+     "confianza": null,
+     "pocos_datos": true,
+     "ejemplos": [
+      [
+       "ig_18113533703464063",
+       0
+      ],
+      [
+       "ig_18394444165164518",
+       0
+      ],
+      [
+       "ig_17909674188591388",
+       0
+      ]
+     ],
+     "atributos": {}
+    },
+    {
      "tipo": "Camiseta manga corta",
      "familia": "Arriba",
-     "fotos": 13,
-     "cuota": 0.112,
+     "fotos": 14,
+     "cuota": 0.099,
      "ic": [
-      0.041,
-      0.27
+      0.038,
+      0.236
      ],
      "confianza": "baja",
      "pocos_datos": false,
@@ -17988,24 +19089,24 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 16,
+       "n": 17,
        "reparto": {
         "liso": 9,
-        "texto / logo": 7
+        "texto / logo": 8
        },
        "confianza": "media"
       },
       "forma": {
-       "n": 16,
+       "n": 17,
        "reparto": {
-        "regular": 16
+        "regular": 17
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 16,
+       "n": 17,
        "reparto": {
-        "algodón": 16
+        "algodón": 17
        },
        "confianza": "media"
       }
@@ -18036,20 +19137,109 @@
      "atributos": {}
     },
     {
-     "tipo": "Plumas",
-     "familia": "Abrigo",
-     "fotos": 1,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
+     "tipo": "Hoodie",
+     "familia": "Arriba",
+     "fotos": 6,
+     "cuota": 0.07,
+     "ic": [
+      0.023,
+      0.199
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
      "ejemplos": [
       [
-       "ig_18113533703464063",
+       "ig_17997567293830165",
+       1
+      ],
+      [
+       "pr_99c22fbbeb",
+       1
+      ],
+      [
+       "ig_17877070488563398",
        0
       ]
      ],
-     "atributos": {}
+     "atributos": {
+      "estampado": {
+       "n": 6,
+       "reparto": {
+        "liso": 5,
+        "texto / logo": 1
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 6,
+       "reparto": {
+        "oversized / baggy": 4,
+        "regular": 2
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 6,
+       "reparto": {
+        "algodón": 4,
+        "felpa / polar": 1,
+        "punto": 1
+       },
+       "confianza": "baja"
+      }
+     }
+    },
+    {
+     "tipo": "Zapatillas deportivas",
+     "familia": "Calzado",
+     "fotos": 6,
+     "cuota": 0.058,
+     "ic": [
+      0.017,
+      0.182
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
+     "ejemplos": [
+      [
+       "ig_17959241217246899",
+       2
+      ],
+      [
+       "pr_4f7046889c",
+       2
+      ],
+      [
+       "ig_18115552315811516",
+       1
+      ]
+     ],
+     "atributos": {
+      "estampado": {
+       "n": 6,
+       "reparto": {
+        "liso": 3,
+        "texto / logo": 3
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 6,
+       "reparto": {
+        "no aplica": 5,
+        "regular": 1
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 6,
+       "reparto": {
+        "algodón": 5,
+        "técnico / impermeable": 1
+       },
+       "confianza": "baja"
+      }
+     }
     },
     {
      "tipo": "Sudadera",
@@ -18076,33 +19266,9 @@
      "atributos": {}
     },
     {
-     "tipo": "Hoodie",
-     "familia": "Arriba",
-     "fotos": 4,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
-     "ejemplos": [
-      [
-       "ig_17997567293830165",
-       1
-      ],
-      [
-       "pr_99c22fbbeb",
-       1
-      ],
-      [
-       "ig_17877070488563398",
-       0
-      ]
-     ],
-     "atributos": {}
-    },
-    {
      "tipo": "Camiseta de tirantes",
      "familia": "Arriba",
-     "fotos": 2,
+     "fotos": 3,
      "cuota": null,
      "ic": null,
      "confianza": null,
@@ -18115,6 +19281,10 @@
       [
        "pr_7bb95e5024",
        1
+      ],
+      [
+       "ig_18120397832058700",
+       0
       ]
      ],
      "atributos": {}
@@ -18122,11 +19292,14 @@
     {
      "tipo": "Top",
      "familia": "Arriba",
-     "fotos": 4,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
+     "fotos": 5,
+     "cuota": 0.052,
+     "ic": [
+      0.014,
+      0.174
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
      "ejemplos": [
       [
        "pr_c61cbd573b",
@@ -18141,7 +19314,86 @@
        0
       ]
      ],
-     "atributos": {}
+     "atributos": {
+      "estampado": {
+       "n": 5,
+       "reparto": {
+        "gráfico / dibujo": 2,
+        "otro": 1,
+        "liso": 1,
+        "texto / logo": 1
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 5,
+       "reparto": {
+        "corta / cropped": 5
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 5,
+       "reparto": {
+        "algodón": 4,
+        "punto": 1
+       },
+       "confianza": "baja"
+      }
+     }
+    },
+    {
+     "tipo": "Camisa",
+     "familia": "Arriba",
+     "fotos": 5,
+     "cuota": 0.046,
+     "ic": [
+      0.011,
+      0.165
+     ],
+     "confianza": "baja",
+     "pocos_datos": false,
+     "ejemplos": [
+      [
+       "pr_af5ce52efb",
+       1
+      ],
+      [
+       "ig_18428415055149586",
+       0
+      ],
+      [
+       "ig_18428415055149586",
+       1
+      ]
+     ],
+     "atributos": {
+      "estampado": {
+       "n": 8,
+       "reparto": {
+        "liso": 5,
+        "cuadros": 1,
+        "gráfico / dibujo": 1,
+        "texto / logo": 1
+       },
+       "confianza": "baja"
+      },
+      "forma": {
+       "n": 8,
+       "reparto": {
+        "regular": 6,
+        "oversized / baggy": 2
+       },
+       "confianza": "baja"
+      },
+      "tejido": {
+       "n": 8,
+       "reparto": {
+        "algodón": 8
+       },
+       "confianza": "baja"
+      }
+     }
     },
     {
      "tipo": "Short",
@@ -18168,21 +19420,25 @@
      "atributos": {}
     },
     {
-     "tipo": "Zapatillas deportivas",
-     "familia": "Calzado",
-     "fotos": 2,
+     "tipo": "Camiseta manga larga",
+     "familia": "Arriba",
+     "fotos": 3,
      "cuota": null,
      "ic": null,
      "confianza": null,
      "pocos_datos": true,
      "ejemplos": [
       [
-       "ig_17959241217246899",
-       2
+       "pr_ecbab69c71",
+       0
       ],
       [
-       "pr_4f7046889c",
-       2
+       "ig_18095478608203209",
+       1
+      ],
+      [
+       "pr_d22327bc5d",
+       0
       ]
      ],
      "atributos": {}
@@ -18239,50 +19495,6 @@
       [
        "ig_18109520813214058",
        2
-      ]
-     ],
-     "atributos": {}
-    },
-    {
-     "tipo": "Camiseta manga larga",
-     "familia": "Arriba",
-     "fotos": 2,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
-     "ejemplos": [
-      [
-       "pr_ecbab69c71",
-       0
-      ],
-      [
-       "pr_d22327bc5d",
-       0
-      ]
-     ],
-     "atributos": {}
-    },
-    {
-     "tipo": "Camisa",
-     "familia": "Arriba",
-     "fotos": 3,
-     "cuota": null,
-     "ic": null,
-     "confianza": null,
-     "pocos_datos": true,
-     "ejemplos": [
-      [
-       "pr_af5ce52efb",
-       1
-      ],
-      [
-       "pr_f79a94f9ca",
-       1
-      ],
-      [
-       "tw_2094850483919765639_1",
-       1
       ]
      ],
      "atributos": {}
@@ -18367,13 +19579,13 @@
    "familias": [
     {
      "familia": "Abajo",
-     "fotos": 29,
-     "cuota": 0.553,
+     "fotos": 41,
+     "cuota": 0.555,
      "ic": [
-      0.38,
-      0.714
+      0.397,
+      0.702
      ],
-     "confianza": "media",
+     "confianza": "alta",
      "pocos_datos": false,
      "ejemplos": [
       [
@@ -18391,31 +19603,32 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 30,
+       "n": 43,
        "reparto": {
-        "liso": 23,
-        "rayas": 4,
-        "texto / logo": 2,
-        "camuflaje": 1
+        "liso": 33,
+        "rayas": 5,
+        "texto / logo": 3,
+        "camuflaje": 1,
+        "gráfico / dibujo": 1
        },
        "confianza": "media"
       },
       "forma": {
-       "n": 30,
+       "n": 43,
        "reparto": {
-        "regular": 14,
-        "oversized / baggy": 14,
-        "ajustada": 2
+        "regular": 22,
+        "oversized / baggy": 18,
+        "ajustada": 3
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 30,
+       "n": 43,
        "reparto": {
-        "denim (vaquero)": 14,
-        "algodón": 14,
-        "punto": 1,
-        "felpa / polar": 1
+        "denim (vaquero)": 21,
+        "algodón": 19,
+        "felpa / polar": 2,
+        "punto": 1
        },
        "confianza": "media"
       }
@@ -18423,11 +19636,11 @@
     },
     {
      "familia": "Arriba",
-     "fotos": 33,
-     "cuota": 0.498,
+     "fotos": 41,
+     "cuota": 0.471,
      "ic": [
-      0.331,
-      0.666
+      0.321,
+      0.627
      ],
      "confianza": "alta",
      "pocos_datos": false,
@@ -18447,10 +19660,10 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 41,
+       "n": 52,
        "reparto": {
-        "liso": 27,
-        "texto / logo": 8,
+        "liso": 34,
+        "texto / logo": 12,
         "gráfico / dibujo": 4,
         "cuadros": 1,
         "otro": 1
@@ -18458,19 +19671,20 @@
        "confianza": "media"
       },
       "forma": {
-       "n": 41,
+       "n": 52,
        "reparto": {
-        "regular": 29,
-        "oversized / baggy": 7,
-        "corta / cropped": 4,
-        "ajustada": 1
+        "regular": 35,
+        "oversized / baggy": 10,
+        "corta / cropped": 5,
+        "ajustada": 1,
+        "no aplica": 1
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 41,
+       "n": 52,
        "reparto": {
-        "algodón": 32,
+        "algodón": 43,
         "punto": 8,
         "felpa / polar": 1
        },
@@ -18480,11 +19694,11 @@
     },
     {
      "familia": "Abrigo",
-     "fotos": 16,
-     "cuota": 0.431,
+     "fotos": 21,
+     "cuota": 0.452,
      "ic": [
-      0.272,
-      0.605
+      0.304,
+      0.609
      ],
      "confianza": "media",
      "pocos_datos": false,
@@ -18498,15 +19712,15 @@
        0
       ],
       [
-       "pr_4f7046889c",
-       1
+       "ig_18394444165164518",
+       0
       ]
      ],
      "atributos": {
       "estampado": {
-       "n": 19,
+       "n": 24,
        "reparto": {
-        "liso": 13,
+        "liso": 18,
         "texto / logo": 2,
         "cuadros": 2,
         "rayas": 1,
@@ -18515,25 +19729,25 @@
        "confianza": "media"
       },
       "forma": {
-       "n": 19,
+       "n": 24,
        "reparto": {
-        "regular": 9,
-        "oversized / baggy": 7,
+        "regular": 12,
+        "oversized / baggy": 9,
         "corta / cropped": 2,
         "ajustada": 1
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 19,
+       "n": 24,
        "reparto": {
-        "algodón": 7,
+        "algodón": 8,
         "cuero / vinilo": 5,
-        "técnico / impermeable": 2,
+        "técnico / impermeable": 5,
+        "terciopelo": 2,
         "seda / satén": 1,
         "denim (vaquero)": 1,
         "punto": 1,
-        "terciopelo": 1,
         "felpa / polar": 1
        },
        "confianza": "media"
@@ -18542,13 +19756,13 @@
     },
     {
      "familia": "Calzado",
-     "fotos": 14,
-     "cuota": 0.291,
+     "fotos": 20,
+     "cuota": 0.286,
      "ic": [
-      0.16,
-      0.469
+      0.166,
+      0.446
      ],
-     "confianza": "baja",
+     "confianza": "media",
      "pocos_datos": false,
      "ejemplos": [
       [
@@ -18566,26 +19780,27 @@
      ],
      "atributos": {
       "estampado": {
-       "n": 16,
+       "n": 22,
        "reparto": {
-        "liso": 14,
-        "cuadros": 1,
-        "texto / logo": 1
+        "liso": 18,
+        "texto / logo": 3,
+        "cuadros": 1
        },
        "confianza": "media"
       },
       "forma": {
-       "n": 16,
+       "n": 22,
        "reparto": {
-        "no aplica": 16
+        "no aplica": 21,
+        "regular": 1
        },
        "confianza": "media"
       },
       "tejido": {
-       "n": 16,
+       "n": 22,
        "reparto": {
-        "cuero / vinilo": 11,
-        "algodón": 2,
+        "cuero / vinilo": 13,
+        "algodón": 6,
         "punto": 2,
         "técnico / impermeable": 1
        },
@@ -18596,63 +19811,63 @@
    ],
    "atributos": {
     "estampado": {
-     "n": 106,
+     "n": 141,
      "reparto": {
-      "liso": 77,
-      "texto / logo": 13,
-      "rayas": 5,
+      "liso": 103,
+      "texto / logo": 20,
+      "rayas": 6,
+      "gráfico / dibujo": 5,
       "cuadros": 4,
-      "gráfico / dibujo": 4,
       "camuflaje": 2,
       "otro": 1
      },
      "confianza": "media"
     },
     "forma": {
-     "n": 106,
+     "n": 141,
      "reparto": {
-      "regular": 52,
-      "oversized / baggy": 28,
-      "no aplica": 16,
-      "corta / cropped": 6,
-      "ajustada": 4
+      "regular": 70,
+      "oversized / baggy": 37,
+      "no aplica": 22,
+      "corta / cropped": 7,
+      "ajustada": 5
      },
      "confianza": "media"
     },
     "tejido": {
-     "n": 106,
+     "n": 141,
      "reparto": {
-      "algodón": 55,
-      "cuero / vinilo": 16,
-      "denim (vaquero)": 15,
+      "algodón": 76,
+      "denim (vaquero)": 22,
+      "cuero / vinilo": 18,
       "punto": 12,
-      "técnico / impermeable": 3,
-      "felpa / polar": 3,
-      "seda / satén": 1,
-      "terciopelo": 1
+      "técnico / impermeable": 6,
+      "felpa / polar": 4,
+      "terciopelo": 2,
+      "seda / satén": 1
      },
      "confianza": "media"
     }
    },
    "etiquetadas_con_modelo_grande": true,
    "colores": {
-    "negro": 50,
-    "gris": 18,
-    "blanco": 10,
-    "azul": 9,
-    "camel": 8,
+    "negro": 61,
+    "gris": 22,
+    "blanco": 14,
+    "azul": 13,
+    "camel": 11,
+    "rojo": 9,
     "verde": 4,
-    "amarillo": 3,
-    "beige": 2
+    "amarillo": 3
    },
    "confianza_color": "baja",
    "fuentes": {
+    "coldculture": 13,
     "Morad": 12,
     "Quevedo": 11,
     "prensa: streetwear España tendencia": 11,
-    "scuffers.co": 7,
-    "nudeproject": 6,
-    "coldculture": 6,
+    "nudeproject": 11,
+    "scuffers.co": 11,
     "bycalitos": 3,
     "Beny Jr": 1
    }
@@ -19393,7 +20608,7 @@
      "tipo": "Zapatillas deportivas",
      "familia": "Calzado",
      "fotos": 8,
-     "cuota": 0.097,
+     "cuota": 0.096,
      "ic": [
       0.034,
       0.242
@@ -19642,7 +20857,7 @@
     {
      "familia": "Arriba",
      "fotos": 25,
-     "cuota": 0.579,
+     "cuota": 0.578,
      "ic": [
       0.411,
       0.73
@@ -19701,7 +20916,7 @@
      "fotos": 31,
      "cuota": 0.574,
      "ic": [
-      0.406,
+      0.407,
       0.725
      ],
      "confianza": "alta",
