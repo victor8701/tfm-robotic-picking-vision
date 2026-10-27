@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       todas:
-        description: 'Probar con Meta todas las cuentas de las fuentes hasta que Meta corte (la app solo aguanta unas 15-20 cuentas por hora: gasta la cuota de esa hora); si no, solo unas de muestra'
+        description: 'Ensayo de la lectura semanal: lee con Meta las cuentas de las fuentes como lo hará la tarea del lunes, con esperas si Meta limita la app (gasta ~80 % de la cuota de esa hora: sin otras pruebas en la última hora); si no, solo unas de muestra'
         type: boolean
         default: false
       coste:
@@ -22,7 +22,7 @@ permissions:
 jobs:
   prueba:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     env:
       META_IG_TOKEN: ${{ secrets.META_IG_TOKEN }}
       META_IG_USER_ID: ${{ secrets.META_IG_USER_ID }}
