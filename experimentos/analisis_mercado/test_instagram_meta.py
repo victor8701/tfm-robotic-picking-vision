@@ -109,7 +109,11 @@ class GrafoConCuota(Grafo):
         if campos == "id":
             self.n_sondeos += 1
             tiempo = self.sondeos.pop(0) if len(self.sondeos) > 1 else self.sondeos[0]
-            return self._con_uso(Resp(b'{"id": "17841400000"}'), tiempo)
+            resp = Resp(b'{"id": "17841400000"}')
+            if tiempo is None:   # con la ventana vacía Meta no manda la cabecera
+                resp.headers = {}
+                return resp
+            return self._con_uso(resp, tiempo)
         m = re.search(r"business_discovery\.username\(([^)]+)\)", campos)
         if m and self.cortes.get(m.group(1), 0) > 0:
             self.cortes[m.group(1)] -= 1
@@ -162,6 +166,15 @@ class PruebasMeta(unittest.TestCase):
         lineas = [x for x in pi.LINEAS if x.startswith("   · ")]
         self.assertEqual(len(lineas), len(pi.FORMAS_COSTE))
         self.assertIn("cuentas por hora", lineas[0])
+
+    def test_la_prueba_de_coste_parte_de_cero_si_meta_no_manda_la_cabecera_con_la_ventana_vacia(self):
+        g = GrafoConCuota(accounts=PAGINA, cuentas={c: [[media(1)]] for c in pi.CUENTAS_COSTE}, usos=[4, 8, 12, 14, 16, 18, 19, 20, 21, 22, 23, 24], sondeos=[None, 12, 18, 21])
+        pi.LINEAS.clear()
+        pi.prueba_coste("17841400000", TOKEN, AHORA - timedelta(days=35), abrir=g)
+        self.assertTrue(any("se parte de cero" in x for x in pi.LINEAS))
+        lineas = [x for x in pi.LINEAS if x.startswith("   · ")]
+        self.assertEqual(len(lineas), len(pi.FORMAS_COSTE), "mide las cuatro formas aunque la primera consulta no traiga cabecera")
+        self.assertIn("+4.0 de tiempo", lineas[0], "12 puntos de tiempo repartidos entre 3 cuentas")
 
     def test_la_prueba_de_coste_dice_que_es_de_cuota_si_meta_corta(self):
         g = GrafoConCuota(accounts=PAGINA, cuentas={c: [[media(1)]] for c in pi.CUENTAS_COSTE}, cortes={"stussy": 3})

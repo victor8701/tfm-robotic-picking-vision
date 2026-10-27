@@ -69,7 +69,7 @@ def fallo_meta(e: Exception) -> None:
         dice(f"✘ {e}")
 
 
-def prueba_coste(ig_id: str, token: str, corte: datetime, abrir=urllib.request.urlopen) -> None:
+def prueba_coste(ig_id: str, token: str, corte: datetime, abrir=urllib.request.urlopen, uso_previo: dict | None = None) -> None:
     """Mide cuánta cuota de la app gasta cada forma de pedir las publicaciones. La cabecera de Meta acumula (ventana de 1 h) y solo da enteros: se resta lo anterior y se promedian 3 cuentas."""
     dice("Coste de cada forma de pedir las publicaciones (puntos de cuota de la app por cuenta; Meta corta al llegar a 100 dentro de una hora):")
 
@@ -79,11 +79,12 @@ def prueba_coste(ig_id: str, token: str, corte: datetime, abrir=urllib.request.u
         except im.MetaError:
             return None
 
+    ultimo = uso_previo   # lo último que dijo Meta (None mientras no haya mandado ninguna cabecera: con la ventana de 1 h vacía no la manda)
     for nombre, n, hijos in FORMAS_COSTE:
-        antes = uso_ahora()
+        antes = uso_ahora() or ultimo
         if antes is None:
-            dice("   (Meta no dice cuánta cuota queda: no se puede medir.)")
-            return
+            antes = {"call_count": 0.0, "total_cputime": 0.0, "total_time": 0.0}
+            dice("   (Meta aún no manda la cabecera de cuota: se parte de cero, como con la ventana vacía.)")
         t0, filas_n, ultimo = time.time(), 0, antes
         for c in CUENTAS_COSTE:
             try:
@@ -163,10 +164,12 @@ def prueba_meta() -> bool | None:
     corte = datetime.now(timezone.utc) - timedelta(days=35)
     cuentas = cuentas_de_instagram()
     tok = None
+    uso_sondas = None
     for k, cand in enumerate(candidatos):
         nombre = "el token tal cual" if k == 0 else "el token de la página que cuelga de él"
         try:
-            filas, _ = im.leer_cuenta(ig_id, "zara", cand, corte, limite=3, paginas=1, con_hijos=False)   # sonda barata: la cuota es de tiempo de proceso
+            filas, inf_sonda = im.leer_cuenta(ig_id, "zara", cand, corte, limite=3, paginas=1, con_hijos=False)   # sonda barata: la cuota es de tiempo de proceso
+            uso_sondas = im.uso_detalle(inf_sonda.get("cabeceras")) or uso_sondas
             dice(f"✔ Business Discovery funciona con {nombre} (prueba con @zara: {len(filas)} publicaciones).")
             tok = tok or cand
         except im.MetaError as e:
@@ -176,7 +179,7 @@ def prueba_meta() -> bool | None:
         dice("✘ Ningún token vale para Business Discovery. Si el mensaje habla de permisos, repite la parte 3 marcando todos; si habla de «app review» o similar, dímelo.")
         return False
     if os.environ.get("PRUEBA_COSTE") == "1":
-        prueba_coste(ig_id, tok, corte)
+        prueba_coste(ig_id, tok, corte, uso_previo=uso_sondas)
         dice("Campos que acepta Business Discovery: " + ", ".join(im._CAMPOS_VIVOS))   # los que Meta no rechazó
         return not CORTE_POR_CUOTA
     # 3) Business Discovery con cuentas de muestra
