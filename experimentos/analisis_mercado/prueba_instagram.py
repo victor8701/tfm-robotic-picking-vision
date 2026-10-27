@@ -52,6 +52,12 @@ def texto_caducidad(expira: int | None, dias: int | None, ahora: float | None = 
     return f"caduca el {fecha:%d-%m-%Y} (dentro de {dias} días)", False
 
 
+def anotacion_resumen(lineas: list[str]) -> str:
+    """El resumen entero como anotación de GitHub (`::notice`): la API pública la deja leer sin iniciar sesión. Nunca lleva claves: ninguna línea las imprime."""
+    texto = "\n".join(lineas).replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+    return f"::notice title=Resumen de la prueba de Instagram::{texto}"
+
+
 def fallo_meta(e: Exception) -> None:
     """Cuenta un error de Meta; si es de cuota lo dice claro, porque no es culpa del token."""
     global CORTE_POR_CUOTA
@@ -280,6 +286,7 @@ def main() -> int:
         dice("RESULTADO: todo bien con Windsor (la app de Meta aún no está montada).")
     else:
         dice("RESULTADO: hay algo que arreglar con Windsor (mira el ✘ de arriba).")
+    print(anotacion_resumen(LINEAS), flush=True)
     resumen = os.environ.get("GITHUB_STEP_SUMMARY")
     if resumen:
         with open(resumen, "a", encoding="utf-8") as f:

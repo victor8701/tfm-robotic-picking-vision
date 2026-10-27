@@ -172,6 +172,13 @@ class PruebasMeta(unittest.TestCase):
         self.assertTrue(any("no es un fallo del token" in x for x in pi.LINEAS))
         pi.CORTE_POR_CUOTA = False
 
+    def test_el_resumen_tambien_sale_como_anotacion_legible_sin_iniciar_sesion(self):
+        cmd = pi.anotacion_resumen(["línea 1", "100 % seguro", "línea 3"])
+        self.assertTrue(cmd.startswith("::notice title="))
+        self.assertNotIn("\n", cmd)
+        self.assertIn("100 %25 seguro", cmd)
+        self.assertIn("%0A", cmd)
+
     def test_la_prueba_distingue_el_token_corto_del_largo(self):
         ahora = 1_800_000_000
         frase, corto = pi.texto_caducidad(ahora + 5400, 0, ahora)
