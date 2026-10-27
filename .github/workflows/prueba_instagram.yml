@@ -5,6 +5,10 @@ name: Prueba de Instagram
 # Este fichero tiene que estar en la rama principal (main); el código de la prueba se toma de la rama analisis-mercado.
 
 on:
+  schedule:
+    # Medición única del 27-oct-2026 (con Chrome desconectado, sin nadie que pulse el botón): mide cuánta cuota de Meta gasta cada forma de pedir las publicaciones.
+    # Es un cron anual (día 27 del mes 10), por eso el primer paso solo deja pasar el 2026-10-27; se puede borrar este bloque cuando haya corrido.
+    - cron: '31 16 27 10 *'
   workflow_dispatch:
     inputs:
       todas:
@@ -28,14 +32,25 @@ jobs:
       META_IG_USER_ID: ${{ secrets.META_IG_USER_ID }}
       WINDSOR_API_KEY: ${{ secrets.WINDSOR_API_KEY }}
       PRUEBA_TODAS: ${{ inputs.todas && '1' || '0' }}
-      PRUEBA_COSTE: ${{ inputs.coste && '1' || '0' }}
+      PRUEBA_COSTE: ${{ (github.event_name == 'schedule' || inputs.coste) && '1' || '0' }}
     steps:
+      - name: Solo el día programado
+        id: fecha
+        if: github.event_name == 'schedule'
+        shell: bash
+        run: |
+          if [ "$(date -u +%Y-%m-%d)" != "2026-10-27" ]; then
+            echo "salta=1" >> "$GITHUB_OUTPUT"
+            echo "Esta prueba programada solo vale el 27-oct-2026: no se hace nada."
+          fi
       - name: Código (rama analisis-mercado)
+        if: steps.fecha.outputs.salta != '1'
         uses: actions/checkout@v4
         with:
           ref: analisis-mercado
           path: codigo
       - name: Probar las claves
+        if: steps.fecha.outputs.salta != '1'
         shell: bash
         working-directory: codigo/experimentos/analisis_mercado
         run: python3 prueba_instagram.py
