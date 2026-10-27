@@ -62,13 +62,14 @@ def foto_bajable(url: str) -> str:
 
 def prueba_meta() -> bool | None:
     dice("## Meta (app propia: Business Discovery)")
-    token = os.environ.get("META_IG_TOKEN", "").strip()
+    token = im.limpiar_token(os.environ.get("META_IG_TOKEN", ""))
     if not token:
         dice("— Todavía no hay secreto META_IG_TOKEN (es normal si aún no has hecho la guía de la app de Meta). No se prueba.")
         return None
     if len(token) < 40 or " " in token or token.startswith(("'", '"')):
         dice(f"✘ El token guardado tiene un aspecto raro (longitud {len(token)}, con espacios o comillas). Un token de Meta mide ~200 caracteres y empieza por «EAA»: vuelve a copiarlo entero, sin comillas ni espacios.")
         return False
+    dice(f"Token guardado: {len(token)} caracteres; empieza por «EAA»: {'sí' if token.startswith('EAA') else 'no'}.")   # sin enseñar el token: solo su forma
     # 1) qué token es (Meta deja mirar un token con él mismo)
     ficha = im.ficha_token(token)
     if ficha:

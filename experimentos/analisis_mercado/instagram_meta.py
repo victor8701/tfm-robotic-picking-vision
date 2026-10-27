@@ -49,6 +49,11 @@ def _limpiar(txt: str, token: str) -> str:
     return (txt or "").replace(token, "***") if token else (txt or "")
 
 
+def limpiar_token(t: str) -> str:
+    """El token tal como llega del secreto: sin espacios, saltos de línea, comillas ni coma final (se copia a veces de la respuesta JSON del Explorador)."""
+    return (t or "").strip().strip("\"'“”‘’,;").strip()
+
+
 def llamar(ruta: str, params: dict, token: str, abrir=urllib.request.urlopen) -> tuple[int, dict, dict]:
     """GET a la API Graph. Devuelve (HTTP, cuerpo JSON, cabeceras). Si no hay respuesta, MetaError sin la dirección (lleva el token)."""
     q = dict(params)
@@ -92,7 +97,7 @@ def clasificar(cuerpo: dict, token: str = "") -> tuple[str, int | None, str]:
 def explicar(tipo: str, cod, msg: str) -> str:
     """Frase en español para el registro y la prueba."""
     if tipo == "token":
-        return f"El token de Meta no vale: ha caducado, se cambió la contraseña de Facebook o está mal copiado (código {cod}). Hay que generar otro (guía, parte 4) y guardarlo de nuevo como META_IG_TOKEN."
+        return f"El token de Meta no vale: ha caducado, se cambió la contraseña de Facebook o está mal copiado (código {cod}). Hay que generar otro (guía, parte 4) y guardarlo de nuevo como META_IG_TOKEN." + (f" Meta dice: «{msg}»" if msg else "")
     if tipo == "permisos":
         return f"Al token le falta algún permiso o la app no tiene acceso a la cuenta (código {cod}: {msg}). Revisa que al generarlo marcaste todos los permisos de la guía y que elegiste la página y la cuenta de Instagram."
     if tipo == "cupo":
@@ -220,7 +225,7 @@ def meta_filas(handles: list[str], token: str, ig_id_env: str = "", dias: int = 
     """Todas las cuentas por Business Discovery. Devuelve ({usuario en minúsculas: [filas]}, resumen) con resumen =
     {'tipo_token', 'detalle', 'leidas', 'sin_lectura': {usuario: motivo}, 'avisos': [..], 'ig_id', 'dias_restantes'}. Un fallo de token/permisos al principio lanza MetaError;
     si el cupo se agota a mitad, se devuelve lo leído y se avisa. Si el token de persona no vale para Business Discovery pero el de su página sí, se cambia solo."""
-    token = (token or "").strip()
+    token = limpiar_token(token)
     if not token:
         raise MetaError("falta el secreto META_IG_TOKEN", "token")
     ahora = ahora or datetime.now(timezone.utc)

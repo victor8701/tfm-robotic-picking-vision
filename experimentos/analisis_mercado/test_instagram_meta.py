@@ -114,6 +114,21 @@ class PruebasMeta(unittest.TestCase):
         self.assertIn("generar otro", str(cm.exception))
         self.assertNotIn(TOKEN, str(cm.exception))
 
+    def test_el_error_de_token_cuenta_lo_que_dijo_meta_para_distinguir_caducado_de_mal_copiado(self):
+        def abrir(req, timeout=0):
+            raise error_http(req.full_url, 400, 190, f"Invalid OAuth access token - Cannot parse access token ({TOKEN})")
+
+        with self.assertRaises(im.MetaError) as cm:
+            im.preparar(TOKEN, abrir=abrir)
+        self.assertIn("Cannot parse access token", str(cm.exception))
+        self.assertNotIn(TOKEN, str(cm.exception))
+
+    def test_limpiar_token_quita_espacios_comillas_y_coma_del_json(self):
+        self.assertEqual(im.limpiar_token(f'  "{TOKEN}",\n'), TOKEN)
+        self.assertEqual(im.limpiar_token(f"'{TOKEN}'"), TOKEN)
+        self.assertEqual(im.limpiar_token(TOKEN), TOKEN)
+        self.assertEqual(im.limpiar_token(None), "")
+
     def test_filas_con_los_campos_de_windsor_ventana_y_carruseles(self):
         carrusel = media(2, "CAROUSEL_ALBUM", children={"data": [{"id": "h1", "media_type": "IMAGE", "media_url": "https://cdn.example/m2.jpg"}, {"id": "h2", "media_type": "IMAGE", "media_url": "https://cdn.example/h2.jpg"},
                                                                    {"id": "h3", "media_type": "VIDEO", "media_url": "https://cdn.example/h3.mp4"}]})

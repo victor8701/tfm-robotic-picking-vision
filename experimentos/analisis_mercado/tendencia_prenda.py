@@ -59,6 +59,14 @@ VLMP = DET / "vlm_profesor"
 LADO_VLM = 1024           # las fotos se reducen a este lado largo antes de subirlas a Kaggle
 CONFIG_VLM = "semanal_pista"  # configuración del modelo grande que usa la tarea semanal (kernel_profesor.py). «semanal» era la anterior: nombraba la prenda de arriba en los recortes de pantalón (ver evaluar_zona.py)
 MAX_POR_KERNEL = 700      # prendas por kernel (~2,5 s cada una): con más se reparten en varios kernels en paralelo
+INICIO = time.time()      # arranque de esta ejecución
+PRESUPUESTO_S = 300 * 60  # la tarea semanal se corta a los 330 min SIN guardar nada: el modelo grande tiene que terminar, o rendirse, antes de ~300 min desde el arranque
+
+
+def espera_vlm_s(transcurrido_s: float) -> float:
+    """Lo máximo que se espera a un kernel de Kaggle: lo que queda del presupuesto de la tarea, entre 15 min y 4 h. El 19-oct un kernel se quedó 3 h en cola (QUEUED) y el límite de
+    330 min cortó la tarea entera sin guardar nada; así, un atasco de Kaggle acaba en «el modelo grande falló, sigo sin él» y la revista sale igual."""
+    return max(15 * 60.0, min(4 * 3600.0, PRESUPUESTO_S - transcurrido_s))
 MIN_FOTOS = 5            # decisión de Víctor: por debajo de 5 fotos no se enseña una cifra
 VIDA_MEDIA = 10.0        # días, como el informe de estilos
 VENTANA_DIAS = 180       # temporada
@@ -799,7 +807,7 @@ def cmd_vlm(args):
             slugs = [ko.kernel_push(texto_kernel((j, n_partes) if n_partes > 1 else None), f"TFM semanal VLM prendas {j + 1}", [slug]) for j in range(n_partes)]
             print(f"Lanzado en Kaggle: {', '.join(slugs)} (unos {math.ceil(len(pend) / n_partes * 2.5 / 60) + 4} minutos)", flush=True)
             for sl in slugs:
-                est = ko.esperar_kernel(sl, avisar=lambda t: print("  " + t, flush=True))
+                est = ko.esperar_kernel(sl, maximo_s=espera_vlm_s(time.time() - INICIO), avisar=lambda t: print("  " + t, flush=True))
                 if est != "COMPLETE":
                     raise RuntimeError(f"el kernel {sl} terminó en {est}: {ko.kernel_log(sl)[-400:]}")
                 salida = Path(tmp) / f"salida_{sl}"

@@ -35,6 +35,14 @@ class Pruebas(unittest.TestCase):
         fotos = {"s1": foto("biblioteca", None, 0), "s2": foto("biblioteca", None, 0), "f": foto("biblioteca", None, 4)}
         self.assertEqual(tp.ordenar_pendientes(fotos, list(fotos))[0], "f")
 
+    def test_espera_del_modelo_grande_cabe_en_el_limite_de_la_tarea(self):
+        self.assertEqual(tp.espera_vlm_s(0), 4 * 3600, "al empezar, como mucho 4 h")
+        self.assertEqual(tp.espera_vlm_s(154 * 60), 146 * 60, "el 19-oct Kaggle se lanzó a los 154 min: quedaban 146 min de presupuesto, no 4 h")
+        self.assertEqual(tp.espera_vlm_s(299 * 60), 15 * 60, "si ya casi no queda presupuesto, 15 min de gracia")
+        self.assertEqual(tp.espera_vlm_s(400 * 60), 15 * 60)
+        for t_ in range(0, 300 * 60, 600):
+            self.assertLess(t_ + tp.espera_vlm_s(t_), 316 * 60, "lanzando antes del minuto 300, nunca se espera más allá de ~315 min: el límite de la tarea es 330")
+
     def test_tope_de_tiempo(self):
         self.assertFalse(tp.tiempo_agotado(1000.0, None, ahora=10**9), "sin tope no se agota")
         self.assertFalse(tp.tiempo_agotado(1000.0, 120, ahora=1000.0 + 119 * 60))
