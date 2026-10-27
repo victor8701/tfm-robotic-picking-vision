@@ -404,6 +404,74 @@ class PruebasCuota(unittest.TestCase):
         self.assertEqual(cm.exception.tipo, "cupo")
 
 
+class GrafoVentanaMovil:
+    """Meta como se midió el 27-oct: cada petición de Business Discovery gasta `coste` puntos de total_time, la cuota es una ventana móvil de 1 h y al llegar a 100 corta con el código 4.
+    Reloj virtual: `dormir` lo adelanta."""
+
+    def __init__(self, coste):
+        self.t, self.coste, self.gastos, self.pausas = 0.0, coste, [], []
+
+    def uso(self):
+        return round(sum(c for t, c in self.gastos if t > self.t - 3600))
+
+    def dormir(self, s):
+        self.pausas.append(s)
+        self.t += s
+
+    def __call__(self, req, timeout=0):
+        u = urllib.parse.urlparse(req.full_url)
+        ruta = u.path.split("/", 2)[2]
+        campos = urllib.parse.parse_qs(u.query).get("fields", [""])[0]
+        if ruta == "debug_token":
+            resp = Resp(json.dumps({"data": {"type": "USER", "is_valid": True, "expires_at": 0, "scopes": []}}).encode())
+        elif ruta == "me/accounts":
+            resp = Resp(json.dumps({"data": PAGINA}).encode())
+        elif campos == "id":
+            self.gastos.append((self.t, 0.05))
+            self.t += 0.3
+            resp = Resp(b'{"id": "17841400000"}')
+        else:
+            if self.uso() >= 100:
+                raise error_http(req.full_url, 400, 4, "(#4) Application request limit reached")
+            usuario = re.search(r"business_discovery\.username\(([^)]+)\)", campos).group(1)
+            self.gastos.append((self.t, self.coste))
+            self.t += 1.3
+            medios = [media(i) for i in range(20)]
+            resp = Resp(json.dumps({"business_discovery": {"username": usuario, "followers_count": 10, "media": {"data": medios, "paging": {"cursors": {}}}}, "id": "17841"}).encode())
+        resp.headers = {"x-app-usage": json.dumps({"call_count": 1, "total_cputime": 0, "total_time": self.uso()})}
+        return resp
+
+
+class PruebasCuotaMedida(unittest.TestCase):
+    """Lo medido el 27-oct: ~1,2 puntos por cuenta con 20 publicaciones y sin carruseles; ~3 con carruseles."""
+
+    CUENTAS = [f"cuenta{i}" for i in range(68)]
+
+    def _lee(self, coste, espera_max_s=75 * 60):
+        g = GrafoVentanaMovil(coste)
+        por, res = im.meta_filas(self.CUENTAS, TOKEN, abrir=g, pausa=0, ahora=AHORA, espera_max_s=espera_max_s, dormir=g.dormir)
+        return g, por, res
+
+    def test_las_68_cuentas_con_el_coste_medido_se_leen_de_una_vez_sin_esperar(self):
+        g, por, res = self._lee(1.2)
+        self.assertEqual(len(por), 68)
+        self.assertEqual(g.pausas, [])
+        self.assertEqual(res["avisos"], [])
+
+    def test_si_cada_cuenta_costara_el_doble_se_espera_una_hora_y_se_leen_todas(self):
+        g, por, res = self._lee(2.4)
+        self.assertEqual(len(por), 68)
+        self.assertTrue(g.pausas)
+        self.assertLessEqual(res["esperado_s"], 75 * 60)
+        self.assertGreater(res["esperado_s"], 30 * 60, "una ráfaga no sale de la ventana móvil hasta pasada 1 h")
+
+    def test_con_los_carruseles_y_poco_presupuesto_se_lee_lo_que_cabe_y_se_avisa(self):
+        g, por, res = self._lee(3.0, espera_max_s=10 * 60)
+        self.assertLess(len(por), 68)
+        self.assertTrue(any("no se liberó a tiempo" in a for a in res["avisos"]))
+        self.assertEqual(len(por) + len(res["sin_lectura"]), 68, "cada cuenta o se lee o queda anotada como sin lectura")
+
+
 class PruebasCombinacion(unittest.TestCase):
     def setUp(self):
         import tendencia_prenda as tp
