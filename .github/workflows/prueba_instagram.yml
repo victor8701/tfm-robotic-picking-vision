@@ -8,7 +8,11 @@ on:
   workflow_dispatch:
     inputs:
       todas:
-        description: 'Probar con Meta las 68 cuentas de las fuentes (gasta unas 70 de las ~200 peticiones por hora de la app); si no, solo unas cuentas de muestra'
+        description: 'Probar con Meta todas las cuentas de las fuentes hasta que Meta corte (la app solo aguanta unas 15-20 cuentas por hora: gasta la cuota de esa hora); si no, solo unas de muestra'
+        type: boolean
+        default: false
+      coste:
+        description: 'Medir cuánta cuota de Meta gasta cada forma de pedir las publicaciones (unas 16 peticiones; con la cuota libre, sin otras pruebas en la última hora)'
         type: boolean
         default: false
 
@@ -24,6 +28,7 @@ jobs:
       META_IG_USER_ID: ${{ secrets.META_IG_USER_ID }}
       WINDSOR_API_KEY: ${{ secrets.WINDSOR_API_KEY }}
       PRUEBA_TODAS: ${{ inputs.todas && '1' || '0' }}
+      PRUEBA_COSTE: ${{ inputs.coste && '1' || '0' }}
     steps:
       - name: Código (rama analisis-mercado)
         uses: actions/checkout@v4
