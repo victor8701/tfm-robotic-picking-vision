@@ -273,7 +273,9 @@ class PruebasMeta(unittest.TestCase):
         self.assertNotIn("children", campos)
         im.leer_cuenta("17841400000", "zara", TOKEN, corte, abrir=g)
         self.assertIn(f"media.limit({im.MEDIA_POR_PAGINA})", g.peticiones[-1][1])
-        self.assertIn("children", g.peticiones[-1][1], "por defecto se piden los carruseles")
+        self.assertNotIn("children", g.peticiones[-1][1], "por defecto no se piden los carruseles: cuestan 2,5 veces más cuota")
+        im.leer_cuenta("17841400000", "zara", TOKEN, corte, abrir=g, con_hijos=True)
+        self.assertIn("children", g.peticiones[-1][1])
 
     def test_uso_app_lee_la_cabecera_sin_importar_las_mayusculas(self):
         self.assertEqual(im.uso_app({"x-app-usage": '{"call_count":5,"total_cputime":0,"total_time":42}'}), 42.0)
@@ -313,6 +315,7 @@ class PruebasMeta(unittest.TestCase):
         g2 = Grafo(accounts=PAGINA, cuentas={"gucci": [[media(1)]]}, debug={"type": "PAGE", "is_valid": True, "expires_at": 0, "scopes": []})
         self.assertIsNone(im.meta_filas(["gucci"], TOKEN, abrir=g2, pausa=0, ahora=AHORA)[1]["dias_restantes"], "un token de página sin caducidad no avisa")
 
+    @mock.patch.object(im, "CON_HIJOS", True)
     def test_si_meta_rechaza_un_campo_opcional_se_quita_y_se_sigue(self):
         veces = {"n": 0}
         base = Grafo(accounts=PAGINA, cuentas={"zara": [[media(1)]]})

@@ -27,7 +27,8 @@ BASE = f"https://graph.facebook.com/{VERSION}/"
 MEDIA_POR_PAGINA = 20     # publicaciones por petición. Meta limita por TIEMPO de proceso, no por número de peticiones: el 27-oct cada petición de 50 con carruseles gastó ~4 % de la hora.
 #                         La tubería se queda con 8 fotos nuevas por cuenta y pasada (IG_MAX_POR_CUENTA en tendencia_prenda.py): 20 publicaciones sobran
 PAGINAS_MAX = 1           # páginas como mucho por cuenta
-CON_HIJOS = True          # pedir también las fotos de los carruseles (cuesta tiempo de proceso: lo mide «Prueba de Instagram» con la casilla de coste)
+CON_HIJOS = False         # pedir también las fotos sueltas de los carruseles. Medido el 27-oct (30 publicaciones): 3,3 puntos de cuota por cuenta con ellas y 1,3 sin ellas (≈ 22 frente a ≈ 56 cuentas por hora).
+#                         De cada carrusel ya llega la portada en `media_url`
 USO_PAUSA = 80.0          # % de la cuota de la app (el mayor de call_count, total_cputime y total_time) a partir del cual se espera
 USO_REANUDA = 55.0        # y se sigue cuando baja de aquí (la cuota es una ventana móvil de 1 h: bajar 25 puntos lleva ~20 min)
 SONDEO_S = 120            # cada cuántos segundos se mira si Meta ya ha liberado cuota
