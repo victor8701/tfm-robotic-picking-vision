@@ -224,6 +224,7 @@ WINDSOR_CAMPOS = ("account_name,media_id,media_type,media_url,media_thumbnail_ur
                   "media_like_count,media_comments_count,profile_followers_count,media_caption")
 IG_DIAS = 35               # ventana de cada pasada semanal: se solapa con la anterior y lo ya conocido se salta por identificador
 IG_MAX_POR_CUENTA = 8      # fotos nuevas como mucho por cuenta y pasada (el análisis tiene tope de tiempo y las direcciones caducan)
+IG_ESPERA_MAX_S = 60 * 60  # lo máximo que la lectura de Instagram espera en total a que Meta libere cuota (la app se limita por tiempo de proceso: ~15-20 cuentas por hora)
 _IG_CACHE: dict = {}       # la respuesta de Windsor de esta ejecución (una sola petición para todas las cuentas)
 
 
@@ -290,8 +291,11 @@ def instagram_filas(handles: list[str], dias: int = IG_DIAS) -> dict[str, list[d
     por, fallos = {}, []
     if meta:
         try:
-            por, res = im.meta_filas(handles, meta, os.environ.get("META_IG_USER_ID", ""), dias)
+            espera = max(0.0, min(IG_ESPERA_MAX_S, PRESUPUESTO_S - (time.time() - INICIO) - 150 * 60))   # sin quitar tiempo a lo que viene después (modelo grande, informe)
+            por, res = im.meta_filas(im.rotar(handles, datetime.now(timezone.utc).isocalendar()[1]), meta, os.environ.get("META_IG_USER_ID", ""), dias, espera_max_s=espera)
             print(f"   Instagram · Meta (token de {res['tipo_token']}, {res['detalle']}): publicaciones de {res['leidas']} de las {len(handles)} cuentas", flush=True)
+            if res.get("esperado_s"):
+                print(f"   Instagram · Meta limita la app por tiempo de proceso: se esperó {res['esperado_s'] / 60:.0f} min a que liberara cuota", flush=True)
             for a in res["avisos"]:
                 print(f"   ⚠ Meta: {a}", flush=True)
             d_ = res.get("dias_restantes")

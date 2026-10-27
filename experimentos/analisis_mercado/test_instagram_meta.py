@@ -9,12 +9,14 @@ import tempfile
 import unittest
 import urllib.error
 import urllib.parse
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from unittest import mock
 
 os.environ["TENDENCIA_DATOS"] = tempfile.mkdtemp(prefix="test_meta_")
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import instagram_meta as im  # noqa: E402
+import prueba_instagram as pi  # noqa: E402
 
 TOKEN = "EAAtokensecretodeprueba1234567890"
 AHORA = datetime(2026, 10, 26, 12, 0, tzinfo=timezone.utc)
@@ -88,6 +90,36 @@ class Grafo:
 PAGINA = [{"id": "pg1", "name": "Tendencias Moda", "access_token": "PAGTOKEN-no-caduca", "instagram_business_account": {"id": "17841400000"}}]
 
 
+class GrafoConCuota(Grafo):
+    """Como Grafo, pero cada respuesta de Business Discovery lleva x-app-usage con el porcentaje de `usos` (el último se repite), el sondeo `id` contesta con `sondeos`
+    y una cuenta puede cortarse con el código 4 las veces que diga `cortes` antes de contestar bien."""
+
+    def __init__(self, *a, usos=(0,), sondeos=(0,), cortes=None, **k):
+        super().__init__(*a, **k)
+        self.usos, self.sondeos, self.cortes = list(usos), list(sondeos), dict(cortes or {})
+        self.n_sondeos = 0
+
+    @staticmethod
+    def _con_uso(resp, tiempo):
+        resp.headers = {"x-app-usage": json.dumps({"call_count": 1, "total_cputime": 0, "total_time": tiempo})}
+        return resp
+
+    def __call__(self, req, timeout=0):
+        campos = urllib.parse.parse_qs(urllib.parse.urlparse(req.full_url).query).get("fields", [""])[0]
+        if campos == "id":
+            self.n_sondeos += 1
+            tiempo = self.sondeos.pop(0) if len(self.sondeos) > 1 else self.sondeos[0]
+            return self._con_uso(Resp(b'{"id": "17841400000"}'), tiempo)
+        m = re.search(r"business_discovery\.username\(([^)]+)\)", campos)
+        if m and self.cortes.get(m.group(1), 0) > 0:
+            self.cortes[m.group(1)] -= 1
+            raise error_http(req.full_url, 400, 4, "(#4) Application request limit reached")
+        resp = super().__call__(req, timeout)
+        if m:
+            self._con_uso(resp, self.usos.pop(0) if len(self.usos) > 1 else self.usos[0])
+        return resp
+
+
 class PruebasMeta(unittest.TestCase):
     def test_token_de_persona_busca_la_pagina_y_usa_su_token(self):
         g = Grafo(accounts=PAGINA)
@@ -122,6 +154,36 @@ class PruebasMeta(unittest.TestCase):
             im.preparar(TOKEN, abrir=abrir)
         self.assertIn("Cannot parse access token", str(cm.exception))
         self.assertNotIn(TOKEN, str(cm.exception))
+
+    def test_la_prueba_de_coste_mide_cuatro_formas_y_no_revienta(self):
+        g = GrafoConCuota(accounts=PAGINA, cuentas={c: [[media(1)]] for c in pi.CUENTAS_COSTE}, usos=[5, 9, 12, 14, 17, 19, 21, 22, 23, 24, 25, 26], sondeos=[0, 8, 17, 23])
+        pi.LINEAS.clear()
+        pi.prueba_coste("17841400000", TOKEN, AHORA - timedelta(days=35), abrir=g)
+        lineas = [x for x in pi.LINEAS if x.startswith("   · ")]
+        self.assertEqual(len(lineas), len(pi.FORMAS_COSTE))
+        self.assertIn("cuentas por hora", lineas[0])
+
+    def test_la_prueba_de_coste_dice_que_es_de_cuota_si_meta_corta(self):
+        g = GrafoConCuota(accounts=PAGINA, cuentas={c: [[media(1)]] for c in pi.CUENTAS_COSTE}, cortes={"stussy": 3})
+        pi.LINEAS.clear()
+        pi.CORTE_POR_CUOTA = False
+        pi.prueba_coste("17841400000", TOKEN, AHORA - timedelta(days=35), abrir=g)
+        self.assertTrue(pi.CORTE_POR_CUOTA)
+        self.assertTrue(any("no es un fallo del token" in x for x in pi.LINEAS))
+        pi.CORTE_POR_CUOTA = False
+
+    def test_la_prueba_distingue_el_token_corto_del_largo(self):
+        ahora = 1_800_000_000
+        frase, corto = pi.texto_caducidad(ahora + 5400, 0, ahora)
+        self.assertTrue(corto)
+        self.assertIn("1,5 horas", frase)
+        frase, corto = pi.texto_caducidad(ahora + 60 * 86400, 60, ahora)
+        self.assertFalse(corto)
+        self.assertIn("dentro de 60 días", frase)
+        self.assertEqual(pi.texto_caducidad(0, None, ahora), ("no caduca", False))
+        frase, corto = pi.texto_caducidad(ahora - 100, 0, ahora)
+        self.assertIn("caducó", frase)
+        self.assertFalse(corto)
 
     def test_limpiar_token_quita_espacios_comillas_y_coma_del_json(self):
         self.assertEqual(im.limpiar_token(f'  "{TOKEN}",\n'), TOKEN)
@@ -165,14 +227,49 @@ class PruebasMeta(unittest.TestCase):
             im.meta_filas(["a"], TOKEN, abrir=g, pausa=0, ahora=AHORA)
 
     def test_pagina_siguiente_solo_si_la_primera_se_llena_y_aun_hay_ventana(self):
+        with mock.patch.object(im, "PAGINAS_MAX", 2):
+            llena = [media(i) for i in range(im.MEDIA_POR_PAGINA)]
+            g = Grafo(accounts=PAGINA, cuentas={"zara": [llena, [media(100)]]})
+            por, _ = im.meta_filas(["zara"], TOKEN, abrir=g, pausa=0, ahora=AHORA)
+            self.assertEqual(len(por["zara"]), im.MEDIA_POR_PAGINA + 1)
+            self.assertTrue(any(".after(1)" in c for _, c in g.peticiones))
+            g2 = Grafo(accounts=PAGINA, cuentas={"zara": [[media(1), media(2)], [media(100)]]})
+            im.meta_filas(["zara"], TOKEN, abrir=g2, pausa=0, ahora=AHORA)
+            self.assertFalse(any(".after(" in c for _, c in g2.peticiones), "una página corta no pide más")
+
+    def test_por_defecto_una_sola_pagina_aunque_se_llene(self):
         llena = [media(i) for i in range(im.MEDIA_POR_PAGINA)]
         g = Grafo(accounts=PAGINA, cuentas={"zara": [llena, [media(100)]]})
         por, _ = im.meta_filas(["zara"], TOKEN, abrir=g, pausa=0, ahora=AHORA)
-        self.assertEqual(len(por["zara"]), im.MEDIA_POR_PAGINA + 1)
-        self.assertTrue(any(".after(1)" in c for _, c in g.peticiones))
-        g2 = Grafo(accounts=PAGINA, cuentas={"zara": [[media(1), media(2)], [media(100)]]})
-        im.meta_filas(["zara"], TOKEN, abrir=g2, pausa=0, ahora=AHORA)
-        self.assertFalse(any(".after(" in c for _, c in g2.peticiones), "una página corta no pide más")
+        self.assertEqual(len(por["zara"]), im.MEDIA_POR_PAGINA)
+        self.assertFalse(any(".after(" in c for _, c in g.peticiones), "Meta limita por tiempo de proceso: una petición por cuenta")
+
+    def test_leer_cuenta_puede_pedir_menos_y_sin_carruseles(self):
+        g = Grafo(accounts=PAGINA, cuentas={"zara": [[media(1)]]})
+        corte = AHORA - timedelta(days=35)
+        im.leer_cuenta("17841400000", "zara", TOKEN, corte, abrir=g, limite=12, paginas=1, con_hijos=False)
+        campos = g.peticiones[-1][1]
+        self.assertIn("media.limit(12)", campos)
+        self.assertNotIn("children", campos)
+        im.leer_cuenta("17841400000", "zara", TOKEN, corte, abrir=g)
+        self.assertIn(f"media.limit({im.MEDIA_POR_PAGINA})", g.peticiones[-1][1])
+        self.assertIn("children", g.peticiones[-1][1], "por defecto se piden los carruseles")
+
+    def test_uso_app_lee_la_cabecera_sin_importar_las_mayusculas(self):
+        self.assertEqual(im.uso_app({"x-app-usage": '{"call_count":5,"total_cputime":0,"total_time":42}'}), 42.0)
+        self.assertEqual(im.uso_app({"X-App-Usage": '{"call_count":61,"total_time":3}'}), 61.0)
+        self.assertIsNone(im.uso_app({}))
+        self.assertIsNone(im.uso_app({"x-app-usage": "no es json"}))
+        self.assertIsNone(im.uso_app(None))
+
+    def test_rotar_empieza_por_otro_sitio_y_no_pierde_cuentas(self):
+        cuentas = [f"c{i}" for i in range(68)]
+        self.assertEqual(im.rotar(cuentas, 0), cuentas)
+        r = im.rotar(cuentas, 1)
+        self.assertEqual(sorted(r), sorted(cuentas))
+        self.assertNotEqual(r[0], cuentas[0])
+        self.assertEqual(len({im.rotar(cuentas, k)[0] for k in range(10)}), 10, "diez semanas seguidas empiezan por diez cuentas distintas")
+        self.assertEqual(im.rotar([], 3), [])
 
     def test_si_el_token_de_persona_no_sirve_se_usa_el_de_la_pagina(self):
         g = Grafo(accounts=PAGINA, cuentas={"gucci": [[media(1)]], "zara": [[media(2)]]}, rechaza={TOKEN: (403, 10, "(#10) Application does not have permission for this action")})
@@ -226,6 +323,62 @@ class PruebasMeta(unittest.TestCase):
         with self.assertRaises(im.MetaError) as cm:
             im.meta_filas(["a"], "", abrir=abrir_red)
         self.assertIn("META_IG_TOKEN", str(cm.exception))
+
+
+class PruebasCuota(unittest.TestCase):
+    """Meta limita la app por tiempo de proceso (~15-20 cuentas por hora): con tiempo de espera, la lectura se pausa y sigue en vez de rendirse."""
+
+    CUENTAS = {"a": [[media(1)]], "b": [[media(2)]], "c": [[media(3)]]}
+
+    def test_con_la_cuota_casi_llena_espera_y_sigue(self):
+        g = GrafoConCuota(accounts=PAGINA, cuentas=self.CUENTAS, usos=[90, 20, 20], sondeos=[30])
+        pausas = []
+        por, res = im.meta_filas(["a", "b", "c"], TOKEN, abrir=g, pausa=0, ahora=AHORA, espera_max_s=3600, dormir=pausas.append)
+        self.assertEqual(sorted(por), ["a", "b", "c"])
+        self.assertEqual(pausas, [im.SONDEO_S], "una sola espera: tras la primera cuenta, y el sondeo ya vio la cuota baja")
+        self.assertEqual(res["esperado_s"], im.SONDEO_S)
+        self.assertEqual(g.n_sondeos, 1)
+
+    def test_sin_tiempo_de_espera_no_espera_nunca(self):
+        g = GrafoConCuota(accounts=PAGINA, cuentas=self.CUENTAS, usos=[99])
+        pausas = []
+        por, res = im.meta_filas(["a", "b", "c"], TOKEN, abrir=g, pausa=0, ahora=AHORA, dormir=pausas.append)
+        self.assertEqual(sorted(por), ["a", "b", "c"])
+        self.assertEqual(pausas, [])
+        self.assertEqual(res["esperado_s"], 0)
+
+    def test_si_la_cuota_no_baja_dentro_del_presupuesto_se_para_con_aviso(self):
+        g = GrafoConCuota(accounts=PAGINA, cuentas=self.CUENTAS, usos=[90], sondeos=[95])
+        pausas = []
+        por, res = im.meta_filas(["a", "b", "c"], TOKEN, abrir=g, pausa=0, ahora=AHORA, espera_max_s=2 * im.SONDEO_S, dormir=pausas.append)
+        self.assertEqual(list(por), ["a"])
+        self.assertEqual(len(pausas), 2, "se espera hasta agotar el presupuesto y ni un turno más")
+        self.assertTrue(any("no se liberó a tiempo" in a for a in res["avisos"]))
+        self.assertIn("b", res["sin_lectura"])
+        self.assertIn("c", res["sin_lectura"])
+
+    def test_un_codigo_4_a_mitad_espera_y_repite_la_misma_cuenta(self):
+        g = GrafoConCuota(accounts=PAGINA, cuentas=self.CUENTAS, usos=[10], sondeos=[20], cortes={"b": 1})
+        pausas = []
+        por, res = im.meta_filas(["a", "b", "c"], TOKEN, abrir=g, pausa=0, ahora=AHORA, espera_max_s=3600, dormir=pausas.append)
+        self.assertEqual(sorted(por), ["a", "b", "c"])
+        self.assertEqual(len(pausas), 1)
+        self.assertEqual(res["avisos"], [])
+
+    def test_un_codigo_4_sin_presupuesto_de_espera_corta_como_antes(self):
+        g = GrafoConCuota(accounts=PAGINA, cuentas=self.CUENTAS, cortes={"b": 5})
+        por, res = im.meta_filas(["a", "b", "c"], TOKEN, abrir=g, pausa=0, ahora=AHORA)
+        self.assertEqual(list(por), ["a"])
+        self.assertTrue(res["avisos"])
+
+    def test_un_codigo_4_en_la_primera_cuenta_espera_antes_de_rendirse(self):
+        g = GrafoConCuota(accounts=PAGINA, cuentas=self.CUENTAS, usos=[10], sondeos=[20], cortes={"a": 1})
+        por, _ = im.meta_filas(["a", "b"], TOKEN, abrir=g, pausa=0, ahora=AHORA, espera_max_s=3600, dormir=lambda s: None)
+        self.assertEqual(sorted(por), ["a", "b"])
+        g2 = GrafoConCuota(accounts=PAGINA, cuentas=self.CUENTAS, cortes={"a": 5})
+        with self.assertRaises(im.MetaError) as cm:
+            im.meta_filas(["a", "b"], TOKEN, abrir=g2, pausa=0, ahora=AHORA)
+        self.assertEqual(cm.exception.tipo, "cupo")
 
 
 class PruebasCombinacion(unittest.TestCase):

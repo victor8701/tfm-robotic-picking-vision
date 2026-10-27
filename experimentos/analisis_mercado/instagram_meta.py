@@ -15,6 +15,7 @@ Devuelve las publicaciones con los MISMOS nombres de campo que el conector de Wi
 """
 import collections
 import json
+import math
 import time
 import urllib.error
 import urllib.parse
@@ -23,8 +24,13 @@ from datetime import datetime, timedelta, timezone
 
 VERSION = "v25.0"
 BASE = f"https://graph.facebook.com/{VERSION}/"
-MEDIA_POR_PAGINA = 50     # publicaciones por petición (con 35 días de ventana casi todas las cuentas caben en una página)
-PAGINAS_MAX = 2           # páginas como mucho por cuenta
+MEDIA_POR_PAGINA = 20     # publicaciones por petición. Meta limita por TIEMPO de proceso, no por número de peticiones: el 27-oct cada petición de 50 con carruseles gastó ~4 % de la hora.
+#                         La tubería se queda con 8 fotos nuevas por cuenta y pasada (IG_MAX_POR_CUENTA en tendencia_prenda.py): 20 publicaciones sobran
+PAGINAS_MAX = 1           # páginas como mucho por cuenta
+CON_HIJOS = True          # pedir también las fotos de los carruseles (cuesta tiempo de proceso: lo mide «Prueba de Instagram» con la casilla de coste)
+USO_PAUSA = 80.0          # % de la cuota de la app (el mayor de call_count, total_cputime y total_time) a partir del cual se espera
+USO_REANUDA = 55.0        # y se sigue cuando baja de aquí (la cuota es una ventana móvil de 1 h: bajar 25 puntos lleva ~20 min)
+SONDEO_S = 120            # cada cuántos segundos se mira si Meta ya ha liberado cuota
 HIJOS_MAX = 4             # fotos de un carrusel que se leen como filas aparte (como hace Windsor)
 CAMPOS_MEDIA = ["id", "media_type", "media_url", "thumbnail_url", "permalink", "timestamp", "caption", "like_count", "comments_count", "children{id,media_type,media_url}"]
 CAMPOS_PRESCINDIBLES = {"thumbnail_url", "caption", "like_count", "comments_count", "children{id,media_type,media_url}", "permalink"}   # si Meta dice que uno no existe en Business Discovery, se quita y se sigue
@@ -47,6 +53,36 @@ class MetaError(ValueError):
 
 def _limpiar(txt: str, token: str) -> str:
     return (txt or "").replace(token, "***") if token else (txt or "")
+
+
+def uso_detalle(cab: dict | None) -> dict[str, float] | None:
+    """Porcentajes de la cuota de la app que dice la cabecera `x-app-usage` (peticiones, CPU, tiempo); None si no viene o no se entiende."""
+    for k, v in (cab or {}).items():
+        if str(k).lower() == "x-app-usage":
+            try:
+                d = json.loads(v) if isinstance(v, str) else dict(v)
+                return {c: float(d.get(c) or 0) for c in ("call_count", "total_cputime", "total_time")}
+            except (ValueError, TypeError):
+                return None
+    return None
+
+
+def uso_app(cab: dict | None) -> float | None:
+    """El mayor de esos porcentajes (con el que Meta corta al llegar a 100); None si no hay cabecera."""
+    d = uso_detalle(cab)
+    return max(d.values()) if d else None
+
+
+def rotar(handles: list[str], k: int) -> list[str]:
+    """La misma lista empezando por otro sitio (k = número de semana): si una semana no da tiempo a leerlas todas, la siguiente no empieza siempre por las mismas."""
+    n = len(handles)
+    if not n:
+        return []
+    paso = max(1, n // 3)   # cada semana se salta un tercio de la lista; el paso es primo con n para que no se repitan los puntos de partida
+    while math.gcd(paso, n) != 1:
+        paso += 1
+    i = (k * paso) % n
+    return handles[i:] + handles[:i]
 
 
 def limpiar_token(t: str) -> str:
@@ -181,13 +217,18 @@ def _campo_inexistente(cuerpo: dict) -> str | None:
     return m.group(1) if m else None
 
 
-def leer_cuenta(ig_id: str, usuario: str, token: str, corte: datetime, abrir=urllib.request.urlopen) -> tuple[list[dict], dict]:
-    """Una cuenta por Business Discovery (hasta PAGINAS_MAX páginas). Devuelve (filas, info) con info = {'seguidores', 'cabeceras'} o lanza MetaError si el fallo es de token/permisos/cupo.
+def leer_cuenta(ig_id: str, usuario: str, token: str, corte: datetime, abrir=urllib.request.urlopen, limite: int | None = None, paginas: int | None = None,
+                con_hijos: bool | None = None) -> tuple[list[dict], dict]:
+    """Una cuenta por Business Discovery (hasta `paginas` páginas de `limite` publicaciones; por defecto PAGINAS_MAX y MEDIA_POR_PAGINA). Devuelve (filas, info) con
+    info = {'seguidores', 'cabeceras'} o lanza MetaError si el fallo es de token/permisos/cupo.
     Si la cuenta no se puede leer (no profesional, privada, inexistente) devuelve ([], {'motivo': ...}). Si Meta rechaza algún campo opcional, se quita y se repite la petición."""
+    limite, paginas = limite or MEDIA_POR_PAGINA, paginas or PAGINAS_MAX
+    con_hijos = CON_HIJOS if con_hijos is None else con_hijos
     filas, seguidores, cursor, cab = [], None, None, {}
-    for pagina in range(PAGINAS_MAX):
+    for pagina in range(paginas):
         for _intento in range(len(CAMPOS_PRESCINDIBLES) + 2):
-            media = f"media.limit({MEDIA_POR_PAGINA})" + (f".after({cursor})" if cursor else "") + "{" + ",".join(_CAMPOS_VIVOS) + "}"
+            vivos = [c for c in _CAMPOS_VIVOS if con_hijos or not c.startswith("children")]
+            media = f"media.limit({limite})" + (f".after({cursor})" if cursor else "") + "{" + ",".join(vivos) + "}"
             campos = f"business_discovery.username({usuario}){{username,followers_count,media_count,{media}}}"
             st, d, cab = llamar(ig_id, {"fields": campos}, token, abrir)
             malo = _campo_inexistente(d) if st != 200 else None
@@ -214,17 +255,18 @@ def leer_cuenta(ig_id: str, usuario: str, token: str, corte: datetime, abrir=url
         medios = (bd.get("media") or {}).get("data") or []
         filas += filas_de_media(str(bd.get("username") or usuario).lower(), seguidores, medios, corte)
         cursor = (((bd.get("media") or {}).get("paging") or {}).get("cursors") or {}).get("after")
-        mas = len(medios) >= MEDIA_POR_PAGINA and cursor and _fecha_ok(medios[-1].get("timestamp"), corte)
+        mas = len(medios) >= limite and cursor and _fecha_ok(medios[-1].get("timestamp"), corte)
         if not mas:
             break
     return filas, {"seguidores": seguidores, "cabeceras": cab}
 
 
 def meta_filas(handles: list[str], token: str, ig_id_env: str = "", dias: int = 35, abrir=urllib.request.urlopen, pausa: float = 0.4,
-               ahora: datetime | None = None) -> tuple[dict[str, list[dict]], dict]:
+               ahora: datetime | None = None, espera_max_s: float = 0.0, dormir=time.sleep) -> tuple[dict[str, list[dict]], dict]:
     """Todas las cuentas por Business Discovery. Devuelve ({usuario en minúsculas: [filas]}, resumen) con resumen =
-    {'tipo_token', 'detalle', 'leidas', 'sin_lectura': {usuario: motivo}, 'avisos': [..], 'ig_id', 'dias_restantes'}. Un fallo de token/permisos al principio lanza MetaError;
-    si el cupo se agota a mitad, se devuelve lo leído y se avisa. Si el token de persona no vale para Business Discovery pero el de su página sí, se cambia solo."""
+    {'tipo_token', 'detalle', 'leidas', 'sin_lectura': {usuario: motivo}, 'avisos': [..], 'ig_id', 'dias_restantes', 'esperado_s', 'uso_final'}. Un fallo de token/permisos al principio lanza MetaError.
+    Meta limita la app por tiempo de proceso (unas 15-20 cuentas por hora): con `espera_max_s` > 0, al pasar USO_PAUSA % de la cuota se espera (hasta ese total de segundos) a que baje de
+    USO_REANUDA % y se sigue; sin tiempo de espera, o cuando se acaba, se devuelve lo leído y se avisa. Si el token de persona no vale para Business Discovery pero el de su página sí, se cambia solo."""
     token = limpiar_token(token)
     if not token:
         raise MetaError("falta el secreto META_IG_TOKEN", "token")
@@ -235,6 +277,25 @@ def meta_filas(handles: list[str], token: str, ig_id_env: str = "", dias: int = 
     ficha = ficha_token(token, abrir)
     por, sin_lectura, avisos = collections.defaultdict(list), {}, []
     usado = 0   # índice del token que funciona
+    esperado, uso_final = 0.0, None   # segundos esperando a que Meta libere cuota; último porcentaje de cuota visto
+
+    def esperar_cuota(uso: float | None) -> bool:
+        """Con la cuota de la app casi llena, espera (hasta `espera_max_s` en total) a que baje. False si no se puede seguir."""
+        nonlocal esperado, uso_final
+        while uso is None or uso >= USO_REANUDA:
+            if esperado + SONDEO_S > espera_max_s:
+                return False
+            dormir(SONDEO_S)
+            esperado += SONDEO_S
+            try:
+                uso = uso_app(llamar(ig_id, {"fields": "id"}, candidatos[usado], abrir)[2])   # petición casi gratis: solo para leer la cabecera
+            except MetaError:
+                uso = None   # sin respuesta: se espera otro turno
+                continue
+            if uso is None:
+                return True   # Meta no dice cuánta cuota queda: se sigue (si vuelve a cortar, se vuelve a esperar)
+            uso_final = uso
+        return True
 
     def leer(h):
         nonlocal usado
@@ -249,12 +310,19 @@ def meta_filas(handles: list[str], token: str, ig_id_env: str = "", dias: int = 
                 raise
 
     for i, h in enumerate(handles):
-        try:
-            filas, info = leer(h)
-        except MetaError as e:
-            if i == 0:
-                raise
-            avisos.append(str(e))
+        filas = None
+        while True:
+            try:
+                filas, info = leer(h)
+                break
+            except MetaError as e:
+                if e.tipo == "cupo" and espera_max_s > 0 and esperar_cuota(100.0):
+                    continue   # Meta liberó cuota: se repite esta misma cuenta
+                if i == 0:
+                    raise
+                avisos.append(str(e))
+                break
+        if filas is None:
             for resto in handles[i:]:
                 sin_lectura.setdefault(resto, "no se llegó a pedir (Meta cortó las peticiones)")
             break
@@ -262,6 +330,14 @@ def meta_filas(handles: list[str], token: str, ig_id_env: str = "", dias: int = 
             por[h].extend(filas)
         else:
             sin_lectura[h] = info.get("motivo") or "sin publicaciones en la ventana"
+        uso = uso_app(info.get("cabeceras"))
+        uso_final = uso if uso is not None else uso_final
+        if espera_max_s > 0 and uso is not None and uso >= USO_PAUSA and i + 1 < len(handles) and not esperar_cuota(uso):
+            avisos.append("la cuota de la app de Meta no se liberó a tiempo")
+            for resto in handles[i + 1:]:
+                sin_lectura.setdefault(resto, "no se llegó a pedir (la cuota de Meta no se liberó a tiempo)")
+            break
         time.sleep(pausa)
     return dict(por), {"tipo_token": tipo_tok, "detalle": detalle, "leidas": len(por), "sin_lectura": sin_lectura, "avisos": sorted(set(avisos)), "ig_id": ig_id,
-                       "dias_restantes": ficha.get("dias"), "ficha": ficha, "token_usado": "persona" if usado == 0 and tipo_tok == "persona" else "página"}
+                       "dias_restantes": ficha.get("dias"), "ficha": ficha, "token_usado": "persona" if usado == 0 and tipo_tok == "persona" else "página",
+                       "esperado_s": esperado, "uso_final": uso_final}

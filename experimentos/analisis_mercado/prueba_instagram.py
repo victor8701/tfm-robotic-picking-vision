@@ -28,12 +28,70 @@ import instagram_meta as im  # noqa: E402
 
 WINDSOR_URL = "https://connectors.windsor.ai/instagram_public"
 PERMISOS_NECESARIOS = ("instagram_basic", "pages_read_engagement", "instagram_manage_insights")
+FORMAS_COSTE = (("50 publicaciones con carruseles", 50, True), ("30 con carruseles", 30, True), ("30 sin carruseles", 30, False), ("12 sin carruseles", 12, False))
+CUENTAS_COSTE = ("zara", "stussy", "gucci")   # una que publica mucho, una normal y una grande
 LINEAS: list[str] = []
+CORTE_POR_CUOTA = False   # la prueba terminó porque Meta limitó la app, no por el token
 
 
 def dice(txt: str = "") -> None:
     print(txt, flush=True)
     LINEAS.append(txt)
+
+
+def texto_caducidad(expira: int | None, dias: int | None, ahora: float | None = None) -> tuple[str, bool]:
+    """(frase, es_corto): «no caduca», «caduca el 26-12-2026 (dentro de 60 días)» o, si le quedan menos de 24 h (token corto del Explorador), la hora y las horas que quedan."""
+    if not expira:
+        return "no caduca", False
+    horas = (expira - (time.time() if ahora is None else ahora)) / 3600
+    fecha = datetime.fromtimestamp(expira, timezone.utc)
+    if horas < 0:
+        return f"caducó el {fecha:%d-%m-%Y a las %H:%M} UTC", False
+    if horas < 24:
+        return f"caduca el {fecha:%d-%m-%Y a las %H:%M} UTC (dentro de {horas:.1f} horas)".replace(".", ","), True
+    return f"caduca el {fecha:%d-%m-%Y} (dentro de {dias} días)", False
+
+
+def fallo_meta(e: Exception) -> None:
+    """Cuenta un error de Meta; si es de cuota lo dice claro, porque no es culpa del token."""
+    global CORTE_POR_CUOTA
+    if getattr(e, "tipo", "") == "cupo":
+        CORTE_POR_CUOTA = True
+        dice("✘ Meta ha limitado las peticiones de la app (código 4). El límite es de TIEMPO de proceso por hora y cada cuenta gasta unos pocos puntos: no es un fallo del token. "
+             "Espera una hora sin usar el Explorador de Meta ni lanzar más pruebas, y repite.")
+    else:
+        dice(f"✘ {e}")
+
+
+def prueba_coste(ig_id: str, token: str, corte: datetime, abrir=urllib.request.urlopen) -> None:
+    """Mide cuánta cuota de la app gasta cada forma de pedir las publicaciones. La cabecera de Meta acumula (ventana de 1 h) y solo da enteros: se resta lo anterior y se promedian 3 cuentas."""
+    dice("Coste de cada forma de pedir las publicaciones (puntos de cuota de la app por cuenta; Meta corta al llegar a 100 dentro de una hora):")
+
+    def uso_ahora() -> dict | None:
+        try:
+            return im.uso_detalle(im.llamar(ig_id, {"fields": "id"}, token, abrir)[2])   # petición casi gratis, solo para leer la cabecera
+        except im.MetaError:
+            return None
+
+    for nombre, n, hijos in FORMAS_COSTE:
+        antes = uso_ahora()
+        if antes is None:
+            dice("   (Meta no dice cuánta cuota queda: no se puede medir.)")
+            return
+        t0, filas_n, ultimo = time.time(), 0, antes
+        for c in CUENTAS_COSTE:
+            try:
+                filas, inf = im.leer_cuenta(ig_id, c, token, corte, abrir, limite=n, paginas=1, con_hijos=hijos)
+            except im.MetaError as e:
+                fallo_meta(e)
+                return
+            filas_n += len(filas)
+            ultimo = im.uso_detalle(inf.get("cabeceras")) or ultimo
+        k = len(CUENTAS_COSTE)
+        d_tiempo, d_pet = (ultimo["total_time"] - antes["total_time"]) / k, (ultimo["call_count"] - antes["call_count"]) / k
+        por_hora = f"≈ {75 / d_tiempo:.0f} cuentas por hora al 75 % de la cuota" if d_tiempo > 0 else "gasta menos de lo que se puede medir"
+        dice(f"   · {nombre}: +{d_tiempo:.1f} de tiempo y +{d_pet:.1f} de peticiones por cuenta ({(time.time() - t0) / k:.1f} s, {filas_n / k:.0f} filas de media) → {por_hora}")
+        time.sleep(0.4)
 
 
 def cuentas_de_instagram() -> list[str]:
@@ -74,7 +132,7 @@ def prueba_meta() -> bool | None:
     ficha = im.ficha_token(token)
     if ficha:
         tipo = {"USER": "de persona", "PAGE": "de página"}.get(ficha["tipo"], ficha["tipo"] or "de tipo desconocido")
-        caduca = "no caduca" if not ficha["expira"] else f"caduca el {datetime.fromtimestamp(ficha['expira'], timezone.utc):%d-%m-%Y} (dentro de {ficha['dias']} días)"
+        caduca, corto = texto_caducidad(ficha["expira"], ficha["dias"])
         dice(f"Token {tipo}; {'válido' if ficha['valido'] else 'NO válido'}; {caduca}.")
         if not ficha["valido"]:
             dice("✘ Meta dice que el token ya no es válido: genera otro (guía, parte 4).")
@@ -83,7 +141,9 @@ def prueba_meta() -> bool | None:
         faltan = [p for p in PERMISOS_NECESARIOS if p not in ficha["permisos"]]
         if faltan and ficha["permisos"]:
             dice(f"⚠ Faltan permisos: {', '.join(faltan)}. Al generar el token (guía, parte 3) hay que marcarlos todos; si no te dejaba, dímelo.")
-        if ficha["dias"] is not None and ficha["dias"] < 15:
+        if corto:
+            dice("⚠ Es un token CORTO (dura 1-2 horas): vale para probar hoy, pero la tarea semanal necesita el LARGO. En el depurador de tokens pulsa «Ampliar token de acceso», copia el token NUEVO que sale abajo (no el del campo del Explorador) y guárdalo como META_IG_TOKEN (guía, parte 4).")
+        elif ficha["dias"] is not None and ficha["dias"] < 15:
             dice(f"⚠ Al token le quedan {ficha['dias']} días: renuévalo pronto (guía, parte 4).")
     else:
         dice("(No se pudo leer la ficha del token; se sigue probando.)")
@@ -91,7 +151,7 @@ def prueba_meta() -> bool | None:
     try:
         candidatos, ig_id, tipo_tok, detalle = im.preparar(token, os.environ.get("META_IG_USER_ID", "").strip())
     except im.MetaError as e:
-        dice(f"✘ {e}")
+        fallo_meta(e)
         return False
     dice(f"✔ Cuenta de Instagram encontrada: {ig_id} ({detalle}; el token es {'de página' if tipo_tok == 'página' else 'de persona: la tarea prueba primero ese y, si no vale, el de su página'}).")
     corte = datetime.now(timezone.utc) - timedelta(days=35)
@@ -100,14 +160,19 @@ def prueba_meta() -> bool | None:
     for k, cand in enumerate(candidatos):
         nombre = "el token tal cual" if k == 0 else "el token de la página que cuelga de él"
         try:
-            filas, _ = im.leer_cuenta(ig_id, "zara", cand, corte)
-            dice(f"✔ Business Discovery funciona con {nombre} (prueba con @zara: {len(filas)} filas).")
+            filas, _ = im.leer_cuenta(ig_id, "zara", cand, corte, limite=3, paginas=1, con_hijos=False)   # sonda barata: la cuota es de tiempo de proceso
+            dice(f"✔ Business Discovery funciona con {nombre} (prueba con @zara: {len(filas)} publicaciones).")
             tok = tok or cand
         except im.MetaError as e:
-            dice(f"✘ Con {nombre} no funciona: {e}")
+            dice(f"✘ Con {nombre} no funciona:") if getattr(e, "tipo", "") != "cupo" else None
+            fallo_meta(e)
     if tok is None:
         dice("✘ Ningún token vale para Business Discovery. Si el mensaje habla de permisos, repite la parte 3 marcando todos; si habla de «app review» o similar, dímelo.")
         return False
+    if os.environ.get("PRUEBA_COSTE") == "1":
+        prueba_coste(ig_id, tok, corte)
+        dice("Campos que acepta Business Discovery: " + ", ".join(im._CAMPOS_VIVOS))   # los que Meta no rechazó
+        return not CORTE_POR_CUOTA
     # 3) Business Discovery con cuentas de muestra
     pruebas = cuentas if os.environ.get("PRUEBA_TODAS") == "1" else muestra(cuentas)
     dice(f"Business Discovery con {len(pruebas)} cuentas ({'todas las de las fuentes' if len(pruebas) == len(cuentas) else 'de muestra, una por casilla estilo/mercado'}):")
@@ -116,7 +181,8 @@ def prueba_meta() -> bool | None:
         try:
             filas, inf = im.leer_cuenta(ig_id, c, tok, corte)
         except im.MetaError as e:
-            dice(f"✘ {e}")
+            dice(f"(Antes del corte se habían leído {leidas} de {len(pruebas)} cuentas.)")
+            fallo_meta(e)
             return False
         cab = inf.get("cabeceras") or cab
         if not filas:
@@ -125,7 +191,8 @@ def prueba_meta() -> bool | None:
         leidas += 1
         fotos = [f for f in filas if f.get("media_url") and f.get("media_type") != "VIDEO"]
         if len(pruebas) <= 12:
-            dice(f"   · {c}: {len(filas)} filas ({len(fotos)} con foto), {inf.get('seguidores')} seguidores")
+            u = im.uso_detalle(cab)
+            dice(f"   · {c}: {len(filas)} filas ({len(fotos)} con foto), {inf.get('seguidores')} seguidores" + (f"; cuota de la app: tiempo {u['total_time']:.0f} %" if u else ""))
         if fotos and probadas < 4:
             probadas += 1
             r = foto_bajable(fotos[0]["media_url"])
@@ -205,6 +272,8 @@ def main() -> int:
     principal = meta if meta is not None else windsor
     if meta is True:
         dice("RESULTADO: la lectura de Instagram con la app de Meta funciona." + (" Windsor sirve de respaldo." if windsor else " (Windsor ya no hace falta.)"))
+    elif meta is False and CORTE_POR_CUOTA:
+        dice("RESULTADO: Meta limitó la app durante la prueba (cuota de tiempo por hora). El token no es el problema: repite pasada una hora." + (" Windsor sirve de respaldo." if windsor else ""))
     elif meta is False:
         dice("RESULTADO: hay algo que arreglar con el token de Meta (mira el ✘ de arriba)." + (" Mientras, la tarea semanal sigue leyendo con Windsor." if windsor else ""))
     elif windsor:
