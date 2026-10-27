@@ -224,7 +224,7 @@ WINDSOR_CAMPOS = ("account_name,media_id,media_type,media_url,media_thumbnail_ur
                   "media_like_count,media_comments_count,profile_followers_count,media_caption")
 IG_DIAS = 35               # ventana de cada pasada semanal: se solapa con la anterior y lo ya conocido se salta por identificador
 IG_MAX_POR_CUENTA = 8      # fotos nuevas como mucho por cuenta y pasada (el análisis tiene tope de tiempo y las direcciones caducan)
-IG_ESPERA_MAX_S = 75 * 60  # lo máximo que la lectura de Instagram espera en total a que Meta libere cuota (la app se limita por tiempo de proceso: ~15-20 cuentas por hora)
+IG_ESPERA_MAX_S = 75 * 60  # lo máximo que la lectura de Instagram espera en total a que Meta libere cuota (la app se limita por tiempo de proceso: ~1,2 puntos de 100 por cuenta, así que las 68 caben en una hora)
 _IG_CACHE: dict = {}       # la respuesta de Windsor de esta ejecución (una sola petición para todas las cuentas)
 
 

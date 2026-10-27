@@ -266,7 +266,7 @@ def meta_filas(handles: list[str], token: str, ig_id_env: str = "", dias: int = 
                ahora: datetime | None = None, espera_max_s: float = 0.0, dormir=time.sleep) -> tuple[dict[str, list[dict]], dict]:
     """Todas las cuentas por Business Discovery. Devuelve ({usuario en minúsculas: [filas]}, resumen) con resumen =
     {'tipo_token', 'detalle', 'leidas', 'sin_lectura': {usuario: motivo}, 'avisos': [..], 'ig_id', 'dias_restantes', 'esperado_s', 'uso_final'}. Un fallo de token/permisos al principio lanza MetaError.
-    Meta limita la app por tiempo de proceso (unas 15-20 cuentas por hora): con `espera_max_s` > 0, al pasar USO_PAUSA % de la cuota se espera (hasta ese total de segundos) a que baje de
+    Meta limita la app por tiempo de proceso (medido: ~1,2 puntos de 100 por cuenta con 20 publicaciones sin carruseles; con carruseles, ~3): con `espera_max_s` > 0, al pasar USO_PAUSA % de la cuota se espera (hasta ese total de segundos) a que baje de
     USO_REANUDA % y se sigue; sin tiempo de espera, o cuando se acaba, se devuelve lo leído y se avisa. Si el token de persona no vale para Business Discovery pero el de su página sí, se cambia solo."""
     token = limpiar_token(token)
     if not token:

@@ -349,7 +349,7 @@ class PruebasMeta(unittest.TestCase):
 
 
 class PruebasCuota(unittest.TestCase):
-    """Meta limita la app por tiempo de proceso (~15-20 cuentas por hora): con tiempo de espera, la lectura se pausa y sigue en vez de rendirse."""
+    """Meta limita la app por tiempo de proceso: con tiempo de espera, la lectura se pausa y sigue en vez de rendirse."""
 
     CUENTAS = {"a": [[media(1)]], "b": [[media(2)]], "c": [[media(3)]]}
 
@@ -470,6 +470,53 @@ class PruebasCuotaMedida(unittest.TestCase):
         self.assertLess(len(por), 68)
         self.assertTrue(any("no se liberó a tiempo" in a for a in res["avisos"]))
         self.assertEqual(len(por) + len(res["sin_lectura"]), 68, "cada cuenta o se lee o queda anotada como sin lectura")
+
+
+class PruebasEnsayoSemanal(unittest.TestCase):
+    """El modo «todas» de la prueba de Instagram: lo mismo que hará la tarea del lunes con las 68 cuentas, contado en español."""
+
+    CUENTAS = [f"cuenta{i}" for i in range(68)]
+
+    def setUp(self):
+        os.environ.pop("META_IG_USER_ID", None)
+        pi.LINEAS.clear()
+        pi.CORTE_POR_CUOTA = False
+        self.addCleanup(setattr, pi, "CORTE_POR_CUOTA", False)
+        parche = mock.patch.object(pi, "foto_bajable", return_value="sí")
+        parche.start()
+        self.addCleanup(parche.stop)
+
+    def _ensaya(self, coste, espera_s=6 * 60):
+        g = GrafoVentanaMovil(coste)
+        with mock.patch.object(pi, "ESPERA_ENSAYO_S", espera_s):
+            ok = pi.ensayo_semanal(TOKEN, self.CUENTAS, abrir=g, pausa=0, dormir=g.dormir, ahora=AHORA)
+        return ok, g, "\n".join(pi.LINEAS)
+
+    def test_con_el_coste_medido_se_leen_las_68_sin_esperar(self):
+        ok, g, texto = self._ensaya(1.2)
+        self.assertTrue(ok)
+        self.assertEqual(g.pausas, [])
+        self.assertIn("Leídas 68 de 68 cuentas: 1360 publicaciones", texto)
+        self.assertIn("Cuota de la app al final: 82 %", texto)
+        self.assertIn("Fotos que se pueden bajar: 4 de 4", texto)
+        self.assertIn("✔ Meta dejó leer todas las cuentas", texto)
+        self.assertFalse(pi.CORTE_POR_CUOTA)
+
+    def test_si_cada_cuenta_costara_el_doble_dice_que_meta_corto_y_marca_el_corte_por_cuota(self):
+        ok, g, texto = self._ensaya(2.4)
+        self.assertFalse(ok)
+        self.assertTrue(pi.CORTE_POR_CUOTA)
+        self.assertIn("✘ Meta cortó antes de terminar", texto)
+        self.assertIn("la cuota de la app de Meta no se liberó a tiempo", texto)
+        self.assertNotIn("Leídas 68 de 68", texto)
+
+    def test_un_fallo_de_token_se_cuenta_sin_sacar_el_token(self):
+        def abrir(req, timeout=0):
+            raise error_http(req.full_url, 400, 190, "Invalid OAuth access token")
+
+        self.assertFalse(pi.ensayo_semanal(TOKEN, self.CUENTAS, abrir=abrir, pausa=0, dormir=lambda s: None, ahora=AHORA))
+        self.assertNotIn(TOKEN, "\n".join(pi.LINEAS))
+        self.assertFalse(pi.CORTE_POR_CUOTA, "un token malo no es un corte por cuota")
 
 
 class PruebasCombinacion(unittest.TestCase):

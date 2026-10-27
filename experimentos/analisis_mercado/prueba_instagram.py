@@ -8,7 +8,8 @@ El resultado sale en español en el resumen de la ejecución (y en el registro).
 
 Comprueba, con las mismas funciones que usa la tarea semanal:
   · Meta (app propia): que llega el secreto META_IG_TOKEN, qué tipo de token es y cuándo caduca, qué permisos tiene, qué cuenta de Instagram usa y que Business Discovery
-    devuelve publicaciones y fotos que se pueden bajar de unas cuentas de muestra (con la opción «todas», de las cuentas de tendencia_fuentes.json).
+    devuelve publicaciones y fotos que se pueden bajar de unas cuentas de muestra. Con la opción «todas» hace el ENSAYO de la lectura semanal: todas las cuentas de
+    tendencia_fuentes.json por `meta_filas`, igual que el lunes (cuentas rotadas por semana, con esperas si Meta limita la app).
   · Windsor: que existe el secreto WINDSOR_API_KEY, que Windsor lo acepta y cuántas publicaciones devuelve con la MISMA petición que hace la tarea semanal.
 """
 import collections
@@ -32,6 +33,7 @@ FORMAS_COSTE = (("50 publicaciones con carruseles", 50, True), ("30 con carrusel
 CUENTAS_COSTE = ("zara", "stussy", "gucci")   # una que publica mucho, una normal y una grande
 LINEAS: list[str] = []
 CORTE_POR_CUOTA = False   # la prueba terminó porque Meta limitó la app, no por el token
+ESPERA_ENSAYO_S = 6 * 60   # lo máximo que el ensayo espera a que Meta libere cuota (el trabajo de GitHub aguanta 15 min)
 
 
 def dice(txt: str = "") -> None:
@@ -125,6 +127,42 @@ def foto_bajable(url: str) -> str:
         return f"no ({type(e).__name__})"
 
 
+def ensayo_semanal(token: str, cuentas: list[str], **leer) -> bool:
+    """La lectura del lunes con todas las cuentas: las mismas llamadas que `tendencia_prenda.instagram_filas` (`meta_filas`, cuentas rotadas por semana, esperas si Meta limita),
+    con poco margen de espera. True si Meta no dejó ninguna cuenta sin pedir. `leer` pasa a `meta_filas` lo que haga falta (las pruebas: abrir, pausa, dormir)."""
+    global CORTE_POR_CUOTA
+    dice(f"Lectura de las {len(cuentas)} cuentas como la hará la tarea del lunes (cuentas rotadas por semana; si Meta limita la app, espera hasta {ESPERA_ENSAYO_S // 60} min):")
+    inicio = time.time()
+    try:
+        por, res = im.meta_filas(im.rotar(cuentas, datetime.now(timezone.utc).isocalendar()[1]), token, os.environ.get("META_IG_USER_ID", ""), 35, espera_max_s=ESPERA_ENSAYO_S, **leer)
+    except im.MetaError as e:
+        fallo_meta(e)
+        return False
+    es_foto = lambda f: bool(f.get("media_url")) and f.get("media_type") != "VIDEO"   # noqa: E731
+    filas = [f for fs in por.values() for f in fs]
+    dice(f"Leídas {res['leidas']} de {len(cuentas)} cuentas: {len(filas)} publicaciones ({sum(map(es_foto, filas))} con foto) en {time.time() - inicio:.0f} s.")
+    uso = res.get("uso_final")
+    dice(f"Cuota de la app al final: {uso:.0f} % del tiempo de proceso por hora; esperó {res['esperado_s'] / 60:.0f} min." if uso is not None else
+         f"Meta no dijo cuánta cuota quedaba al final; esperó {res['esperado_s'] / 60:.0f} min.")
+    muestras = [next(f["media_url"] for f in fs if es_foto(f)) for fs in por.values() if any(map(es_foto, fs))][:4]
+    dice(f"Fotos que se pueden bajar: {sum(foto_bajable(u) == 'sí' for u in muestras)} de {len(muestras)} probadas.")
+    cortadas = [c for c, m in res["sin_lectura"].items() if m.startswith("no se llegó a pedir")]
+    otras = {c: m for c, m in res["sin_lectura"].items() if c not in cortadas}
+    if otras:
+        dice(f"Sin lectura por otros motivos ({len(otras)}): " + "; ".join(f"{c} ({m})" for c, m in list(otras.items())[:12]) + ("…" if len(otras) > 12 else ""))
+    for a in res["avisos"]:
+        dice(f"⚠ {a}")
+    if cortadas:
+        CORTE_POR_CUOTA = True
+        dice(f"✘ Meta cortó antes de terminar: {len(cortadas)} cuentas sin pedir (el lunes habría más margen de espera: hasta 75 min).")
+        return False
+    if not por:
+        dice("✘ Meta no devolvió publicaciones de ninguna cuenta.")
+        return False
+    dice("✔ Meta dejó leer todas las cuentas sin cortar: la tarea del lunes puede leer Instagram con la app propia.")
+    return True
+
+
 def prueba_meta() -> bool | None:
     dice("## Meta (app propia: Business Discovery)")
     token = im.limpiar_token(os.environ.get("META_IG_TOKEN", ""))
@@ -182,9 +220,11 @@ def prueba_meta() -> bool | None:
         prueba_coste(ig_id, tok, corte, uso_previo=uso_sondas)
         dice("Campos que acepta Business Discovery: " + ", ".join(im._CAMPOS_VIVOS))   # los que Meta no rechazó
         return not CORTE_POR_CUOTA
+    if os.environ.get("PRUEBA_TODAS") == "1":
+        return ensayo_semanal(token, cuentas)
     # 3) Business Discovery con cuentas de muestra
-    pruebas = cuentas if os.environ.get("PRUEBA_TODAS") == "1" else muestra(cuentas)
-    dice(f"Business Discovery con {len(pruebas)} cuentas ({'todas las de las fuentes' if len(pruebas) == len(cuentas) else 'de muestra, una por casilla estilo/mercado'}):")
+    pruebas = muestra(cuentas)
+    dice(f"Business Discovery con {len(pruebas)} cuentas (de muestra, una por casilla estilo/mercado):")
     leidas, sin, bajables, probadas, cab = 0, {}, 0, 0, {}
     for i, c in enumerate(pruebas):
         try:
