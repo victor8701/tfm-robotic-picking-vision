@@ -414,6 +414,17 @@ def cargar_solicitudes() -> tuple[dict, str | None]:
     return {}, None
 
 
+# Pedido en lenguaje natural (31-oct-2026): página estática que carga static/pedido/*.json y pide las miniaturas del inventario de prueba a GitHub (raw), como la galería.
+PEDIDO_VERSION = "20261031"   # cambia al regenerar static/pedido/*, para que el navegador no reutilice ficheros viejos
+URL_INVENTARIO_BASE = f"https://raw.githubusercontent.com/{REPO}/{BRANCH}/experimentos/clip_trend_matching/"
+
+
+@app.route("/pedido")
+@requiere_login
+def pedido():
+    return render_template_string(PLANTILLA_PEDIDO, version=PEDIDO_VERSION, url_inventario_base=URL_INVENTARIO_BASE)
+
+
 @app.route("/buscar-x", methods=["GET"])
 @requiere_login
 def buscar_x():
@@ -667,6 +678,7 @@ NAV_COMUN = """
       <a href="{{ url_for('galeria') }}"%(activa_clasificar)s>Clasificar fotos</a>
       <a href="{{ url_for('buscar_x') }}"%(activa_buscar)s>Buscar en X</a>
       <a href="{{ url_for('panel') }}"%(activa_automatizacion)s>Automatización X</a>
+      <a href="{{ url_for('pedido') }}"%(activa_pedido)s>Pedido</a>
     </nav>
 """
 
@@ -676,6 +688,7 @@ def nav(activa: str) -> str:
         "activa_clasificar": ' class="activa"' if activa == "clasificar" else "",
         "activa_buscar": ' class="activa"' if activa == "buscar" else "",
         "activa_automatizacion": ' class="activa"' if activa == "automatizacion" else "",
+        "activa_pedido": ' class="activa"' if activa == "pedido" else "",
     }
 
 
@@ -1146,6 +1159,81 @@ async function cancelarBusqueda(id, btn) {
   }
 }
 </script>
+</body></html>
+"""
+
+PLANTILLA_PEDIDO = """
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pedido en lenguaje natural</title>
+<style>""" + ESTILO_PAGINA + """</style>
+<link rel="stylesheet" href="{{ url_for('static', filename='pedido/pedido.css', v=version) }}">
+</head><body>
+<div class="envoltura">
+  <header>
+    <h1>Pedido en lenguaje natural</h1>
+    """ + nav("pedido") + """
+  </header>
+  <main class="pedido" id="pedido-app" data-vocab="{{ url_for('static', filename='pedido/vocab.json', v=version) }}"
+        data-datos="{{ url_for('static', filename='pedido/datos.json', v=version) }}" data-imagenes="{{ url_inventario_base }}">
+    <p class="pd-sub">Prototipo v0 del modo 4. Escribe lo que pediría el operario: el programa lo entiende con reglas sobre un vocabulario cerrado (sin modelo de lenguaje) y busca entre
+      1.267 miniaturas de prueba con CLIP. Nada se envía a ningún robot.</p>
+    <p id="cargando" class="pd-sub">Cargando el inventario…</p>
+    <p id="error-carga" class="pd-error pd-oculto"></p>
+    <div id="contenido" class="pd-columna pd-oculto">
+      <section class="pd-tarjeta" aria-labelledby="t-pedido">
+        <h2 id="t-pedido">Pedido</h2>
+        <form id="form" class="pd-columna">
+          <textarea id="texto" rows="2" aria-label="Pedido del operario" placeholder="Ej.: prepara un pedido de sudaderas estilo geek de cuero">prepara un pedido de sudaderas estilo geek de cuero</textarea>
+          <div class="pd-fila"><button type="submit" class="pd-principal">Preparar pedido</button></div>
+        </form>
+        <div class="pd-fila" style="margin-top:10px" id="ejemplos" aria-label="Ejemplos"></div>
+      </section>
+
+      <section id="entendido-sec" class="pd-tarjeta pd-oculto" aria-labelledby="t-ent">
+        <h2 id="t-ent">Lo he entendido así</h2>
+        <dl class="pd-entendido" id="entendido"></dl>
+        <p class="pd-aviso-no pd-oculto" id="no-entendido"></p>
+      </section>
+
+      <section id="respuesta" class="pd-tarjeta pd-respuesta" aria-live="polite">
+        <p class="pd-estado" id="estado-txt"></p>
+        <div id="respuesta-texto"></div>
+        <div class="pd-acciones" id="acciones"></div>
+      </section>
+
+      <section id="prendas-sec" class="pd-oculto" aria-labelledby="t-prendas">
+        <h2 id="t-prendas"></h2>
+        <ul class="pd-lista" id="prendas"></ul>
+        <div class="pd-acciones"><button type="button" id="mas" class="pd-oculto">Ver más</button></div>
+      </section>
+
+      <section id="aprobar-sec" class="pd-tarjeta pd-oculto" aria-labelledby="t-aprob">
+        <h2 id="t-aprob">Aprobación</h2>
+        <p id="aprobar-texto" class="pd-sub"></p>
+        <div class="pd-acciones"><button type="button" class="pd-principal" id="aprobar">Aprobar pedido (simulado)</button></div>
+        <div id="aprobado" class="pd-oculto"></div>
+      </section>
+
+      <details id="estilo-datos" class="pd-oculto"><summary id="estilo-titulo"></summary><div id="estilo-cuerpo"></div></details>
+
+      <details>
+        <summary>Cómo funciona y qué es real</summary>
+        <ol>
+          <li><b>Entender.</b> El texto se pasa a minúsculas y sin acentos y se busca en un vocabulario cerrado: 29 tipos de prenda, 9 materiales, 12 colores y los 7 estilos, con sus sinónimos y plurales. Lo que no reconoce se lo dice al operario; no lo ignora en silencio.</li>
+          <li><b>Filtrar por tipo.</b> El tipo sale de la categoría de cada prenda en el inventario (es un dato, no una estimación).</li>
+          <li><b>Material y color.</b> CLIP estima, para cada miniatura, la probabilidad de cada material y de cada color. Con 50 % o más se da por cumplido, entre 25 y 50 % por dudoso. Si ninguna cumple con seguridad, no se propone ninguna hasta que el operario decida.</li>
+          <li><b>Estilo.</b> No es una propiedad de una prenda suelta: se ordena por la afinidad de cada prenda con la descripción medida del estilo (tus fotos de referencia, Experimento C).</li>
+        </ol>
+        <p><b>Real:</b> los vectores de CLIP (ViT-B/32) de las miniaturas, las probabilidades de material y color, las descripciones medidas de los estilos y el algoritmo. <b>Simulado o limitado:</b> el inventario son miniaturas de 60×80 píxeles de una tienda en línea, no el catálogo real; el material casi no se ve a esa resolución; no se entiende la negación («sin capucha»), el género ni palabras fuera del vocabulario; la aprobación no envía nada a ningún robot.</p>
+      </details>
+
+      <p class="pd-pie">Siguiente paso previsto: etiquetar el inventario con el modelo grande (Qwen3-VL) que ya etiqueta las fotos de mercado, para que material y estampado dejen de ser una estimación sobre miniaturas.</p>
+    </div>
+  </main>
+</div>
+<script src="{{ url_for('static', filename='pedido/pedido_nl_nucleo.js', v=version) }}"></script>
+<script src="{{ url_for('static', filename='pedido/pedido.js', v=version) }}"></script>
 </body></html>
 """
 

@@ -1,0 +1,49 @@
+/* Página «Pedido en lenguaje natural» del panel (31-oct-2026). Misma paleta que el resto del panel; todas las clases llevan el prefijo pd- para no chocar con las de la galería. */
+.pedido { display: flex; flex-direction: column; gap: 14px; }
+.pedido h2 { font-size: 0.7rem; letter-spacing: .06em; text-transform: uppercase; color: #746c60; margin: 0 0 8px; font-weight: 800; }
+.pedido p { margin: 0; }
+.pedido .pd-sub { font-size: 0.8rem; color: #746c60; line-height: 1.45; }
+.pedido .pd-tarjeta { background: #fff; border: 1px solid #e2dcd0; border-radius: 12px; padding: 14px; box-shadow: 0 1px 2px rgba(33,29,24,.06); }
+.pedido textarea { width: 100%; box-sizing: border-box; font: inherit; font-size: 16px; color: #211d18; background: #f6f3ee; border: 1px solid #e2dcd0; border-radius: 8px; padding: 10px 12px; resize: vertical; min-height: 64px; }
+.pedido textarea:focus-visible, .pedido button:focus-visible, .pedido summary:focus-visible { outline: 2px solid #2f4a6b; outline-offset: 2px; }
+.pedido .pd-fila { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.pedido button { font: inherit; font-size: 0.8rem; font-weight: 700; cursor: pointer; border-radius: 9px; border: 1px solid #e2dcd0; background: #efeae1; color: #746c60; padding: 8px 12px; min-height: 38px; }
+.pedido button.pd-principal { background: #2f4a6b; border-color: #2f4a6b; color: #fff; }
+.pedido button:disabled { opacity: .5; cursor: not-allowed; }
+.pedido button.pd-ejemplo { font-size: 0.74rem; font-weight: 600; padding: 6px 10px; min-height: 32px; text-align: left; }
+.pedido .pd-entendido { display: grid; grid-template-columns: repeat(auto-fit, minmax(104px, 1fr)); gap: 8px; margin: 0; padding: 0; }
+.pedido .pd-entendido div { background: #f6f3ee; border: 1px solid #e2dcd0; border-radius: 8px; padding: 6px 10px; min-width: 0; }
+.pedido .pd-entendido dt { font-size: 0.62rem; letter-spacing: .06em; text-transform: uppercase; color: #746c60; font-weight: 700; }
+.pedido .pd-entendido dd { margin: 0; font-weight: 700; font-size: 0.86rem; overflow-wrap: anywhere; }
+.pedido .pd-entendido dd.pd-vacio { color: #746c60; font-weight: 400; }
+.pedido .pd-aviso-no { margin-top: 10px; font-size: 0.78rem; color: #7a5a14; background: #f7ecd2; border-radius: 8px; padding: 6px 10px; }
+.pedido .pd-respuesta { border-left: 4px solid #746c60; }
+.pedido .pd-respuesta.ok { border-left-color: #4f7a56; } .pedido .pd-respuesta.duda { border-left-color: #b08020; } .pedido .pd-respuesta.no { border-left-color: #a8433a; }
+.pedido .pd-estado { font-size: 0.66rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 800; margin-bottom: 4px; }
+.pedido .ok .pd-estado { color: #4f7a56; } .pedido .duda .pd-estado { color: #8a6416; } .pedido .no .pd-estado { color: #a8433a; }
+.pedido .pd-respuesta p { font-size: 0.86rem; line-height: 1.45; }
+.pedido .pd-respuesta p + p { margin-top: 8px; }
+.pedido .pd-lista { display: grid; grid-template-columns: 1fr; gap: 8px; list-style: none; margin: 0; padding: 0; }
+@media (min-width: 560px) { .pedido .pd-lista { grid-template-columns: 1fr 1fr; } }
+.pedido .pd-prenda { display: flex; gap: 12px; background: #fff; border: 1px solid #e2dcd0; border-radius: 12px; padding: 10px; min-width: 0; }
+.pedido .pd-prenda.pd-en-pedido { border-color: #2f4a6b; box-shadow: inset 0 0 0 1px #2f4a6b; }
+.pedido .pd-prenda img { width: 72px; height: 96px; object-fit: cover; border-radius: 6px; background: #efeae1; flex: none; }
+.pedido .pd-cuerpo { min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.pedido .pd-nombre { font-weight: 800; font-size: 0.86rem; }
+.pedido .pd-id { font-weight: 400; color: #746c60; font-variant-numeric: tabular-nums; }
+.pedido .pd-criterios { display: flex; flex-wrap: wrap; gap: 4px; }
+.pedido .pd-crit { font-size: 0.7rem; border-radius: 999px; padding: 2px 9px; background: #efeae1; color: #746c60; white-space: nowrap; font-variant-numeric: tabular-nums; font-weight: 600; }
+.pedido .pd-crit.si { background: #e1eee3; color: #3b6a43; } .pedido .pd-crit.quiza { background: #f7ecd2; color: #8a6416; } .pedido .pd-crit.no { background: #f7e1de; color: #a8433a; }
+.pedido .pd-crit.alta { background: #e4ebf1; color: #2f4a6b; }
+.pedido .pd-marca { font-size: 0.66rem; letter-spacing: .05em; text-transform: uppercase; color: #2f4a6b; font-weight: 800; }
+.pedido .pd-acciones { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.pedido pre { background: #f6f3ee; border: 1px solid #e2dcd0; border-radius: 8px; padding: 10px; font-size: 0.7rem; overflow-x: auto; margin: 10px 0 0; }
+.pedido details { background: #fff; border: 1px solid #e2dcd0; border-radius: 12px; padding: 10px 14px; font-size: 0.82rem; line-height: 1.45; }
+.pedido summary { cursor: pointer; font-weight: 800; }
+.pedido details[open] summary { margin-bottom: 8px; }
+.pedido details ul, .pedido details ol { margin: 6px 0; padding-left: 20px; }
+.pedido details li + li { margin-top: 4px; }
+.pedido .pd-pie { font-size: 0.74rem; color: #746c60; }
+.pedido .pd-oculto { display: none !important; }
+.pedido .pd-error { background: #fbe3e0; color: #7a2a22; border: 1px solid #edb3ac; border-radius: 10px; padding: 10px 14px; font-size: 0.8rem; }
+.pedido .pd-columna { display: flex; flex-direction: column; gap: 14px; }
