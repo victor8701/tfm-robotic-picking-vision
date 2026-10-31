@@ -97,22 +97,33 @@
         if (pedido && pedido > total) frases.push('Pides ' + pedido + ', pero solo hay ' + total + '.');
       } else if (k0 >= 1) {
         const n = Math.min(pedido || U.mostrar, k0);
-        frases.push('Hay ' + k0 + ' ' + nombres + ' ' + req + ' con seguridad (probabilidad de al menos 50 %) entre las ' + total + ' del inventario.'
+        frases.push('Hay ' + k0 + ' ' + nombres + ' ' + req + ' con seguridad entre las ' + total + ' del inventario.'
           + (est ? ' Propongo ' + n + ' unidades, las de mayor afinidad con el estilo ' + est + '.' : ' Propongo ' + n + ' unidades.'));
         if (pedido && pedido > k0) frases.push('Pides ' + pedido + ', pero solo ' + k0 + ' lo cumplen con seguridad.');
       } else if (k1 >= 1) {
-        frases.push('No veo ' + nombres + ' ' + req + ' con seguridad entre las ' + total + ' del inventario. Hay ' + k1 + ' que podrían serlo (probabilidad entre 25 y 50 %). '
+        frases.push('No veo ' + nombres + ' ' + req + ' con seguridad entre las ' + total + ' del inventario. Hay ' + k1 + ' que podrían serlo (dudosas). '
           + 'No propongo ninguna hasta que decidas si las preparo igualmente o cambias el pedido.');
       } else if (p.materiales.length && !p.colores.length) {
-        frases.push('No veo ' + nombres + ' ' + req + ' entre las ' + total + ' del inventario: la más probable llega solo al ' + pct(r.max_material || 0) + ' % en el material pedido.');
+        frases.push(r.con_vlm
+          ? 'No veo ' + nombres + ' ' + req + ' entre las ' + total + ' del inventario: el modelo grande no etiqueta ninguna con ese tejido y la más probable para CLIP llega solo al ' + pct(r.max_material || 0) + ' %.'
+          : 'No veo ' + nombres + ' ' + req + ' entre las ' + total + ' del inventario: la más probable llega solo al ' + pct(r.max_material || 0) + ' % en el material pedido.');
       } else {
         frases.push('No veo ' + nombres + ' ' + req + ' entre las ' + total + ' del inventario. No propongo ninguna hasta que decidas si preparo las más cercanas o cambias el pedido.');
       }
-      if (p.materiales.length) frases.push(vocab.aviso_material);
+      if (p.materiales.length) frases.push(r.con_vlm ? vocab.aviso_material_vlm : vocab.aviso_material);
       const nota = notaEstiloMaterial(p);
       if (nota) frases.push(nota);
       if (p.no_entendido.length) frases.push('No he reconocido: ' + lista(p.no_entendido, 'y') + '; lo he ignorado.');
       return frases.join(' ');
+    }
+
+    // Material pedido: manda el tejido que le pone el modelo grande; CLIP solo decide si no hay etiqueta, y desempata en un caso («no se distingue» o el modelo dice otro tejido pero CLIP está seguro).
+    function veredictoMaterial(clipP, tejido, valores) {
+      const porClip = clipP >= U.si ? 'si' : clipP >= U.quiza ? 'quiza' : 'no';
+      if (tejido === null || tejido === undefined) return porClip;
+      if (valores.has(tejido)) return 'si';
+      if (tejido === 'no se distingue') return porClip !== 'no' ? 'quiza' : 'no';
+      return clipP >= U.si ? 'quiza' : 'no';
     }
 
     function buscar(p) {
@@ -124,6 +135,8 @@
       const imat = p.materiales.map((m) => datos.materiales.indexOf(m));
       const icol = p.colores.map((c) => datos.colores.indexOf(c));
       const iest = p.estilos.map((e) => datos.estilos.indexOf(e));
+      const valoresMat = new Set(p.materiales.map((k) => material(k).valor));
+      const tej = datos.vlm_tejido || null, pat = datos.vlm_estampado || null, forma = datos.vlm_forma || null;
       const maxDe = (fila, idx) => Math.max.apply(null, idx.map((k) => fila[k]));
       const afin = {};
       if (iest.length) cands.forEach((i) => { afin[i] = maxDe(datos.est[i], iest); });
@@ -131,26 +144,30 @@
       if (iest.length) for (let j = 0; j < cat.length; j++) if (cats.has(cat[j])) (porCat[cat[j]] = porCat[cat[j]] || []).push(maxDe(datos.est[j], iest));
       const v = (x) => (x === null ? null : x >= U.si ? 'si' : x >= U.quiza ? 'quiza' : 'no');
       const filas = cands.map((i) => {
-        const m = imat.length ? maxDe(datos.mat[i], imat) : null;
+        const mClip = imat.length ? maxDe(datos.mat[i], imat) : null;
         const c = icol.length ? maxDe(datos.col[i], icol) : null;
+        const tVlm = tej ? tej[i] : null;
+        const vmat = imat.length ? veredictoMaterial(mClip, tVlm, valoresMat) : null;
+        const m = (imat.length && valoresMat.has(tVlm)) ? 1.0 : mClip;   // para ordenar: si el modelo grande lo confirma, vale como seguro
         let e = null;
         if (iest.length) {
           const otros = porCat[cat[i]];
           e = otros.length > 1 ? otros.filter((a) => a < afin[i]).length / (otros.length - 1) : 1.0;
         }
-        const vm = v(m), vc = v(c);
+        const vm = vmat, vc = v(c);
         const duros = [vm, vc].filter((x) => x !== null);
         const nivel = duros.every((x) => x === 'si') ? 0 : duros.every((x) => x !== 'no') ? 1 : 2;
         let duro = 0;
         if (m !== null) duro = duro + m;
         if (c !== null) duro = duro + c;
         const puntos = nivel === 0 ? (e !== null ? e : 0.0) + 0.01 * duro : 3 * duro + (e !== null ? 0.5 * e : 0.0);
-        return { i, id: datos.ids[i], cat: cat[i], mat: m, col: c, est: e, v_mat: vm, v_col: vc, v_est: e === null ? null : e >= U.alta ? 'alta' : e >= U.media ? 'media' : 'baja', nivel, puntos };
+        return { i, id: datos.ids[i], cat: cat[i], mat: mClip, tejido: imat.length ? tVlm : null, vlm: tej ? { tejido: tej[i], estampado: pat ? pat[i] : null, forma: forma ? forma[i] : null } : null, col: c, est: e, v_mat: vm, v_col: vc, v_est: e === null ? null : e >= U.alta ? 'alta' : e >= U.media ? 'media' : 'baja', nivel, puntos };
       });
       filas.sort((a, b) => (a.nivel - b.nivel) || (b.puntos - a.puntos) || (a.i - b.i));
       const r = { pedido: p, total: filas.length, n_cumplen: filas.filter((f) => f.nivel === 0).length, n_quiza: filas.filter((f) => f.nivel === 1).length, filas };
       const ms = filas.filter((f) => f.mat !== null).map((f) => f.mat);
       r.max_material = ms.length ? Math.max.apply(null, ms) : null;
+      r.con_vlm = !!tej;
       r.texto = redactar(p, r);
       return r;
     }

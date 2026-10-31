@@ -71,14 +71,15 @@
       $('prendas').innerHTML = r.filas.slice(0, n).map((f) => {
         const t = tipoDeCat(f.cat);
         const crit = [];
-        if (f.mat !== null) crit.push('<span class="pd-crit ' + f.v_mat + '">' + (f.v_mat === 'si' ? '✓' : f.v_mat === 'quiza' ? '?' : '✗') + ' Material ' + nl.pct(f.mat) + ' %</span>');
+        if (f.mat !== null) crit.push('<span class="pd-crit ' + f.v_mat + '">' + (f.v_mat === 'si' ? '✓' : f.v_mat === 'quiza' ? '?' : '✗') + (f.vlm ? ' Tejido: ' + esc(f.vlm.tejido || 'sin etiqueta') + ' · CLIP ' + nl.pct(f.mat) + ' %' : ' Material ' + nl.pct(f.mat) + ' %') + '</span>');
         if (f.col !== null) crit.push('<span class="pd-crit ' + f.v_col + '">' + (f.v_col === 'si' ? '✓' : f.v_col === 'quiza' ? '?' : '✗') + ' Color ' + nl.pct(f.col) + ' %</span>');
         if (f.est !== null) crit.push('<span class="pd-crit ' + (f.v_est === 'alta' ? 'alta' : '') + '">Estilo: afinidad ' + f.v_est + '</span>');
         const num = f.id.slice(f.id.lastIndexOf('_') + 1);
+        const carp = f.id.slice(0, f.id.indexOf('/'));   // el número solo no identifica la prenda: se repite entre carpetas
         const nombre = t ? t.singular : f.cat;
         return '<li class="pd-prenda' + (enPedido.has(f.id) ? ' pd-en-pedido' : '') + '"><img src="' + esc(srcImagen(f.i)) + '" width="72" height="96" loading="lazy" alt="' + esc(nombre) + ' ' + num + '">'
-          + '<div class="pd-cuerpo"><div class="pd-nombre">' + esc(nombre) + ' <span class="pd-id">#' + num + '</span></div>'
-          + (crit.length ? '<div class="pd-criterios">' + crit.join('') + '</div>' : '') + (enPedido.has(f.id) ? '<div class="pd-marca">En el pedido</div>' : '') + '</div></li>';
+          + '<div class="pd-cuerpo"><div class="pd-nombre">' + esc(nombre) + ' <span class="pd-id">#' + num + ' · ' + esc(carp) + '</span></div>'
+          + (crit.length ? '<div class="pd-criterios">' + crit.join('') + '</div>' : '') + (f.vlm ? '<div class="pd-vlm">Modelo grande: ' + [f.vlm.tejido, f.vlm.estampado, f.vlm.forma].map((x) => esc(x || '—')).join(' · ') + '</div>' : '') + (enPedido.has(f.id) ? '<div class="pd-marca">En el pedido</div>' : '') + '</div></li>';
       }).join('');
       $('mas').classList.toggle('pd-oculto', n >= r.filas.length);
     }

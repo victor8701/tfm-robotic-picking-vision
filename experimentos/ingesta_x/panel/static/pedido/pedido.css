@@ -47,3 +47,4 @@
 .pedido .pd-oculto { display: none !important; }
 .pedido .pd-error { background: #fbe3e0; color: #7a2a22; border: 1px solid #edb3ac; border-radius: 10px; padding: 10px 14px; font-size: 0.8rem; }
 .pedido .pd-columna { display: flex; flex-direction: column; gap: 14px; }
+.pedido .pd-vlm { font-size: 0.68rem; color: #746c60; line-height: 1.3; }
