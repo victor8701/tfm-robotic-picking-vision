@@ -35,6 +35,10 @@ Primero solo lectura y medidas. Ningún movimiento del robot hasta haber pasado 
 - [ ] Homografía de la mesa: al menos 6 puntos marcados (4 para ajustar y 2 para validar), a la altura del borde de la caja. La homografía del curso (4 puntos) no sirve.
 - [ ] Mano-ojo de la cámara de muñeca: al menos 10 poses con un tablero visible en cada una. Guardar poses del robot y del tablero para `calibracion.calibrar_mano_ojo`.
 - [ ] Prueba de consistencia: dos TCP sobre el mismo punto (§8 del mapa).
+- [ ] Procesar los datos con la línea de comandos (desde `robotica/`):
+      `python3 -m calibracion.cli homografia datos_mesa.json resultado_mesa.json`
+      `python3 -m calibracion.cli mano_ojo datos_mano.json resultado_mano.json`
+      Formato de los JSON en la cabecera de `calibracion/cli.py`. Código de salida 1 = repetir la homografía.
 
 ## E. Lo que se anota al final
 

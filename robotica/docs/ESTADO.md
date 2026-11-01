@@ -56,7 +56,7 @@ En orden:
 1. **Controlador virtual (Víctor, en Windows):** pasar `docs/guion_virtual.md`. Decide `semantica` y el rango de `MOD_EGM`.
 2. **Visita 1 (Víctor, con el tutor):** pasar `docs/guion_V1.md`. Medidas de mesa, caja y cámara, y el campo de visión en la pose de agarre.
 3. **Driver de la mano:** definir cómo llegan `AGARRE_HECHO`, `VERIFICADO` y `SOLTADO` al coordinador.
-4. **Calibración en el laboratorio:** programa que procese los datos de la visita 1 con `calibracion/`.
+4. **Calibración en el laboratorio:** la línea de comandos `calibracion/cli.py` procesa los datos de la visita 1 (homografía y mano-ojo). Faltan los datos reales.
 5. **Mapa:** actualizar §9, §10, §13 y §14 con estos resultados (hecho en la versión 6 del mapa).
 
 ## 6. Cómo se reproduce

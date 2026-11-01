@@ -14,7 +14,7 @@ Estado detallado, riesgos y suposiciones: [docs/ESTADO.md](docs/ESTADO.md).
 | Puente EGM en C# | `puente_egm/` | Compilado y probado con un controlador simulado (14 pruebas de extremo a extremo) | Controlador virtual de RobotStudio (Windows) |
 | Controlador simulado | `mock/` | Sí (lo usan las pruebas del puente) | — |
 | Visión: esquinas y pose | `vision/` | Sí, con imágenes sintéticas | Cámara real y datos del laboratorio |
-| Calibración: homografía y mano-ojo | `calibracion/` | Sí, con datos sintéticos | Datos medidos en el laboratorio |
+| Calibración: homografía y mano-ojo | `calibracion/` (CLI en `calibracion/cli.py`) | Sí, con datos sintéticos | Datos medidos en el laboratorio |
 | Nodos ROS 2 | `ros2/robotica_bimanual/` | Compilado con colcon, lanzado con su launch, nodos creados en pruebas | Sistema completo con robots |
 | Módulos RAPID | `rapid/` | **No** | Controlador virtual |
 | CSV a RAPID | `simulacion/csv_a_rapid.py` | Sí | — |
@@ -52,7 +52,7 @@ python3 -m pytest -q
 - El driver de la mano: los eventos `AGARRE_HECHO`, `VERIFICADO` y `SOLTADO` llegan desde fuera.
 - La caja en la pose de agarre puede no entrar en el campo de la cámara. Ver riesgos en docs/ESTADO.md.
 - Los módulos RAPID no se han probado en un controlador.
-- Calibración en el laboratorio: falta el guion de captura de datos y el programa que lo procese.
+- Calibración en el laboratorio: la captura de datos está en `docs/guion_V1.md` (sección D) y el procesado en `python3 -m calibracion.cli`. Faltan los datos reales.
 
 ## Estructura
 
