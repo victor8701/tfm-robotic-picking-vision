@@ -10,6 +10,16 @@
     "tcp_caja_1": {"t": [-400, 0, 100], "q": [0, 1, 0, 0]},
     "tcp_caja_2": {"t": [400, 0, 100], "q": [0, 1, 0, 0]}
   },
+  "camara_en_mano1": {
+    "_nota": "Cámara en el marco del TCP de la mano maestra (resultado de la calibración mano-ojo, handeye.py). Placeholder.",
+    "t": [60, 0, -80],
+    "q": [1, 0, 0, 0]
+  },
+  "punto_b_mm": {
+    "_nota": "Pose de la caja en el mundo para depositarla (punto B). Placeholder.",
+    "t": [600, 500, 100],
+    "q": [1, 0, 0, 0]
+  },
   "espacio_trabajo_mm": {"x": [-600, 600], "y": [-600, 600], "z": [0, 800]},
   "limites_ciclo": {
     "_nota": "Por ciclo de 4 ms: 0,5 mm = 125 mm/s como máximo de la referencia. Placeholder conservador.",
@@ -24,5 +34,18 @@
     "lam_r": 2.0,
     "v_max_mm_s": 100.0,
     "w_max_rad_s": 0.3
+  },
+  "coordinacion": {
+    "_nota": "Tolerancias y alturas de la coordinación. Placeholders a validar en el controlador virtual y en V1.",
+    "altura_aprox_mm": 150.0,
+    "altura_levante_mm": 100.0,
+    "tol_aprox_mm": 10.0,
+    "tol_aprox_rad": 0.02,
+    "tol_conv_mm": 5.0,
+    "tol_conv_rad": 0.01,
+    "caja_max_edad_s": 0.5,
+    "desv_interna_mm": 5.0,
+    "desv_interna_rad": 0.02,
+    "periodo_s": 0.04
   }
 }

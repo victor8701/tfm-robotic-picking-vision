@@ -61,6 +61,12 @@ def integrar_camara(T_cb: Pose, v, w, dt: float) -> Pose:
     return Pose(t_nuevo, multiplicar(q_d, T_cb.q))
 
 
+def exp_se3(v, w, dt: float) -> Pose:
+    """Pose recorrida por un torsor de cuerpo constante (v, w) durante dt: exp(ξ·dt)."""
+    phi = np.asarray(w, dtype=float) * dt
+    return Pose(_jacobiano_v(phi) @ (np.asarray(v, dtype=float) * dt), quat_desde_rotvec(phi))
+
+
 def error_pbvs(T_cb: Pose, T_cb_deseada: Pose) -> tuple[float, float]:
     """(|error de posición| en mm, |error de orientación| en rad)."""
     e_t = np.linalg.norm(T_cb.t - T_cb_deseada.t)
