@@ -30,7 +30,7 @@ python3 -m pytest -q
 - Las pruebas del puente necesitan el ejecutable compilado: `dotnet build -c Release puente_egm/PuenteEgm`.
   Sin .NET 8 se saltan.
 - Con ROS 2 Humble cargado (`source /opt/ros/humble/setup.bash`) se ejecutan también las pruebas de nodos.
-- Resultado en la última ejecución: 93 pasan y 1 módulo se salta sin ROS; con ROS 2, 95 pasan.
+- Resultado en la última ejecución: 98 pasan y 1 módulo se salta sin ROS; con ROS 2, 100 pasan.
 
 ## Convenciones
 

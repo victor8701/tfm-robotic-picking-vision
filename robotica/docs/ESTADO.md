@@ -1,6 +1,6 @@
 # Estado de la fase robótica (1 de noviembre de 2026)
 
-Rama `robotica-bimanual` (desde `analisis-mercado`, mapa v5). Código en `robotica/`.
+Rama `robotica-bimanual` (desde `analisis-mercado`, mapa v6). Código en `robotica/`.
 
 ## 1. Qué se ha construido
 
@@ -9,8 +9,11 @@ Rama `robotica-bimanual` (desde `analisis-mercado`, mapa v5). Código en `roboti
 | 1 | Núcleo de control y seguridad. Protocolo EGM. Puente en C# (.NET 8) con controlador simulado y 14 pruebas de extremo a extremo. |
 | 2 | Visión (esquinas y pose). Calibración (homografía validada y mano-ojo). Coordinador bimanual. Paquete ROS 2 (tres nodos, launch). Módulos RAPID. Conversor CSV a RAPID. |
 
-Resultado: 93 pruebas pasan sin ROS y 95 con ROS 2 cargado. El puente C# compila sin avisos con .NET 8.0.133.
+Resultado: 98 pruebas pasan sin ROS y 100 con ROS 2 cargado. El puente C# compila sin avisos con .NET 8.0.133.
 El paquete ROS 2 compila con colcon y el launch arranca los tres nodos.
+
+Rama publicada: `origin/robotica-bimanual` (commit 9652e78). Partiendo de `analisis-mercado` (a8e5ec1), tiene cinco
+commits de código, documentación y mapa (v6). El commit del tutor (`02b44c2`) no está en la rama remota.
 
 ## 2. Qué se ha comprobado y qué no
 
@@ -39,7 +42,7 @@ Víctor pidió que no hubiera más preguntas por hoy. Estas son las decisiones q
 5. **Semántica de `planned`:** por defecto `desplazamiento` en la configuración de ejemplo. No está confirmada (D30). La prueba está en `docs/guion_virtual.md`.
 6. **Valores sin medir:** `simulacion/celda.json`, los límites de EGM en `MOD_EGM.mod` y las ganancias del PBVS son de partida. Están marcados como placeholders.
 7. **Visión por defecto:** método de contorno. El de líneas (port del proyecto previo) está disponible con `metodo: lineas`.
-8. **TFG o TFM:** Víctor respondió que el repositorio de EGM es su **TFG**. Hay que actualizar el mapa §14 y la memoria.
+8. **TFG o TFM:** Víctor respondió que el repositorio de EGM es su **TFG**. Ya está reflejado en el mapa v6 (§14) y en la memoria.
 
 ## 4. Riesgos y hallazgos nuevos
 
@@ -63,7 +66,7 @@ En orden:
 
 ```bash
 cd robotica
-python3 -m pytest -q                          # 93 pasan; 1 módulo se salta sin ROS
-source /opt/ros/humble/setup.bash && python3 -m pytest -q   # 95 pasan
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python3 -m pytest -q       # 98 pasan; 1 módulo se salta sin ROS
+source /opt/ros/humble/setup.bash && PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python3 -m pytest -q   # 100 pasan
 dotnet build -c Release puente_egm/PuenteEgm  # previo a las pruebas del puente
 ```
