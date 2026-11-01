@@ -12,7 +12,7 @@ Rama `robotica-bimanual` (desde `analisis-mercado`, mapa v6). Código en `roboti
 Resultado: 98 pruebas pasan sin ROS y 100 con ROS 2 cargado. El puente C# compila sin avisos con .NET 8.0.133.
 El paquete ROS 2 compila con colcon y el launch arranca los tres nodos.
 
-Rama publicada: `origin/robotica-bimanual` (commit 9652e78). Partiendo de `analisis-mercado` (a8e5ec1), tiene cinco
+Rama publicada: `origin/robotica-bimanual` (último commit 801833e). Partiendo de `analisis-mercado` (a8e5ec1), tiene siete
 commits de código, documentación y mapa (v6). El commit del tutor (`02b44c2`) no está en la rama remota.
 
 ## 2. Qué se ha comprobado y qué no
