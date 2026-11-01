@@ -74,7 +74,7 @@ def _mensaje(m, sangria: str) -> list[str]:
 def generar_proto(fdp) -> str:
     lineas = [
         "// Reconstruido por generar_proto.py a partir del descriptor embebido en Egm.cs.",
-        "// Equivale al egm.proto de ABB que usa el proyecto previo (ver docs/README.md).",
+        "// Equivale al egm.proto de ABB que usa el proyecto previo (ver egm/generar_proto.py).",
         f'syntax = "{fdp.syntax or "proto2"}";',
         "",
         f"package {fdp.package};",

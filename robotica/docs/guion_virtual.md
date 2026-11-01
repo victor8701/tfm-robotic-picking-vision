@@ -20,7 +20,7 @@ Anotar cada resultado en la tabla del final (y en `docs/ESTADO.md`).
    - nombre `default` (es el que usa `EGMSetupUC` en `MOD_EGM`);
    - dirección remota: la IP del PC donde corre el puente;
    - puerto: el de `puerto_egm` en la configuración del puente (6511 por defecto).
-   - El nombre `EGMsensor` del RAPID debe existir en esa configuración; si no, `EGMSetupUC` fallará.
+   - El nombre `EGMsensor` del RAPID debe coincidir con la configuración EGM del controlador. Si no coincide, la sesión no arranca. Comprobarlo en el paso 3.
 4. Cargar `rapid/MOD_EGM.mod`, `rapid/MOD_Seguridad.mod` y `rapid/MOD_Prueba_V1.mod`.
 5. Compilar el puente: `dotnet build -c Release` dentro de `puente_egm/PuenteEgm`.
 

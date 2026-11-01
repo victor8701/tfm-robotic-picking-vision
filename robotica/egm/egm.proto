@@ -1,5 +1,5 @@
 // Reconstruido por generar_proto.py a partir del descriptor embebido en Egm.cs.
-// Equivale al egm.proto de ABB que usa el proyecto previo (ver docs/README.md).
+// Equivale al egm.proto de ABB que usa el proyecto previo (ver egm/generar_proto.py).
 syntax = "proto2";
 
 package abb.egm;
