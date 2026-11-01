@@ -1,0 +1,10 @@
+__pycache__/
+.pytest_cache/
+*.pyc
+# Compilación de C# (puente EGM)
+puente_egm/**/bin/
+puente_egm/**/obj/
+puente_egm/**/.vs/
+# Registros y datos generados por las pruebas o por el puente
+*.log
+registros/

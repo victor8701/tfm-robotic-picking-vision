@@ -1,0 +1,145 @@
+// Reconstruido por generar_proto.py a partir del descriptor embebido en Egm.cs.
+// Equivale al egm.proto de ABB que usa el proyecto previo (ver docs/README.md).
+syntax = "proto2";
+
+package abb.egm;
+
+message EgmHeader {
+  enum MessageType {
+    MSGTYPE_UNDEFINED = 0;
+    MSGTYPE_COMMAND = 1;
+    MSGTYPE_DATA = 2;
+    MSGTYPE_CORRECTION = 3;
+    MSGTYPE_PATH_CORRECTION = 4;
+  }
+  optional uint32 seqno = 1;
+  optional uint32 tm = 2;
+  optional .abb.egm.EgmHeader.MessageType mtype = 3 [default = MSGTYPE_UNDEFINED];
+}
+
+message EgmCartesian {
+  required double x = 1;
+  required double y = 2;
+  required double z = 3;
+}
+
+message EgmQuaternion {
+  required double u0 = 1;
+  required double u1 = 2;
+  required double u2 = 3;
+  required double u3 = 4;
+}
+
+message EgmEuler {
+  required double x = 1;
+  required double y = 2;
+  required double z = 3;
+}
+
+message EgmClock {
+  required uint64 sec = 1;
+  required uint64 usec = 2;
+}
+
+message EgmPose {
+  optional .abb.egm.EgmCartesian pos = 1;
+  optional .abb.egm.EgmQuaternion orient = 2;
+  optional .abb.egm.EgmEuler euler = 3;
+}
+
+message EgmCartesianSpeed {
+  repeated double value = 1;
+}
+
+message EgmJoints {
+  repeated double joints = 1;
+}
+
+message EgmExternalJoints {
+  repeated double joints = 1;
+}
+
+message EgmPlanned {
+  optional .abb.egm.EgmJoints joints = 1;
+  optional .abb.egm.EgmPose cartesian = 2;
+  optional .abb.egm.EgmJoints externalJoints = 3;
+  optional .abb.egm.EgmClock time = 4;
+}
+
+message EgmSpeedRef {
+  optional .abb.egm.EgmJoints joints = 1;
+  optional .abb.egm.EgmCartesianSpeed cartesians = 2;
+  optional .abb.egm.EgmJoints externalJoints = 3;
+}
+
+message EgmPathCorr {
+  required .abb.egm.EgmCartesian pos = 1;
+  required uint32 age = 2;
+}
+
+message EgmFeedBack {
+  optional .abb.egm.EgmJoints joints = 1;
+  optional .abb.egm.EgmPose cartesian = 2;
+  optional .abb.egm.EgmJoints externalJoints = 3;
+  optional .abb.egm.EgmClock time = 4;
+}
+
+message EgmMotorState {
+  enum MotorStateType {
+    MOTORS_UNDEFINED = 0;
+    MOTORS_ON = 1;
+    MOTORS_OFF = 2;
+  }
+  required .abb.egm.EgmMotorState.MotorStateType state = 1;
+}
+
+message EgmMCIState {
+  enum MCIStateType {
+    MCI_UNDEFINED = 0;
+    MCI_ERROR = 1;
+    MCI_STOPPED = 2;
+    MCI_RUNNING = 3;
+  }
+  required .abb.egm.EgmMCIState.MCIStateType state = 1 [default = MCI_UNDEFINED];
+}
+
+message EgmRapidCtrlExecState {
+  enum RapidCtrlExecStateType {
+    RAPID_UNDEFINED = 0;
+    RAPID_STOPPED = 1;
+    RAPID_RUNNING = 2;
+  }
+  required .abb.egm.EgmRapidCtrlExecState.RapidCtrlExecStateType state = 1 [default = RAPID_UNDEFINED];
+}
+
+message EgmTestSignals {
+  repeated double signals = 1;
+}
+
+message EgmMeasuredForce {
+  repeated double force = 1;
+}
+
+message EgmRobot {
+  optional .abb.egm.EgmHeader header = 1;
+  optional .abb.egm.EgmFeedBack feedBack = 2;
+  optional .abb.egm.EgmPlanned planned = 3;
+  optional .abb.egm.EgmMotorState motorState = 4;
+  optional .abb.egm.EgmMCIState mciState = 5;
+  optional bool mciConvergenceMet = 6;
+  optional .abb.egm.EgmTestSignals testSignals = 7;
+  optional .abb.egm.EgmRapidCtrlExecState rapidExecState = 8;
+  optional .abb.egm.EgmMeasuredForce measuredForce = 9;
+  optional double utilizationRate = 10;
+}
+
+message EgmSensor {
+  optional .abb.egm.EgmHeader header = 1;
+  optional .abb.egm.EgmPlanned planned = 2;
+  optional .abb.egm.EgmSpeedRef speedRef = 3;
+}
+
+message EgmSensorPathCorr {
+  optional .abb.egm.EgmHeader header = 1;
+  optional .abb.egm.EgmPathCorr pathCorr = 2;
+}

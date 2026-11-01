@@ -1,0 +1,5 @@
+# Entorno de desarrollo y pruebas (Python 3.10+). ROS 2 y .NET van por separado (ver README).
+numpy>=1.23
+opencv-python>=4.8
+protobuf>=3.20
+pytest>=7.0

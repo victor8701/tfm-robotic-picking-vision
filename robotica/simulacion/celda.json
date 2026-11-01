@@ -1,0 +1,28 @@
+{
+  "_nota": "Valores de partida, NO medidos. Sustituir por las medidas de la visita 1 (docs/guion_V1.md). Posiciones en mm; cuaterniones (w, x, y, z).",
+  "periodo_ciclo_s": 0.004,
+  "watchdog_s": 0.1,
+  "caja_interior_mm": [700, 650, 200],
+  "bimanual": {
+    "_nota": "Base 1 = origen del mundo. Base 2 a 1200 mm. TCP en el marco de la caja (origen en el centro del fondo); q = 180° alrededor de X, con la herramienta hacia abajo.",
+    "base_1": {"t": [0, 0, 0], "q": [1, 0, 0, 0]},
+    "base_2": {"t": [1200, 0, 0], "q": [1, 0, 0, 0]},
+    "tcp_caja_1": {"t": [-400, 0, 100], "q": [0, 1, 0, 0]},
+    "tcp_caja_2": {"t": [400, 0, 100], "q": [0, 1, 0, 0]}
+  },
+  "espacio_trabajo_mm": {"x": [-600, 600], "y": [-600, 600], "z": [0, 800]},
+  "limites_ciclo": {
+    "_nota": "Por ciclo de 4 ms: 0,5 mm = 125 mm/s como máximo de la referencia. Placeholder conservador.",
+    "paso_mm": 0.5,
+    "giro_rad": 0.0025,
+    "desviacion_mm": 20.0,
+    "desviacion_rad": 0.1
+  },
+  "control": {
+    "_nota": "Ganancias PBVS (1/s) y saturaciones. Placeholder, a validar en simulación.",
+    "lam_t": 2.0,
+    "lam_r": 2.0,
+    "v_max_mm_s": 100.0,
+    "w_max_rad_s": 0.3
+  }
+}
