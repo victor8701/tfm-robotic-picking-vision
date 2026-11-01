@@ -1,6 +1,6 @@
 # Fase robótica: caja grande con dos manos (mapa de trabajo)
 
-**Estado:** borrador v5, 1 de noviembre de 2026 (noche). Vive en la rama `analisis-mercado`, carpeta `memoria/`. Cambios respecto a la v4: revisión del repo EGM del proyecto previo (§12.4), decisiones sobre el puente EGM (D26 a D30), ausencia de estación de RobotStudio en el laboratorio (§2) y plan para unir los proyectos (§15). Pendiente: medidas de la mesa y licencias (§9 y §14).
+**Estado:** borrador v6, 1 de noviembre de 2026 (noche). Vive en la rama `robotica-bimanual` (la v6 incluye el código de `robotica/`); la rama `analisis-mercado` conserva la v5. Cambios respecto a la v5: estado de la implementación (§10 y §15), riesgos nuevos (§13: visibilidad de la caja en el agarre y tolerancia de `EGMActPose`) y preguntas que Víctor ha resuelto (§14: el repositorio de EGM es su TFG; rama nueva). Pendiente: medidas de la mesa, licencia EGM 689-1 del laboratorio y la prueba D30 en el controlador virtual.
 
 ## 1. Objetivo y alcance
 
@@ -137,8 +137,8 @@ Presupuesto de error objetivo: ~2 mm. En RobotStudio la calibración sale exacta
 
 ## 9. Licencias a preguntar
 
-1. RobotStudio con Virtual Controller y licencia Premium para EGM (la exige el README del proyecto previo, §12.4).
-2. RobotWare: movimiento guiado externo (EGM) en el OmniCore del laboratorio y en el segundo. **Sin esta opción no hay control a 250 Hz.** Ningún proyecto del curso la usó, así que hay que comprobarla pronto (D25).
+1. RobotStudio con Virtual Controller y licencia Premium para EGM (la exige el README del proyecto previo, §12.4). Víctor dice tener lo mismo que en el TFG y en su trabajo de automatización: se asume disponible para el controlador virtual (`robotica/docs/guion_virtual.md`). Confirmarlo.
+2. RobotWare: movimiento guiado externo (EGM, 689-1) en el OmniCore del laboratorio y en el segundo. **Sin esta opción no hay control a 250 Hz.** Ningún proyecto del curso la usó. Hay que comprobarla en la visita 1 (`robotica/docs/guion_V1.md`, sección A) (D25).
 3. RobotWare: MultiMove, solo si los dos brazos van en un único controlador (D11).
 4. Control de fuerza o compliance para el GoFa, si existe en la versión del laboratorio.
 5. Versión de RobotWare del laboratorio y del virtual: deben coincidir.
@@ -154,13 +154,13 @@ Horas estimadas (no medidas). El Gantt (§13.2 de `Estado_arte.md`) asignaba ~32
 
 | Fase | Qué sale | Horas | Dónde | Rescate (§12) | Estado |
 |---|---|---|---|---|---|
-| F0 Especificación y reutilización | Este documento | 7 | Casa | Revisión de los tres proyectos | En curso |
-| F1 Celda en RobotStudio | Dos GoFa, mesa, caja CAD, A/aprox./B, alcance conjunto, colisiones | 17 | Casa (Windows) | Add-in del proyecto previo para cargar trayectorias desde CSV (§12.4); medidas de la mesa | Pide CAD y medidas |
-| F2 Control externo | Puente EGM en Windows (C#) con dos sesiones, latencia y jitter, paro y watchdog | 14 | Casa + V1 | Proyecto previo (§12.4): protocolo, bucle y `MOD_EGM`; `mock_robot.py` para probar sin robot; reconexión y patrón de RAPID | Pide licencias (EGM en virtual y en el laboratorio) |
-| F3 Percepción del águila | Caja grande y cajas pequeñas, dataset RGB-D propio, error medido | 18 | Casa + V1–V2 | `deteccion_esquinas.py` (HSV, Hough, 4 esquinas); `ajuste_parametros_*` | Recalibrar sobre la RealSense |
-| F4 Calibración | Águila↔mundo, bases, hand-eye, consistencia | 11 | Laboratorio (V2) | `calibrar_homografia.py`; checklist de puesta en marcha | Puesta en marcha |
-| F5 Planificación bimanual | Aproximación, colisiones entre brazos, máquina de estados sin PLC | 17 | Casa | Idea del detector de colisiones; BiRRT* del curso (librería externa) | Depende de F1 |
-| F6 Visual servoing | PBVS maestro-seguidor sobre la caja, rango de captura | 22 | Casa + V3 | Nada directo. `TFM_PROPUESTA.md` sugiere ViSP | Depende de F3 |
+| F0 Especificación y reutilización | Este documento | 7 | Casa | Revisión de los tres proyectos | Hecho (v6) |
+| F1 Celda en RobotStudio | Dos GoFa, mesa, caja CAD, A/aprox./B, alcance conjunto, colisiones | 17 | Casa (Windows) | Add-in del proyecto previo para cargar trayectorias desde CSV (§12.4); medidas de la mesa | CSV a RAPID hecho y probado. Pide CAD y medidas de la mesa |
+| F2 Control externo | Puente EGM en Windows (C#) con dos sesiones, latencia y jitter, paro y watchdog | 14 | Casa + V1 | Proyecto previo (§12.4): protocolo, bucle y `MOD_EGM`; `mock/` para probar sin robot; reconexión y patrón de RAPID | Puente y protocolo probados sin robot (14 pruebas). Falta el controlador virtual (`guion_virtual.md`) y la licencia 689-1 del laboratorio |
+| F3 Percepción del águila | Caja grande y cajas pequeñas, dataset RGB-D propio, error medido | 18 | Casa + V1–V2 | `deteccion_esquinas.py` (HSV, Hough, 4 esquinas); `ajuste_parametros_*` | Esquinas y pose probadas con imágenes sintéticas. Falta la RealSense y el dataset (V1) |
+| F4 Calibración | Águila↔mundo, bases, hand-eye, consistencia | 11 | Laboratorio (V2) | Homografía validada (la del curso no tiene validación); checklist de puesta en marcha | Homografía validada y mano-ojo probadas con datos sintéticos. Faltan los datos de V1 |
+| F5 Planificación bimanual | Aproximación, colisiones entre brazos, máquina de estados sin PLC | 17 | Casa | Idea del detector de colisiones; BiRRT* del curso (librería externa) | Coordinador probado en simulación (ciclo completo y fallos). Depende de la celda real |
+| F6 Visual servoing | PBVS maestro-seguidor sobre la caja, rango de captura | 22 | Casa + V3 | Nada directo. `TFM_PROPUESTA.md` sugiere ViSP | PBVS probado en simulación. Visibilidad en la pose de agarre sin resolver (§13, riesgo 19) |
 | F7 Agarre y transporte | Caja vacía, luego llena, velocidad baja, liberación en B | 17 | Laboratorio (V4–V5) | Flujo GraspIt, verificación en Z, compensación de offset | Depende de F4–F6 y de la mano |
 | F8 Integración | 100 ciclos simulados y 20–30 reales | 17 | Mixto | — | Al final |
 | F9 Memoria y vídeos | Capítulo de TFM, diagramas, vídeos para el tutor | 9 | Casa | — | Continuo |
@@ -259,6 +259,10 @@ https://github.com/victor8701/RobotStudio_AddIn_EGM_trajectories. Su README dice
 16. **Límites de EGM sin justificar** en el proyecto previo (`MaxPosDeviation` y `MaxSpeedDeviation` a 1000). Los fijamos nosotros y los medimos (D29).
 17. **E/S dentro del bucle de 250 Hz** (CSV y consola, en el proyecto previo). Puede causar jitter. Nada de E/S en el bucle del puente; medir el jitter con y sin ella.
 18. **Red del puente:** el UDP del controlador debe llegar al PC del puente. El reenvío de puertos de Windows solo sirve para TCP, y en WSL2 con NAT el UDP que llega desde fuera no entra en la VM sin configuración extra. Por eso el puente va en Windows (D27). Queda revisar el firewall.
+19. **La caja puede no entrar en el campo de la cámara en la pose de agarre.** Con la geometría de partida (offset de 60 mm, agarre a 400 mm del centro de la caja), el centro queda a unos 62° del eje óptico; una cámara típica ve unos 30–35° de media apertura. Hay que decidir el montaje de la cámara y el servoing final sobre bordes visibles, en V1. Las pruebas del coordinador usan un campo de 80° y lo dicen.
+20. **`EGMActPose ... \x:=[-1, 1]` en el proyecto previo.** Puede limitar la corrección a ±1 mm. Comprobarlo en el controlador virtual (`guion_virtual.md`, paso 4) antes de fijar `rango_pos`.
+21. **Control TCP desde WSL2.** El puente escucha en Windows; ROS 2 necesita la IP de Windows y una regla de firewall para el adaptador de WSL2.
+22. **Valores sin medir.** `celda.json`, los límites de `MOD_EGM` y las ganancias PBVS son placeholders. Ninguno se usa en el robot sin medirlo antes (D29).
 
 ## 14. Preguntas abiertas
 
@@ -272,8 +276,11 @@ https://github.com/victor8701/RobotStudio_AddIn_EGM_trajectories. Su README dice
 - **Dónde corre el driver de la RealSense:** en el portátil o en el PC del laboratorio.
 - **Fecha de acceso al laboratorio** (tutor).
 - **Respuesta sobre Ubuntu y licencias.**
-- **¿Es el repositorio de EGM tu TFG de grado (su README) o lo usaste en el TFM?** Se cita como TFG hasta que lo confirmes.
-- **¿Dónde va el código de robótica?** ¿En `analisis-mercado`, junto al mapa, o en una rama nueva?
+- **Resuelta (1 de noviembre):** el repositorio de EGM es el TFG de Víctor. Se cita como TFG.
+- **Resuelta (1 de noviembre):** el código de robótica va en una rama nueva, `robotica-bimanual`, creada desde `analisis-mercado`.
+- **Licencia 689-1 (EGM) en el OmniCore del laboratorio.** Pendiente de confirmar en la visita 1 (`guion_V1.md`, sección A).
+- **Semántica de `planned` (D30).** Se decide con la prueba del controlador virtual (`guion_virtual.md`, paso 4).
+- **Campo de la cámara en la pose de agarre** (riesgo 19). Se mide en la visita 1.
 
 ## 15. Cómo unimos los proyectos
 
@@ -281,20 +288,24 @@ Pasamos de cuatro repositorios sueltos a un único proyecto de robótica dentro 
 
 Carpetas propuestas, dentro de `robotica/`:
 
-| Carpeta | Qué va dentro | Origen | Fase |
-|---|---|---|---|
-| `robotica/puente_egm/` | Puente EGM en C# (Windows): dos sesiones y servidor TCP para ROS 2 | `EGM_VS` y `TFG_Proyecto_Solucion/VMP` del proyecto previo (§12.4) | F2 |
-| `robotica/rapid/` | Módulos RAPID: `MOD_EGM` propio, servidor y patrón de reconexión | `MOD_EGM` (§12.4) y `RAPID/` de robotica_industrial (§12.1) | F2, F7 |
-| `robotica/ros2/` | Cliente del puente, estados y planificación | Nuevo | F2, F5 |
-| `robotica/vision/` | Detección de la caja y de las cajas pequeñas con la RealSense | `deteccion_esquinas.py` y `ajuste_parametros_*` (§12.1 y §12.2) | F3 |
-| `robotica/calibracion/` | Calibración águila↔mundo y de las bases | `calibrar_homografia.py` (§12.1), con 6 puntos o más y validación (§8) | F4 |
-| `robotica/simulacion/` | Add-in CSV → targets y la celda en RobotStudio | `TFG_offline` (§12.4) y las medidas de V1 | F1 |
-| `robotica/mock/` | Simulador del controlador para probar en casa | `mock_robot.py` (§12.1) | F2 |
-| `robotica/grasp/` | Flujo de GraspIt y elección del agarre | `GUIA_IMPLEMENTACION.md` (§12.3) | F7 |
+**Estado (v6):** la mayor parte está hecha en `robotica/` de la rama `robotica-bimanual`. Las carpetas siguen el plan; `nucleo/` y `egm/` no estaban en el plan y se han añadido. `grasp/` sigue pendiente. El detalle, las pruebas y los riesgos están en `robotica/docs/ESTADO.md`.
+
+| Carpeta | Qué va dentro | Origen | Fase | Estado |
+|---|---|---|---|---|
+| `robotica/nucleo/` | Geometría, consigna, PBVS, seguridad, bimanual, estados y coordinador | Nuevo | F2, F5, F6 | Hecho y probado en simulación |
+| `robotica/egm/` | Protocolo EGM: `egm.proto` y mensajes | `Egm.cs` del proyecto previo (§12.4) | F2 | Hecho y validado con protoc |
+| `robotica/puente_egm/` | Puente EGM en C# (Windows): dos sesiones y servidor TCP para ROS 2 | `EGM_VS` y `TFG_Proyecto_Solucion/VMP` del proyecto previo (§12.4) | F2 | Compilado y probado con controlador simulado. Falta el virtual |
+| `robotica/mock/` | Controlador EGM simulado | Nuevo (el `mock_robot.py` del curso no está en los repos locales) | F2 | Hecho |
+| `robotica/rapid/` | `MOD_EGM`, `MOD_Seguridad` y `MOD_Prueba_V1` | `MOD_EGM` del proyecto previo (§12.4) | F2, F7 | Escritos, **no probados** en controlador |
+| `robotica/ros2/robotica_bimanual/` | Nodos puente, caja y coordinador; launch | Nuevo | F2, F3, F5 | Compilado y lanzado. Falta el sistema completo |
+| `robotica/vision/` | Esquinas (contorno y líneas) y pose de la caja | `deteccion_esquinas.py` (§12.2) | F3 | Hecho y probado con imágenes sintéticas |
+| `robotica/calibracion/` | Homografía con validación y mano-ojo | Escrito de nuevo: `calibrar_homografia.py` no está en los repos locales (§12.1) | F4 | Hecho y probado con datos sintéticos |
+| `robotica/simulacion/` | Celda (placeholders) y conversor CSV a RAPID | Formato CSV de `TFG_offline` (§12.4) | F1 | Hecho |
+| `robotica/grasp/` | Flujo de GraspIt y elección del agarre | `GUIA_IMPLEMENTACION.md` (§12.3) | F7 | Pendiente (depende del modelo de la mano) |
 
 Orden de trabajo:
 
-1. **F1, en casa:** la celda en RobotStudio con las medidas que tengamos. Cargar las trayectorias desde CSV con el add-in.
+1. **F1, en casa:** la celda en RobotStudio con las medidas que tengamos. Cargar las trayectorias desde CSV con `simulacion/csv_a_rapid.py` o con el add-in del proyecto previo.
 2. **F2, en casa:** puente EGM contra el controlador virtual de RobotStudio, con el protocolo y `MOD_EGM` del proyecto previo. Antes, comprobar D30 con desplazamientos pequeños. La conexión se prueba primero con `mock/`.
 3. **F3, en casa:** detección con la RealSense y dataset propio, sin robot.
 4. **F4 en adelante, en el laboratorio:** calibración y primeras pruebas reales (V2 y siguientes).
