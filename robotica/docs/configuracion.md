@@ -4,6 +4,52 @@ Este documento reúne todas las IPs, puertos y medidas que hay que poner en la i
 Los valores entre `<...>` son los que **no conozco**: hay que obtenerlos en el laboratorio o en el PC.
 No he puesto ninguna IP inventada.
 
+## 0. Cómo encontrar cada IP (paso a paso, sin saber de redes)
+
+Una IP es la dirección de un aparato dentro de la red. Hay que buscar tres: la del PC, la de cada controlador
+y, solo si ROS va en WSL2, la de Windows vista desde WSL2.
+
+### A. La IP de tu PC (Windows)
+
+1. Pulsa la tecla de Windows, escribe `cmd` y pulsa Intro. Se abre una ventana negra: la terminal.
+2. Escribe `ipconfig` y pulsa Intro.
+3. Busca el bloque que empieza por «Adaptador de Ethernet» o «Adaptador de LAN inalámbrica» (Wi‑Fi).
+   Ignora el que se llama «vEthernet (WSL)»: ese es para WSL (apartado C).
+4. Anota la línea «Dirección IPv4», por ejemplo `192.168.1.25`. Esa es `<IP_PC_WINDOWS>`.
+
+Si hay varios adaptadores con IP, quédate con el que tenga las tres primeras cifras iguales a las de los controladores.
+Si la IP empieza por `169.254`, ese adaptador no está conectado a la red.
+
+### B. La IP de cada controlador (OmniCore)
+
+- Opción 1, en el FlexPendant (la tablet del robot): busca Ajustes o Settings, y dentro la parte de comunicación
+  o red (IP). Los nombres de los menús cambian según la versión. Si no lo encuentras, pregunta al técnico del laboratorio.
+- Opción 2, en RobotStudio: en la pestaña de controladores, al seleccionar el controlador aparece su IP.
+- Opción 3, la más segura para `ip_controlador`: sin mirar menús, con el truco del apartado D.
+
+Comprobación: en la terminal `cmd` del PC escribe `ping 192.168.1.10` (pon la IP del controlador).
+Si contesta «Respuesta desde…», las dos máquinas se ven. Si dice «Tiempo de espera agotado», puede que la red
+sea otra o que el controlador no conteste al ping. En ese caso pregunta en el laboratorio antes de seguir.
+
+### C. La IP de Windows vista desde WSL2 (solo si ROS corre en WSL2)
+
+1. Abre Ubuntu (WSL) desde el menú de inicio.
+2. Escribe `ip route show default | awk '{print $3}'` y pulsa Intro.
+3. Sale una IP, por ejemplo `172.20.32.1`. Esa es la IP de Windows vista desde WSL. Va en `brazo1.host`
+   y `brazo2.host` del launch.
+
+### D. El truco: la IP del controlador sin buscarla
+
+1. En `config.json` pon `"ip_controlador": null` en las dos sesiones.
+2. Arranca el puente (`dotnet PuenteEgm.dll config.json`) y déjalo abierto.
+3. Arranca EGM en el controlador (`EGM_Iniciar`).
+4. Mira la ventana del puente. Aparece una línea como esta:
+   `[brazo1] primer datagrama de 192.168.1.10:45443 (aceptado; ip_controlador = sin filtro)`
+5. La IP es lo que va antes de los dos puntos: `192.168.1.10`. Ponla en `ip_controlador` y reinicia el puente.
+   El número que va después de los dos puntos es un puerto de origen: no hace falta tocarlo.
+
+Anota todo en una tabla: PC, controlador 1, controlador 2 y WSL.
+
 ## 1. Esquema de red
 
 ```
