@@ -173,7 +173,7 @@ Total: 149 h (152 h si F2 se escribe en Python).
 
 Fecha por acordar con el tutor. Cada visita con guion escrito y grabación (vídeo, rosbag2, logs del controlador, imágenes RGB-D).
 
-- **V1:** medir la mesa, la zona de recogida y el sitio de la segunda base. Medir las cajas de zapatos y la caja grande. Montar la RealSense en el soporte de la webcam y medir su error a 0,5, 1 y 1,5 m sobre tabla plana. Comprobar la opción EGM 689-1 y la configuración UDP del controlador (puerto 6511, y los nombres «default» y «EGMsensor» que usa el RAPID), sin mover el robot. Prueba de comunicación en solo lectura, con el controlador real y con `mock_robot.py` en el portátil. Capturas RGB-D con cajas (vacía, llena, distintas luces). Medir la mano si no hay CAD.
+- **V1:** medir la mesa, la zona de recogida y el sitio de la segunda base. Medir las cajas de zapatos y la caja grande. Montar la RealSense en el soporte de la webcam y medir su error a 0,5, 1 y 1,5 m sobre tabla plana. Comprobar la opción EGM 689-1 y la configuración UDP del controlador (puerto 6511, y los nombres «default» y «EGMsensor» que usa el RAPID), sin mover el robot. Prueba de comunicación en solo lectura, con el controlador real y con el controlador simulado de `robotica/mock/` en el portátil (el `mock_robot.py` del curso no está en los repos locales). Capturas RGB-D con cajas (vacía, llena, distintas luces). Medir la mano si no hay CAD. IPs, puertos y dónde va cada valor de red: `robotica/docs/configuracion.md`.
 - **V2:** calibración (F4).
 - **V3:** servoing en seco, sin agarre. Primeros movimientos conjuntos a velocidad baja.
 - **V4:** agarre con caja vacía.

@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Globalization;
 using System.Net;
@@ -35,6 +36,8 @@ public sealed class SesionEgm : IDisposable
     private UdpClient? _udp;
     private Thread? _hilo;
     private volatile bool _parar;
+    private readonly HashSet<string> _ipsVistas = new();   // solo lo usa el hilo EGM
+    private readonly ConcurrentQueue<string> _avisos = new();  // el hilo EGM no escribe en consola
 
     // Estado compartido (solo con _lock).
     private EstadoSesion _estado = EstadoSesion.Esperando;
@@ -64,8 +67,36 @@ public sealed class SesionEgm : IDisposable
 
     public string Nombre => _cfg.Nombre;
 
+    /// <summary>Avisos pendientes (IPs de origen nuevas). Los imprime el programa principal, fuera del bucle EGM.</summary>
+    public IEnumerable<string> DrenarAvisos()
+    {
+        while (_avisos.TryDequeue(out var aviso)) yield return aviso;
+    }
+
+    /// <summary>Calienta protobuf antes del primer ciclo: el primer uso compila código (JIT) y tarda decenas de ms.</summary>
+    private static void Calentar()
+    {
+        var punto = new EgmPose
+        {
+            Pos = new EgmCartesian { X = 0, Y = 0, Z = 0 },
+            Orient = new EgmQuaternion { U0 = 1, U1 = 0, U2 = 0, U3 = 0 },
+        };
+        var robot = new EgmRobot
+        {
+            Header = new EgmHeader { Seqno = 1, Tm = 1 },
+            FeedBack = new EgmFeedBack { Cartesian = punto },
+        };
+        _ = EgmRobot.Parser.ParseFrom(robot.ToByteArray());
+        _ = new EgmSensor
+        {
+            Header = new EgmHeader { Seqno = 1, Tm = 1 },
+            Planned = new EgmPlanned { Cartesian = punto },
+        }.ToByteArray();
+    }
+
     public void Iniciar()
     {
+        Calentar();
         _udp = new UdpClient(_cfg.PuertoEgm);
         _hilo = new Thread(Bucle) { IsBackground = true, Name = "egm-" + _cfg.Nombre, Priority = ThreadPriority.Highest };
         _hilo.Start();
@@ -99,7 +130,16 @@ public sealed class SesionEgm : IDisposable
                 continue;
             }
 
-            if (_cfg.IpControlador is { } ipPermitida && remoto.Address.ToString() != ipPermitida)
+            // Aviso una sola vez por IP de origen: así se ve qué poner en ip_controlador.
+            // Solo se escribe al ver una IP nueva, nunca en cada ciclo.
+            string ip = remoto.Address.ToString();
+            bool aceptado = _cfg.IpControlador is null || ip == _cfg.IpControlador;
+            if (_ipsVistas.Add(ip))
+            {
+                _avisos.Enqueue($"[{_cfg.Nombre}] primer datagrama de {ip}:{remoto.Port} " +
+                                $"({(aceptado ? "aceptado" : "ignorado")}; ip_controlador = {_cfg.IpControlador ?? "sin filtro"})");
+            }
+            if (!aceptado)
             {
                 continue;  // datagrama de otra máquina: se ignora
             }

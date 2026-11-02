@@ -28,11 +28,17 @@ Console.CancelKeyPress += (_, e) =>
 };
 
 Console.WriteLine("Puente en marcha. Ctrl+C para parar.");
-while (!salir.Wait(TimeSpan.FromSeconds(5)))
+// Cada segundo se imprimen los avisos nuevos; cada 5 segundos, el estado de cada sesión.
+int ciclo = 0;
+while (!salir.Wait(TimeSpan.FromSeconds(1)))
 {
     foreach (var (sesion, _) in sesiones)
     {
-        Console.WriteLine(sesion.EstadoJson());
+        foreach (var aviso in sesion.DrenarAvisos()) Console.WriteLine(aviso);
+    }
+    if (++ciclo % 5 == 0)
+    {
+        foreach (var (sesion, _) in sesiones) Console.WriteLine(sesion.EstadoJson());
     }
 }
 

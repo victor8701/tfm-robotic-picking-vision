@@ -18,8 +18,10 @@ Anotar cada resultado en la tabla del final (y en `docs/ESTADO.md`).
 2. Comprobar que la opción **Externally Guided Motion (EGM), 689-1** está instalada.
 3. En la configuración de comunicaciones del controlador virtual, crear un dispositivo **UdpUc**:
    - nombre `default` (es el que usa `EGMSetupUC` en `MOD_EGM`);
-   - dirección remota: la IP del PC donde corre el puente;
-   - puerto: el de `puerto_egm` en la configuración del puente (6511 por defecto).
+   - dirección remota: la IP del PC donde corre el puente, `<IP_PC_WINDOWS>` (`ipconfig`). Si el controlador virtual está
+     en el mismo PC, probar `127.0.0.1` y comprobarlo en el paso 3;
+   - puerto remoto: `6511` (el `puerto_egm` de la sesión `brazo1`). Para un segundo controlador, `6512`;
+   - valores y detalle en [configuracion.md](configuracion.md), §2 y §3.
    - El nombre `EGMsensor` del RAPID debe coincidir con la configuración EGM del controlador. Si no coincide, la sesión no arranca. Comprobarlo en el paso 3.
 4. Cargar `rapid/MOD_EGM.mod`, `rapid/MOD_Seguridad.mod` y `rapid/MOD_Prueba_V1.mod`.
 5. Compilar el puente: `dotnet build -c Release` dentro de `puente_egm/PuenteEgm`.
@@ -39,6 +41,9 @@ Con `semantica` = `desplazamiento` al principio (ver paso 4). El puente debe mos
 2. Ejecutar `EGM_Iniciar`. El estado de la sesión debe pasar a "running".
 3. Consultar el estado del puente: `{"cmd": "estado"}` por TCP (por ejemplo, con `netcat` o un script).
    Debe aparecer `"estado": "esperando"` y `"ciclos"` creciendo.
+4. Mirar la consola del puente: aparece `primer datagrama de X:Y (aceptado|ignorado; ip_controlador = ...)`.
+   Si `ip_controlador` está en `null`, anotar X: es la IP desde la que llega el tráfico EGM del controlador virtual.
+   Si la línea dice `ignorado`, copiar X en `ip_controlador` y reiniciar el puente.
 
 ## 4. Prueba D30: ¿la consigna es corrección o posición absoluta?
 

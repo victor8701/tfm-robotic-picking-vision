@@ -1,5 +1,5 @@
 {
-  "_nota": "Ejemplo. Puertos e IPs se ajustan a la instalación. Límites y espacio son placeholders (D29). Ver puente_egm/README.md.",
+  "_nota": "Ejemplo. ip_controlador: null la primera vez; luego la IP que muestra la consola (primer datagrama de X:Y). ip_control: 127.0.0.1 si ROS corre en Windows, 0.0.0.0 si corre en WSL2. Valores de red en docs/configuracion.md. Límites y espacio son placeholders (D29).",
   "registro_csv": "registros/puente.csv",
   "sesiones": [
     {

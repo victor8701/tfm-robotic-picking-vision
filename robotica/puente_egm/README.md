@@ -31,8 +31,11 @@ Al arrancar muestra cada sesión y, cada 5 segundos, su estado en JSON.
 | `registro_csv` | Ruta del registro por ciclo, o `null`. Se escribe en un hilo aparte. |
 | `nombre` | Nombre de la sesión (aparece en el registro). |
 | `puerto_egm` | Puerto UDP al que el controlador envía `EgmRobot` (6511 en el proyecto previo). |
-| `ip_controlador` | Si se indica, solo se aceptan datagramas de esa IP. **Recomendado.** |
-| `ip_control`, `puerto_control` | Servidor TCP de control. `127.0.0.1` para pruebas; desde WSL2 hace falta la IP de Windows. |
+| `ip_controlador` | IP del controlador de esta sesión. Si se indica, solo se aceptan datagramas de esa IP. `null` = sin filtro: la consola escribe `primer datagrama de X:Y` por cada IP nueva; copiar esa X aquí y reiniciar. **Recomendado ponerla en producción.** |
+| `ip_control`, `puerto_control` | Servidor TCP de control. `127.0.0.1` si ROS corre en el mismo Windows; `0.0.0.0` si ROS corre en WSL2 (con regla de firewall). |
+
+Los valores de red (IPs de los controladores, del PC, de WSL2 y de los UdpUc) están reunidos en
+[docs/configuracion.md](../docs/configuracion.md), con el orden de arranque y los errores típicos.
 | `semantica` | `desplazamiento`: `planned` es una corrección respecto a la pose de partida. `absoluta`: `planned` es la posición objetivo. **Decidir con la prueba D30 del controlador virtual.** |
 | `watchdog_s` | Segundos sin objetivo antes de retener la posición. |
 | `limites` | `paso_mm`, `giro_rad` por ciclo; `desviacion_mm`, `desviacion_rad` máximas respecto a la posición real. |

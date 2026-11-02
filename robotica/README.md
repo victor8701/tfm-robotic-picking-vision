@@ -42,6 +42,7 @@ python3 -m pytest -q
 
 ## Antes de mover un robot
 
+0. Configurar las IPs y los puertos. Lo que falta y dónde va cada valor está en [docs/configuracion.md](docs/configuracion.md).
 1. Pasar el guion del controlador virtual: [docs/guion_virtual.md](docs/guion_virtual.md). Incluye la prueba que decide la semántica de `Planned` (D30).
 2. Pasar la visita 1 en modo solo lectura: [docs/guion_V1.md](docs/guion_V1.md).
 3. Paro físico al alcance. Ninguna trayectoria se ejecuta sin haberla visto antes en el controlador virtual.

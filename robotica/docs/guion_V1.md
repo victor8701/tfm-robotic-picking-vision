@@ -9,8 +9,9 @@ Primero solo lectura y medidas. Ningún movimiento del robot hasta haber pasado 
 - [ ] Opción EGM 689-1 instalada (ver la lista de opciones del controlador).
 - [ ] Opción de MultiMove, solo si los dos brazos van en un controlador (D11).
 - [ ] Modelo exacto del GoFa (placa o ficha): carga y **alcance**.
-- [ ] Dirección IP del OmniCore. Prueba de alcance desde el PC del puente (ping), sin mover nada.
-- [ ] Puerto UDP que se va a usar, libre en el PC y permitido por el firewall de Windows.
+- [ ] IP de cada OmniCore (FlexPendant o RobotStudio) → `<IP_OMNICORE_1>` y `<IP_OMNICORE_2>`. Prueba de alcance desde el PC del puente (ping), sin mover nada. Ver [configuracion.md](configuracion.md) §3.
+- [ ] IP del PC del puente en la red del laboratorio (`ipconfig`) → `<IP_PC_WINDOWS>`. Es el dato que va en la dirección remota de cada UdpUc.
+- [ ] Puertos UDP 6511 y 6512 libres en el PC y permitidos por el firewall de Windows. Puertos TCP 7001 y 7002 permitidos desde la red de WSL2 si ROS corre allí (ver [configuracion.md](configuracion.md) §4).
 
 ## B. Mesa y celda (medidas)
 
@@ -29,6 +30,8 @@ Primero solo lectura y medidas. Ningún movimiento del robot hasta haber pasado 
 - [ ] Campo de visión real: con un tablero de referencia, medir qué parte de la caja cabe en la imagen desde la altura de trabajo.
       **Clave:** comprobar si la caja entra en la imagen en la pose de agarre (ver riesgos en docs/ESTADO.md).
 - [ ] Capturas con la caja vacía y llena, con distintas luces (dataset propio, F3).
+- [ ] Tópicos del driver de la RealSense con `ros2 topic list` → `topic_imagen` y `topic_info` del launch
+      (`celda.launch.py`). No suponer el nombre: depende del driver y de cómo se llame el nodo.
 
 ## D. Calibración
 

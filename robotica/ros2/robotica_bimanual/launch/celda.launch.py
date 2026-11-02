@@ -4,6 +4,13 @@ Antes de lanzar, en la misma terminal:
     source /opt/ros/humble/setup.bash
     export PYTHONPATH=/ruta/al/repositorio/robotica:$PYTHONPATH
 Los puentes EGM (puente_egm) deben estar en marcha en Windows o en la máquina que corresponda.
+
+Valores que hay que poner aquí (detalle en docs/configuracion.md):
+- brazo1.host y brazo2.host: IP del PC con el puente vista desde WSL2
+  (dentro de WSL2: ip route show default | awk '{print $3}'). Si ROS corre en Windows: 127.0.0.1.
+- brazo1.puerto y brazo2.puerto: deben coincidir con puerto_control en config.json (7001 y 7002).
+- topic_imagen y topic_info: tópicos reales del driver de la cámara (ros2 topic list). Los valores de abajo son de partida.
+- ancho_mm y largo_mm: caja interior medida.
 """
 from launch import LaunchDescription
 from launch_ros.actions import Node

@@ -56,6 +56,7 @@ Víctor pidió que no hubiera más preguntas por hoy. Estas son las decisiones q
 ## 5. Qué falta para acabar
 
 En orden:
+0. **Configurar IPs y puertos:** `docs/configuracion.md`. Faltan las IPs reales de los dos controladores, la del PC y la de WSL2.
 1. **Controlador virtual (Víctor, en Windows):** pasar `docs/guion_virtual.md`. Decide `semantica` y el rango de `MOD_EGM`.
 2. **Visita 1 (Víctor, con el tutor):** pasar `docs/guion_V1.md`. Medidas de mesa, caja y cámara, y el campo de visión en la pose de agarre.
 3. **Driver de la mano:** definir cómo llegan `AGARRE_HECHO`, `VERIFICADO` y `SOLTADO` al coordinador.
