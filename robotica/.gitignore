@@ -8,3 +8,6 @@ puente_egm/**/.vs/
 # Registros y datos generados por las pruebas o por el puente
 *.log
 registros/
+
+# Configuración local del puente: contiene IPs de la instalación, no versionar
+puente_egm/config.json
