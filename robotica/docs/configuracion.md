@@ -4,6 +4,8 @@ Este documento reúne todas las IPs, puertos y medidas que hay que poner en la i
 Los valores entre `<...>` son los que **no conozco**: hay que obtenerlos en el laboratorio o en el PC.
 No he puesto ninguna IP inventada.
 
+> **Estado:** la celda se monta con un único robot (`brazo1`), decisión del tutor. Las filas de `brazo2` describen la versión de dos robots, que queda en la rama `robotica-bimanual`. El setup detallado queda pendiente.
+
 ## 0. Cómo encontrar cada IP (paso a paso, sin saber de redes)
 
 Una IP es la dirección de un aparato dentro de la red. Hay que buscar tres: la del PC, la de cada controlador

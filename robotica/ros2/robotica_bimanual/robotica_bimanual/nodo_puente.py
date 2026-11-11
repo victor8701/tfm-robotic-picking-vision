@@ -1,10 +1,10 @@
 """Nodo puente: reenvía los objetivos de ROS 2 a los puentes EGM y publica el estado real de cada brazo.
 
-Topics (metros, cuaterniones x-y-z-w):
-  entrada:  /brazo1/objetivo, /brazo2/objetivo  (geometry_msgs/PoseStamped, pose en la base del brazo)
+Topics (metros, cuaterniones x-y-z-w), un único robot (brazo1):
+  entrada:  /brazo1/objetivo  (geometry_msgs/PoseStamped, pose en la base del brazo)
             /puentes/comando                   (std_msgs/String: parar | arrancar | reset)
-  salida:   /brazo1/pose_real, /brazo2/pose_real (PoseStamped, TCP real en la base)
-            /brazo1/estado, /brazo2/estado       (String, JSON tal como lo devuelve el puente)
+  salida:   /brazo1/pose_real (PoseStamped, TCP real en la base)
+            /brazo1/estado       (String, JSON tal como lo devuelve el puente)
 
 Un objetivo que no se renueva en `plazo_objetivo_s` no se reenvía: el puente lo trata como
 vencido y retiene el brazo. Así, si el coordinador deja de mandar objetivos, el brazo se para.
@@ -22,7 +22,9 @@ from std_msgs.msg import String
 from .cliente_puente import ClientePuente
 from .convertir import pose_a_ros, pose_desde_estado_puente, pose_desde_ros
 
-BRAZOS = ("brazo1", "brazo2")
+# Un único robot. La versión de dos brazos está en la rama robotica-bimanual.
+BRAZOS = ("brazo1",)
+PUERTOS_POR_DEFECTO = {"brazo1": 7001}
 
 
 class NodoPuente(Node):
@@ -34,7 +36,7 @@ class NodoPuente(Node):
         self._brazos: dict[str, dict] = {}
         for nombre in BRAZOS:
             self.declare_parameter(f"{nombre}.host", "127.0.0.1")
-            self.declare_parameter(f"{nombre}.puerto", 7001 if nombre == "brazo1" else 7002)
+            self.declare_parameter(f"{nombre}.puerto", PUERTOS_POR_DEFECTO[nombre])
             cliente = ClientePuente(str(self.get_parameter(f"{nombre}.host").value),
                                     int(self.get_parameter(f"{nombre}.puerto").value))
             self._brazos[nombre] = {

@@ -62,3 +62,15 @@ def test_el_nodo_de_seguimiento_se_crea_con_su_configuracion(ros):
         assert nodo.get_parameter("puntos_maximos").value == 3000
     finally:
         nodo.destroy_node()
+
+
+def test_el_puente_ros_solo_tiene_el_brazo1(ros):
+    from robotica_bimanual.nodo_puente import NodoPuente
+
+    nodo = NodoPuente()
+    try:
+        temas = {nombre for nombre, _ in nodo.get_topic_names_and_types()}
+        assert "/brazo1/estado" in temas
+        assert not any(t.startswith("/brazo2/") for t in temas), temas
+    finally:
+        nodo.destroy_node()

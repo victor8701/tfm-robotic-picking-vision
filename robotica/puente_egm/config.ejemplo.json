@@ -21,26 +21,6 @@
         "y": [-600, 600],
         "z": [0, 800]
       }
-    },
-    {
-      "nombre": "brazo2",
-      "puerto_egm": 6512,
-      "ip_controlador": null,
-      "ip_control": "127.0.0.1",
-      "puerto_control": 7002,
-      "semantica": "desplazamiento",
-      "watchdog_s": 0.1,
-      "limites": {
-        "paso_mm": 0.5,
-        "giro_rad": 0.0025,
-        "desviacion_mm": 20.0,
-        "desviacion_rad": 0.1
-      },
-      "espacio_mm": {
-        "x": [-600, 600],
-        "y": [-600, 600],
-        "z": [0, 800]
-      }
     }
   ]
 }

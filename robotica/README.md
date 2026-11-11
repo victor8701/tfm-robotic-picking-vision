@@ -1,6 +1,7 @@
 # Robótica bimanual: código de la fase robótica
 
-Código de la caja grande con dos GoFa. Rama `robotica-bimanual`, basada en `analisis-mercado`
+Código de la celda con **un** GoFa (decisión del tutor; el setup queda pendiente). Rama `robotica-un-robot`.
+La versión con dos robots está en `robotica-bimanual`, basada en `analisis-mercado`
 (mapa v5). El plan de unión de los proyectos está en `memoria/TFM_robotica_caja_bimanual.md`, §15.
 Estado detallado, riesgos y suposiciones: [docs/ESTADO.md](docs/ESTADO.md).
 

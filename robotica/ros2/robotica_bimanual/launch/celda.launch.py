@@ -1,4 +1,7 @@
-"""Lanza los tres nodos de la celda: puente EGM, detección de la caja y coordinador.
+"""Lanza la celda con un único robot: puente EGM y detección de la caja.
+
+El coordinador bimanual (nodo_coordinador) no se lanza: necesita los dos brazos y queda pendiente
+con la tarea de un robot.
 
 Antes de lanzar, en la misma terminal:
     source /opt/ros/humble/setup.bash
@@ -6,9 +9,9 @@ Antes de lanzar, en la misma terminal:
 Los puentes EGM (puente_egm) deben estar en marcha en Windows o en la máquina que corresponda.
 
 Valores que hay que poner aquí (detalle en docs/configuracion.md):
-- brazo1.host y brazo2.host: IP del PC con el puente vista desde WSL2
+- brazo1.host: IP del PC con el puente vista desde WSL2
   (dentro de WSL2: ip route show default | awk '{print $3}'). Si ROS corre en Windows: 127.0.0.1.
-- brazo1.puerto y brazo2.puerto: deben coincidir con puerto_control en config.json (7001 y 7002).
+- brazo1.puerto: debe coincidir con puerto_control de brazo1 en config.json (7001).
 - topic_imagen y topic_info: tópicos reales del driver de la cámara (ros2 topic list). Los valores de abajo son de partida.
 - ancho_mm y largo_mm: caja interior medida.
 """
@@ -26,8 +29,6 @@ def generate_launch_description():
             parameters=[{
                 "brazo1.host": "127.0.0.1",
                 "brazo1.puerto": 7001,
-                "brazo2.host": "127.0.0.1",
-                "brazo2.puerto": 7002,
                 "frecuencia_hz": 25.0,
                 "plazo_objetivo_s": 0.2,
             }],
@@ -43,16 +44,6 @@ def generate_launch_description():
                 "metodo": "contorno",
                 "ancho_mm": 700.0,
                 "largo_mm": 650.0,
-            }],
-        ),
-        Node(
-            package="robotica_bimanual",
-            executable="nodo_coordinador",
-            name="nodo_coordinador",
-            output="screen",
-            parameters=[{
-                "periodo_s": 0.04,
-                "plazo_lectura_s": 0.3,
             }],
         ),
     ])
