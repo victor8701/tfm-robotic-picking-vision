@@ -45,6 +45,14 @@ public sealed class SesionEgm : IDisposable
     private Pose? _objetivo;
     private Pose? _referencia;
     private Pose? _referencia0;
+    // Prueba interna (--prueba): secuencia de objetivos que genera el propio puente.
+    private List<V3>? _pruebaPasos;
+    private int _pruebaIndice;
+    private double _pruebaInicioPasoS = -1;
+    private int _pruebaPasosPorDiagonal;
+    private string _pruebaFase = "";
+    private const double TolPruebaMm = 1.0;
+    private const double TiempoMaxPasoPruebaS = 60.0;
     private Pose _real;
     private uint _seqno;
     private long _ciclos;
@@ -202,6 +210,7 @@ public sealed class SesionEgm : IDisposable
         _real = real;
         _referencia0 ??= real;
         _referencia ??= real;
+        if (_pruebaPasos is not null) AvanzarPrueba(ahora);
 
         Pose nueva;
         if (_estado is EstadoSesion.Parada or EstadoSesion.Fallo)
@@ -265,16 +274,92 @@ public sealed class SesionEgm : IDisposable
         };
 
         _registro.Escribir(string.Format(CultureInfo.InvariantCulture,
-            "{0:F4},{1},{2},{3},{4:F3},{5:F3},{6:F3},{7:F3},{8:F3},{9:F3},{10:F3}",
+            "{0:F4},{1},{2},{3},{4:F3},{5:F3},{6:F3},{7:F3},{8:F3},{9:F3},{10:F3},{11}",
             ahora, _cfg.Nombre, _seqno, _estado.ToString().ToLowerInvariant(),
             _real.T.X, _real.T.Y, _real.T.Z,
             referencia.T.X, referencia.T.Y, referencia.T.Z,
-            (referencia.T - _real.T).Norma));
+            (referencia.T - _real.T).Norma, _pruebaFase));
 
         return sensor.ToByteArray();
     }
 
     // ----- Órdenes del servidor de control (llamadas desde ServidorControl) -----
+
+    /// <summary>Prueba interna en bucle desde el centro (600, -6.5, 390): diagonal xy, luego xz, luego yz, y otra vez xy...
+    /// Cada diagonal son 'pasos' pasos de 'paso' mm y vuelve al centro, para no salir de la ventana EGM.
+    /// Solo x, y, z; la orientacion es la del robot al empezar.</summary>
+    public void ActivarPrueba(double paso, int pasos)
+    {
+        var centro = new V3(600, -6.5, 390);
+        var diagonales = new[] { new V3(-1, 1, 0), new V3(-1, 0, 1), new V3(0, 1, 1) };
+        var puntos = new List<V3> { centro };
+        foreach (var d in diagonales)
+        {
+            var p = centro;
+            for (int i = 0; i < pasos; i++)
+            {
+                p = new V3(p.X + d.X * paso, p.Y + d.Y * paso, p.Z + d.Z * paso);
+                puntos.Add(p);
+            }
+            for (int i = 0; i < pasos; i++)
+            {
+                p = new V3(p.X - d.X * paso, p.Y - d.Y * paso, p.Z - d.Z * paso);
+                puntos.Add(p);
+            }
+        }
+        lock (_lock)
+        {
+            _pruebaPasos = puntos;
+            _pruebaPasosPorDiagonal = pasos;
+            _pruebaIndice = 0;
+            _pruebaInicioPasoS = -1;
+        }
+    }
+
+    /// <summary>Lleva la prueba paso a paso: cada paso espera a estar a TolPruebaMm del objetivo.
+    /// Si el puente entra en fallo, deja de mandar objetivos y el watchdog retiene el robot. En bucle no termina.</summary>
+    private void AvanzarPrueba(double ahora)
+    {
+        var puntos = _pruebaPasos;
+        if (puntos is null) return;
+        if (_estado is EstadoSesion.Fallo or EstadoSesion.Parada)
+        {
+            _pruebaPasos = null;
+            return;
+        }
+        // Bucle: al pasar el ultimo punto se vuelve al primer paso (el centro ya es el ultimo punto).
+        if (_pruebaIndice >= puntos.Count) _pruebaIndice = 1;
+        var destino = puntos[_pruebaIndice];
+        if (_pruebaInicioPasoS < 0)
+        {
+            _pruebaInicioPasoS = ahora;
+            _pruebaFase = FaseDe(_pruebaIndice);
+            _objetivo = new Pose(destino, _referencia0!.Value.R.Normalizado());
+        }
+        else if ((destino - _real.T).Norma < TolPruebaMm)
+        {
+            _pruebaIndice++;
+            _pruebaInicioPasoS = -1;
+        }
+        else if (ahora - _pruebaInicioPasoS > TiempoMaxPasoPruebaS)
+        {
+            _estado = EstadoSesion.Fallo;
+            _codigo = "prueba_no_llega";
+            _pruebaPasos = null;
+            return;
+        }
+        _vigilante.Marcar(ahora);
+    }
+
+    /// <summary>Nombre del paso de la prueba para el registro: aprox, xy_ida, xy_vuelta, xz_ida, ...</summary>
+    private string FaseDe(int indice)
+    {
+        if (indice == 0) return "aprox";
+        var n = _pruebaPasosPorDiagonal;
+        var diagonal = (indice - 1) / (2 * n) % 3;
+        var dentro = (indice - 1) % (2 * n);
+        return new[] { "xy", "xz", "yz" }[diagonal] + (dentro < n ? "_ida" : "_vuelta");
+    }
 
     /// <summary>Nuevo objetivo cartesiano (mm, cuaternión). Reinicia el watchdog.</summary>
     public string Objetivo(V3 t, Q q)

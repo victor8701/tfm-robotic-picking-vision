@@ -9,7 +9,8 @@ setup(
     data_files=[
         ("share/ament_index/resource_index/packages", ["resource/" + package_name]),
         ("share/" + package_name, ["package.xml"]),
-        ("share/" + package_name + "/launch", ["launch/celda.launch.py"]),
+        ("share/" + package_name + "/launch", ["launch/celda.launch.py", "launch/seguimiento.launch.py"]),
+        ("share/" + package_name + "/rviz", ["rviz/seguimiento.rviz"]),
     ],
     install_requires=["setuptools"],
     zip_safe=True,
@@ -20,6 +21,7 @@ setup(
             "nodo_puente = robotica_bimanual.nodo_puente:main",
             "nodo_caja = robotica_bimanual.nodo_caja:main",
             "nodo_coordinador = robotica_bimanual.nodo_coordinador:main",
+            "nodo_seguimiento = robotica_bimanual.nodo_seguimiento:main",
         ],
     },
 )

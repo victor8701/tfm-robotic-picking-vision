@@ -37,8 +37,7 @@ Con `semantica` = `desplazamiento` al principio (ver paso 4). El puente debe mos
 
 ## 3. Arranque de EGM en el controlador virtual
 
-1. Poner el robot en `pInicio` con `MoveJ` (es la postura de partida del TFG; no la cambies).
-2. Ejecutar `EGM_Iniciar`. El estado de la sesión debe pasar a "running".
+1. Ejecutar `main` (MOD_EGM): hace `MoveJ` a `pStart` y después abre EGM. El estado de la sesión debe pasar a "running".
 3. Consultar el estado del puente: `{"cmd": "estado"}` por TCP (por ejemplo, con `netcat` o un script).
    Debe aparecer `"estado": "esperando"` y `"ciclos"` creciendo.
 4. Mirar la consola del puente: aparece `primer datagrama de X:Y (aceptado|ignorado; ip_controlador = ...)`.

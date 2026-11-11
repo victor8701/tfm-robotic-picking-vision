@@ -8,7 +8,7 @@ namespace PuenteEgm;
 public sealed class Registro : IDisposable
 {
     public const string Cabecera =
-        "t_s,sesion,seqno,estado,real_x,real_y,real_z,ref_x,ref_y,ref_z,desviacion_mm";
+        "t_s,sesion,seqno,estado,real_x,real_y,real_z,ref_x,ref_y,ref_z,desviacion_mm,fase";
 
     private const int LimiteCola = 200_000;
 

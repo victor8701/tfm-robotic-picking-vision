@@ -143,7 +143,7 @@ def test_sigue_el_objetivo_y_registra_cada_ciclo(tmp_path, semantica):
         assert lineas[0].startswith("t_s,sesion,seqno,estado")
         datos = lineas[1:]
         assert len(datos) > 100
-        assert all(ln.count(",") == 10 for ln in datos[:5])
+        assert all(ln.count(",") == 11 for ln in datos[:5])  # 12 columnas, la ultima es la fase
 
 
 def test_watchdog_retiene_la_posicion_sin_objetivos(tmp_path, semantica):

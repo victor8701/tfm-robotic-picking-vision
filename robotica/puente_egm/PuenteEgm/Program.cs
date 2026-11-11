@@ -1,10 +1,12 @@
 using System.Diagnostics;
 using PuenteEgm;
 
-// Uso: PuenteEgm [config.json]
+// Uso: PuenteEgm [config.json] [--prueba]
 // Arranca una sesión EGM (UDP) y un servidor de control (TCP) por cada entrada de "sesiones".
+// --prueba: cada sesión genera sola la secuencia de prueba (diagonales xy, xz, yz en bucle).
 
-var ruta = args.Length > 0 ? args[0] : "config.json";
+var prueba = Array.IndexOf(args, "--prueba") >= 0;
+var ruta = Array.Find(args, a => !a.StartsWith("--")) ?? "config.json";
 var cfg = ConfigPuente.Cargar(ruta);
 var reloj = Stopwatch.StartNew();
 using var registro = new Registro(cfg.RegistroCsv);
@@ -17,6 +19,11 @@ foreach (var s in cfg.Sesiones)
     sesion.Iniciar();
     control.Iniciar();
     sesiones.Add((sesion, control));
+    if (prueba)
+    {
+        sesion.ActivarPrueba(paso: 1.0, pasos: 50);
+        Console.WriteLine($"[{s.Nombre}] prueba interna en bucle: diagonales xy, xz, yz (ida y vuelta, 50 pasos de 1 mm).");
+    }
     Console.WriteLine($"[{s.Nombre}] EGM UDP:{s.PuertoEgm}  control TCP {s.IpControl}:{s.PuertoControl}  semantica={s.Semantica}");
 }
 

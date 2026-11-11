@@ -50,3 +50,15 @@ def test_el_coordinador_publica_el_estado_inicial(ros):
         assert '"estado": "reposo"' in recibidos[0]
     finally:
         nodo.destroy_node()
+
+
+def test_el_nodo_de_seguimiento_se_crea_con_su_configuracion(ros):
+    from robotica_bimanual.nodo_seguimiento import NodoSeguimiento
+
+    nodo = NodoSeguimiento()
+    try:
+        assert nodo.get_name() == "nodo_seguimiento"
+        assert nodo.get_parameter("sesion").value == "brazo1"
+        assert nodo.get_parameter("puntos_maximos").value == 3000
+    finally:
+        nodo.destroy_node()
