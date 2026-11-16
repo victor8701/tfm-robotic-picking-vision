@@ -1,2 +1,2 @@
 Cambiar este fichero y subirlo a main lanza la «Prueba de Instagram» (muestra de 6 cuentas) sin entrar en GitHub.
-Último lanzamiento: 2026-11-16, para ver por qué Meta contesta «API access blocked» en las semanales.
+Último lanzamiento: 2026-11-16 18:58 UTC, tras confirmar la cuenta de desarrollador de Meta.
