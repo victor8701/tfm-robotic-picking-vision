@@ -6,6 +6,10 @@ name: Tendencia semanal (revista)
 # Este fichero tiene que estar en la rama principal (main): GitHub solo programa las tareas desde ahí.
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/lanzar_semanal.txt'   # subir un cambio de este fichero lanza la tarea ahora, sin entrar en GitHub
   workflow_dispatch: {}
   schedule:
     # Lunes 02:30 UTC (04:30 en España en horario de verano, 03:30 en invierno). En este repositorio GitHub suele retrasar las tareas programadas entre 2 y 7 horas.

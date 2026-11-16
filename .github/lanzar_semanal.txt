@@ -1,0 +1,2 @@
+Cambiar este fichero y subirlo a main lanza la tarea semanal (y manda la revista) ahora, sin esperar al lunes.
+Último lanzamiento: 2026-11-16, edición nueva a petición de Víctor, con Meta ya funcionando y las 3 cuentas nuevas.
