@@ -348,6 +348,19 @@ class PruebasMeta(unittest.TestCase):
         self.assertIn("META_IG_TOKEN", str(cm.exception))
 
 
+class PruebasDetalleDelError(unittest.TestCase):
+    def test_el_mensaje_lleva_tipo_subcodigo_explicacion_y_traza_de_meta_sin_el_token(self):
+        cuerpo = {"error": {"message": f"API access blocked. {TOKEN}", "type": "OAuthException", "code": 200, "error_subcode": 2207024, "error_user_msg": "La app está restringida", "fbtrace_id": "AbC123"}}
+        tipo, cod, msg = im.clasificar(cuerpo, TOKEN)
+        self.assertEqual((tipo, cod), ("permisos", 200))
+        for trozo in ("API access blocked", "tipo OAuthException", "subcódigo 2207024", "Meta explica: «La app está restringida»", "traza AbC123"):
+            self.assertIn(trozo, msg)
+        self.assertNotIn(TOKEN, msg)
+
+    def test_sin_detalles_el_mensaje_queda_como_antes(self):
+        self.assertEqual(im.clasificar({"error": {"message": "(#4) Application request limit reached", "code": 4}})[2], "(#4) Application request limit reached")
+
+
 class PruebasCuota(unittest.TestCase):
     """Meta limita la app por tiempo de proceso: con tiempo de espera, la lectura se pausa y sigue en vez de rendirse."""
 

@@ -114,6 +114,11 @@ def clasificar(cuerpo: dict, token: str = "") -> tuple[str, int | None, str]:
     e = (cuerpo or {}).get("error") or {}
     cod = e.get("code")
     msg = _limpiar(str(e.get("message") or ""), token)[:200]
+    # lo que Meta añade al código (tipo, subcódigo, mensaje para el usuario y traza) suele decir la causa de verdad (p. ej. de un «API access blocked»): se deja en el mensaje; nunca lleva el token
+    extra = [f"tipo {e['type']}" if e.get("type") else "", f"subcódigo {e['error_subcode']}" if e.get("error_subcode") else "",
+             f"Meta explica: «{_limpiar(str(e['error_user_msg']), token)[:200]}»" if e.get("error_user_msg") else "", f"traza {e['fbtrace_id']}" if e.get("fbtrace_id") else ""]
+    if any(extra):
+        msg += " [" + "; ".join(x for x in extra if x) + "]"
     try:
         cod = int(cod)
     except (TypeError, ValueError):
