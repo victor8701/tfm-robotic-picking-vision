@@ -2,15 +2,15 @@
  "16dd989d": {
   "referente": "bycalitos",
   "tipo": "x",
-  "ultima": "2026-11-16T10:00:54+00:00",
-  "nuevas": 1,
-  "buenas": 1,
+  "ultima": "2026-11-16T15:03:37+00:00",
+  "nuevas": 0,
+  "buenas": 0,
   "ultima_foto_hace_dias": 1
  },
  "6b340b4c": {
   "referente": "Shoda Monkas",
   "tipo": "x",
-  "ultima": "2026-11-16T10:00:57+00:00",
+  "ultima": "2026-11-16T15:03:39+00:00",
   "nuevas": 0,
   "buenas": 0,
   "ultima_foto_hace_dias": 25
@@ -18,7 +18,7 @@
  "11bce170": {
   "referente": "Hoke",
   "tipo": "x",
-  "ultima": "2026-11-16T10:01:05+00:00",
+  "ultima": "2026-11-16T15:03:42+00:00",
   "nuevas": 0,
   "buenas": 0,
   "ultima_foto_hace_dias": 607
@@ -26,23 +26,23 @@
  "4bb8e92d": {
   "referente": "Quevedo",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:01:43+00:00",
-  "nuevas": 6,
-  "buenas": 2,
-  "articulos": 5
+  "ultima": "2026-11-16T15:04:06+00:00",
+  "nuevas": 2,
+  "buenas": 0,
+  "articulos": 2
  },
  "98c88ff0": {
   "referente": "Morad",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:01:58+00:00",
-  "nuevas": 9,
-  "buenas": 7,
-  "articulos": 1
+  "ultima": "2026-11-16T15:04:13+00:00",
+  "nuevas": 0,
+  "buenas": 0,
+  "articulos": 0
  },
  "d1d918fe": {
   "referente": "Beny Jr",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:02:06+00:00",
+  "ultima": "2026-11-16T15:04:20+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 1
@@ -50,7 +50,7 @@
  "83f9d812": {
   "referente": "Israel B",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:02:12+00:00",
+  "ultima": "2026-11-16T15:04:26+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -58,7 +58,7 @@
  "268ed0bb": {
   "referente": "Hoke",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:02:18+00:00",
+  "ultima": "2026-11-16T15:04:32+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -66,7 +66,7 @@
  "de1fdd76": {
   "referente": "Cruz Cafuné",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:02:22+00:00",
+  "ultima": "2026-11-16T15:04:36+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -74,7 +74,7 @@
  "b816de84": {
   "referente": "orslok",
   "tipo": "x",
-  "ultima": "2026-11-16T10:02:25+00:00",
+  "ultima": "2026-11-16T15:04:38+00:00",
   "nuevas": 0,
   "buenas": 0,
   "ultima_foto_hace_dias": 645
@@ -82,7 +82,7 @@
  "549a718b": {
   "referente": "orslok",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:02:31+00:00",
+  "ultima": "2026-11-16T15:04:44+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -90,7 +90,7 @@
  "ec0017f7": {
   "referente": "Rojuu",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:02:37+00:00",
+  "ultima": "2026-11-16T15:04:50+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -98,7 +98,7 @@
  "4c1153e7": {
   "referente": "SoyUnaPringada",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:02:43+00:00",
+  "ultima": "2026-11-16T15:04:56+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -106,7 +106,7 @@
  "c6ec5b6d": {
   "referente": "Travis Scott",
   "tipo": "x",
-  "ultima": "2026-11-16T10:02:45+00:00",
+  "ultima": "2026-11-16T15:05:03+00:00",
   "nuevas": 0,
   "buenas": 0,
   "ultima_foto_hace_dias": 62
@@ -114,7 +114,7 @@
  "81193b11": {
   "referente": "Playboi Carti",
   "tipo": "x",
-  "ultima": "2026-11-16T10:02:48+00:00",
+  "ultima": "2026-11-16T15:05:20+00:00",
   "nuevas": 0,
   "buenas": 0,
   "ultima_foto_hace_dias": null
@@ -122,7 +122,7 @@
  "327c021e": {
   "referente": "Kid Cudi",
   "tipo": "x",
-  "ultima": "2026-11-16T10:02:55+00:00",
+  "ultima": "2026-11-16T15:05:28+00:00",
   "nuevas": 0,
   "buenas": 0,
   "ultima_foto_hace_dias": null
@@ -130,7 +130,7 @@
  "7f37dbf8": {
   "referente": "Travis Scott",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:03:05+00:00",
+  "ultima": "2026-11-16T15:05:37+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 2
@@ -138,7 +138,7 @@
  "7023eaee": {
   "referente": "Playboi Carti",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:03:14+00:00",
+  "ultima": "2026-11-16T15:05:46+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 1
@@ -146,7 +146,7 @@
  "cf686772": {
   "referente": "Kid Cudi",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:03:20+00:00",
+  "ultima": "2026-11-16T15:05:52+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -154,23 +154,23 @@
  "44d21106": {
   "referente": "A$AP Rocky",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:03:36+00:00",
-  "nuevas": 16,
-  "buenas": 16,
-  "articulos": 1
+  "ultima": "2026-11-16T15:05:58+00:00",
+  "nuevas": 0,
+  "buenas": 0,
+  "articulos": 0
  },
  "ec48da0e": {
   "referente": "r/streetwear",
   "tipo": "reddit",
-  "ultima": "2026-11-16T10:04:06+00:00",
-  "nuevas": 1,
-  "buenas": 1,
+  "ultima": "2026-11-16T15:07:03+00:00",
+  "nuevas": 0,
+  "buenas": 0,
   "con_imagen": 10
  },
  "59f68648": {
   "referente": "Painthisice",
   "tipo": "x",
-  "ultima": "2026-11-16T10:04:08+00:00",
+  "ultima": "2026-11-16T15:07:05+00:00",
   "nuevas": 0,
   "buenas": 0,
   "ultima_foto_hace_dias": 30
@@ -178,7 +178,7 @@
  "277f99bf": {
   "referente": "TechwearClub",
   "tipo": "x",
-  "ultima": "2026-11-16T10:04:16+00:00",
+  "ultima": "2026-11-16T15:07:13+00:00",
   "nuevas": 0,
   "buenas": 0,
   "ultima_foto_hace_dias": 1990
@@ -186,7 +186,7 @@
  "2715000d": {
   "referente": "r/techwearclothing",
   "tipo": "reddit",
-  "ultima": "2026-11-16T10:05:03+00:00",
+  "ultima": "2026-11-16T15:09:03+00:00",
   "nuevas": 0,
   "buenas": 0,
   "con_imagen": 0
@@ -194,13 +194,15 @@
  "2fb48b29": {
   "referente": "Lil Peep",
   "tipo": "x",
-  "ultima": "2026-11-16T10:05:32+00:00",
-  "error": "ValueError: el servicio FxTwitter no devolvió los posts de esta cuenta (a veces falla): inténtalo de nuevo en unos minutos"
+  "ultima": "2026-11-16T15:09:10+00:00",
+  "nuevas": 0,
+  "buenas": 0,
+  "ultima_foto_hace_dias": 423
  },
  "82d9aa3c": {
   "referente": "Lil Peep",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:05:38+00:00",
+  "ultima": "2026-11-16T15:09:16+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -208,7 +210,7 @@
  "72c3b965": {
   "referente": "Lil Xan",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:05:48+00:00",
+  "ultima": "2026-11-16T15:09:25+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 2
@@ -216,47 +218,47 @@
  "4d332f85": {
   "referente": "Reina Letizia",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:06:40+00:00",
-  "nuevas": 29,
-  "buenas": 17,
-  "articulos": 12
+  "ultima": "2026-11-16T15:09:37+00:00",
+  "nuevas": 0,
+  "buenas": 0,
+  "articulos": 4
  },
  "3ae9db30": {
   "referente": "prensa: \"lujo silencioso\" moda",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:06:48+00:00",
-  "nuevas": 0,
-  "buenas": 0,
-  "articulos": 1
+  "ultima": "2026-11-16T15:09:53+00:00",
+  "nuevas": 12,
+  "buenas": 10,
+  "articulos": 2
  },
  "8643d863": {
   "referente": "Jacob Elordi",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:07:19+00:00",
-  "nuevas": 27,
-  "buenas": 12,
-  "articulos": 5
+  "ultima": "2026-11-16T15:10:05+00:00",
+  "nuevas": 0,
+  "buenas": 0,
+  "articulos": 4
  },
  "bc8fed99": {
   "referente": "dieworkwear",
   "tipo": "x",
-  "ultima": "2026-11-16T10:07:44+00:00",
-  "nuevas": 73,
-  "buenas": 54,
+  "ultima": "2026-11-16T15:10:13+00:00",
+  "nuevas": 0,
+  "buenas": 0,
   "ultima_foto_hace_dias": 0
  },
  "0d4ccc9e": {
   "referente": "Gwyneth Paltrow",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:08:09+00:00",
-  "nuevas": 14,
-  "buenas": 11,
-  "articulos": 6
+  "ultima": "2026-11-16T15:10:25+00:00",
+  "nuevas": 0,
+  "buenas": 0,
+  "articulos": 4
  },
  "dd69e3f8": {
   "referente": "prensa: \"quiet luxury\" fashion",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:08:18+00:00",
+  "ultima": "2026-11-16T15:10:31+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 1
@@ -264,15 +266,15 @@
  "452fda9d": {
   "referente": "Tamara Falcó",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:09:06+00:00",
-  "nuevas": 32,
-  "buenas": 15,
-  "articulos": 10
+  "ultima": "2026-11-16T15:10:46+00:00",
+  "nuevas": 0,
+  "buenas": 0,
+  "articulos": 6
  },
  "c593262e": {
   "referente": "prensa: \"Barbour\" chaqueta moda",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:09:10+00:00",
+  "ultima": "2026-11-16T15:10:50+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -280,7 +282,7 @@
  "fae5fe58": {
   "referente": "envido6",
   "tipo": "x",
-  "ultima": "2026-11-16T10:09:12+00:00",
+  "ultima": "2026-11-16T15:10:53+00:00",
   "nuevas": 0,
   "buenas": 0,
   "ultima_foto_hace_dias": 26
@@ -288,7 +290,7 @@
  "eaeac6a6": {
   "referente": "prensa: estilo cayetano moda",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:09:16+00:00",
+  "ultima": "2026-11-16T15:10:56+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -296,47 +298,47 @@
  "eaced6ac": {
   "referente": "r/Barbour",
   "tipo": "reddit",
-  "ultima": "2026-11-16T10:10:11+00:00",
-  "nuevas": 11,
-  "buenas": 11,
-  "con_imagen": 40
+  "ultima": "2026-11-16T15:11:19+00:00",
+  "nuevas": 2,
+  "buenas": 1,
+  "con_imagen": 42
  },
  "433c7093": {
   "referente": "r/preppy",
   "tipo": "reddit",
-  "ultima": "2026-11-16T10:11:09+00:00",
-  "nuevas": 8,
-  "buenas": 8,
+  "ultima": "2026-11-16T15:12:03+00:00",
+  "nuevas": 0,
+  "buenas": 0,
   "con_imagen": 25
  },
  "6807fbcc": {
   "referente": "RalphLauren",
   "tipo": "x",
-  "ultima": "2026-11-16T10:11:18+00:00",
-  "nuevas": 17,
-  "buenas": 14,
-  "ultima_foto_hace_dias": 0
+  "ultima": "2026-11-16T15:12:05+00:00",
+  "nuevas": 0,
+  "buenas": 0,
+  "ultima_foto_hace_dias": 1
  },
  "4ecce98b": {
   "referente": "HackettLondon",
   "tipo": "x",
-  "ultima": "2026-11-16T10:11:32+00:00",
-  "nuevas": 14,
-  "buenas": 12,
+  "ultima": "2026-11-16T15:12:07+00:00",
+  "nuevas": 0,
+  "buenas": 0,
   "ultima_foto_hace_dias": 3
  },
  "9dd39e0b": {
   "referente": "prensa: \"Barbour\" jacket style",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:11:37+00:00",
+  "ultima": "2026-11-16T15:12:14+00:00",
   "nuevas": 0,
   "buenas": 0,
-  "articulos": 1
+  "articulos": 2
  },
  "a2a2f9a3": {
   "referente": "prensa: \"preppy\" outfit trend",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:11:52+00:00",
+  "ultima": "2026-11-16T15:12:18+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -344,7 +346,7 @@
  "aaba5d7e": {
   "referente": "Ralph Lauren",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:12:11+00:00",
+  "ultima": "2026-11-16T15:12:26+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 1
@@ -352,95 +354,95 @@
  "faa31d42": {
   "referente": "Georgina Rodríguez",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:12:38+00:00",
-  "nuevas": 14,
-  "buenas": 5,
-  "articulos": 4
+  "ultima": "2026-11-16T15:12:35+00:00",
+  "nuevas": 0,
+  "buenas": 0,
+  "articulos": 1
  },
  "ffb2f5e0": {
   "referente": "r/LouisVuitton",
   "tipo": "reddit",
-  "ultima": "2026-11-16T10:13:14+00:00",
-  "nuevas": 14,
-  "buenas": 6,
+  "ultima": "2026-11-16T15:13:04+00:00",
+  "nuevas": 1,
+  "buenas": 1,
   "con_imagen": 52
  },
  "efca87c3": {
   "referente": "r/IndianFashionAddicts",
   "tipo": "reddit",
-  "ultima": "2026-11-16T10:14:08+00:00",
-  "nuevas": 7,
-  "buenas": 7,
+  "ultima": "2026-11-16T15:14:05+00:00",
+  "nuevas": 2,
+  "buenas": 2,
   "con_imagen": 31
  },
  "b083f82d": {
   "referente": "Cardi B",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:14:45+00:00",
-  "nuevas": 14,
-  "buenas": 11,
-  "articulos": 9
+  "ultima": "2026-11-16T15:14:22+00:00",
+  "nuevas": 15,
+  "buenas": 9,
+  "articulos": 5
  },
  "7c718f9b": {
   "referente": "DSQUARED2",
   "tipo": "x",
-  "ultima": "2026-11-16T10:14:56+00:00",
-  "nuevas": 7,
-  "buenas": 4,
-  "ultima_foto_hace_dias": 5
+  "ultima": "2026-11-16T15:14:26+00:00",
+  "nuevas": 1,
+  "buenas": 1,
+  "ultima_foto_hace_dias": 0
  },
  "f9104d71": {
   "referente": "r/Gucci",
   "tipo": "reddit",
-  "ultima": "2026-11-16T10:15:25+00:00",
-  "nuevas": 11,
-  "buenas": 8,
+  "ultima": "2026-11-16T15:15:04+00:00",
+  "nuevas": 0,
+  "buenas": 0,
   "con_imagen": 39
  },
  "641fcb92": {
   "referente": "Balmain",
   "tipo": "x",
-  "ultima": "2026-11-16T10:15:44+00:00",
-  "nuevas": 6,
-  "buenas": 6,
+  "ultima": "2026-11-16T15:15:06+00:00",
+  "nuevas": 0,
+  "buenas": 0,
   "ultima_foto_hace_dias": 4
  },
  "1973657e": {
   "referente": "DolceGabbana",
   "tipo": "x",
-  "ultima": "2026-11-16T10:15:58+00:00",
-  "nuevas": 30,
-  "buenas": 14,
+  "ultima": "2026-11-16T15:15:13+00:00",
+  "nuevas": 0,
+  "buenas": 0,
   "ultima_foto_hace_dias": 1
  },
  "0aeea8ad": {
   "referente": "Dior",
   "tipo": "x",
-  "ultima": "2026-11-16T10:16:24+00:00",
-  "nuevas": 38,
-  "buenas": 31,
+  "ultima": "2026-11-16T15:15:16+00:00",
+  "nuevas": 0,
+  "buenas": 0,
   "ultima_foto_hace_dias": 2
  },
  "7b9ca7e4": {
   "referente": "gucci",
   "tipo": "x",
-  "ultima": "2026-11-16T10:16:40+00:00",
-  "nuevas": 30,
-  "buenas": 24,
+  "ultima": "2026-11-16T15:15:18+00:00",
+  "nuevas": 0,
+  "buenas": 0,
   "ultima_foto_hace_dias": 3
  },
  "5065e9cc": {
   "referente": "Versace",
   "tipo": "x",
-  "ultima": "2026-11-16T10:16:45+00:00",
-  "nuevas": 6,
-  "buenas": 4,
+  "ultima": "2026-11-16T15:15:35+00:00",
+  "nuevas": 0,
+  "buenas": 0,
   "ultima_foto_hace_dias": 1
  },
  "ef3da092": {
   "referente": "Philipp Plein",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:16:51+00:00",
+  "ultima": "2026-11-16T15:15:42+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -448,15 +450,15 @@
  "1220241f": {
   "referente": "prensa: estilo boho chic moda",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:17:24+00:00",
-  "nuevas": 27,
-  "buenas": 16,
-  "articulos": 3
+  "ultima": "2026-11-16T15:15:56+00:00",
+  "nuevas": 1,
+  "buenas": 1,
+  "articulos": 2
  },
  "e487261f": {
   "referente": "prensa: moda hippie chic",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:17:27+00:00",
+  "ultima": "2026-11-16T15:16:00+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -464,15 +466,15 @@
  "2fb0ba95": {
   "referente": "r/cottagecore",
   "tipo": "reddit",
-  "ultima": "2026-11-16T10:18:08+00:00",
-  "nuevas": 8,
-  "buenas": 5,
+  "ultima": "2026-11-16T15:17:04+00:00",
+  "nuevas": 0,
+  "buenas": 0,
   "con_imagen": 42
  },
  "bd4af4bc": {
   "referente": "prensa: \"boho chic\" fashion",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:18:12+00:00",
+  "ultima": "2026-11-16T15:17:08+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -480,7 +482,7 @@
  "899bbf38": {
   "referente": "r/bohemian",
   "tipo": "reddit",
-  "ultima": "2026-11-16T10:19:02+00:00",
+  "ultima": "2026-11-16T15:18:02+00:00",
   "nuevas": 0,
   "buenas": 0,
   "con_imagen": 3
@@ -488,31 +490,31 @@
  "75e5cfef": {
   "referente": "Sienna Miller",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:19:23+00:00",
-  "nuevas": 5,
-  "buenas": 1,
+  "ultima": "2026-11-16T15:18:15+00:00",
+  "nuevas": 0,
+  "buenas": 0,
   "articulos": 4
  },
  "38a865e8": {
   "referente": "r/LookeAR",
   "tipo": "reddit",
-  "ultima": "2026-11-16T10:20:14+00:00",
-  "nuevas": 17,
-  "buenas": 16,
-  "con_imagen": 49
+  "ultima": "2026-11-16T15:19:04+00:00",
+  "nuevas": 0,
+  "buenas": 0,
+  "con_imagen": 48
  },
  "f7a4b689": {
   "referente": "prensa: looks básicos tendencia moda",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:21:32+00:00",
-  "nuevas": 75,
-  "buenas": 42,
-  "articulos": 7
+  "ultima": "2026-11-16T15:19:13+00:00",
+  "nuevas": 0,
+  "buenas": 0,
+  "articulos": 3
  },
  "f84b7f77": {
   "referente": "prensa: \"normcore\" moda",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:21:39+00:00",
+  "ultima": "2026-11-16T15:19:16+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -520,23 +522,23 @@
  "56f28c36": {
   "referente": "r/OUTFITS",
   "tipo": "reddit",
-  "ultima": "2026-11-16T10:22:08+00:00",
-  "nuevas": 7,
-  "buenas": 7,
+  "ultima": "2026-11-16T15:20:04+00:00",
+  "nuevas": 1,
+  "buenas": 1,
   "con_imagen": 53
  },
  "7da17e21": {
   "referente": "r/reddeadfashion",
   "tipo": "reddit",
-  "ultima": "2026-11-16T10:23:07+00:00",
-  "nuevas": 3,
-  "buenas": 2,
+  "ultima": "2026-11-16T15:21:04+00:00",
+  "nuevas": 0,
+  "buenas": 0,
   "con_imagen": 15
  },
  "8e6771dc": {
   "referente": "r/EverydayOutfitStyle",
   "tipo": "reddit",
-  "ultima": "2026-11-16T10:24:02+00:00",
+  "ultima": "2026-11-16T15:22:02+00:00",
   "nuevas": 0,
   "buenas": 0,
   "con_imagen": 0
@@ -544,7 +546,7 @@
  "7672dc8d": {
   "referente": "prensa: \"normcore\" outfit",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:24:06+00:00",
+  "ultima": "2026-11-16T15:22:06+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -552,7 +554,7 @@
  "9935cbce": {
   "referente": "r/femalefashionadvice",
   "tipo": "reddit",
-  "ultima": "2026-11-16T10:25:03+00:00",
+  "ultima": "2026-11-16T15:23:03+00:00",
   "nuevas": 0,
   "buenas": 0,
   "con_imagen": 1
@@ -560,23 +562,23 @@
  "0eaca544": {
   "referente": "prensa: everyday outfit trends",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:25:08+00:00",
-  "nuevas": 0,
-  "buenas": 0,
-  "articulos": 1
+  "ultima": "2026-11-16T15:23:17+00:00",
+  "nuevas": 16,
+  "buenas": 6,
+  "articulos": 4
  },
  "affdc20c": {
   "referente": "prensa: \"basics\" fashion trend outfit",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:25:12+00:00",
+  "ultima": "2026-11-16T15:23:22+00:00",
   "nuevas": 0,
   "buenas": 0,
-  "articulos": 0
+  "articulos": 1
  },
  "3d3ce9cd": {
   "referente": "prensa: streetwear España tendencia",
   "tipo": "noticias",
-  "ultima": "2026-11-16T10:25:16+00:00",
+  "ultima": "2026-11-16T15:23:26+00:00",
   "nuevas": 0,
   "buenas": 0,
   "articulos": 0
@@ -584,26 +586,26 @@
  "ae31d5a8": {
   "referente": "abercrombie",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:25:29+00:00",
-  "nuevas": 7,
-  "buenas": 4,
+  "ultima": "2026-11-16T15:23:36+00:00",
+  "nuevas": 0,
+  "buenas": 0,
   "publicaciones": 30,
   "sin_foto": 0
  },
  "fe7d4e47": {
   "referente": "britishcountryheritage",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:25:36+00:00",
-  "nuevas": 7,
-  "buenas": 2,
+  "ultima": "2026-11-16T15:23:38+00:00",
+  "nuevas": 0,
+  "buenas": 0,
   "publicaciones": 36,
   "sin_foto": 0
  },
  "064ef6b9": {
   "referente": "gucci",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:25:45+00:00",
-  "nuevas": 7,
+  "ultima": "2026-11-16T15:23:40+00:00",
+  "nuevas": 0,
   "buenas": 0,
   "publicaciones": 47,
   "sin_foto": 0
@@ -611,7 +613,7 @@
  "1eef067b": {
   "referente": "hottopic",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:25:47+00:00",
+  "ultima": "2026-11-16T15:23:41+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -620,25 +622,25 @@
  "418bfa16": {
   "referente": "killstar",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:25:57+00:00",
+  "ultima": "2026-11-16T15:23:49+00:00",
   "nuevas": 8,
-  "buenas": 7,
+  "buenas": 8,
   "publicaciones": 67,
   "sin_foto": 0
  },
  "6be16abd": {
   "referente": "loewe",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:26:01+00:00",
-  "nuevas": 2,
-  "buenas": 1,
+  "ultima": "2026-11-16T15:23:50+00:00",
+  "nuevas": 0,
+  "buenas": 0,
   "publicaciones": 25,
   "sin_foto": 0
  },
  "948d127e": {
   "referente": "massimodutti",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:26:02+00:00",
+  "ultima": "2026-11-16T15:23:52+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -647,7 +649,7 @@
  "57b6a244": {
   "referente": "ralphlauren",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:26:14+00:00",
+  "ultima": "2026-11-16T15:24:01+00:00",
   "nuevas": 8,
   "buenas": 5,
   "publicaciones": 55,
@@ -656,34 +658,34 @@
  "5c64cce7": {
   "referente": "stussy",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:26:16+00:00",
-  "nuevas": 1,
-  "buenas": 1,
+  "ultima": "2026-11-16T15:24:03+00:00",
+  "nuevas": 0,
+  "buenas": 0,
   "publicaciones": 9,
   "sin_foto": 0
  },
  "fdd74cf2": {
   "referente": "thehippieshake",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:26:25+00:00",
-  "nuevas": 7,
-  "buenas": 7,
+  "ultima": "2026-11-16T15:24:04+00:00",
+  "nuevas": 0,
+  "buenas": 0,
   "publicaciones": 39,
   "sin_foto": 0
  },
  "3d4a9965": {
   "referente": "zara",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:26:35+00:00",
-  "nuevas": 8,
+  "ultima": "2026-11-16T15:24:11+00:00",
+  "nuevas": 7,
   "buenas": 6,
-  "publicaciones": 50,
+  "publicaciones": 51,
   "sin_foto": 0
  },
  "40644d63": {
   "referente": "adrianoromanini_",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:26:36+00:00",
+  "ultima": "2026-11-16T15:24:12+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -692,7 +694,7 @@
  "dfb89c25": {
   "referente": "allen_issy",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:26:38+00:00",
+  "ultima": "2026-11-16T15:24:14+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -701,7 +703,7 @@
  "ec4e3946": {
   "referente": "anaboyer",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:26:39+00:00",
+  "ultima": "2026-11-16T15:24:16+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -710,7 +712,7 @@
  "c8c7ac5d": {
   "referente": "asaprocky",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:26:41+00:00",
+  "ultima": "2026-11-16T15:24:17+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -719,7 +721,7 @@
  "dfcf8ddf": {
   "referente": "balenciaga",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:26:42+00:00",
+  "ultima": "2026-11-16T15:24:19+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -728,7 +730,7 @@
  "88e96b43": {
   "referente": "blackcraftcult",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:26:44+00:00",
+  "ultima": "2026-11-16T15:24:20+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -737,7 +739,7 @@
  "67105b47": {
   "referente": "boxlunchgifts",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:26:45+00:00",
+  "ultima": "2026-11-16T15:24:22+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -746,7 +748,7 @@
  "226d4f84": {
   "referente": "brooksbrothers",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:26:47+00:00",
+  "ultima": "2026-11-16T15:24:23+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -755,7 +757,7 @@
  "50a30486": {
   "referente": "budrys.jr",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:26:49+00:00",
+  "ultima": "2026-11-16T15:24:25+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -764,7 +766,7 @@
  "ce44e30d": {
   "referente": "bycalitos",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:26:50+00:00",
+  "ultima": "2026-11-16T15:24:26+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -773,7 +775,7 @@
  "213d459c": {
   "referente": "carlotagrandeb",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:26:52+00:00",
+  "ultima": "2026-11-16T15:24:28+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -782,7 +784,7 @@
  "b1177979": {
   "referente": "conniemcleann",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:26:53+00:00",
+  "ultima": "2026-11-16T15:24:30+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -791,16 +793,16 @@
  "06afaedf": {
   "referente": "cortefiel_official",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:26:58+00:00",
-  "nuevas": 4,
-  "buenas": 4,
+  "ultima": "2026-11-16T15:24:31+00:00",
+  "nuevas": 0,
+  "buenas": 0,
   "publicaciones": 25,
   "sin_foto": 0
  },
  "b0dbd470": {
   "referente": "cyber_techwear",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:00+00:00",
+  "ultima": "2026-11-16T15:24:33+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -809,16 +811,16 @@
  "15f43bbe": {
   "referente": "desigual",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:04+00:00",
-  "nuevas": 2,
-  "buenas": 2,
+  "ultima": "2026-11-16T15:24:34+00:00",
+  "nuevas": 0,
+  "buenas": 0,
   "publicaciones": 13,
   "sin_foto": 0
  },
  "d4e0fac7": {
   "referente": "devonbroughton",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:05+00:00",
+  "ultima": "2026-11-16T15:24:36+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -827,7 +829,7 @@
  "d704a7dc": {
   "referente": "dollskill",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:07+00:00",
+  "ultima": "2026-11-16T15:24:37+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -836,7 +838,7 @@
  "8e1c9d14": {
   "referente": "emquedabe",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:08+00:00",
+  "ultima": "2026-11-16T15:24:39+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -845,7 +847,7 @@
  "4f1d26cf": {
   "referente": "fabric_ofthe_universe",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:10+00:00",
+  "ultima": "2026-11-16T15:24:40+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -854,7 +856,7 @@
  "06ce99e3": {
   "referente": "florianmacek",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:11+00:00",
+  "ultima": "2026-11-16T15:24:42+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -863,7 +865,7 @@
  "474a398a": {
   "referente": "georginagio",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:13+00:00",
+  "ultima": "2026-11-16T15:24:43+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -872,7 +874,7 @@
  "6c9cf8dc": {
   "referente": "hackettlondon",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:14+00:00",
+  "ultima": "2026-11-16T15:24:45+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -881,7 +883,7 @@
  "030f7853": {
   "referente": "irmastyle",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:16+00:00",
+  "ultima": "2026-11-16T15:24:47+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -890,7 +892,7 @@
  "6db27c61": {
   "referente": "joshuacoppen",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:18+00:00",
+  "ultima": "2026-11-16T15:24:48+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -899,7 +901,7 @@
  "66f1c0ba": {
   "referente": "keanuwohl",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:19+00:00",
+  "ultima": "2026-11-16T15:24:50+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -908,7 +910,7 @@
  "2f82a649": {
   "referente": "kidcudi",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:21+00:00",
+  "ultima": "2026-11-16T15:24:51+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -917,7 +919,7 @@
  "593c4b63": {
   "referente": "lasmolinas",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:22+00:00",
+  "ultima": "2026-11-16T15:24:53+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -926,7 +928,7 @@
  "a3c1f0b0": {
   "referente": "lillieemariie",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:24+00:00",
+  "ultima": "2026-11-16T15:24:54+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -935,7 +937,7 @@
  "2bd8e52f": {
   "referente": "lilpeep",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:25+00:00",
+  "ultima": "2026-11-16T15:24:56+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -944,7 +946,7 @@
  "f252f7da": {
   "referente": "mararuizj",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:27+00:00",
+  "ultima": "2026-11-16T15:24:57+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -953,7 +955,7 @@
  "081f97f7": {
   "referente": "marinamcerezo",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:28+00:00",
+  "ultima": "2026-11-16T15:24:59+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -962,7 +964,7 @@
  "7a863a38": {
   "referente": "melissamacchiavello",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:30+00:00",
+  "ultima": "2026-11-16T15:25:01+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -971,7 +973,7 @@
  "bae13de5": {
   "referente": "moritz_hau",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:31+00:00",
+  "ultima": "2026-11-16T15:25:02+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -980,7 +982,7 @@
  "273e2c60": {
   "referente": "nayarjc",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:33+00:00",
+  "ultima": "2026-11-16T15:25:04+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -989,16 +991,16 @@
  "2edb94a7": {
   "referente": "nudeproject",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:40+00:00",
-  "nuevas": 4,
-  "buenas": 4,
+  "ultima": "2026-11-16T15:25:05+00:00",
+  "nuevas": 0,
+  "buenas": 0,
   "publicaciones": 13,
   "sin_foto": 0
  },
  "ccef4c2c": {
   "referente": "oliverbrynnum",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:41+00:00",
+  "ultima": "2026-11-16T15:25:07+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -1007,7 +1009,7 @@
  "e5b8784a": {
   "referente": "oxfordandchino",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:43+00:00",
+  "ultima": "2026-11-16T15:25:08+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -1016,7 +1018,7 @@
  "43516d58": {
   "referente": "pedrodelhierro_official",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:44+00:00",
+  "ultima": "2026-11-16T15:25:10+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -1025,7 +1027,7 @@
  "9f1b93b9": {
   "referente": "playboicarti",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:46+00:00",
+  "ultima": "2026-11-16T15:25:11+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -1034,7 +1036,7 @@
  "a9898907": {
   "referente": "pleatsandpatina",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:47+00:00",
+  "ultima": "2026-11-16T15:25:13+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -1043,7 +1045,7 @@
  "cb97731b": {
   "referente": "raquelcanas",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:49+00:00",
+  "ultima": "2026-11-16T15:25:15+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -1052,7 +1054,7 @@
  "3166d433": {
   "referente": "rebecamomeg",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:50+00:00",
+  "ultima": "2026-11-16T15:25:16+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -1061,7 +1063,7 @@
  "7ff7dd76": {
   "referente": "reformedprep",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:52+00:00",
+  "ultima": "2026-11-16T15:25:18+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -1070,7 +1072,7 @@
  "fc8d6e0c": {
   "referente": "rojuu",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:54+00:00",
+  "ultima": "2026-11-16T15:25:19+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -1079,7 +1081,7 @@
  "7775b5c9": {
   "referente": "scalperscompany",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:55+00:00",
+  "ultima": "2026-11-16T15:25:21+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -1088,7 +1090,7 @@
  "c7c2614d": {
   "referente": "shodamonkas",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:57+00:00",
+  "ultima": "2026-11-16T15:25:22+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -1097,7 +1099,7 @@
  "66f98000": {
   "referente": "sophieseddonvintage",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:27:58+00:00",
+  "ultima": "2026-11-16T15:25:24+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -1106,7 +1108,7 @@
  "edd09e63": {
   "referente": "tamara_falco",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:28:00+00:00",
+  "ultima": "2026-11-16T15:25:25+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -1115,7 +1117,7 @@
  "40d458a8": {
   "referente": "theoccasionalprep",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:28:01+00:00",
+  "ultima": "2026-11-16T15:25:27+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -1124,7 +1126,7 @@
  "af34db6e": {
   "referente": "therake",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:28:03+00:00",
+  "ultima": "2026-11-16T15:25:28+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -1133,7 +1135,7 @@
  "7e3eaaf5": {
   "referente": "tim.conlin",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:28:04+00:00",
+  "ultima": "2026-11-16T15:25:30+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -1142,7 +1144,7 @@
  "ad5cdfee": {
   "referente": "travisscott",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:28:06+00:00",
+  "ultima": "2026-11-16T15:25:32+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -1151,7 +1153,7 @@
  "6615cc86": {
   "referente": "vickymartinberrocal",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:28:07+00:00",
+  "ultima": "2026-11-16T15:25:33+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -1160,7 +1162,7 @@
  "b68c4dca": {
   "referente": "yugen.techwear",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:28:09+00:00",
+  "ultima": "2026-11-16T15:25:35+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
@@ -1169,25 +1171,25 @@
  "d7d18cea": {
   "referente": "coldculture",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:28:14+00:00",
-  "nuevas": 4,
-  "buenas": 3,
+  "ultima": "2026-11-16T15:25:36+00:00",
+  "nuevas": 0,
+  "buenas": 0,
   "publicaciones": 14,
   "sin_foto": 0
  },
  "80579c17": {
   "referente": "scuffers.co",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:28:19+00:00",
-  "nuevas": 2,
-  "buenas": 2,
+  "ultima": "2026-11-16T15:25:38+00:00",
+  "nuevas": 0,
+  "buenas": 0,
   "publicaciones": 15,
   "sin_foto": 0
  },
  "301630d3": {
   "referente": "twojeys",
   "tipo": "instagram",
-  "ultima": "2026-11-16T10:28:20+00:00",
+  "ultima": "2026-11-16T15:25:39+00:00",
   "nuevas": 0,
   "buenas": 0,
   "publicaciones": 0,
