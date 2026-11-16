@@ -1652,6 +1652,27 @@
    "mercado": "ES",
    "tipo": "instagram",
    "valor": "twojeys"
+  },
+  {
+   "referente": "lucasbojanich",
+   "estilo": "old_money",
+   "mercado": "ES",
+   "tipo": "instagram",
+   "valor": "lucasbojanich"
+  },
+  {
+   "referente": "carlomaranon",
+   "estilo": "convencional",
+   "mercado": "ES",
+   "tipo": "instagram",
+   "valor": "carlomaranon"
+  },
+  {
+   "referente": "sofiahamela",
+   "estilo": "clasico",
+   "mercado": "ES",
+   "tipo": "instagram",
+   "valor": "sofiahamela"
   }
  ]
 }
