@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from celda.config import LIMITE_X_MM, LIMITE_Y_MM, LIMITE_Z_MM, cargar
+from celda.config import LIMITE_X_MM, LIMITE_Y_MM, LIMITE_Z_MM, Config, cargar
 from celda.percepcion import Caja, centro_parada
 from celda.planificacion import a_brida, planificar, validar_puntos
 
@@ -80,7 +80,7 @@ def test_el_puente_de_la_celda_permite_todos_los_puntos_del_pc():
 
 def test_pseguro_del_modulo_es_el_inicio_de_la_ventana_egm():
     cfg = cargar(RAIZ / "celda" / "config_celda.json")
-    m = re.search(r"CONST robtarget pSeguro := \[\[(-?[\d.]+),(-?[\d.]+),(-?[\d.]+)\]", MODULO)
+    m = re.search(r"VAR robtarget pSeguro := \[\[(-?[\d.]+),(-?[\d.]+),(-?[\d.]+)\]", MODULO)
     assert m
     assert tuple(float(v) for v in m.groups()) == cfg.ventana_inicio
 
@@ -138,15 +138,15 @@ def test_los_movimientos_de_la_celda_y_el_egm_usan_la_misma_herramienta():
     # EGMActPose controla tool0 (pose_cero): el movimiento antes de la sesion tambien debe ir con tool0.
     # Con herrPinza (TCP a 147 mm) el controlador tendria dos herramientas distintas y el brazo se movería al empezar.
     assert re.search(r"EGMActPose egmID, pose_cero,", MODULO)
-    assert re.search(r"CONST robtarget pSeguroBrida := \[\[600,-6\.5,690\]", MODULO)
+    assert re.search(r"VAR robtarget pSeguroBrida := \[\[600,-6\.5,690\]", MODULO)
     cuerpo = MODULO.split("PROC main_movimiento()")[1].split("ENDPROC")[0]
     assert "herrPinza" not in cuerpo and "tool0" in cuerpo
 
 
 def test_pseguro_brida_es_pseguro_mas_el_largo_de_la_pinza():
     cfg = cargar(RAIZ / "celda" / "config_celda.json")
-    tcp = re.search(r"CONST robtarget pSeguro := \[\[(-?[\d.]+),(-?[\d.]+),(-?[\d.]+)\]", MODULO)
-    brida = re.search(r"CONST robtarget pSeguroBrida := \[\[(-?[\d.]+),(-?[\d.]+),(-?[\d.]+)\]", MODULO)
+    tcp = re.search(r"VAR robtarget pSeguro := \[\[(-?[\d.]+),(-?[\d.]+),(-?[\d.]+)\]", MODULO)
+    brida = re.search(r"VAR robtarget pSeguroBrida := \[\[(-?[\d.]+),(-?[\d.]+),(-?[\d.]+)\]", MODULO)
     assert tcp and brida
     x, y, z = (float(v) for v in tcp.groups())
     xb, yb, zb = (float(v) for v in brida.groups())
@@ -201,14 +201,14 @@ def test_la_ventana_de_convergencia_distingue_el_reposo_de_la_marcha():
 
 
 def test_el_tiempo_de_convergencia_cabe_en_la_espera_de_fin_caja():
-    t = float(re.search(r"CONST num tiempoConv := ([\d.]+);", MODULO).group(1))
+    t = float(re.search(r"PERS num tiempoConv := ([\d.]+);", MODULO).group(1))
     assert 1.0 <= t <= 5.0
     assert re.search(r"WaitUntil egmParado \\MaxTime:=tiempoConv \+ 10\b", MODULO)
 
 
 def test_el_arranque_va_a_pstart_y_luego_al_punto_de_espera_con_tool0():
     # pStart (740) y luego pSeguroBrida (690, el punto de espera), con tool0, antes de activar EGM.
-    m = re.search(r"CONST robtarget pStart := \[\[(-?[\d.]+),(-?[\d.]+),(-?[\d.]+)\]", MODULO)
+    m = re.search(r"VAR robtarget pStart := \[\[(-?[\d.]+),(-?[\d.]+),(-?[\d.]+)\]", MODULO)
     assert m and tuple(float(v) for v in m.groups()) == (600.0, -6.5, 740.0)
     antes_egm = MODULO.split("PROC main_movimiento()")[1].split("EGMActPose")[0]
     assert "MoveJ pStart, v100, fine, tool0;" in antes_egm
@@ -222,7 +222,7 @@ def test_todos_los_puntos_del_plan_caben_en_la_ventana_del_pc_desde_pseguro_brid
     # es lo que recibe EGM.
     cfg = cargar(RAIZ / "celda" / "config_celda.json")
     lo, hi = -cfg.ventana_semiancho, cfg.ventana_semiancho
-    m = re.search(r"CONST robtarget pSeguroBrida := \[\[(-?[\d.]+),(-?[\d.]+),(-?[\d.]+)\]", MODULO)
+    m = re.search(r"VAR robtarget pSeguroBrida := \[\[(-?[\d.]+),(-?[\d.]+),(-?[\d.]+)\]", MODULO)
     assert m
     origen = [float(v) for v in m.groups()]
     for giro in _giros_rapid():
@@ -293,6 +293,78 @@ def test_el_punto_de_espera_queda_por_encima_de_la_caja_que_llega():
     # En la cinta, el techo de la caja es z_cinta + alto. Con el punto de espera a 243 mm de TCP la pinza
     # quedaba dentro de la caja que llega (16-nov): tiene que quedar por encima de la altura de aproximacion.
     cfg = cargar(RAIZ / "celda" / "config_celda.json")
-    m = re.search(r"CONST robtarget pSeguro := \[\[(-?[\d.]+),(-?[\d.]+),(-?[\d.]+)\]", MODULO)
+    m = re.search(r"VAR robtarget pSeguro := \[\[(-?[\d.]+),(-?[\d.]+),(-?[\d.]+)\]", MODULO)
     assert m
     assert float(m.group(3)) >= cfg.z_cinta + 200.0 + cfg.margen_aproximacion
+
+
+# ---------------------------------------------------------------- puesta en marcha: PERS de RAPID <-> configuracion del PC
+MENSAJES_AJUSTES = {
+    "recogida": ["recogidaModo", "recogidaX", "recogidaY", "recogidaTolX", "recogidaTolY", "camaraOffsetX", "camaraOffsetY",
+                 "camaraOffsetGiro", "tMaxCamara"],
+    "agarre": ["agarreModo", "agarrePorcentaje", "agarreHundimiento", "agarreMinimo", "solapeMinimo", "aperturaPinza",
+               "grosorDedo", "giroPinza"],
+    "celda": ["zCinta", "margenAproximacion", "tcpZ", "seguroX", "seguroY", "seguroZ", "velocidad", "zMinima"],
+}
+
+
+def _pers_num(nombre):
+    m = re.search(r"PERS num " + nombre + r" := (-?[\d.]+);", MODULO)
+    assert m, f"falta PERS num {nombre} en MOD_CajaPinza.mod"
+    return float(m.group(1))
+
+
+def test_cada_mensaje_de_ajustes_de_rapid_manda_las_pers_en_el_orden_que_lee_el_pc():
+    for mensaje, nombres in MENSAJES_AJUSTES.items():
+        rama = MODULO.split(f'ELSEIF orden = "{mensaje}" THEN')[1].split("ELSEIF")[0]
+        mandados = re.findall(r"NumToStr\((\w+), \d\)", rama)
+        assert mandados == nombres, (mensaje, mandados)
+        assert f'SocketSend sock \\Str:=textoAjustes;' in rama
+        for n in nombres:
+            _pers_num(n)
+        # el mensaje cabe en las 80 posiciones de un string de RAPID con valores de hasta 7 caracteres (-2000.0)
+        assert len(mensaje) + 1 + 7 + 8 * (len(nombres) - 1) <= 80, mensaje
+
+
+def test_los_valores_por_defecto_de_rapid_son_los_de_la_configuracion_del_pc():
+    c = Config.__dataclass_fields__
+    d = lambda campo: c[campo].default  # noqa: E731
+    assert (_pers_num("recogidaModo") == 0) == (d("recogida_modo") == "fija")
+    assert (_pers_num("recogidaTolX"), _pers_num("recogidaTolY")) == d("recogida_tol")
+    assert (_pers_num("camaraOffsetX"), _pers_num("camaraOffsetY")) == d("camara_offset")
+    assert _pers_num("camaraOffsetGiro") == d("camara_offset_giro")
+    assert _pers_num("tMaxCamara") == d("t_max_camara")
+    assert (_pers_num("agarreModo") == 0) == (d("agarre_modo") == "porcentaje")
+    for pers, campo in (("agarrePorcentaje", "agarre_porcentaje"), ("agarreHundimiento", "agarre_hundimiento"),
+                        ("agarreMinimo", "agarre_minimo"), ("solapeMinimo", "solape_minimo"),
+                        ("aperturaPinza", "apertura_pinza"), ("grosorDedo", "grosor_dedo"), ("giroPinza", "giro_pinza"),
+                        ("velocidad", "velocidad"), ("zMinima", "z_minima")):
+        assert _pers_num(pers) == d(campo), pers
+    # las que ya estaban en el JSON: los valores por defecto de RAPID son los de la configuracion de la celda
+    cfg = cargar(RAIZ / "celda" / "config_celda.json")
+    assert _pers_num("zCinta") == cfg.z_cinta
+    assert _pers_num("margenAproximacion") == cfg.margen_aproximacion
+    assert _pers_num("tcpZ") == cfg.largo_herramienta_mm
+    assert (_pers_num("recogidaX"), _pers_num("recogidaY")) == cfg.centro_recogida
+    assert (_pers_num("seguroX"), _pers_num("seguroY"), _pers_num("seguroZ")) == cfg.ventana_inicio
+    assert _pers_num("velocidad") <= 100.0   # el tope del puente (VELOCIDAD_PUENTE_MM_S)
+
+
+def test_los_puntos_seguros_se_recalculan_con_el_punto_de_espera_y_el_tcp():
+    cuerpo = MODULO.split("PROC AplicarSeguro()")[1].split("ENDPROC")[0]
+    assert "pSeguro.trans := [seguroX, seguroY, seguroZ];" in cuerpo
+    assert "pSeguroBrida.trans := [seguroX, seguroY, seguroZ + tcpZ];" in cuerpo
+    assert "pStart.trans := [seguroX, seguroY, seguroZ + tcpZ + 50];" in cuerpo
+    assert "herrPinza.tframe.trans.z := tcpZ;" in cuerpo
+    # se aplica antes de moverse al punto de espera
+    arranque = MODULO.split("PROC main_movimiento()")[1]
+    assert arranque.index("AplicarSeguro;") < arranque.index("MoveJ pStart, v100, fine, tool0;")
+
+
+def test_los_tiempos_de_rapid_son_los_de_la_app_y_no_valores_fijos():
+    com = MODULO.split("PROC main_pinza()")[1]
+    assert re.search(r"WaitDI PinzaCerrada, 1 \\MaxTime:=esperaPinza", com) and re.search(r"WaitDI PinzaCerrada, 0 \\MaxTime:=esperaPinza", com)
+    assert "esperaPinza := tMaxPinza;" in com and "WaitTime tAgarre;" in com and "WaitTime tSuelta;" in com
+    mov = MODULO.split("PROC main_movimiento()")[1].split("ENDPROC")[0]
+    assert "WaitDI CajaEnRecogida, 1 \\MaxTime:=tMaxCaja \\TimeFlag:=sinCaja;" in mov and "WaitTime tAntesAgarrar;" in mov
+    assert "\\MaxTime:=40" not in MODULO

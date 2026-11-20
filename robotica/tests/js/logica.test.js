@@ -403,8 +403,8 @@ test('la vista de la mesa cuenta sitios, marca los hechos y el actual y dibuja l
     assert.deepEqual(v.mesa.huecos.map((h) => h.estado), ['hecha', 'actual', 'prevista', 'libre', 'libre']);
     assert.match(v.mesa.resumen, /Caben 5 cajas de 200 × 200 × 200 mm\. La tanda \(3\) cabe\./);
     assert.deepEqual(v.mesa.campos.map((c) => c.clave),
-        ['mesaX0', 'mesaY0', 'mesaLargo', 'mesaAncho', 'mesaZ', 'mesaHueco', 'cajaLargo', 'cajaAncho', 'cajaAlto', 'egmMaxPos']);
-    assert.deepEqual([...new Set(v.mesa.campos.map((c) => c.grupo))], ['zona', 'caja', 'egm']);
+        ['mesaX0', 'mesaY0', 'mesaLargo', 'mesaAncho', 'mesaZ', 'mesaHueco', 'cajaLargo', 'cajaAncho', 'cajaAlto']);
+    assert.deepEqual([...new Set(v.mesa.campos.map((c) => c.grupo))], ['zona', 'caja']);   // el limite del EGM esta en Parametros
     assert.equal(v.mesa.geometria.huecos.length, 5);
     assert.ok(v.mesa.geometria.zona.w > 0 && v.mesa.geometria.inalcanzable.length > 0);
 });
@@ -524,4 +524,107 @@ test('las ordenes de pinza se cuentan por la senal PinzaCerrar y se reponen al e
     L.aplicarVariable(e, 'hmiFase', String(L.FASES.ESPERA_INICIAR));
     assert.deepEqual([e.pinza.cerrar, e.pinza.abrir, e.pinza.ultima], [0, 0, null]);
     assert.equal(e.pinza.cambio, 5000);   // lo ultimo que cambio la senal se conserva
+});
+
+// ---------------------------------------------------------------- ventana Parametros
+test('los ajustes de puesta en marcha tienen por defecto los de RAPID', () => {
+    const e = L.estadoInicial();
+    assert.deepEqual([e.recogidaModo, e.recogidaX, e.recogidaY, e.zCinta], [0, 700, 0, 220]);
+    assert.deepEqual([e.agarreModo, e.agarrePorcentaje, e.agarreMinimo, e.solapeMinimo, e.aperturaPinza], [0, 50, 10, 10, 0]);
+    assert.deepEqual([e.tAntesAgarrar, e.tAgarre, e.tSuelta, e.tMaxPinza, e.tMaxCaja, e.tiempoConv], [0, 0, 0, 3, 40, 2.5]);
+    assert.deepEqual([e.velocidad, e.zMinima, e.seguroX, e.seguroY, e.seguroZ, e.tcpZ, e.margenAproximacion], [100, 0, 600, -6.5, 543, 147, 65]);
+    // todo ajuste de la ventana es una PERS que la app lee y escribe
+    for (const c of L.CAMPOS_PARAMETROS) { assert.equal(L.VARIABLES[c.clave].escribe, true, c.clave); }
+    for (const s of L.PARAMETROS) { for (const it of s.items) { assert.ok(L.VARIABLES[it.clave], it.clave); } }
+});
+
+test('la ventana Parametros reparte los ajustes en secciones y dice por que alguno no se puede cambiar', () => {
+    const v = L.calcularVista(estado({fase: F.ESPERA_INICIAR})).parametros;
+    assert.deepEqual(v.secciones.map((s) => s.id), ['recogida', 'pinza', 'tiempos', 'movimiento']);
+    const item = (clave) => v.secciones.flatMap((s) => s.items).find((i) => i.clave === clave);
+    // en simulacion, la camara y la recogida en Y no cuentan; X si, con aviso de que la estacion manda
+    assert.equal(item('recogidaModo').activo, false);
+    assert.match(item('recogidaModo').nota, /Solo en Real/);
+    assert.equal(item('recogidaY').activo, false);
+    assert.equal(item('recogidaX').activo, true);
+    assert.match(item('recogidaX').nota, /x = 700/);
+    assert.equal(item('agarreHundimiento').activo, false);   // modo Porcentaje
+    assert.match(item('agarreHundimiento').nota, /modo Desde la tapa/);
+    assert.equal(item('agarrePorcentaje').activo, true);
+    assert.equal(item('alcanceMax').tipo, 'lectura');
+    assert.equal(item('alcanceMax').activo, false);
+    assert.deepEqual(['velocidad', 'zMinima', 'zCinta', 'tcpZ', 'seguroX', 'egmMaxPos', 'recogidaTolX'].map((c) => item(c).protegido), new Array(7).fill(true));
+    assert.equal(item('tAgarre').protegido, false);
+    // en real con camara: se activan los ajustes de la camara y X, Y
+    const real = L.calcularVista(estado({fase: F.ESPERA_INICIAR, modoSimulacion: false, recogidaModo: 1})).parametros;
+    const itemR = (clave) => real.secciones.flatMap((s) => s.items).find((i) => i.clave === clave);
+    for (const c of ['recogidaModo', 'recogidaY', 'recogidaTolX', 'camaraOffsetX', 'camaraOffsetGiro', 'tMaxCamara']) { assert.equal(itemR(c).activo, true, c); }
+    // con la tanda en marcha todo se bloquea
+    const marcha = L.calcularVista(estado({fase: F.EGM_ABIERTO})).parametros;
+    assert.equal(marcha.editable, false);
+    assert.equal(marcha.secciones.flatMap((s) => s.items).every((i) => !i.activo), true);
+});
+
+test('la confirmacion de un ajuste protegido dice que cambia y de que a que', () => {
+    const it = (clave) => L.CAMPOS_PARAMETROS.find((c) => c.clave === clave);
+    const egm = L.textoConfirmacion(it('egmMaxPos'), 1500, 1000);
+    assert.equal(egm.titulo, 'Cambiar el límite del EGM');
+    assert.match(egm.lineas.join(' '), /¿Cambiarlo de 1000 a 1500 mm\?/);
+    const vel = L.textoConfirmacion(it('velocidad'), 40, 100);
+    assert.match(vel.lineas[0], /Empieza lento/);
+    assert.equal(vel.lineas[1], '¿Cambiarlo de 100 a 40 mm/s?');
+    assert.equal(L.limitarCampoMesa('velocidad', 500), 100);
+    assert.equal(L.limitarCampoMesa('tMaxPinza', 0), 0.5);
+    assert.equal(L.limitarCampoMesa('egmMaxPos', 100), 500);
+});
+
+test('altura de agarre: por porcentaje o desde la tapa, con minimo, alto minimo y apertura (como altura_agarre del PC)', () => {
+    const ag = (cambios) => Object.assign({modo: 0, porcentaje: 50, hundimiento: 30, minimo: 10, solape: 10, apertura: 0}, cambios);
+    const h = (caja, a) => L.alturaAgarre(caja, {agarre: ag(a)});
+    assert.equal(h({largo: 200, ancho: 100, alto: 120}, {}).h, 60);
+    assert.equal(h({largo: 200, ancho: 100, alto: 120}, {porcentaje: 75}).h, 90);
+    for (const alto of [80, 120, 200]) { assert.equal(alto - h({largo: 150, ancho: 100, alto}, {modo: 1}).h, 30); }
+    assert.equal(h({largo: 150, ancho: 100, alto: 100}, {porcentaje: 10, minimo: 25}).h, 25);
+    assert.match(h({largo: 150, ancho: 100, alto: 20}, {minimo: 30, solape: 5}).error, /por encima de la tapa/);
+    assert.match(h({largo: 150, ancho: 100, alto: 15}, {solape: 20}).error, /necesita tocar/);
+    assert.match(h({largo: 150, ancho: 100, alto: 120}, {apertura: 90}).error, /abre 90 mm/);
+    assert.equal(h({largo: 300, ancho: 80, alto: 120}, {apertura: 90}).h, 60);   // el lado que cierra es el ancho
+});
+
+test('el reparto de la mesa usa los ajustes de puesta en marcha: altura de agarre, punto de espera, TCP y suelo', () => {
+    const caja = {largo: 200, ancho: 200, alto: 200};
+    const d = {x: -60, y: 482, zMesa: 320, xEntrada: 220, altoLibre: 200};
+    const defecto = L.puntosDestino(caja, d, {});
+    assert.deepEqual(defecto.map((p) => p.z), [485, 485, 420, 585]);
+    // desde la tapa con 30 mm: h = 170 -> el TCP baja a 320 + 170 y el viaje sube lo mismo
+    const tapa = L.puntosDestino(caja, d, {agarre: {modo: 1, porcentaje: 50, hundimiento: 30, minimo: 10, solape: 10, apertura: 0}});
+    assert.deepEqual(tapa.map((p) => p.z), [555, 555, 490, 585]);
+    // un margen mayor sube el viaje y la salida
+    assert.deepEqual(L.puntosDestino(caja, d, {margen: 100}).map((p) => p.z), [520, 520, 420, 620]);
+    // el punto de espera y el largo de la pinza cambian lo que el robot alcanza
+    const lim = {egmMaxPos: 1500, alcanceMax: 790};
+    const p = {x: -300, y: 400, z: 420};
+    assert.equal(L.puntoPermitido(p, lim), true);
+    assert.equal(L.puntoPermitido(p, Object.assign({inicio: [-900, 400, 543]}, lim)), true);
+    assert.equal(L.puntoPermitido(p, {inicio: [600, -6.5, 543], egmMaxPos: 900, alcanceMax: 790}), false);   // a 995 mm de su punto de espera, con limite 900
+    assert.equal(L.puntoPermitido({x: 0, y: 300, z: 600}, Object.assign({tcp: 147}, lim)), true);   // brida 747
+    assert.equal(L.puntoPermitido({x: 0, y: 300, z: 600}, Object.assign({tcp: 250}, lim)), false);  // brida 850 > 800
+    // suelo del TCP: por debajo de zMinima o de las superficies, no
+    assert.equal(L.puntoPermitido({x: 0, y: 300, z: 300}, Object.assign({zMesa: 320, zCinta: 220}, lim)), true);
+    assert.equal(L.puntoPermitido({x: 0, y: 300, z: 200}, Object.assign({zMesa: 320, zCinta: 220}, lim)), false);
+    assert.equal(L.puntoPermitido({x: 0, y: 300, z: 400}, Object.assign({zMesa: 320, zCinta: 220, zMinima: 450}, lim)), false);
+});
+
+test('si la caja de referencia no se puede agarrar con los ajustes de agarre, la vista avisa', () => {
+    const v = L.calcularVista(estado({aperturaPinza: 150}));   // la caja de referencia mide 200 de ancho
+    assert.ok(v.avisos.some((a) => a.nivel === 'aviso' && /no se puede agarrar.*abre 150 mm/.test(a.texto)));
+    assert.equal(L.calcularVista(estado({})).avisos.some((a) => /no se puede agarrar/.test(a.texto)), false);
+});
+
+test('la tarjeta Pinza usa el tiempo maximo de la app para decir SIN CONFIRMACION', () => {
+    const e = estado({tMaxPinza: 6, senales: {sensor: false, cinta: false, pinzaCerrar: true, pinzaCerrada: false}});
+    e.pinza.cambio = 10000;
+    assert.equal(L.vistaPinza(e, 14000).titulo, 'CERRANDO…');           // 4 s < 6 s
+    assert.equal(L.vistaPinza(e, 16100).titulo, 'SIN CONFIRMACIÓN');
+    assert.match(L.vistaPinza(e, 16100).detalle, /RAPID espera 6 s/);
 });

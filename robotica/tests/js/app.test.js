@@ -597,3 +597,131 @@ test('la tarjeta Pinza muestra abierta, cerrada y cuantas ordenes se han visto e
         assert.deepEqual(app.errores, []);
     } finally { app.cerrar(); }
 });
+
+test('la pestana Parametros tiene sus secciones y el limite del EGM ya no esta en la pestana Mesa', async () => {
+    const app = await abrir();
+    try {
+        app.sim.play();
+        await hasta(() => app.texto('banner-titulo') === 'Listo para empezar', 'fase 1');
+        assert.equal(app.$('vista-parametros').hidden, true);
+        app.pulsar('tab-parametros');
+        assert.equal(app.$('vista-parametros').hidden, false);
+        assert.equal(app.$('vista-tanda').hidden, true);
+        assert.equal(app.$('vista-mesa').hidden, true);
+        assert.deepEqual(Array.from(app.$('param-nav').querySelectorAll('button')).map((b) => b.textContent),
+            ['Recogida', 'Pinza y agarre', 'Tiempos', 'Movimiento y seguridad']);
+        // una seccion cada vez
+        assert.equal(app.$('psec-recogida').hidden, false);
+        assert.equal(app.$('psec-pinza').hidden, true);
+        app.pulsar('pnav-pinza');
+        assert.equal(app.$('psec-pinza').hidden, false);
+        assert.equal(app.$('psec-recogida').hidden, true);
+        // el limite del EGM esta en Movimiento y seguridad, no en la pestana Mesa
+        assert.ok(app.$('psec-movimiento').querySelector('#in-egmMaxPos'));
+        assert.equal(app.$('vista-mesa').querySelector('#in-egmMaxPos'), null);
+        // todos los campos numericos de la ventana existen y muestran el valor de RAPID
+        assert.equal(app.w.document.querySelector('#in-seguroZ .fp-components-input-container p').textContent, '543');
+        assert.equal(app.w.document.querySelector('#in-tMaxPinza .fp-components-input-container p').textContent, '3');
+        assert.deepEqual(app.errores, []);
+    } finally { app.cerrar(); }
+});
+
+test('un ajuste normal de Parametros se escribe en la PERS de RAPID al instante', async () => {
+    const app = await abrir();
+    try {
+        app.sim.play();
+        await hasta(() => app.texto('banner-titulo') === 'Listo para empezar', 'fase 1');
+        const ui = app.w.CajaPinzaPrueba.ui;
+        ui.campos.tAgarre.onchange('1.5');
+        ui.campos.tSuelta.onchange('0.5');
+        ui.campos.aperturaPinza.onchange('90');
+        ui.campos.tMaxPinza.onchange('0');   // por debajo del minimo: se limita a 0.5
+        await hasta(() => app.sim.valor('tAgarre') === '1.5' && app.sim.valor('tSuelta') === '0.5' && app.sim.valor('aperturaPinza') === '90', 'PERS escritas');
+        await hasta(() => app.sim.valor('tMaxPinza') === '0.5', 'tMaxPinza limitado');
+        // la caja de referencia (200 de ancho) no cabe en una apertura de 90: la app avisa
+        await hasta(() => /no se puede agarrar/.test(app.texto('avisos')), 'aviso de agarre');
+        assert.deepEqual(app.errores, []);
+    } finally { app.cerrar(); }
+});
+
+test('un ajuste protegido de Parametros pide confirmacion antes de escribirse', async () => {
+    const app = await abrir();
+    try {
+        app.sim.play();
+        await hasta(() => app.texto('banner-titulo') === 'Listo para empezar', 'fase 1');
+        const ui = app.w.CajaPinzaPrueba.ui;
+        ui.campos.velocidad.onchange('40');
+        await hasta(() => app.popup().length > 0, 'popup');
+        assert.match(app.popup().join(' '), /Empieza lento/);
+        assert.match(app.popup().join(' '), /¿Cambiarlo de 100 a 40 mm\/s\?/);
+        app.pulsarPopup('Cancel');
+        await dormir(120);
+        assert.equal(app.sim.valor('velocidad'), '100');
+        ui.campos.velocidad.onchange('500');   // se limita a 100: el tope del puente
+        await hasta(() => app.popup().length > 0, 'popup otra vez');
+        app.pulsarPopup('OK');
+        await hasta(() => app.sim.valor('velocidad') === '100', 'velocidad limitada al tope');
+        ui.campos.seguroZ.onchange('560');
+        await hasta(() => app.popup().length > 0, 'popup del punto de espera');
+        assert.match(app.popup().join(' '), /Punto de espera/);
+        app.pulsarPopup('OK');
+        await hasta(() => app.sim.valor('seguroZ') === '560', 'seguroZ escrito');
+        assert.deepEqual(app.errores, []);
+    } finally { app.cerrar(); }
+});
+
+test('los modos de Parametros: la altura de agarre cambia que campo vale y la camara solo en real', async () => {
+    const app = await abrir();
+    try {
+        app.sim.play();
+        await hasta(() => app.texto('banner-titulo') === 'Listo para empezar', 'fase 1');
+        app.pulsar('tab-parametros');
+        // agarre por porcentaje: vale el porcentaje y no el hundimiento
+        assert.equal(app.$('par-agarreModo-0').classList.contains('activo'), true);
+        assert.equal(app.$('pitem-agarrePorcentaje').classList.contains('inactivo'), false);
+        assert.equal(app.$('pitem-agarreHundimiento').classList.contains('inactivo'), true);
+        assert.match(app.texto('pnota-agarreHundimiento'), /Solo con el modo Desde la tapa/);
+        app.pulsar('par-agarreModo-1');
+        await hasta(() => app.sim.valor('agarreModo') === '1', 'agarre desde la tapa');
+        await hasta(() => app.$('pitem-agarreHundimiento').classList.contains('inactivo') === false, 'hundimiento activo');
+        assert.equal(app.$('pitem-agarrePorcentaje').classList.contains('inactivo'), true);
+        assert.equal(app.$('par-agarreModo-1').classList.contains('activo'), true);
+
+        // la camara no vale en simulacion
+        assert.equal(app.$('par-recogidaModo-1').disabled, true);
+        assert.match(app.texto('pnota-recogidaModo'), /Solo en Real/);
+        app.pulsar('par-recogidaModo-1');
+        await dormir(120);
+        assert.equal(app.sim.valor('recogidaModo'), '0');
+        // en real: Fija o Camara, y con camara se activan la zona permitida y las correcciones
+        app.pulsar('modo-real');
+        await hasta(() => app.sim.valor('modoSimulacion') === 'FALSE', 'modo real');
+        await hasta(() => app.$('par-recogidaModo-1').disabled === false, 'recogida elegible en real');
+        assert.equal(app.$('pitem-camaraOffsetX').classList.contains('inactivo'), true);   // modo Fija
+        app.pulsar('par-recogidaModo-1');
+        await hasta(() => app.sim.valor('recogidaModo') === '1', 'recogida con camara');
+        await hasta(() => app.$('pitem-camaraOffsetX').classList.contains('inactivo') === false, 'correcciones activas');
+        assert.equal(app.$('pitem-recogidaTolX').classList.contains('inactivo'), false);
+        assert.equal(app.$('pitem-tMaxCamara').classList.contains('inactivo'), false);
+        assert.deepEqual(app.errores, []);
+    } finally { app.cerrar(); }
+});
+
+test('con la tanda en marcha, los ajustes de Parametros se bloquean', async () => {
+    const app = await abrir({valores: {hmiConfirmar: 'FALSE'}});
+    try {
+        app.sim.play();
+        await hasta(() => app.texto('banner-titulo') === 'Listo para empezar', 'fase 1');
+        app.pulsarFp('btn-iniciar');
+        await hasta(() => app.popup().length > 0, 'popup');
+        app.pulsarPopup('OK');
+        await hasta(() => app.sim.valor('hmiFase') !== String(L.FASES.ESPERA_INICIAR), 'tanda en marcha');
+        await hasta(() => app.$('pitem-tAgarre').classList.contains('inactivo'), 'ajuste bloqueado');
+        assert.match(app.texto('pnota-tAgarre'), /Bloqueado mientras la tanda está en marcha/);
+        assert.equal(app.$('par-agarreModo-1').disabled, true);
+        const antes = app.sim.valor('tAgarre');
+        app.w.CajaPinzaPrueba.ui.campos.tAgarre.onchange('9');
+        await dormir(120);
+        assert.equal(app.sim.valor('tAgarre'), antes);
+    } finally { app.cerrar(); }
+});

@@ -46,6 +46,7 @@ El PC es servidor y T_COM de RAPID es cliente. Sin separadores: cada orden esper
 | `fin_programa` | (ninguna) |
 | `lote` | `lote:<n>:<sim\|real>` (cajas de la tanda y modo, los de la app del FlexPendant) |
 | `mesa` | `mesa:<x0>:<y0>:<largo>:<ancho>:<z>:<hueco>:<egmMaxPos>:<alcanceMax>` (zona de deposito y limites; el PC deja las cajas ordenadas en una cuadricula, sin girar) |
+| `recogida` / `agarre` / `celda` | `recogida:<modo>:<x>:<y>:<tolX>:<tolY>:<offX>:<offY>:<offGiro>:<tMaxCamara>` / `agarre:<modo>:<porc>:<hund>:<min>:<solape>:<apertura>:<grosor>:<giroPinza>` / `celda:<zCinta>:<margenAprox>:<tcpZ>:<seguroX>:<seguroY>:<seguroZ>:<velocidad>:<zMinima>` (ajustes de puesta en marcha de la app; el PC los pide tras `mesa`) |
 | `giro:<grados>` | `giro_ok` (o `giro_mal`) |
 
 ## Pendiente de verificar en el controlador virtual

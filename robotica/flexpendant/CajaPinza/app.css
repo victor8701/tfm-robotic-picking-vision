@@ -288,3 +288,22 @@ html, body {
 .medidas { font-weight: 600; color: var(--texto); }
 .tarjeta h3 .unidad { font-weight: 400; font-size: 12px; color: var(--suave); margin-left: 6px; }
 .tarjeta h3 { margin-top: 18px; }
+
+
+/* ---- Pestana Parametros ---- */
+.param { display: grid; grid-template-columns: 210px 1fr; gap: 12px; padding: 12px; align-items: start; }
+.param-nav { display: flex; flex-direction: column; gap: 6px; }
+.pestana-param {
+    min-height: 52px; text-align: left; padding: 0 14px; font-size: 16px; border: 1px solid var(--linea);
+    background: #fff; border-radius: 8px; cursor: pointer; color: var(--texto);
+}
+.pestana-param.activa { background: var(--acento); border-color: var(--acento); color: #fff; font-weight: 600; }
+.param-contenido { min-width: 0; }
+.param-campos { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px 18px; margin-top: 10px; }
+.param-item { display: flex; flex-direction: column; gap: 4px; }
+.param-item.inactivo { opacity: 0.55; }
+.param-nombre { font-size: 15px; font-weight: 600; }
+.param-nombre .candado { font-weight: 400; font-size: 12px; color: var(--aviso); margin-left: 6px; }
+.param-ayuda { font-size: 13px; color: var(--suave); }
+.param-nota { font-size: 13px; color: var(--aviso); min-height: 1em; }
+.param-lectura { font-size: 20px; font-weight: 600; }

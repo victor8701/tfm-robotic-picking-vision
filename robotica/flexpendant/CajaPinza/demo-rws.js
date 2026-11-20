@@ -40,6 +40,13 @@
             cajaLargo: String(L.CAJA_SIM.cajaLargo), cajaAncho: String(L.CAJA_SIM.cajaAncho), cajaAlto: String(L.CAJA_SIM.cajaAlto),
             cajasVariables: 'TRUE', hmiMensajes: 'FALSE', hmiCaja: '""'
         };
+        // Ajustes de puesta en marcha y demas PERS que la app conoce y no estan arriba: arrancan con su valor por defecto.
+        const porDefecto = L.estadoInicial();
+        Object.keys(L.VARIABLES).forEach(function (nombre) {
+            if (Object.prototype.hasOwnProperty.call(pers, nombre)) { return; }
+            const valor = porDefecto[L.VARIABLES[nombre].clave];
+            pers[nombre] = typeof valor === 'boolean' ? (valor ? 'TRUE' : 'FALSE') : String(valor);
+        });
         Object.assign(pers, o.valores);
         const nombresSenal = {sensor: 'CajaEnRecogida', cinta: 'CintaMover', pinzaCerrar: 'PinzaCerrar', pinzaCerrada: 'PinzaCerrada'};
         const senal = {CajaEnRecogida: 0, CintaMover: 0, PinzaCerrar: 0, PinzaCerrada: 0};

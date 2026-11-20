@@ -25,7 +25,6 @@
     const GIRO_MIN = -90;       // giroMin (grados)
     const GIRO_PASO = 15;       // giroPaso (grados)
     const SIN_GIRO = 999;       // sinGiro: el giro todavia no se sabe
-    const SIN_CONFIRMAR_MS = 3000;   // RAPID espera PinzaCerrada como mucho 3 s (WaitDI \MaxTime:=3)
     const SEMILLA_MOD = 8192;   // modulo del generador de giros; tambien el tope de semillaGiros
 
     // Momentos de la celda: FASE_<NOMBRE> de MOD_CajaPinza.mod.
@@ -64,6 +63,37 @@
         cajaAlto:          {tipo: 'num',    clave: 'cajaAlto', escribe: true},
         cajasVariables:    {tipo: 'bool',   clave: 'cajasVariables', escribe: true},
         hmiMensajes:       {tipo: 'bool',   clave: 'mensajes', escribe: true},
+        recogidaModo:        {tipo: 'num',    clave: 'recogidaModo', escribe: true},
+        recogidaX:           {tipo: 'num',    clave: 'recogidaX', escribe: true},
+        recogidaY:           {tipo: 'num',    clave: 'recogidaY', escribe: true},
+        recogidaTolX:        {tipo: 'num',    clave: 'recogidaTolX', escribe: true},
+        recogidaTolY:        {tipo: 'num',    clave: 'recogidaTolY', escribe: true},
+        camaraOffsetX:       {tipo: 'num',    clave: 'camaraOffsetX', escribe: true},
+        camaraOffsetY:       {tipo: 'num',    clave: 'camaraOffsetY', escribe: true},
+        camaraOffsetGiro:    {tipo: 'num',    clave: 'camaraOffsetGiro', escribe: true},
+        tMaxCamara:          {tipo: 'num',    clave: 'tMaxCamara', escribe: true},
+        zCinta:              {tipo: 'num',    clave: 'zCinta', escribe: true},
+        giroPinza:           {tipo: 'num',    clave: 'giroPinza', escribe: true},
+        agarreModo:          {tipo: 'num',    clave: 'agarreModo', escribe: true},
+        agarrePorcentaje:    {tipo: 'num',    clave: 'agarrePorcentaje', escribe: true},
+        agarreHundimiento:   {tipo: 'num',    clave: 'agarreHundimiento', escribe: true},
+        agarreMinimo:        {tipo: 'num',    clave: 'agarreMinimo', escribe: true},
+        solapeMinimo:        {tipo: 'num',    clave: 'solapeMinimo', escribe: true},
+        aperturaPinza:       {tipo: 'num',    clave: 'aperturaPinza', escribe: true},
+        grosorDedo:          {tipo: 'num',    clave: 'grosorDedo', escribe: true},
+        tcpZ:                {tipo: 'num',    clave: 'tcpZ', escribe: true},
+        margenAproximacion:  {tipo: 'num',    clave: 'margenAproximacion', escribe: true},
+        tAntesAgarrar:       {tipo: 'num',    clave: 'tAntesAgarrar', escribe: true},
+        tAgarre:             {tipo: 'num',    clave: 'tAgarre', escribe: true},
+        tSuelta:             {tipo: 'num',    clave: 'tSuelta', escribe: true},
+        tMaxPinza:           {tipo: 'num',    clave: 'tMaxPinza', escribe: true},
+        tMaxCaja:            {tipo: 'num',    clave: 'tMaxCaja', escribe: true},
+        tiempoConv:          {tipo: 'num',    clave: 'tiempoConv', escribe: true},
+        velocidad:           {tipo: 'num',    clave: 'velocidad', escribe: true},
+        zMinima:             {tipo: 'num',    clave: 'zMinima', escribe: true},
+        seguroX:             {tipo: 'num',    clave: 'seguroX', escribe: true},
+        seguroY:             {tipo: 'num',    clave: 'seguroY', escribe: true},
+        seguroZ:             {tipo: 'num',    clave: 'seguroZ', escribe: true},
         hmiCaja:           {tipo: 'string', clave: 'caja'}
     });
 
@@ -79,8 +109,7 @@
         {grupo: 'zona', clave: 'mesaHueco', nombre: 'Hueco entre cajas',  min: 0,     max: 300,  ayuda: 'también al borde; más que las mordazas'},
         {grupo: 'caja', clave: 'cajaLargo', nombre: 'Largo máximo',       min: 10,    max: 600,  ayuda: 'lado largo de la mayor caja'},
         {grupo: 'caja', clave: 'cajaAncho', nombre: 'Ancho máximo',       min: 10,    max: 600,  ayuda: 'lado corto de la mayor caja'},
-        {grupo: 'caja', clave: 'cajaAlto',  nombre: 'Alto máximo',        min: 10,    max: 600,  ayuda: 'altura de la mayor caja'},
-        {grupo: 'egm',  clave: 'egmMaxPos', nombre: 'Límite del EGM',     min: 500,   max: 2000, ayuda: 'distancia máxima al punto de espera'}
+        {grupo: 'caja', clave: 'cajaAlto',  nombre: 'Alto máximo',        min: 10,    max: 600,  ayuda: 'altura de la mayor caja'}
     ]);
     const CAMPOS_MESA = Object.freeze(CAMPOS.filter(function (c) { return c.grupo === 'zona'; }));
     // Caja de referencia por defecto: el cubo de 200 mm de la simulacion.
@@ -91,6 +120,125 @@
         inicio: [600, -6.5, 543], zCinta: 220, zSeguro: 485, margen: 65, tcp: 147,
         puente: {x: [-600, 800], y: [-600, 800], z: [0, 800]}
     });
+
+    // ---- Ventana Parametros: ajustes de puesta en marcha (PERS de MOD_CajaPinza.mod; el PC los pide a RAPID con los
+    // mensajes recogida, agarre y celda). nombre, unidad y margenes que acepta la app. tipo: 'num' (por defecto), 'modo'
+    // (opciones), 'lectura' (solo se muestra). solo: 'real' = no cuenta en simulacion. depende: {clave, valor, texto} = solo
+    // vale con ese modo. protegido: pide confirmacion (advertencia). ----
+    const MODO_CAMARA = {clave: 'recogidaModo', valor: 1, texto: 'el modo Cámara'};
+    const PARAMETROS = Object.freeze([
+        {id: 'recogida', titulo: 'Recogida',
+            ayuda: 'Dónde está la caja que se agarra, en mm desde la base del robot. En simulación el punto lo da el sensor de la cinta.',
+            items: [
+                {clave: 'recogidaModo', tipo: 'modo', nombre: 'Posición de la caja', solo: 'real',
+                    opciones: [{valor: 0, texto: 'Fija'}, {valor: 1, texto: 'Cámara'}],
+                    ayuda: 'Fija: siempre en X, Y. Cámara: la que mide la cámara en cada caja, dentro de la zona permitida; si no la ve, el PC se para.'},
+                {clave: 'recogidaX', nombre: 'Recogida X', unidad: 'mm', min: -1500, max: 1500,
+                    ayuda: 'Centro de la caja en x. Con cámara es el punto nominal (centro de la zona permitida).',
+                    notaSim: 'En simulación la estación pone la caja en x = 700: cámbialo solo si la mueves.'},
+                {clave: 'recogidaY', nombre: 'Recogida Y', unidad: 'mm', min: -1500, max: 1500, solo: 'real',
+                    ayuda: 'Centro de la caja en y. Con cámara es el punto nominal.'},
+                {clave: 'recogidaTolX', nombre: 'Zona permitida ± X', unidad: 'mm', min: 0, max: 500, solo: 'real', depende: MODO_CAMARA, protegido: true,
+                    advertencia: 'Es la zona donde el PC acepta cajas de la cámara: cuanto mayor, más riesgo de agarrar fuera de sitio.',
+                    ayuda: 'Si la cámara pone la caja más lejos que esto de X, el PC no se mueve.'},
+                {clave: 'recogidaTolY', nombre: 'Zona permitida ± Y', unidad: 'mm', min: 0, max: 500, solo: 'real', depende: MODO_CAMARA, protegido: true,
+                    advertencia: 'Es la zona donde el PC acepta cajas de la cámara: cuanto mayor, más riesgo de agarrar fuera de sitio.',
+                    ayuda: 'Si la cámara pone la caja más lejos que esto de Y, el PC no se mueve.'},
+                {clave: 'camaraOffsetX', nombre: 'Corrección cámara X', unidad: 'mm', min: -200, max: 200, solo: 'real', depende: MODO_CAMARA,
+                    ayuda: 'Se suma a la x que mide la cámara (ajuste fino de la calibración).'},
+                {clave: 'camaraOffsetY', nombre: 'Corrección cámara Y', unidad: 'mm', min: -200, max: 200, solo: 'real', depende: MODO_CAMARA,
+                    ayuda: 'Se suma a la y que mide la cámara.'},
+                {clave: 'camaraOffsetGiro', nombre: 'Corrección cámara giro', unidad: '°', min: -90, max: 90, solo: 'real', depende: MODO_CAMARA,
+                    ayuda: 'Se suma al giro de la caja que lee la cámara.'},
+                {clave: 'zCinta', nombre: 'Altura de la cinta', unidad: 'mm', min: -500, max: 1500, protegido: true,
+                    advertencia: 'Con la altura de la cinta mal medida, la pinza baja de más o de menos al agarrar.',
+                    ayuda: 'z de la superficie de la cinta, desde la base del robot.'}
+            ]},
+        {id: 'pinza', titulo: 'Pinza y agarre',
+            ayuda: 'Cómo agarra la pinza. h es la altura del punto de agarre sobre la base de la caja.',
+            items: [
+                {clave: 'giroPinza', nombre: 'Giro de la pinza', unidad: '°', min: -180, max: 180,
+                    ayuda: 'Giro extra de las mordazas respecto a la caja (montaje de la pinza). 90 = mordazas en el otro eje.'},
+                {clave: 'agarreModo', tipo: 'modo', nombre: 'Altura de agarre',
+                    opciones: [{valor: 0, texto: 'Porcentaje'}, {valor: 1, texto: 'Desde la tapa'}],
+                    ayuda: 'Porcentaje: h = alto × %. Desde la tapa: los dedos cierran siempre a la misma distancia bajo la tapa.'},
+                {clave: 'agarrePorcentaje', nombre: 'Agarre (porcentaje)', unidad: '%', min: 1, max: 100, depende: {clave: 'agarreModo', valor: 0, texto: 'el modo Porcentaje'},
+                    ayuda: '50 = a media altura de la caja.'},
+                {clave: 'agarreHundimiento', nombre: 'Agarre bajo la tapa', unidad: 'mm', min: 0, max: 500, depende: {clave: 'agarreModo', valor: 1, texto: 'el modo Desde la tapa'},
+                    ayuda: 'h = alto − este valor.'},
+                {clave: 'agarreMinimo', nombre: 'Agarre mínimo', unidad: 'mm', min: 0, max: 500,
+                    ayuda: 'h no baja de esto: los dedos sobresalen por debajo del punto de agarre y no deben tocar la cinta.'},
+                {clave: 'solapeMinimo', nombre: 'Alto mínimo agarrable', unidad: 'mm', min: 0, max: 500,
+                    ayuda: 'Lo que debe tocar el dedo la pared: una caja más baja no se coge.'},
+                {clave: 'aperturaPinza', nombre: 'Apertura de la pinza', unidad: 'mm', min: 0, max: 500,
+                    ayuda: 'El PC rechaza cajas cuyo lado agarrado (el ancho) es mayor. 0 = sin comprobar.'},
+                {clave: 'grosorDedo', nombre: 'Grosor del dedo', unidad: 'mm', min: 0, max: 200,
+                    ayuda: 'Tiene que caber en el hueco entre cajas de la mesa. 0 = sin comprobar.'},
+                {clave: 'tcpZ', nombre: 'Largo de la pinza (TCP z)', unidad: 'mm', min: 1, max: 600, protegido: true,
+                    advertencia: 'Distancia de la brida al punto de agarre: tiene que ser la de la pinza real o el robot irá a otro punto.',
+                    ayuda: 'De la brida al punto donde cierran los dedos.'},
+                {clave: 'margenAproximacion', nombre: 'Margen de aproximación', unidad: 'mm', min: 0, max: 500,
+                    ayuda: 'Altura sobre la caja al acercarse y al transportar.'}
+            ]},
+        {id: 'tiempos', titulo: 'Tiempos',
+            ayuda: 'Segundos. Las pausas dan tiempo a la pinza y a la caja; los máximos paran el programa con un aviso si algo no llega.',
+            items: [
+                {clave: 'tAntesAgarrar', nombre: 'Pausa antes de agarrar', unidad: 's', min: 0, max: 30,
+                    ayuda: 'Desde CAJA EN POSICIÓN hasta empezar el movimiento: que la caja se pare.'},
+                {clave: 'tAgarre', nombre: 'Pausa al agarrar', unidad: 's', min: 0, max: 30,
+                    ayuda: 'Tras confirmar el cierre de la pinza, antes de subir la caja.'},
+                {clave: 'tSuelta', nombre: 'Pausa al soltar', unidad: 's', min: 0, max: 30,
+                    ayuda: 'Tras confirmar la apertura, antes de irse.'},
+                {clave: 'tMaxPinza', nombre: 'Máximo esperando a la pinza', unidad: 's', min: 0.5, max: 30,
+                    ayuda: 'Espera máxima a PinzaCerrada al cerrar y al abrir.'},
+                {clave: 'tMaxCaja', nombre: 'Máximo esperando a la caja', unidad: 's', min: 0, max: 600,
+                    ayuda: 'Espera máxima a que llegue la caja. 0 = sin límite.'},
+                {clave: 'tMaxCamara', nombre: 'Máximo esperando a la cámara', unidad: 's', min: 0, max: 60, solo: 'real', depende: MODO_CAMARA,
+                    ayuda: 'Espera máxima a una detección: si no llega, el PC se para.'},
+                {clave: 'tiempoConv', nombre: 'Quieto antes de cerrar el EGM', unidad: 's', min: 0.5, max: 20,
+                    ayuda: 'Segundos que el robot espera quieto en la salida antes de cerrar el EGM. Es lo que más alarga el ciclo.'}
+            ]},
+        {id: 'movimiento', titulo: 'Movimiento y seguridad',
+            ayuda: 'Límites del movimiento. Cambiar los protegidos pide confirmación.',
+            items: [
+                {clave: 'velocidad', nombre: 'Velocidad máxima', unidad: 'mm/s', min: 5, max: 100, protegido: true,
+                    advertencia: 'Velocidad máxima del TCP que manda el PC. Empieza lento en las primeras pruebas con el robot real; 100 es el tope del puente.',
+                    ayuda: 'Más rápido que 100 exige cambiar el puente (config.celda.json).'},
+                {clave: 'zMinima', nombre: 'Suelo del TCP', unidad: 'mm', min: 0, max: 1500, protegido: true,
+                    advertencia: 'El PC rechaza cualquier punto por debajo de esta altura.',
+                    ayuda: '0 = automático: el menor de la altura de la cinta y la de la mesa.'},
+                {clave: 'seguroX', nombre: 'Punto de espera X', unidad: 'mm', min: -600, max: 800, protegido: true,
+                    advertencia: 'Punto de espera donde empieza cada sesión EGM: el robot va allí al empezar la tanda.',
+                    ayuda: 'Punto (TCP) sobre la cinta donde empieza cada caja y adonde vuelve el robot.'},
+                {clave: 'seguroY', nombre: 'Punto de espera Y', unidad: 'mm', min: -600, max: 800, protegido: true,
+                    advertencia: 'Punto de espera donde empieza cada sesión EGM: el robot va allí al empezar la tanda.',
+                    ayuda: 'y del punto de espera.'},
+                {clave: 'seguroZ', nombre: 'Punto de espera Z', unidad: 'mm', min: 0, max: 800, protegido: true,
+                    advertencia: 'Punto de espera donde empieza cada sesión EGM: el robot va allí al empezar la tanda.',
+                    ayuda: 'z del punto de espera. Debe quedar sobre la caja que llega.'},
+                {clave: 'egmMaxPos', nombre: 'Límite del EGM', unidad: 'mm', min: 500, max: 2000, protegido: true,
+                    tituloConfirmar: 'Cambiar el límite del EGM',
+                    ayuda: 'Distancia máxima al punto de espera. Es lo que más limita cuántas cajas caben en la mesa.'},
+                {clave: 'alcanceMax', tipo: 'lectura', nombre: 'Alcance máximo', unidad: 'mm',
+                    ayuda: 'Radio máximo de la pinza desde el eje del robot. Solo se muestra.'}
+            ]}
+    ]);
+    const CAMPOS_PARAMETROS = Object.freeze(PARAMETROS.reduce(function (todos, s) {
+        return todos.concat(s.items.filter(function (it) { return (it.tipo || 'num') === 'num'; }));
+    }, []));
+
+    // Texto de la confirmacion al cambiar un ajuste protegido.
+    function textoConfirmacion(item, valor, antes) {
+        if (item.clave === 'egmMaxPos') {
+            return {titulo: item.tituloConfirmar, lineas: [
+                'El controlador para el EGM (Motors Off) si el robot se aleja más de ' + valor + ' mm del punto de espera.',
+                'Con más límite caben más cajas en la mesa, pero hay menos protección. ¿Cambiarlo de ' + antes + ' a ' + valor + ' mm?'
+            ]};
+        }
+        return {titulo: item.tituloConfirmar || ('Cambiar ' + item.nombre.toLowerCase()), lineas: [
+            item.advertencia, '¿Cambiarlo de ' + antes + ' a ' + valor + ' ' + (item.unidad || '') + '?'
+        ]};
+    }
 
     // Senales de E/S que se muestran (rapid/cfg/EIO/EIO.cfg, todas con Access Level All).
     const SENALES = Object.freeze({
@@ -167,7 +315,14 @@
             senales: {sensor: null, cinta: null, pinzaCerrar: null, pinzaCerrada: null},
             // Ordenes de pinza vistas por la senal PinzaCerrar (subida = cerrar, bajada = abrir) en la tanda en curso;
             // cambio: cuando cambio por ultima vez PinzaCerrar o PinzaCerrada (ms).
-            pinza: {cerrar: 0, abrir: 0, ultima: null, caja: 0, tUltima: 0, cambio: 0}
+            pinza: {cerrar: 0, abrir: 0, ultima: null, caja: 0, tUltima: 0, cambio: 0},
+            // Puesta en marcha (ventana Parametros): los valores por defecto de MOD_CajaPinza.mod
+            recogidaModo: 0, recogidaX: 700, recogidaY: 0, recogidaTolX: 50, recogidaTolY: 50,
+            camaraOffsetX: 0, camaraOffsetY: 0, camaraOffsetGiro: 0, tMaxCamara: 5, zCinta: 220,
+            giroPinza: 0, agarreModo: 0, agarrePorcentaje: 50, agarreHundimiento: 30, agarreMinimo: 10, solapeMinimo: 10,
+            aperturaPinza: 0, grosorDedo: 0, tcpZ: 147, margenAproximacion: 65,
+            tAntesAgarrar: 0, tAgarre: 0, tSuelta: 0, tMaxPinza: 3, tMaxCaja: 40, tiempoConv: 2.5,
+            velocidad: 100, zMinima: 0, seguroX: 600, seguroY: -6.5, seguroZ: 543
         };
     }
 
@@ -194,6 +349,27 @@
         return s < 60 ? 'hace ' + s + ' s' : 'hace ' + Math.floor(s / 60) + ' min';
     }
 
+    // La ventana Parametros: cada ajuste con su valor, si se puede cambiar ahora y por que no.
+    function vistaParametros(e, editable) {
+        const sim = e.modoSimulacion;
+        return {
+            editable: editable,
+            secciones: PARAMETROS.map(function (s) {
+                return {id: s.id, titulo: s.titulo, ayuda: s.ayuda, items: s.items.map(function (it) {
+                    let nota = '';
+                    let aplica = true;
+                    if (it.solo === 'real' && sim) { nota = 'Solo en Real: en simulación el punto lo da el sensor de la cinta.'; aplica = false; }
+                    else if (it.depende && e[it.depende.clave] !== it.depende.valor) { nota = 'Solo con ' + it.depende.texto + '.'; aplica = false; }
+                    else if (it.notaSim && sim) { nota = it.notaSim; }
+                    const tipo = it.tipo || 'num';
+                    return {clave: it.clave, tipo: tipo, nombre: it.nombre, unidad: it.unidad || '', valor: e[it.clave], min: it.min, max: it.max,
+                        opciones: it.opciones || null, ayuda: it.ayuda, protegido: !!it.protegido, nota: nota,
+                        activo: tipo !== 'lectura' && editable && aplica};
+                })};
+            })
+        };
+    }
+
     // Lo que muestra la tarjeta Pinza: el estado segun las dos senales (orden PinzaCerrar y confirmacion PinzaCerrada),
     // y cuantas ordenes se han visto en la tanda.
     function vistaPinza(e, ahora) {
@@ -211,12 +387,12 @@
             estado = 'abierta'; titulo = 'ABIERTA'; tono = 'activo';
             detalle = 'Sin orden de cerrar.';
         } else {
-            const colgada = ahora - p.cambio > SIN_CONFIRMAR_MS;
+            const colgada = ahora - p.cambio > Math.max(e.tMaxPinza, 0.5) * 1000;   // RAPID espera tMaxPinza s
             estado = orden ? 'cerrando' : 'abriendo';
             titulo = colgada ? 'SIN CONFIRMACIÓN' : (orden ? 'CERRANDO…' : 'ABRIENDO…');
             tono = colgada ? 'error' : 'espera';
             detalle = orden ? 'Orden de cerrar enviada; falta que PinzaCerrada suba.' : 'Orden de abrir enviada; falta que PinzaCerrada baje.';
-            if (colgada) { detalle += ' RAPID espera 3 s y para con fallo_pinza.'; }
+            if (colgada) { detalle += ' RAPID espera ' + Math.max(e.tMaxPinza, 0.5) + ' s y para con fallo_pinza.'; }
         }
         let resumen = 'Órdenes de esta tanda: cerrar ' + p.cerrar + ' · abrir ' + p.abrir;
         if (p.ultima) { resumen += ' · última: ' + p.ultima + ' (caja ' + p.caja + ') ' + haceTexto(ahora - p.tUltima); }
@@ -318,19 +494,60 @@
     }
 
     // Puntos del TCP de un destino: entrada, sobre el hueco, deposito y salida (_poses_destino del PC).
-    function puntosDestino(caja, d) {
-        const zDeposito = d.zMesa + caja.alto / 2;
-        const zViaje = Math.max(PC.zCinta + caja.alto + PC.margen, zDeposito + PC.margen);
-        const zSalida = Math.max(PC.zSeguro, d.zMesa + Math.max(caja.alto, d.altoLibre) + PC.margen);
+    // Ajustes del PC que cambian la geometria (los de la ventana Parametros). Lo que no venga en lim vale lo de PC y la
+    // altura de agarre por defecto (el centro de la caja, sin comprobaciones).
+    const AGARRE_POR_DEFECTO = Object.freeze({modo: 0, porcentaje: 50, hundimiento: 30, minimo: 10, solape: 10, apertura: 0});
+
+    function limitesDeEstado(e) {
+        return {
+            egmMaxPos: e.egmMaxPos, alcanceMax: e.alcanceMax,
+            inicio: [e.seguroX, e.seguroY, e.seguroZ], zCinta: e.zCinta, margen: e.margenAproximacion, tcp: e.tcpZ, zMinima: e.zMinima,
+            agarre: {modo: e.agarreModo, porcentaje: e.agarrePorcentaje, hundimiento: e.agarreHundimiento, minimo: e.agarreMinimo,
+                solape: e.solapeMinimo, apertura: e.aperturaPinza}
+        };
+    }
+
+    // altura_agarre del PC: altura h del punto de agarre sobre la base de la caja. {h} o {error: texto}.
+    function alturaAgarre(caja, lim) {
+        const a = (lim && lim.agarre) || AGARRE_POR_DEFECTO;
+        if (caja.alto < a.solape) {
+            return {error: 'la caja mide ' + caja.alto + ' mm de alto y el dedo necesita tocar al menos ' + a.solape + ' mm de pared'};
+        }
+        if (a.apertura > 0 && caja.ancho > a.apertura) {
+            return {error: 'el lado que agarra la pinza mide ' + caja.ancho + ' mm y la pinza abre ' + a.apertura + ' mm'};
+        }
+        let h = a.modo === 1 ? caja.alto - a.hundimiento : caja.alto * a.porcentaje / 100;
+        h = Math.max(h, a.minimo);
+        if (h > caja.alto) {
+            return {error: 'el agarre más bajo posible (' + a.minimo + ' mm) queda por encima de la tapa de la caja (' + caja.alto + ' mm)'};
+        }
+        return {h: h};
+    }
+
+    function puntosDestino(caja, d, lim) {
+        const l = lim || {};
+        const zCinta = l.zCinta !== undefined ? l.zCinta : PC.zCinta;
+        const margen = l.margen !== undefined ? l.margen : PC.margen;
+        const ag = alturaAgarre(caja, l);
+        const h = ag.error === undefined ? ag.h : caja.alto / 2;   // sin agarre posible, solo para el dibujo
+        const zDeposito = d.zMesa + h;
+        const zViaje = Math.max(zCinta + caja.alto + margen, zDeposito + margen);
+        const zSalida = Math.max(PC.zSeguro, d.zMesa + Math.max(caja.alto, d.altoLibre) + margen);
         return [{x: d.xEntrada, y: d.y, z: zViaje}, {x: d.x, y: d.y, z: zViaje}, {x: d.x, y: d.y, z: zDeposito}, {x: d.x, y: d.y, z: zSalida}];
     }
 
     // validar_puntos del PC: espacio del puente (en la brida), ventana por eje, limite del EGM y alcance.
     function puntoPermitido(p, lim) {
-        const x0 = PC.inicio[0];
-        const y0 = PC.inicio[1];
-        const z0 = PC.inicio[2];
-        const brida = p.z + PC.tcp;
+        const inicio = lim.inicio || PC.inicio;
+        const x0 = inicio[0];
+        const y0 = inicio[1];
+        const z0 = inicio[2];
+        const brida = p.z + (lim.tcp !== undefined ? lim.tcp : PC.tcp);
+        // suelo del TCP: el menor de la cinta y la mesa, o zMinima si es mayor (solo si se conoce la mesa: lim.zMesa)
+        if (lim.zMesa !== undefined) {
+            const suelo = Math.max(lim.zMinima || 0, Math.min(lim.zCinta !== undefined ? lim.zCinta : PC.zCinta, lim.zMesa));
+            if (p.z < suelo - 1e-6) { return false; }
+        }
         if (p.x < PC.puente.x[0] || p.x > PC.puente.x[1] || p.y < PC.puente.y[0] || p.y > PC.puente.y[1]
                 || brida < PC.puente.z[0] || brida > PC.puente.z[1]) { return false; }
         const semiancho = lim.egmMaxPos - 100;
@@ -340,7 +557,8 @@
     }
 
     function alcanzable(caja, d, lim) {
-        return puntosDestino(caja, d).every(function (p) { return puntoPermitido(p, lim); });
+        const limite = Object.assign({}, lim, {zMesa: d.zMesa});
+        return puntosDestino(caja, d, lim).every(function (p) { return puntoPermitido(p, limite); });
     }
 
     function nuevoReparto(mesa) {
@@ -419,7 +637,7 @@
     }
 
     function limitarCampoMesa(clave, valor) {
-        const c = CAMPOS.filter(function (k) { return k.clave === clave; })[0];
+        const c = CAMPOS.concat(CAMPOS_PARAMETROS).filter(function (k) { return k.clave === clave; })[0];
         const v = Math.round(aNum(valor, 0) * 10) / 10;
         return c ? Math.max(c.min, Math.min(c.max, v)) : v;
     }
@@ -552,7 +770,8 @@
         // Mesa de deposito (estimacion con la caja de referencia; el PC reparte con la medida real de cada caja)
         const mesa = mesaDeEstado(e);
         const cajaRef = cajaDeReferencia(e);
-        const limites = {egmMaxPos: e.egmMaxPos, alcanceMax: e.alcanceMax};
+        const limites = limitesDeEstado(e);
+        const agarreRef = alturaAgarre(cajaRef, limites);
         const estimacion = estimarMesa(mesa, cajaRef, limites);
         const capacidad = estimacion.capacidad;
         const huecosVista = estimacion.destinos.map(function (d, i) {
@@ -692,6 +911,9 @@
         if (coincide === false) {
             avisos.push({nivel: 'error', texto: 'El PC lee ' + textoGiro(giroPc) + ' y RAPID puso la caja a ' + textoGiro(giroRapid) + ': el PC no usa la caja.csv de esta tanda.'});
         }
+        if (agarreRef.error !== undefined) {
+            avisos.push({nivel: 'aviso', texto: 'Con los ajustes de agarre, la caja de referencia no se puede agarrar: ' + agarreRef.error + '. El PC rechaza las cajas así antes de moverse.'});
+        }
         if (e.mensaje) {
             avisos.push({nivel: fase === FASES.ERROR ? 'error' : 'info', texto: 'RAPID: ' + e.mensaje});
         }
@@ -728,6 +950,7 @@
             chips: chips,
             senales: senales,
             pinza: vistaPinza(e, ahora),
+            parametros: vistaParametros(e, editable),
             mesa: {
                 campos: CAMPOS.map(function (c) {
                     return {grupo: c.grupo, clave: c.clave, nombre: c.nombre, valor: e[c.clave], min: c.min, max: c.max, ayuda: c.ayuda};
@@ -762,6 +985,8 @@
         MESA_SIM: MESA_SIM, CAMPOS: CAMPOS, CAMPOS_MESA: CAMPOS_MESA, CAJA_SIM: CAJA_SIM, PC: PC,
         mesaDeEstado: mesaDeEstado, cajaDeReferencia: cajaDeReferencia, puntosDestino: puntosDestino,
         puntoPermitido: puntoPermitido, nuevoReparto: nuevoReparto, colocar: colocar, repartir: repartir,
-        estimarMesa: estimarMesa, limitarCampoMesa: limitarCampoMesa, geometriaMesa: geometriaMesa
+        estimarMesa: estimarMesa, limitarCampoMesa: limitarCampoMesa, geometriaMesa: geometriaMesa,
+        PARAMETROS: PARAMETROS, CAMPOS_PARAMETROS: CAMPOS_PARAMETROS, textoConfirmacion: textoConfirmacion,
+        limitesDeEstado: limitesDeEstado, alturaAgarre: alturaAgarre
     };
 }));

@@ -18,14 +18,18 @@ MODULE MOD_CajaPinza
     !                      definida en EIO.cfg y se pone a 0 al empezar.
     !
     ! Protocolo por socket: sin separadores, un mensaje por turno (el PC espera la respuesta).
-    !   PC -> RAPID: cerrar, abrir, fin_caja, fin_programa, lote, mesa, giro:<grados>
+    !   PC -> RAPID: cerrar, abrir, fin_caja, fin_programa, lote, mesa, recogida, agarre, celda, giro:<grados>
     !   RAPID -> PC: cerrada, abierta, fin_ok, fallo_pinza, fallo_egm, lote:<n>:<sim|real>,
-    !                mesa:<x0>:<y0>:<largo>:<ancho>:<z>:<hueco>:<egmMaxPos>:<alcanceMax>, giro_ok, giro_mal
+    !                mesa:<x0>:<y0>:<largo>:<ancho>:<z>:<hueco>:<egmMaxPos>:<alcanceMax>, giro_ok, giro_mal,
+    !                recogida:<modo>:<x>:<y>:<tolX>:<tolY>:<offX>:<offY>:<offGiro>:<tMaxCamara>,
+    !                agarre:<modo>:<porc>:<hund>:<minimo>:<solape>:<apertura>:<grosor>:<giroPinza>,
+    !                celda:<zCinta>:<margenAprox>:<tcpZ>:<seguroX>:<seguroY>:<seguroZ>:<velocidad>:<zMinima>
     ! fin_caja: T_COM espera a que T_ROB1 cierre la sesion EGM (el robot queda convergido en la salida
     ! tiempoConv segundos) y contesta fin_ok; si no se cierra a tiempo, contesta fallo_egm.
     ! lote: el PC pregunta cuantas cajas tiene la tanda y en que modo esta RAPID (los ajusta la app del
     ! FlexPendant), para que el PC no discrepe. mesa: la zona de la mesa donde se dejan las cajas (tambien de
-    ! la app) y los limites del robot; con ella el PC reparte las cajas en una cuadricula. giro:<grados>: el PC cuenta el giro de la caja que ha
+    ! la app) y los limites del robot; con ella el PC reparte las cajas en una cuadricula. recogida, agarre y celda:
+    ! los ajustes de puesta en marcha (ventana Parametros de la app, PERS de abajo). giro:<grados>: el PC cuenta el giro de la caja que ha
     ! leido (en simulacion, del CSV; en real, de la camara); la app lo muestra junto al que puso RAPID.
     ! Si SocketReceive dejara algun caracter de mas en el texto, revisar la comparacion
     ! en la primera prueba de socket.
@@ -74,7 +78,8 @@ MODULE MOD_CajaPinza
     ! Segundos seguidos dentro de la ventana para cerrar la sesion. Tiene que ser mayor que cualquier
     ! parada con la pinza quieta en mitad de la caja (cerrar y abrir la pinza: en simulacion menos de
     ! 0,5 s); si una parada dura mas, la sesion terminaria antes de tiempo. T_COM espera tiempoConv + 10 s.
-    CONST num tiempoConv := 2.5;
+    ! La ajusta la app (ventana Parametros, Tiempos).
+    PERS num tiempoConv := 2.5;
 
     ! ---- Compartidas por T_ROB1 y T_COM ----
     PERS num cajaNum := 0;
@@ -143,6 +148,56 @@ MODULE MOD_CajaPinza
     PERS num egmMaxPos := 1500;
     PERS num alcanceMax := 790;
 
+    ! ---- Puesta en marcha (ventana Parametros de la app; el PC los pide con 'recogida', 'agarre' y 'celda') ----
+    ! Medidas en mm respecto a la base del robot, grados y segundos. Se ajustan antes de INICIAR TANDA.
+    ! Recogida. recogidaModo: 0 = fija, 1 = camara (solo real; en simulacion el punto lo da el sensor de la
+    ! cinta, que usa recogidaX). Fija: el centro de la caja es (recogidaX, recogidaY) para todas. Camara: el que
+    ! mide la camara mas camaraOffsetX/Y, solo si cae a menos de recogidaTolX/Y de (recogidaX, recogidaY); si no,
+    ! el PC no se mueve. camaraOffsetGiro se suma al giro que lee la camara. tMaxCamara: espera maxima a una
+    ! deteccion. zCinta: altura de la superficie de la cinta.
+    PERS num recogidaModo := 0;
+    PERS num recogidaX := 700;
+    PERS num recogidaY := 0;
+    PERS num recogidaTolX := 50;
+    PERS num recogidaTolY := 50;
+    PERS num camaraOffsetX := 0;
+    PERS num camaraOffsetY := 0;
+    PERS num camaraOffsetGiro := 0;
+    PERS num tMaxCamara := 5;
+    PERS num zCinta := 220;
+    ! Agarre. Altura h del punto de agarre sobre la base de la caja. agarreModo: 0 = porcentaje (h = alto x
+    ! agarrePorcentaje / 100; 50 = el centro), 1 = desde la tapa (h = alto - agarreHundimiento). Despues h no baja de
+    ! agarreMinimo (los dedos sobresalen bajo el TCP) y la caja se rechaza si alto < solapeMinimo o si su lado
+    ! agarrado (el ancho) es mayor que aperturaPinza. aperturaPinza y grosorDedo: 0 = sin comprobar (grosorDedo
+    ! tiene que caber en mesaHueco). giroPinza: giro extra de las mordazas respecto a la caja. tcpZ: distancia de la
+    ! brida al punto de agarre (el TCP z de herrPinza). margenAproximacion: altura sobre la caja al acercarse.
+    PERS num giroPinza := 0;
+    PERS num agarreModo := 0;
+    PERS num agarrePorcentaje := 50;
+    PERS num agarreHundimiento := 30;
+    PERS num agarreMinimo := 10;
+    PERS num solapeMinimo := 10;
+    PERS num aperturaPinza := 0;
+    PERS num grosorDedo := 0;
+    PERS num tcpZ := 147;
+    PERS num margenAproximacion := 65;
+    ! Tiempos (s). tAntesAgarrar: pausa entre CAJA EN POSICION y empezar el movimiento. tAgarre y tSuelta: pausa
+    ! despues de que la pinza confirme el cierre o la apertura, antes de que el PC siga. tMaxPinza: espera maxima
+    ! a PinzaCerrada. tMaxCaja: espera maxima a CajaEnRecogida (0 = sin limite).
+    PERS num tAntesAgarrar := 0;
+    PERS num tAgarre := 0;
+    PERS num tSuelta := 0;
+    PERS num tMaxPinza := 3;
+    PERS num tMaxCaja := 40;
+    ! Movimiento y seguridad. velocidad: mm/s maximos del TCP que manda el PC (100 = el tope del puente, que
+    ! es config.celda.json: paso_mm 0.4). zMinima: suelo del TCP (0 = el menor de zCinta y mesaZ). seguroX/Y/Z:
+    ! punto de espera (TCP) donde empieza cada sesion EGM y a donde vuelve el robot entre cajas.
+    PERS num velocidad := 100;
+    PERS num zMinima := 0;
+    PERS num seguroX := 600;
+    PERS num seguroY := -6.5;
+    PERS num seguroZ := 543;
+
     CONST num sinGiro := 999;
     ! Momentos de la celda. La app (logica.js) lleva la misma tabla: si se cambia aqui, cambiarla alli
     ! (hay una prueba que lo comprueba).
@@ -166,10 +221,11 @@ MODULE MOD_CajaPinza
     ! la pinza queda 123 mm sobre el techo de la caja (420). Es donde arranca cada sesion EGM y a donde
     ! vuelve el robot entre cajas. pStart: 740 en la brida, con tool0.
     ! pSeguro: TCP de la pinza (herrPinza), solo para la comprobacion de alcance.
-    CONST robtarget pSeguro := [[600,-6.5,543],[0,0,1,0],[0,0,0,0],[9E9,9E9,9E9,9E9,9E9,9E9]];
-    CONST robtarget pStart := [[600,-6.5,740],[0,0,1,0],[0,0,0,0],[9E9,9E9,9E9,9E9,9E9,9E9]];
-    ! pSeguroBrida = pSeguro en la brida (543 + 147 mm del TCP de la pinza).
-    CONST robtarget pSeguroBrida := [[600,-6.5,690],[0,0,1,0],[0,0,0,0],[9E9,9E9,9E9,9E9,9E9,9E9]];
+    VAR robtarget pSeguro := [[600,-6.5,543],[0,0,1,0],[0,0,0,0],[9E9,9E9,9E9,9E9,9E9,9E9]];
+    VAR robtarget pStart := [[600,-6.5,740],[0,0,1,0],[0,0,0,0],[9E9,9E9,9E9,9E9,9E9,9E9]];
+    ! pSeguroBrida = pSeguro en la brida (543 + 147 mm del TCP de la pinza). pStart, 50 mm mas arriba. Los tres se
+    ! recalculan al empezar cada tanda con seguroX/Y/Z y tcpZ (AplicarSeguro).
+    VAR robtarget pSeguroBrida := [[600,-6.5,690],[0,0,1,0],[0,0,0,0],[9E9,9E9,9E9,9E9,9E9,9E9]];
     PERS tooldata herrPinza := [TRUE,[[0,0,147],[1,0,0,0]],[0.5,[0,0,50],[1,0,0,0],0,0,0]];
     CONST pose pose_cero := [[0,0,0],[1,0,0,0]];
 
@@ -266,6 +322,7 @@ MODULE MOD_CajaPinza
         SetDO FinCajaEGM, 0;
 
         cajaNum := 0;
+        AplicarSeguro;
         ! Igual que MOD_EGM_prueba: pStart y luego pAprox (pSeguroBrida), con tool0.
         MoveJ pStart, v100, fine, tool0;
         MoveJ pSeguroBrida, v100, fine, tool0;
@@ -282,7 +339,12 @@ MODULE MOD_CajaPinza
                 ColocarCaja indiceGiro{cajaNum + 1};
                 hmiFase := FASE_CINTA;
                 SetDO CintaMover, 1;
-                WaitDI CajaEnRecogida, 1 \MaxTime:=40 \TimeFlag:=sinCaja;
+                IF tMaxCaja > 0 THEN
+                    WaitDI CajaEnRecogida, 1 \MaxTime:=tMaxCaja \TimeFlag:=sinCaja;
+                ELSE
+                    WaitDI CajaEnRecogida, 1;
+                    sinCaja := FALSE;
+                ENDIF
                 SetDO CintaMover, 0;
                 IF sinCaja THEN
                     hmiFase := FASE_ERROR;
@@ -303,7 +365,10 @@ MODULE MOD_CajaPinza
                 WaitUntil hmiCajaEnPosicion;
                 hmiCajaEnPosicion := FALSE;
             ELSEIF NOT modoSimulacion THEN
-                WaitDI CajaEnRecogida, 1;
+                EsperarCajaReal;
+            ENDIF
+            IF tAntesAgarrar > 0 THEN
+                WaitTime tAntesAgarrar;
             ENDIF
 
             EGMReset egmID;
@@ -344,6 +409,30 @@ MODULE MOD_CajaPinza
         hmiFase := FASE_FIN;
         Aviso "Todas las cajas hechas. EGM cerrado.";
         Stop;
+    ENDPROC
+
+    ! Punto de espera segun la app: seguroX/Y/Z (TCP) y tcpZ (brida - TCP). Se llama al empezar cada tanda, antes de
+    ! moverse. herrPinza lleva el mismo tcpZ.
+    PROC AplicarSeguro()
+        pSeguro.trans := [seguroX, seguroY, seguroZ];
+        pSeguroBrida.trans := [seguroX, seguroY, seguroZ + tcpZ];
+        pStart.trans := [seguroX, seguroY, seguroZ + tcpZ + 50];
+        herrPinza.tframe.trans.z := tcpZ;
+    ENDPROC
+
+    ! Modo real sin boton: espera CajaEnRecogida, como mucho tMaxCaja s (0 = sin limite).
+    PROC EsperarCajaReal()
+        VAR bool sinCaja;
+        IF tMaxCaja > 0 THEN
+            WaitDI CajaEnRecogida, 1 \MaxTime:=tMaxCaja \TimeFlag:=sinCaja;
+            IF sinCaja THEN
+                hmiFase := FASE_ERROR;
+                Aviso "La caja no ha llegado (CajaEnRecogida)";
+                Stop;
+            ENDIF
+        ELSE
+            WaitDI CajaEnRecogida, 1;
+        ENDIF
     ENDPROC
 
     ! Aviso en la app (hmiMensaje) y, si hmiMensajes es TRUE, tambien en el FlexPendant (TPWrite). Texto de
@@ -405,6 +494,8 @@ MODULE MOD_CajaPinza
         VAR num signoGiro;
         VAR string textoGiro;
         VAR string textoMesa;
+        VAR string textoAjustes;
+        VAR num esperaPinza;
 
         hmiPcConectado := FALSE;
         SocketCreate sock;
@@ -413,8 +504,12 @@ MODULE MOD_CajaPinza
         WHILE NOT salir DO
             SocketReceive sock \Str:=orden \Time:=WAIT_MAX;
             IF orden = "cerrar" THEN
+                esperaPinza := tMaxPinza;
+                IF esperaPinza < 0.5 THEN
+                    esperaPinza := 0.5;
+                ENDIF
                 SetDO PinzaCerrar, 1;
-                WaitDI PinzaCerrada, 1 \MaxTime:=3 \TimeFlag:=fallo;
+                WaitDI PinzaCerrada, 1 \MaxTime:=esperaPinza \TimeFlag:=fallo;
                 IF fallo THEN
                     hmiFase := FASE_ERROR;
                     Aviso "La pinza no ha confirmado el agarre";
@@ -422,13 +517,21 @@ MODULE MOD_CajaPinza
                     salir := TRUE;
                 ELSE
                     hmiFase := FASE_AGARRADA;
+                    ! Pausa para que la pinza apriete antes de que el PC suba la caja.
+                    IF tAgarre > 0 THEN
+                        WaitTime tAgarre;
+                    ENDIF
                     SocketSend sock \Str:="cerrada";
                 ENDIF
             ELSEIF orden = "abrir" THEN
+                esperaPinza := tMaxPinza;
+                IF esperaPinza < 0.5 THEN
+                    esperaPinza := 0.5;
+                ENDIF
                 SetDO PinzaCerrar, 0;
                 ! Igual que al cerrar: se espera la confirmacion (PinzaCerrada vuelve a 0). En simulacion la baja
                 ! el SmartComponent VacuumPen_SComp al soltar la caja.
-                WaitDI PinzaCerrada, 0 \MaxTime:=3 \TimeFlag:=fallo;
+                WaitDI PinzaCerrada, 0 \MaxTime:=esperaPinza \TimeFlag:=fallo;
                 IF fallo THEN
                     hmiFase := FASE_ERROR;
                     Aviso "La pinza no ha confirmado la apertura";
@@ -436,6 +539,10 @@ MODULE MOD_CajaPinza
                     salir := TRUE;
                 ELSE
                     hmiFase := FASE_SOLTADA;
+                    ! Pausa para que la caja se asiente antes de que el PC se vaya.
+                    IF tSuelta > 0 THEN
+                        WaitTime tSuelta;
+                    ENDIF
                     SocketSend sock \Str:="abierta";
                 ENDIF
             ELSEIF orden = "fin_caja" THEN
@@ -468,6 +575,25 @@ MODULE MOD_CajaPinza
                 textoMesa := textoMesa + ":" + NumToStr(mesaZ, 1) + ":" + NumToStr(mesaHueco, 1);
                 textoMesa := textoMesa + ":" + NumToStr(egmMaxPos, 0) + ":" + NumToStr(alcanceMax, 0);
                 SocketSend sock \Str:=textoMesa;
+            ELSEIF orden = "recogida" THEN
+                ! Ajustes de puesta en marcha (ventana Parametros de la app), en tres mensajes de 80 caracteres como
+                ! maximo: recogida, agarre y celda.
+                textoAjustes := "recogida:" + NumToStr(recogidaModo, 0) + ":" + NumToStr(recogidaX, 1) + ":" + NumToStr(recogidaY, 1);
+                textoAjustes := textoAjustes + ":" + NumToStr(recogidaTolX, 1) + ":" + NumToStr(recogidaTolY, 1);
+                textoAjustes := textoAjustes + ":" + NumToStr(camaraOffsetX, 1) + ":" + NumToStr(camaraOffsetY, 1);
+                textoAjustes := textoAjustes + ":" + NumToStr(camaraOffsetGiro, 1) + ":" + NumToStr(tMaxCamara, 1);
+                SocketSend sock \Str:=textoAjustes;
+            ELSEIF orden = "agarre" THEN
+                textoAjustes := "agarre:" + NumToStr(agarreModo, 0) + ":" + NumToStr(agarrePorcentaje, 1) + ":" + NumToStr(agarreHundimiento, 1);
+                textoAjustes := textoAjustes + ":" + NumToStr(agarreMinimo, 1) + ":" + NumToStr(solapeMinimo, 1);
+                textoAjustes := textoAjustes + ":" + NumToStr(aperturaPinza, 1) + ":" + NumToStr(grosorDedo, 1);
+                textoAjustes := textoAjustes + ":" + NumToStr(giroPinza, 1);
+                SocketSend sock \Str:=textoAjustes;
+            ELSEIF orden = "celda" THEN
+                textoAjustes := "celda:" + NumToStr(zCinta, 1) + ":" + NumToStr(margenAproximacion, 1) + ":" + NumToStr(tcpZ, 1);
+                textoAjustes := textoAjustes + ":" + NumToStr(seguroX, 1) + ":" + NumToStr(seguroY, 1) + ":" + NumToStr(seguroZ, 1);
+                textoAjustes := textoAjustes + ":" + NumToStr(velocidad, 1) + ":" + NumToStr(zMinima, 1);
+                SocketSend sock \Str:=textoAjustes;
             ELSEIF StrLen(orden) > 5 THEN
                 ! giro:<grados>. El PC cuenta el giro de la caja que ha leido (en simulacion, del CSV).
                 ! El signo se trata aparte para no depender de como StrToVal lee los negativos.

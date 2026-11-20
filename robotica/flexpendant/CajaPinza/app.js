@@ -247,6 +247,7 @@
         pintarAjustes(v);
         pintarCaja(v);
         pintarMesa(v);
+        pintarParametros(v);
         pintarAvisos(v);
     }
 
@@ -466,6 +467,127 @@
         dibujarMesa(m);
     }
 
+    // ---------------------------------------------------------------- ventana Parametros
+    function mostrarSeccion(id) {
+        L.PARAMETROS.forEach(function (s) {
+            $('psec-' + s.id).hidden = s.id !== id;
+            clase('pnav-' + s.id, 'activa', s.id === id);
+        });
+    }
+
+    // Construye las secciones, los campos y los botones de modo a partir de L.PARAMETROS (los campos numericos los crea
+    // crearCampo despues, sobre los div in-<clave>).
+    function crearParametros() {
+        const nav = $('param-nav');
+        const contenido = $('param-contenido');
+        L.PARAMETROS.forEach(function (sec, indice) {
+            const boton = document.createElement('button');
+            boton.type = 'button';
+            boton.id = 'pnav-' + sec.id;
+            boton.className = 'pestana-param' + (indice === 0 ? ' activa' : '');
+            boton.textContent = sec.titulo;
+            boton.addEventListener('click', function () { mostrarSeccion(sec.id); });
+            nav.appendChild(boton);
+
+            const tarjeta = document.createElement('section');
+            tarjeta.className = 'tarjeta param-seccion';
+            tarjeta.id = 'psec-' + sec.id;
+            tarjeta.hidden = indice !== 0;
+            const titulo = document.createElement('h2');
+            titulo.textContent = sec.titulo;
+            tarjeta.appendChild(titulo);
+            const ayuda = document.createElement('p');
+            ayuda.className = 'ayuda';
+            ayuda.textContent = sec.ayuda;
+            tarjeta.appendChild(ayuda);
+            const rejilla = document.createElement('div');
+            rejilla.className = 'param-campos';
+            sec.items.forEach(function (it) {
+                const caja = document.createElement('div');
+                caja.className = 'param-item';
+                caja.id = 'pitem-' + it.clave;
+                const tipo = it.tipo || 'num';
+                if (tipo === 'num') {
+                    const campo = document.createElement('div');
+                    campo.id = 'in-' + it.clave;
+                    campo.className = 'campo-mesa';
+                    caja.appendChild(campo);
+                } else {
+                    const nombre = document.createElement('div');
+                    nombre.className = 'param-nombre';
+                    nombre.textContent = it.nombre;
+                    caja.appendChild(nombre);
+                    if (tipo === 'modo') {
+                        const grupo = document.createElement('div');
+                        grupo.className = 'segmentos';
+                        it.opciones.forEach(function (op) {
+                            const b = document.createElement('button');
+                            b.type = 'button';
+                            b.id = 'par-' + it.clave + '-' + op.valor;
+                            b.className = 'segmento';
+                            b.textContent = op.texto;
+                            b.addEventListener('click', function () {
+                                if (parametroActivo(it.clave)) { ajustar(it.clave, op.valor); }
+                            });
+                            grupo.appendChild(b);
+                        });
+                        caja.appendChild(grupo);
+                    } else {
+                        const lectura = document.createElement('div');
+                        lectura.id = 'plect-' + it.clave;
+                        lectura.className = 'param-lectura';
+                        caja.appendChild(lectura);
+                    }
+                }
+                const ayudaItem = document.createElement('div');
+                ayudaItem.className = 'param-ayuda';
+                ayudaItem.textContent = it.ayuda + (it.protegido ? ' Pide confirmación al cambiarlo.' : '');
+                caja.appendChild(ayudaItem);
+                const nota = document.createElement('div');
+                nota.className = 'param-nota';
+                nota.id = 'pnota-' + it.clave;
+                caja.appendChild(nota);
+                rejilla.appendChild(caja);
+            });
+            tarjeta.appendChild(rejilla);
+            contenido.appendChild(tarjeta);
+        });
+    }
+
+    // Se puede cambiar ahora (antes de INICIAR o al terminar; y solo si vale en este modo).
+    function parametroActivo(clave) {
+        const secciones = L.calcularVista(estado).parametros.secciones;
+        for (let i = 0; i < secciones.length; i++) {
+            for (let k = 0; k < secciones[i].items.length; k++) {
+                if (secciones[i].items[k].clave === clave) { return secciones[i].items[k].activo; }
+            }
+        }
+        return false;
+    }
+
+    function pintarParametros(v) {
+        v.parametros.secciones.forEach(function (s) {
+            s.items.forEach(function (it) {
+                clase('pitem-' + it.clave, 'inactivo', it.tipo !== 'lectura' && !it.activo);
+                poner('pnota-' + it.clave, it.nota || (v.parametros.editable ? '' : 'Bloqueado mientras la tanda está en marcha.'));
+                if (it.tipo === 'num') {
+                    const campo = ui.campos && ui.campos[it.clave];
+                    if (campo) {
+                        if (campo.text !== String(it.valor)) { campo.text = String(it.valor); }
+                        campo.enabled = it.activo;
+                    }
+                } else if (it.tipo === 'modo') {
+                    it.opciones.forEach(function (op) {
+                        clase('par-' + it.clave + '-' + op.valor, 'activo', it.valor === op.valor);
+                        $('par-' + it.clave + '-' + op.valor).disabled = !it.activo;
+                    });
+                } else {
+                    poner('plect-' + it.clave, it.valor + ' ' + it.unidad);
+                }
+            });
+        });
+    }
+
     function pintarAvisos(v) {
         reconstruir('avisos', v.avisos.map(function (a) { return a.nivel + a.texto; }).join('|'), function (cont) {
             v.avisos.forEach(function (a) {
@@ -562,8 +684,10 @@
     function mostrarPestana(nombre) {
         $('vista-tanda').hidden = nombre !== 'tanda';
         $('vista-mesa').hidden = nombre !== 'mesa';
+        $('vista-parametros').hidden = nombre !== 'parametros';
         clase('tab-tanda', 'activa', nombre === 'tanda');
         clase('tab-mesa', 'activa', nombre === 'mesa');
+        clase('tab-parametros', 'activa', nombre === 'parametros');
     }
 
     function crearInterfaz() {
@@ -612,12 +736,14 @@
             rejilla.appendChild(b);
         }
 
-        // campos numericos de la pestana Mesa (teclado numerico de ABB): zona, caja de referencia y limite del EGM
+        // campos numericos (teclado numerico de ABB): zona y caja de referencia de la pestana Mesa y los ajustes de la
+        // pestana Parametros (los protegidos piden confirmacion)
         ui.campos = {};
-        L.CAMPOS.forEach(function (c) {
+        crearParametros();
+        const crearCampo = function (c) {
             const campo = new P.Input_A();
             campo.desc = c.nombre;
-            campo.label = c.nombre + ' (mm)';
+            campo.label = c.nombre + ' (' + (c.unidad || 'mm') + ')';
             campo.variant = FP_COMPONENTS_KEYBOARD_NUM;
             campo.regex = /^-?\d{1,4}(\.\d)?$/;
             campo.validator = function (texto) {
@@ -628,18 +754,18 @@
             campo.onchange = function (texto) {
                 if (!ajustesEditables()) { pedirPintar(); return; }
                 const valor = L.limitarCampoMesa(c.clave, texto);
-                if (c.grupo !== 'egm') { ajustar(c.clave, valor); return; }
-                // el limite del EGM es una proteccion del robot: se pide confirmacion
-                P.Popup_A.confirm('Cambiar el límite del EGM', [
-                    'El controlador para el EGM (Motors Off) si el robot se aleja más de ' + valor + ' mm del punto de espera.',
-                    'Con más límite caben más cajas en la mesa, pero hay menos protección. ¿Cambiarlo de ' + estado.egmMaxPos + ' a ' + valor + ' mm?'
-                ], function (accion) {
+                if (!c.protegido) { ajustar(c.clave, valor); return; }
+                // un ajuste protegido (limite del EGM, velocidad, alturas...): se pide confirmacion
+                const t = L.textoConfirmacion(c, valor, estado[c.clave]);
+                P.Popup_A.confirm(t.titulo, t.lineas, function (accion) {
                     if (accion === P.Popup_A.OK) { ajustar(c.clave, valor); } else { pedirPintar(); }
                 }, P.Popup_A.STYLE ? P.Popup_A.STYLE.WARNING : null);
             };
             campo.attachToId('in-' + c.clave);
             ui.campos[c.clave] = campo;
-        });
+        };
+        L.CAMPOS.forEach(crearCampo);
+        L.CAMPOS_PARAMETROS.forEach(crearCampo);
         ui.variables = new P.Switch_A();
         ui.variables.desc = 'Cajas de tamaños distintos (simulación)';
         ui.variables.onchange = function (activo) { if (ajustesEditables()) { ajustar('cajasVariables', activo); } else { pedirPintar(); } };
@@ -662,6 +788,7 @@
 
         $('tab-tanda').addEventListener('click', function () { mostrarPestana('tanda'); });
         $('tab-mesa').addEventListener('click', function () { mostrarPestana('mesa'); });
+        $('tab-parametros').addEventListener('click', function () { mostrarPestana('parametros'); });
 
         if (window.RWS_SIMULADO) { window.CajaPinzaPrueba = {ui: ui, estado: estado}; }   // solo en las pruebas
 

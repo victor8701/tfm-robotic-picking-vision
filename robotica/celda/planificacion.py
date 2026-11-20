@@ -30,16 +30,47 @@ def envolver_giro(grados: float) -> float:
     return ((grados + 90.0) % 180.0) - 90.0
 
 
-def orientacion_pinza(giro_caja_deg: float, eje_pinzado: str) -> np.ndarray:
+def orientacion_pinza(giro_caja_deg: float, eje_pinzado: str, giro_pinza_deg: float = 0.0) -> np.ndarray:
     """Orientacion de la herramienta con las mordazas perpendiculares al lado largo de la caja.
 
     eje_pinzado: eje local de la herramienta en el que cierran las mordazas ('x' o 'y'). Se
-    confirma con el CAD de la pinza.
+    confirma con el CAD de la pinza. giro_pinza_deg: giro extra de las mordazas (montaje de la pinza), que la
+    app del FlexPendant ajusta como giroPinza; con eje 'y', 90 equivale a eje 'x'.
     """
-    psi = giro_caja_deg if eje_pinzado == "y" else giro_caja_deg + 90.0
+    psi = (giro_caja_deg if eje_pinzado == "y" else giro_caja_deg + 90.0) + giro_pinza_deg
     psi = math.radians(envolver_giro(psi))
     q_giro = np.array([math.cos(psi / 2.0), 0.0, 0.0, math.sin(psi / 2.0)])
     return normalizar(multiplicar(q_giro, Q_BASE))
+
+
+class NoAgarrable(ValueError):
+    """La pinza no puede agarrar esta caja (muy baja o demasiado ancha para la apertura)."""
+
+
+def altura_agarre(caja: Caja, cfg) -> float:
+    """Altura h (mm) del punto de agarre sobre la base de la caja, y comprobacion de que la pinza puede cogerla.
+
+    Modo 'porcentaje': h = alto * agarre_porcentaje / 100 (50 = el centro). Modo 'tapa': h = alto - agarre_hundimiento
+    (los dedos cierran siempre a esa distancia bajo la tapa, que es lo que mejor mide una camara). Despues h no baja
+    de agarre_minimo (los dedos sobresalen por debajo del TCP y no deben tocar la cinta ni la mesa) ni sube de alto.
+    NoAgarrable si la caja es mas baja que solape_minimo, si agarre_minimo deja el punto por encima de la tapa o si
+    el lado que cierran las mordazas (el ancho) no cabe en la apertura (apertura_pinza = 0: sin comprobar).
+    """
+    if caja.alto < cfg.solape_minimo:
+        raise NoAgarrable(f"la caja mide {caja.alto:g} mm de alto y el dedo necesita tocar al menos "
+                          f"{cfg.solape_minimo:g} mm de pared (solapeMinimo)")
+    if cfg.apertura_pinza > 0.0 and caja.ancho > cfg.apertura_pinza:
+        raise NoAgarrable(f"el lado que agarra la pinza mide {caja.ancho:g} mm y la pinza abre {cfg.apertura_pinza:g} mm "
+                          "(aperturaPinza)")
+    if cfg.agarre_modo == "tapa":
+        h = caja.alto - cfg.agarre_hundimiento
+    else:
+        h = caja.alto * cfg.agarre_porcentaje / 100.0
+    h = max(h, cfg.agarre_minimo)
+    if h > caja.alto:
+        raise NoAgarrable(f"el agarre mas bajo posible ({cfg.agarre_minimo:g} mm, agarreMinimo) queda por encima de la "
+                          f"tapa de la caja ({caja.alto:g} mm)")
+    return h
 
 
 @dataclass(frozen=True)
@@ -141,8 +172,9 @@ class Reparto:
 
 def _poses_destino(caja: Caja, cfg, d: Destino) -> dict:
     """Puntos de un destino: entrada (deslizando desde +x), sobre el hueco, deposito y salida."""
-    q = orientacion_pinza(0.0, cfg.eje_pinzado)   # caja alineada con la mesa, venga como venga
-    z_deposito = d.z_mesa + caja.alto / 2.0
+    q = orientacion_pinza(0.0, cfg.eje_pinzado, cfg.giro_pinza)   # caja alineada con la mesa, venga como venga
+    h = altura_agarre(caja, cfg)
+    z_deposito = d.z_mesa + h
     z_viaje = max(cfg.z_cinta + caja.alto + cfg.margen_aproximacion, z_deposito + cfg.margen_aproximacion)
     z_salida = max(cfg.z_seguro, d.z_mesa + max(caja.alto, d.alto_libre) + cfg.margen_aproximacion)
     return {
@@ -167,8 +199,8 @@ def _alcanzable(caja: Caja, cfg, d: Destino) -> bool:
 def planificar(caja: Caja, cfg, destino: Destino | None = None) -> list[Tramo]:
     """Tres tramos por caja: aproximacion y agarre, transporte y deposito, salida.
 
-    Alturas: la caja descansa en la cinta a z_cinta, su centro queda a alto/2. El agarre es en el
-    centro de la caja. Sobre la caja hay un margen de aproximacion.
+    Alturas: la caja descansa en la cinta a z_cinta. El agarre es a la altura h sobre su base (altura_agarre: el
+    centro con la configuracion por defecto). Sobre la caja hay un margen de aproximacion.
 
     La salida sube hasta dejar la pinza por encima de la caja ya depositada (techo de la caja mas el
     margen), no solo hasta z_seguro: el TCP agarra a media altura, y con la mesa mas alta que la cinta
@@ -176,10 +208,11 @@ def planificar(caja: Caja, cfg, destino: Destino | None = None) -> list[Tramo]:
     """
     xc, yc = caja.centro if caja.centro is not None else cfg.centro_recogida
     xm, ym = cfg.mesa
-    q = orientacion_pinza(caja.giro_deg, cfg.eje_pinzado)
-    z_agarre = cfg.z_cinta + caja.alto / 2.0
+    q = orientacion_pinza(caja.giro_deg, cfg.eje_pinzado, cfg.giro_pinza)
+    h = altura_agarre(caja, cfg)
+    z_agarre = cfg.z_cinta + h
     z_aprox = cfg.z_cinta + caja.alto + cfg.margen_aproximacion
-    z_deposito = cfg.z_mesa + caja.alto / 2.0
+    z_deposito = cfg.z_mesa + h
     z_seg = cfg.z_seguro
     z_salida = max(z_seg, cfg.z_mesa + caja.alto + cfg.margen_aproximacion)
     if destino is not None:
@@ -244,9 +277,15 @@ def validar_puntos(tramos: list[Tramo], cfg) -> None:
     pinza mira siempre hacia abajo y pSeguro tiene el mismo desfase, asi que las distancias coinciden.
     """
     x0, y0, z0 = cfg.ventana_inicio
+    # Suelo del TCP: ningun punto legitimo baja de la menor de las dos superficies (el agarre y el deposito estan a h > 0
+    # sobre ellas). Protege si una altura esta mal medida.
+    suelo = max(cfg.z_minima, min(cfg.z_cinta, cfg.z_mesa))
     for tramo in tramos:
         for p in tramo.puntos:
             x, y, z = (float(v) for v in p.t)
+            if z < suelo - 1e-6:
+                raise ValueError(f"{tramo.nombre}: punto {p.t.round(1).tolist()} por debajo del suelo del TCP "
+                                 f"({suelo:g} mm: zMinima, zCinta o mesaZ)")
             xb, yb, zb = (float(v) for v in a_brida(p, cfg.largo_herramienta_mm).t)
             if not (LIMITE_X_MM[0] <= xb <= LIMITE_X_MM[1] and LIMITE_Y_MM[0] <= yb <= LIMITE_Y_MM[1]
                     and LIMITE_Z_MM[0] <= zb <= LIMITE_Z_MM[1]):

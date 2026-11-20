@@ -34,6 +34,7 @@
         <nav class="pestanas">
             <button id="tab-tanda" class="pestana activa" type="button">Tanda</button>
             <button id="tab-mesa" class="pestana" type="button">Mesa de depósito</button>
+            <button id="tab-parametros" class="pestana" type="button">Parámetros</button>
         </nav>
 
         <main id="vista-tanda" class="cuadricula">
@@ -209,13 +210,15 @@
                 <div class="fila fila-switch"><div id="sw-variables"></div></div>
                 <div class="motivo">Simulación: cada caja mide entre el 60 y el 100 % de la de referencia (el alto, entre el 50 y el 100 %). RAPID escribe las medidas solo en caja.csv al iniciar la tanda; el 3D de RobotStudio las toma con el complemento CajasVariables, y sin él la caja sigue siendo un cubo de 200 mm.</div>
 
-                <h3>3 · Límite del EGM <span class="unidad">mm</span></h3>
-                <p class="ayuda">El controlador para el EGM si el robot se aleja más de esta distancia del punto de espera sobre la cinta. Es lo que más limita cuántas cajas caben en la mesa. Subirlo da más sitio, pero quita protección.</p>
-                <div class="campos-mesa">
-                    <div id="in-egmMaxPos" class="campo-mesa"></div>
-                </div>
+                <p class="ayuda">El límite del EGM, que es lo que más limita cuántas cajas caben, y el resto de ajustes de puesta en marcha están en la pestaña <b>Parámetros</b> → Movimiento y seguridad.</p>
                 <div id="nota-mesa" class="motivo"></div>
             </section>
+        </main>
+
+        <!-- Pestana Parametros: ajustes de puesta en marcha, por secciones (se construye en app.js desde logica.js) -->
+        <main id="vista-parametros" class="param" hidden>
+            <nav id="param-nav" class="param-nav"></nav>
+            <div id="param-contenido" class="param-contenido"></div>
         </main>
 
         <footer id="avisos" class="avisos"></footer>

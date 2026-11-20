@@ -10,6 +10,11 @@ from pathlib import Path
 LIMITE_X_MM = (-600.0, 800.0)
 LIMITE_Y_MM = (-600.0, 800.0)
 LIMITE_Z_MM = (0.0, 800.0)
+# Velocidad a la que el puente mueve la referencia (paso_mm 0.4 por ciclo de 4 ms en config.celda.json) y giro
+# correspondiente (giro_rad 0.0025 por ciclo). El PC solo puede ir mas despacio: para ir mas rapido hay que cambiar el
+# puente (y su desviacion_mm).
+VELOCIDAD_PUENTE_MM_S = 100.0
+GIRO_PUENTE_RAD_S = 0.625
 
 
 @dataclass(frozen=True)
@@ -51,6 +56,31 @@ class Config:
     # (mm, en horizontal desde el eje de la base) hasta el que el TCP de la pinza llega con comodidad.
     desviacion_egm_max: float = 1500.0
     alcance_max: float = 790.0
+    # ---- Puesta en marcha: PERS de MOD_CajaPinza.mod que ajusta la ventana Parametros de la app y que el PC pide a
+    # RAPID con los mensajes 'recogida', 'agarre' y 'celda'. Estos valores son los de RAPID por defecto. ----
+    # Recogida (solo real; en simulacion el punto lo da el sensor de la cinta). 'fija': el centro de la caja es
+    # centro_recogida para todas; 'camara': el que mide la camara mas camara_offset, dentro de +-recogida_tol de
+    # centro_recogida. t_max_camara: espera maxima a una deteccion antes de parar.
+    recogida_modo: str = "fija"
+    recogida_tol: tuple[float, float] = (50.0, 50.0)
+    camara_offset: tuple[float, float] = (0.0, 0.0)
+    camara_offset_giro: float = 0.0
+    t_max_camara: float = 5.0
+    # Agarre. Altura h del punto de agarre sobre la base de la caja: 'porcentaje' = alto * agarre_porcentaje / 100;
+    # 'tapa' = alto - agarre_hundimiento. Despues h >= agarre_minimo (los dedos sobresalen bajo el TCP) y la caja se
+    # rechaza si alto < solape_minimo. apertura_pinza y grosor_dedo: 0 = sin comprobar.
+    agarre_modo: str = "porcentaje"
+    agarre_porcentaje: float = 50.0
+    agarre_hundimiento: float = 30.0
+    agarre_minimo: float = 10.0
+    solape_minimo: float = 10.0
+    apertura_pinza: float = 0.0
+    grosor_dedo: float = 0.0
+    giro_pinza: float = 0.0   # grados sumados al giro de las mordazas (eje_pinzado 'y' = 0)
+    # Movimiento. velocidad: mm/s maximos del TCP (el puente limita a VELOCIDAD_PUENTE_MM_S). z_minima: suelo del
+    # TCP (0 = el menor de z_cinta y z_mesa).
+    velocidad: float = 100.0
+    z_minima: float = 0.0
 
 
 def cargar(ruta) -> Config:

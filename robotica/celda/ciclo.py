@@ -21,13 +21,14 @@ _RAIZ = Path(__file__).resolve().parents[1]  # robotica/
 sys.path.insert(0, str(_RAIZ))  # paquete nucleo
 sys.path.insert(0, str(_RAIZ / "ros2" / "robotica_bimanual"))  # ClientePuente, sin rclpy
 
-from nucleo.geometria import error_pose  # noqa: E402
+from nucleo.geometria import angulo, error_pose, interpolar  # noqa: E402
 from robotica_bimanual.cliente_puente import ClientePuente  # noqa: E402
 from robotica_bimanual.convertir import pose_desde_estado_puente  # noqa: E402
 
-from .config import Config, cargar  # noqa: E402
-from .percepcion import crear_fuente  # noqa: E402
-from .planificacion import Mesa, Reparto, SinSitio, Tramo, a_brida, planificar, validar_puntos  # noqa: E402
+from .config import GIRO_PUENTE_RAD_S, VELOCIDAD_PUENTE_MM_S, Config, cargar  # noqa: E402
+from .percepcion import centro_parada, crear_fuente  # noqa: E402
+from .planificacion import (  # noqa: E402
+    Mesa, NoAgarrable, Reparto, SinSitio, Tramo, a_brida, altura_agarre, envolver_giro, planificar, validar_puntos)
 from .socket_rapid import ServidorRapid  # noqa: E402
 
 
@@ -96,6 +97,7 @@ class Celda:
         if self._n_rapid < 1:
             raise RuntimeError("RAPID dice que la tanda tiene 0 cajas")
         self._leer_mesa()
+        self._leer_ajustes()
 
     def _leer_mesa(self) -> None:
         """Pide a RAPID la zona de la mesa donde se dejan las cajas y los limites del robot (los pone la app del
@@ -113,7 +115,92 @@ class Celda:
         if largo <= 0.0 or ancho <= 0.0 or hueco < 0.0 or egm_max <= 100.0 or alcance <= 0.0:
             raise RuntimeError(f"Medidas de la mesa no validas en RAPID: {r!r}")
         self._mesa = Mesa(x0, y0, largo, ancho, z, hueco)
-        self.cfg = replace(self.cfg, desviacion_egm_max=egm_max, alcance_max=alcance, ventana_semiancho=egm_max - 100.0)
+        self.cfg = replace(self.cfg, desviacion_egm_max=egm_max, alcance_max=alcance, ventana_semiancho=egm_max - 100.0,
+                           z_mesa=z)
+
+    def _numeros(self, mensaje: str, nombre: str, esperado: str, n: int) -> list[float]:
+        """Pide a RAPID un grupo de ajustes y devuelve sus n numeros (formato nombre:v1:v2:...)."""
+        r = self._preguntar(mensaje)
+        partes = r.split(":")
+        if len(partes) != n + 1 or partes[0] != nombre:
+            raise RuntimeError(f"RAPID respondio {r!r} a '{mensaje}' (se esperaba {esperado})")
+        try:
+            return [float(v) for v in partes[1:]]
+        except ValueError:
+            raise RuntimeError(f"RAPID respondio {r!r} a '{mensaje}' (se esperaba {esperado})") from None
+
+    def _leer_ajustes(self) -> None:
+        """Pide a RAPID los ajustes de puesta en marcha (ventana Parametros de la app; son PERS de MOD_CajaPinza.mod):
+        recogida, agarre y celda (alturas, herramienta, punto seguro, velocidad y suelo). Los valores incoherentes se
+        rechazan aqui, antes de mover nada."""
+        modo, x, y, tol_x, tol_y, off_x, off_y, off_giro, t_cam = self._numeros(
+            "recogida", "recogida", "recogida:<modo>:<x>:<y>:<tolX>:<tolY>:<offX>:<offY>:<offGiro>:<tMaxCamara>", 9)
+        if modo not in (0.0, 1.0) or tol_x < 0.0 or tol_y < 0.0 or t_cam < 0.0:
+            raise RuntimeError("Ajustes de recogida no validos en RAPID: revisa modo, tolerancias y tiempo de camara")
+        a_modo, porc, hund, minimo, solape, apertura, grosor, giro_pinza = self._numeros(
+            "agarre", "agarre", "agarre:<modo>:<porcentaje>:<hundimiento>:<minimo>:<solape>:<apertura>:<grosor>:<giroPinza>", 8)
+        if (a_modo not in (0.0, 1.0) or not 0.0 < porc <= 100.0 or hund < 0.0 or minimo < 0.0 or solape < 0.0
+                or apertura < 0.0 or grosor < 0.0):
+            raise RuntimeError("Ajustes de agarre no validos en RAPID: revisa modo, porcentaje, alturas y medidas de la pinza")
+        z_cinta, margen, tcp_z, seg_x, seg_y, seg_z, velocidad, z_minima = self._numeros(
+            "celda", "celda", "celda:<zCinta>:<margenAprox>:<tcpZ>:<seguroX>:<seguroY>:<seguroZ>:<velocidad>:<zMinima>", 8)
+        if margen < 0.0 or tcp_z <= 0.0 or not 1.0 <= velocidad <= VELOCIDAD_PUENTE_MM_S or z_minima < 0.0:
+            raise RuntimeError("Ajustes de la celda no validos en RAPID: revisa margen, tcpZ, velocidad "
+                               f"(1 a {VELOCIDAD_PUENTE_MM_S:g} mm/s) y zMinima")
+        self.cfg = replace(
+            self.cfg,
+            recogida_modo="camara" if modo == 1.0 else "fija", centro_recogida=(x, y), recogida_tol=(tol_x, tol_y),
+            camara_offset=(off_x, off_y), camara_offset_giro=off_giro, t_max_camara=t_cam,
+            agarre_modo="tapa" if a_modo == 1.0 else "porcentaje", agarre_porcentaje=porc, agarre_hundimiento=hund,
+            agarre_minimo=minimo, solape_minimo=solape, apertura_pinza=apertura, grosor_dedo=grosor, giro_pinza=giro_pinza,
+            z_cinta=z_cinta, margen_aproximacion=margen, largo_herramienta_mm=tcp_z, ventana_inicio=(seg_x, seg_y, seg_z),
+            velocidad=velocidad, z_minima=z_minima)
+        if self._mesa is not None and self.cfg.grosor_dedo > 0.0 and self._mesa.hueco < self.cfg.grosor_dedo:
+            raise RuntimeError(f"El hueco entre cajas ({self._mesa.hueco:g} mm, mesaHueco) es menor que el grosor del "
+                               f"dedo ({self.cfg.grosor_dedo:g} mm, grosorDedo): la pinza no puede entrar entre dos cajas")
+
+    def _resolver_recogida(self, caja):
+        """Donde esta la caja que se va a agarrar. Simulacion: la que da el sensor de final de cinta (se calcula con
+        la medida y el giro de la caja y con recogidaX). Real, 'fija': el punto recogidaX/recogidaY para todas.
+        Real, 'camara': el de la camara mas su correccion, y solo si cae dentro de la zona permitida (si no, el PC
+        se para: nunca se cae al punto fijo a ciegas). La camara tambien corrige el giro."""
+        cfg = self.cfg
+        if cfg.modo_simulacion:
+            if cfg.sensor_cinta_y is None:
+                return caja
+            return replace(caja, centro=centro_parada(caja.largo, caja.ancho, caja.giro_deg, cfg.centro_recogida[0],
+                                                     cfg.sensor_cinta_y))
+        if cfg.recogida_modo == "fija":
+            return replace(caja, centro=cfg.centro_recogida)
+        if caja.centro is None:
+            raise RuntimeError("Recogida en modo camara y la camara no ha dado la posicion de la caja")
+        x = caja.centro[0] + cfg.camara_offset[0]
+        y = caja.centro[1] + cfg.camara_offset[1]
+        dx, dy = x - cfg.centro_recogida[0], y - cfg.centro_recogida[1]
+        if abs(dx) > cfg.recogida_tol[0] or abs(dy) > cfg.recogida_tol[1]:
+            raise RuntimeError(
+                f"La camara pone la caja en ({x:.0f}, {y:.0f}), a ({dx:+.0f}, {dy:+.0f}) mm del punto de recogida "
+                f"({cfg.centro_recogida[0]:g}, {cfg.centro_recogida[1]:g}), fuera de la zona permitida "
+                f"(+-{cfg.recogida_tol[0]:g}, +-{cfg.recogida_tol[1]:g} mm, recogidaTolX/Y): no me muevo")
+        return replace(caja, centro=(x, y), giro_deg=envolver_giro(caja.giro_deg + cfg.camara_offset_giro))
+
+    def _comprobar_caja(self, caja, n: int) -> None:
+        """Rechaza la caja n antes de moverla si la pinza no puede agarrarla (altura, apertura)."""
+        try:
+            altura_agarre(caja, self.cfg)
+        except NoAgarrable as e:
+            raise RuntimeError(f"La caja {n} no se puede agarrar: {e}") from None
+
+    def _paso_limitado(self, origen, objetivo, t_s: float):
+        """Pose intermedia hacia el objetivo yendo como mucho a cfg.velocidad (mm/s) y, en el giro, a la fraccion
+        correspondiente de la velocidad de giro del puente. t_s: segundos desde que se salio de origen."""
+        v = self.cfg.velocidad
+        dist = float(np.linalg.norm(np.asarray(objetivo.t) - np.asarray(origen.t)))
+        giro = angulo(origen.q, objetivo.q)
+        duracion = max(dist / v, giro / (GIRO_PUENTE_RAD_S * v / VELOCIDAD_PUENTE_MM_S))
+        if duracion <= 0.0:
+            return objetivo
+        return interpolar(origen, objetivo, min(1.0, t_s / duracion))
 
     def _preparar_mesa(self) -> None:
         """Empieza el reparto de la mesa. Si se conocen todas las cajas de antemano (caja.csv de la simulacion), se
@@ -125,6 +212,7 @@ class Celda:
             return
         prueba = Reparto(self._mesa)
         for j in range(int(total_conocido)):
+            self._comprobar_caja(self.fuente.leer(j), j + 1)
             try:
                 prueba.colocar(self.fuente.leer(j), self.cfg)
             except SinSitio as e:
@@ -144,6 +232,8 @@ class Celda:
         caja = self.fuente.leer(i)
         if i == 0:
             self._preparar_mesa()
+        caja = self._resolver_recogida(caja)
+        self._comprobar_caja(caja, i + 1)
         try:
             destino = self._reparto.colocar(caja, self.cfg)
         except SinSitio as e:
@@ -188,6 +278,7 @@ class Celda:
         ciclos_vistos, desde = None, time.monotonic()
         for punto in tramo.puntos:
             objetivo = a_brida(punto, self.cfg.largo_herramienta_mm)
+            origen, t_origen = None, 0.0   # para limitar la velocidad (solo si es menor que la del puente)
             for _ in range(self.cfg.max_iteraciones):
                 e = self.puente.estado()
                 if e.get("estado") == "fallo":
@@ -202,10 +293,15 @@ class Celda:
                 dt, dr = error_pose(real, objetivo)
                 if np.linalg.norm(dt) <= self.cfg.tolerancia_pos and np.linalg.norm(dr) <= self.cfg.tolerancia_rot:
                     break
-                r = self.puente.objetivo(objetivo)
+                enviado = objetivo
+                if self.cfg.velocidad < VELOCIDAD_PUENTE_MM_S:
+                    if origen is None:
+                        origen, t_origen = real, time.monotonic()
+                    enviado = self._paso_limitado(origen, objetivo, time.monotonic() - t_origen)
+                r = self.puente.objetivo(enviado)
                 if not r.get("ok"):
                     raise RuntimeError(
-                        f"{tramo.nombre}: el puente rechaza la brida {objetivo.t.round(1).tolist()}: {r}")
+                        f"{tramo.nombre}: el puente rechaza la brida {enviado.t.round(1).tolist()}: {r}")
                 time.sleep(self.cfg.periodo_s)
             else:
                 raise RuntimeError(f"{tramo.nombre}: no llega al punto {punto.t.round(1).tolist()}")

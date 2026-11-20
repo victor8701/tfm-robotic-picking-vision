@@ -275,7 +275,16 @@ def test_el_reparto_de_la_app_es_el_que_hace_el_pc_con_cajas_de_medidas_distinta
 
     base = cargar(RAIZ / "celda" / "config_celda.json")
     for caso in _tablas()["repartos"]:
-        cfg = replace(base, desviacion_egm_max=caso["egm"], alcance_max=caso["alcance"], ventana_semiancho=caso["egm"] - 100.0)
+        cfg = replace(base, desviacion_egm_max=caso["egm"], alcance_max=caso["alcance"], ventana_semiancho=caso["egm"] - 100.0,
+                      z_mesa=caso["mesaZ"])
+        a = caso.get("ajustes")
+        if a:   # ajustes de puesta en marcha: punto de espera, TCP, cinta, margen, suelo y agarre
+            g = a["agarre"]
+            cfg = replace(cfg, ventana_inicio=tuple(a["inicio"]), largo_herramienta_mm=a["tcp"], z_cinta=a["zCinta"],
+                          margen_aproximacion=a["margen"], z_minima=a["zMinima"],
+                          agarre_modo="tapa" if g["modo"] == 1 else "porcentaje", agarre_porcentaje=g["porcentaje"],
+                          agarre_hundimiento=g["hundimiento"], agarre_minimo=g["minimo"], solape_minimo=g["solape"],
+                          apertura_pinza=g["apertura"])
         mesa = Mesa(caso["mesaX0"], caso["mesaY0"], caso["mesaLargo"], caso["mesaAncho"], caso["mesaZ"], caso["mesaHueco"])
         reparto, pc, sin_sitio = Reparto(mesa), [], None
         for i, c in enumerate(caso["cajas"]):
@@ -305,11 +314,35 @@ def test_todos_los_avisos_de_rapid_pasan_por_nota_y_asi_el_interruptor_de_mensaj
 
 def test_la_pinza_espera_confirmacion_al_cerrar_y_al_abrir():
     """T_COM: cerrar pone PinzaCerrar a 1 y espera PinzaCerrada = 1; abrir lo pone a 0 y espera PinzaCerrada = 0
-    (en simulacion lo baja el SmartComponent VacuumPen_SComp). En los dos casos, 3 s como maximo y fallo_pinza."""
+    (en simulacion lo baja el SmartComponent VacuumPen_SComp). En los dos casos, tMaxPinza s como maximo y fallo_pinza."""
     cerrar = MODULO.split('orden = "cerrar" THEN')[1].split('ELSEIF orden = "abrir"')[0]
     abrir = MODULO.split('ELSEIF orden = "abrir" THEN')[1].split('ELSEIF orden = "fin_caja"')[0]
-    assert "SetDO PinzaCerrar, 1;" in cerrar and "WaitDI PinzaCerrada, 1 \\MaxTime:=3 \\TimeFlag:=fallo;" in cerrar
-    assert "SetDO PinzaCerrar, 0;" in abrir and "WaitDI PinzaCerrada, 0 \\MaxTime:=3 \\TimeFlag:=fallo;" in abrir
+    assert "SetDO PinzaCerrar, 1;" in cerrar and "WaitDI PinzaCerrada, 1 \\MaxTime:=esperaPinza \\TimeFlag:=fallo;" in cerrar
+    assert "SetDO PinzaCerrar, 0;" in abrir and "WaitDI PinzaCerrada, 0 \\MaxTime:=esperaPinza \\TimeFlag:=fallo;" in abrir
     assert abrir.index("SetDO PinzaCerrar, 0;") < abrir.index("WaitDI PinzaCerrada, 0")
     assert 'SocketSend sock \\Str:="fallo_pinza";' in abrir and 'SocketSend sock \\Str:="abierta";' in abrir
     assert abrir.index("fallo_pinza") < abrir.index('"abierta"')
+
+
+def test_la_altura_de_agarre_de_la_app_es_la_que_calcula_el_pc():
+    """altura_agarre (Python) y alturaAgarre (JavaScript): la misma altura o el mismo rechazo para cada caja y ajuste."""
+    from dataclasses import replace
+
+    from celda.config import cargar
+    from celda.percepcion import Caja
+    from celda.planificacion import NoAgarrable, altura_agarre
+
+    base = cargar(RAIZ / "celda" / "config_celda.json")
+    casos = _tablas()["agarres"]
+    assert len(casos) >= 10 and any("error" in c for c in casos) and any("h" in c for c in casos)
+    for caso in casos:
+        g, c = caso["agarre"], caso["caja"]
+        cfg = replace(base, agarre_modo="tapa" if g["modo"] == 1 else "porcentaje", agarre_porcentaje=g["porcentaje"],
+                      agarre_hundimiento=g["hundimiento"], agarre_minimo=g["minimo"], solape_minimo=g["solape"],
+                      apertura_pinza=g["apertura"])
+        try:
+            h = altura_agarre(Caja(c["largo"], c["ancho"], c["alto"], 0.0), cfg)
+        except NoAgarrable:
+            assert "error" in caso, caso
+            continue
+        assert caso.get("h") == pytest.approx(h), caso

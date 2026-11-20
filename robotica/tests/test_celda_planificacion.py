@@ -233,3 +233,73 @@ def test_validar_puntos_rechaza_lo_que_el_egm_o_el_brazo_no_alcanzan():
         validar_puntos(tramos, replace(cfg, alcance_max=100.0))
     with pytest.raises(ValueError, match="inicio del EGM"):
         validar_puntos(tramos, replace(cfg, desviacion_egm_max=300.0))
+
+
+# ---------------------------------------------------------------- puesta en marcha: altura de agarre, giro de la pinza, suelo
+from celda.planificacion import NoAgarrable, Tramo, altura_agarre  # noqa: E402
+
+
+def test_la_altura_de_agarre_por_porcentaje_es_el_centro_por_defecto():
+    cfg = cfg_prueba()
+    assert altura_agarre(Caja(200.0, 100.0, 120.0, 0.0), cfg) == pytest.approx(60.0)
+    assert altura_agarre(Caja(200.0, 100.0, 80.0, 0.0), cfg) == pytest.approx(40.0)
+    assert altura_agarre(Caja(200.0, 100.0, 120.0, 0.0), cfg_prueba(agarre_porcentaje=75.0)) == pytest.approx(90.0)
+
+
+def test_la_altura_de_agarre_desde_la_tapa_deja_los_dedos_a_la_misma_distancia_de_la_tapa():
+    cfg = cfg_prueba(agarre_modo="tapa", agarre_hundimiento=30.0)
+    for alto in (80.0, 120.0, 200.0):
+        h = altura_agarre(Caja(150.0, 100.0, alto, 0.0), cfg)
+        assert alto - h == pytest.approx(30.0)
+
+
+def test_la_altura_de_agarre_no_baja_del_minimo_ni_sube_de_la_tapa():
+    cfg = cfg_prueba(agarre_porcentaje=10.0, agarre_minimo=25.0)
+    assert altura_agarre(Caja(150.0, 100.0, 100.0, 0.0), cfg) == pytest.approx(25.0)   # el 10 % serian 10 mm
+    # el minimo deja el punto por encima de la tapa: no se coge
+    with pytest.raises(NoAgarrable, match="agarreMinimo"):
+        altura_agarre(Caja(150.0, 100.0, 20.0, 0.0), cfg_prueba(agarre_minimo=30.0, solape_minimo=5.0))
+
+
+def test_una_caja_baja_o_demasiado_ancha_no_se_agarra():
+    with pytest.raises(NoAgarrable, match="solapeMinimo"):
+        altura_agarre(Caja(150.0, 100.0, 15.0, 0.0), cfg_prueba(solape_minimo=20.0))
+    with pytest.raises(NoAgarrable, match="aperturaPinza"):
+        altura_agarre(Caja(150.0, 100.0, 120.0, 0.0), cfg_prueba(apertura_pinza=90.0))
+    # el lado que cierra la pinza es el ancho: una caja larga y estrecha cabe aunque su largo pase de la apertura
+    assert altura_agarre(Caja(300.0, 80.0, 120.0, 0.0), cfg_prueba(apertura_pinza=90.0)) == pytest.approx(60.0)
+    # apertura 0 = sin comprobar
+    assert altura_agarre(Caja(150.0, 400.0, 120.0, 0.0), cfg_prueba(apertura_pinza=0.0)) == pytest.approx(60.0)
+
+
+def test_el_plan_agarra_y_deposita_a_la_altura_de_agarre_de_cada_caja():
+    cfg = cfg_prueba(agarre_modo="tapa", agarre_hundimiento=30.0, z_cinta=300.0, z_mesa=150.0)
+    for alto in (100.0, 160.0):
+        caja = Caja(150.0, 100.0, alto, 0.0, (400.0, 0.0))
+        h = alto - 30.0
+        tramos = {t.nombre: t for t in planificar(caja, cfg)}
+        assert tramos["aproximacion"].puntos[-1].t[2] == pytest.approx(300.0 + h)   # agarre
+        assert tramos["transporte"].puntos[-1].t[2] == pytest.approx(150.0 + h)     # deposito
+
+
+def test_el_giro_de_la_pinza_se_suma_al_de_las_mordazas():
+    base = a_matriz(orientacion_pinza(20.0, "y"))
+    girada = a_matriz(orientacion_pinza(20.0, "y", 90.0))
+    esperado = a_matriz(orientacion_pinza(20.0, "x"))   # eje x = eje y mas 90 grados
+    assert np.allclose(girada, esperado, atol=1e-9)
+    assert not np.allclose(base, girada)
+    caja = Caja(150.0, 100.0, 120.0, 20.0, (400.0, 0.0))
+    q = planificar(caja, cfg_prueba(giro_pinza=90.0))[0].puntos[0].q
+    assert np.allclose(a_matriz(q), esperado, atol=1e-9)
+
+
+def test_el_suelo_del_tcp_rechaza_puntos_por_debajo_de_la_cinta_y_la_mesa():
+    cfg = cfg_prueba(ventana_semiancho=900.0)
+    caja = Caja(150.0, 100.0, 120.0, 0.0, (400.0, 0.0))
+    tramos = planificar(caja, cfg)
+    validar_puntos(tramos, cfg)   # el plan normal pasa
+    with pytest.raises(ValueError, match="suelo del TCP"):
+        validar_puntos(tramos, replace(cfg, z_minima=320.0))   # la salida/agarre quedan por debajo de 320
+    bajo = [Tramo("x", (Pose.crear(t=(400.0, 0.0, 100.0), q=orientacion_pinza(0.0, "y")),), None)]
+    with pytest.raises(ValueError, match="suelo del TCP"):
+        validar_puntos(bajo, cfg)   # z 100 < min(z_cinta 300, z_mesa 150)
