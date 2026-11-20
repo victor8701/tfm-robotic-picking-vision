@@ -8,7 +8,7 @@
       "ip_controlador": null,
       "ip_control": "127.0.0.1",
       "puerto_control": 7001,
-      "semantica": "desplazamiento",
+      "semantica": "absoluta",
       "watchdog_s": 0.1,
       "limites": {
         "paso_mm": 0.5,

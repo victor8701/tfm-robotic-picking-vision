@@ -36,7 +36,7 @@ Al arrancar muestra cada sesión y, cada 5 segundos, su estado en JSON.
 
 Los valores de red (IPs de los controladores, del PC, de WSL2 y de los UdpUc) están reunidos en
 [docs/configuracion.md](../docs/configuracion.md), con el orden de arranque y los errores típicos.
-| `semantica` | `desplazamiento`: `planned` es una corrección respecto a la pose de partida. `absoluta`: `planned` es la posición objetivo. **Decidir con la prueba D30 del controlador virtual.** |
+| `semantica` | `absoluta` (por defecto): `planned` es la pose objetivo en el marco base; es lo que hace el controlador del proyecto (resuelto el 15-nov-2026). `desplazamiento`: `planned` sería una corrección respecto a la pose de partida; con este controlador el robot va al origen de la base, no usar. |
 | `watchdog_s` | Segundos sin objetivo antes de retener la posición. |
 | `limites` | `paso_mm`, `giro_rad` por ciclo; `desviacion_mm`, `desviacion_rad` máximas respecto a la posición real. |
 | `espacio_mm` | Caja de trabajo en la base del robot, por ejes `x`, `y`, `z`. |
@@ -66,7 +66,7 @@ La cola tiene un límite; si se llena, se descartan líneas y el programa inform
 - No hay garantía de tiempo real. El puente no hace E/S en el bucle, pero Windows no es un sistema de tiempo real.
   Medir `intervalo_max_ms` en el PC que se use de verdad, con la carga del día a día.
 - No hay comprobación de colisiones ni de fuerza. La protección es la desviación y el espacio de trabajo.
-- La semántica de `planned` no está confirmada hasta la prueba D30 en el controlador virtual.
+- La semántica de `planned` es `absoluta` (resuelto el 15-nov-2026 con las pruebas de RobotStudio y el TFG). Con `desplazamiento` el robot va al origen de la base.
 
 ## Pruebas
 

@@ -81,7 +81,7 @@ Anota todo en una tabla: PC, controlador 1, controlador 2 y WSL.
 | IP del servidor de control | `puente_egm/config.json` → `ip_control` | `127.0.0.1` o `0.0.0.0` | `127.0.0.1` si ROS corre en el mismo Windows. `0.0.0.0` si ROS corre en WSL2 |
 | Puerto de control | `puerto_control` del puente y `brazo1.puerto` / `brazo2.puerto` del launch | `7001` / `7002` | Decisión nuestra |
 | IP del puente vista desde WSL2 | `ros2/.../launch/celda.launch.py` → `brazo1.host`, `brazo2.host` | `<172.19.64.1>` | Ver §4. Si ROS corre en Windows: `127.0.0.1` |
-| Semántica de `planned` | `puente_egm/config.json` → `semantica` | `desplazamiento` (provisional) | Se decide con la prueba D30 del controlador virtual |
+| Semántica de `planned` | `puente_egm/config.json` → `semantica` | `absoluta` | Resuelto el 15-nov-2026: el controlador lee `planned` como pose absoluta en la base. Con `desplazamiento` el robot va al origen de la base |
 | Tópicos de la cámara | launch → `topic_imagen`, `topic_info` | `<TOPICO_IMAGEN>`, `<TOPICO_INFO>` | `ros2 topic list` con el driver de la RealSense en marcha |
 | Caja interior | launch → `ancho_mm`, `largo_mm`; `celda.json` → `caja_interior_mm` | `700`, `650`, `200` | Medir la caja real (guion de la visita 1) |
 | Bases, puntos de agarre, cámara, punto B, espacio | `simulacion/celda.json` | ver §5 | Medir, o salir de la calibración |

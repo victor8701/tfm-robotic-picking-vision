@@ -18,9 +18,11 @@ public sealed class ConfigSesion
 
     public int PuertoControl { get; set; } = 7001;
 
-    /// <summary>"desplazamiento": planned es una corrección respecto a la pose de partida.
-    /// "absoluta": planned es la posición objetivo. Confirmar con el controlador virtual (D30).</summary>
-    public string Semantica { get; set; } = "desplazamiento";
+    /// <summary>"absoluta": planned es la pose objetivo en el marco base. Es lo que hace el controlador del
+    /// proyecto (resuelto el 15-nov-2026, ver docs/configuracion.md, D30).
+    /// "desplazamiento": planned sería una corrección respecto a la pose de partida; con este controlador el
+    /// robot iría al origen de la base, no usar.</summary>
+    public string Semantica { get; set; } = "absoluta";
 
     /// <summary>Segundos sin objetivo nuevo antes de retener la posición real.</summary>
     public double WatchdogS { get; set; } = 0.1;

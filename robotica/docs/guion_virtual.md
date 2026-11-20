@@ -33,7 +33,7 @@ cd puente_egm\PuenteEgm
 dotnet bin\Release\net8.0\PuenteEgm.dll ..\config.ejemplo.json
 ```
 
-Con `semantica` = `desplazamiento` al principio (ver paso 4). El puente debe mostrar la sesión en marcha.
+Con `semantica` = `absoluta` (resultado de la prueba D30, ver paso 4). El puente debe mostrar la sesión en marcha.
 
 ## 3. Arranque de EGM en el controlador virtual
 
@@ -45,6 +45,8 @@ Con `semantica` = `desplazamiento` al principio (ver paso 4). El puente debe mos
    Si la línea dice `ignorado`, copiar X en `ip_controlador` y reiniciar el puente.
 
 ## 4. Prueba D30: ¿la consigna es corrección o posición absoluta?
+
+> **Resuelto el 15-nov-2026: `absoluta`.** Con `desplazamiento` el puente manda (0, 0, 0) al empezar y el controlador lo toma como la posición absoluta del origen de la base: el robot va hacia allí y fallan 50375 y 50366. El resto del paso queda como descripción de la prueba.
 
 Objetivo: saber qué significa `planned` en el controlador. Es la prueba que decide `semantica`.
 
@@ -87,7 +89,7 @@ Anotarlo, porque cambia `rango_pos` en `MOD_EGM.mod`.
 |---|---|---|
 | 1. UdpUc y 689-1 | | |
 | 3. EGM en marcha | | |
-| 4. D30: semántica | | `desplazamiento` / `absoluta` / otro |
+| 4. D30: semántica | `absoluta` (15-nov-2026) | `desplazamiento` / `absoluta` / otro |
 | 4. Límite de corrección (±1 mm?) | | |
 | 5. Límite del espacio | | |
 | 5. Watchdog (retener) | | |

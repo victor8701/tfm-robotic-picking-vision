@@ -39,7 +39,7 @@ Víctor pidió que no hubiera más preguntas por hoy. Estas son las decisiones q
 2. **Licencias:** interpreto «tengo lo mismo que en el TFG y en el trabajo de automatización» como RobotStudio Premium con la opción EGM. Se asume para el controlador virtual. **Falta confirmar la opción 689-1 en el OmniCore del laboratorio.**
 3. **Puente:** en Windows, en C#, como decidió Víctor (D27). ROS 2 en WSL2 le habla por TCP.
 4. **Teleoperación:** fuera de V1, porque no hay SpaceMouse (D28).
-5. **Semántica de `planned`:** por defecto `desplazamiento` en la configuración de ejemplo. No está confirmada (D30). La prueba está en `docs/guion_virtual.md`.
+5. **Semántica de `planned`:** estaba en `desplazamiento` por defecto (D30 sin confirmar). **Resuelta el 15-nov-2026: `absoluta`.** Lo confirman las pruebas del 11-nov, el código del TFG y el fallo de la celda con `desplazamiento` (el robot va al origen de la base). Los `config*.json` y el valor por defecto del puente ya usan `absoluta`.
 6. **Valores sin medir:** `simulacion/celda.json`, los límites de EGM en `MOD_EGM.mod` y las ganancias del PBVS son de partida. Están marcados como placeholders.
 7. **Visión por defecto:** método de contorno. El de líneas (port del proyecto previo) está disponible con `metodo: lineas`.
 8. **TFG o TFM:** Víctor respondió que el repositorio de EGM es su **TFG**. Ya está reflejado en el mapa v6 (§14) y en la memoria.
@@ -57,7 +57,7 @@ Víctor pidió que no hubiera más preguntas por hoy. Estas son las decisiones q
 
 En orden:
 0. **Configurar IPs y puertos:** `docs/configuracion.md`. Faltan las IPs reales de los dos controladores, la del PC y la de WSL2.
-1. **Controlador virtual (Víctor, en Windows):** pasar `docs/guion_virtual.md`. Decide `semantica` y el rango de `MOD_EGM`.
+1. **Controlador virtual (Víctor, en Windows):** pasar `docs/guion_virtual.md`. Decide el rango de `MOD_EGM` (`semantica` ya resuelta: `absoluta`).
 2. **Visita 1 (Víctor, con el tutor):** pasar `docs/guion_V1.md`. Medidas de mesa, caja y cámara, y el campo de visión en la pose de agarre.
 3. **Driver de la mano:** definir cómo llegan `AGARRE_HECHO`, `VERIFICADO` y `SOLTADO` al coordinador.
 4. **Calibración en el laboratorio:** la línea de comandos `calibracion/cli.py` procesa los datos de la visita 1 (homografía y mano-ojo). Faltan los datos reales.

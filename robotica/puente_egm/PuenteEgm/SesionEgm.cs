@@ -45,6 +45,10 @@ public sealed class SesionEgm : IDisposable
     private Pose? _objetivo;
     private Pose? _referencia;
     private Pose? _referencia0;
+    // Consigna de retencion: se fija al empezar a retener y se mantiene, sin seguir al brazo.
+    private Pose? _retencion;
+    // Una pausa mayor que esto entre datagramas EGM es una sesion nueva (RAPID para entre cajas).
+    private const double GapNuevaSesionS = 1.0;
     // Prueba interna (--prueba): secuencia de objetivos que genera el propio puente.
     private List<V3>? _pruebaPasos;
     private int _pruebaIndice;
@@ -205,6 +209,16 @@ public sealed class SesionEgm : IDisposable
     private byte[] CicloLocked(Pose real, double ahora)
     {
         _ciclos++;
+        // Una pausa larga entre datagramas es una sesion EGM nueva (RAPID para entre cajas): se empieza
+        // de cero, sin consignas de la sesion anterior.
+        if (_ultimoMensajeS >= 0 && ahora - _ultimoMensajeS > GapNuevaSesionS)
+        {
+            _referencia0 = null;
+            _referencia = null;
+            _retencion = null;
+            _objetivo = null;
+            if (_estado is not (EstadoSesion.Parada or EstadoSesion.Fallo)) _estado = EstadoSesion.Esperando;
+        }
         if (_ultimoMensajeS >= 0) _intervaloMaxS = Math.Max(_intervaloMaxS, ahora - _ultimoMensajeS);
         _ultimoMensajeS = ahora;
         _real = real;
@@ -212,26 +226,36 @@ public sealed class SesionEgm : IDisposable
         _referencia ??= real;
         if (_pruebaPasos is not null) AvanzarPrueba(ahora);
 
+        // Retencion: el brazo se queda en la ultima consigna valida, fija. Si siguiera la posicion
+        // real, el desplazamiento que se manda al controlador se realimenta y el brazo se aleja.
         Pose nueva;
         if (_estado is EstadoSesion.Parada or EstadoSesion.Fallo)
         {
-            nueva = Seguridad.Retener(real);
+            _retencion ??= _referencia.Value;
+            nueva = _retencion.Value;
         }
         else if (_objetivo is null || _vigilante.Vencido(ahora))
         {
             if (_estado == EstadoSesion.Activo) _estado = EstadoSesion.Retener;
-            nueva = Seguridad.Retener(real);
+            _retencion ??= _referencia.Value;
+            nueva = _retencion.Value;
         }
         else
         {
+            _retencion = null;
             if (_estado is EstadoSesion.Esperando or EstadoSesion.Retener) _estado = EstadoSesion.Activo;
             var (referencia, resultado) = Seguridad.Filtrar(_referencia.Value, _objetivo.Value, real, _espacio, _limites);
             if (resultado == Resultado.Fallo)
             {
                 _estado = EstadoSesion.Fallo;
                 _codigo = "desviacion_excesiva";
+                _retencion = _referencia.Value;
+                nueva = _retencion.Value;
             }
-            nueva = referencia;
+            else
+            {
+                nueva = referencia;
+            }
         }
         _referencia = nueva;
 
