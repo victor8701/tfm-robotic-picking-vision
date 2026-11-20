@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Paquete de instalacion de RobotStudio (Add-Ins > Install Package). Se genera con RspakTool desde esta carpeta,
+     despues de dotnet build -c Release (que deja la DLL y el .rsaddin en bin\Paquete). -->
+<DistributionPackageSpec xmlns="urn:abb-robotics-robotstudio-distributionpackagespec">
+
+  <RootDir>TFM.CajasVariables-1.1</RootDir>
+
+  <DistributionPackage>
+    <Title>Cajas variables</Title>
+    <DisplayVersion>1.1</DisplayVersion>
+    <Creator>TFM</Creator>
+    <Description>Redimensiona la caja del 3D con las medidas de caja.csv y deja en la mesa las ya depositadas.</Description>
+    <Date />
+    <Tags>
+      <Tag>RobotStudio-AddIn</Tag>
+    </Tags>
+  </DistributionPackage>
+
+  <Files>
+    <File src="bin\Paquete\CajasVariables.dll" target="RobotStudio\Add-In" />
+    <File src="bin\Paquete\CajasVariables.rsaddin" target="RobotStudio\Add-In" replaceParameters="true" />
+    <File src="ruta_caja_csv.txt" target="RobotStudio\Add-In" />
+  </Files>
+</DistributionPackageSpec>

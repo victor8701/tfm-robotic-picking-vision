@@ -1,0 +1,49 @@
+{
+  "_nota": "Igual que config_celda.json pero con la ruta de caja.csv en formato Windows: para lanzar el PC desde Windows (el WSL no alcanza el puente en modo NAT).",
+  "modo_simulacion": true,
+  "n_cajas": 1,
+  "percepcion": {
+    "csv_caja": "C:/Users/Viktor/Documents/RobotStudio/Projects/TFM_3/Virtual Controllers/ControllerTFG_EGM/HOME/caja.csv"
+  },
+  "puente": {
+    "host": "127.0.0.1",
+    "puerto_control": 7001
+  },
+  "socket_rapid": {
+    "ip_escucha": "127.0.0.1",
+    "puerto": 5010,
+    "espera_conexion_s": 300
+  },
+  "celda": {
+    "z_cinta": 220.0,
+    "z_mesa": 320.0,
+    "z_seguro": 485.0,
+    "margen_aproximacion": 65.0,
+    "centro_recogida": [
+      700.0,
+      0.0
+    ],
+    "mesa": [
+      -220.0,
+      542.0
+    ],
+    "eje_pinzado": "y",
+    "sensor_cinta_y": 100.0,
+    "largo_herramienta_mm": 147.0,
+    "via_transporte": [400.0, 500.0]
+  },
+  "control": {
+    "periodo_s": 0.04,
+    "tolerancia_pos_mm": 2.0,
+    "tolerancia_rot_rad": 0.02,
+    "max_iteraciones": 5000
+  },
+  "ventana_egm": {
+    "inicio_mm": [
+      600.0,
+      -6.5,
+      543.0
+    ],
+    "semiancho_mm": 1400.0
+  }
+}

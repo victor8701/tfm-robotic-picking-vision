@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<RobotStudioAddIn xmlns="urn:abb-robotics-robotstudio-addin"
+                  autoLoad="true">
+
+  <ApplicationId>com.tfm.CajasVariables</ApplicationId>
+  <DisplayName>Cajas variables</DisplayName>
+  <Description>Redimensiona CajaGrande con las medidas de caja.csv y deja en la mesa las cajas ya depositadas.</Description>
+
+  <AddInType>General</AddInType>
+
+  <Assembly>
+    <FileName>CajasVariables.dll</FileName>
+    <Entrypoint>CajasVariables.Addin.AddinMain</Entrypoint>
+  </Assembly>
+
+  <!-- None: carga al arrancar RobotStudio (con Station esperaria a que se abra una estacion). El codigo vigila
+       Project.ActiveProject y no toca la estacion hasta que la hay. -->
+  <Dependencies>None</Dependencies>
+  <Platform>Any</Platform>
+
+</RobotStudioAddIn>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Igual que el ejemplo del manual de ABB para RobotStudio 2026 (Creating a RobotStudio Add-In): .rsaddin en
+     C:\Program Files (x86)\ABB\RobotStudio 2026\Bin\Addins y la DLL en <Path>. Se carga a mano:
+     Add-Ins > clic derecho en el complemento > Load Add-In. -->
+<RobotStudioAddIn xmlns="urn:abb-robotics-robotstudio-addin"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="urn:abb-robotics-robotstudio-addin file:///C:\Program%20Files%20(x86)\ABB\SDK\RobotStudio%202024%20SDK\RobotStudioAddin.xsd"
+                  autoLoad="false">
+
+  <ApplicationId>com.tfm.CajasVariables</ApplicationId>
+  <DisplayName>Cajas variables</DisplayName>
+  <Description>Redimensiona CajaGrande con las medidas de caja.csv y deja en la mesa las cajas ya depositadas.</Description>
+
+  <AddInType>General</AddInType>
+
+  <Assembly>
+    <FileName>CajasVariables.dll</FileName>
+    <!-- Donde esta la DLL (solo hace falta mientras se desarrolla) -->
+    <Path>C:\Users\Viktor\Desktop\TFM_RAPID\Addin\CajasVariables</Path>
+    <!-- El orden dentro de Assembly lo fija el esquema de ABB: FileName, Path, Entrypoint -->
+    <Entrypoint>CajasVariables.Addin.AddinMain</Entrypoint>
+  </Assembly>
+
+  <MinimumHostVersion>26.1</MinimumHostVersion>
+  <Dependencies>Station</Dependencies>
+
+</RobotStudioAddIn>

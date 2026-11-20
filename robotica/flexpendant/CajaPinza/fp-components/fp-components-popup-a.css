@@ -1,0 +1,165 @@
+/*
+
+
+OmniCore App SDK 1.6.0
+
+
+
+Copyright (c) 2020-2026 ABB
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use, copy, modify,
+merge, publish, distribute, sublicense, and/or sell copies of the Software,
+and to permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+The manuals related to the Software and the information therein are not
+included in these permissions and must not be reproduced, distributed,
+copied, or disclosed to third parties without ABB's written permission.
+ABB reserves all rights regarding Intellectual Property Rights in such
+manuals and information therein. 
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+
+*/
+
+
+
+
+/* Background */
+.fp-components-popup-bg {
+    display: flex; 
+    position: fixed;
+    z-index: 2147480045;
+    top: 0px;
+    left: 0px;
+    box-sizing: border-box;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255,255,255,0.7);
+}
+
+/* Main popup window */
+.fp-components-popup {
+    max-height: 90vh;
+    max-width: 90vw;
+    min-width: 480px;
+    display: flex;
+    box-sizing: border-box;
+    border-style: solid;
+    border-color: var(--fp-color-GRAY-20);
+    border-width: 1px;
+    flex-direction: column;
+    box-shadow: 0px 6px 15px 0px var(--fp-color-GRAY-40);   
+}
+
+/* Top black border */
+.fp-components-popup-top-border{
+    display: block;
+    background-color: var(--fp-color-GRAY-100);
+    height: 3px;
+    flex: 0 0 auto;
+}
+
+/* Popup content */
+.fp-components-popup-content{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--fp-color-STD-BACKGROUND);
+    width: 100%;
+    box-sizing: border-box;
+    flex: 1 1 auto;
+    min-height: 0px;
+}
+
+/* Header */
+.fp-components-popup-header {
+    font-weight: 600;
+    margin: 30px 24px;
+    font-size: 18px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 0 0 auto;
+}
+
+.fp-components-popup-header-text {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+}
+
+/* Body */
+.fp-components-popup-body {
+    margin-left: 24px;
+    margin-right: 24px;
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+    flex: 1 1 auto;
+    min-height: 90px;
+}
+
+.fp-components-popup-message {
+    display: block;
+    padding-right: 20px; 
+    overflow-y: auto;
+    overflow-x: hidden;
+    -ms-overflow-style: initial;
+    scrollbar-width: initial;
+}
+.fp-components-popup-message::-webkit-scrollbar {
+    display: initial;
+}
+
+.fp-components-popup-message-text {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;    
+
+}
+
+/* Bottom container (buttons etc) */
+.fp-components-popup-footer {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0px 24px 16px 16px;
+    flex: 0 0 auto;
+}
+
+.fp-components-popup-footer > div {
+    margin-left: 16px;
+    margin-top: 16px;
+}
+
+/* Icon used with warning and danger styles */
+.fp-components-popup-icon {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 auto;
+    display: block;
+    background-image: url("img/svg/abb_information-circle-1_updated.svg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin-right: 24px;
+}
+
+.fp-components-popup-icon--warning {
+    background-image: url("img/svg/abb_warning-triangle_updated.svg")
+}
+
+.fp-components-popup-icon--danger {
+    background-image: url("img/svg/abb_error-circle_updated.svg");
+}

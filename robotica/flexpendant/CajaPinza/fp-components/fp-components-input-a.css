@@ -1,0 +1,86 @@
+/*
+
+
+OmniCore App SDK 1.6.0
+
+
+
+Copyright (c) 2020-2026 ABB
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use, copy, modify,
+merge, publish, distribute, sublicense, and/or sell copies of the Software,
+and to permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+The manuals related to the Software and the information therein are not
+included in these permissions and must not be reproduced, distributed,
+copied, or disclosed to third parties without ABB's written permission.
+ABB reserves all rights regarding Intellectual Property Rights in such
+manuals and information therein. 
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+
+*/
+
+
+
+
+.fp-components-input-container {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.fp-components-input {
+    box-sizing: border-box;
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 36px;
+    display: flex;
+    color: black;
+    background-color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-color: var(--fp-color-GRAY-20);
+    border-radius: 5px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 6px;
+    padding-right: 6px;
+    transition: all 0.15s linear;
+    font-size: 14px;
+}
+
+.fp-components-input.fp-components-input-disabled {
+    color: var(--fp-color-TEXT-BLACK-DISABLED);
+    background-color: var(--fp-color-BLACK-OPACITY-4);
+    border-color: rgba(0,0,0,0);
+}
+
+.fp-components-input > p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;    
+}
+
+.fp-components-input-desc {
+    display: block;
+    margin-bottom: 4px;
+    margin-left: 2px;
+    font-size: 14px;
+    line-height: 20px;
+}

@@ -1,0 +1,9 @@
+{
+  "name": "cajapinza-pruebas",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pruebas de la app CajaPinza del FlexPendant. npm install solo hace falta para la prueba de pantalla (jsdom); la de logica va sin dependencias.",
+  "devDependencies": {
+    "jsdom": "^29.1.1"
+  }
+}

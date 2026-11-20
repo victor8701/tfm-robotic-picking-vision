@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Celda de cajas - GoFa</title>
+    <link rel="stylesheet" type="text/css" href="fp-components/fp-components-common.css">
+    <link rel="stylesheet" type="text/css" href="fp-components/fp-components-switch-a.css">
+    <link rel="stylesheet" type="text/css" href="app.css">
+
+    <script src="fp-components/fp-components-common.js"></script>
+    <script src="fp-components/fp-components-button-a.js"></script>
+    <script src="fp-components/fp-components-switch-a.js"></script>
+    <script src="fp-components/fp-components-popup-a.js"></script>
+    <script src="fp-components/fp-components-input-a.js"></script>
+
+    <script src="rws-api/omnicore-rws.js"></script>
+    <script src="rws-api/omnicore-app.js"></script>
+
+    <script src="logica.js"></script>
+    <script src="demo-rws.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body>
+    <div class="app">
+        <header class="barra">
+            <div class="barra-titulo">Celda de cajas · GoFa</div>
+            <div id="chips" class="chips"></div>
+            <div id="btn-abortar" class="boton-abortar" title="Para RAPID y vuelve al principio (no es un paro de emergencia)"></div>
+        </header>
+
+        <nav class="pestanas">
+            <button id="tab-tanda" class="pestana activa" type="button">Tanda</button>
+            <button id="tab-mesa" class="pestana" type="button">Mesa de depósito</button>
+        </nav>
+
+        <main id="vista-tanda" class="cuadricula">
+
+            <!-- Columna 1: el momento y las dos ordenes -->
+            <section class="tarjeta">
+                <h2>Momento</h2>
+                <div id="banner" class="banner tono-parado">
+                    <div id="banner-titulo" class="banner-titulo">Conectando con RAPID…</div>
+                    <div id="banner-detalle" class="banner-detalle"></div>
+                </div>
+                <div class="progreso"><div id="progreso-barra" class="progreso-barra"></div></div>
+                <div id="caja-texto" class="caja-texto"></div>
+
+                <!-- La pinza: estado segun las senales PinzaCerrar (orden) y PinzaCerrada (confirmacion) -->
+                <div id="pinza" class="pinza tono-parado">
+                    <div class="pinza-cabecera">
+                        <span class="pinza-etiqueta">Pinza</span>
+                        <b id="pinza-titulo" class="pinza-titulo">—</b>
+                    </div>
+                    <div class="pinza-leds">
+                        <span class="pinza-led"><span id="pinza-led-orden" class="led"></span>Orden de cerrar (PinzaCerrar)</span>
+                        <span class="pinza-led"><span id="pinza-led-conf" class="led"></span>Confirmación (PinzaCerrada)</span>
+                    </div>
+                    <div id="pinza-detalle" class="pinza-detalle"></div>
+                    <div id="pinza-resumen" class="pinza-resumen"></div>
+                </div>
+
+                <ol id="pasos" class="pasos"></ol>
+                <div class="acciones">
+                    <div class="accion">
+                        <div id="btn-iniciar" class="boton-grande"></div>
+                        <div id="motivo-iniciar" class="motivo"></div>
+                    </div>
+                    <div class="accion">
+                        <div id="btn-caja" class="boton-grande"></div>
+                        <div id="motivo-caja" class="motivo"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Columna 2: ajustes de la tanda -->
+            <section class="tarjeta">
+                <h2>Ajustes de la tanda</h2>
+
+                <div class="fila">
+                    <span class="etiqueta">Cajas</span>
+                    <div class="paso-cajas">
+                        <button id="c-menos10" class="chip-boton" type="button">−10</button>
+                        <button id="c-menos" class="chip-boton" type="button">−</button>
+                        <span id="c-valor" class="valor-grande">1</span>
+                        <button id="c-mas" class="chip-boton" type="button">+</button>
+                        <button id="c-mas10" class="chip-boton" type="button">+10</button>
+                    </div>
+                </div>
+
+                <div id="nota-capacidad" class="motivo"></div>
+
+                <div class="fila">
+                    <span class="etiqueta">Modo</span>
+                    <div class="segmentos">
+                        <button id="modo-sim" class="segmento" type="button">Simulación</button>
+                        <button id="modo-real" class="segmento" type="button">Real</button>
+                    </div>
+                </div>
+
+                <div class="fila" id="fila-giro">
+                    <span class="etiqueta">Giro de las cajas</span>
+                    <div class="segmentos">
+                        <button id="giro-azar" class="segmento" type="button">Al azar</button>
+                        <button id="giro-fijo" class="segmento" type="button">Fijo</button>
+                    </div>
+                </div>
+                <div id="giro-opciones" class="rejilla-giros"></div>
+                <div class="fila" id="fila-semilla">
+                    <span class="etiqueta">Secuencia al azar <span id="semilla" class="valor-pequeno"></span></span>
+                    <button id="nueva-semilla" class="chip-boton" type="button">Nueva secuencia</button>
+                </div>
+                <div id="nota-giro" class="motivo"></div>
+
+                <div class="fila fila-switch">
+                    <div id="sw-confirmar"></div>
+                </div>
+                <div id="nota-confirmar" class="motivo"></div>
+                <div class="fila fila-switch">
+                    <div id="sw-mensajes"></div>
+                </div>
+                <div class="motivo">Apagado, los avisos de RAPID no abren la ventana de mensajes del FlexPendant: se ven solo aquí.</div>
+                <div id="nota-ajustes" class="motivo"></div>
+            </section>
+
+            <!-- Columna 3: orientacion de la caja, lista de giros y senales -->
+            <section class="tarjeta">
+                <h2>Orientación de la caja</h2>
+                <div class="orientacion">
+                    <svg id="svg-caja" viewBox="0 0 240 240" role="img" aria-label="Caja vista desde arriba">
+                        <!-- cinta: la caja avanza en +y -->
+                        <rect x="8" y="30" width="22" height="180" class="svg-cinta"></rect>
+                        <text x="19" y="124" class="svg-texto-cinta" transform="rotate(-90 19 124)">cinta</text>
+                        <path d="M19 40 L19 26 M13 32 L19 26 L25 32" class="svg-flecha-cinta"></path>
+                        <!-- ejes de la base -->
+                        <path d="M40 214 L96 214 M90 209 L96 214 L90 219" class="svg-eje"></path>
+                        <path d="M40 214 L40 158 M35 164 L40 158 L45 164" class="svg-eje"></path>
+                        <text x="100" y="218" class="svg-texto">x</text>
+                        <text x="34" y="152" class="svg-texto">y</text>
+                        <!-- caja sin girar (referencia) y caja girada -->
+                        <polygon id="svg-referencia" class="svg-referencia" points=""></polygon>
+                        <g id="svg-caja-grupo">
+                            <polygon id="svg-poligono" class="svg-poligono" points=""></polygon>
+                            <line id="svg-eje-x" class="svg-eje-local" x1="120" y1="120" x2="190" y2="120"></line>
+                            <circle cx="120" cy="120" r="3" class="svg-centro"></circle>
+                        </g>
+                        <text id="svg-vacio" x="120" y="124" class="svg-texto-vacio">sin caja</text>
+                    </svg>
+                    <div class="orientacion-datos">
+                        <div id="orient-texto" class="valor-enorme">—</div>
+                        <div id="orient-etiqueta" class="motivo"></div>
+                        <div id="orient-medidas" class="motivo medidas"></div>
+                        <div class="fila-datos"><span>RAPID colocó</span><b id="g-rapid">—</b></div>
+                        <div class="fila-datos"><span>PC lee</span><b id="g-pc">—</b><span id="g-ok" class="sello"></span></div>
+                    </div>
+                </div>
+
+                <h3>Giros de la tanda</h3>
+                <ol id="lista-giros" class="lista-giros"></ol>
+
+                <h3>Señales</h3>
+                <ul id="senales" class="senales"></ul>
+            </section>
+        </main>
+
+        <!-- Pestana Mesa: donde se dejan las cajas, con que medidas se calcula y hasta donde llega el robot -->
+        <main id="vista-mesa" class="cuadricula cuadricula-mesa" hidden>
+            <section class="tarjeta">
+                <h2>La mesa vista desde arriba</h2>
+                <svg id="svg-mesa" viewBox="0 0 480 420" role="img" aria-label="Mesa de depósito vista desde arriba"></svg>
+                <ul class="leyenda">
+                    <li><span class="muestra m-hecha"></span>Dejada</li>
+                    <li><span class="muestra m-actual"></span>En curso</li>
+                    <li><span class="muestra m-prevista"></span>De esta tanda</li>
+                    <li><span class="muestra m-libre"></span>Libre</li>
+                    <li><span class="muestra m-rojo"></span>El robot no llega</li>
+                </ul>
+                <div id="mesa-resumen" class="motivo resumen-mesa"></div>
+                <div id="mesa-limites" class="motivo"></div>
+            </section>
+
+            <section class="tarjeta">
+                <h2>Cómo se reparten las cajas</h2>
+                <p class="ayuda">Las cajas se dejan <b>sin girar y en filas</b>, desde la esquina cercana al robot; cada una se coloca con su medida real, dejando el hueco indicado. Lo que el robot no alcanza se salta.</p>
+
+                <h3>1 · Zona de la mesa <span class="unidad">mm, desde la base del robot</span></h3>
+                <p class="ayuda">El rectángulo donde se pueden dejar cajas: una esquina, hasta dónde llega en x y en y, y a qué altura está la superficie.</p>
+                <div class="campos-mesa">
+                    <div id="in-mesaX0" class="campo-mesa"></div>
+                    <div id="in-mesaY0" class="campo-mesa"></div>
+                    <div id="in-mesaLargo" class="campo-mesa"></div>
+                    <div id="in-mesaAncho" class="campo-mesa"></div>
+                    <div id="in-mesaZ" class="campo-mesa"></div>
+                    <div id="in-mesaHueco" class="campo-mesa"></div>
+                </div>
+                <div class="fila">
+                    <button id="mesa-sim" class="chip-boton" type="button">Medidas de la mesa de la simulación</button>
+                </div>
+
+                <h3>2 · Caja de referencia <span class="unidad">mm</span></h3>
+                <p class="ayuda">La mayor caja que esperas. Solo sirve para calcular cuántas caben (el dibujo y el aviso de INICIAR); el reparto real usa la medida de cada caja. En la simulación son también las medidas de las cajas que genera RAPID.</p>
+                <div class="campos-mesa">
+                    <div id="in-cajaLargo" class="campo-mesa"></div>
+                    <div id="in-cajaAncho" class="campo-mesa"></div>
+                    <div id="in-cajaAlto" class="campo-mesa"></div>
+                </div>
+                <div class="fila fila-switch"><div id="sw-variables"></div></div>
+                <div class="motivo">Simulación: cada caja mide entre el 60 y el 100 % de la de referencia (el alto, entre el 50 y el 100 %). RAPID escribe las medidas solo en caja.csv al iniciar la tanda; el 3D de RobotStudio las toma con el complemento CajasVariables, y sin él la caja sigue siendo un cubo de 200 mm.</div>
+
+                <h3>3 · Límite del EGM <span class="unidad">mm</span></h3>
+                <p class="ayuda">El controlador para el EGM si el robot se aleja más de esta distancia del punto de espera sobre la cinta. Es lo que más limita cuántas cajas caben en la mesa. Subirlo da más sitio, pero quita protección.</p>
+                <div class="campos-mesa">
+                    <div id="in-egmMaxPos" class="campo-mesa"></div>
+                </div>
+                <div id="nota-mesa" class="motivo"></div>
+            </section>
+        </main>
+
+        <footer id="avisos" class="avisos"></footer>
+        <div id="demo" class="demo" hidden></div>
+    </div>
+</body>
+
+</html>

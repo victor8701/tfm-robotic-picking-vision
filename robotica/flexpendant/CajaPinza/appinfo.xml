@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebApp>
+    <name>Celda de cajas</name>
+    <icon>defaulticon.png</icon>
+    <path>index.html</path>
+</WebApp>

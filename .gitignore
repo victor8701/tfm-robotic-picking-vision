@@ -97,3 +97,12 @@ x64/
 
 # ===== CATKIN/ROS =====
 .catkin_workspace
+
+# ===== Pruebas JS de la app FlexPendant (npm install en robotica/tests/js para jsdom) =====
+robotica/tests/js/node_modules/
+
+# ===== Complemento de RobotStudio CajasVariables (se genera con dotnet build) =====
+robotica/rapid/estacion/CajasVariables/bin/
+robotica/rapid/estacion/CajasVariables/obj/
+robotica/rapid/estacion/CajasVariables/Pruebas/bin/
+robotica/rapid/estacion/CajasVariables/Pruebas/obj/

@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- RobotStudio 2026 va sobre .NET 10 y el SDK instalado es el 9: se compila contra las DLL del runtime 10.
+       No hay que instalar nada: Net10 y Escritorio10 son las carpetas del runtime que ya usa RobotStudio. -->
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <AssemblyName>CajasVariables</AssemblyName>
+    <RootNamespace>CajasVariables</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <!-- el atributo lo pongo yo en Addin.cs: el SDK 9 escribiria net9.0 y RobotStudio 2026 es net10.0 -->
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <NoWarn>$(NoWarn);CS1701;CS1702;CS8981;MSB3277</NoWarn>
+    <Net10 Condition="'$(Net10)' == ''">$(ProgramW6432)\dotnet\shared\Microsoft.NETCore.App\10.0.12</Net10>
+    <Escritorio10 Condition="'$(Escritorio10)' == ''">$(ProgramW6432)\dotnet\shared\Microsoft.WindowsDesktop.App\10.0.12</Escritorio10>
+    <RobotStudioBin Condition="'$(RobotStudioBin)' == ''">$(MSBuildProgramFiles32)\ABB\RobotStudio 2026\Bin</RobotStudioBin>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Logica.cs" />
+    <Compile Include="Addin.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="$(Net10)\System*.dll;$(Net10)\Microsoft*.dll;$(Net10)\mscorlib.dll;$(Net10)\netstandard.dll"
+               Exclude="$(Net10)\*.Native.dll;$(Net10)\Microsoft.DiaSymReader.Native*.dll">
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="$(Escritorio10)\WindowsBase.dll;$(Escritorio10)\System.Drawing*.dll;$(Escritorio10)\System.Windows*.dll;$(Escritorio10)\PresentationCore.dll;$(Escritorio10)\PresentationFramework.dll;$(Escritorio10)\System.Xaml.dll"
+               Exclude="$(Escritorio10)\*.Native.dll">
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="ABB.Robotics.Math"><HintPath>$(RobotStudioBin)\ABB.Robotics.Math.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="ABB.Robotics.RobotStudio"><HintPath>$(RobotStudioBin)\ABB.Robotics.RobotStudio.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="ABB.Robotics.RobotStudio.Stations"><HintPath>$(RobotStudioBin)\ABB.Robotics.RobotStudio.Stations.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+
+  <!-- Deja el .dll y el .rsaddin juntos en bin\Paquete, listos para copiar. -->
+  <Target Name="Paquete" AfterTargets="Build">
+    <MakeDir Directories="$(MSBuildProjectDirectory)\bin\Paquete" />
+    <Copy SourceFiles="$(OutDir)CajasVariables.dll;$(MSBuildProjectDirectory)\CajasVariables.rsaddin" DestinationFolder="$(MSBuildProjectDirectory)\bin\Paquete" />
+  </Target>
+
+</Project>
