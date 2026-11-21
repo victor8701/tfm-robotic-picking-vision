@@ -628,3 +628,99 @@ test('la tarjeta Pinza usa el tiempo maximo de la app para decir SIN CONFIRMACIO
     assert.equal(L.vistaPinza(e, 16100).titulo, 'SIN CONFIRMACIÓN');
     assert.match(L.vistaPinza(e, 16100).detalle, /RAPID espera 6 s/);
 });
+
+// ---------------------------------------------------------------- valores por defecto y fichero CSV de ajustes
+test('los ajustes que se reponen, guardan y cargan son los de Parametros, la mesa y la caja de referencia', () => {
+    const claves = L.AJUSTES.map((a) => a.clave);
+    assert.equal(new Set(claves).size, claves.length);
+    for (const c of ['recogidaModo', 'agarreModo', 'velocidad', 'tiempoConv', 'seguroZ', 'egmMaxPos', 'mesaX0', 'mesaHueco', 'cajaLargo', 'cajaAlto']) {
+        assert.ok(claves.includes(c), c);
+    }
+    // lo de cada tanda y lo de solo lectura no entra
+    for (const c of ['nCajas', 'modoSimulacion', 'indiceFijo', 'hmiConfirmar', 'confirmar', 'mensajes', 'cajasVariables', 'alcanceMax']) {
+        assert.equal(claves.includes(c), false, c);
+    }
+    const defecto = L.valoresPorDefecto();
+    const e = L.estadoInicial();
+    assert.deepEqual(Object.keys(defecto), claves);
+    for (const c of claves) { assert.equal(defecto[c], e[c], c); }
+    assert.equal(defecto.egmMaxPos, 1500);
+    assert.deepEqual([defecto.mesaX0, defecto.mesaY0], [-900, 150]);
+});
+
+test('cambiosHacia dice que ajustes cambian, de que a que y cuales son protegidos', () => {
+    const e = Object.assign(L.estadoInicial(), {velocidad: 40, tAgarre: 1.5, mesaHueco: 25, recogidaModo: 1});
+    const r = L.cambiosHacia(e, L.valoresPorDefecto());
+    const por = Object.fromEntries(r.cambios.map((c) => [c.clave, c]));
+    assert.deepEqual(Object.keys(por).sort(), ['mesaHueco', 'recogidaModo', 'tAgarre', 'velocidad']);
+    assert.deepEqual([por.velocidad.antes, por.velocidad.ahora, por.velocidad.protegido, por.velocidad.unidad], [40, 100, true, 'mm/s']);
+    assert.equal(por.tAgarre.protegido, false);
+    assert.equal(r.iguales, L.AJUSTES.length - 4);
+    // lo que no esta en los valores no cuenta
+    assert.deepEqual(L.cambiosHacia(e, {velocidad: 100}).cambios.map((c) => c.clave), ['velocidad']);
+    assert.equal(L.cambiosHacia(L.estadoInicial(), L.valoresPorDefecto()).cambios.length, 0);
+});
+
+test('el CSV de ajustes tiene cabecera, una linea por ajuste y se lee de vuelta tal cual', () => {
+    const e = Object.assign(L.estadoInicial(), {velocidad: 40, seguroY: -12.5, tAgarre: 1.5, agarreModo: 1, mesaX0: -850});
+    const csv = L.aCsv(e);
+    const lineas = csv.trim().split('\r\n');
+    assert.equal(lineas[0], 'parametro;valor;unidad;descripcion');
+    assert.equal(lineas.length, L.AJUSTES.length + 1);
+    assert.ok(lineas.includes('velocidad;40;mm/s;Movimiento y seguridad: Velocidad máxima'));
+    assert.ok(lineas.includes('seguroY;-12.5;mm;Movimiento y seguridad: Punto de espera Y'));
+    assert.ok(lineas.every((l) => l.split(';').length === 4));
+    // ida y vuelta: leer lo que se acaba de escribir no cambia nada, y sobre un estado distinto lo deja igual
+    const r = L.desdeCsv(csv, e);
+    assert.deepEqual([r.reconocidos, r.cambios.length, r.ignorados.length], [L.AJUSTES.length, 0, 0]);
+    const otro = L.estadoInicial();
+    const r2 = L.desdeCsv(csv, otro);
+    assert.deepEqual(r2.cambios.map((c) => c.clave).sort(), ['agarreModo', 'mesaX0', 'seguroY', 'tAgarre', 'velocidad']);
+    assert.equal(r2.cambios.find((c) => c.clave === 'seguroY').ahora, -12.5);
+});
+
+test('el CSV acepta separadores y comas decimales de Excel, cabecera opcional, comentarios y BOM', () => {
+    const e = L.estadoInicial();
+    const excel = '﻿parametro;valor;unidad;descripcion\r\n# comentario\r\n\r\ntAgarre;1,5;s;x\r\nvelocidad;60;mm/s;x\r\n';
+    const r = L.desdeCsv(excel, e);
+    assert.deepEqual(r.cambios.map((c) => [c.clave, c.ahora]), [['velocidad', 60], ['tAgarre', 1.5]].sort((a, b) => L.AJUSTES.findIndex((x) => x.clave === a[0]) - L.AJUSTES.findIndex((x) => x.clave === b[0])));
+    // separado por comas, y sin cabecera ni columnas de mas
+    const comas = L.desdeCsv('velocidad,40\ntAgarre,2', e);
+    assert.deepEqual(comas.cambios.map((c) => [c.clave, c.ahora]), [['tAgarre', 2], ['velocidad', 40]]);
+    // tabulador
+    assert.equal(L.desdeCsv('velocidad\t30', e).cambios[0].ahora, 30);
+    // si una clave sale dos veces vale la ultima
+    assert.equal(L.desdeCsv('velocidad;30\nvelocidad;50', e).cambios[0].ahora, 50);
+    // un valor con muchos decimales se redondea a uno, como los campos de la app
+    assert.equal(L.desdeCsv('tAgarre;1.26', e).cambios[0].ahora, 1.3);
+});
+
+test('el CSV ignora lo que no vale y lo dice: ajustes desconocidos, valores raros, fuera de margen y modos invalidos', () => {
+    const e = L.estadoInicial();
+    const r = L.desdeCsv([
+        'parametro;valor', 'velocidad;50', 'nCajas;7', 'tAgarre;abc', 'tMaxPinza;0.1', 'zCinta;99999', 'agarreModo;2', 'recogidaModo;1', 'solapeMinimo;'
+    ].join('\n'), e);
+    assert.deepEqual(r.cambios.map((c) => c.clave).sort(), ['recogidaModo', 'velocidad']);
+    const motivo = Object.fromEntries(r.ignorados.map((i) => [i.texto, i.motivo]));
+    assert.equal(motivo.nCajas, 'ajuste desconocido');          // los de cada tanda no se cargan de un fichero
+    assert.equal(motivo.tAgarre, 'valor no numérico');
+    assert.match(motivo.tMaxPinza, /fuera de margen \(0\.5 a 30\)/);
+    assert.match(motivo.zCinta, /fuera de margen/);
+    assert.match(motivo.agarreModo, /modo no válido \(0 = Porcentaje, 1 = Desde la tapa\)/);
+    assert.equal(motivo.solapeMinimo, 'valor no numérico');
+    assert.deepEqual(r.ignorados.map((i) => i.linea), [3, 4, 5, 6, 7, 9]);
+    // un fichero que no es de ajustes no reconoce nada
+    assert.equal(L.desdeCsv('hola;mundo\nadios;1', e).reconocidos, 0);
+    assert.equal(L.desdeCsv('', e).reconocidos, 0);
+});
+
+test('el nombre del fichero se valida: sin ruta, sin tildes ni puntos y sin .csv repetido', () => {
+    assert.deepEqual(L.nombreFicheroValido('lab 1'), {ok: true, nombre: 'lab 1', motivo: ''});
+    assert.equal(L.nombreFicheroValido('  prueba_2-b.CSV ').nombre, 'prueba_2-b');
+    assert.equal(L.nombreFicheroValido('prueba.csv.csv').ok, false);   // el segundo .csv deja un punto
+    for (const mal of ['', '   ', '.csv', '../x', 'a/b', 'a\\b', 'niño', 'a.b', '-x', 'x'.repeat(41), null, undefined]) {
+        assert.equal(L.nombreFicheroValido(mal).ok, false, String(mal));
+    }
+    assert.match(L.nombreFicheroValido('a/b').motivo, /letras, números/);
+    assert.equal(L.nombreFicheroValido('x'.repeat(40)).ok, true);
+});

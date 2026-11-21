@@ -45,7 +45,7 @@ const casosAgarre = [
 ];
 const agarres = casosAgarre.map(([caja, a]) => Object.assign({caja, agarre: a}, L.alturaAgarre(caja, {agarre: a})));
 console.log(JSON.stringify({
-    repartos, agarres, MESA_SIM: L.MESA_SIM, CAJA_SIM: L.CAJA_SIM, PC: L.PC,
+    repartos, agarres, defectos: L.valoresPorDefecto(), ajustes: L.AJUSTES.map((a) => a.clave), MESA_SIM: L.MESA_SIM, CAJA_SIM: L.CAJA_SIM, PC: L.PC,
     TAREA: L.TAREA, MODULO: L.MODULO, MAX_CAJAS: L.MAX_CAJAS, N_GIROS: L.N_GIROS, GIRO_MIN: L.GIRO_MIN,
     GIRO_PASO: L.GIRO_PASO, SIN_GIRO: L.SIN_GIRO, SEMILLA_MOD: L.SEMILLA_MOD,
     FASES: L.FASES, VARIABLES: L.VARIABLES, SENALES: L.SENALES,

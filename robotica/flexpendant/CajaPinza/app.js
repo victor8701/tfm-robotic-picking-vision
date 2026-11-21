@@ -566,6 +566,8 @@
     }
 
     function pintarParametros(v) {
+        $('par-cargar').disabled = !v.parametros.editable;
+        $('par-defecto').disabled = !v.parametros.editable;
         v.parametros.secciones.forEach(function (s) {
             s.items.forEach(function (it) {
                 clase('pitem-' + it.clave, 'inactivo', it.tipo !== 'lectura' && !it.activo);
@@ -586,6 +588,127 @@
                 }
             });
         });
+    }
+
+    // ---------------------------------------------------------------- valores por defecto y fichero CSV de ajustes
+    // Los ficheros viven en $HOME/parametros del controlador (RWS.FileSystem). Al cargar o reponer valores se pasa por
+    // ajustar(): se escriben en las PERS como cualquier cambio a mano.
+    const DIR_AJUSTES = '$HOME/parametros';
+
+    function estadoAjustes(texto, nivel) {
+        const el = $('par-estado');
+        el.textContent = texto;
+        el.className = 'param-estado' + (nivel ? ' ' + nivel : '');
+    }
+
+    async function listarAjustes() {
+        try {
+            const dir = await rws.FileSystem.getDirectory(DIR_AJUSTES);
+            const contenido = await dir.getContents();
+            return contenido.files.map(function (f) { return f.name; }).filter(function (n) { return /\.csv$/i.test(n); }).sort();
+        } catch (err) {
+            return [];   // la carpeta no existe todavia (se crea al guardar el primero)
+        }
+    }
+
+    async function refrescarFicheros() {
+        const nombres = await listarAjustes();
+        try {
+            const cont = $('par-ficheros');
+            while (cont.firstChild) { cont.removeChild(cont.firstChild); }
+            if (nombres.length === 0) {
+                const vacio = document.createElement('span');
+                vacio.className = 'vacio';
+                vacio.textContent = 'Aún no hay ningún fichero guardado.';
+                cont.appendChild(vacio);
+                return;
+            }
+            nombres.forEach(function (n) {
+                const b = document.createElement('button');
+                b.type = 'button';
+                b.textContent = n;
+                b.addEventListener('click', function () { ui.nombreFichero.text = n.replace(/\.csv$/i, ''); });
+                cont.appendChild(b);
+            });
+        } catch (err) { /* la pantalla ya no esta */ }
+    }
+
+    function resumenIgnorados(ignorados) {
+        const lista = ignorados.slice(0, 3).map(function (i) { return 'línea ' + i.linea + ' (' + i.texto + '): ' + i.motivo; });
+        return lista.join('; ') + (ignorados.length > 3 ? '; …' : '');
+    }
+
+    function textoCambios(cambios) {
+        const lista = cambios.slice(0, 6).map(function (c) { return c.nombre + ': ' + c.antes + ' → ' + c.ahora + (c.unidad ? ' ' + c.unidad : ''); });
+        return lista.join('; ') + (cambios.length > 6 ? '; …' : '');
+    }
+
+    function confirmarYAplicar(titulo, lineas, cambios, mensajeFinal) {
+        const P = FPComponents.Popup_A;
+        P.confirm(titulo, lineas, function (accion) {
+            if (accion !== P.OK) { return; }
+            if (!ajustesEditables()) { estadoAjustes('La tanda ha empezado: no se ha cambiado nada.', 'error'); return; }
+            cambios.forEach(function (c) { ajustar(c.clave, c.ahora); });
+            estadoAjustes(mensajeFinal, 'ok');
+        }, P.STYLE ? P.STYLE.WARNING : null);
+    }
+
+    function ponerValoresPorDefecto() {
+        if (!ajustesEditables()) { return; }
+        const r = L.cambiosHacia(estado, L.valoresPorDefecto());
+        if (r.cambios.length === 0) { estadoAjustes('Todos los ajustes ya tienen su valor por defecto.', 'ok'); return; }
+        const protegidos = r.cambios.filter(function (c) { return c.protegido; });
+        const lineas = ['Se pondrán los valores por defecto del módulo en ' + r.cambios.length + ' ajustes (los que has modificado), incluidos la zona de la mesa y la caja de referencia.'];
+        if (protegidos.length > 0) { lineas.push('Incluye ajustes protegidos: ' + protegidos.map(function (c) { return c.nombre; }).join(', ') + '.'); }
+        lineas.push('Si quieres conservar los valores actuales, guárdalos antes en un fichero. ¿Continuar?');
+        confirmarYAplicar('Valores por defecto', lineas, r.cambios, 'Valores por defecto puestos en ' + r.cambios.length + ' ajustes.');
+    }
+
+    async function guardarAjustes() {
+        const n = L.nombreFicheroValido(ui.nombreFichero.text);
+        if (!n.ok) { estadoAjustes(n.motivo, 'error'); return; }
+        const ruta = DIR_AJUSTES + '/' + n.nombre + '.csv';
+        try {
+            try { await rws.FileSystem.getDirectory(DIR_AJUSTES); } catch (err) { await rws.FileSystem.createDirectory(DIR_AJUSTES); }
+            const fichero = rws.FileSystem.createFileObject(ruta);
+            const existe = await fichero.fileExists();
+            const escribir = async function () {
+                try {
+                    fichero.setContents(L.aCsv(estado));
+                    await fichero.save(true);
+                    estadoAjustes('Guardado en ' + ruta + ' (' + L.AJUSTES.length + ' ajustes).', 'ok');
+                    refrescarFicheros();
+                } catch (err) { estadoAjustes('No he podido guardar ' + ruta + ': ' + textoError(err), 'error'); }
+            };
+            if (!existe) { await escribir(); return; }
+            const P = FPComponents.Popup_A;
+            P.confirm('Sustituir el fichero', ['Ya existe ' + n.nombre + '.csv.', '¿Sustituirlo por los ajustes actuales?'], function (accion) {
+                if (accion === P.OK) { escribir(); }
+            }, P.STYLE ? P.STYLE.WARNING : null);
+        } catch (err) { estadoAjustes('No he podido guardar ' + ruta + ': ' + textoError(err), 'error'); }
+    }
+
+    async function cargarAjustes() {
+        if (!ajustesEditables()) { return; }
+        const n = L.nombreFicheroValido(ui.nombreFichero.text);
+        if (!n.ok) { estadoAjustes(n.motivo, 'error'); return; }
+        const ruta = DIR_AJUSTES + '/' + n.nombre + '.csv';
+        let texto;
+        try {
+            const fichero = await rws.FileSystem.getFile(ruta);
+            texto = await fichero.getContents();
+        } catch (err) { estadoAjustes('No encuentro ' + ruta + ': ' + textoError(err), 'error'); return; }
+        const r = L.desdeCsv(texto, estado);
+        const ignoradas = r.ignorados.length > 0 ? ' Ignoradas ' + r.ignorados.length + ' líneas: ' + resumenIgnorados(r.ignorados) + '.' : '';
+        if (r.reconocidos === 0) { estadoAjustes(n.nombre + '.csv no tiene ningún ajuste que pueda cargar.' + ignoradas, 'error'); return; }
+        if (r.cambios.length === 0) { estadoAjustes(n.nombre + '.csv: los ' + r.reconocidos + ' ajustes ya valen lo mismo.' + ignoradas, 'ok'); return; }
+        const protegidos = r.cambios.filter(function (c) { return c.protegido; });
+        const lineas = [n.nombre + '.csv: cambian ' + r.cambios.length + ' de ' + r.reconocidos + ' ajustes.', textoCambios(r.cambios)];
+        if (protegidos.length > 0) { lineas.push('Incluye ajustes protegidos: ' + protegidos.map(function (c) { return c.nombre; }).join(', ') + '.'); }
+        if (r.ignorados.length > 0) { lineas.push('Se ignoran ' + r.ignorados.length + ' líneas: ' + resumenIgnorados(r.ignorados) + '.'); }
+        lineas.push('¿Aplicarlos?');
+        confirmarYAplicar('Cargar ' + n.nombre + '.csv', lineas, r.cambios,
+            'Cargados ' + r.cambios.length + ' ajustes de ' + ruta + '.' + ignoradas);
     }
 
     function pintarAvisos(v) {
@@ -766,6 +889,19 @@
         };
         L.CAMPOS.forEach(crearCampo);
         L.CAMPOS_PARAMETROS.forEach(crearCampo);
+
+        // nombre del fichero de ajustes (teclado de letras de ABB) y botones de la ventana Parametros
+        ui.nombreFichero = new P.Input_A();
+        ui.nombreFichero.desc = 'Nombre del fichero';
+        ui.nombreFichero.label = 'Nombre del fichero (.csv)';
+        ui.nombreFichero.variant = FP_COMPONENTS_KEYBOARD_ALPHA;
+        ui.nombreFichero.regex = /^[A-Za-z0-9 _.-]{0,44}$/;
+        ui.nombreFichero.validator = function (texto) { return L.nombreFicheroValido(texto).ok; };
+        ui.nombreFichero.text = 'parametros';
+        ui.nombreFichero.attachToId('in-nombreFichero');
+        $('par-guardar').addEventListener('click', guardarAjustes);
+        $('par-cargar').addEventListener('click', cargarAjustes);
+        $('par-defecto').addEventListener('click', ponerValoresPorDefecto);
         ui.variables = new P.Switch_A();
         ui.variables.desc = 'Cajas de tamaños distintos (simulación)';
         ui.variables.onchange = function (activo) { if (ajustesEditables()) { ajustar('cajasVariables', activo); } else { pedirPintar(); } };
@@ -788,7 +924,7 @@
 
         $('tab-tanda').addEventListener('click', function () { mostrarPestana('tanda'); });
         $('tab-mesa').addEventListener('click', function () { mostrarPestana('mesa'); });
-        $('tab-parametros').addEventListener('click', function () { mostrarPestana('parametros'); });
+        $('tab-parametros').addEventListener('click', function () { mostrarPestana('parametros'); refrescarFicheros(); });
 
         if (window.RWS_SIMULADO) { window.CajaPinzaPrueba = {ui: ui, estado: estado}; }   // solo en las pruebas
 

@@ -217,6 +217,18 @@
 
         <!-- Pestana Parametros: ajustes de puesta en marcha, por secciones (se construye en app.js desde logica.js) -->
         <main id="vista-parametros" class="param" hidden>
+            <!-- Valores por defecto y fichero CSV (en $HOME/parametros del controlador) -->
+            <section class="tarjeta param-herramientas">
+                <div class="param-fichero">
+                    <div id="in-nombreFichero" class="campo-mesa"></div>
+                    <button id="par-guardar" class="chip-boton" type="button">Guardar en fichero</button>
+                    <button id="par-cargar" class="chip-boton" type="button">Cargar de fichero</button>
+                    <button id="par-defecto" class="chip-boton" type="button">Valores por defecto</button>
+                </div>
+                <div class="motivo">Guarda o carga todos los ajustes (esta pestaña, la zona de la mesa y la caja de referencia) en <b>$HOME/parametros/&lt;nombre&gt;.csv</b> del controlador. Los ajustes de cada tanda no entran.</div>
+                <div id="par-ficheros" class="par-ficheros"></div>
+                <div id="par-estado" class="param-estado"></div>
+            </section>
             <nav id="param-nav" class="param-nav"></nav>
             <div id="param-contenido" class="param-contenido"></div>
         </main>

@@ -725,3 +725,190 @@ test('con la tanda en marcha, los ajustes de Parametros se bloquean', async () =
         assert.equal(app.sim.valor('tAgarre'), antes);
     } finally { app.cerrar(); }
 });
+
+// ---------------------------------------------------------------- valores por defecto y fichero CSV
+const CARPETA = '$HOME/parametros';
+
+test('Valores por defecto: pide confirmacion, repone lo modificado (tambien mesa y protegidos) y no toca lo de la tanda', async () => {
+    const app = await abrir({valores: {velocidad: '40', tAgarre: '1.5', mesaHueco: '25', seguroZ: '560', nCajas: '3', hmiMensajes: 'TRUE'}});
+    try {
+        app.sim.play();
+        await hasta(() => app.texto('banner-titulo') === 'Listo para empezar', 'fase 1');
+        app.pulsar('tab-parametros');
+        app.pulsar('par-defecto');
+        await hasta(() => app.popup().length > 0, 'popup');
+        const texto = app.popup().join(' | ');
+        assert.match(texto, /valores por defecto del módulo en \d+ ajustes/);
+        assert.match(texto, /Incluye ajustes protegidos: .*Velocidad máxima.*Punto de espera Z/);
+        assert.match(texto, /guárdalos antes en un fichero/);
+        app.pulsarPopup('Cancel');
+        await dormir(150);
+        assert.equal(app.sim.valor('velocidad'), '40');
+        app.pulsar('par-defecto');
+        await hasta(() => app.popup().length > 0, 'popup otra vez');
+        app.pulsarPopup('OK');
+        await hasta(() => ['velocidad', 'tAgarre', 'mesaHueco', 'seguroZ'].every((c) => app.sim.valor(c) === {velocidad: '100', tAgarre: '0', mesaHueco: '40', seguroZ: '543'}[c]), 'ajustes repuestos');
+        assert.match(app.texto('par-estado'), /Valores por defecto puestos en \d+ ajustes/);
+        assert.equal(app.sim.valor('nCajas'), '3');            // lo de cada tanda no se toca
+        assert.equal(app.sim.valor('hmiMensajes'), 'TRUE');
+        // ya estan todos: lo dice y no pregunta
+        app.pulsar('par-defecto');
+        await dormir(150);
+        assert.equal(app.popup().length, 0);
+        assert.match(app.texto('par-estado'), /ya tienen su valor por defecto/);
+        assert.deepEqual(app.errores, []);
+    } finally { app.cerrar(); }
+});
+
+test('Guardar: escribe el CSV en $HOME/parametros con el nombre elegido y pide confirmacion para sustituirlo', async () => {
+    const app = await abrir({valores: {velocidad: '40', tAgarre: '1.5'}});
+    try {
+        app.sim.play();
+        await hasta(() => app.texto('banner-titulo') === 'Listo para empezar', 'fase 1');
+        app.pulsar('tab-parametros');
+        await hasta(() => /Aún no hay ningún fichero guardado/.test(app.texto('par-ficheros')), 'lista vacia');
+        const ui = app.w.CajaPinzaPrueba.ui;
+        ui.nombreFichero.text = 'lab 1.csv';   // el .csv se admite y se ignora
+        app.pulsar('par-guardar');
+        await hasta(() => app.sim.ficheros[CARPETA + '/lab 1.csv'] !== undefined, 'fichero escrito');
+        const csv = app.sim.ficheros[CARPETA + '/lab 1.csv'];
+        assert.match(csv, /^parametro;valor;unidad;descripcion\r\n/);
+        assert.match(csv, /\r\nvelocidad;40;mm\/s;/);
+        assert.match(csv, /\r\ntAgarre;1\.5;s;/);
+        assert.match(app.texto('par-estado'), /Guardado en \$HOME\/parametros\/lab 1\.csv \(\d+ ajustes\)/);
+        await hasta(() => app.texto('par-ficheros') === 'lab 1.csv', 'el fichero sale en la lista');
+        // otra vez con el mismo nombre: pregunta antes de sustituir
+        app.sim.pers.tAgarre = '3';
+        await hasta(() => app.w.document.querySelector('#in-tAgarre .fp-components-input-container p').textContent === '3', 'la app ve el cambio');
+        app.pulsar('par-guardar');
+        await hasta(() => app.popup().length > 0, 'popup de sustitucion');
+        assert.match(app.popup().join(' '), /Ya existe lab 1\.csv/);
+        app.pulsarPopup('Cancel');
+        await dormir(150);
+        assert.match(app.sim.ficheros[CARPETA + '/lab 1.csv'], /\r\ntAgarre;1\.5;s;/);   // sin cambios
+        app.pulsar('par-guardar');
+        await hasta(() => app.popup().length > 0, 'popup otra vez');
+        app.pulsarPopup('OK');
+        await hasta(() => /\r\ntAgarre;3;s;/.test(app.sim.ficheros[CARPETA + '/lab 1.csv']), 'fichero sustituido');
+        await dormir(80);   // deja terminar el aviso y la lista que siguen al guardado
+        // tocar un fichero tocando el chip: el nombre se rellena
+        ui.nombreFichero.text = 'otro';
+        app.w.document.querySelector('#par-ficheros button').click();
+        assert.equal(ui.nombreFichero.text, 'lab 1');
+        assert.deepEqual(app.errores, []);
+    } finally { app.cerrar(); }
+});
+
+test('un nombre de fichero no valido no escribe nada y lo explica', async () => {
+    const app = await abrir();
+    try {
+        app.sim.play();
+        await hasta(() => app.texto('banner-titulo') === 'Listo para empezar', 'fase 1');
+        const ui = app.w.CajaPinzaPrueba.ui;
+        for (const nombre of ['', '../x', 'a/b', 'niño']) {
+            ui.nombreFichero.text = nombre;
+            app.pulsar('par-guardar');
+            await dormir(60);
+            assert.equal(app.$('par-estado').className, 'param-estado error', JSON.stringify(nombre));
+        }
+        assert.match(app.texto('par-estado'), /letras, números/);
+        assert.deepEqual(Object.keys(app.sim.ficheros), []);
+        ui.nombreFichero.text = 'ok';
+        app.pulsar('par-cargar');
+        await hasta(() => /No encuentro \$HOME\/parametros\/ok\.csv/.test(app.texto('par-estado')), 'no existe');
+        assert.equal(app.$('par-estado').className, 'param-estado error');
+    } finally { app.cerrar(); }
+});
+
+test('Cargar: lee el CSV, enseña lo que cambia, ignora lo que no vale y escribe en RAPID al aceptar', async () => {
+    const csv = ['parametro;valor;unidad;descripcion', 'velocidad;40;mm/s;x', 'tAgarre;1,5;s;x', 'mesaX0;-850;mm;x', 'nCajas;9;;x',
+        'tMaxPinza;0.1;s;x', 'agarreModo;1;;x'].join('\r\n');
+    const app = await abrir({ficheros: {[CARPETA + '/prueba.csv']: csv}});
+    try {
+        app.sim.play();
+        await hasta(() => app.texto('banner-titulo') === 'Listo para empezar', 'fase 1');
+        app.pulsar('tab-parametros');
+        await hasta(() => app.texto('par-ficheros') === 'prueba.csv', 'lista de ficheros');
+        const ui = app.w.CajaPinzaPrueba.ui;
+        ui.nombreFichero.text = 'prueba';
+        app.pulsar('par-cargar');
+        await hasta(() => app.popup().length > 0, 'popup');
+        const texto = app.popup().join(' | ');
+        assert.match(texto, /prueba\.csv: cambian 4 de 4 ajustes/);
+        assert.match(texto, /Velocidad máxima: 100 → 40 mm\/s/);
+        assert.match(texto, /Incluye ajustes protegidos: Velocidad máxima/);
+        assert.match(texto, /Se ignoran 2 líneas: línea 5 \(nCajas\): ajuste desconocido; línea 6 \(tMaxPinza\): fuera de margen/);
+        assert.equal(app.sim.valor('velocidad'), '100');   // todavia no
+        app.pulsarPopup('OK');
+        await hasta(() => app.sim.valor('velocidad') === '40' && app.sim.valor('tAgarre') === '1.5'
+            && app.sim.valor('mesaX0') === '-850' && app.sim.valor('agarreModo') === '1', 'ajustes cargados');
+        assert.equal(app.sim.valor('nCajas'), '1');   // lo que el fichero trae de mas no se aplica
+        assert.equal(app.sim.valor('tMaxPinza'), '3');
+        assert.match(app.texto('par-estado'), /Cargados 4 ajustes de \$HOME\/parametros\/prueba\.csv/);
+        // cargarlo otra vez no cambia nada
+        app.pulsar('par-cargar');
+        await hasta(() => /ya valen lo mismo/.test(app.texto('par-estado')), 'sin cambios');
+        assert.equal(app.popup().length, 0);
+        assert.deepEqual(app.errores, []);
+    } finally { app.cerrar(); }
+});
+
+test('Guardar y cargar de vuelta: lo guardado se recupera despues de cambiarlo', async () => {
+    const app = await abrir({valores: {velocidad: '60', seguroX: '580', aperturaPinza: '90', recogidaTolX: '30'}});
+    try {
+        app.sim.play();
+        await hasta(() => app.texto('banner-titulo') === 'Listo para empezar', 'fase 1');
+        const ui = app.w.CajaPinzaPrueba.ui;
+        ui.nombreFichero.text = 'mi puesta';
+        app.pulsar('par-guardar');
+        await hasta(() => app.sim.ficheros[CARPETA + '/mi puesta.csv'] !== undefined, 'guardado');
+        // se vuelve a los valores por defecto y se carga lo guardado
+        app.pulsar('par-defecto');
+        await hasta(() => app.popup().length > 0, 'popup defectos');
+        app.pulsarPopup('OK');
+        await hasta(() => app.sim.valor('velocidad') === '100' && app.sim.valor('aperturaPinza') === '0', 'por defecto');
+        app.pulsar('par-cargar');
+        await hasta(() => app.popup().length > 0, 'popup carga');
+        // los 4 de arriba y la zona de la mesa del arnes de pruebas (la antigua), que tambien se guarda y se recupera
+        assert.match(app.popup().join(' '), /cambian 6 de \d+ ajustes/);
+        app.pulsarPopup('OK');
+        await hasta(() => app.sim.valor('velocidad') === '60' && app.sim.valor('seguroX') === '580'
+            && app.sim.valor('aperturaPinza') === '90' && app.sim.valor('recogidaTolX') === '30', 'recuperado');
+        assert.deepEqual(app.errores, []);
+    } finally { app.cerrar(); }
+});
+
+test('Cargar y Valores por defecto se bloquean con la tanda en marcha; Guardar sigue valiendo', async () => {
+    const app = await abrir({valores: {hmiConfirmar: 'FALSE'}, ficheros: {[CARPETA + '/a.csv']: 'velocidad;40'}});
+    try {
+        app.sim.play();
+        await hasta(() => app.texto('banner-titulo') === 'Listo para empezar', 'fase 1');
+        assert.equal(app.$('par-cargar').disabled, false);
+        app.pulsarFp('btn-iniciar');
+        await hasta(() => app.popup().length > 0, 'popup');
+        app.pulsarPopup('OK');
+        await hasta(() => app.$('par-cargar').disabled && app.$('par-defecto').disabled, 'botones bloqueados');
+        assert.equal(app.$('par-guardar').disabled, false);
+        const ui = app.w.CajaPinzaPrueba.ui;
+        ui.nombreFichero.text = 'en marcha';
+        app.pulsar('par-guardar');
+        await hasta(() => app.sim.ficheros[CARPETA + '/en marcha.csv'] !== undefined, 'guardar vale en marcha');
+    } finally { app.cerrar(); }
+});
+
+test('si el controlador no deja usar ficheros, la app lo dice con el motivo', async () => {
+    const app = await abrir({falloFicheros: 'sin permiso de fileservice'});
+    try {
+        app.sim.play();
+        await hasta(() => app.texto('banner-titulo') === 'Listo para empezar', 'fase 1');
+        app.pulsar('tab-parametros');
+        const ui = app.w.CajaPinzaPrueba.ui;
+        ui.nombreFichero.text = 'x';
+        app.pulsar('par-guardar');
+        await hasta(() => /No he podido guardar \$HOME\/parametros\/x\.csv/.test(app.texto('par-estado')), 'error al guardar');
+        assert.match(app.texto('par-estado'), /sin permiso de fileservice/);
+        app.pulsar('par-cargar');
+        await hasta(() => /No encuentro \$HOME\/parametros\/x\.csv/.test(app.texto('par-estado')) && /sin permiso/.test(app.texto('par-estado')), 'error al cargar');
+        assert.equal(app.$('par-estado').className, 'param-estado error');
+    } finally { app.cerrar(); }
+});

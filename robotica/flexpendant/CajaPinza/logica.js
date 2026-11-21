@@ -240,6 +240,97 @@
         ]};
     }
 
+    // ---- Ajustes de puesta en marcha: valores por defecto y fichero CSV ----
+    // Los que se reponen, se guardan y se cargan: todo lo de la ventana Parametros (menos lo de solo lectura), la zona de
+    // la mesa y la caja de referencia. No entran los de cada tanda (cajas, modo, giro, boton, mensajes).
+    const AJUSTES = Object.freeze(PARAMETROS.reduce(function (todos, s) {
+        return todos.concat(s.items.filter(function (it) { return it.tipo !== 'lectura'; }).map(function (it) {
+            return {clave: it.clave, nombre: it.nombre, unidad: it.unidad || '', tipo: it.tipo || 'num', min: it.min, max: it.max,
+                opciones: it.opciones || null, protegido: !!it.protegido, seccion: s.titulo};
+        }));
+    }, []).concat(CAMPOS.map(function (c) {
+        return {clave: c.clave, nombre: c.nombre, unidad: 'mm', tipo: 'num', min: c.min, max: c.max, opciones: null, protegido: false,
+            seccion: c.grupo === 'zona' ? 'Mesa de depósito' : 'Caja de referencia'};
+    })));
+
+    // Valores por defecto de MOD_CajaPinza.mod (clave -> valor); test_flexpendant.py comprueba que son los del modulo.
+    function valoresPorDefecto() {
+        const e = estadoInicial();
+        const v = {};
+        AJUSTES.forEach(function (a) { v[a.clave] = e[a.clave]; });
+        return v;
+    }
+
+    // Que ajustes cambiarian si se pusieran estos valores (clave -> valor) y cuantos ya valen lo mismo.
+    function cambiosHacia(e, valores) {
+        const cambios = [];
+        let iguales = 0;
+        AJUSTES.forEach(function (a) {
+            if (!Object.prototype.hasOwnProperty.call(valores, a.clave)) { return; }
+            if (e[a.clave] === valores[a.clave]) { iguales += 1; return; }
+            cambios.push({clave: a.clave, nombre: a.nombre, unidad: a.unidad, antes: e[a.clave], ahora: valores[a.clave], protegido: a.protegido});
+        });
+        return {cambios: cambios, iguales: iguales};
+    }
+
+    // CSV con los ajustes del estado: parametro;valor;unidad;descripcion, uno por linea (punto decimal).
+    function aCsv(e) {
+        const filas = ['parametro;valor;unidad;descripcion'];
+        AJUSTES.forEach(function (a) {
+            filas.push([a.clave, e[a.clave], a.unidad, (a.seccion + ': ' + a.nombre).replace(/;/g, ',')].join(';'));
+        });
+        return filas.join('\r\n') + '\r\n';
+    }
+
+    // Lee un CSV de ajustes (el que escribe aCsv, o uno editado a mano: separador ; , o tabulador, coma decimal si el separador no
+    // es la coma, cabecera opcional, lineas vacias o con # ignoradas). Devuelve lo que cambiaria y lo que no vale; no toca nada.
+    function desdeCsv(texto, e) {
+        const lineas = String(texto).replace(/^﻿/, '').split(/\r?\n/);
+        const porClave = {};
+        AJUSTES.forEach(function (a) { porClave[a.clave] = a; });
+        const valores = {};
+        const ignorados = [];
+        let separador = null;
+        let cabecera = true;
+        lineas.forEach(function (linea, i) {
+            const t = linea.trim();
+            if (t === '' || t.charAt(0) === '#') { return; }
+            if (separador === null) { separador = t.indexOf(';') >= 0 ? ';' : (t.indexOf('\t') >= 0 ? '\t' : ','); }
+            const celdas = t.split(separador);
+            const clave = celdas[0].trim();
+            if (cabecera && clave.toLowerCase() === 'parametro') { cabecera = false; return; }
+            cabecera = false;
+            const a = porClave[clave];
+            if (!a) { ignorados.push({linea: i + 1, texto: clave, motivo: 'ajuste desconocido'}); return; }
+            let bruto = (celdas[1] || '').trim();
+            if (separador !== ',') { bruto = bruto.replace(',', '.'); }
+            if (!/^-?\d+(\.\d+)?$/.test(bruto)) { ignorados.push({linea: i + 1, texto: clave, motivo: 'valor no numérico'}); return; }
+            const v = Math.round(Number(bruto) * 10) / 10;
+            if (a.tipo === 'modo') {
+                if (!a.opciones.some(function (o) { return o.valor === v; })) {
+                    ignorados.push({linea: i + 1, texto: clave, motivo: 'modo no válido (' + a.opciones.map(function (o) { return o.valor + ' = ' + o.texto; }).join(', ') + ')'});
+                    return;
+                }
+            } else if (v < a.min || v > a.max) {
+                ignorados.push({linea: i + 1, texto: clave, motivo: 'fuera de margen (' + a.min + ' a ' + a.max + ')'});
+                return;
+            }
+            valores[clave] = v;
+        });
+        const r = cambiosHacia(e, valores);
+        return {reconocidos: Object.keys(valores).length, cambios: r.cambios, iguales: r.iguales, ignorados: ignorados};
+    }
+
+    // Nombre de fichero que escribe el usuario (sin .csv): letras, numeros, espacio, guion y guion bajo; hasta 40 caracteres.
+    function nombreFicheroValido(texto) {
+        const nombre = String(texto === undefined || texto === null ? '' : texto).trim().replace(/\.csv$/i, '').trim();
+        if (nombre === '') { return {ok: false, nombre: '', motivo: 'Escribe un nombre para el fichero.'}; }
+        if (!/^[A-Za-z0-9][A-Za-z0-9 _-]{0,39}$/.test(nombre)) {
+            return {ok: false, nombre: nombre, motivo: 'El nombre solo puede llevar letras, números, espacios, guiones y guiones bajos (hasta 40 caracteres, sin tildes ni puntos).'};
+        }
+        return {ok: true, nombre: nombre, motivo: ''};
+    }
+
     // Senales de E/S que se muestran (rapid/cfg/EIO/EIO.cfg, todas con Access Level All).
     const SENALES = Object.freeze({
         sensor: 'CajaEnRecogida',
@@ -987,6 +1078,8 @@
         puntoPermitido: puntoPermitido, nuevoReparto: nuevoReparto, colocar: colocar, repartir: repartir,
         estimarMesa: estimarMesa, limitarCampoMesa: limitarCampoMesa, geometriaMesa: geometriaMesa,
         PARAMETROS: PARAMETROS, CAMPOS_PARAMETROS: CAMPOS_PARAMETROS, textoConfirmacion: textoConfirmacion,
-        limitesDeEstado: limitesDeEstado, alturaAgarre: alturaAgarre
+        limitesDeEstado: limitesDeEstado, alturaAgarre: alturaAgarre,
+        AJUSTES: AJUSTES, valoresPorDefecto: valoresPorDefecto, cambiosHacia: cambiosHacia, aCsv: aCsv, desdeCsv: desdeCsv,
+        nombreFicheroValido: nombreFicheroValido
     };
 }));

@@ -23,6 +23,8 @@
             pcConectado: true,
             sin: [],               // PERS que "no existen" en RAPID (modulo antiguo)
             falloEscritura: null,  // texto con el que falla setValue (mastership ocupada)
+            falloFicheros: null,   // texto con el que falla el acceso a ficheros del controlador (sin permiso de fileservice)
+            ficheros: {},          // ficheros que ya hay en el controlador: {'$HOME/parametros/x.csv': 'texto'}
             giroPc: null,          // function (giroCaja) -> giro que "lee" el PC; por defecto, el mismo
             egmMaxPos: 1500,       // egmMaxPos de RAPID (con 1000 solo caben 4 cajas de 200 mm en la mesa de la simulacion)
             valores: {}            // PERS que arrancan con otro valor que el de RAPID (en bruto, p. ej. {cajasVariables: 'FALSE'})
@@ -211,7 +213,52 @@
             };
         }
 
+        // Sistema de ficheros del controlador (RWS.FileSystem), en memoria: lo justo para guardar y cargar ajustes.
+        const ficheros = Object.assign({}, o.ficheros);
+        const carpetas = {'$HOME': true};
+        Object.keys(ficheros).forEach(function (ruta) { carpetas[ruta.substring(0, ruta.lastIndexOf('/'))] = true; });
+        const rechazoFicheros = function () { return o.falloFicheros ? Promise.reject({message: o.falloFicheros}) : null; };
+        const FileSystem = {
+            getDirectory: function (ruta) {
+                const fallo = rechazoFicheros();
+                if (fallo) { return fallo; }
+                if (!carpetas[ruta]) { return Promise.reject({message: 'Failed to fetch directory contents.'}); }
+                const archivos = Object.keys(ficheros).filter(function (r) { return r.substring(0, r.lastIndexOf('/')) === ruta; })
+                    .map(function (r) { return {name: r.substring(r.lastIndexOf('/') + 1), size: ficheros[r].length}; });
+                return Promise.resolve({getContents: function () { return Promise.resolve({directories: [], files: archivos}); }});
+            },
+            createDirectory: function (ruta) {
+                const fallo = rechazoFicheros();
+                if (fallo) { return fallo; }
+                carpetas[ruta] = true;
+                return Promise.resolve({});
+            },
+            createFileObject: function (ruta) {
+                let contenido = null;
+                return {
+                    setContents: function (texto) { contenido = texto; return true; },
+                    fileExists: function () { return rechazoFicheros() || Promise.resolve(Object.prototype.hasOwnProperty.call(ficheros, ruta)); },
+                    save: function (sobrescribir) {
+                        const fallo = rechazoFicheros();
+                        if (fallo) { return fallo; }
+                        if (!carpetas[ruta.substring(0, ruta.lastIndexOf('/'))]) { return Promise.reject({message: 'Failed saving file.'}); }
+                        if (!sobrescribir && Object.prototype.hasOwnProperty.call(ficheros, ruta)) { return Promise.reject({message: 'File already exists.'}); }
+                        ficheros[ruta] = contenido;
+                        return Promise.resolve();
+                    },
+                    getContents: function () { return Promise.resolve(contenido); }
+                };
+            },
+            getFile: function (ruta) {
+                const fallo = rechazoFicheros();
+                if (fallo) { return fallo; }
+                if (!Object.prototype.hasOwnProperty.call(ficheros, ruta)) { return Promise.reject({message: 'Failed fetching contents.'}); }
+                return Promise.resolve({getContents: function () { return Promise.resolve(ficheros[ruta]); }});
+            }
+        };
+
         const RWS = {
+            FileSystem: FileSystem,
             Rapid: {
                 MonitorResources: {execution: 'execution'},
                 getData: function (tarea, modulo, nombre) {
@@ -240,6 +287,7 @@
             play: play,
             stop: stop,
             pers: pers,
+            ficheros: ficheros,
             valor: function (nombre) { return pers[nombre]; },
             ejecucion: function () { return ejecucion; },
             forzarSenal: function (clave, valor) { ponerSenal(nombresSenal[clave], valor ? 1 : 0); },

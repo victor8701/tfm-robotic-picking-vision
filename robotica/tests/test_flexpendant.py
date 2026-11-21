@@ -346,3 +346,13 @@ def test_la_altura_de_agarre_de_la_app_es_la_que_calcula_el_pc():
             assert "error" in caso, caso
             continue
         assert caso.get("h") == pytest.approx(h), caso
+
+
+def test_los_valores_por_defecto_de_la_app_son_los_del_modulo_de_rapid():
+    """El boton Valores por defecto repone lo que dice la app: tiene que ser lo que RAPID tiene al cargar el modulo."""
+    t = _tablas()
+    assert len(t["ajustes"]) >= 40 and list(t["defectos"]) == t["ajustes"]
+    for clave, valor in t["defectos"].items():
+        m = re.search(r"PERS num " + clave + r" := (-?[\d.]+);", MODULO)
+        assert m, f"falta PERS num {clave} en MOD_CajaPinza.mod"
+        assert float(m.group(1)) == pytest.approx(valor), clave
