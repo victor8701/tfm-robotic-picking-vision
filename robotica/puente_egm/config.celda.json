@@ -1,5 +1,5 @@
 {
-  "_nota": "Celda de una caja con GoFa y pinza: solo brazo1. espacio_mm ampliado en x e y porque la recogida esta a 700 mm de la base; debe coincidir con LIMITE_*_MM de celda/config.py. ip_controlador: null la primera vez; luego la IP que muestra la consola. ip_control: 127.0.0.1 si ROS corre en Windows, 0.0.0.0 si corre en WSL2. semantica debe ser absoluta: el controlador lee planned como pose absoluta en la base; con desplazamiento el robot va al origen de la base y el EGM falla. Velocidad: paso_mm 0.4 son 100 mm/s. El robot sigue la referencia con ~0,2 s de retraso (205 ms medidos el 11-nov), asi que en marcha queda a v x 0,2 s de ella (20 mm a 100 mm/s): desviacion_mm debe ser al menos 1,5 veces eso o el puente da desviacion_excesiva.",
+  "_nota": "Celda de una caja con GoFa y pinza: solo brazo1. espacio_mm ampliado en x e y porque la recogida esta a 700 mm de la base; debe coincidir con LIMITE_*_MM de celda/config.py. ip_controlador: null la primera vez; luego la IP que muestra la consola. ip_control: 127.0.0.1 si ROS corre en Windows, 0.0.0.0 si corre en WSL2. semantica debe ser absoluta: el controlador lee planned como pose absoluta en la base; con desplazamiento el robot va al origen de la base y el EGM falla. Velocidad: paso_mm 0.4 son 100 mm/s. El robot sigue la referencia con ~0,2 s de retraso (205 ms medidos el 11-nov), asi que en marcha queda a v x 0,2 s de ella (20 mm a 100 mm/s): desviacion_mm debe ser al menos 1,5 veces eso o el puente da desviacion_excesiva. rapid: el puente es el servidor del socket de RAPID (T_COM se conecta aqui, puertoPC de MOD_CajaPinza) y el PC habla con RAPID por el control del puente (celda: socket_rapid.via = puente). ip 127.0.0.1 con el controlador virtual (corre en este PC); con el real, la IP de este PC que ve el controlador, la misma que ipPC en RAPID (o 0.0.0.0).",
   "registro_csv": "registros/puente.csv",
   "sesiones": [
     {
@@ -8,6 +8,10 @@
       "ip_controlador": null,
       "ip_control": "127.0.0.1",
       "puerto_control": 7001,
+      "rapid": {
+        "ip": "127.0.0.1",
+        "puerto": 5010
+      },
       "semantica": "absoluta",
       "watchdog_s": 0.1,
       "limites": {

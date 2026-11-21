@@ -134,4 +134,5 @@ def main(args=None) -> None:
         pass
     finally:
         nodo.destroy_node()
-        rclpy.shutdown()
+        if rclpy.ok():   # con Ctrl+C el launch ya lo ha cerrado
+            rclpy.shutdown()

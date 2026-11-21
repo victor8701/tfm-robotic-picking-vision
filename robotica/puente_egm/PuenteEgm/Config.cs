@@ -27,9 +27,22 @@ public sealed class ConfigSesion
     /// <summary>Segundos sin objetivo nuevo antes de retener la posición real.</summary>
     public double WatchdogS { get; set; } = 0.1;
 
+    /// <summary>Si se indica, el puente hace de servidor del socket de RAPID (T_COM se conecta a ip:puerto) y el programa de la celda habla con
+    /// RAPID por los comandos rapid_* del control. Sin esta sección, el socket lo abre el PC (celda.ciclo con socket_rapid.via = "pc").</summary>
+    public ConfigRapid? Rapid { get; set; }
+
     public LimitesConfig Limites { get; set; } = new();
 
     public EspacioConfig EspacioMm { get; set; } = new();
+}
+
+public sealed class ConfigRapid
+{
+    /// <summary>127.0.0.1 con el controlador virtual (corre en este mismo PC); con el real, la IP de este PC que ve el controlador (o 0.0.0.0).</summary>
+    public string Ip { get; set; } = "127.0.0.1";
+
+    /// <summary>Puerto al que se conecta T_COM (puertoPC en RAPID).</summary>
+    public int Puerto { get; set; } = 5010;
 }
 
 public sealed class LimitesConfig

@@ -5,7 +5,8 @@ Es el mismo cerebro que `python -m celda.ciclo`, pero habla con el robot y con l
   movimiento:  Celda -> /brazo1/objetivo -> nodo_puente -> (TCP 7001) -> PuenteEgm.exe -> EGM -> robot    (PuenteRos)
   estado:      robot -> PuenteEgm.exe -> nodo_puente -> /brazo1/estado -> Celda                           (PuenteRos)
   cámara:      driver de la cámara -> /camera/color/image_raw (+ profundidad) -> Celda                    (ProveedorRos, si origen.tipo = "ros")
-  RAPID:       T_COM <-(TCP 5010)-> Celda (RAPID no habla ROS: el socket sigue siendo el de siempre)
+  RAPID:       T_COM <-(TCP 5010)-> PuenteEgm.exe <-(TCP 7001)-> nodo_puente <-> /rapid/orden y /rapid/respuesta <-> Celda   (RapidRos)
+               (con socket_rapid.via = "pc", T_COM habla directamente con este nodo por el socket 5010, como antes)
 
 Salidas:  /celda/estado (std_msgs/String, JSON con los hechos del ciclo: inicio, caja, pinza, fin o error)
           /celda/caja   (geometry_msgs/PoseStamped: centro de la caja que ve la cámara, en la base del robot, con su giro; en metros)
@@ -24,13 +25,14 @@ from geometry_msgs.msg import PoseStamped
 from rclpy.node import Node
 from std_msgs.msg import String
 
-from celda.ciclo import Celda
+from celda.ciclo import Celda, donde_espera_rapid
 from celda.config import cargar
 from celda.percepcion import FuenteCamara, crear_fuente
 from celda.socket_rapid import ServidorRapid
 
 from .proveedor_ros import ProveedorRos
 from .puente_ros import PuenteRos
+from .rapid_ros import RapidRos
 
 
 class NodoCelda(Node):
@@ -49,7 +51,10 @@ class NodoCelda(Node):
         self._pub_caja = self.create_publisher(PoseStamped, "/celda/caja", 10)
         self.puente = PuenteRos(self, str(self.get_parameter("sesion").value))
         self.fuente = self._crear_fuente()
-        self.rapid = ServidorRapid(self.cfg.rapid_ip, self.cfg.rapid_puerto, self.cfg.rapid_espera_s)
+        # Con socket_rapid.via = "puente", RAPID habla con el puente EGM y este nodo por /rapid/* (nodo_puente con rapid:=true);
+        # con "pc", este nodo abre el socket (el servidor en el PC, como antes).
+        self.rapid = (RapidRos(self, self.cfg.rapid_espera_s) if self.cfg.rapid_via == "puente"
+                      else ServidorRapid(self.cfg.rapid_ip, self.cfg.rapid_puerto, self.cfg.rapid_espera_s))
         self.celda = Celda(self.cfg, self.fuente, self.puente, self.rapid)
         self.celda.informar = self._informar
         self.terminado = threading.Event()
@@ -87,7 +92,7 @@ class NodoCelda(Node):
 
     def _trabajo(self) -> None:
         try:
-            self.get_logger().info(f"Esperando a RAPID en {self.cfg.rapid_ip}:{self.cfg.rapid_puerto}...")
+            self.get_logger().info(f"Esperando {donde_espera_rapid(self.cfg) if self.cfg.rapid_via == 'pc' else 'a RAPID por /rapid/estado (socket del puente)'}...")
             self.rapid.esperar_cliente()
             self.celda.ejecutar()
             self.get_logger().info("Celda: todas las cajas recogidas.")
@@ -113,9 +118,13 @@ def main(args=None) -> int:
     except KeyboardInterrupt:
         pass
     finally:
-        nodo.cerrar()
-        nodo.destroy_node()
-        rclpy.shutdown()
+        try:
+            nodo.cerrar()
+            nodo.destroy_node()
+        except KeyboardInterrupt:   # el launch manda otro Ctrl+C a cada nodo mientras se cierra
+            pass
+        if rclpy.ok():   # con Ctrl+C el launch ya lo ha cerrado
+            rclpy.shutdown()
     return 1 if nodo.error else 0
 
 

@@ -69,19 +69,33 @@ Para empezar, una caja y sin giro: en el editor de datos RAPID, módulo `MOD_Caj
 
 El PC toma el número de cajas de `caja.csv` (una línea por caja, la escribe RAPID): no hay que tocar `n_cajas` del JSON. Antes, con `n_cajas = 1` en el PC y `nCajas = 5` en RAPID, el PC solo agarraba la primera caja y RAPID recorría las otras cuatro sin PC: las cajas aparecían y desaparecían en la cinta (16-nov). Si el EGM termina sin que el PC haya pedido `fin_caja`, RAPID se para con el mensaje «El PC no ha dirigido la caja N».
 
+**Primera vez con el socket de RAPID en el puente (una vez).** Desde el 21-nov, `T_COM` ya no se conecta a un servidor del PC: se conecta al **puente EGM**, que lo guarda y se lo pasa al PC por su conexión de control. RAPID no cambia (`ipPC` y `puertoPC` siguen en `127.0.0.1` y 5010); cambia quién escucha en ese puerto. Hay que actualizar el puente en Windows (copiar 4 ficheros y compilar) y añadir una línea a su configuración:
+
+a. **Windows (PowerShell):** copiar el C# nuevo al clon y compilar.
+```
+foreach ($f in "RapidPuente","Config","Program","ServidorControl") { Copy-Item "\\wsl.localhost\Ubuntu-22.04\home\ubuntu22\repos\tfm-robotica-bimanual\robotica\puente_egm\PuenteEgm\$f.cs" "C:\Users\Viktor\source\repos\TFM_Windows\robotica\puente_egm\PuenteEgm\" }
+cd C:\Users\Viktor\source\repos\TFM_Windows\robotica\puente_egm\PuenteEgm
+dotnet build -c Release
+```
+b. En `C:\Users\Viktor\Desktop\TFM_RAPID\config.celda.json`, dentro de la sesión `brazo1`, justo después de la línea `"puerto_control": 7001,`, añade:
+```json
+"rapid": {"ip": "127.0.0.1", "puerto": 5010},
+```
+c. Los `config_celda.json` y `config_celda_windows.json` del PC ya llevan `"via": "puente"` en `socket_rapid`. Para volver a como era antes (el PC de servidor del socket), pon `"via": "pc"` ahí y quita la línea `rapid` del puente: no pueden estar los dos escuchando en el 5010. Con el controlador **real**, `ipPC` en RAPID pasa a ser la IP del PC con el puente (la misma a la que ya manda el EGM) y `ip` en el puente, esa IP o `0.0.0.0`.
+
 Orden de arranque:
 1. **Puente EGM**, en una ventana de **PowerShell de Windows para él solo**. El `.exe` no está en la carpeta del PC (la de WSL del paso 2): si lo lanzas desde allí sale «`.\PuenteEgm.exe` no se reconoce como nombre de un cmdlet». Hay que ir antes a la carpeta donde está compilado:
    ```
    cd C:\Users\Viktor\source\repos\TFM_Windows\robotica\puente_egm\PuenteEgm\bin\Release\net8.0
    .\PuenteEgm.exe "C:\Users\Viktor\Desktop\TFM_RAPID\config.celda.json"
    ```
-   Sin `--prueba`. La consola debe decir `semantica=absoluta` y `Puente en marcha. Ctrl+C para parar.`; no cierres esa ventana. Ese `.exe` es del clon `TFM_Windows` (compilado el 15-nov): el código de la carpeta de WSL no se compila solo. Si cambias el C#, cópialo a `TFM_Windows` y compila en `...\puente_egm\PuenteEgm` con `dotnet build -c Release`. Con `config.celda.json` no hay problema: ya pone `"semantica": "absoluta"`, y el clon aún tiene `desplazamiento` como valor por defecto.
+   Sin `--prueba`. La consola debe decir `semantica=absoluta`, `socket de RAPID TCP 127.0.0.1:5010 ...` y `Puente en marcha. Ctrl+C para parar.` (cuando RAPID se conecte, añadirá `RAPID conectado al socket desde 127.0.0.1:...`); no cierres esa ventana. Ese `.exe` es del clon `TFM_Windows` (compilado el 15-nov): el código de la carpeta de WSL no se compila solo. Si cambias el C#, cópialo a `TFM_Windows` y compila en `...\puente_egm\PuenteEgm` con `dotnet build -c Release`. Con `config.celda.json` no hay problema: ya pone `"semantica": "absoluta"`, y el clon aún tiene `desplazamiento` como valor por defecto.
 2. **PC**, en **otra ventana de PowerShell de Windows**. El WSL está en modo NAT y no alcanza el puente, que escucha en el `127.0.0.1` de Windows:
    ```
    cd \\wsl.localhost\Ubuntu-22.04\home\ubuntu22\repos\tfm-robotica-bimanual\robotica
    & "C:\Program Files\Python311\python.exe" -m celda.ciclo celda\config_celda_windows.json
    ```
-   Es la misma configuración con la ruta de `caja.csv` en formato Windows. Queda esperando a RAPID. Tiene que estar en marcha antes del Play.
+   Es la misma configuración con la ruta de `caja.csv` en formato Windows. Queda esperando (`Esperando al socket de RAPID del puente...`) a que RAPID se conecte al puente. Conviene que esté en marcha antes del Play; ya no es obligatorio, porque el puente guarda la conexión de RAPID hasta que el PC aparezca. Si el puente es el viejo, sale `comando desconocido: rapid_estado`: recompílalo (punto a).
 3. **RobotStudio**: espera unos 10 segundos, **Reset** y **Play** una sola vez.
 
 **Variante con ROS 2** (el ciclo del PC como nodo, en vez de `python -m celda.ciclo`; el porqué y los topics, en `docs/ros2.md`). El orden es el mismo: puente, celda, Play. Solo cambia cómo se lanza la celda. El `python -m celda.ciclo` de arriba sigue valiendo.
@@ -92,7 +106,7 @@ cd ~/ros2_ws
 source /opt/ros/humble/setup.bash
 colcon build --symlink-install --packages-select robotica_bimanual
 ```
-b. Puente EGM, como en el punto 1 (PowerShell de Windows), pero antes pon `"ip_control": "0.0.0.0"` en `C:\Users\Viktor\Desktop\TFM_RAPID\config.celda.json`. Con `127.0.0.1` el puente solo oye a Windows y el `nodo_puente` de WSL2 no llega hasta él. Si Windows pregunta por el cortafuegos, permite TCP 7001 en redes privadas.
+b. Puente EGM, como en el punto 1 (PowerShell de Windows, ya con el relé de RAPID del bloque de arriba), pero antes pon `"ip_control": "0.0.0.0"` en `C:\Users\Viktor\Desktop\TFM_RAPID\config.celda.json`. Con `127.0.0.1` el puente solo oye a Windows y el `nodo_puente` de WSL2 no llega hasta él. Si Windows pregunta por el cortafuegos, permite TCP 7001 en redes privadas.
 
 c. Celda por ROS 2. **Linux (terminal de Ubuntu en WSL2)**, en otra ventana que la del puente:
 ```
@@ -102,7 +116,7 @@ source install/setup.bash
 export PYTHONPATH=$HOME/repos/tfm-robotica-bimanual/robotica:$PYTHONPATH
 ros2 launch robotica_bimanual celda_real.launch.py config:=$HOME/repos/tfm-robotica-bimanual/robotica/celda/config_celda.json host:=$(ip route show default | awk '{print $3}')
 ```
-`host` es la IP de Windows vista desde WSL2 (la saca el propio comando). Usa `celda/config_celda.json` (rutas de Linux, `caja.csv` en `/mnt/c/...`), no el `_windows`. En la salida debe verse `Esperando a RAPID en 127.0.0.1:5010...`; entonces, en RobotStudio, **Reset** y **Play** una vez.
+`host` es la IP de Windows vista desde WSL2 (la saca el propio comando). Usa `celda/config_celda.json` (rutas de Linux, `caja.csv` en `/mnt/c/...`), no el `_windows`. En la salida debe verse `Esperando a RAPID por /rapid/estado (socket del puente)...`; entonces, en RobotStudio, **Reset** y **Play** una vez. El socket de RAPID no pasa por WSL2: T_COM se conecta al puente, en Windows, igual que con el ciclo de Python.
 
 d. Para mirar qué hace la celda, en una tercera terminal. **Linux (WSL2):**
 ```
@@ -111,7 +125,7 @@ ros2 topic echo /celda/estado
 ```
 Saca una línea JSON por hecho: `inicio`, `caja`, `pinza`, `fin` o `error`. Con la cámara por ROS también `ros2 topic echo /celda/caja`.
 
-Si sale `no llega /brazo1/estado`, falta el puente (o `host` no es el bueno). *Sin probar:* que RAPID conecte al socket 5010 cuando el PC es el nodo de WSL2 (debería valer el reenvío de `localhost` de WSL2 con el controlador virtual de Windows; con el controlador real, ver `docs/ros2.md`).
+Si sale `no llega /brazo1/estado` o `no llega /rapid/estado`, falta el puente (o `host` no es el bueno, o el puente no tiene la sección `rapid`). Si sale `RAPID no se ha conectado`, falta Play o `T_COM`.
 
 ### Paso 9. App del FlexPendant (INICIAR y CAJA EN POSICIÓN)
 La app `Celda de cajas` (carpeta `robotica/flexpendant/CajaPinza`, ver su README) sustituye a editar `nCajas`, `modoSimulacion` e `indiceFijo` a mano y a forzar `CajaEnRecogida`. Desde ella:
@@ -223,15 +237,15 @@ En la app: **Real**, pestaña **Parámetros → Recogida → Posición de la caj
 
 ## 3. Cómo funciona
 
-**Quién habla con quién.** RAPID habla por **dos canales distintos** y el puente EGM solo es uno de ellos:
+**Quién habla con quién.** RAPID habla con el puente por **dos canales distintos** (el EGM y el socket) y con la app por un tercero. Solo el puente EGM está en el otro extremo de los dos primeros:
 
 | Canal | De → a | Qué lleva | Sin él |
 |---|---|---|---|
 | EGM (UDP 6511) | Controlador (el EGM de `T_ROB1`) ↔ `PuenteEgm.exe` | Solo posiciones: dónde está el robot y dónde debe ir, 25 veces por segundo | El robot no se mueve |
-| Socket (TCP 5010) | `T_COM` (RAPID) ↔ ciclo del PC (`celda.ciclo` o `nodo_celda`) | Órdenes de pinza (`cerrar`/`abrir`), `fin_caja`, y los ajustes (`lote`, `mesa`, `recogida`, `agarre`, `celda`, `giro`) | La pinza no se abre ni se cierra y el PC no sabe la mesa ni el lote |
+| Socket (TCP 5010) | `T_COM` (RAPID) ↔ **el propio puente** (relé de RAPID); el PC habla con él por la conexión de control (comandos `rapid_*`) | Órdenes de pinza (`cerrar`/`abrir`), `fin_caja`, y los ajustes (`lote`, `mesa`, `recogida`, `agarre`, `celda`, `giro`) | La pinza no se abre ni se cierra y el PC no sabe la mesa ni el lote |
 | RWS (HTTP) | App del FlexPendant ↔ variables `PERS` de RAPID | Parámetros, botones, señales | La app no ajusta nada |
 
-El puente EGM no sabe nada de la pinza ni de las cajas, y el socket no lleva posiciones. Con ROS 2, el ciclo del PC es el nodo `nodo_celda`: manda los objetivos al puente por topics (`nodo_puente` → TCP 7001 → `PuenteEgm.exe`) y sigue abriendo el socket 5010 con `T_COM`. Diagrama completo en `docs/ros2.md`.
+El puente no interpreta lo del socket (pinza, ajustes): lo pasa tal cual entre RAPID y el PC, y el EGM no lleva más que posiciones. El ciclo del PC (`celda.ciclo` o, con ROS 2, `nodo_celda`) solo habla con el puente: movimiento por `objetivo`/`estado` y RAPID por `rapid_*` (por la conexión de control o, con ROS 2, por `/brazo1/*` y `/rapid/*` a través de `nodo_puente`). Diagrama completo en `docs/ros2.md`.
 
 `T_ROB1`, por cada caja:
 1. Pulsa `CajaPosKK`: el `Positioner` KK pone la caja al inicio de la cinta con el giro KK.

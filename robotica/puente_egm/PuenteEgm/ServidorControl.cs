@@ -11,19 +11,28 @@ namespace PuenteEgm;
 ///   {"cmd":"objetivo","t":[x,y,z],"q":[w,x,y,z]}   consigna cartesiana (mm, cuaternión)
 ///   {"cmd":"estado"}                               estado, referencia, real, desviación
 ///   {"cmd":"parar"}  {"cmd":"arrancar"}  {"cmd":"reset"}
+///
+/// Si la sesión tiene socket de RAPID (sesion.rapid), el relé responde además a:
+///   {"cmd":"rapid_estado"}                          {"ok":true,"conectado":bool,"origen":"ip:puerto"}
+///   {"cmd":"rapid_enviar","msg":"cerrar"}           manda el texto a RAPID (máx. 80 caracteres)
+///   {"cmd":"rapid_recibir","timeout_s":5}           espera el mensaje de RAPID; sin timeout_s, sin límite. Fallo con
+///                                                   "codigo": "timeout" | "cerrado" | "desconectado"
+/// rapid_recibir bloquea la conexión hasta que RAPID contesta: se usa una conexión de control aparte de la del movimiento.
 /// </summary>
 public sealed class ServidorControl : IDisposable
 {
     private const int MaxLinea = 4096;
 
     private readonly SesionEgm _sesion;
+    private readonly RapidPuente? _rapid;
     private readonly TcpListener _listener;
     private volatile bool _parar;
     private Thread? _hilo;
 
-    public ServidorControl(SesionEgm sesion, string ip, int puerto)
+    public ServidorControl(SesionEgm sesion, string ip, int puerto, RapidPuente? rapid = null)
     {
         _sesion = sesion;
+        _rapid = rapid;
         _listener = new TcpListener(IPAddress.Parse(ip), puerto);
     }
 
@@ -104,6 +113,12 @@ public sealed class ServidorControl : IDisposable
                     return RespuestaOperacion(_sesion.Arrancar());
                 case "reset":
                     return RespuestaOperacion(_sesion.Rearmar());
+                case "rapid_estado":
+                    return RapidEstado();
+                case "rapid_enviar":
+                    return RapidEnviar(raiz.GetProperty("msg").GetString() ?? "");
+                case "rapid_recibir":
+                    return RapidRecibir(raiz.TryGetProperty("timeout_s", out var t) && t.ValueKind == JsonValueKind.Number ? t.GetDouble() : -1.0);
                 default:
                     return Error($"comando desconocido: {cmd}");
             }
@@ -113,6 +128,33 @@ public sealed class ServidorControl : IDisposable
         {
             return Error(ex.Message);
         }
+    }
+
+    private const string SinRapid = "el puente no tiene socket de RAPID: falta la sección 'rapid' en la sesión de la configuración";
+
+    private string RapidEstado()
+    {
+        if (_rapid is null) return Error(SinRapid);
+        var (conectado, origen) = _rapid.Estado();
+        return JsonSerializer.Serialize(new { ok = true, conectado, origen });
+    }
+
+    private string RapidEnviar(string mensaje)
+    {
+        if (_rapid is null) return Error(SinRapid);
+        if (mensaje.Length > RapidPuente.MaxMensaje)
+            return Error($"mensaje de {mensaje.Length} caracteres: las cadenas de RAPID admiten {RapidPuente.MaxMensaje}");
+        var (ok, error) = _rapid.Enviar(mensaje);
+        return ok ? "{\"ok\":true}" : Error(error);
+    }
+
+    private string RapidRecibir(double timeoutS)
+    {
+        if (_rapid is null) return Error(SinRapid);
+        var (mensaje, codigo, error) = _rapid.Recibir(timeoutS);
+        return mensaje is not null
+            ? JsonSerializer.Serialize(new { ok = true, msg = mensaje })
+            : JsonSerializer.Serialize(new { ok = false, codigo, error });
     }
 
     private static V3 LeerVector3(JsonElement raiz, string nombre)

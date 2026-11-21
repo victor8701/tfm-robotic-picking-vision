@@ -14,6 +14,9 @@ from nucleo.geometria import Pose
 from .convertir import comando_objetivo
 
 
+_IGUAL = object()   # "el tiempo de espera de siempre" (None ya significa sin limite)
+
+
 class ClientePuente:
     def __init__(self, host: str, puerto: int, timeout_s: float = 0.5):
         self.host = host
@@ -37,13 +40,18 @@ class ClientePuente:
         self._f = None
         self._sock = None
 
-    def _enviar(self, dic: dict) -> dict:
+    def _enviar(self, dic: dict, espera_s=_IGUAL) -> dict:
+        """espera_s: tiempo maximo de la respuesta de esta orden (None = sin limite); por defecto, el del cliente."""
         if self._f is None:
             self._conectar()
         try:
+            if espera_s is not _IGUAL:
+                self._sock.settimeout(espera_s)
             self._f.write((json.dumps(dic) + "\n").encode("utf-8"))
             self._f.flush()
             linea = self._f.readline()
+            if espera_s is not _IGUAL:
+                self._sock.settimeout(self.timeout_s)
         except OSError:
             self.cerrar()
             raise
@@ -66,3 +74,18 @@ class ClientePuente:
 
     def reset(self) -> dict:
         return self._enviar({"cmd": "reset"})
+
+    # ---- Socket de RAPID a traves del puente (el puente tiene la seccion "rapid" en su configuracion). rapid_recibir bloquea la conexion
+    # hasta que RAPID contesta: para esperar la respuesta hay que usar un cliente aparte del que manda los objetivos.
+    def rapid_estado(self) -> dict:
+        return self._enviar({"cmd": "rapid_estado"})
+
+    def rapid_enviar(self, mensaje: str) -> dict:
+        return self._enviar({"cmd": "rapid_enviar", "msg": mensaje})
+
+    def rapid_recibir(self, timeout_s: float | None = None) -> dict:
+        """{"ok": True, "msg": ...} o {"ok": False, "codigo": "timeout" | "cerrado" | "desconectado", "error": ...}."""
+        orden: dict = {"cmd": "rapid_recibir"}
+        if timeout_s is not None:
+            orden["timeout_s"] = float(timeout_s)
+        return self._enviar(orden, None if timeout_s is None else timeout_s + 5.0)

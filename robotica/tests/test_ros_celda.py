@@ -65,6 +65,54 @@ class PuenteFalsoRos(Node):
         self._pub.publish(String(data=json.dumps(estado)))
 
 
+class ReleRapidFalso(Node):
+    """Hace de nodo_puente + puente EGM para el socket de RAPID: es el servidor TCP al que se conecta T_COM (el RAPID falso) y lo lleva a /rapid/*."""
+
+    def __init__(self, puerto):
+        super().__init__("rele_rapid_falso")
+        self._srv = socket.socket()
+        self._srv.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        self._srv.bind(("127.0.0.1", puerto))
+        self._srv.listen(1)
+        self._conn = None
+        self.ordenes: list[str] = []
+        self._pub_respuesta = self.create_publisher(String, "/rapid/respuesta", 50)
+        self._pub_estado = self.create_publisher(String, "/rapid/estado", 10)
+        self.create_subscription(String, "/rapid/orden", self._orden, 50)
+        self.create_timer(0.1, self._estado)
+        threading.Thread(target=self._aceptar, daemon=True).start()
+
+    def _aceptar(self):
+        try:
+            self._conn, _ = self._srv.accept()
+            while True:
+                datos = self._conn.recv(256)
+                if not datos:
+                    break
+                self._pub_respuesta.publish(String(data=datos.decode().strip()))
+        except OSError:
+            pass
+
+    def _orden(self, msg):
+        self.ordenes.append(msg.data)
+        if self._conn is not None:
+            self._conn.sendall(msg.data.encode())
+
+    def _estado(self):
+        self._pub_estado.publish(String(data=json.dumps({"conectado": self._conn is not None, "origen": "127.0.0.1:0"})))
+
+    def destroy_node(self):
+        for r in (self._conn, self._srv):
+            if r is not None:
+                r.close()
+        return super().destroy_node()
+
+
+def _con_rele(puerto, via):
+    """Los nodos que hacen falta para el socket de RAPID: con via = puente, el relé; con pc, ninguno (lo abre nodo_celda)."""
+    return [ReleRapidFalso(puerto)] if via == "puente" else []
+
+
 def _girar(nodos, hasta, limite_s=30.0):
     """Hace girar los nodos en el hilo principal hasta que hasta() sea cierto o pase el limite."""
     ejecutor = SingleThreadedExecutor()
@@ -79,11 +127,11 @@ def _girar(nodos, hasta, limite_s=30.0):
             ejecutor.remove_node(n)
 
 
-def _config(tmp_path, puerto_rapid, csv=None, real=False, camara=None):
+def _config(tmp_path, puerto_rapid, csv=None, real=False, camara=None, via="puente"):
     """celda/config_celda.json en pequeño: lo justo para el nodo (periodo de 10 ms para no inundar los topics)."""
     d = {"modo_simulacion": not real, "n_cajas": 1, "percepcion": {"csv_caja": str(csv or tmp_path / "caja.csv")},
          "puente": {"host": "127.0.0.1", "puerto_control": 7001},
-         "socket_rapid": {"ip_escucha": "127.0.0.1", "puerto": puerto_rapid, "espera_conexion_s": 10},
+         "socket_rapid": {"via": via, "ip_escucha": "127.0.0.1", "puerto": puerto_rapid, "espera_conexion_s": 10},
          "celda": {"z_cinta": 300.0, "z_mesa": 150.0, "z_seguro": 600.0, "margen_aproximacion": 150.0, "centro_recogida": [400.0, 0.0],
                    "mesa": [200.0, 400.0], "eje_pinzado": "y", "largo_herramienta_mm": 147.0},
          "control": {"periodo_s": 0.01, "tolerancia_pos_mm": 2.0, "tolerancia_rot_rad": 0.02, "max_iteraciones": 5000},
@@ -215,10 +263,12 @@ def test_nodo_puente_publica_en_rechazo_lo_que_rechaza_el_puente_tcp(tmp_path):
 
 
 # ---------------------------------------------------------------- nodo_celda en simulacion (caja.csv)
-def test_nodo_celda_hace_el_ciclo_completo_por_topics(ros, tmp_path):
+@pytest.mark.parametrize("via", ["puente", "pc"])
+def test_nodo_celda_hace_el_ciclo_completo_por_topics(ros, tmp_path, via):
     (tmp_path / "caja.csv").write_text("150.0;100.0;120.0;30.0\n150.0;100.0;120.0;-60.0\n", encoding="utf-8")
     puerto = _puerto_libre()
-    nodo = _crear_nodo_celda(_config(tmp_path, puerto))
+    reles = _con_rele(puerto, via)
+    nodo = _crear_nodo_celda(_config(tmp_path, puerto, via=via))
     falso = PuenteFalsoRos()
     observador = Node("observador")
     estados = _recoger(observador, "/celda/estado", String)
@@ -227,7 +277,7 @@ def test_nodo_celda_hace_el_ciclo_completo_por_topics(ros, tmp_path):
     rapid = threading.Thread(target=_rapid_falso, args=(puerto, falso, 2, mensajes, errores), daemon=True)
     rapid.start()
     nodo.iniciar()
-    _girar([nodo, falso, observador], nodo.terminado.is_set, 40.0)
+    _girar([nodo, falso, observador, *reles], nodo.terminado.is_set, 40.0)
     _girar([observador], lambda: False, 0.2)   # lo ultimo publicado llega
     rapid.join(5.0)
     assert nodo.terminado.is_set() and nodo.error is None, nodo.error
@@ -242,13 +292,17 @@ def test_nodo_celda_hace_el_ciclo_completo_por_topics(ros, tmp_path):
     assert [(e["orden"], e["respuesta"]) for e in eventos if e["evento"] == "pinza"] == [
         ("cerrar", "cerrada"), ("abrir", "abierta"), ("cerrar", "cerrada"), ("abrir", "abierta")]
     assert cajas == []     # con caja.csv no hay posición de caja (solo medidas y giro): /celda/caja queda en silencio
-    for n in (nodo, falso, observador):
+    if via == "puente":    # todo lo de RAPID salió por /rapid/orden: la pinza, la mesa, los ajustes y el fin del programa
+        assert reles[0].ordenes[:2] == ["lote", "mesa"] and reles[0].ordenes[-1] == "fin_programa"
+        assert reles[0].ordenes.count("cerrar") == 2 and reles[0].ordenes.count("abrir") == 2
+    for n in (nodo, falso, observador, *reles):
         n.destroy_node()
 
 
 def test_nodo_celda_publica_el_error_si_el_ciclo_se_para(ros, tmp_path):
     (tmp_path / "caja.csv").write_text("150.0;100.0;120.0;30.0\n", encoding="utf-8")
     puerto = _puerto_libre()
+    reles = _con_rele(puerto, "puente")
     nodo = _crear_nodo_celda(_config(tmp_path, puerto))
     falso = PuenteFalsoRos()
     observador = Node("observador")
@@ -261,14 +315,14 @@ def test_nodo_celda_publica_el_error_si_el_ciclo_se_para(ros, tmp_path):
         rapid = threading.Thread(target=_rapid_falso, args=(puerto, falso, 1, mensajes, errores), kwargs={"mudo_en": "cerrar"}, daemon=True)
         rapid.start()
         nodo.iniciar()
-        _girar([nodo, falso, observador], nodo.terminado.is_set, 30.0)
+        _girar([nodo, falso, observador, *reles], nodo.terminado.is_set, 30.0)
         _girar([observador], lambda: False, 0.2)
     finally:
         Celda.ESPERA_RESPUESTA_S = 40.0
     assert nodo.error is not None and "no ha contestado a 'cerrar'" in str(nodo.error)
     ultimo = json.loads(estados[-1].data)
     assert ultimo["evento"] == "error" and "no ha contestado" in ultimo["mensaje"]
-    for n in (nodo, falso, observador):
+    for n in (nodo, falso, observador, *reles):
         n.destroy_node()
 
 
@@ -373,6 +427,7 @@ def test_nodo_celda_en_real_con_la_camara_por_ros_va_donde_ve_la_caja(ros, tmp_p
     cam, img, prof = _escena_celda(CajaSintetica(200.0, 140.0, 120.0, 20.0, (712.0, 9.0)))
     cam.guardar(tmp_path / "camara.json")
     puerto = _puerto_libre()
+    reles = _con_rele(puerto, "puente")
     ruta = _config(tmp_path, puerto, real=True, camara={
         "calibracion": "camara.json", "origen": {"tipo": "ros", "color": "/camara/color", "profundidad": "/camara/prof"},
         "modo": "profundidad"})
@@ -387,7 +442,7 @@ def test_nodo_celda_en_real_con_la_camara_por_ros_va_donde_ve_la_caja(ros, tmp_p
                              kwargs={"modo": "real", "n_lote": 1, "ajustes": ajustes}, daemon=True)
     rapid.start()
     nodo.iniciar()
-    _girar([nodo, falso, camara, observador], nodo.terminado.is_set, 60.0)
+    _girar([nodo, falso, camara, observador, *reles], nodo.terminado.is_set, 60.0)
     _girar([observador], lambda: False, 0.2)
     rapid.join(5.0)
     assert nodo.terminado.is_set() and nodo.error is None, nodo.error
@@ -396,5 +451,184 @@ def test_nodo_celda_en_real_con_la_camara_por_ros_va_donde_ve_la_caja(ros, tmp_p
     giro = float([m for m in mensajes if m.startswith("giro:")][0].split(":")[1])
     assert giro == pytest.approx(20.0, abs=1.5)
     assert cajas and cajas[0].pose.position.x == pytest.approx(0.712, abs=2e-3) and cajas[0].pose.position.z == pytest.approx(0.22)
-    for n in (nodo, falso, camara, observador):
+    for n in (nodo, falso, camara, observador, *reles):
         n.destroy_node()
+
+
+# ---------------------------------------------------------------- RAPID por topics
+def test_rapid_ros_sin_nodo_puente_dice_que_falta(ros):
+    from robotica_bimanual.rapid_ros import RapidRos
+
+    nodo = Node("celda")
+    rapid = RapidRos(nodo, espera_s=0.3)
+    with pytest.raises(TimeoutError, match="no llega /rapid/estado"):
+        rapid.esperar_cliente()
+    with pytest.raises(TimeoutError, match="no ha contestado"):
+        rapid.recibir(0.1)
+    nodo.destroy_node()
+
+
+def test_rapid_ros_si_el_puente_no_tiene_socket_lo_dice_enseguida(ros):
+    from robotica_bimanual.rapid_ros import RapidRos
+
+    nodo = Node("celda")
+    falso = Node("puente_falso")
+    pub = falso.create_publisher(String, "/rapid/estado", 10)
+    rapid = RapidRos(nodo, espera_s=10.0)
+    falso.create_timer(0.05, lambda: pub.publish(String(data=json.dumps({"conectado": False, "error": "falta la sección 'rapid'"}))))
+    salida = {}
+
+    def esperar():
+        try:
+            rapid.esperar_cliente()
+        except ConnectionError as e:
+            salida["e"] = str(e)
+    hilo = threading.Thread(target=esperar)
+    hilo.start()
+    _girar([nodo, falso], lambda: not hilo.is_alive(), 5.0)
+    hilo.join(1.0)
+    assert "falta la sección 'rapid'" in salida["e"]
+    for n in (nodo, falso):
+        n.destroy_node()
+
+
+def test_nodo_puente_lleva_el_socket_de_rapid_a_topics(tmp_path):
+    """nodo_puente con rapid:=true contra un puente TCP falso: /rapid/orden -> rapid_enviar; lo que contesta RAPID -> /rapid/respuesta."""
+    srv = socket.socket()
+    srv.bind(("127.0.0.1", 0))
+    srv.listen(5)
+    puerto = srv.getsockname()[1]
+    enviados: list[str] = []
+    respuestas: list[str] = []
+    hay = threading.Condition()
+
+    def atender(conn):
+        f = conn.makefile("rwb")
+        for linea in f:
+            d = json.loads(linea)
+            if d["cmd"] == "estado":
+                r = {"ok": True, "estado": "esperando", "ciclos": 0, "real": {"t": [0, 0, 0], "q": [1, 0, 0, 0]}}
+            elif d["cmd"] == "rapid_estado":
+                r = {"ok": True, "conectado": True, "origen": "127.0.0.1:5555"}
+            elif d["cmd"] == "rapid_enviar":
+                with hay:
+                    enviados.append(d["msg"])
+                    respuestas.append({"cerrar": "cerrada", "abrir": "abierta"}.get(d["msg"], "?"))
+                    hay.notify_all()
+                r = {"ok": True}
+            elif d["cmd"] == "rapid_recibir":
+                with hay:
+                    hay.wait_for(lambda: bool(respuestas), timeout=d.get("timeout_s", 1.0))
+                    r = {"ok": True, "msg": respuestas.pop(0)} if respuestas else {"ok": False, "codigo": "timeout", "error": "RAPID no ha contestado"}
+            else:
+                r = {"ok": True}
+            f.write((json.dumps(r) + "\n").encode())
+            f.flush()
+
+    def aceptar():
+        while True:
+            try:
+                conn, _ = srv.accept()
+            except OSError:
+                return
+            threading.Thread(target=atender, args=(conn,), daemon=True).start()
+    threading.Thread(target=aceptar, daemon=True).start()
+    rclpy.init(args=["--ros-args", "-p", f"brazo1.puerto:={puerto}", "-p", "rapid:=true"])
+    try:
+        from robotica_bimanual.nodo_puente import NodoPuente
+        nodo = NodoPuente()
+        celda = Node("celda")
+        pub = celda.create_publisher(String, "/rapid/orden", 10)
+        respuestas_ros = _recoger(celda, "/rapid/respuesta", String)
+        estados_ros = _recoger(celda, "/rapid/estado", String)
+        _girar([nodo, celda], lambda: pub.get_subscription_count() > 0 and bool(estados_ros), 5.0)
+        assert json.loads(estados_ros[-1].data) == {"conectado": True, "origen": "127.0.0.1:5555"}
+        pub.publish(String(data="cerrar"))
+        _girar([nodo, celda], lambda: bool(respuestas_ros), 5.0)
+        assert enviados == ["cerrar"] and [m.data for m in respuestas_ros] == ["cerrada"]
+        pub.publish(String(data="abrir"))
+        _girar([nodo, celda], lambda: len(respuestas_ros) == 2, 5.0)
+        assert [m.data for m in respuestas_ros] == ["cerrada", "abierta"]
+        nodo.destroy_node()
+        celda.destroy_node()
+    finally:
+        rclpy.shutdown()
+        srv.close()
+
+
+def test_cadena_completa_de_rapid_topics_nodo_puente_puente_csharp_y_t_com(tmp_path):
+    """Todos los saltos de verdad: /rapid/orden -> nodo_puente -> TCP -> PuenteEgm (C#) -> socket -> T_COM falso y la vuelta por /rapid/respuesta."""
+    from test_puente_e2e import DLL, DOTNET, _puerto_libre as puerto_libre_tipo, puente_en_marcha
+    from robotica_bimanual.rapid_ros import RapidRos
+
+    if not (DLL.exists() and Path(DOTNET).exists()):
+        pytest.skip("puente EGM sin compilar (dotnet build -c Release) o sin .NET 8")
+    puerto_rapid = puerto_libre_tipo(socket.SOCK_STREAM)
+    with puente_en_marcha(tmp_path, "absoluta", rapid_puerto=puerto_rapid):
+        cfg = json.loads((tmp_path / "config.json").read_text(encoding="utf-8"))
+        puerto_control = cfg["sesiones"][0]["puerto_control"]
+        tcom = socket.create_connection(("127.0.0.1", puerto_rapid), timeout=10.0)   # T_COM: SocketConnect
+        rclpy.init(args=["--ros-args", "-p", f"brazo1.puerto:={puerto_control}", "-p", "rapid:=true"])
+        try:
+            from robotica_bimanual.nodo_puente import NodoPuente
+            nodo = NodoPuente()
+            celda = Node("celda")
+            rapid = RapidRos(celda, espera_s=15.0)
+            salida = {}
+
+            def dialogo():
+                rapid.esperar_cliente()
+                rapid.enviar("lote")
+                salida["recibido_por_tcom"] = tcom.recv(256).decode()
+                tcom.sendall(b"lote:2:sim")
+                salida["respuesta"] = rapid.recibir(10.0)
+                rapid.enviar("fin_programa")
+                salida["ultimo"] = tcom.recv(256).decode()
+            hilo = threading.Thread(target=dialogo)
+            hilo.start()
+            _girar([nodo, celda], lambda: not hilo.is_alive(), 30.0)
+            hilo.join(2.0)
+            assert salida == {"recibido_por_tcom": "lote", "respuesta": "lote:2:sim", "ultimo": "fin_programa"}
+            nodo.destroy_node()
+            celda.destroy_node()
+        finally:
+            rclpy.shutdown()
+            tcom.close()
+
+
+def test_nodo_puente_no_se_cae_si_el_puente_aun_no_tiene_pose_real():
+    """El puente sin robot en EGM da real.q = [0, 0, 0, 0] (cuaternion nulo): nodo_puente sigue vivo, publica el estado y no publica pose_real."""
+    srv = socket.socket()
+    srv.bind(("127.0.0.1", 0))
+    srv.listen(5)
+    puerto = srv.getsockname()[1]
+
+    def atender(conn):
+        f = conn.makefile("rwb")
+        for linea in f:
+            r = {"ok": True, "estado": "esperando", "ciclos": 0, "real": {"t": [0, 0, 0], "q": [0, 0, 0, 0]}}
+            f.write((json.dumps(r) + "\n").encode())
+            f.flush()
+
+    def aceptar():
+        while True:
+            try:
+                conn, _ = srv.accept()
+            except OSError:
+                return
+            threading.Thread(target=atender, args=(conn,), daemon=True).start()
+    threading.Thread(target=aceptar, daemon=True).start()
+    rclpy.init(args=["--ros-args", "-p", f"brazo1.puerto:={puerto}"])
+    try:
+        from robotica_bimanual.nodo_puente import NodoPuente
+        nodo = NodoPuente()
+        observador = Node("observador")
+        estados = _recoger(observador, "/brazo1/estado", String)
+        poses = _recoger(observador, "/brazo1/pose_real", PoseStamped)
+        _girar([nodo, observador], lambda: len(estados) >= 5, 5.0)
+        assert len(estados) >= 5 and poses == []
+        nodo.destroy_node()
+        observador.destroy_node()
+    finally:
+        rclpy.shutdown()
+        srv.close()

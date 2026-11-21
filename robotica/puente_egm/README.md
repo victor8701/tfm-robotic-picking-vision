@@ -56,6 +56,21 @@ Estados: `esperando` (sin objetivo todavía), `activo`, `retener` (objetivo venc
 
 Los objetivos deben llegar a 20–50 Hz: si no, el puente retiene el brazo.
 
+### Socket de RAPID (opcional)
+
+Con la sección `"rapid": {"ip": "127.0.0.1", "puerto": 5010}` en una sesión, el puente es además el servidor TCP al que se conecta la tarea
+`T_COM` del controlador (`ipPC`/`puertoPC` en `MOD_CajaPinza.mod`) y pasa los mensajes tal cual entre RAPID y el programa de la celda
+(`RapidPuente.cs`). Sin la sección, el puente no abre nada y esos comandos devuelven error. Cada conexión nueva de RAPID sustituye a la anterior.
+
+```json
+{"cmd": "rapid_estado"}                           → {"ok": true, "conectado": bool, "origen": "ip:puerto"}
+{"cmd": "rapid_enviar", "msg": "cerrar"}          → {"ok": true}   (máx. 80 caracteres, el límite de las cadenas de RAPID)
+{"cmd": "rapid_recibir", "timeout_s": 5}          → {"ok": true, "msg": "cerrada"} o {"ok": false, "codigo": "timeout|cerrado|desconectado", "error": "..."}
+```
+
+`rapid_recibir` bloquea su conexión hasta que RAPID contesta: se usa una conexión de control aparte de la del movimiento (lo hacen
+`celda/rapid_puente.py` y `nodo_puente`). Más en `docs/ros2.md`.
+
 ## Registro
 
 Con `registro_csv` activo, cada ciclo deja una línea: `t_s, sesion, seqno, estado, real_xyz, ref_xyz, desviacion_mm`.

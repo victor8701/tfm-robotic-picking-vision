@@ -12,12 +12,20 @@ var reloj = Stopwatch.StartNew();
 using var registro = new Registro(cfg.RegistroCsv);
 
 var sesiones = new List<(SesionEgm Sesion, ServidorControl Control)>();
+var reles = new List<RapidPuente>();
 foreach (var s in cfg.Sesiones)
 {
     var sesion = new SesionEgm(s, registro, reloj);
-    var control = new ServidorControl(sesion, s.IpControl, s.PuertoControl);
+    RapidPuente? rele = s.Rapid is null ? null : new RapidPuente(s.Nombre, s.Rapid.Ip, s.Rapid.Puerto);
+    var control = new ServidorControl(sesion, s.IpControl, s.PuertoControl, rele);
     sesion.Iniciar();
     control.Iniciar();
+    if (rele is not null)
+    {
+        rele.Iniciar();
+        reles.Add(rele);
+        Console.WriteLine($"[{s.Nombre}] socket de RAPID TCP {s.Rapid!.Ip}:{s.Rapid.Puerto} (T_COM se conecta aquí; el PC habla con RAPID por el control)");
+    }
     sesiones.Add((sesion, control));
     if (prueba)
     {
@@ -43,12 +51,17 @@ while (!salir.Wait(TimeSpan.FromSeconds(1)))
     {
         foreach (var aviso in sesion.DrenarAvisos()) Console.WriteLine(aviso);
     }
+    foreach (var rele in reles)
+    {
+        foreach (var aviso in rele.DrenarAvisos()) Console.WriteLine(aviso);
+    }
     if (++ciclo % 5 == 0)
     {
         foreach (var (sesion, _) in sesiones) Console.WriteLine(sesion.EstadoJson());
     }
 }
 
+foreach (var rele in reles) rele.Dispose();
 foreach (var (sesion, control) in sesiones)
 {
     control.Dispose();

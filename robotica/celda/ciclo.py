@@ -29,6 +29,7 @@ from .config import GIRO_PUENTE_RAD_S, VELOCIDAD_PUENTE_MM_S, Config, cargar  # 
 from .percepcion import centro_parada, crear_fuente  # noqa: E402
 from .planificacion import (  # noqa: E402
     Mesa, NoAgarrable, Reparto, SinSitio, Tramo, a_brida, altura_agarre, envolver_giro, planificar, validar_puntos)
+from .rapid_puente import RapidPorPuente  # noqa: E402
 from .socket_rapid import ServidorRapid  # noqa: E402
 
 
@@ -347,6 +348,18 @@ class Celda:
             print(f"Pinza: {orden} -> {r} ({time.monotonic() - t0:.1f} s)")
 
 
+def crear_rapid(cfg: Config):
+    """El canal con RAPID que dice la configuracion: a traves del puente (socket_rapid.via = "puente") o con el PC de servidor ("pc")."""
+    if cfg.rapid_via == "puente":
+        return RapidPorPuente(cfg.puente_host, cfg.puente_puerto, cfg.rapid_espera_s)
+    return ServidorRapid(cfg.rapid_ip, cfg.rapid_puerto, cfg.rapid_espera_s)
+
+
+def donde_espera_rapid(cfg: Config) -> str:
+    return (f"al socket de RAPID del puente (control en {cfg.puente_host}:{cfg.puente_puerto})" if cfg.rapid_via == "puente"
+            else f"a RAPID en {cfg.rapid_ip}:{cfg.rapid_puerto}")
+
+
 def main(argv: list[str]) -> None:
     if len(argv) != 2:
         print("uso: python -m celda.ciclo celda/config_celda.json")
@@ -354,8 +367,8 @@ def main(argv: list[str]) -> None:
     cfg = cargar(argv[1])
     fuente = crear_fuente(cfg)
     puente = ClientePuente(cfg.puente_host, cfg.puente_puerto, timeout_s=2.0)
-    rapid = ServidorRapid(cfg.rapid_ip, cfg.rapid_puerto, cfg.rapid_espera_s)
-    print(f"Esperando a RAPID en {cfg.rapid_ip}:{cfg.rapid_puerto}...")
+    rapid = crear_rapid(cfg)
+    print(f"Esperando {donde_espera_rapid(cfg)}...")
     try:
         rapid.esperar_cliente()
         Celda(cfg, fuente, puente, rapid).ejecutar()

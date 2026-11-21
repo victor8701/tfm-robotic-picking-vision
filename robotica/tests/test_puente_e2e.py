@@ -71,7 +71,7 @@ def _conectar(puerto: int, proc: subprocess.Popen) -> ClienteControl:
 
 
 @contextmanager
-def puente_en_marcha(tmp_path: Path, semantica: str, partida=(0.0, 0.0, 400.0)):
+def puente_en_marcha(tmp_path: Path, semantica: str, partida=(0.0, 0.0, 400.0), rapid_puerto: int | None = None):
     puerto_egm = _puerto_libre(socket.SOCK_DGRAM)
     puerto_control = _puerto_libre(socket.SOCK_STREAM)
     registro = tmp_path / "puente.csv"
@@ -89,6 +89,8 @@ def puente_en_marcha(tmp_path: Path, semantica: str, partida=(0.0, 0.0, 400.0)):
             "espacio_mm": {"x": [-600, 600], "y": [-600, 600], "z": [0, 800]},
         }],
     }
+    if rapid_puerto is not None:   # el puente hace de servidor del socket de RAPID
+        cfg["sesiones"][0]["rapid"] = {"ip": "127.0.0.1", "puerto": rapid_puerto}
     ruta_cfg = tmp_path / "config.json"
     ruta_cfg.write_text(json.dumps(cfg), encoding="utf-8")
     salida = open(tmp_path / "salida.txt", "w", encoding="utf-8")
@@ -213,3 +215,141 @@ def test_rechaza_comandos_invalidos_sin_cambiar_el_estado(tmp_path, semantica):
         assert ctl.cmd({"cmd": "reset"})["ok"] is False  # no hay fallo que rearmar
         assert ctl.cmd({"cmd": "estado"})["ok"] is True
         assert ctl.estado()["estado"] == "esperando"
+
+
+# ---------------------------------------------------------------- relé del socket de RAPID
+def _rapid_cliente(puerto: int) -> socket.socket:
+    """Lo que hace T_COM: SocketConnect al puente."""
+    return socket.create_connection(("127.0.0.1", puerto), timeout=5.0)
+
+
+def _esperar_conectado(ctl: ClienteControl, conectado: bool = True, limite_s: float = 5.0) -> dict:
+    fin = time.time() + limite_s
+    while True:
+        r = ctl.cmd({"cmd": "rapid_estado"})
+        if r.get("conectado") is conectado or time.time() > fin:
+            return r
+        time.sleep(0.05)
+
+
+def test_sin_seccion_rapid_el_puente_dice_que_no_tiene_socket(tmp_path):
+    with puente_en_marcha(tmp_path, "absoluta") as (ctl, _, _):
+        for orden in ({"cmd": "rapid_estado"}, {"cmd": "rapid_enviar", "msg": "x"}, {"cmd": "rapid_recibir", "timeout_s": 0.1}):
+            r = ctl.cmd(orden)
+            assert r["ok"] is False and "sección 'rapid'" in r["error"], r
+
+
+def test_rele_rapid_ida_y_vuelta_con_el_orden_de_siempre(tmp_path):
+    puerto = _puerto_libre(socket.SOCK_STREAM)
+    with puente_en_marcha(tmp_path, "absoluta", rapid_puerto=puerto) as (ctl, _, _):
+        assert ctl.cmd({"cmd": "rapid_estado"}) == {"ok": True, "conectado": False, "origen": ""}
+        assert ctl.cmd({"cmd": "rapid_enviar", "msg": "cerrar"})["ok"] is False   # nadie conectado
+        rapid = _rapid_cliente(puerto)
+        try:
+            r = _esperar_conectado(ctl)
+            assert r["ok"] is True and r["conectado"] is True and r["origen"].startswith("127.0.0.1:"), r
+            assert ctl.cmd({"cmd": "rapid_enviar", "msg": "cerrar"}) == {"ok": True}
+            assert rapid.recv(256).decode() == "cerrar"                 # tal cual, sin separadores
+            rapid.sendall(b"cerrada")
+            assert ctl.cmd({"cmd": "rapid_recibir", "timeout_s": 2.0}) == {"ok": True, "msg": "cerrada"}
+            # mensaje de la mesa: largo y con numeros, tal como lo manda T_COM
+            texto = "mesa:-220:542:640:420:320:30:1500:790"
+            rapid.sendall(texto.encode())
+            assert ctl.cmd({"cmd": "rapid_recibir", "timeout_s": 2.0})["msg"] == texto
+        finally:
+            rapid.close()
+
+
+def test_rele_rapid_timeout_cierre_y_reconexion(tmp_path):
+    puerto = _puerto_libre(socket.SOCK_STREAM)
+    with puente_en_marcha(tmp_path, "absoluta", rapid_puerto=puerto) as (ctl, _, _):
+        assert ctl.cmd({"cmd": "rapid_recibir", "timeout_s": 0.1})["codigo"] == "desconectado"
+        rapid = _rapid_cliente(puerto)
+        _esperar_conectado(ctl)
+        inicio = time.time()
+        r = ctl.cmd({"cmd": "rapid_recibir", "timeout_s": 0.4})
+        assert r["ok"] is False and r["codigo"] == "timeout", r
+        assert 0.3 < time.time() - inicio < 2.0
+        rapid.close()                                    # T_COM acaba (fin del programa)
+        assert _esperar_conectado(ctl, conectado=False)["conectado"] is False
+        assert ctl.cmd({"cmd": "rapid_recibir", "timeout_s": 1.0})["codigo"] == "cerrado"
+        assert ctl.cmd({"cmd": "rapid_enviar", "msg": "abrir"})["ok"] is False
+        nuevo = _rapid_cliente(puerto)                   # un Play nuevo: otra conexion, la sustituye
+        try:
+            assert _esperar_conectado(ctl)["conectado"] is True
+            assert ctl.cmd({"cmd": "rapid_enviar", "msg": "abrir"}) == {"ok": True}
+            assert nuevo.recv(256).decode() == "abrir"
+        finally:
+            nuevo.close()
+
+
+def test_rele_rapid_rechaza_mensajes_de_mas_de_80_caracteres(tmp_path):
+    puerto = _puerto_libre(socket.SOCK_STREAM)
+    with puente_en_marcha(tmp_path, "absoluta", rapid_puerto=puerto) as (ctl, _, _):
+        rapid = _rapid_cliente(puerto)
+        try:
+            _esperar_conectado(ctl)
+            r = ctl.cmd({"cmd": "rapid_enviar", "msg": "x" * 81})
+            assert r["ok"] is False and "80" in r["error"], r
+            assert ctl.cmd({"cmd": "rapid_enviar", "msg": "x" * 80}) == {"ok": True}
+        finally:
+            rapid.close()
+
+
+def test_esperar_la_respuesta_de_rapid_no_para_el_movimiento(tmp_path):
+    """rapid_recibir bloquea su conexion de control, pero otra conexion sigue mandando objetivos y leyendo el estado."""
+    puerto = _puerto_libre(socket.SOCK_STREAM)
+    with puente_en_marcha(tmp_path, "absoluta", rapid_puerto=puerto) as (ctl, _, _):
+        rapid = _rapid_cliente(puerto)
+        try:
+            _esperar_conectado(ctl)
+            # segunda conexion de control
+            cfg = json.loads((tmp_path / "config.json").read_text(encoding="utf-8"))
+            otro = ClienteControl(socket.create_connection(("127.0.0.1", cfg["sesiones"][0]["puerto_control"]), timeout=5.0))
+            import threading
+            resultado = {}
+            hilo = threading.Thread(target=lambda: resultado.update(otro.cmd({"cmd": "rapid_recibir", "timeout_s": 3.0})))
+            hilo.start()
+            time.sleep(0.2)
+            _mantener(ctl, [30.0, 0.0, 400.0], 0.5)            # el movimiento sigue mientras el otro espera
+            assert ctl.estado()["estado"] == "activo"
+            rapid.sendall(b"fin_ok")
+            hilo.join(5.0)
+            assert resultado == {"ok": True, "msg": "fin_ok"}
+            otro.cerrar()
+        finally:
+            rapid.close()
+
+
+def test_rapid_por_puente_es_un_servidor_rapid_para_el_ciclo(tmp_path):
+    """RapidPorPuente (lo que usa el ciclo con socket_rapid.via = "puente") contra el puente real y un T_COM falso."""
+    from celda.rapid_puente import RapidPorPuente
+
+    puerto = _puerto_libre(socket.SOCK_STREAM)
+    with puente_en_marcha(tmp_path, "absoluta", rapid_puerto=puerto):
+        cfg = json.loads((tmp_path / "config.json").read_text(encoding="utf-8"))
+        rapid = RapidPorPuente("127.0.0.1", cfg["sesiones"][0]["puerto_control"], espera_s=10.0)
+        try:
+            with pytest.raises(TimeoutError, match="aun no se ha conectado"):
+                RapidPorPuente("127.0.0.1", cfg["sesiones"][0]["puerto_control"], espera_s=0.5).esperar_cliente()
+            tcom = _rapid_cliente(puerto)
+            rapid.esperar_cliente()
+            rapid.enviar("lote")
+            assert tcom.recv(256).decode() == "lote"
+            tcom.sendall(b"lote:2:sim")
+            assert rapid.recibir(2.0) == "lote:2:sim"
+            with pytest.raises(TimeoutError, match="no ha contestado"):
+                rapid.recibir(0.3)
+            tcom.close()
+            with pytest.raises(ConnectionError, match="cerrado"):
+                rapid.recibir(2.0)
+        finally:
+            rapid.cerrar()
+
+
+def test_rapid_por_puente_sin_puente_agota_la_espera_y_lo_dice(tmp_path):
+    from celda.rapid_puente import RapidPorPuente
+
+    libre = _puerto_libre(socket.SOCK_STREAM)
+    with pytest.raises(TimeoutError, match="no llego al puente EGM"):
+        RapidPorPuente("127.0.0.1", libre, espera_s=0.5).esperar_cliente()

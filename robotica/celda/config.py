@@ -24,7 +24,7 @@ class Config:
     csv_caja: str
     puente_host: str
     puente_puerto: int
-    rapid_ip: str
+    rapid_ip: str       # solo con rapid_via = "pc": donde escucha el PC
     rapid_puerto: int
     rapid_espera_s: float
     z_cinta: float
@@ -43,6 +43,9 @@ class Config:
     # Plano del sensor de final de cinta (mm, base). Solo simulacion: con el, la caja parada
     # queda en y = sensor_cinta_y - medio lado delantero. None = usar centro_recogida tal cual.
     sensor_cinta_y: float | None = None
+    # Quien es el servidor del socket de RAPID (T_COM es siempre el cliente): "puente" = el puente EGM (seccion "rapid" de su
+    # configuracion; el PC habla con RAPID por la conexion de control del puente) o "pc" = el propio PC (rapid_ip:rapid_puerto).
+    rapid_via: str = "pc"
     # Distancia (mm) de la brida al TCP de la pinza, a lo largo del eje de la herramienta. EGM
     # controla la brida (tool0), asi que el PC le manda la brida = TCP + este desfase. Debe ser el
     # TCP z de herrPinza en RAPID (147).
@@ -109,9 +112,10 @@ def cargar(ruta) -> Config:
         csv_caja=str(d["percepcion"]["csv_caja"]),
         puente_host=str(d["puente"]["host"]),
         puente_puerto=int(d["puente"]["puerto_control"]),
-        rapid_ip=str(r["ip_escucha"]),
-        rapid_puerto=int(r["puerto"]),
+        rapid_ip=str(r.get("ip_escucha", "")),
+        rapid_puerto=int(r.get("puerto", 0)),
         rapid_espera_s=float(r["espera_conexion_s"]),
+        rapid_via=str(r.get("via", "pc")),
         z_cinta=float(c["z_cinta"]),
         z_mesa=float(c["z_mesa"]),
         z_seguro=float(c["z_seguro"]),
@@ -133,6 +137,10 @@ def cargar(ruta) -> Config:
     )
     if cfg.n_cajas < 1:
         raise ValueError("n_cajas debe ser al menos 1")
+    if cfg.rapid_via not in ("puente", "pc"):
+        raise ValueError(f"socket_rapid.via debe ser 'puente' o 'pc' (y es {cfg.rapid_via!r})")
+    if cfg.rapid_via == "pc" and (not cfg.rapid_ip or cfg.rapid_puerto <= 0):
+        raise ValueError("socket_rapid.via = 'pc' necesita ip_escucha y puerto")
     if cfg.eje_pinzado not in ("x", "y"):
         raise ValueError("eje_pinzado debe ser 'x' o 'y' (eje local de cierre de la pinza, ver CAD)")
     return cfg

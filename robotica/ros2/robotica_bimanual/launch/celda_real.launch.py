@@ -14,6 +14,7 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
+from launch_ros.parameter_descriptions import ParameterValue
 
 
 def generate_launch_description():
@@ -21,6 +22,7 @@ def generate_launch_description():
         DeclareLaunchArgument("config", description="ruta de celda/config_celda.json"),
         DeclareLaunchArgument("host", default_value="127.0.0.1", description="IP del PC con PuenteEgm.exe, vista desde ROS"),
         DeclareLaunchArgument("puerto", default_value="7001", description="puerto de control del puente"),
+        DeclareLaunchArgument("rapid", default_value="true", description="llevar el socket de RAPID del puente a /rapid/* (socket_rapid.via = puente)"),
         Node(
             package="robotica_bimanual",
             executable="nodo_puente",
@@ -31,6 +33,7 @@ def generate_launch_description():
                 "brazo1.puerto": LaunchConfiguration("puerto"),
                 "frecuencia_hz": 25.0,
                 "plazo_objetivo_s": 0.2,
+                "rapid": ParameterValue(LaunchConfiguration("rapid"), value_type=bool),
             }],
         ),
         Node(

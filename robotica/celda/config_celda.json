@@ -10,6 +10,8 @@
     "puerto_control": 7001
   },
   "socket_rapid": {
+    "_nota": "via = puente: el servidor del socket de RAPID es el puente EGM (seccion rapid de su configuracion) y el PC habla con RAPID por el control del puente; ip_escucha y puerto no se usan. via = pc: el servidor es el propio PC (ip_escucha:puerto), como antes.",
+    "via": "puente",
     "ip_escucha": "127.0.0.1",
     "puerto": 5010,
     "espera_conexion_s": 300

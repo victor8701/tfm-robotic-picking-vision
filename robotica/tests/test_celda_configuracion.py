@@ -368,3 +368,28 @@ def test_los_tiempos_de_rapid_son_los_de_la_app_y_no_valores_fijos():
     mov = MODULO.split("PROC main_movimiento()")[1].split("ENDPROC")[0]
     assert "WaitDI CajaEnRecogida, 1 \\MaxTime:=tMaxCaja \\TimeFlag:=sinCaja;" in mov and "WaitTime tAntesAgarrar;" in mov
     assert "\\MaxTime:=40" not in MODULO
+
+
+def test_el_socket_de_rapid_del_puente_coincide_con_ipPC_y_puertoPC_de_rapid():
+    """T_COM se conecta a ipPC:puertoPC; con socket_rapid.via = puente, el puente tiene que escuchar ahi (en el controlador virtual, el mismo PC)."""
+    puente = json.loads((RAIZ / "puente_egm" / "config.celda.json").read_text(encoding="utf-8"))["sesiones"][0]
+    assert puente["rapid"]["puerto"] == int(_constante("puertoPC"))
+    assert puente["rapid"]["ip"] == re.search(r'CONST string ipPC := "([^"]+)";', MODULO).group(1)
+    for nombre in ("config_celda.json", "config_celda_windows.json"):
+        assert cargar(RAIZ / "celda" / nombre).rapid_via == "puente"
+
+
+def test_socket_rapid_via_solo_admite_puente_o_pc(tmp_path):
+    base = json.loads((RAIZ / "celda" / "config_celda.json").read_text(encoding="utf-8"))
+
+    def con(socket_rapid):
+        ruta = tmp_path / "c.json"
+        ruta.write_text(json.dumps({**base, "socket_rapid": socket_rapid}), encoding="utf-8")
+        return ruta
+
+    with pytest.raises(ValueError, match="ip_escucha y puerto"):
+        cargar(con({"espera_conexion_s": 5}))                       # sin via = pc, y sin donde escuchar
+    assert cargar(con({"ip_escucha": "127.0.0.1", "puerto": 5010, "espera_conexion_s": 5})).rapid_via == "pc"   # configuraciones antiguas
+    assert cargar(con({"via": "puente", "espera_conexion_s": 5})).rapid_via == "puente"   # el puente decide ip y puerto
+    with pytest.raises(ValueError, match="'puente' o 'pc'"):
+        cargar(con({"via": "udp", "espera_conexion_s": 5}))
