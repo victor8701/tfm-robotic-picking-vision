@@ -7,7 +7,7 @@ Una caja cada vez. El EGM lleva todo el movimiento de cada caja (una sesión EGM
 - `robotica/rapid/MOD_CajaPinza.mod`: RAPID con dos tareas. T_ROB1 hace el movimiento y T_COM la pinza y el socket. Cargar el módulo como SYSMODULE en ambas.
 - `celda/ciclo.py`: el PC. Lee la caja, planifica los tramos, los manda por el puente y coordina con RAPID.
 - `celda/planificacion.py`: pinza hacia abajo, giro según la caja, alturas, tramos y límites.
-- `celda/percepcion.py`: `caja.csv` en simulación. La cámara queda pendiente.
+- `celda/percepcion.py`: `caja.csv` en simulación y la cámara (`FuenteCamara`, con `vision/`) en real. Ver `docs/vision.md`.
 - `celda/socket_rapid.py`: servidor de socket del PC.
 - `celda/config_celda.json`: parámetros. Los valores `_pendiente` se rellenan con la estación y el CAD.
 

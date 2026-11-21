@@ -15,6 +15,7 @@ Estado detallado, riesgos y suposiciones: [docs/ESTADO.md](docs/ESTADO.md).
 | Puente EGM en C# | `puente_egm/` | Compilado y probado con un controlador simulado (14 pruebas de extremo a extremo) | Controlador virtual de RobotStudio (Windows) |
 | Controlador simulado | `mock/` | Sí (lo usan las pruebas del puente) | — |
 | Visión: esquinas y pose | `vision/` | Sí, con imágenes sintéticas | Cámara real y datos del laboratorio |
+| Visión de la celda: detección de cajas, calibración de la cámara y pruebas en casa | `vision/`, `calibracion/camara.py`, `docs/vision.md` | Sí, con imágenes sintéticas | Cámara y cajas reales, RealSense |
 | Calibración: homografía y mano-ojo | `calibracion/` (CLI en `calibracion/cli.py`) | Sí, con datos sintéticos | Datos medidos en el laboratorio |
 | Nodos ROS 2 | `ros2/robotica_bimanual/` | Compilado con colcon, lanzado con su launch, nodos creados en pruebas | Sistema completo con robots |
 | Módulos RAPID | `rapid/` | **No** | Controlador virtual |

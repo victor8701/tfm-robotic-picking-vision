@@ -3,3 +3,6 @@ numpy>=1.23
 opencv-python>=4.8
 protobuf>=3.20
 pytest>=7.0
+# Opcionales para la vision (docs/vision.md): pillow guarda el tablero con la escala (dpi); pyrealsense2 para la RealSense
+# pillow>=10
+# pyrealsense2

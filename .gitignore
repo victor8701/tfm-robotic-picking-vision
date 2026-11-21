@@ -106,3 +106,9 @@ robotica/rapid/estacion/CajasVariables/bin/
 robotica/rapid/estacion/CajasVariables/obj/
 robotica/rapid/estacion/CajasVariables/Pruebas/bin/
 robotica/rapid/estacion/CajasVariables/Pruebas/obj/
+
+# ===== Vision de la celda: resultados y ejemplos generados (docs/vision.md) =====
+resultados_vision/
+ejemplos_vision/
+robotica/resultados_vision/
+robotica/ejemplos_vision/

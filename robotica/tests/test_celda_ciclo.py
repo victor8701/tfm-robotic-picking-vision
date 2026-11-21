@@ -575,3 +575,56 @@ def test_con_velocidad_limitada_el_pc_avanza_por_pasos_y_llega_a_todos_los_punto
     # plan al siguiente, que sale de la pose real) y hay muchos pasos: no se manda el punto final de golpe
     assert len(pasos) > 100
     assert np.percentile(pasos, 90) <= 2.0 + 1e-6
+
+
+# ---------------------------------------------------------------- real con camara: la deteccion de vision/ alimenta al ciclo
+class _ListaFotogramas:
+    def __init__(self, fotogramas):
+        self._f = list(fotogramas)
+
+    def siguiente(self):
+        return self._f.pop(0) if self._f else None
+
+
+def _fuente_camara(cajas, repetir=1, tiempo_max_s=1.0):
+    from celda.percepcion import FuenteCamara
+    from vision.escena import camara_cenital, escena, profundidad
+    from vision.proveedores import Fotograma
+    cam = camara_cenital(tam=(960, 720), altura_mm=650.0, centro_xy=(700.0, 0.0), z_plano=220.0)
+    foto = Fotograma(escena(cam, cajas, z_plano=220.0), profundidad(cam, cajas, z_plano=220.0), "x")
+    return FuenteCamara(_ListaFotogramas([foto] * repetir), cam, 220.0, params={"modo": "profundidad"}, tiempo_max_s=tiempo_max_s, pausa_s=0.01)
+
+
+def _ajustes_camara(tol="50.0:50.0", t_max="1.0"):
+    return _ajustes(recogida=f"recogida:1:700.0:0.0:{tol}:0.0:0.0:0.0:{t_max}", celda="celda:220.0:150.0:147.0:600.0:-6.5:740.0:100.0:0.0")
+
+
+def test_en_real_con_camara_el_pc_va_a_donde_ve_la_caja_y_cuenta_el_giro_medido(tmp_path):
+    from vision.escena import CajaSintetica
+    puente = PuenteFalso()
+    cfg = _cfg(tmp_path, puente, modo_simulacion=False)
+    fuente = _fuente_camara([CajaSintetica(200.0, 140.0, 120.0, 20.0, (712.0, 9.0))])
+    mensajes, errores, excepcion = _ejecutar(cfg, puente, fuente, 1, modo="real", n_lote=1, ajustes=_ajustes_camara())
+    assert excepcion is None and errores == []
+    assert puente.objetivos[0] == pytest.approx((712.0, 9.0, 600.0 + 147.0), abs=1.0)   # el punto seguro sobre la caja que ve la camara
+    giro = [m for m in mensajes if m.startswith("giro:")][0]
+    assert float(giro.split(":")[1]) == pytest.approx(20.0, abs=1.0)
+
+
+def test_en_real_con_camara_una_caja_fuera_de_la_zona_permitida_no_se_mueve(tmp_path):
+    from vision.escena import CajaSintetica
+    puente = PuenteFalso()
+    cfg = _cfg(tmp_path, puente, modo_simulacion=False)
+    fuente = _fuente_camara([CajaSintetica(150.0, 100.0, 80.0, 0.0, (780.0, 0.0))])   # a 80 mm del punto de recogida
+    _, _, excepcion = _ejecutar(cfg, puente, fuente, 1, modo="real", n_lote=1, ajustes=_ajustes_camara(tol="30.0:30.0"))
+    assert isinstance(excepcion, RuntimeError) and "fuera de la zona permitida" in str(excepcion)
+    assert puente.objetivos == []
+
+
+def test_en_real_con_camara_la_espera_maxima_es_la_de_rapid_y_si_no_ve_nada_para(tmp_path):
+    puente = PuenteFalso()
+    cfg = _cfg(tmp_path, puente, modo_simulacion=False)
+    fuente = _fuente_camara([], repetir=2000, tiempo_max_s=30.0)    # el tiempo de la fuente no cuenta: manda el de RAPID (0.2 s)
+    _, _, excepcion = _ejecutar(cfg, puente, fuente, 1, modo="real", n_lote=1, ajustes=_ajustes_camara(t_max="0.2"))
+    assert isinstance(excepcion, RuntimeError) and "no ve ninguna caja entera en 0.2 s" in str(excepcion)
+    assert puente.objetivos == []

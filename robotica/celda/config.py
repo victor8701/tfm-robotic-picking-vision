@@ -81,6 +81,23 @@ class Config:
     # TCP (0 = el menor de z_cinta y z_mesa).
     velocidad: float = 100.0
     z_minima: float = 0.0
+    # Percepcion por camara (solo real): calibracion (camara.json de calibracion.camara), origen de las imagenes, alto de la caja si no se mide
+    # con profundidad, modo de deteccion y parametros. Ver docs/vision.md. None = sin camara configurada.
+    camara: dict | None = None
+
+
+def _resolver_camara(cam: dict | None, base: Path) -> dict | None:
+    """Las rutas de la seccion camara que no son absolutas se toman desde la carpeta del JSON de la celda."""
+    if cam is None:
+        return None
+    cam = json.loads(json.dumps(cam))   # copia
+    for clave in ("calibracion", "fondo"):
+        if cam.get(clave) and not Path(cam[clave]).is_absolute():
+            cam[clave] = str(base / cam[clave])
+    origen = cam.get("origen") or {}
+    if origen.get("ruta") and not Path(origen["ruta"]).is_absolute():
+        origen["ruta"] = str(base / origen["ruta"])
+    return cam
 
 
 def cargar(ruta) -> Config:
@@ -112,6 +129,7 @@ def cargar(ruta) -> Config:
         largo_herramienta_mm=float(c["largo_herramienta_mm"]),
         via_transporte=None if c.get("via_transporte") is None
         else (float(c["via_transporte"][0]), float(c["via_transporte"][1])),
+        camara=_resolver_camara(d.get("camara"), Path(ruta).resolve().parent),
     )
     if cfg.n_cajas < 1:
         raise ValueError("n_cajas debe ser al menos 1")

@@ -155,6 +155,9 @@ class Celda:
             agarre_minimo=minimo, solape_minimo=solape, apertura_pinza=apertura, grosor_dedo=grosor, giro_pinza=giro_pinza,
             z_cinta=z_cinta, margen_aproximacion=margen, largo_herramienta_mm=tcp_z, ventana_inicio=(seg_x, seg_y, seg_z),
             velocidad=velocidad, z_minima=z_minima)
+        configurar = getattr(self.fuente, "configurar", None)
+        if configurar is not None:   # la camara usa la altura de la cinta, el punto de recogida y la espera maxima de RAPID
+            configurar(self.cfg)
         if self._mesa is not None and self.cfg.grosor_dedo > 0.0 and self._mesa.hueco < self.cfg.grosor_dedo:
             raise RuntimeError(f"El hueco entre cajas ({self._mesa.hueco:g} mm, mesaHueco) es menor que el grosor del "
                                f"dedo ({self.cfg.grosor_dedo:g} mm, grosorDedo): la pinza no puede entrar entre dos cajas")
