@@ -8,6 +8,7 @@ La estación tiene una sola pieza, `CajaGrande` (cubo de 200 mm), que los 12 `Po
 - Cambia la geometría de `CajaGrande` por una caja de largo x ancho x alto de la línea correspondiente de `caja.csv`. El centro (x, y) y la cara de abajo quedan donde estaban en la caja original, así que el `Positioner`, el sensor del final de la cinta y el agarre no cambian.
 - Antes, deja una **copia** de la caja anterior en la última pose en la que se vio fuera de la cinta, que es donde la dejó la pinza en la mesa (`CajaDejada_N`).
 - `caja.csv` nuevo (RAPID lo reescribe al empezar cada tanda) = tanda nueva: se empieza por la primera línea y se borran las copias.
+- **Fin de la tanda:** al terminar la última caja, RAPID (`MarcarFinTanda`, en simulación) escribe `fin_tanda.txt` en `HOME`, junto a `caja.csv`. El complemento ve que cambia la fecha del fichero, espera 3 s (`EsperaFinS`, para que se vea el resultado), borra las copias de la mesa y **oculta** `CajaGrande` (la última caja). La siguiente caja que se coloque la vuelve a mostrar. Si se aborta la tanda no hay marca: las cajas siguen hasta la tanda siguiente. Un `fin_tanda.txt` que ya estuviera al cargar el complemento no cuenta.
 
 El tamaño lo pone RAPID al escribir `caja.csv` (`cajaLargo/Ancho/Alto`, `cajasVariables`, desde la app o el editor de datos); el PC planifica con las mismas medidas. El fichero no se edita nunca a mano.
 

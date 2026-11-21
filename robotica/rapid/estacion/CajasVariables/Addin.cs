@@ -18,6 +18,8 @@ namespace CajasVariables
     {
         private const string NombreCaja = "CajaGrande";   // la pieza que mueven los Positioner PosCaja01..12 y agarra la pinza
         private const int NumGiros = 12;
+        private const string FicheroFin = "fin_tanda.txt";   // lo escribe RAPID (MarcarFinTanda) junto a caja.csv al acabar la tanda
+        private const double EsperaFinS = 3.0;              // segundos que se deja ver el resultado antes de quitar las cajas
 
         private sealed class Estado
         {
@@ -27,6 +29,8 @@ namespace CajasVariables
             public Matrix4 Previa = Matrix4.Identity;
             public double CentroX, CentroY, BaseZ;      // donde esta (en local) la caja original: centro en x e y y cara de abajo
             public string RutaCsv;
+            public string RutaFin;
+            public VigilanteFin Fin;
             public DateTime CsvVisto = DateTime.MinValue;
             public List<Caja> Cajas = new List<Caja>();
             public List<GraphicComponent> Dejadas = new List<GraphicComponent>();
@@ -113,7 +117,9 @@ namespace CajasVariables
             if (e.RutaCsv != null)
             {
                 RecargarCsv(e);
+                e.RutaFin = Path.Combine(Path.GetDirectoryName(e.RutaCsv), FicheroFin);
             }
+            e.Fin = new VigilanteFin(MarcaFin(e), TimeSpan.FromSeconds(EsperaFinS));
             Log(string.Format("Cajas variables: {0} Positioner, caja de {1:0} x {2:0} x {3:0} mm, csv: {4}",
                 recogidas.Count, (max.x - min.x) * 1000, (max.y - min.y) * 1000, (max.z - min.z) * 1000, e.RutaCsv ?? "no encontrado"));
             return e;
@@ -154,6 +160,15 @@ namespace CajasVariables
         {
             if (e.RutaCsv == null || !File.Exists(e.RutaCsv)) { return false; }
             return File.GetLastWriteTimeUtc(e.RutaCsv) != e.CsvVisto;
+        }
+
+        private static DateTime MarcaFin(Estado e)
+        {
+            try
+            {
+                return e.RutaFin != null && File.Exists(e.RutaFin) ? File.GetLastWriteTimeUtc(e.RutaFin) : DateTime.MinValue;
+            }
+            catch (Exception) { return DateTime.MinValue; }
         }
 
         private static void RecargarCsv(Estado e)
@@ -198,6 +213,8 @@ namespace CajasVariables
             if (e == null || !ReferenceEquals(e.Estacion, est)) { e = Iniciar(est); _estado = e; }
             if (e.Caja == null || e.Seg == null) { return; }
 
+            if (e.Fin != null && e.Fin.Actualizar(MarcaFin(e), DateTime.UtcNow)) { FinDeTanda(e); }
+
             Matrix4 m = e.Caja.Transform.GlobalMatrix;
             var pose = new Pose(m.t.x, m.t.y, m.t.z, Math.Atan2(m.x.y, m.x.x));
             Evento ev = e.Seg.Actualizar(pose, delegate { return CsvNuevo(e); });
@@ -205,11 +222,31 @@ namespace CajasVariables
             if (ev != null) { CajaNueva(e, ev); }
         }
 
+        /// <summary>RAPID ha marcado el fin de la tanda: se quitan las copias de la mesa y se oculta la ultima caja. La siguiente caja
+        /// que se coloque (otra tanda) la vuelve a mostrar.</summary>
+        private static void FinDeTanda(Estado e)
+        {
+            Project.UndoContext.BeginUndoStep("Fin de tanda");
+            try
+            {
+                int copias = e.Dejadas.Count;
+                BorrarDejadas(e);
+                e.Caja.Visible = false;
+                Log(string.Format("Cajas variables: tanda terminada: {0} cajas quitadas de la mesa y la ultima, oculta.", copias + 1));
+            }
+            finally
+            {
+                Project.UndoContext.EndUndoStep();
+            }
+        }
+
         private static void CajaNueva(Estado e, Evento ev)
         {
             Project.UndoContext.BeginUndoStep("Caja nueva");
             try
             {
+                e.Caja.Visible = true;           // si la tanda anterior la dejo oculta
+                if (e.Fin != null) { e.Fin.Cancelar(); }
                 if (ev.NuevaTanda)
                 {
                     BorrarDejadas(e);

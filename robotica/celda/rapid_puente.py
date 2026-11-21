@@ -32,6 +32,7 @@ class RapidPorPuente:
         """Espera a que RAPID (T_COM) tenga abierto el socket del puente. El puente puede arrancar despues que el PC: se reintenta."""
         fin = time.monotonic() + self._espera_s
         ultimo_fallo = ""
+        avisado = False
         while True:
             try:
                 r = self._c.rapid_estado()
@@ -42,6 +43,10 @@ class RapidPorPuente:
                 ultimo_fallo = "el puente esta en marcha pero RAPID aun no se ha conectado (T_COM)"
             except OSError as e:
                 ultimo_fallo = f"no llego al puente EGM en {self._puente}: {e}"
+                if not avisado:   # una vez, para que se vea por que se queda esperando
+                    print(f"(aun no llego al puente EGM en {self._puente}: {e}. Sigo intentandolo. ¿Esta en marcha, y escucha en esa IP? "
+                          "Mira ip_control en su configuracion)")
+                    avisado = True
             if time.monotonic() >= fin:
                 raise TimeoutError(f"RAPID no se ha conectado en {self._espera_s:g} s: {ultimo_fallo}")
             time.sleep(PAUSA_S)

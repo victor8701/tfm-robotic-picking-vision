@@ -100,3 +100,15 @@ def test_la_variante_para_bin_addins_apunta_a_la_carpeta_de_la_dll_y_a_la_versio
     assert raiz.findtext("a:Assembly/a:Path", namespaces=ns) == r"C:\Users\Viktor\Desktop\TFM_RAPID\Addin\CajasVariables"
     hijos = [h.tag.split("}")[1] for h in raiz.find("a:Assembly", ns)]
     assert hijos == ["FileName", "Path", "Entrypoint"]
+
+
+def test_el_fichero_de_fin_de_tanda_es_el_mismo_en_rapid_y_en_el_complemento():
+    """RAPID escribe HOME:/fin_tanda.txt al acabar la tanda (MarcarFinTanda) y el complemento vigila ese mismo nombre junto a caja.csv."""
+    modulo = (RAIZ / "rapid" / "MOD_CajaPinza.mod").read_text(encoding="utf-8")
+    addin = (ADDIN / "Addin.cs").read_text(encoding="utf-8")
+    nombre_rapid = re.search(r'Open "HOME:/([^"]+)", marca \\Write;', modulo).group(1)
+    nombre_addin = re.search(r'FicheroFin = "([^"]+)"', addin).group(1)
+    assert nombre_rapid == nombre_addin == "fin_tanda.txt"
+    # y se escribe antes del Stop del final de la tanda, no despues (el Stop detiene el programa)
+    fin = modulo[modulo.index("hmiFase := FASE_FIN;"):]
+    assert fin.index("MarcarFinTanda;") < fin.index("Stop;")

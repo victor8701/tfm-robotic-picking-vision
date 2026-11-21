@@ -78,7 +78,7 @@ Anota todo en una tabla: PC, controlador 1, controlador 2 y WSL.
 | Nombre del dispositivo UdpUc | Controller → Configuration → Communication → UDP Unicast Device | `EGM` | 4.º argumento de `EGMSetupUC` en `rapid/MOD_EGM.mod` |
 | Instancia de movimiento EGM | Controller → Configuration → Motion → External Motion Interface Data | `default` | 3.º argumento de `EGMSetupUC` en `rapid/MOD_EGM.mod` |
 | Nombre del robot en RAPID | En RAPID, `MOD_EGM.mod` (`ROB_1`) | `ROB_1` | Nombre del robot en el controlador; cambia si hay varios robots |
-| IP del servidor de control | `puente_egm/config.json` → `ip_control` | `127.0.0.1` o `0.0.0.0` | `127.0.0.1` si ROS corre en el mismo Windows. `0.0.0.0` si ROS corre en WSL2 |
+| IP del servidor de control | `puente_egm/config.json` → `ip_control` | `127.0.0.1` o la IP de Windows vista desde WSL2 | `127.0.0.1` si ROS corre en el mismo Windows. Si ROS corre en WSL2, la IP del adaptador `vEthernet (WSL)` (mejor que `0.0.0.0`, que abre el control a toda la red) |
 | Puerto de control | `puerto_control` del puente y `brazo1.puerto` / `brazo2.puerto` del launch | `7001` / `7002` | Decisión nuestra |
 | IP del puente vista desde WSL2 | `ros2/.../launch/celda.launch.py` → `brazo1.host`, `brazo2.host` | `<172.19.64.1>` | Ver §4. Si ROS corre en Windows: `127.0.0.1` |
 | Semántica de `planned` | `puente_egm/config.json` → `semantica` | `absoluta` | Resuelto el 15-nov-2026: el controlador lee `planned` como pose absoluta en la base. Con `desplazamiento` el robot va al origen de la base |
@@ -111,7 +111,7 @@ Si ROS 2 corre en WSL2 (Ubuntu 22.04) y el puente en Windows, WSL2 no ve `127.0.
    ip route show default | awk '{print $3}'
    ```
    Ese valor es `<172.19.64.1>`. Va en `brazo1.host` y `brazo2.host` del launch.
-2. **El puente debe escuchar fuera de `127.0.0.1`.** En `config.json`: `"ip_control": "0.0.0.0"`.
+2. **El puente debe escuchar fuera de `127.0.0.1`.** En `config.json`: `"ip_control"` con la IP del paso 1 (la de `vEthernet (WSL)`; con `0.0.0.0` también valdría, pero abre el control del robot a toda la red).
 3. **Firewall de Windows.** Crear una regla de entrada que permita TCP `7001` y `7002` desde la red del adaptador
    `vEthernet (WSL)` (o desde la subred de WSL2). Sin esa regla, ROS verá "Connection refused" o un tiempo de espera.
 4. **Alternativa.** Con WSL2 en modo espejo (`networkingMode=mirrored` en `.wslconfig`, Windows 11 22H2 o posterior),

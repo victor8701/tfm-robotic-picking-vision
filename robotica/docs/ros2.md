@@ -85,7 +85,7 @@ cd ~/ros2_ws && colcon build --symlink-install --packages-select robotica_bimanu
 
 Cada vez, en este orden:
 
-1. **Windows:** `PuenteEgm.exe` con `config.celda.json`, que lleva la sección `rapid` (ver el manual de RobotStudio, paso 8, para actualizar el puente la primera vez). Si ROS corre en WSL2, `ip_control` tiene que ser `0.0.0.0` (con `127.0.0.1` solo escucha a Windows). Si el cortafuegos pregunta, permitir TCP 7001. La consola debe decir `socket de RAPID TCP 127.0.0.1:5010`.
+1. **Windows:** `PuenteEgm.exe` con `config.celda.json`, que lleva la sección `rapid` (ver el manual de RobotStudio, paso 8, para actualizar el puente la primera vez). Si ROS corre en WSL2, `ip_control` tiene que ser la IP de Windows vista desde WSL2 (`ip route show default | awk '{print $3}'`, p. ej. `172.27.48.1`), no `127.0.0.1` (solo oye a Windows) ni `0.0.0.0` (abre el control del robot a toda la red), y hace falta una regla del cortafuegos de Windows para TCP 7001 solo desde la subred de WSL2. Los comandos, paso a paso, en el manual de RobotStudio, paso 8, «Variante con ROS 2». La consola debe decir `socket de RAPID TCP 127.0.0.1:5010`.
 2. **Cámara** (solo en real y con cámara por ROS), en otra terminal de Linux:
    ```bash
    ros2 launch realsense2_camera rs_launch.py align_depth.enable:=true
@@ -117,7 +117,7 @@ Alternativa sin ROS, la de siempre: `python -m celda.ciclo` (TCP directo con el 
 ## Sin comprobar
 
 - Todo con el controlador (virtual o real): las pruebas usan un `T_COM` falso, un puente real (C#) y, para el movimiento, un puente y una cámara falsos.
-- Con el controlador real, `ipPC` en RAPID tiene que ser la IP del PC con el puente (la misma a la que ya manda el EGM) y `ip` de `rapid` en el puente, esa IP o `0.0.0.0`; cortafuegos de Windows con TCP 5010 y 7001 permitidos.
+- Con el controlador real, `ipPC` en RAPID tiene que ser la IP del PC con el puente (la misma a la que ya manda el EGM) y `ip` de `rapid` en el puente, esa IP; cortafuegos de Windows con TCP 5010 y 7001 permitidos solo desde donde haga falta.
 - Una cámara USB real dentro de WSL2 (no se ve sin `usbipd`); una RealSense por USB-IP o la cámara en otra máquina con ROS 2 en la misma red.
 
 ## Pruebas
@@ -127,6 +127,8 @@ source /opt/ros/humble/setup.bash
 cd ~/repos/tfm-robotica-bimanual/robotica
 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python3 -m pytest -q tests/test_ros_celda.py tests/test_puente_e2e.py tests/test_celda_rapid_puente.py
 ```
+
+Si tienes la celda real lanzada (`ros2 launch ...`), las pruebas de ROS 2 se mezclan con sus topics y fallan: ejecútalas en otro dominio, por ejemplo `ROS_DOMAIN_ID=87 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python3 -m pytest -q tests/test_ros_celda.py`.
 
 - `tests/test_puente_e2e.py` (con el puente C# compilado): el relé contra el puente real: ida y vuelta, mensajes de 80 caracteres, timeout, cierre y reconexión de `T_COM`, y que esperar a RAPID no para el movimiento. Incluye `RapidPorPuente`.
 - `tests/test_celda_rapid_puente.py`: el ciclo de dos cajas con RAPID a través del puente real.

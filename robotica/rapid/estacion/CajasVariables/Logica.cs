@@ -134,4 +134,48 @@ namespace CajasVariables
             return ev;
         }
     }
+
+    /// <summary>
+    /// Fin de la tanda. RAPID escribe (o reescribe) fin_tanda.txt junto a caja.csv cuando termina la ultima caja. Este vigilante
+    /// ve que la fecha del fichero ha cambiado y avisa una sola vez, pasada una espera (para que se vea el resultado). Lo que
+    /// ya hubiera al arrancar el complemento no cuenta como un fin nuevo.
+    /// </summary>
+    public sealed class VigilanteFin
+    {
+        private readonly TimeSpan _espera;
+        private DateTime _visto;
+        private DateTime? _avisarEn;
+
+        /// <param name="marcaInicial">fecha del fichero al arrancar (DateTime.MinValue si no existe)</param>
+        public VigilanteFin(DateTime marcaInicial, TimeSpan espera)
+        {
+            _visto = marcaInicial;
+            _espera = espera;
+        }
+
+        /// <summary>Hay un fin de tanda pendiente de avisar.</summary>
+        public bool Pendiente { get { return _avisarEn.HasValue; } }
+
+        /// <summary>marca = fecha de modificacion de fin_tanda.txt (DateTime.MinValue si no existe). Devuelve true una vez, cuando toca borrar.</summary>
+        public bool Actualizar(DateTime marca, DateTime ahora)
+        {
+            if (marca != DateTime.MinValue && marca != _visto)
+            {
+                _visto = marca;
+                _avisarEn = ahora + _espera;
+            }
+            if (_avisarEn.HasValue && ahora >= _avisarEn.Value)
+            {
+                _avisarEn = null;
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>Llega otra caja antes de borrar (otra tanda ya en marcha): el fin pendiente ya no vale.</summary>
+        public void Cancelar()
+        {
+            _avisarEn = null;
+        }
+    }
 }

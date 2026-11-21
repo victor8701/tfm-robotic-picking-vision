@@ -87,6 +87,25 @@ namespace CajasVariables.Pruebas
             plano.Actualizar(cintaMedia, csv);
             Comprobar(plano.Actualizar(new Pose(0, 0, 0, -Math.PI + 0.001), csv) != null, "yaw -pi equivale a pi");
 
+            // ---- fin de la tanda (fin_tanda.txt de RAPID)
+            DateTime t0 = new DateTime(2026, 11, 21, 21, 0, 0, DateTimeKind.Utc);
+            DateTime viejo = t0.AddMinutes(-30);
+            var fin = new VigilanteFin(viejo, TimeSpan.FromSeconds(3));
+            Comprobar(!fin.Actualizar(viejo, t0), "un fin_tanda.txt que ya estaba al arrancar no cuenta");
+            Comprobar(!fin.Actualizar(DateTime.MinValue, t0.AddSeconds(1)), "sin fichero no pasa nada");
+            Comprobar(!fin.Actualizar(t0, t0), "RAPID escribe el fichero: se espera antes de avisar");
+            Comprobar(fin.Pendiente, "queda un fin pendiente");
+            Comprobar(!fin.Actualizar(t0, t0.AddSeconds(2.9)), "a los 2,9 s todavia no");
+            Comprobar(fin.Actualizar(t0, t0.AddSeconds(3.0)), "a los 3 s avisa");
+            Comprobar(!fin.Actualizar(t0, t0.AddSeconds(4.0)) && !fin.Pendiente, "avisa una sola vez");
+            DateTime t1 = t0.AddMinutes(5);
+            fin.Actualizar(t1, t1);                                // otra tanda termina
+            Comprobar(fin.Actualizar(t1, t1.AddSeconds(5)), "una segunda tanda avisa otra vez");
+            DateTime t2 = t1.AddMinutes(5);
+            fin.Actualizar(t2, t2);
+            fin.Cancelar();                                        // llega una caja nueva antes de borrar
+            Comprobar(!fin.Actualizar(t2, t2.AddSeconds(10)) && !fin.Pendiente, "una caja nueva cancela el fin pendiente");
+
             Console.WriteLine(_fallos == 0 ? "TODO OK" : _fallos + " FALLOS");
             return _fallos == 0 ? 0 : 1;
         }

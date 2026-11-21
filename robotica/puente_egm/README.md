@@ -32,7 +32,7 @@ Al arrancar muestra cada sesión y, cada 5 segundos, su estado en JSON.
 | `nombre` | Nombre de la sesión (aparece en el registro). |
 | `puerto_egm` | Puerto UDP al que el controlador envía `EgmRobot` (6511 en el proyecto previo). |
 | `ip_controlador` | IP del controlador de esta sesión. Si se indica, solo se aceptan datagramas de esa IP. `null` = sin filtro: la consola escribe `primer datagrama de X:Y` por cada IP nueva; copiar esa X aquí y reiniciar. **Recomendado ponerla en producción.** |
-| `ip_control`, `puerto_control` | Servidor TCP de control. `127.0.0.1` si ROS corre en el mismo Windows; `0.0.0.0` si ROS corre en WSL2 (con regla de firewall). |
+| `ip_control`, `puerto_control` | Servidor TCP de control. `127.0.0.1` si ROS corre en el mismo Windows; si corre en WSL2, la IP de Windows vista desde WSL2 (p. ej. `172.27.48.1`; evita `0.0.0.0`, que abre el control a toda la red) y una regla de firewall para ese puerto solo desde la subred de WSL2. |
 
 Los valores de red (IPs de los controladores, del PC, de WSL2 y de los UdpUc) están reunidos en
 [docs/configuracion.md](../docs/configuracion.md), con el orden de arranque y los errores típicos.

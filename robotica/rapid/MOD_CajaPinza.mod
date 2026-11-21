@@ -408,7 +408,20 @@ MODULE MOD_CajaPinza
         ! Fin de la tanda. Sin Stop, en modo continuo el programa arrancaria otra tanda de cajas.
         hmiFase := FASE_FIN;
         Aviso "Todas las cajas hechas. EGM cerrado.";
+        MarcarFinTanda;
         Stop;
+    ENDPROC
+
+    ! Avisa al complemento de RobotStudio CajasVariables de que la tanda ha terminado: escribe HOME:/fin_tanda.txt (junto a
+    ! caja.csv) y el complemento quita las cajas de la mesa. Solo en simulacion (en real no hay cajas en el 3D).
+    PROC MarcarFinTanda()
+        VAR iodev marca;
+
+        IF modoSimulacion THEN
+            Open "HOME:/fin_tanda.txt", marca \Write;
+            Write marca, "fin de la tanda de " + NumToStr(nCajas, 0) + " cajas a las " + CTime();
+            Close marca;
+        ENDIF
     ENDPROC
 
     ! Punto de espera segun la app: seguroX/Y/Z (TCP) y tcpZ (brida - TCP). Se llama al empezar cada tanda, antes de

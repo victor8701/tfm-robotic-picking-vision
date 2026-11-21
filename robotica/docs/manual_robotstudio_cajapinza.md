@@ -98,17 +98,64 @@ Orden de arranque:
    Es la misma configuración con la ruta de `caja.csv` en formato Windows. Queda esperando (`Esperando al socket de RAPID del puente...`) a que RAPID se conecte al puente. Conviene que esté en marcha antes del Play; ya no es obligatorio, porque el puente guarda la conexión de RAPID hasta que el PC aparezca. Si el puente es el viejo, sale `comando desconocido: rapid_estado`: recompílalo (punto a).
 3. **RobotStudio**: espera unos 10 segundos, **Reset** y **Play** una sola vez.
 
-**Variante con ROS 2** (el ciclo del PC como nodo, en vez de `python -m celda.ciclo`; el porqué y los topics, en `docs/ros2.md`). El orden es el mismo: puente, celda, Play. Solo cambia cómo se lanza la celda. El `python -m celda.ciclo` de arriba sigue valiendo.
+**Variante con ROS 2** (el ciclo del PC como nodo, en vez de `python -m celda.ciclo`; el porqué y los topics, en `docs/ros2.md`). El orden es el mismo: puente, celda, Play. Solo cambia cómo se lanza la celda. El `python -m celda.ciclo` de arriba sigue valiendo. Probado el 21-nov con un `T_COM` falso: WSL2 llega al puente de Windows y las órdenes de ROS llegan a RAPID y vuelven. Sin probar con RobotStudio.
 
-a. Compilar (una vez, y cada vez que cambies algo de `ros2/`). **Linux (terminal de Ubuntu en WSL2):**
+*Una sola vez (preparar la conexión WSL2 ↔ Windows):*
+
+a. **Compilar** (y cada vez que cambies algo de `ros2/`). **Linux (terminal de Ubuntu en WSL2):**
 ```
 cd ~/ros2_ws
 source /opt/ros/humble/setup.bash
 colcon build --symlink-install --packages-select robotica_bimanual
 ```
-b. Puente EGM, como en el punto 1 (PowerShell de Windows, ya con el relé de RAPID del bloque de arriba), pero antes pon `"ip_control": "0.0.0.0"` en `C:\Users\Viktor\Desktop\TFM_RAPID\config.celda.json`. Con `127.0.0.1` el puente solo oye a Windows y el `nodo_puente` de WSL2 no llega hasta él. Si Windows pregunta por el cortafuegos, permite TCP 7001 en redes privadas.
+b. **Averiguar la IP de Windows vista desde WSL2.** **Linux (WSL2):**
+```
+ip route show default | awk '{print $3}'
+```
+Da algo como `172.27.48.1`. Esa IP puede cambiar al reiniciar el PC: si cambia, repite b, c y d (en la d, la subred de la regla).
 
-c. Celda por ROS 2. **Linux (terminal de Ubuntu en WSL2)**, en otra ventana que la del puente:
+c. **Decir al puente que escuche en esa IP.** No es un comando: es editar una línea del fichero. **Windows (PowerShell):**
+```
+gedit C:/Users/Viktor/Desktop/TFM_RAPID/config.celda.json
+```
+Busca con Ctrl+F `ip_control`, cambia solo la IP y guarda:
+```
+"ip_control": "172.27.48.1",
+```
+No pongas `0.0.0.0`: abriría el control del robot (que no pide contraseña) a la Wi-Fi. Con esa IP, `python -m celda.ciclo` desde Windows ya no conecta con el puente; para volver a esa prueba, pon `"127.0.0.1"`. Para comprobar el cambio: **Windows (PowerShell)**
+```
+Select-String -Path C:\Users\Viktor\Desktop\TFM_RAPID\config.celda.json -Pattern '"ip_control"'
+```
+d. **Cortafuegos de Windows.** Sin esto, WSL2 no llega al puente (`timed out`). Hace falta administrador: menú Inicio, escribe `PowerShell`, clic derecho en **Windows PowerShell**, **Ejecutar como administrador**, **Sí**. En esa ventana, uno a uno:
+
+1. Ver las reglas del puente (no cambia nada). Las de la red `Public` con `Block` son las que sobran:
+```
+Get-NetFirewallRule -DisplayName "puenteegm.exe" | Select-Object DisplayName, Profile, Direction, Action | Format-Table -AutoSize
+```
+2. Quitar los bloqueos de entrada del puente (si no hay ninguno, no sale nada y no pasa nada):
+```
+Get-NetFirewallRule -DisplayName "puenteegm.exe" | Where-Object { $_.Action -eq 'Block' -and $_.Direction -eq 'Inbound' } | Remove-NetFirewallRule
+```
+3. Permitir solo el puerto de control, y solo desde la subred de WSL2 (cambia `172.27.48.1` por tu IP de b, y `172.27.48.0/20` por su subred, que es la IP con el último número a 0 y `/20` si la IP de WSL es `172.27.5x.x`):
+```
+New-NetFirewallRule -DisplayName "PuenteEgm control desde WSL" -Direction Inbound -Protocol TCP -LocalPort 7001 -LocalAddress 172.27.48.1 -RemoteAddress 172.27.48.0/20 -Profile Any -Action Allow
+```
+*Cada vez:*
+
+e. **Puente EGM**, en una ventana de PowerShell de Windows para él solo (como en el punto 1; ya lleva el relé de RAPID). Si había uno en marcha, ciérralo antes con Ctrl+C: tiene que leer el `ip_control` nuevo. **Windows (PowerShell):**
+```
+cd C:\Users\Viktor\source\repos\TFM_Windows\robotica\puente_egm\PuenteEgm\bin\Release\net8.0
+.\PuenteEgm.exe "C:\Users\Viktor\Desktop\TFM_RAPID\config.celda.json"
+```
+Debe decir `control TCP 172.27.48.1:7001`, `socket de RAPID TCP 127.0.0.1:5010` y `Puente en marcha`.
+
+f. **Comprobar que WSL2 llega al puente.** **Linux (WSL2):**
+```
+HOST=$(ip route show default | awk '{print $3}'); timeout 5 bash -c "echo > /dev/tcp/$HOST/7001" && echo "conecta con $HOST" || echo "NO conecta con $HOST"
+```
+Tiene que decir `conecta`. Si no: o el puente no está en marcha (e), o falta el cortafuegos (d), o la IP del c no es la de b.
+
+g. **Celda por ROS 2.** **Linux (WSL2)**, en una ventana distinta de la del puente:
 ```
 cd ~/ros2_ws
 source /opt/ros/humble/setup.bash
@@ -116,16 +163,37 @@ source install/setup.bash
 export PYTHONPATH=$HOME/repos/tfm-robotica-bimanual/robotica:$PYTHONPATH
 ros2 launch robotica_bimanual celda_real.launch.py config:=$HOME/repos/tfm-robotica-bimanual/robotica/celda/config_celda.json host:=$(ip route show default | awk '{print $3}')
 ```
-`host` es la IP de Windows vista desde WSL2 (la saca el propio comando). Usa `celda/config_celda.json` (rutas de Linux, `caja.csv` en `/mnt/c/...`), no el `_windows`. En la salida debe verse `Esperando a RAPID por /rapid/estado (socket del puente)...`; entonces, en RobotStudio, **Reset** y **Play** una vez. El socket de RAPID no pasa por WSL2: T_COM se conecta al puente, en Windows, igual que con el ciclo de Python.
+`host` es la IP de Windows vista desde WSL2 (la saca el propio comando). Usa `celda/config_celda.json` (rutas de Linux, `caja.csv` en `/mnt/c/...`), no el `_windows`. Debe salir `Esperando a RAPID por /rapid/estado (socket del puente)...` y ningún aviso de `timed out`. Para parar, Ctrl+C.
 
-d. Para mirar qué hace la celda, en una tercera terminal. **Linux (WSL2):**
+h. **RobotStudio.** **Reset** y **Play** una sola vez. En la app: modo **Simulación**, y la primera vez `nCajas := 1` e `indiceFijo := 7`; luego **CAJA EN POSICIÓN** como siempre. El socket de RAPID no pasa por WSL2: `T_COM` se conecta al puente, en Windows, igual que con el ciclo de Python. El ciclo no pide nada a RAPID hasta que el robot arranca el EGM de la caja.
+
+i. **Mirar qué hace** (opcional), en otra terminal. **Linux (WSL2):**
+```
+source /opt/ros/humble/setup.bash
+ros2 topic echo /rapid/estado
+```
+Sale `conectado: false` hasta el Play y `conectado: true` cuando `T_COM` llega al puente. Y para los hechos del ciclo:
 ```
 source /opt/ros/humble/setup.bash
 ros2 topic echo /celda/estado
 ```
 Saca una línea JSON por hecho: `inicio`, `caja`, `pinza`, `fin` o `error`. Con la cámara por ROS también `ros2 topic echo /celda/caja`.
 
-Si sale `no llega /brazo1/estado` o `no llega /rapid/estado`, falta el puente (o `host` no es el bueno, o el puente no tiene la sección `rapid`). Si sale `RAPID no se ha conectado`, falta Play o `T_COM`.
+*Si falla:*
+- RAPID se para con `El PC no ha dirigido la caja N: paro. Revisa el PC.` y la app deja **Valores por defecto**, **Cargar de fichero** y los ajustes en gris: el aviso es la consecuencia; la causa está en la terminal del `ros2 launch` (línea `el ciclo de la celda se ha parado: ...`), y `nodo_celda` ya ha terminado (hay que relanzar la celda, g). La app bloquea los ajustes mientras RAPID está en error y **ABORTAR** no vale con el programa parado: en RobotStudio, **Reset** y **Play**; RAPID vuelve a esperar INICIAR y entonces los ajustes se pueden cambiar (pestaña Parámetros, **Valores por defecto**).
+- El ciclo de **Python en Windows** (`python -m celda.ciclo celda\config_celda_windows.json`) se queda en `Esperando al socket de RAPID del puente...` con `timed out` (en Windows, un puerto sin nadie escuchando tarda ~2 s en rechazar y sale como `timed out`): ese ciclo busca el puente en `127.0.0.1`, y con `ip_control` puesto a la IP de WSL2 el puente ya no escucha ahí. Con esa IP, lanza la celda por ROS 2 (g); para el ciclo de Python de Windows, vuelve a poner `"127.0.0.1"` en `ip_control` (c) y reinicia el puente.
+- `ros2 topic ...` da un traceback largo con `xmlrpc`: el demonio de ROS está colgado. **Linux (WSL2):**
+```
+source /opt/ros/humble/setup.bash
+ros2 daemon stop
+ros2 daemon start
+```
+- `no llega /brazo1/estado` o `sin estado del puente: timed out`: el puente no está en marcha, o falta el cortafuegos (d), o la IP (b y c) no es la buena.
+- `Connection refused`: el puente no escucha en esa IP (revisa el `ip_control` y reinícialo).
+- `no llega /rapid/estado`: `nodo_puente` sin conexión con el puente, o lanzado sin `rapid:=true`.
+- `el puente no ofrece el socket de RAPID`: falta la sección `rapid` en `config.celda.json`.
+- `comando desconocido: rapid_estado`: el puente es el viejo; recompílalo (bloque «Primera vez con el socket de RAPID en el puente», arriba).
+- `RAPID no se ha conectado al socket del puente`: falta Play o `T_COM` no ha arrancado.
 
 ### Paso 9. App del FlexPendant (INICIAR y CAJA EN POSICIÓN)
 La app `Celda de cajas` (carpeta `robotica/flexpendant/CajaPinza`, ver su README) sustituye a editar `nCajas`, `modoSimulacion` e `indiceFijo` a mano y a forzar `CajaEnRecogida`. Desde ella:
@@ -193,7 +261,7 @@ Modo **Real**: RAPID no mueve la cinta ni escribe `caja.csv`, y la orientación 
 ### Paso 10. Cajas con su tamaño en el 3D (complemento CajasVariables)
 Sin este paso, la simulación tiene **una sola pieza de 200 mm** (`CajaGrande`) que los `Positioner` recolocan en cada caja: no se ve el tamaño de cada caja ni el reparto en la mesa. El complemento (`robotica/rapid/estacion/CajasVariables`, ver su README) vigila `CajaGrande` y, cada vez que RAPID coloca una caja:
 - la **redimensiona** con el largo, ancho y alto de su línea de `caja.csv` (misma caja, tamaño variable), con el mismo centro y la cara de abajo en la cinta, así que el sensor, el agarre y los `Positioner` siguen igual; la pinza agarra a la altura de cada caja (`alto / 2`) y se ve su trayectoria distinta;
-- deja una **copia** de la caja anterior donde se quedó en la mesa: se ve el reparto en filas. Al empezar otra tanda (RAPID reescribe `caja.csv`) se quitan las copias.
+- deja una **copia** de la caja anterior donde se quedó en la mesa: se ve el reparto en filas. Al terminar la tanda (RAPID escribe `fin_tanda.txt` en `HOME`) esperan 3 s y desaparecen todas, incluida la última, que se oculta; al empezar otra tanda (RAPID reescribe `caja.csv`) también se quitan las copias y la caja se vuelve a mostrar. Si abortas la tanda, no hay marca de fin y las cajas siguen hasta la siguiente.
 
 **`caja.csv` no se toca nunca a mano.** RAPID lo escribe él solo en la carpeta HOME cada vez que pulsas `INICIAR TANDA` en simulación: una línea por caja con `largo;ancho;alto;giro` (en mm y grados), con las medidas que salen de la caja de referencia y de `Cajas de tamaños distintos`. Lo leen el PC y el complemento, y se reescribe en cada tanda. En Real no existe (la cámara da las medidas).
 
@@ -203,6 +271,16 @@ Cómo cargarlo (los pasos de ABB para RobotStudio 2026, «Creating a RobotStudio
 3. Abre RobotStudio 2026 y la estación.
 4. Menú **Add-Ins**, panel de la izquierda: clic derecho en «Cajas variables» → **Load Add-In**.
 5. En **Output** debe salir «Cajas variables: cargado…» y, con la estación abierta, «Cajas variables: 12 Positioner, caja de 200 x 200 x 200 mm, csv: …». Además se escribe `C:\Users\Viktor\AppData\Local\Temp\CajasVariables.log`.
+
+**Actualizar el complemento y el módulo (fin de tanda, 21-nov).** Con RobotStudio abierto la DLL está bloqueada y no se puede sustituir. En este orden:
+1. Cierra RobotStudio.
+2. **Windows (PowerShell):** copia la DLL nueva al escritorio (la antigua queda como `CajasVariables.dll.antes_fin` si ya la copié yo; si no, copia la tuya antes):
+```
+Copy-Item "\\wsl.localhost\Ubuntu-22.04\home\ubuntu22\repos\tfm-robotica-bimanual\robotica\rapid\estacion\CajasVariables\bin\Paquete\CajasVariables.dll" "C:\Users\Viktor\Desktop\TFM_RAPID\Addin\CajasVariables\CajasVariables.dll" -Force
+```
+3. Abre RobotStudio y la estación. En **Output** debe salir `Cajas variables: cargado...`; si no, **Add-Ins** → clic derecho en «Cajas variables» → **Load Add-In**.
+4. Recarga `MOD_CajaPinza.mod` en `T_ROB1` y `T_COM` (paso 5). El del escritorio ya es el nuevo. Al recargar, los ajustes vuelven a los del módulo (recogida 700/0, altura de la cinta 220...).
+5. Prueba una tanda: al terminar, en `Output` sale `Cajas variables: tanda terminada: N cajas quitadas de la mesa y la ultima, oculta.` y el 3D queda vacío a los 3 s.
 
 El paquete `.rspak` (`Desktop\TFM_RAPID\Addin\TFM.CajasVariables-1.1.rspak`, Add-Ins → Install Package) es una vía que no está en el manual de ABB y con la que no llegó a cargar: un complemento instalado así no se carga solo, y no se ha comprobado que «Load Add-In» funcione con él.
 

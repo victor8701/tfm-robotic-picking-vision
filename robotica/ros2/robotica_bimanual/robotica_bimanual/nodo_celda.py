@@ -19,6 +19,7 @@ from __future__ import annotations
 import json
 import math
 import threading
+import time
 
 import rclpy
 from geometry_msgs.msg import PoseStamped
@@ -101,6 +102,7 @@ class NodoCelda(Node):
             self.get_logger().error(f"el ciclo de la celda se ha parado: {e}")
             self._informar({"evento": "error", "mensaje": str(e)})
         finally:
+            time.sleep(0.5)   # el ultimo mensaje (fin_programa) sale por un topic: hay que dejarlo llegar antes de cerrar el nodo
             self.rapid.cerrar()
             self.terminado.set()
 
