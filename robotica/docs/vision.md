@@ -1,94 +1,370 @@
-# Visión de la celda: calibración y pruebas en casa
+# Visión: manual paso a paso para probar
 
-La cámara da a la celda lo que en simulación sale de `caja.csv`: para cada caja, el **largo, el ancho, el alto, el giro y la posición (x, y) en la base del robot**. El PC lo lee con `FuenteCamara` (`celda/percepcion.py`) cuando la app está en **Real**. Todo el código está en `vision/` (modelo de cámara, tablero, detección) y `calibracion/camara.py` (programa de calibración).
+Este manual es para probar la visión **sin saber nada de visión**. Cada prueba dice qué necesitas, qué escribir, qué tienes que ver y qué hacer si no sale. Empieza por la Prueba 1 y sigue en orden: cada una es un poco más difícil y más cercana a la celda real.
 
-**Montaje que se supone:** una cámara FIJA, mirando hacia abajo (cenital), encima del punto de recogida, con la caja entera en la imagen. Con la cámara justo sobre la caja, la medida es la mejor (ver «Límites»). La detección no vale para una cámara en la muñeca.
+## 0. Qué hace, en dos frases
 
-| Programa | Para qué | Cuándo |
-|---|---|---|
-| `python3 -m calibracion.camara` | Imprime el tablero, calibra la cámara (intrínsecos) y la coloca en la base del robot (`camara.json`). | Puesta en marcha, una vez por montaje. |
-| `python3 -m vision.probar_en_casa` | Mide las cajas de fotos guardadas y dibuja el resultado. | En casa, sin robot; y en el laboratorio para comprobar la calibración. |
-| `python3 -m vision.generar_ejemplos` | Crea fotos sintéticas con verdad conocida. | Para ver que los programas funcionan antes de tener fotos propias. |
+Una cámara hace una foto de la caja y el programa calcula **dónde está** (x, y), **cuánto mide** (largo, ancho, alto) y **cuánto está girada**, en milímetros y con los ejes del robot. Para pasar de píxeles de la foto a milímetros del robot necesita saber dónde está la cámara: a eso se le llama **calibrar**.
 
-Se ejecutan desde `robotica/` (en Windows, PowerShell, con `pip install -r requirements.txt`; `pip install pillow` solo para que el tablero salga con la escala en el PNG).
+Hay dos programas que usarás:
 
-## 1. Probar en casa con imágenes
+| Programa | Para qué |
+|---|---|
+| `vision.probar_en_casa` | Mide las cajas de unas fotos y dibuja el resultado. Es el que más vas a usar. |
+| `calibracion.camara` | Calibra la cámara (le dice al programa dónde está y cómo es su objetivo). |
 
-### Con los ejemplos
+Y uno de ayuda: `vision.generar_ejemplos`, que fabrica fotos falsas con respuesta conocida para comprobar que todo funciona.
+
+## 1. Antes de empezar (2 minutos, una vez)
+
+**Dónde se escribe.** En la terminal de **Ubuntu (WSL)**: la ventana negra cuyo texto empieza por `ubuntu22@DESKTOP-...`. Se abre buscando «Ubuntu» en el menú de Windows. Todos los comandos de este manual son para esa terminal. (Para una prueba, `--interactivo`, hace falta PowerShell: se avisa en su sitio.)
+
+**Cada comando se escribe desde la carpeta `robotica`.** Por eso cada bloque de este manual empieza con un `cd`: así se puede copiar entero en una ventana nueva.
+
+**Comprueba que está todo instalado:**
+```bash
+python3 -c "import cv2, numpy; print('OpenCV', cv2.__version__)"
 ```
+Tiene que escribir algo como `OpenCV 4.13.0`. Si da «No module named cv2», instala con `pip install opencv-python numpy` y repite.
+
+**Cómo ver las imágenes que salen.** Los programas guardan sus resultados en la carpeta `resultados_vision`. Para abrirla en el Explorador de Windows:
+```bash
+explorer.exe resultados_vision
+```
+(Sin la terminal, la ruta es `\\wsl.localhost\Ubuntu-22.04\home\ubuntu22\repos\tfm-robotica-bimanual\robotica\resultados_vision`.) Cada vez que lances `probar_en_casa`, esa carpeta se rellena otra vez: lo anterior se sobrescribe, así que copia lo que quieras guardar.
+
+## 2. Seis palabras que salen en todas partes
+
+- **Tablero:** una hoja impresa con cuadros blancos y negros (un tablero de ajedrez) de tamaño conocido. Sirve de regla: como el programa sabe lo que mide cada cuadro, saca la escala de la foto.
+- **Calibrar:** decirle al programa dónde está la cámara y cómo es su objetivo. Se hace una vez, al montar la cámara.
+- **Modo `color`:** encuentra la caja por su color de cartón marrón. Es el que se usa si no dices otra cosa. **Depende del color**: si el fondo se parece a la caja, falla.
+- **Modo `fondo`:** compara la foto con otra foto de la misma escena **sin caja**. No depende del color de la caja.
+- **Modo `profundidad`:** usa un mapa de distancias (de una cámara de profundidad) y detecta lo que sobresale de la cinta. No depende del color ni de la luz. Necesita ese mapa.
+- **Alto de la caja:** una foto cenital no ve cuánto de alta es la caja; hay que dársela (`--alto`) o sacarla de la profundidad.
+
+## 3. Qué prueba hago
+
+| Prueba | Para qué sirve | Necesitas | Tiempo |
+|---|---|---|---|
+| **1. Ver que funciona** | Comprobar que todo está instalado y entender la salida | Nada | 5 min |
+| **2. Tus fotos, sin tablero** | Ver si el programa encuentra tus cajas | Tus fotos | 5 min |
+| **3. Medir cajas de verdad** | Ver cuánto se equivoca midiendo | Tablero impreso, regla, móvil | 30 min |
+| **4. Caja del color del fondo** | Que funcione aunque la caja se parezca al suelo | La prueba 3 + una foto sin caja | 15 min |
+| **5. Ajustar el color a tu caja** | Cajas que no son de cartón marrón | Tus fotos, PowerShell | 10 min |
+| **6. Ensayar la calibración** | Ver cómo se calibra y qué debe salir | Nada | 5 min |
+| **7. Calibrar tu cámara en casa** | Calibrar con una regla en vez del robot y medir la precisión de todo | Tablero, regla, móvil fijo | 1 h |
+| **8. Pruebas automáticas** | Comprobar que no se ha roto nada | Nada | 3 min |
+| **9. En el laboratorio** | La calibración de verdad, con el robot | Cámara montada, robot | 1–2 h |
+| **10. Ciclo completo con cámara** | El PC lee la cámara y mueve el robot | RobotStudio (avanzada) | 1 h |
+
+---
+
+## Prueba 1. Ver que funciona
+
+**Qué haces:** creas fotos falsas con respuesta conocida y compruebas que el programa acierta.
+
+**Pasos:**
+
+1. Crea las fotos de ejemplo (tarda unos 10 segundos):
+```bash
+cd /home/ubuntu22/repos/tfm-robotica-bimanual/robotica
 python3 -m vision.generar_ejemplos ejemplos_vision
+```
+Crea la carpeta `ejemplos_vision` con fotos de una mesa, un tablero y una caja (`casa/`), la misma mesa sin caja (`fondo.png`), fotos de una cámara de celda (`celda/`), fotos para calibrar (`calibracion/`) y `verdad.csv`, que dice lo que mide cada caja de verdad.
+
+2. Mide las 5 fotos de `casa`:
+```bash
+cd /home/ubuntu22/repos/tfm-robotica-bimanual/robotica
 python3 -m vision.probar_en_casa ejemplos_vision/casa --tablero 9x6 --cuadro 25 --fov 62 --modo profundidad
-python3 -m vision.probar_en_casa ejemplos_vision/casa --tablero 9x6 --cuadro 25 --fov 62 --alto 120 --esperado 200,140
-python3 -m vision.probar_en_casa ejemplos_vision/celda --calibracion ejemplos_vision/celda/camara.json --z 220
 ```
-Cada comando escribe en `resultados_vision/` las fotos anotadas (`*_anotada.png`), `detecciones.csv` y `caja_vision.csv`. `ejemplos_vision/verdad.csv` dice lo que mide cada caja.
 
-### Con tus fotos
-1. Imprime el tablero: `python3 -m calibracion.camara tablero --columnas 9 --filas 6 --cuadro 25 --salida tablero.png`. Imprímelo **al 100 %** y mide un cuadro con una regla: ese lado es el `--cuadro`.
-2. Pon el tablero **apoyado en la misma superficie que las cajas** (mesa, suelo, cartón) y entero en la foto, junto a la caja y sin tapar. Haz las fotos desde arriba, lo más cenital que puedas, con luz pareja y la caja separada del tablero (y de otras cajas, al menos 3 cm).
-3. Mide a mano largo, ancho y alto de la caja (para comparar).
-4. `python3 -m vision.probar_en_casa fotos/ --tablero 9x6 --cuadro 25 --fov 65 --alto 120 --esperado 300,200`
-
-El tablero da la escala, el origen (su esquina (0, 0), arriba a la izquierda) y la altura cero: las posiciones salen en mm en su marco (x a la derecha, y hacia arriba). `--fov` es el campo de visión **horizontal** de la cámara (unos 65–70° en un móvil; si lo tienes, `--intrinsecos` de la calibración mejora el resultado). El `--alto` es el de la caja. Sin él, hace falta un mapa de profundidad junto a la foto (`foto.npy`, en mm, alineado) y entonces cada caja lleva su alto medido.
-
-**Cómo separa la caja del resto** (`--modo`):
-- `color` (por defecto): rango HSV de cartón marrón. Si tu caja es de otro color o no la encuentra, `--interactivo` abre una ventana con barras (Intro acepta; `--guardar-params ajuste.json` guarda el rango y `--params ajuste.json` lo reutiliza) o se dan `--hsv-bajo H S V --hsv-alto H S V` (H de 0 a 180).
-- `fondo`: se da una foto de la misma escena sin cajas (`--fondo`). No depende del color.
-- `profundidad`: con mapa de profundidad; cuenta lo que sobresale del plano, así mide solo la tapa (la más exacta).
-
-Lo que escribe: por foto, la imagen con la tapa en verde (amarilla la elegida, roja si toca el borde), el centro, una flecha por el lado largo y las medidas; `detecciones.csv` con todas las cajas y `caja_vision.csv` con una caja por foto en el formato `largo;ancho;alto;giro` de `caja.csv` (sirve de entrada de simulación con medidas reales). Código de salida: 0 todas las fotos con caja; 1 alguna sin caja o sin tablero; 2 datos incorrectos.
-
-**Giro:** el del lado largo, en grados, antihorario visto desde arriba desde el eje x, entre −90 y 90 (como `giro` de `caja.csv`); si largo y ancho difieren menos de un 5 %, entre −45 y 45.
-
-## 2. Calibración para la puesta en marcha
-
-Hace falta: la cámara montada y fija donde va a trabajar, el tablero impreso (cuadro medido), poder llevar el TCP de la pinza (o una punta) a las esquinas del tablero y leer su x, y en la base del robot (FlexPendant, Cartesiano, Base, sin herramienta).
-
-**Paso 1 · Tablero.** `python3 -m calibracion.camara tablero --columnas 9 --filas 6 --cuadro 25`. Una de las dos cuentas par y la otra impar (9×6, 7×4…): si no, el origen sería ambiguo.
-
-**Paso 2 · Intrínsecos** (la distancia focal y la distorsión del objetivo; una vez por cámara y resolución). 12 a 20 fotos del tablero en distintas posiciones e inclinaciones, ocupando en alguna casi toda la imagen, en una carpeta:
+3. Mira la respuesta correcta para comparar:
+```bash
+cd /home/ubuntu22/repos/tfm-robotica-bimanual/robotica
+cat ejemplos_vision/verdad.csv
 ```
-python3 -m calibracion.camara intrinsecos fotos_tablero/ --tablero 9x6 --cuadro 25 --salida intrinsecos.json
-```
-Bueno: error de reproyección por debajo de 0,5 px; por encima de 1, repetir (código de salida 1). Mira las «peores fotos» y quita las desenfocadas. Mientras no se hagan, `--fov` en el paso 3 vale para empezar (la RealSense D435 tiene unos 69° de campo horizontal en color), con menos precisión.
 
-**Paso 3 · Cámara en la base.** Con la cámara en su sitio, el tablero **tendido boca arriba sobre la cinta**, entero en la imagen y sin movimiento, una foto. Con el TCP se tocan **dos o más esquinas** y se anotan sus x, y en la base. Cada esquina se nombra por su columna y su fila: la (0, 0) es la de arriba a la izquierda en la foto. Conviene tocar **3 para ajustar y 2 más para validar**. Si no sabes qué índice es cuál, ejecuta el comando una vez: guarda `tablero_detectado.png` con las cuatro esquinas de las puntas marcadas.
+**Qué tienes que ver:** una tabla como esta, y debajo `5 de 5 fotos con caja`:
 ```
-python3 -m calibracion.camara extrinsecos foto_cinta.png --intrinsecos intrinsecos.json --tablero 9x6 --cuadro 25 \
-    --z 220 --toca 0,0:700,-100 --toca 8,0:700,100 --toca 0,5:550,-100 --valida 8,5:550,100 --valida 4,2:625,0 --salida camara.json
+                    imagen    largo  ancho   alto   giro       x       y  conf  notas
+              casa_01.png *   199.8  139.7  120.7   -0.0   400.3   -60.1  1.00
+              casa_02.png *   200.0  140.0  120.7   25.0   410.2   -70.2  0.99
 ```
-`--z` es la altura de la superficie donde apoya el tablero (la **zCinta** de la app). El programa dice dónde queda la cámara en la base, el error de reproyección y, con `--valida`, el **error real de la cámara** en puntos que no usó para ajustar. Criterio: **objetivo** por debajo de 2 mm, **aceptable** por debajo de 5, **repetir** por encima (código de salida 1). Avisa si los puntos tocados no encajan con un tablero rígido, si encajan mejor con el tablero reflejado (índices cruzados) o si la cámara no mira hacia abajo.
+Cada fila es una foto. Compara con `verdad.csv`: el largo y el ancho tienen que coincidir en menos de 1 mm (200 × 140 la primera, 200 × 140 la segunda…). Si coincide, **todo funciona**. Cómo se lee la tabla está en el apartado 4.
 
-**Paso 4 · Comprobarlo con fotos de verdad.** Con `camara.json`, fotos de cajas reales sobre la cinta y su medida a mano:
-```
-python3 -m vision.probar_en_casa fotos_cinta/ --calibracion camara.json --z 220 --alto 120 --esperado 300,200
-```
-Las posiciones tienen que salir en la base del robot (compáralas con el TCP sobre la caja). Ajusta el color o usa `--modo fondo` / `profundidad` hasta que el error de las medidas sea pequeño.
+**Si no sale:** si dice `No module named cv2`, mira el apartado 1. Si dice `no existe ejemplos_vision/casa`, falta el paso 1.
 
-**Paso 5 · Conectarlo a la celda.** En `celda/config_celda.json` (la ruta del PC en Windows es `config_celda_windows.json`), una sección `camara`; las rutas relativas se toman desde la carpeta de ese JSON:
+## Prueba 2. Tus fotos, sin tablero
+
+**Qué haces:** pasas tus fotos por el programa para ver si encuentra la caja. Como tus fotos no tienen tablero, no hay escala exacta: los milímetros son **aproximados**, pero ves si la detecta y cómo está girada.
+
+**Antes:** pon tus fotos en una carpeta, por ejemplo `ejemplos_vision/planta_real_prueba`. **Saca de ahí** las imágenes que no son fotos (capturas con la máscara o las detecciones del programa anterior): confunden.
+
+**Pasos:**
+```bash
+cd /home/ubuntu22/repos/tfm-robotica-bimanual/robotica
+python3 -m vision.probar_en_casa ejemplos_vision/planta_real_prueba --altura-camara 1000 --fov 70 --alto 200
+```
+```bash
+cd /home/ubuntu22/repos/tfm-robotica-bimanual/robotica
+explorer.exe resultados_vision
+```
+Qué significan los números que puse:
+- `--altura-camara 1000`: se supone que la cámara mira justo hacia abajo a 1000 mm (1 metro) de la superficie. **Pon la altura real**, medida con una cinta.
+- `--fov 70`: el campo de visión horizontal de la cámara, en grados. Un móvil suele estar entre 65 y 80.
+
+En esta prueba la altura y el campo de visión **mandan directamente en los milímetros**: si te equivocas un 10 % en la altura, los mm salen un 10 % mal. Por eso los números son orientativos; lo importante es ver si encuentra la caja. Con tablero (Prueba 3) no pasa.
+- `--alto 200`: el alto de la caja, en milímetros.
+
+**Qué tienes que ver:** en las imágenes `*_anotada.png`, un rectángulo alrededor de cada caja detectada, una cruz en el centro, una flecha por el lado largo y las medidas. En la tabla, la caja elegida lleva un `*`.
+
+**Cómo saber si salió bien:**
+- El rectángulo rodea la caja de verdad: **bien**.
+- El rectángulo es casi toda la foto y la nota dice «ocupa el 50 % de la foto: el fondo se parece al color de la caja»: **mal**. El fondo (un suelo de madera, por ejemplo) tiene el color del cartón. Pasa a la Prueba 4.
+- El rectángulo es rojo y pone `RECORTADA`: la caja toca el borde de la foto. Haz la foto con la caja entera.
+
+## Prueba 3. Medir cajas de verdad
+
+**Qué haces:** haces fotos de una caja con un tablero impreso al lado, y comparas lo que mide el programa con lo que mides tú con una regla. Es la prueba que dice cuánto se equivoca de verdad.
+
+**Qué necesitas:** una impresora, una regla, un móvil, una caja que puedas medir y una superficie lisa de color distinto al de la caja (una mesa gris, una hoja blanca grande).
+
+**Pasos:**
+
+1. Crea el tablero para imprimir:
+```bash
+cd /home/ubuntu22/repos/tfm-robotica-bimanual/robotica
+python3 -m calibracion.camara tablero --columnas 9 --filas 6 --cuadro 25 --salida tablero.png
+```
+2. Imprime `tablero.png` **al 100 %** (en el cuadro de impresión de Windows, elige «tamaño real» o «100 %», **no** «ajustar a la página»). Pégalo sobre cartón o algo rígido: tiene que quedar **plano y sin arrugas**.
+3. Con una regla, mide el lado de **un cuadro** del tablero impreso en milímetros. Debería estar muy cerca de 25. **Apunta tu valor medido**: es tu `--cuadro`.
+4. Mide la caja con la regla: largo, ancho y alto en mm. Apúntalos.
+5. Coloca el tablero y la caja **sobre la misma superficie**, a unos 5 cm el uno del otro (que no se toquen ni se tapen). Haz varias fotos **desde arriba, lo más vertical que puedas**, a 60–100 cm, con el tablero y la caja enteros en la foto, con luz pareja y sin brillos. Cambia la caja de sitio o de giro entre foto y foto.
+6. Pasa las fotos al ordenador y ponlas en una carpeta, por ejemplo `ejemplos_vision/mis_fotos`.
+7. Mídelas (cambia `25` por tu `--cuadro`, `120` por el alto de tu caja y `300,200` por su largo y ancho):
+```bash
+cd /home/ubuntu22/repos/tfm-robotica-bimanual/robotica
+python3 -m vision.probar_en_casa ejemplos_vision/mis_fotos --tablero 9x6 --cuadro 25 --fov 70 --alto 120 --esperado "300,200"
+```
+
+`--fov 70` es el campo de visión horizontal del móvil (65–80 °). Aquí no hace falta que sea exacto: en las pruebas con fotos de ejemplo, equivocarse 8–18 ° cambia las medidas unos pocos por ciento.
+
+**Qué tienes que ver:** en la columna de notas, el error de cada foto (`error largo +3.1 ancho -1.2 mm`). Con la caja cerca del centro de la foto, un error de pocos milímetros es normal; si la caja está en una esquina de la foto, puede llegar a una decena porque la cámara ve la pared lateral (la nota `pared ~X mm` lo avisa).
+
+**Si no sale:**
+- «No veo el tablero»: el tablero tiene que salir **entero**, enfocado y sin brillos. Y las esquinas se cuentan por dentro: un tablero de 10×7 cuadros tiene 9×6 esquinas.
+- Los errores son de 20 mm o más con la caja bien detectada: revisa que midas bien el `--cuadro` (con regla, no el valor que pone el programa) y que la foto sea cenital.
+
+## Prueba 4. Caja del color del fondo
+
+**Qué haces:** haces que el programa funcione aunque la caja se parezca al suelo, comparando la foto con otra igual **sin caja**.
+
+**Pasos:**
+
+1. Fija el móvil (apóyalo en una pila de libros o un trípode). **No lo muevas** mientras hagas las fotos.
+2. Con el tablero en la mesa, haz una foto **sin caja** y llámala `fondo.jpg`.
+3. Sin mover nada, haz las fotos **con la caja** (el tablero sigue ahí).
+4. Pon `fondo.jpg` en una carpeta **distinta** de la de las fotos de cajas, por ejemplo `ejemplos_vision/fondo/`, y las fotos de cajas en `ejemplos_vision/mis_fotos_fondo/`.
+5. Mide:
+```bash
+cd /home/ubuntu22/repos/tfm-robotica-bimanual/robotica
+python3 -m vision.probar_en_casa ejemplos_vision/mis_fotos_fondo --tablero 9x6 --cuadro 25 --fov 70 --alto 120 --modo fondo --fondo ejemplos_vision/fondo/fondo.jpg --esperado "300,200"
+```
+**Qué tienes que ver:** el rectángulo de cada foto sobre la caja, como en la Prueba 3. Para comprobar que el modo no depende del color, prueba también con una caja de otro color.
+
+**Si no sale:** las fotos tienen que ser del **mismo tamaño** que el fondo y con la cámara en el mismo sitio; si no, dirá «la foto de fondo mide … y la imagen …». Un cambio grande de luz entre la foto del fondo y las demás también estropea el resultado.
+
+Para probar con las fotos de ejemplo (que traen su propio fondo):
+```bash
+cd /home/ubuntu22/repos/tfm-robotica-bimanual/robotica
+python3 -m vision.probar_en_casa ejemplos_vision/casa --tablero 9x6 --cuadro 25 --fov 62 --alto 120 --modo fondo --fondo ejemplos_vision/fondo.png
+```
+
+## Prueba 5. Ajustar el color a tu caja
+
+**Qué haces:** si tu caja no es de cartón marrón, o el modo `color` no la encuentra, ajustas el rango de color con unas barras deslizantes y lo guardas.
+
+**Esta prueba se hace en PowerShell de Windows** (no en la terminal de Ubuntu), porque abre una ventana. **No he podido ejecutarla** (donde la preparé no hay pantalla): si falla, dime el mensaje.
+
+**Pasos** (abre PowerShell y escribe, cambiando la ruta de la foto):
+```
+cd \\wsl.localhost\Ubuntu-22.04\home\ubuntu22\repos\tfm-robotica-bimanual\robotica
+& "C:\Program Files\Python311\python.exe" -m vision.probar_en_casa ejemplos_vision\mis_fotos --tablero 9x6 --cuadro 25 --fov 70 --alto 120 --interactivo --guardar-params ajuste.json
+```
+(La primera vez: `& "C:\Program Files\Python311\python.exe" -m pip install opencv-python numpy`.)
+
+Se abre una ventana con la primera foto. La parte **verde** es lo que el programa cree que es caja. Mueve las barras (H, S, V, mínimo y máximo) hasta que el verde cubra solo la caja. Pulsa **Intro** para aceptar (Esc cancela). El rango queda en `ajuste.json`. Para usarlo otra vez sin abrir la ventana:
+```
+cd \\wsl.localhost\Ubuntu-22.04\home\ubuntu22\repos\tfm-robotica-bimanual\robotica
+& "C:\Program Files\Python311\python.exe" -m vision.probar_en_casa ejemplos_vision\mis_fotos --tablero 9x6 --cuadro 25 --fov 70 --alto 120 --params ajuste.json
+```
+
+## Prueba 6. Ensayar la calibración
+
+**Qué haces:** haces la calibración completa con datos que ya tienen la respuesta, para ver cómo se usa y qué tiene que salir. Antes hay que haber hecho la Prueba 1.
+
+**Pasos:** (son tres comandos, uno detrás de otro)
+```bash
+cd /home/ubuntu22/repos/tfm-robotica-bimanual/robotica
+python3 -m calibracion.camara intrinsecos ejemplos_vision/calibracion/fotos_tablero --tablero 9x6 --cuadro 25 --salida ejemplos_vision/intrinsecos.json
+```
+```bash
+cd /home/ubuntu22/repos/tfm-robotica-bimanual/robotica
+python3 -m calibracion.camara extrinsecos ejemplos_vision/calibracion/cinta.png --intrinsecos ejemplos_vision/intrinsecos.json --tablero 9x6 --cuadro 25 --z 220 --toca "0,0:600.0,-120.0" --toca "8,0:793.2,-68.2" --toca "0,5:632.4,-240.7" --valida "8,5:825.5,-189.0" --valida "4,2:709.5,-142.4" --salida ejemplos_vision/camara_calibrada.json --anotada ejemplos_vision/tablero_detectado.png
+```
+```bash
+cd /home/ubuntu22/repos/tfm-robotica-bimanual/robotica
+python3 -m vision.probar_en_casa ejemplos_vision/celda --calibracion ejemplos_vision/camara_calibrada.json --z 220
+```
+
+**Qué tienes que ver:**
+- Del primero: `12 fotos usadas, error de reproyección 0.02 px` y `campo de visión horizontal 62°`.
+- Del segundo: `cámara en la base: x 690, y 5, z 870 mm`, `VALIDACIÓN: error 0.08 mm` y `criterio: objetivo`.
+- Del tercero: las tres cajas de `celda/` medidas y colocadas en la base del robot, con la posición a 1 mm de `verdad.csv`.
+
+**Qué es cada cosa** (para entender la Prueba 7 y la 9): el primer comando averigua cómo es el objetivo de la cámara con 12 fotos del tablero. El segundo averigua **dónde está la cámara**: con el tablero sobre la cinta, se «tocan» esquinas con el robot y se dicen sus coordenadas (aquí ya vienen puestas en `--toca`); las dos de `--valida` no se usan para ajustar, solo para comprobar. Abre `ejemplos_vision/tablero_detectado.png`: marca las esquinas (0,0), (8,0), (0,5) y (8,5) con sus índices, que son los números que se escriben en `--toca`.
+
+## Prueba 7. Calibrar tu cámara en casa con una regla
+
+**Qué haces:** el mismo proceso de la Prueba 6, pero con **tu móvil** y una **regla** en vez del robot. Te dice cuánto se equivoca el conjunto cámara + calibración + medida, que es lo que importa. En la celda, la regla se sustituye por la punta de la pinza.
+
+**Pasos:**
+
+1. **Intrínsecos.** Haz 12 a 20 fotos del tablero impreso con el móvil, desde distintos sitios e inclinaciones (de cerca, de lejos, de lado), con el tablero entero en cada una. Que el móvil no cambie de zoom ni de resolución. Ponlas en una carpeta, por ejemplo `ejemplos_vision/intr_movil`, y ejecuta:
+```bash
+cd /home/ubuntu22/repos/tfm-robotica-bimanual/robotica
+python3 -m calibracion.camara intrinsecos ejemplos_vision/intr_movil --tablero 9x6 --cuadro 25 --salida intrinsecos_movil.json
+```
+Bueno: error de reproyección por debajo de 0,5 px. Por encima de 1, repite las fotos (más nítidas).
+
+2. **Tu propio «sistema de coordenadas».** Elige un punto de la mesa como origen (0, 0) y pégale una cruz de cinta. Decide el eje **x hacia la derecha** y el **eje y hacia el fondo** (alejándote de ti), mirando la mesa de frente. Los milímetros que midas serán esas x e y. (Si inviertes un eje, el programa avisa de que el tablero sale «reflejado».)
+
+3. **Fija el móvil** mirando hacia abajo desde unos 70 cm (en un trípode o en un soporte). **No lo muevas más.** Pon el tablero plano en la mesa, entero en la foto, y haz **una foto**: `cinta.jpg`.
+
+4. Con la regla, mide x e y (desde tu cruz) de **cinco esquinas del tablero**: (0,0), (8,0), (0,5) como esquinas para ajustar y (8,5) y (4,2) para validar. La esquina (0,0) es la de arriba a la izquierda **en la foto**. Para estar seguro del índice, haz primero la orden con cualquier coordenada: guarda `tablero_detectado.png` con los índices marcados.
+
+5. Calibra (cambia las rutas y los números por los tuyos; `--z 0` porque la mesa es tu nivel cero):
+```bash
+cd /home/ubuntu22/repos/tfm-robotica-bimanual/robotica
+python3 -m calibracion.camara extrinsecos ejemplos_vision/cinta.jpg --intrinsecos intrinsecos_movil.json --tablero 9x6 --cuadro 25 --z 0 --toca "0,0:X,Y" --toca "8,0:X,Y" --toca "0,5:X,Y" --valida "8,5:X,Y" --valida "4,2:X,Y" --salida camara_casa.json --anotada tablero_detectado.png
+```
+
+6. **Mide la precisión de todo el conjunto.** Pon una caja en la mesa, con el móvil fijo en el mismo sitio, y haz fotos. Con la regla mide dónde está el **centro de la caja** (x, y) en tu sistema de coordenadas. Pasa la foto por el programa:
+```bash
+cd /home/ubuntu22/repos/tfm-robotica-bimanual/robotica
+python3 -m vision.probar_en_casa ejemplos_vision/fotos_caja --calibracion camara_casa.json --z 0 --alto 120 --esperado "300,200"
+```
+
+**Qué tienes que ver:** en el paso 5, `criterio: objetivo` (error de validación menor de 2 mm) o `aceptable` (menor de 5). Con una regla, `aceptable` ya es un buen resultado. En el paso 6, los `x` e `y` de la tabla tienen que coincidir con lo que mediste a mano, con un error de pocos milímetros.
+
+**Si no sale:** `criterio: repetir` o «tablero reflejado» significan que un punto está mal medido o que el índice de una esquina está cruzado; mira `tablero_detectado.png` y repite el toque.
+
+## Prueba 8. Pruebas automáticas
+
+**Qué haces:** compruebas que el código no se ha roto. No hace falta entender nada: o pasan todas o no.
+```bash
+cd /home/ubuntu22/repos/tfm-robotica-bimanual/robotica
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python3 -m pytest -q tests/test_vision_camara.py tests/test_calibracion_camara.py tests/test_vision_casa.py tests/test_celda_percepcion.py
+```
+**Qué tienes que ver:** una línea final como `NN passed in 120.00s` (tarda unos 2 minutos). Si pone `failed`, dime cuáles.
+
+## Prueba 9. En el laboratorio: calibrar con el robot
+
+**Qué haces:** la Prueba 7, pero con el robot: en vez de la regla, la punta de la pinza toca las esquinas. Es la calibración de verdad.
+
+**Qué necesitas:** la cámara montada y fija donde va a trabajar (mirando hacia abajo, encima de la recogida), el tablero impreso y pegado plano, y el FlexPendant.
+
+**Pasos:**
+1. **Intrínsecos:** igual que el paso 1 de la Prueba 7, pero con la **cámara de la celda** (en una carpeta, `fotos_tablero`).
+2. Pon el tablero **boca arriba sobre la cinta**, entero en la imagen, y haz **una foto** (`foto_cinta.png`).
+3. Con la pinza (o una punta fina en la brida) toca la esquina (0,0), la (8,0) y la (0,5) del tablero, y en el FlexPendant (Cartesiano, Base, sin herramienta) apunta los x e y de cada una. Después toca (8,5) y (4,2) para validar. Mide también la altura `z` de la superficie de la cinta: es la `zCinta` de la app.
+4. Calibra, con tus números:
+```bash
+cd /home/ubuntu22/repos/tfm-robotica-bimanual/robotica
+python3 -m calibracion.camara extrinsecos foto_cinta.png --intrinsecos intrinsecos.json --tablero 9x6 --cuadro 25 --z 220 --toca "0,0:X,Y" --toca "8,0:X,Y" --toca "0,5:X,Y" --valida "8,5:X,Y" --valida "4,2:X,Y" --salida camara.json --anotada tablero_detectado.png
+```
+**Qué tienes que ver:** `criterio: objetivo` (menos de 2 mm). Si sale `aceptable` (2 a 5 mm), vale para empezar. Con `repetir`, vuelve a tocar los puntos.
+5. Comprueba con cajas reales sobre la cinta (Prueba 7, paso 6, con `--calibracion camara.json --z 220`) y compara con la posición real del TCP sobre la caja.
+
+## Prueba 10. Ciclo completo con cámara (avanzada)
+
+**Esto no lo he probado en RobotStudio.** Es el PC leyendo la cámara y moviendo el robot en el modo **Real**. Antes de nada, el ciclo completo en simulación (Paso 8 del manual de RobotStudio) tiene que funcionar.
+
+**Qué haces:** en vez de una cámara de verdad, el PC lee fotos de una carpeta (las de ejemplo de `celda/`), una por cada caja.
+
+**Pasos:**
+1. Abre `\\wsl.localhost\Ubuntu-22.04\home\ubuntu22\repos\tfm-robotica-bimanual\robotica\celda\config_celda_windows.json` y pon `"modo_simulacion": false` y esta sección `camara` (las rutas son relativas a esa carpeta `celda\`):
 ```json
 "camara": {
-  "calibracion": "camara.json",
-  "origen": {"tipo": "realsense", "tam": [1280, 720], "fps": 15},
-  "alto_mm": null,
+  "calibracion": "../ejemplos_vision/celda/camara.json",
+  "origen": {"tipo": "carpeta", "ruta": "../ejemplos_vision/celda"},
   "modo": "profundidad"
 }
 ```
-- `origen`: `{"tipo": "carpeta", "ruta": "fotos"}` (imágenes guardadas, para ensayar el ciclo en casa), `{"tipo": "opencv", "indice": 0}` (cámara USB, sin profundidad) o `{"tipo": "realsense"}` (necesita `pip install pyrealsense2`).
-- `alto_mm`: alto de las cajas si no se mide con profundidad (el mismo para todas); `null` si hay profundidad.
-- `modo`, `hsv_bajo`, `hsv_alto`, `umbral_fondo`, `fondo`, `params`: como en las pruebas en casa.
+2. En la app del FlexPendant: **Real**, 3 cajas, y en la pestaña **Parámetros → Recogida**: Posición de la caja = **Cámara**, `recogidaX` = 700, `recogidaY` = 0, zona permitida ±50 y ±50, y `zCinta` = 220.
+3. Arranca como en el Paso 8 (puente, PC, Play) y pulsa **CAJA EN POSICIÓN** en cada caja.
 
-En la app, pestaña **Parámetros**: **Recogida → Posición de la caja = Cámara** (solo en Real), el punto nominal `recogidaX/Y` (donde espera la pinza) y la **zona permitida** ±X, ±Y; la **corrección de cámara** (`camaraOffsetX/Y/Giro`) suma un ajuste fino a lo medido; **Tiempos → máximo esperando a la cámara**. Con **Fija**, el PC usa siempre `recogidaX/Y` y de la cámara solo toma las medidas y el giro. **Altura de la cinta** (`zCinta`) tiene que ser la `--z` de la calibración.
+**Qué tienes que ver:** el PC escribe `Celda: caja 1 de 3 (` con las medidas de la caja (200 × 140 × 120 mm, con algún decimal de más) y su giro, y el robot va al punto de la caja; la 2 y la 3 con sus propias medidas (200 × 140 con giro de −45°, y 160 × 100 × 90 con giro de 60°).
 
-## 3. Cómo se comporta en la celda
-Para cada caja el PC pide imágenes hasta ver una **entera** (no cortada por el borde) o agotar el tiempo máximo de la app; si no la ve, **se para con un aviso** y no usa el punto fijo. Si hay varias cajas en la imagen, coge la más cercana al punto de recogida. Después comprueba que el centro cae en la zona permitida (si no, no se mueve), que la pinza puede agarrarla (apertura, alto mínimo) y que cabe en la mesa, como con `caja.csv`.
+**Si no sale:** el PC se para con un mensaje claro. «La cámara no ve ninguna caja entera» = no hay más fotos en la carpeta o la caja no se detecta; «fuera de la zona permitida» = la caja está lejos de `recogidaX/Y`. Más mensajes en el apartado 5. Con una cámara de verdad, el `origen` es `{"tipo": "realsense"}` (necesita `pip install pyrealsense2`) o `{"tipo": "opencv", "indice": 0}` (cámara USB, sin profundidad: entonces hay que dar el `alto_mm` de las cajas y usar `"modo": "color"`). **La RealSense está sin probar.**
 
-## 4. Límites y sin comprobar
-- **Solo se ha probado con imágenes sintéticas** (`vision/escena.py`: tablero con perspectiva y cajas como prismas): error de 0,1 mm en la posición de la cámara, 1 mm con profundidad y hasta unos mm con color. **No hay datos de una cámara ni de una caja reales.**
-- **Pared de la caja (color y fondo):** la silueta incluye la pared que mira a la cámara, y la medida crece hacia el pie de la cámara (unos 8 mm en el ejemplo, con la caja a 150 mm del eje y la cámara a 800 mm; 0 si está justo debajo). El programa lo estima en `pared_mm` y avisa. Con profundidad no ocurre. **Pon la cámara sobre el punto de recogida.**
-- **Cajas pegadas:** dos cajas a menos de unos 3 cm en la imagen se funden en una (el cierre de la máscara las une). Con profundidad y cajas separadas no hay problema.
-- **Luz y color:** el rango HSV por defecto es de cartón marrón; con brillos, sombras duras o cajas blancas, usa `--modo fondo` o `profundidad`.
-- **RealSense:** `vision.proveedores.RealSense` está escrito y **sin probar** (no hay cámara ni `pyrealsense2` aquí): comprueba que la profundidad llega alineada con el color y en mm. Los intrínsecos de fábrica de la cámara no se leen: se calibran con el tablero.
-- **`--interactivo`** abre una ventana de OpenCV: no se ha podido ejecutar (sin pantalla en el equipo de desarrollo).
-- **Una caja por imagen:** `FuenteCamara` lee una caja cada vez; la cinta en movimiento (agarrar al vuelo) no está.
-- El tablero se detecta con el detector de sectores de OpenCV (~0,6 s por foto), que es preciso pero lento: solo se usa al calibrar o en las pruebas, no en el ciclo.
+---
+
+## 4. Cómo leer los resultados
+
+**La tabla** (una fila por caja detectada, la elegida lleva un `*`):
+
+| Columna | Qué es |
+|---|---|
+| `largo`, `ancho`, `alto` | Medidas de la caja en mm. El largo es siempre el lado mayor. |
+| `giro` | Cuánto está girada, en grados, entre −90 y 90. Mide el lado largo, desde el eje x, hacia la izquierda visto desde arriba. 0 = el lado largo va a lo largo de x. |
+| `x`, `y` | Dónde está el centro de la tapa, en mm. En casa son respecto a la esquina (0,0) del tablero; con la calibración de la celda, respecto a la base del robot. |
+| `conf` | De 0 a 1: lo rectangular que es la mancha y si se ve entera. Por debajo de 0,5, desconfía. |
+| `notas` | Avisos: `RECORTADA` (toca el borde de la foto), `pared ~X mm` (la pared lateral puede inflar la medida), `ocupa el X %` (el fondo se parece a la caja). |
+
+**La foto anotada** (`*_anotada.png`, en `resultados_vision`): contorno de la tapa, en **amarillo** la caja elegida, en **verde** las demás y en **rojo** las recortadas; una cruz en el centro, una flecha por el lado largo y las medidas escritas.
+
+**Los ficheros CSV** (en `resultados_vision`): `detecciones.csv` tiene todas las cajas con todos sus datos, y `caja_vision.csv` una caja por foto en el formato `largo;ancho;alto;giro` de `caja.csv`, para alimentar la simulación con medidas reales.
+
+**El código de salida:** 0 si todas las fotos tienen caja, 1 si alguna no, 2 si falta algún dato.
+
+## 5. Problemas típicos
+
+| Pasa esto | Qué hacer |
+|---|---|
+| `No module named cv2` | `pip install opencv-python numpy` |
+| El programa solo muestra ayuda y «Falta la orden» o «Falta la foto o la carpeta» | Te falta la orden o la carpeta de fotos: copia el comando de la prueba |
+| «no veo el tablero de 9x6 esquinas» | El tablero debe salir entero, enfocado, sin brillos. Las esquinas son las de dentro: 10×7 cuadros = 9×6 esquinas |
+| «no encuentro ninguna caja» | El color no es el del cartón: Prueba 5 (`--interactivo`) o Prueba 4 (`--modo fondo`) |
+| «ocupa el 50 % de la foto» | El fondo se parece a la caja: `--modo fondo`, otro fondo o profundidad |
+| `RECORTADA` | La caja toca el borde de la foto: encuádrala entera |
+| Con `--modo profundidad` no encuentra la caja | El `--fov` (o los intrínsecos) tiene que ser el de la cámara que hizo el mapa de profundidad: con uno equivocado, las alturas salen mal y no ve nada sobresalir |
+| Dos cajas salen como una | Están a menos de 3 cm: sepáralas |
+| La foto no se lee | Formatos válidos: png, jpg, jpeg, bmp, tif. Si es `.heic` o `.webp`, conviértela |
+| Con tablero, mide mal | Mide a mano el cuadro impreso y usa ese valor en `--cuadro`; haz la foto más vertical |
+| `calibracion.camara`: «criterio: repetir» | Un punto tocado mal: mira `tablero_detectado.png` y repite el toque |
+| «el tablero reflejado» | Los ejes que has usado son un espejo (x a la derecha e y hacia ti): usa x a la derecha e y al fondo |
+| PowerShell: error con `--toca 0,0:...` | Los valores con coma van **entre comillas**: `--toca "0,0:600,-120"` |
+| El PC se para: «la cámara no ve ninguna caja entera en N s» | La caja no se ve entera o es de otro color; el tiempo es el de la app (Parámetros → Tiempos) |
+| El PC se para: «fuera de la zona permitida» | La caja está más lejos del punto de recogida que la zona de la app: acércala o amplía la zona |
+
+## 6. Qué NO está probado
+
+- **Solo se ha probado con imágenes sintéticas** (dibujadas por el propio programa): la cámara se coloca con 0,1 mm de error y la caja se mide a 1 mm con profundidad. **No hay medidas con una cámara ni con cajas reales.** La Prueba 3 y la Prueba 7 son las que lo miden de verdad.
+- La **RealSense** (`pyrealsense2`) está escrita pero sin probar, igual que `--interactivo` y la Prueba 10.
+- Con **color o fondo**, si la caja está lejos del centro de la foto o la cámara no es cenital, la pared lateral infla la medida unos mm (con profundidad no). Monta la cámara justo encima de la recogida.
+- Una caja con las **solapas abiertas** da un rectángulo que incluye las solapas; con la caja cerrada mide el cuerpo.
+- Una cinta que **se mueve** o tiene dibujo estropea el modo `fondo`; el modo `profundidad` lo evita.
+- Para las pruebas del PC con la cámara, **una caja por imagen**; agarrar al vuelo una caja en movimiento no está hecho.
+
+## 7. Dónde está cada cosa
+
+| Qué | Dónde |
+|---|---|
+| Programa de pruebas | `vision/probar_en_casa.py` |
+| Programa de calibración | `calibracion/camara.py` |
+| Fotos de ejemplo | `vision/generar_ejemplos.py` (crea `ejemplos_vision/`) |
+| Detección de la caja | `vision/deteccion.py` |
+| Modelo de cámara | `vision/camara.py` |
+| La cámara dentro del ciclo del PC | `celda/percepcion.py` (`FuenteCamara`) |
+| Conectarla a la celda | Paso 11 del manual de RobotStudio y Prueba 10 de este manual |

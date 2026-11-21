@@ -7,11 +7,15 @@ Crea en esa carpeta:
                    distintos en cada una, con la profundidad (.npy) de cada foto en `casa_prof/`
   fondo.png        la misma escena sin cajas (para --modo fondo)
   celda/           fotos de una cámara fija sobre la cinta de la celda (base del robot) y `camara.json` con su calibración
+  calibracion/     12 fotos del tablero (`fotos_tablero/`) y una foto de la cinta con el tablero tendido (`cinta.png`), de la misma
+                   cámara que `celda/camara.json`, y `toques.txt` con los `--toca` y `--valida` que se darían al tocar las esquinas con el
+                   TCP (ya entre comillas, para PowerShell): para ensayar el programa de calibración sin cámara ni robot (la cámara debe salir en x 690, y 5, z 870)
   verdad.csv       lo que mide cada caja y dónde está (para comparar con lo que da el programa)
 
-Después:
+Después (mira docs/vision.md, el manual paso a paso):
+    python3 -m calibracion.camara intrinsecos ejemplos_vision/calibracion/fotos_tablero --tablero 9x6 --cuadro 25 --salida ejemplos_vision/intrinsecos.json
     python3 -m vision.probar_en_casa ejemplos_vision/casa --tablero 9x6 --cuadro 25 --fov 62     (alto medido con la profundidad .npy)
-    python3 -m vision.probar_en_casa ejemplos_vision/casa --tablero 9x6 --cuadro 25 --fov 62 --alto 120 --esperado 200,140
+    python3 -m vision.probar_en_casa ejemplos_vision/casa --tablero 9x6 --cuadro 25 --fov 62 --alto 120 --esperado "200,140"
     python3 -m vision.probar_en_casa ejemplos_vision/celda --calibracion ejemplos_vision/celda/camara.json --z 220
 """
 from __future__ import annotations
@@ -42,6 +46,35 @@ CAJAS_CASA = [
 ]
 
 
+def _calibracion(carpeta: Path) -> None:
+    """Fotos para ensayar calibracion.camara: el tablero en 12 posiciones y sobre la cinta, vistos por la camara de celda/camara.json."""
+    fotos = carpeta / "calibracion" / "fotos_tablero"
+    fotos.mkdir(parents=True, exist_ok=True)
+    cam = camara_cenital(altura_mm=700.0, fov_horizontal_deg=62.0)   # misma K que la de la celda (mismo objetivo y resolucion)
+    rng = np.random.default_rng(2)
+    for n in range(12):
+        inc, az = np.radians(rng.uniform(-35, 35)), np.radians(rng.uniform(-30, 30))
+        Rx = np.array([[1, 0, 0], [0, np.cos(inc), -np.sin(inc)], [0, np.sin(inc), np.cos(inc)]])
+        Ry = np.array([[np.cos(az), 0, np.sin(az)], [0, 1, 0], [-np.sin(az), 0, np.cos(az)]])
+        g = np.radians(rng.uniform(-35, 35))
+        Rz = np.array([[np.cos(g), -np.sin(g), 0], [np.sin(g), np.cos(g), 0], [0, 0, 1]])
+        T = Pose.crear(t=[rng.uniform(-160, -60), rng.uniform(-110, -30), rng.uniform(0, 60)], q=desde_matriz(Rz @ Rx @ Ry))
+        cv2.imwrite(str(fotos / f"tablero_{n + 1:02d}.png"), escena(cam, tablero=TABLERO, T_base_tablero=T, ruido=1.0, semilla=n))
+    # el tablero sobre la cinta (z = 220), girado 15 grados y con su esquina (0, 0) en (600, -120); la camara de la celda lo ve
+    a = np.radians(15.0)
+    T_bt = Pose.crear(t=[600.0, -120.0, 220.0], q=desde_matriz(np.array([[np.cos(a), -np.sin(a), 0], [np.sin(a), np.cos(a), 0], [0, 0, 1]])))
+    cam_c = camara_cenital(altura_mm=650.0, centro_xy=(690.0, 5.0), fov_horizontal_deg=62.0, inclinacion_deg=2.0, z_plano=220.0)
+    cv2.imwrite(str(carpeta / "calibracion" / "cinta.png"), escena(cam_c, tablero=TABLERO, T_base_tablero=T_bt, z_plano=220.0, ruido=1.0, semilla=7))
+
+    def toque(c, f):
+        uv = TABLERO.puntos_plano()[TABLERO.indice(c, f)]
+        p = T_bt.aplicar(np.array([[uv[0], uv[1], 0.0]]))[0]
+        return f'"{c},{f}:{p[0]:.1f},{p[1]:.1f}"'   # entre comillas: PowerShell trata la coma como separador
+
+    toques = [f"--toca {toque(0, 0)}", f"--toca {toque(8, 0)}", f"--toca {toque(0, 5)}", f"--valida {toque(8, 5)}", f"--valida {toque(4, 2)}"]
+    (carpeta / "calibracion" / "toques.txt").write_text(" ".join(toques) + "\n", encoding="utf-8")
+
+
 def generar(carpeta: Path) -> None:
     casa, prof, celda = carpeta / "casa", carpeta / "casa_prof", carpeta / "celda"
     for d in (casa, prof, celda):
@@ -68,6 +101,7 @@ def generar(carpeta: Path) -> None:
         cv2.imwrite(str(celda / f"{nombre}.png"), escena(cam_c, [caja], z_plano=220.0, ruido=2.0, semilla=n))
         np.save(celda / f"{nombre}.npy", profundidad(cam_c, [caja], z_plano=220.0))
         verdad.append([f"celda/{nombre}.png", l, a, h, g, c[0], c[1]])
+    _calibracion(carpeta)
     with open(carpeta / "verdad.csv", "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh, delimiter=";")
         w.writerow(["imagen", "largo", "ancho", "alto", "giro", "centro_x", "centro_y"])
@@ -79,7 +113,7 @@ def main(argv=None) -> int:
     ap.add_argument("carpeta", nargs="?", default="ejemplos_vision")
     args = ap.parse_args(argv)
     generar(Path(args.carpeta))
-    print(f"ejemplos en {args.carpeta}/ (casa/, fondo.png, celda/ y verdad.csv); mira la cabecera de vision/generar_ejemplos.py para probarlos")
+    print(f"ejemplos en {args.carpeta}/ (casa/, fondo.png, celda/, calibracion/ y verdad.csv); mira la cabecera de vision/generar_ejemplos.py para probarlos")
     return 0
 
 

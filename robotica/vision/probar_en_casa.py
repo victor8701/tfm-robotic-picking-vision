@@ -10,13 +10,16 @@ Dos formas de dar escala y marco de referencia:
   posiciones salen en mm en el marco del tablero. Si no se conoce la cámara, `--fov` (campo de visión horizontal en grados, unos 65-70
   en un móvil) basta para tener las medidas con un error de pocos %; con `--intrinsecos` (de `calibracion.camara intrinsecos`) mejora.
 
+  SIN NADA DE ESO (--altura-camara): para una primera prueba con fotos que no tienen tablero. Se supone una cámara cenital a esa altura sobre
+  la superficie; las medidas en mm son aproximadas, pero se ve si la caja se detecta y cómo está girada.
+
   CON LA CALIBRACIÓN DE LA PUESTA EN MARCHA (--calibracion camara.json): fotos de la cámara de la celda; las posiciones salen en la
   base del robot y el plano de la cinta está a la altura `--z` (zCinta).
 
 Uso:
     python3 -m vision.probar_en_casa fotos/ --tablero 9x6 --cuadro 25 --fov 65 --alto 120
     python3 -m vision.probar_en_casa fotos/ --calibracion camara.json --z 220 --alto 120
-    python3 -m vision.probar_en_casa foto.jpg --tablero 9x6 --cuadro 25 --fov 65 --alto 120 --esperado 300,200 --interactivo
+    python3 -m vision.probar_en_casa foto.jpg --tablero 9x6 --cuadro 25 --fov 65 --alto 120 --esperado "300,200" --interactivo
 
 El alto de la caja se da con --alto (el mismo para todas) salvo con --modo profundidad y un mapa de profundidad junto a la foto
 (`foto.npy` en mm). --modo fondo usa una foto `fondo.png` de la escena sin cajas (no depende del color de la caja). Con
@@ -41,7 +44,7 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from calibracion.camara import cargar_intrinsecos  # noqa: E402
-from vision.camara import ModeloCamara, intrinsecos_por_campo_de_vision  # noqa: E402
+from vision.camara import ModeloCamara, intrinsecos_por_campo_de_vision, modelo_cenital_aproximado  # noqa: E402
 from vision.deteccion import PARAMS_POR_DEFECTO, Deteccion, detectar_cajas, dibujar, elegir, mascara_color  # noqa: E402
 from vision.proveedores import cargar_fotograma, listar_imagenes  # noqa: E402
 from vision.tablero import Tablero, detectar_esquinas, modelo_desde_tablero  # noqa: E402
@@ -65,6 +68,8 @@ def modelo_de_la_foto(bgr, args, tablero: Tablero | None, K, dist, fijo: ModeloC
         if (bgr.shape[1], bgr.shape[0]) != tuple(fijo.tam):
             raise ValueError(f"la foto mide {bgr.shape[1]}x{bgr.shape[0]} y la calibración es de {fijo.tam[0]}x{fijo.tam[1]}")
         return fijo
+    if tablero is None:   # sin tablero ni calibracion: camara cenital aproximada
+        return modelo_cenital_aproximado((bgr.shape[1], bgr.shape[0]), args.altura_camara, args.fov, K, dist)
     Ki = K if K is not None else intrinsecos_por_campo_de_vision((bgr.shape[1], bgr.shape[0]), args.fov)
     return modelo_desde_tablero(bgr, tablero, Ki, dist)
 
@@ -89,8 +94,9 @@ def procesar(ficheros: list[Path], args, params: dict, fijo: ModeloCamara | None
         if not dets:
             problemas.append(f"{f.name}: no encuentro ninguna caja (ajusta el color con --interactivo o usa --modo fondo)")
             continue
+        superficie = fot.bgr.shape[0] * fot.bgr.shape[1]
         for d in sorted(dets, key=lambda d: -d.area_px):
-            filas.append({"imagen": f.name, "elegida": d is elegida, "d": d})
+            filas.append({"imagen": f.name, "elegida": d is elegida, "d": d, "fraccion": d.area_px / superficie})
     return filas, problemas
 
 
@@ -152,17 +158,19 @@ def ajustar_hsv(bgr: np.ndarray, params: dict) -> dict:
 def _resumen(filas: list[dict], esperado) -> None:
     if not filas:
         return
-    print(f"{'imagen':26s} {'':1s} {'largo':>6s} {'ancho':>6s} {'alto':>6s} {'giro':>6s} {'x':>7s} {'y':>7s} {'conf':>5s}  notas")
+    print(f"{'imagen':>26s} {'':1s} {'largo':>6s} {'ancho':>6s} {'alto':>6s} {'giro':>6s} {'x':>7s} {'y':>7s} {'conf':>5s}  notas")
     for r in filas:
         d: Deteccion = r["d"]
         notas = []
         if d.recortada:
             notas.append("RECORTADA")
+        if r.get("fraccion", 0.0) > 0.35:
+            notas.append(f"ocupa el {100 * r['fraccion']:.0f} % de la foto: el fondo se parece al color de la caja (usa --modo fondo, profundidad o --interactivo)")
         if d.pared_mm > 5.0:
             notas.append(f"pared ~{d.pared_mm:.0f} mm: centra la caja o usa profundidad")
         if esperado and r["elegida"]:
             notas.append(f"error largo {d.largo - esperado[0]:+.1f} ancho {d.ancho - esperado[1]:+.1f} mm")
-        print(f"{r['imagen'][:26]:26s} {'*' if r['elegida'] else ' '} {d.largo:6.1f} {d.ancho:6.1f} {d.alto:6.1f} {d.giro_deg:6.1f} "
+        print(f"{r['imagen'][-26:]:>26s} {'*' if r['elegida'] else ' '} {d.largo:6.1f} {d.ancho:6.1f} {d.alto:6.1f} {d.giro_deg:6.1f} "
               f"{d.centro[0]:7.1f} {d.centro[1]:7.1f} {d.confianza:5.2f}  {'; '.join(notas)}")
 
 
@@ -174,6 +182,8 @@ def main(argv=None) -> int:
     ap.add_argument("--cuadro", type=float, help="lado del cuadro del tablero en mm (medido con regla)")
     ap.add_argument("--intrinsecos", help="intrínsecos.json de la cámara usada")
     ap.add_argument("--fov", type=float, default=65.0, help="campo de visión horizontal (°) si no hay intrínsecos")
+    ap.add_argument("--altura-camara", type=float, help="SIN tablero ni calibración: altura de la cámara sobre la superficie (mm); se supone que mira justo "
+                                                        "hacia abajo. Medidas aproximadas, para probar si se detecta la caja")
     ap.add_argument("--alto", type=float, help="alto de la caja en mm")
     ap.add_argument("--z", type=float, default=0.0, help="con --calibracion, altura de la cinta en la base (mm)")
     ap.add_argument("--modo", choices=("color", "fondo", "profundidad"), default="color")
@@ -186,6 +196,11 @@ def main(argv=None) -> int:
     ap.add_argument("--guardar-params", help="guarda los parámetros ajustados en este JSON")
     ap.add_argument("--esperado", help="largo,ancho reales de la caja (mm) para ver el error")
     ap.add_argument("--salida", default="resultados_vision")
+    if not (sys.argv[1:] if argv is None else argv):
+        ap.print_help()
+        print("\nFalta la foto o la carpeta con fotos. Por ejemplo, tras crear los ejemplos con `python3 -m vision.generar_ejemplos ejemplos_vision`:\n"
+              "  python3 -m vision.probar_en_casa ejemplos_vision/casa --tablero 9x6 --cuadro 25 --fov 62 --modo profundidad", file=sys.stderr)
+        return 2
     args = ap.parse_args(argv)
 
     try:
@@ -203,9 +218,10 @@ def main(argv=None) -> int:
         fijo = ModeloCamara.cargar(args.calibracion) if args.calibracion else None
         tablero = K = dist = None
         if fijo is None:
-            if args.cuadro is None:
-                raise ValueError("falta --cuadro (lado del cuadro del tablero en mm) o --calibracion")
-            tablero = Tablero.desde_texto(args.tablero, args.cuadro)
+            if args.cuadro is None and args.altura_camara is None:
+                raise ValueError("falta --cuadro (lado del cuadro del tablero en mm), --calibracion o, para una prueba aproximada sin tablero, --altura-camara")
+            if args.cuadro is not None:
+                tablero = Tablero.desde_texto(args.tablero, args.cuadro)
             if args.intrinsecos:
                 K, dist, _ = cargar_intrinsecos(args.intrinsecos)
         fondo = None
@@ -239,6 +255,9 @@ def main(argv=None) -> int:
     _resumen(filas, esperado)
     for p in problemas:
         print("AVISO: " + p)
+    if fijo is None and tablero is None:
+        print(f"AVISO: escala APROXIMADA (cámara cenital a {args.altura_camara:g} mm, campo de visión {args.fov:g}°, sin tablero): vale para ver si se detecta "
+              "la caja y su giro, no para fiarse de los mm. Con un tablero en la foto o con la calibración sí.")
     print(f"{len({r['imagen'] for r in filas})} de {len(ficheros)} fotos con caja. Resultados en {salida}/ "
           "(imágenes anotadas, detecciones.csv y caja_vision.csv)")
     return 1 if problemas else 0

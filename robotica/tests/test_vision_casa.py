@@ -104,10 +104,36 @@ def test_sin_alto_ni_profundidad_el_programa_lo_pide(ejemplos, tmp_path, capsys)
     assert "falta --alto" in capsys.readouterr().err
 
 
+def test_sin_tablero_ni_calibracion_vale_para_ver_si_se_detecta_con_escala_aproximada(ejemplos, tmp_path, capsys):
+    d = tmp_path / "fotos"
+    d.mkdir()
+    shutil.copy(ejemplos / "celda" / "celda_01.png", d)      # la caja de 200 x 140 x 120 casi bajo la camara (650 mm sobre la cinta)
+    assert main([str(d), "--altura-camara", "650", "--fov", "62", "--alto", "120", "--salida", str(tmp_path / "res")]) == 0
+    out = capsys.readouterr().out
+    assert "escala APROXIMADA" in out
+    f = _detecciones(tmp_path / "res")[0]
+    assert abs(float(f["largo"]) - 200.0) < 8.0 and abs(float(f["ancho"]) - 140.0) < 8.0 and abs(float(f["giro"])) < 2.0
+
+
+def test_si_la_caja_ocupa_media_foto_el_programa_avisa_de_que_el_fondo_se_parece(tmp_path, capsys):
+    d = tmp_path / "fotos"
+    d.mkdir()
+    # suelo y caja del mismo color de carton: la mascara es casi toda la foto
+    cv2.imwrite(str(d / "suelo_como_carton.png"), np.full((600, 800, 3), (70, 110, 150), np.uint8))
+    main([str(d), "--altura-camara", "800", "--alto", "100", "--salida", str(tmp_path / "res")])
+    assert "el fondo se parece al color de la caja" in capsys.readouterr().out
+
+
+def test_sin_argumentos_el_programa_ensena_la_guia(capsys):
+    assert main([]) == 2
+    captura = capsys.readouterr()
+    assert "--tablero" in captura.out and "Falta la foto o la carpeta" in captura.err and "generar_ejemplos" in captura.err
+
+
 def test_datos_incorrectos_dan_codigo_2(ejemplos, tmp_path, capsys):
     assert main([str(tmp_path / "no_existe"), "--tablero", "9x6", "--cuadro", "25", "--alto", "100"]) == 2
     carpeta = _subcarpeta(ejemplos, tmp_path, ["casa_01"])
-    assert main([str(carpeta), "--alto", "100"]) == 2                                   # sin --cuadro ni --calibracion
+    assert main([str(carpeta), "--alto", "100"]) == 2                                   # sin --cuadro, --calibracion ni --altura-camara
     assert "falta --cuadro" in capsys.readouterr().err
     assert main([str(carpeta), "--tablero", "9x6", "--cuadro", "25", "--modo", "fondo", "--alto", "100"]) == 2   # fondo sin --fondo
     assert main([str(carpeta), "--tablero", "9x6", "--cuadro", "25", "--alto", "100", "--esperado", "200"]) == 2
@@ -132,3 +158,7 @@ def test_una_foto_sin_tablero_o_sin_caja_se_avisa_y_da_codigo_1(ejemplos, tmp_pa
 def test_el_generador_deja_las_fotos_la_profundidad_el_fondo_y_la_verdad(ejemplos):
     assert len(list((ejemplos / "casa").glob("*.png"))) == 5 and len(list((ejemplos / "casa").glob("*.npy"))) == 5
     assert (ejemplos / "fondo.png").is_file() and (ejemplos / "celda" / "camara.json").is_file() and len(_verdad(ejemplos)) == 8
+    cal = ejemplos / "calibracion"
+    assert len(list((cal / "fotos_tablero").glob("*.png"))) == 12 and (cal / "cinta.png").is_file()
+    toques = (cal / "toques.txt").read_text(encoding="utf-8").split()
+    assert toques.count("--toca") == 3 and toques.count("--valida") == 2 and all(t.startswith('"') for t in toques if ":" in t)

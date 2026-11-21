@@ -29,6 +29,17 @@ def intrinsecos_por_campo_de_vision(tam: tuple[int, int], fov_horizontal_deg: fl
     return np.array([[f, 0.0, ancho / 2.0], [0.0, f, alto / 2.0], [0.0, 0.0, 1.0]])
 
 
+def modelo_cenital_aproximado(tam: tuple[int, int], altura_mm: float, fov_horizontal_deg: float, K=None, dist=None) -> "ModeloCamara":
+    """Cámara que se supone mirando justo hacia abajo, a `altura_mm` sobre el plano z = 0, con el centro de la imagen sobre el origen.
+    Sirve para una primera prueba con fotos sin tablero ni calibración (las medidas en mm son aproximadas: dependen de que la altura y el
+    campo de visión sean los reales y de que la foto sea cenital). x a la derecha de la imagen e y hacia arriba."""
+    from nucleo.geometria import desde_matriz
+    R = np.array([[1.0, 0.0, 0.0], [0.0, -1.0, 0.0], [0.0, 0.0, -1.0]])
+    return ModeloCamara(intrinsecos_por_campo_de_vision(tam, fov_horizontal_deg) if K is None else np.asarray(K, dtype=np.float64),
+                        np.zeros(5) if dist is None else np.asarray(dist, dtype=np.float64),
+                        Pose.crear(t=[0.0, 0.0, float(altura_mm)], q=desde_matriz(R)), tam, {"origen": "cenital aproximada", "altura_mm": altura_mm})
+
+
 @dataclass(frozen=True)
 class ModeloCamara:
     K: np.ndarray

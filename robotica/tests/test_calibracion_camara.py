@@ -200,6 +200,13 @@ def test_el_programa_completo_por_linea_de_comandos(tmp_path, capsys, intrinseco
     assert (tmp_path / "tablero_detectado.png").is_file()
 
 
+def test_sin_orden_el_programa_ensena_la_guia_en_vez_de_un_error_seco(capsys):
+    assert main([]) == 2
+    captura = capsys.readouterr()
+    assert "tablero" in captura.out and "intrinsecos" in captura.out and "extrinsecos" in captura.out   # la guia (-h)
+    assert "Falta la orden" in captura.err and "calibracion.camara tablero" in captura.err
+
+
 def test_la_linea_de_comandos_devuelve_2_con_datos_incorrectos_y_1_si_hay_que_repetir(tmp_path, capsys, intrinsecos):
     cam, T_bt, img = _escena_cinta()
     cv2.imwrite(str(tmp_path / "cinta.png"), img)

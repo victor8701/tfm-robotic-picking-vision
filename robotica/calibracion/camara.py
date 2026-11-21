@@ -19,7 +19,7 @@ Deja un JSON (`camara.json`) con los intrínsecos de la cámara y su pose en la 
      índices). Con tres o más puntos se comprueba que la medida es coherente; conviene tocar además dos o tres esquinas sin usar
      para validar (`--valida`).
          python3 -m calibracion.camara extrinsecos foto_cinta.png --intrinsecos intrinsecos.json --tablero 9x6 --cuadro 25 \\
-             --z 220 --toca 0,0:700,-100 --toca 8,0:700,100 --toca 0,5:550,-100 --valida 8,5:550,100 --salida camara.json
+             --z 220 --toca "0,0:700,-100" --toca "8,0:700,100" --toca "0,5:550,-100" --valida "8,5:550,100" --salida camara.json
 
 Códigos de salida: 0 correcto (criterio "objetivo" o "aceptable"); 1 criterio "repetir"; 2 datos incorrectos.
 """
@@ -340,6 +340,13 @@ def main(argv=None) -> int:
     e.add_argument("--salida", default="camara.json")
     e.add_argument("--anotada", default="tablero_detectado.png", help="foto con los índices de las esquinas")
 
+    if not (sys.argv[1:] if argv is None else argv):
+        # sin orden: en vez del error seco de argparse, la guia y las tres ordenes
+        ap.print_help()
+        print("\nFalta la orden: tablero, intrinsecos o extrinsecos (en ese orden, ver arriba). Por ejemplo:\n"
+              "  python3 -m calibracion.camara tablero --columnas 9 --filas 6 --cuadro 25 --salida tablero.png\n"
+              "  python3 -m calibracion.camara intrinsecos -h   (ayuda de una orden)", file=sys.stderr)
+        return 2
     args = ap.parse_args(argv)
     try:
         return {"tablero": _cmd_tablero, "intrinsecos": _cmd_intrinsecos, "extrinsecos": _cmd_extrinsecos}[args.orden](args)
