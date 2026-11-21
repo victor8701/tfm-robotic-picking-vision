@@ -98,8 +98,9 @@ class FuenteCamara:
         self._motivo = motivo_sin_configurar
 
     @classmethod
-    def desde_config(cls, cfg) -> "FuenteCamara":
-        """A partir de la seccion 'camara' de la configuracion de la celda (ver docs/vision.md)."""
+    def desde_config(cls, cfg, proveedor=None) -> "FuenteCamara":
+        """A partir de la seccion 'camara' de la configuracion de la celda (ver docs/vision.md). proveedor: uno ya creado (por ejemplo, el de
+        ROS 2, que necesita un nodo); si no, se abre el de la seccion 'origen'."""
         import cv2
 
         from vision.camara import ModeloCamara
@@ -120,7 +121,7 @@ class FuenteCamara:
             if fondo is None:
                 raise ValueError(f"camara.fondo: no puedo leer {c['fondo']}")
         modelo = ModeloCamara.cargar(c["calibracion"])   # antes que abrir la camara: si falta la calibracion, que lo diga primero
-        return cls(abrir_proveedor(c.get("origen") or {}), modelo, cfg.z_cinta,
+        return cls(proveedor if proveedor is not None else abrir_proveedor(c.get("origen") or {}), modelo, cfg.z_cinta,
                    None if c.get("alto_mm") is None else float(c["alto_mm"]), params, fondo, cfg.centro_recogida, cfg.t_max_camara)
 
     def configurar(self, cfg) -> None:

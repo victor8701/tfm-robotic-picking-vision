@@ -84,6 +84,35 @@ Orden de arranque:
    Es la misma configuración con la ruta de `caja.csv` en formato Windows. Queda esperando a RAPID. Tiene que estar en marcha antes del Play.
 3. **RobotStudio**: espera unos 10 segundos, **Reset** y **Play** una sola vez.
 
+**Variante con ROS 2** (el ciclo del PC como nodo, en vez de `python -m celda.ciclo`; el porqué y los topics, en `docs/ros2.md`). El orden es el mismo: puente, celda, Play. Solo cambia cómo se lanza la celda. El `python -m celda.ciclo` de arriba sigue valiendo.
+
+a. Compilar (una vez, y cada vez que cambies algo de `ros2/`). **Linux (terminal de Ubuntu en WSL2):**
+```
+cd ~/ros2_ws
+source /opt/ros/humble/setup.bash
+colcon build --symlink-install --packages-select robotica_bimanual
+```
+b. Puente EGM, como en el punto 1 (PowerShell de Windows), pero antes pon `"ip_control": "0.0.0.0"` en `C:\Users\Viktor\Desktop\TFM_RAPID\config.celda.json`. Con `127.0.0.1` el puente solo oye a Windows y el `nodo_puente` de WSL2 no llega hasta él. Si Windows pregunta por el cortafuegos, permite TCP 7001 en redes privadas.
+
+c. Celda por ROS 2. **Linux (terminal de Ubuntu en WSL2)**, en otra ventana que la del puente:
+```
+cd ~/ros2_ws
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+export PYTHONPATH=$HOME/repos/tfm-robotica-bimanual/robotica:$PYTHONPATH
+ros2 launch robotica_bimanual celda_real.launch.py config:=$HOME/repos/tfm-robotica-bimanual/robotica/celda/config_celda.json host:=$(ip route show default | awk '{print $3}')
+```
+`host` es la IP de Windows vista desde WSL2 (la saca el propio comando). Usa `celda/config_celda.json` (rutas de Linux, `caja.csv` en `/mnt/c/...`), no el `_windows`. En la salida debe verse `Esperando a RAPID en 127.0.0.1:5010...`; entonces, en RobotStudio, **Reset** y **Play** una vez.
+
+d. Para mirar qué hace la celda, en una tercera terminal. **Linux (WSL2):**
+```
+source /opt/ros/humble/setup.bash
+ros2 topic echo /celda/estado
+```
+Saca una línea JSON por hecho: `inicio`, `caja`, `pinza`, `fin` o `error`. Con la cámara por ROS también `ros2 topic echo /celda/caja`.
+
+Si sale `no llega /brazo1/estado`, falta el puente (o `host` no es el bueno). *Sin probar:* que RAPID conecte al socket 5010 cuando el PC es el nodo de WSL2 (debería valer el reenvío de `localhost` de WSL2 con el controlador virtual de Windows; con el controlador real, ver `docs/ros2.md`).
+
 ### Paso 9. App del FlexPendant (INICIAR y CAJA EN POSICIÓN)
 La app `Celda de cajas` (carpeta `robotica/flexpendant/CajaPinza`, ver su README) sustituye a editar `nCajas`, `modoSimulacion` e `indiceFijo` a mano y a forzar `CajaEnRecogida`. Desde ella:
 - **Se espera a `CAJA EN POSICIÓN`** para arrancar el EGM de cada caja. En simulación el botón se espera después de que el sensor de la cinta haya visto llegar la caja; en real, después de colocarla.
@@ -165,7 +194,44 @@ El paquete `.rspak` (`Desktop\TFM_RAPID\Addin\TFM.CajasVariables-1.1.rspak`, Add
 
 Límites: está compilado contra las DLL de tu RobotStudio 2026, pero **no se ha ejecutado**; qué hace al correr (crear la caja con `Body.CreateSolidBox`, copiar la pieza, el sensor con la caja nueva) está por comprobar. Si algo falla, mándame lo que salga en Output. Para usar tamaños variables, en la app: pestaña Mesa → «Cajas de tamaños distintos» (o pon medidas distintas en la caja de referencia).
 
+### Paso 11. Visión (la cámara)
+La visión mide cada caja que ve una cámara fija y cenital sobre la recogida (largo, ancho, alto, giro y posición en la base del robot). Es lo que el PC lee en modo **Real**; en simulación sigue saliendo de `caja.csv`.
+
+**Todas las pruebas** (con fotos de ejemplo, con las tuyas, la calibración de la cámara y el ciclo con cámara) están en **`docs/vision.md`**, un manual paso a paso con los comandos, lo que tienes que ver en cada prueba y qué hacer si no sale. Empieza por su Prueba 1. Aquí queda solo lo que toca a la celda.
+
+**Conectarlo a la celda (modo Real).** Hace falta la calibración de la cámara (`camara.json`, Prueba 9 de `docs/vision.md`). **Windows:** edita `\\wsl.localhost\Ubuntu-22.04\home\ubuntu22\repos\tfm-robotica-bimanual\robotica\celda\config_celda_windows.json`: `"modo_simulacion": false` y una sección `camara` (las rutas relativas se toman desde la carpeta de ese JSON, `robotica\celda\`; copia ahí `camara.json`):
+```json
+"camara": {
+  "calibracion": "camara.json",
+  "origen": {"tipo": "realsense", "tam": [1280, 720], "fps": 15},
+  "alto_mm": null,
+  "modo": "profundidad"
+}
+```
+`origen` también puede ser `{"tipo": "carpeta", "ruta": "fotos"}` (imágenes guardadas, para ensayar: Prueba 10), `{"tipo": "opencv", "indice": 0}` (cámara USB, sin profundidad: entonces `alto_mm` con el alto de las cajas y `"modo": "color"`) o la RealSense, que necesita su librería:
+```
+# Windows (PowerShell)
+cd \\wsl.localhost\Ubuntu-22.04\home\ubuntu22\repos\tfm-robotica-bimanual\robotica
+$py = "C:\Program Files\Python311\python.exe"
+& $py -m pip install pyrealsense2
+```
+`modo` puede ser `color`, `fondo` (con `"fondo": "foto_sin_cajas.png"`) o `profundidad`; también valen `hsv_bajo`, `hsv_alto` y `umbral_fondo`.
+
+En la app: **Real**, pestaña **Parámetros → Recogida → Posición de la caja = Cámara** (solo en Real), `recogidaX/Y` en el punto donde espera la pinza, la zona permitida ±X ±Y, la altura de la cinta igual que la `--z` de la calibración y, en **Tiempos**, el máximo esperando a la cámara. Con **Fija**, el PC usa siempre `recogidaX/Y` y de la cámara solo toma las medidas y el giro. El PC y la app tienen que estar en el mismo modo. Después se arranca como en el paso 8 (puente, PC, Play; el PC con `celda\config_celda_windows.json`). Si lanzas la celda por ROS 2 (variante del paso 8), la cámara también puede venir de un driver de ROS: en `celda/config_celda.json` pon `"origen": {"tipo": "ros"}` (topics por defecto `/camera/color/image_raw` y `/camera/aligned_depth_to_color/image_raw`; con la RealSense, `ros2 launch realsense2_camera rs_launch.py align_depth.enable:=true` en otra terminal de Linux antes del `ros2 launch` de la celda). Si la cámara no ve una caja entera a tiempo o la ve fuera de la zona, el PC se para con un aviso: no se mueve.
+
+*Sin probar:* la cámara y las cajas reales, la RealSense (`pyrealsense2`), `--interactivo` y el ciclo completo en Real con la cámara conectada. Solo se ha probado con imágenes sintéticas.
+
 ## 3. Cómo funciona
+
+**Quién habla con quién.** RAPID habla por **dos canales distintos** y el puente EGM solo es uno de ellos:
+
+| Canal | De → a | Qué lleva | Sin él |
+|---|---|---|---|
+| EGM (UDP 6511) | Controlador (el EGM de `T_ROB1`) ↔ `PuenteEgm.exe` | Solo posiciones: dónde está el robot y dónde debe ir, 25 veces por segundo | El robot no se mueve |
+| Socket (TCP 5010) | `T_COM` (RAPID) ↔ ciclo del PC (`celda.ciclo` o `nodo_celda`) | Órdenes de pinza (`cerrar`/`abrir`), `fin_caja`, y los ajustes (`lote`, `mesa`, `recogida`, `agarre`, `celda`, `giro`) | La pinza no se abre ni se cierra y el PC no sabe la mesa ni el lote |
+| RWS (HTTP) | App del FlexPendant ↔ variables `PERS` de RAPID | Parámetros, botones, señales | La app no ajusta nada |
+
+El puente EGM no sabe nada de la pinza ni de las cajas, y el socket no lleva posiciones. Con ROS 2, el ciclo del PC es el nodo `nodo_celda`: manda los objetivos al puente por topics (`nodo_puente` → TCP 7001 → `PuenteEgm.exe`) y sigue abriendo el socket 5010 con `T_COM`. Diagrama completo en `docs/ros2.md`.
 
 `T_ROB1`, por cada caja:
 1. Pulsa `CajaPosKK`: el `Positioner` KK pone la caja al inicio de la cinta con el giro KK.
@@ -240,5 +306,12 @@ Las he escrito sin poder probarlas en RobotStudio. Si fallan, dime el mensaje ex
 | Al acabar, el programa sigue corriendo sin movimiento y el puente sigue recibiendo ciclos | El EGM no termina: lo mismo que `fallo_egm`. Con la versión anterior (interrupción + `EGMStop`) pasaba siempre |
 | Error de alcance en el `MoveJ` | Punto inalcanzable con la pinza: bajar `pSeguro` |
 | `caja.csv` no aparece | RAPID no lo ha generado, o la carpeta HOME es otra |
+| `probar_en_casa`: «no veo el tablero de 9x6 esquinas» | El tablero no sale entero, está desenfocado o con brillos, o las esquinas contadas no son las interiores (un tablero de 10x7 cuadros tiene 9x6 esquinas) |
+| `probar_en_casa`: «no encuentro ninguna caja» | El color no es el del cartón: `--interactivo` para ajustarlo o `--modo fondo`/`profundidad` |
+| `calibracion.camara`: error con `--toca 0,0:600.0,-120.0` en PowerShell | Los valores con coma van entre comillas: `--toca "0,0:600.0,-120.0"` |
+| `calibracion.camara extrinsecos`: criterio «repetir» o aviso de tablero reflejado | Un punto tocado mal o un índice cruzado: mira `tablero_detectado.png` (índices de las esquinas) y repite el toque |
+| El PC se para: «la cámara no ve ninguna caja entera en N s (tMaxCamara)» | Caja fuera de la imagen, cortada por el borde o de otro color; el tiempo es el de la app (Parámetros → Tiempos) |
+| El PC se para: «fuera de la zona permitida … no me muevo» | La caja está más lejos del punto de recogida que la zona ±X ±Y de la app: acércala o amplía la zona |
+| «falta la seccion 'camara' en config_celda.json» | La app está en Real y la configuración del PC no tiene sección `camara` (Paso 11) |
 | El PC dice «punto fuera del espacio del puente» | Se está usando `config.json` en vez de `config.celda.json` (el espacio llega a x = 800) |
 | Al empezar el EGM el robot va a un sitio inalcanzable (errores 50375 y 50366) y el PC se rompe | `semantica` del puente en `desplazamiento`: tiene que ser `absoluta` (la consola del puente debe decir `semantica=absoluta`) |

@@ -124,4 +124,6 @@ def abrir_proveedor(cfg: dict):
     if tipo == "realsense":
         tam = cfg.get("tam", [1280, 720])
         return RealSense((int(tam[0]), int(tam[1])), int(cfg.get("fps", 15)))
+    if tipo == "ros":
+        raise ValueError("el origen 'ros' solo vale con nodo_celda (ros2 launch robotica_bimanual celda_real.launch.py), no con celda.ciclo")
     raise ValueError(f"origen de imágenes desconocido: {tipo!r} (carpeta, opencv o realsense)")

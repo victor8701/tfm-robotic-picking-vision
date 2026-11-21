@@ -18,6 +18,7 @@ Estado detallado, riesgos y suposiciones: [docs/ESTADO.md](docs/ESTADO.md).
 | Visión de la celda: detección de cajas, calibración de la cámara y pruebas en casa | `vision/`, `calibracion/camara.py`, `docs/vision.md` | Sí, con imágenes sintéticas | Cámara y cajas reales, RealSense |
 | Calibración: homografía y mano-ojo | `calibracion/` (CLI en `calibracion/cli.py`) | Sí, con datos sintéticos | Datos medidos en el laboratorio |
 | Nodos ROS 2 | `ros2/robotica_bimanual/` | Compilado con colcon, lanzado con su launch, nodos creados en pruebas | Sistema completo con robots |
+| Celda por ROS 2 (`nodo_celda`, `PuenteRos`, cámara por topics) | `ros2/robotica_bimanual/`, `docs/ros2.md` | Sí, con un puente y una cámara falsos por topics | Robot real, RAPID desde WSL2, cámara en ROS |
 | Módulos RAPID | `rapid/` | **No** | Controlador virtual |
 | CSV a RAPID | `simulacion/csv_a_rapid.py` | Sí | — |
 
@@ -32,7 +33,7 @@ python3 -m pytest -q
 - Las pruebas del puente necesitan el ejecutable compilado: `dotnet build -c Release puente_egm/PuenteEgm`.
   Sin .NET 8 se saltan.
 - Con ROS 2 Humble cargado (`source /opt/ros/humble/setup.bash`) se ejecutan también las pruebas de nodos.
-- Resultado en la última ejecución: 98 pasan y 1 módulo se salta sin ROS; con ROS 2, 100 pasan.
+- Resultado en la última ejecución (21-nov): con ROS 2, 312 pasan, 1 se salta y 2 fallan (`test_puente_e2e.py::test_desviacion_provoca_fallo_y_exige_rearme`: desde el commit `7290dfc` el puente retiene la última consigna tras una desviación excesiva y la prueba aún espera la pose real); sin ROS, 298 pasan y 3 se saltan.
 
 ## Convenciones
 

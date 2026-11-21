@@ -5,6 +5,7 @@ Topics (metros, cuaterniones x-y-z-w), un único robot (brazo1):
             /puentes/comando                   (std_msgs/String: parar | arrancar | reset)
   salida:   /brazo1/pose_real (PoseStamped, TCP real en la base)
             /brazo1/estado       (String, JSON tal como lo devuelve el puente)
+            /brazo1/rechazo      (String, JSON de la respuesta del puente cuando rechaza un objetivo)
 
 Un objetivo que no se renueva en `plazo_objetivo_s` no se reenvía: el puente lo trata como
 vencido y retiene el brazo. Así, si el coordinador deja de mandar objetivos, el brazo se para.
@@ -45,6 +46,7 @@ class NodoPuente(Node):
                 "t_objetivo": 0.0,
                 "pub_real": self.create_publisher(PoseStamped, f"/{nombre}/pose_real", 10),
                 "pub_estado": self.create_publisher(String, f"/{nombre}/estado", 10),
+                "pub_rechazo": self.create_publisher(String, f"/{nombre}/rechazo", 10),
             }
             self.create_subscription(PoseStamped, f"/{nombre}/objetivo",
                                      lambda m, n=nombre: self._recibir_objetivo(n, m), 10)
@@ -74,7 +76,10 @@ class NodoPuente(Node):
             b = self._brazos[nombre]
             if b["objetivo"] is not None and ahora - b["t_objetivo"] <= self._plazo:
                 try:
-                    b["cliente"].objetivo(b["objetivo"])
+                    respuesta = b["cliente"].objetivo(b["objetivo"])
+                    if not respuesta.get("ok", False):   # el puente rechaza el objetivo (fuera de su espacio, giro...): se avisa a ROS
+                        b["pub_rechazo"].publish(String(data=json.dumps(respuesta)))
+                        self.get_logger().warning(f"{nombre}: el puente rechaza el objetivo: {respuesta}", throttle_duration_sec=2.0)
                 except OSError as e:
                     self.get_logger().warning(f"{nombre}: objetivo no enviado: {e}", throttle_duration_sec=2.0)
             try:

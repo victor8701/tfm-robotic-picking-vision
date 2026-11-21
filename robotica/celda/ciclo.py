@@ -50,8 +50,18 @@ class Celda:
         self._n_rapid: int | None = None  # cajas de la tanda segun RAPID (la app del FlexPendant), tras 'lote'
         self._mesa: Mesa | None = None    # zona de deposito segun RAPID (la app), tras 'mesa'
         self._reparto: Reparto | None = None   # donde va cada caja en la mesa (cajas de medidas distintas)
+        # Funcion opcional que recibe un dict por cada hecho (inicio, caja, pinza, fin): el nodo de ROS 2 lo publica en /celda/estado.
+        self.informar = None
+
+    def _informar(self, **datos) -> None:
+        if self.informar is not None:
+            try:
+                self.informar(datos)
+            except Exception:   # noqa: BLE001 - informar nunca debe parar el ciclo
+                pass
 
     def ejecutar(self) -> None:
+        self._informar(evento="inicio")
         i = 0
         while True:
             self._caja(i)
@@ -59,6 +69,7 @@ class Celda:
             if i >= self._total_cajas():
                 break
         self.rapid.enviar("fin_programa")
+        self._informar(evento="fin", cajas=i)
 
     def _total_cajas(self) -> int:
         """Cajas de la tanda. La cuenta la lleva RAPID (la ajusta la app del FlexPendant): se pregunta con
@@ -243,6 +254,9 @@ class Celda:
             raise RuntimeError(f"La caja {i + 1} no cabe en la mesa: {e}") from None
         print(f"Celda: caja {i + 1} de {self._total_cajas()} ({caja.largo:g} x {caja.ancho:g} x {caja.alto:g} mm, "
               f"giro {caja.giro_deg:g} grados) -> mesa ({destino.x:.0f}, {destino.y:.0f})")
+        self._informar(evento="caja", n=i + 1, total=self._total_cajas(), largo=caja.largo, ancho=caja.ancho, alto=caja.alto,
+                       giro=caja.giro_deg, x=None if caja.centro is None else caja.centro[0], y=None if caja.centro is None else caja.centro[1],
+                       destino=[destino.x, destino.y])
         self._avisar_giro(caja)
         tramos = planificar(caja, self.cfg, destino)
         validar_puntos(tramos, self.cfg)
@@ -328,6 +342,7 @@ class Celda:
         if r != esperada:
             raise RuntimeError(f"RAPID respondio '{r}' a '{orden}', se esperaba '{esperada}'")
         if orden in ("cerrar", "abrir"):
+            self._informar(evento="pinza", orden=orden, respuesta=r, segundos=round(time.monotonic() - t0, 2))
             # Asi se ve en la consola del PC que la orden salio y que RAPID la confirmo (la senal PinzaCerrada cambio).
             print(f"Pinza: {orden} -> {r} ({time.monotonic() - t0:.1f} s)")
 

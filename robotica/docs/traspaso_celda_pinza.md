@@ -15,6 +15,7 @@ Un GoFa (CRB 15000-5/0.95, OmniCore, RobotWare 7.12) con pinza coge cajas de una
 | Señales | `robotica/rapid/cfg/EIO/EIO.cfg` (17 señales, `-Access "All"`), `cfg/SYS/SYS.cfg` (tarea `T_COM`) | Se cargan en RobotStudio con Load Parameters. |
 | Manual | `robotica/docs/manual_robotstudio_cajapinza.md` | Pasos de RobotStudio, conexiones del Station Logic, límites y fallos. |
 | App del FlexPendant | `robotica/flexpendant/CajaPinza/` (copias en `Desktop\TFM_RAPID\WebApps` y en el `HOME\WebApps` del controlador virtual) | Espera **CAJA EN POSICIÓN** para arrancar cada EGM; ajusta nº de cajas, simulación/real, giros y botón; muestra el momento, la orientación de la caja y las señales. Habla con las PERS `hmi*` de `MOD_CajaPinza` por RWS (16-nov). Ver su README y el paso 9 del manual. |
+| Celda por ROS 2 | `robotica/ros2/robotica_bimanual/` (`nodo_celda`, `puente_ros.py`, `proveedor_ros.py`, `launch/celda_real.launch.py`) y `robotica/docs/ros2.md` | El mismo ciclo (`celda/ciclo.py`) como nodo: objetivos y estado por `/brazo1/*`, cámara por topics, hechos en `/celda/estado` y `/celda/caja`. `python -m celda.ciclo` (TCP directo) sigue valiendo. `nodo_puente` sigue hablando por TCP con `PuenteEgm.exe`: el puente no es un nodo ROS 2 (fase 2, sin hacer). Pruebas en `tests/test_ros_celda.py` (21-nov). |
 
 ## Ciclo de una caja
 1. `T_ROB1` pone la caja al inicio de la cinta (`CajaPosKK`, 12 giros de −90° a 75°), mueve la cinta (`CintaMover` → `LinearMover`) y espera `CajaEnRecogida` (la activa el sensor `FinCinta_2`). En el laboratorio esa DI se fuerza a mano.

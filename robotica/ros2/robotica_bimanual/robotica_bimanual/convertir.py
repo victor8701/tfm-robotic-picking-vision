@@ -44,6 +44,19 @@ def imagen_desde_ros(msg) -> np.ndarray:
     return img if msg.encoding == "bgr8" else img[:, :, ::-1].copy()
 
 
+def profundidad_desde_ros(msg) -> np.ndarray:
+    """Mapa de profundidad en mm (float32, 0 = sin medida) a partir de un sensor_msgs/Image 16UC1 (mm, como el de la RealSense alineada)
+    o 32FC1 (metros)."""
+    if msg.encoding == "16UC1":
+        d = np.frombuffer(bytes(msg.data), dtype=np.uint16).reshape(msg.height, msg.width).astype(np.float32)
+    elif msg.encoding == "32FC1":
+        d = np.frombuffer(bytes(msg.data), dtype=np.float32).reshape(msg.height, msg.width) * M_A_MM
+        d = np.nan_to_num(d, nan=0.0, posinf=0.0, neginf=0.0)
+    else:
+        raise ValueError(f"encoding de profundidad no soportado: {msg.encoding} (16UC1 o 32FC1)")
+    return d
+
+
 def camara_desde_ros(k, d) -> tuple[np.ndarray, np.ndarray]:
     """Matriz intrínseca 3x3 y distorsión a partir de sensor_msgs/CameraInfo (K en orden fila a fila)."""
     K = np.asarray(k, dtype=float).reshape(3, 3)

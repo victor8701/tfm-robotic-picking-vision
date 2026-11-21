@@ -1,0 +1,123 @@
+"""Nodo de la celda: el ciclo de cajas (`celda.ciclo.Celda`) como nodo de ROS 2.
+
+Es el mismo cerebro que `python -m celda.ciclo`, pero habla con el robot y con la cámara por ROS 2 en vez de por TCP y USB directos:
+
+  movimiento:  Celda -> /brazo1/objetivo -> nodo_puente -> (TCP 7001) -> PuenteEgm.exe -> EGM -> robot    (PuenteRos)
+  estado:      robot -> PuenteEgm.exe -> nodo_puente -> /brazo1/estado -> Celda                           (PuenteRos)
+  cámara:      driver de la cámara -> /camera/color/image_raw (+ profundidad) -> Celda                    (ProveedorRos, si origen.tipo = "ros")
+  RAPID:       T_COM <-(TCP 5010)-> Celda (RAPID no habla ROS: el socket sigue siendo el de siempre)
+
+Salidas:  /celda/estado (std_msgs/String, JSON con los hechos del ciclo: inicio, caja, pinza, fin o error)
+          /celda/caja   (geometry_msgs/PoseStamped: centro de la caja que ve la cámara, en la base del robot, con su giro; en metros)
+
+Parámetros: config (ruta de celda/config_celda.json, obligatoria), sesion (brazo1), topic_color y topic_profundidad (si la configuración no los da).
+El ciclo corre en un hilo; este nodo gira (spin) en el principal para recibir el estado y las imágenes.
+"""
+from __future__ import annotations
+
+import json
+import math
+import threading
+
+import rclpy
+from geometry_msgs.msg import PoseStamped
+from rclpy.node import Node
+from std_msgs.msg import String
+
+from celda.ciclo import Celda
+from celda.config import cargar
+from celda.percepcion import FuenteCamara, crear_fuente
+from celda.socket_rapid import ServidorRapid
+
+from .proveedor_ros import ProveedorRos
+from .puente_ros import PuenteRos
+
+
+class NodoCelda(Node):
+    def __init__(self):
+        super().__init__("nodo_celda")
+        self.declare_parameter("config", "")
+        self.declare_parameter("sesion", "brazo1")
+        self.declare_parameter("topic_color", "/camera/color/image_raw")
+        self.declare_parameter("topic_profundidad", "/camera/aligned_depth_to_color/image_raw")
+        ruta = str(self.get_parameter("config").value)
+        if not ruta:
+            raise ValueError("falta el parametro 'config': la ruta de celda/config_celda.json "
+                             "(ros2 launch robotica_bimanual celda_real.launch.py config:=/ruta/config_celda.json)")
+        self.cfg = cargar(ruta)
+        self._pub_estado = self.create_publisher(String, "/celda/estado", 10)
+        self._pub_caja = self.create_publisher(PoseStamped, "/celda/caja", 10)
+        self.puente = PuenteRos(self, str(self.get_parameter("sesion").value))
+        self.fuente = self._crear_fuente()
+        self.rapid = ServidorRapid(self.cfg.rapid_ip, self.cfg.rapid_puerto, self.cfg.rapid_espera_s)
+        self.celda = Celda(self.cfg, self.fuente, self.puente, self.rapid)
+        self.celda.informar = self._informar
+        self.terminado = threading.Event()
+        self.error: Exception | None = None
+        self._hilo = threading.Thread(target=self._trabajo, name="ciclo-celda", daemon=True)
+
+    def _crear_fuente(self):
+        """caja.csv en simulacion; en real, la camara: la de ROS (origen.tipo = ros) o la de la configuracion (carpeta, opencv, realsense)."""
+        cfg = self.cfg
+        origen = ((cfg.camara or {}).get("origen") or {}) if not cfg.modo_simulacion else {}
+        if origen.get("tipo") != "ros":
+            return crear_fuente(cfg)
+        c = cfg.camara
+        con_profundidad = c.get("modo") == "profundidad" or c.get("alto_mm") is None
+        color = origen.get("color") or str(self.get_parameter("topic_color").value)
+        prof = (origen.get("profundidad") or str(self.get_parameter("topic_profundidad").value)) if con_profundidad else None
+        self.get_logger().info(f"camara por ROS 2: color {color}" + (f", profundidad {prof}" if prof else ", sin profundidad"))
+        return FuenteCamara.desde_config(cfg, ProveedorRos(self, color, prof))
+
+    def iniciar(self) -> None:
+        self._hilo.start()
+
+    def _informar(self, datos: dict) -> None:
+        """Publica un hecho del ciclo en /celda/estado y, si es una caja, su pose en /celda/caja."""
+        self._pub_estado.publish(String(data=json.dumps(datos)))
+        if datos.get("evento") == "caja" and datos.get("x") is not None:
+            msg = PoseStamped()
+            msg.header.stamp = self.get_clock().now().to_msg()
+            msg.header.frame_id = f"base_{self.get_parameter('sesion').value}"
+            msg.pose.position.x, msg.pose.position.y = datos["x"] / 1000.0, datos["y"] / 1000.0
+            msg.pose.position.z = self.celda.cfg.z_cinta / 1000.0   # la de la celda: en real la manda RAPID, no el fichero
+            a = math.radians(datos["giro"]) / 2.0
+            msg.pose.orientation.z, msg.pose.orientation.w = math.sin(a), math.cos(a)
+            self._pub_caja.publish(msg)
+
+    def _trabajo(self) -> None:
+        try:
+            self.get_logger().info(f"Esperando a RAPID en {self.cfg.rapid_ip}:{self.cfg.rapid_puerto}...")
+            self.rapid.esperar_cliente()
+            self.celda.ejecutar()
+            self.get_logger().info("Celda: todas las cajas recogidas.")
+        except Exception as e:   # noqa: BLE001 - se cuenta por ROS y se sale con codigo de error
+            self.error = e
+            self.get_logger().error(f"el ciclo de la celda se ha parado: {e}")
+            self._informar({"evento": "error", "mensaje": str(e)})
+        finally:
+            self.rapid.cerrar()
+            self.terminado.set()
+
+    def cerrar(self) -> None:
+        self.rapid.cerrar()
+
+
+def main(args=None) -> int:
+    rclpy.init(args=args)
+    nodo = NodoCelda()
+    nodo.iniciar()
+    try:
+        while rclpy.ok() and not nodo.terminado.is_set():
+            rclpy.spin_once(nodo, timeout_sec=0.1)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        nodo.cerrar()
+        nodo.destroy_node()
+        rclpy.shutdown()
+    return 1 if nodo.error else 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
