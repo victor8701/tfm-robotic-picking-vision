@@ -3,6 +3,7 @@ en el laboratorio, la camara (vision/, calibracion/camara.py). La interfaz es la
 from __future__ import annotations
 
 import math
+import threading
 import time
 from dataclasses import dataclass
 from pathlib import Path
@@ -77,6 +78,17 @@ class FuenteCsv:
         return len(self._cajas)
 
 
+@dataclass(frozen=True)
+class Vista:
+    """Lo que ve la camara ahora y lo que el programa considera la caja (para el visor). fotograma None = no hay imagen (carpeta agotada)."""
+    fotograma: object | None
+    detecciones: list
+    elegida: object | None
+    origen: str                # «carpeta celda», «camara»...
+    indice: int | None = None  # imagen actual de una carpeta (1..total), None si es una camara
+    total: int | None = None
+
+
 class FuenteCamara:
     """La caja que ve la camara, medida en la base del robot (vision.deteccion): largo, ancho, alto, giro y centro.
 
@@ -96,6 +108,13 @@ class FuenteCamara:
         self.tiempo_max_s = tiempo_max_s
         self.pausa_s = pausa_s
         self._motivo = motivo_sin_configurar
+        # El ciclo y el visor piden imagenes desde hilos distintos: solo uno a la vez habla con el proveedor.
+        self._cerrojo = threading.RLock()
+        self._proveedor_base = proveedor
+        self._modelo_base = modelo
+        self._cache_vista = None
+        # Aviso opcional tras medir cada caja: al_medir(fotograma, detecciones, elegida, i). Nunca para el ciclo.
+        self.al_medir = None
 
     @classmethod
     def desde_config(cls, cfg, proveedor=None) -> "FuenteCamara":
@@ -137,19 +156,91 @@ class FuenteCamara:
         limite = time.monotonic() + self.tiempo_max_s
         recortada = False
         while True:
-            fot = self.proveedor.siguiente()
+            with self._cerrojo:
+                proveedor, modelo = self.proveedor, self.modelo
+                fot = proveedor.siguiente()
             if fot is None:
                 raise RuntimeError("la camara no tiene mas imagenes (carpeta agotada o camara cerrada)")
-            dets = detectar_cajas(fot.bgr, self.modelo, self.z_cinta, self.alto_mm, self.params, self.fondo, fot.profundidad)
+            dets = detectar_cajas(fot.bgr, modelo, self.z_cinta, self.alto_mm, self.params, self.fondo, fot.profundidad)
             enteras = [d for d in dets if not d.recortada]
             recortada = recortada or (bool(dets) and not enteras)
             d = elegir(enteras, self.centro_nominal)
             if d is not None:
+                self._avisar_medida(fot, dets, d, i)
                 return d.a_caja()
             if time.monotonic() >= limite:
                 raise RuntimeError(f"la camara no ve ninguna caja entera en {self.tiempo_max_s:g} s (tMaxCamara)"
                                    + ("; la que ve esta cortada por el borde de la imagen" if recortada else ""))
             time.sleep(self.pausa_s)
+
+    def _avisar_medida(self, fot, dets, elegida, i: int) -> None:
+        if self.al_medir is not None:
+            try:
+                self.al_medir(fot, dets, elegida, i)
+            except Exception:   # noqa: BLE001 - el visor nunca debe parar el ciclo
+                pass
+
+    # ---------------------------------------------------------------- visor y carpeta de ensayo
+    def origen(self) -> str:
+        """De donde vienen las imagenes, en una palabra o dos (para el visor y la app)."""
+        p = self.proveedor
+        if p is None:
+            return "sin camara"
+        if hasattr(p, "nombre") and hasattr(p, "n"):
+            return f"carpeta {p.nombre}"
+        return type(p).__name__.lower()
+
+    def n_imagenes(self) -> int | None:
+        """Imagenes de la carpeta (None si la camara no es una carpeta). No es total(): total() sigue sin fin conocido."""
+        return getattr(self.proveedor, "n", None)
+
+    def vista_previa(self) -> "Vista | None":
+        """Lo que ve la camara ahora, con lo que el programa considera la caja, SIN gastar la imagen (en una carpeta, la actual; en una
+        camara, el ultimo fotograma). None si no hay proveedor. Se llama desde el hilo del visor."""
+        if self.proveedor is None:
+            return None
+        from vision.deteccion import detectar_cajas, elegir
+        with self._cerrojo:
+            p, modelo = self.proveedor, self.modelo
+            ver = getattr(p, "ver", None)
+            carpeta = ver is not None
+            fot = ver() if carpeta else p.siguiente()
+            n, indice = (getattr(p, "n", None), getattr(p, "indice", None))
+            origen = self.origen()
+            clave = (id(p), id(modelo), fot.nombre if fot is not None else None, self.z_cinta, self.alto_mm, self.centro_nominal)
+            if carpeta and self._cache_vista is not None and self._cache_vista[0] == clave:
+                return self._cache_vista[1]
+        if fot is None:
+            return Vista(None, [], None, origen, None if n is None else n, n)
+        dets = detectar_cajas(fot.bgr, modelo, self.z_cinta, self.alto_mm, self.params, self.fondo, fot.profundidad)
+        elegida = elegir([d for d in dets if not d.recortada], self.centro_nominal)
+        vista = Vista(fot, dets, elegida, origen, None if indice is None else indice + 1, n)
+        if carpeta:
+            self._cache_vista = (clave, vista)
+        return vista
+
+    def usar_carpeta(self, ruta, exigir_calibracion: bool = True) -> int:
+        """Pasa a leer las fotos de una carpeta (la que se elige en la app) y devuelve cuantas tiene. Si la carpeta trae su camara.json, esa es
+        la calibracion (cada juego de fotos se hizo con una camara distinta); si no la trae y exigir_calibracion, ValueError."""
+        from vision.camara import ModeloCamara
+        from vision.proveedores import Carpeta
+        r = Path(ruta)
+        carpeta = Carpeta(r)                                  # ValueError si no existe o no hay imagenes
+        calibracion = r / "camara.json"
+        if calibracion.is_file():
+            modelo = ModeloCamara.cargar(calibracion)
+        elif exigir_calibracion:
+            raise ValueError(f"{r.name} no tiene camara.json (la calibracion de esa camara)")
+        else:
+            modelo = self._modelo_base
+        with self._cerrojo:
+            self.proveedor, self.modelo, self._cache_vista = carpeta, modelo, None
+        return carpeta.n
+
+    def restaurar_origen(self) -> None:
+        """Vuelve a la camara (o carpeta) de la configuracion del PC."""
+        with self._cerrojo:
+            self.proveedor, self.modelo, self._cache_vista = self._proveedor_base, self._modelo_base, None
 
     def total(self):
         return None  # sin fin conocido: manda nCajas de RAPID (la app)

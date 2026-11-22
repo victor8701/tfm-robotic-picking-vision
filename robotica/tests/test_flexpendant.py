@@ -126,6 +126,21 @@ def test_rapid_contesta_a_los_mensajes_nuevos_del_pc():
     assert '"giro_ok"' in ciclo
 
 
+def test_rapid_contesta_siempre_a_los_mensajes_de_la_camara_de_ensayo():
+    """camara, camara_lista:<k>:<texto> y camara_info:<n>:<estado>: el PC espera respuesta a cada uno (si no, 5 s y fallo). Cada rama de
+    camara_lista y camara_info acaba en una respuesta, aunque el mensaje venga mal."""
+    ciclo = (RAIZ / "celda" / "ciclo.py").read_text(encoding="utf-8")
+    assert 'orden = "camara"' in MODULO and '_preguntar("camara")' in ciclo
+    bloque = MODULO[MODULO.index('IF StrPart(orden, 1, 12) = "camara_info:" THEN'):MODULO.index("ENDWHILE", MODULO.index('"camara_info:"'))]
+    # cada IF/ELSE... del bloque que toca PERS de la camara contesta: camara_ok o camara_mal
+    assert bloque.count('SocketSend sock \\Str:="camara_ok"') == 4 and bloque.count('SocketSend sock \\Str:="camara_mal"') == 3
+    assert 'StrLen(orden) >= 15 AND StrPart(orden, 1, 13) = "camara_lista:"' in bloque     # una lista vacia (15 caracteres) tambien se contesta
+    for mensaje in ('camara_lista:{k}:', 'camara_info:{n}:'):
+        assert mensaje in ciclo
+    # la respuesta a 'camara' cabe en 80 caracteres aunque la PERS este llena (80)
+    assert 'StrPart(camaraCarpeta, 1, 70)' in MODULO
+
+
 def test_sintaxis_basica_del_modulo_rapid():
     """No sustituye a compilar en RobotStudio, pero caza lo tipico: bloques sin cerrar, cadenas de mas de
     80 caracteres, identificadores de mas de 32 o caracteres que no son ASCII."""

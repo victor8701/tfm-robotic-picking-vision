@@ -27,7 +27,8 @@
             ficheros: {},          // ficheros que ya hay en el controlador: {'$HOME/parametros/x.csv': 'texto'}
             giroPc: null,          // function (giroCaja) -> giro que "lee" el PC; por defecto, el mismo
             egmMaxPos: 1500,       // egmMaxPos de RAPID (con 1000 solo caben 4 cajas de 200 mm en la mesa de la simulacion)
-            valores: {}            // PERS que arrancan con otro valor que el de RAPID (en bruto, p. ej. {cajasVariables: 'FALSE'})
+            valores: {},           // PERS que arrancan con otro valor que el de RAPID (en bruto, p. ej. {cajasVariables: 'FALSE'})
+            camara: null           // function (carpeta) -> {fotos, estado}: lo que "dice" el PC al elegir la carpeta de fotos (por defecto, nada)
         }, opciones || {});
         const F = L.FASES;
 
@@ -47,7 +48,7 @@
         Object.keys(L.VARIABLES).forEach(function (nombre) {
             if (Object.prototype.hasOwnProperty.call(pers, nombre)) { return; }
             const valor = porDefecto[L.VARIABLES[nombre].clave];
-            pers[nombre] = typeof valor === 'boolean' ? (valor ? 'TRUE' : 'FALSE') : String(valor);
+            pers[nombre] = typeof valor === 'boolean' ? (valor ? 'TRUE' : 'FALSE') : (typeof valor === 'string' ? '"' + valor + '"' : String(valor));
         });
         Object.assign(pers, o.valores);
         const nombresSenal = {sensor: 'CajaEnRecogida', cinta: 'CintaMover', pinzaCerrar: 'PinzaCerrar', pinzaCerrada: 'PinzaCerrada'};
@@ -200,6 +201,10 @@
                 setValue: function (valor) {
                     if (o.falloEscritura) { return Promise.reject(o.falloEscritura); }
                     poner(nombre, valor);
+                    if (nombre === 'camaraCarpeta' && o.camara) {   // el PC, que pregunta cada segundo, abre la carpeta y avisa a RAPID
+                        const dicho = o.camara(String(valor).replace(/^"|"$/g, ''));
+                        setTimeout(function () { poner('camaraFotos', dicho.fotos); poner('camaraEstado', dicho.estado); }, 20 * o.escala);
+                    }
                     return Promise.resolve();
                 }
             };

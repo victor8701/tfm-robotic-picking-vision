@@ -2,6 +2,7 @@
 falso (cliente de socket que contesta como T_COM). Dos cajas."""
 import json
 import socket
+import time
 import threading
 
 import numpy as np
@@ -78,13 +79,53 @@ AJUSTES_PRUEBA = {
 }
 
 
+def _rapid_falso_camara(s, mensajes, errores, camara):
+    """Lo que hace T_COM con la camara de ensayo MIENTRAS el PC espera a que arranque la tanda: da la carpeta que haya elegido la app
+    (camara['carpetas'], una por pregunta; la ultima se repite), guarda la lista (camara['lista']) y lo que el PC avise (camara['info']).
+    Termina cuando ha llegado camara['infos'] avisos (por defecto 1) o pasan camara['max_s'] s. camara['mudo']: un modulo antiguo, que no contesta."""
+    camara.setdefault("lista", {})
+    camara.setdefault("info", [])
+    preguntas = 0
+    fin = time.time() + camara.get("max_s", 20.0)
+    s.settimeout(0.05)
+    while time.time() < fin and len(camara["info"]) < camara.get("infos", 1):
+        try:
+            datos = s.recv(256)
+        except socket.timeout:
+            continue
+        if not datos:
+            return
+        orden = datos.decode("utf-8").strip()
+        mensajes.append(orden)
+        if camara.get("mudo"):
+            continue
+        if orden == "camara":
+            carpetas = camara["carpetas"]
+            s.sendall(f"camara:{carpetas[min(preguntas, len(carpetas) - 1)]}".encode("utf-8"))
+            preguntas += 1
+        elif orden.startswith("camara_lista:"):
+            k, _, texto = orden[len("camara_lista:"):].partition(":")
+            camara["lista"][int(k)] = texto
+            s.sendall(b"camara_ok")
+        elif orden.startswith("camara_info:"):
+            n, _, estado = orden[len("camara_info:"):].partition(":")
+            camara["info"].append((int(n), estado))
+            s.sendall(b"camara_ok")
+        else:
+            errores.append(f"orden inesperada esperando la tanda: {orden!r}")
+            return
+    s.settimeout(20)
+
+
 def _rapid_falso(puerto, puente, n_cajas, mensajes, errores, modo="sim", n_lote=None, sin_lote=False,
-                 mesa=MESA_PRUEBA, depositos=None, mudo_en=None, fallo_pinza_en=None, ajustes=None):
+                 mesa=MESA_PRUEBA, depositos=None, mudo_en=None, fallo_pinza_en=None, ajustes=None, camara=None):
     """Cliente de socket que contesta como T_COM. n_lote y modo son lo que la app del FlexPendant dejo en
     nCajas y modoSimulacion; mesa, la zona de deposito; sin_lote imita un modulo antiguo, que no contesta a lote,
     mesa ni giro. depositos: se anota la pose del robot cuando llega 'abrir' (donde se suelta cada caja)."""
     s = socket.create_connection(("127.0.0.1", puerto), timeout=20)
     try:
+        if camara is not None:
+            _rapid_falso_camara(s, mensajes, errores, camara)
         for _ in range(n_cajas):
             puente.egm = True  # RAPID arranca la sesion EGM de la caja
             while True:
@@ -628,3 +669,80 @@ def test_en_real_con_camara_la_espera_maxima_es_la_de_rapid_y_si_no_ve_nada_para
     _, _, excepcion = _ejecutar(cfg, puente, fuente, 1, modo="real", n_lote=1, ajustes=_ajustes_camara(t_max="0.2"))
     assert isinstance(excepcion, RuntimeError) and "no ve ninguna caja entera en 0.2 s" in str(excepcion)
     assert puente.objetivos == []
+
+
+# ---------------------------------------------------------------- carpeta de fotos de ensayo elegida en la app
+@pytest.fixture
+def juegos(tmp_path, monkeypatch):
+    """Dos carpetas de fotos calibradas bajo una raiz (juego_a: 1 foto; juego_b: 2 fotos, de 200 y 190 mm de largo, giros 0 y 15 grados) y un PC
+    que pregunta la carpeta cada 50 ms."""
+    from test_celda_percepcion import _carpeta_con_fotos
+    raiz = tmp_path / "fotos"
+    _carpeta_con_fotos(raiz / "juego_a", n=1)
+    _carpeta_con_fotos(raiz / "juego_b", n=2)
+    monkeypatch.setattr(Celda, "ESPERA_CAMARA_S", 0.05)
+    return raiz
+
+
+def _fuente_de(raiz, nombre="juego_a"):
+    from celda.percepcion import FuenteCamara
+    from test_celda_percepcion import Z_CINTA, _cam
+    from vision.proveedores import Carpeta
+    return FuenteCamara(Carpeta(raiz / nombre), _cam(), Z_CINTA, params={"modo": "profundidad"}, tiempo_max_s=1.0, pausa_s=0.01)
+
+
+def _giros(mensajes):
+    return [m for m in mensajes if m.startswith("giro:")]
+
+
+def test_la_carpeta_elegida_en_la_app_se_abre_y_se_le_dice_cuantas_fotos_tiene(tmp_path, juegos):
+    puente = PuenteFalso()
+    cfg = _cfg(tmp_path, puente, modo_simulacion=False, camara={"raiz_carpetas": str(juegos)})
+    camara = {"carpetas": ["juego_b"]}
+    mensajes, errores, excepcion = _ejecutar(cfg, puente, _fuente_de(juegos), 2, modo="real", n_lote=2, ajustes=_ajustes_camara(), camara=camara)
+    assert excepcion is None and errores == []
+    assert camara["lista"] == {1: "juego_a;juego_b", 2: "", 3: ""}              # la lista de carpetas que da el PC
+    assert camara["info"] == [(2, "ok")]                                         # N.o de fotos de la carpeta elegida
+    assert _giros(mensajes) == ["giro:0.0", "giro:15.0"]                         # las dos cajas son de juego_b (juego_a solo tiene una)
+
+
+def test_si_la_app_vuelve_a_la_camara_de_la_celda_el_pc_vuelve_a_su_origen(tmp_path, juegos):
+    puente = PuenteFalso()
+    cfg = _cfg(tmp_path, puente, modo_simulacion=False, camara={"raiz_carpetas": str(juegos)})
+    camara = {"carpetas": ["juego_b", ""], "infos": 2}
+    mensajes, errores, excepcion = _ejecutar(cfg, puente, _fuente_de(juegos), 1, modo="real", n_lote=1, ajustes=_ajustes_camara(), camara=camara)
+    assert excepcion is None and errores == []
+    assert camara["info"] == [(2, "ok"), (1, "camara de la celda")]
+    assert _giros(mensajes) == ["giro:0.0"]                                      # otra vez juego_a, de una sola foto
+
+
+def test_una_carpeta_que_no_esta_en_la_lista_no_se_abre_ni_se_sale_de_la_raiz(tmp_path, juegos):
+    puente = PuenteFalso()
+    cfg = _cfg(tmp_path, puente, modo_simulacion=False, camara={"raiz_carpetas": str(juegos)})
+    camara = {"carpetas": ["../../etc"]}
+    mensajes, errores, excepcion = _ejecutar(cfg, puente, _fuente_de(juegos), 1, modo="real", n_lote=1, ajustes=_ajustes_camara(), camara=camara)
+    assert excepcion is None and errores == []
+    assert camara["info"] == [(0, "no esta en la lista")]
+    assert _giros(mensajes) == ["giro:0.0"]                                      # se sigue con la camara de la configuracion
+
+
+def test_un_rapid_antiguo_sin_estos_mensajes_no_para_el_ciclo(tmp_path, juegos, monkeypatch, capsys):
+    monkeypatch.setattr(Celda, "ESPERA_PREGUNTA_S", 0.3)
+    puente = PuenteFalso()
+    cfg = _cfg(tmp_path, puente, modo_simulacion=False, camara={"raiz_carpetas": str(juegos)})
+    camara = {"mudo": True, "max_s": 2.0}
+    mensajes, errores, excepcion = _ejecutar(cfg, puente, _fuente_de(juegos), 1, modo="real", n_lote=1, ajustes=_ajustes_camara(), camara=camara)
+    assert excepcion is None and errores == []
+    assert "sin carpeta de fotos desde la app" in capsys.readouterr().out
+    assert [m for m in mensajes if m.startswith("camara")] == ["camara_lista:1:juego_a;juego_b"]   # lo intenta una vez y no insiste
+    assert _giros(mensajes) == ["giro:0.0"]
+
+
+def test_en_simulacion_o_sin_raiz_de_carpetas_el_pc_no_toca_la_camara(tmp_path, juegos):
+    puente = PuenteFalso()
+    fuente = _fuente_de(juegos)
+    assert Celda(_cfg(tmp_path, puente, modo_simulacion=False, camara={"raiz_carpetas": str(juegos)}), fuente, None, None)._camara_activa()
+    assert not Celda(_cfg(tmp_path, puente, modo_simulacion=True, camara={"raiz_carpetas": str(juegos)}), fuente, None, None)._camara_activa()
+    assert not Celda(_cfg(tmp_path, puente, modo_simulacion=False, camara={"visor": True}), fuente, None, None)._camara_activa()
+    assert not Celda(_cfg(tmp_path, puente, modo_simulacion=False), fuente, None, None)._camara_activa()
+    puente.cerrar()

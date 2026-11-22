@@ -5,7 +5,7 @@ import pytest
 
 from nucleo.geometria import Pose
 from vision.camara import ModeloCamara, intrinsecos_por_campo_de_vision
-from vision.deteccion import PARAMS_POR_DEFECTO, detectar_cajas, dibujar, elegir
+from vision.deteccion import PARAMS_POR_DEFECTO, centro_px, detectar_cajas, dibujar, elegir, extremos_hilo
 from vision.escena import CajaSintetica, camara_cenital, escena, profundidad
 from vision.tablero import Tablero, detectar_esquinas, modelo_desde_tablero
 
@@ -226,3 +226,38 @@ def test_la_imagen_anotada_marca_cada_caja():
     anotada = dibujar(img, dets, dets[0])
     assert anotada.shape == img.shape and np.any(anotada != img)
     assert np.array_equal(dibujar(img, [], None), img)
+
+
+@pytest.mark.parametrize("giro", [0.0, 30.0, -45.0, 60.0])
+def test_el_hilo_va_de_un_lado_corto_al_otro_por_el_centro(giro):
+    """El hilo: recta de extremo a extremo, por el centro, a lo largo del eje largo; sus extremos caen en los puntos medios de los lados cortos."""
+    cam = camara_cenital(altura_mm=800.0)
+    img = escena(cam, [CajaSintetica(200.0, 100.0, 60.0, giro, (30.0, -20.0))])
+    d = detectar_cajas(img, cam, 0.0, alto_mm=60.0)[0]
+    a, b = extremos_hilo(d)
+    c = centro_px(d)
+    # pasa por el centro: el centro esta en el segmento (a, b), cerca de su punto medio
+    assert np.linalg.norm(c - (a + b) / 2) < 3.0
+    # en la base, la longitud del hilo es el largo de la caja y el angulo, el giro
+    pa, pb = (cam.pixel_a_plano(p.reshape(1, 2), d.z_tapa)[0] for p in (a, b))
+    assert abs(np.linalg.norm(pb - pa) - d.largo) < 3.0
+    ang = np.degrees(np.arctan2(*(pb - pa)[::-1])) % 180.0
+    assert abs(((ang - d.giro_deg) + 90.0) % 180.0 - 90.0) < 1.5
+    # cada extremo esta en la mitad del lado corto: mas cerca de ese lado que del centro de un lado largo
+    esq = d.esquinas_px
+    cortos = [(esq[0], esq[1]), (esq[2], esq[3])] if np.linalg.norm(esq[1] - esq[0]) < np.linalg.norm(esq[2] - esq[1]) else [(esq[1], esq[2]), (esq[3], esq[0])]
+    medios = [(p + q) / 2 for p, q in cortos]
+    for extremo in (a, b):
+        assert min(np.linalg.norm(extremo - m) for m in medios) < 4.0
+
+
+def test_la_imagen_anotada_lleva_el_hilo_y_el_centro_en_verde():
+    cam = camara_cenital(altura_mm=800.0)
+    img = escena(cam, [CajaSintetica(200.0, 100.0, 60.0, 0.0, (0.0, 0.0))])
+    d = detectar_cajas(img, cam, 0.0, alto_mm=60.0)[0]
+    anotada = dibujar(img, [d], d)
+    cx, cy = (int(round(v)) for v in centro_px(d))
+    assert tuple(anotada[cy, cx]) == (0, 255, 0)                  # punto verde en el centro
+    a, b = extremos_hilo(d)
+    medio = ((a + b) / 2 + centro_px(d)) / 2
+    assert np.any(anotada[int(medio[1]) - 1:int(medio[1]) + 2, int(medio[0]) - 1:int(medio[0]) + 2] != img[int(medio[1]) - 1:int(medio[1]) + 2, int(medio[0]) - 1:int(medio[0]) + 2])

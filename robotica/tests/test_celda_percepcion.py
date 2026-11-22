@@ -42,6 +42,7 @@ def test_no_lee_el_fichero_hasta_la_primera_caja(tmp_path):
 import json  # noqa: E402
 
 import cv2  # noqa: E402
+import numpy as np  # noqa: E402
 
 from celda.config import cargar  # noqa: E402
 from celda.percepcion import FuenteCamara, crear_fuente  # noqa: E402
@@ -166,3 +167,124 @@ def test_una_configuracion_de_camara_incompleta_o_mala_se_rechaza(tmp_path):
         crear_fuente(cargar(_config_con_camara(tmp_path / "b", {"calibracion": "camara.json", "origen": {"tipo": "ojos"}})))
     with pytest.raises(ValueError, match="no puedo leer la calibración"):
         crear_fuente(cargar(_config_con_camara(tmp_path / "c", {"calibracion": "no_existe.json", "origen": {"tipo": "carpeta", "ruta": "."}})))
+
+
+# ---------------------------------------------------------------- vista previa, carpeta de ensayo y visor
+def _carpeta_con_fotos(destino, n=2, calibrada=True, cam=None):
+    """Una carpeta con n fotos de una caja (y profundidad) y, si calibrada, su camara.json."""
+    import cv2
+    cam = cam or _cam()
+    destino.mkdir(parents=True, exist_ok=True)
+    for k in range(n):
+        caja = CajaSintetica(200.0 - 10 * k, 100.0, 120.0, 15.0 * k, (700.0 + 5 * k, 0.0))
+        f = _foto([caja], cam)
+        cv2.imwrite(str(destino / f"foto_{k + 1:02d}.png"), f.bgr)
+        np.save(destino / f"foto_{k + 1:02d}.npy", f.profundidad)
+    if calibrada:
+        cam.guardar(destino / "camara.json")
+    return destino
+
+
+def test_carpeta_ver_no_gasta_la_imagen_y_siguiente_si(tmp_path):
+    from vision.proveedores import Carpeta
+    c = Carpeta(_carpeta_con_fotos(tmp_path / "juego", n=3))
+    assert (c.n, c.indice, c.nombre) == (3, 0, "juego")
+    a, b = c.ver(), c.ver()
+    assert a.nombre == b.nombre == "foto_01.png" and c.indice == 0           # ver no avanza
+    assert c.siguiente().nombre == "foto_01.png" and c.indice == 1
+    assert c.ver().nombre == "foto_02.png"
+    c.siguiente(); c.siguiente()
+    assert c.ver() is None and c.siguiente() is None and c.indice == 3
+
+
+def test_listar_carpetas_solo_da_las_que_tienen_fotos_y_calibracion(tmp_path):
+    from vision.proveedores import listar_carpetas
+    _carpeta_con_fotos(tmp_path / "bueno")
+    _carpeta_con_fotos(tmp_path / "sin_calibrar", calibrada=False)
+    _carpeta_con_fotos(tmp_path / "con;punto_y_coma")
+    _carpeta_con_fotos(tmp_path / ".oculta")
+    (tmp_path / "vacia").mkdir()
+    (tmp_path / "vacia" / "camara.json").write_text("{}", encoding="utf-8")
+    (tmp_path / "suelto.txt").write_text("x", encoding="utf-8")
+    assert listar_carpetas(tmp_path) == ["bueno"]
+    assert listar_carpetas(tmp_path / "no_existe") == []
+
+
+def test_los_nombres_se_reparten_en_trozos_que_caben_en_un_mensaje_de_rapid():
+    from vision.proveedores import trocear_nombres
+    assert trocear_nombres(["a", "bb", "ccc"]) == (["a;bb;ccc"], 0)
+    assert trocear_nombres([]) == ([], 0)
+    nombres = [f"carpeta_{k:02d}" for k in range(30)]                       # 10 caracteres cada una
+    trozos, omitidos = trocear_nombres(nombres, largo_max=65, trozos_max=3)
+    assert len(trozos) == 3 and all(len(t) <= 65 for t in trozos)
+    assert omitidos == 30 - sum(len(t.split(";")) for t in trozos) and omitidos > 0
+    assert trocear_nombres(["x" * 70, "ok"]) == (["ok"], 1)                   # un nombre mas largo que el mensaje se omite
+
+
+def test_vista_previa_ensena_la_foto_con_la_caja_sin_gastarla(tmp_path):
+    from vision.proveedores import Carpeta
+    f = FuenteCamara(Carpeta(_carpeta_con_fotos(tmp_path / "juego", n=2)), _cam(), Z_CINTA, params={"modo": "profundidad"}, tiempo_max_s=0.3, pausa_s=0.01)
+    v1, v2 = f.vista_previa(), f.vista_previa()
+    assert v1 is v2                                                          # misma foto: sale de la cache
+    assert v1.elegida is not None and v1.elegida.largo == pytest.approx(200.0, abs=1.5)
+    assert (v1.indice, v1.total, v1.origen) == (1, 2, "carpeta juego")
+    assert f.n_imagenes() == 2 and f.total() is None
+    c0 = f.leer(0)                                                           # el ciclo si la gasta...
+    assert c0.largo == pytest.approx(200.0, abs=1.5)
+    v3 = f.vista_previa()                                                    # ...y la vista previa pasa a la siguiente
+    assert v3.indice == 2 and v3.elegida.largo == pytest.approx(190.0, abs=1.5)
+    f.leer(1)
+    agotada = f.vista_previa()
+    assert agotada.fotograma is None and agotada.total == 2
+
+
+def test_al_medir_avisa_con_la_foto_y_la_caja_elegida_y_un_fallo_no_para_el_ciclo(tmp_path):
+    from vision.proveedores import Carpeta
+    f = FuenteCamara(Carpeta(_carpeta_con_fotos(tmp_path / "juego", n=2)), _cam(), Z_CINTA, params={"modo": "profundidad"}, tiempo_max_s=0.3, pausa_s=0.01)
+    avisos = []
+    f.al_medir = lambda fot, dets, elegida, i: avisos.append((fot.nombre, elegida.largo, i))
+    f.leer(0)
+    assert avisos == [("foto_01.png", pytest.approx(200.0, abs=1.5), 0)]
+    f.al_medir = lambda *a: 1 / 0
+    assert f.leer(1).largo == pytest.approx(190.0, abs=1.5)                  # el aviso falla y la caja se mide igual
+
+
+def test_usar_carpeta_cambia_de_fotos_y_de_calibracion_y_restaurar_vuelve(tmp_path):
+    from vision.proveedores import Carpeta
+    base = _carpeta_con_fotos(tmp_path / "base", n=1)
+    otra_cam = camara_cenital(tam=(960, 720), altura_mm=500.0, centro_xy=(700.0, 0.0), z_plano=Z_CINTA)
+    otra = _carpeta_con_fotos(tmp_path / "otra", n=3, cam=otra_cam)
+    f = FuenteCamara(Carpeta(base), _cam(), Z_CINTA, params={"modo": "profundidad"}, tiempo_max_s=0.3, pausa_s=0.01)
+    assert f.usar_carpeta(otra) == 3 and f.n_imagenes() == 3 and f.origen() == "carpeta otra"
+    assert f.modelo.posicion[2] == pytest.approx(500.0 + 0.0, abs=1.0) or f.modelo is not f._modelo_base   # la calibracion es la de esa carpeta
+    assert f.leer(0).largo == pytest.approx(200.0, abs=1.5)
+    f.restaurar_origen()
+    assert f.n_imagenes() == 1 and f.origen() == "carpeta base" and f.modelo is f._modelo_base
+    with pytest.raises(ValueError, match="no existe"):
+        f.usar_carpeta(tmp_path / "fantasma")
+    sin = _carpeta_con_fotos(tmp_path / "sin", n=1, calibrada=False)
+    with pytest.raises(ValueError, match="no tiene camara.json"):
+        f.usar_carpeta(sin)
+    assert f.usar_carpeta(sin, exigir_calibracion=False) == 1                # con la de la configuracion
+
+
+def test_el_ciclo_y_la_vista_previa_desde_hilos_distintos_no_se_pisan(tmp_path):
+    import threading
+    from vision.proveedores import Carpeta
+    f = FuenteCamara(Carpeta(_carpeta_con_fotos(tmp_path / "juego", n=6)), _cam(), Z_CINTA, params={"modo": "profundidad"}, tiempo_max_s=2.0, pausa_s=0.01)
+    parar, fallos = threading.Event(), []
+
+    def previa():
+        while not parar.is_set():
+            try:
+                f.vista_previa()
+            except Exception as e:   # noqa: BLE001
+                fallos.append(repr(e))
+    hilo = threading.Thread(target=previa)
+    hilo.start()
+    try:
+        largos = [f.leer(i).largo for i in range(6)]
+    finally:
+        parar.set()
+        hilo.join(5.0)
+    assert fallos == [] and largos == pytest.approx([200.0, 190.0, 180.0, 170.0, 160.0, 150.0], abs=2.0)

@@ -30,6 +30,7 @@ from celda.ciclo import Celda, donde_espera_rapid
 from celda.config import cargar
 from celda.percepcion import FuenteCamara, crear_fuente
 from celda.socket_rapid import ServidorRapid
+from vision.visor import crear_visor
 
 from .proveedor_ros import ProveedorRos
 from .puente_ros import PuenteRos
@@ -52,6 +53,7 @@ class NodoCelda(Node):
         self._pub_caja = self.create_publisher(PoseStamped, "/celda/caja", 10)
         self.puente = PuenteRos(self, str(self.get_parameter("sesion").value))
         self.fuente = self._crear_fuente()
+        self.visor = crear_visor(self.fuente, self.cfg)   # ventana en tiempo real (camara.visor): se bombea en el bucle principal
         # Con socket_rapid.via = "puente", RAPID habla con el puente EGM y este nodo por /rapid/* (nodo_puente con rapid:=true);
         # con "pc", este nodo abre el socket (el servidor en el PC, como antes).
         self.rapid = (RapidRos(self, self.cfg.rapid_espera_s) if self.cfg.rapid_via == "puente"
@@ -76,6 +78,8 @@ class NodoCelda(Node):
         return FuenteCamara.desde_config(cfg, ProveedorRos(self, color, prof))
 
     def iniciar(self) -> None:
+        if self.visor is not None:
+            self.visor.iniciar()
         self._hilo.start()
 
     def _informar(self, datos: dict) -> None:
@@ -107,6 +111,8 @@ class NodoCelda(Node):
             self.terminado.set()
 
     def cerrar(self) -> None:
+        if self.visor is not None:
+            self.visor.parar()
         self.rapid.cerrar()
 
 
@@ -116,7 +122,13 @@ def main(args=None) -> int:
     nodo.iniciar()
     try:
         while rclpy.ok() and not nodo.terminado.is_set():
-            rclpy.spin_once(nodo, timeout_sec=0.1)
+            rclpy.spin_once(nodo, timeout_sec=0.05 if nodo.visor is not None else 0.1)
+            if nodo.visor is not None:
+                nodo.visor.bombear()
+        if nodo.visor is not None:   # la ultima imagen se queda unos segundos
+            fin = time.monotonic() + 3.0
+            while time.monotonic() < fin and rclpy.ok() and nodo.visor.bombear():
+                rclpy.spin_once(nodo, timeout_sec=0.03)
     except KeyboardInterrupt:
         pass
     finally:

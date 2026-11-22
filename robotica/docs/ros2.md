@@ -51,7 +51,7 @@ Cada Play abre un socket nuevo desde `T_COM`: la conexión nueva sustituye a la 
 
 - `puente_egm/PuenteEgm/RapidPuente.cs`: el relé (servidor del socket de RAPID) y, en `ServidorControl.cs`, los comandos `rapid_*`.
 - `celda/rapid_puente.py`: `RapidPorPuente`, para `python -m celda.ciclo` con `socket_rapid.via = "puente"` (los mismos métodos que `ServidorRapid`).
-- `nodo_celda.py`: el nodo del ciclo. Hilo propio para el ciclo y `spin` en el principal.
+- `nodo_celda.py`: el nodo del ciclo. Hilo propio para el ciclo y `spin` en el principal; si la configuración lleva `camara.visor`, el principal también dibuja la ventana `vision/visor.py` (WSLg en Ubuntu).
 - `puente_ros.py`: `PuenteRos`, con los mismos métodos que `ClientePuente` (`estado()`, `objetivo(pose)`).
 - `rapid_ros.py`: `RapidRos`, con los mismos métodos que `ServidorRapid` (`esperar_cliente`, `enviar`, `recibir`).
 - `proveedor_ros.py`: `ProveedorRos`, la cámara por topics (color bgr8 o rgb8, y profundidad 16UC1 en mm o 32FC1 en m).

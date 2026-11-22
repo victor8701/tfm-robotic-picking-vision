@@ -32,21 +32,86 @@ def listar_imagenes(ruta) -> list[Path]:
                   if f.suffix.lower() in EXTENSIONES and not f.stem.endswith(("_anotada", "_prof", "_fondo")) and f.stem != "fondo")
 
 
+def listar_carpetas(raiz) -> list[str]:
+    """Nombres de las subcarpetas de `raiz` que se pueden usar como cámara de ensayo: tienen imágenes y su propia calibración
+    (`camara.json`), porque cada juego de fotos se hizo con una cámara puesta de una manera. Sin ':' ni ';' en el nombre (van en los mensajes
+    a RAPID). Ordenadas por nombre."""
+    r = Path(raiz)
+    if not r.is_dir():
+        return []
+    nombres = []
+    for c in sorted(r.iterdir()):
+        if not c.is_dir() or c.name.startswith(".") or ":" in c.name or ";" in c.name:
+            continue
+        if (c / "camara.json").is_file() and listar_imagenes(c):
+            nombres.append(c.name)
+    return nombres
+
+
+def trocear_nombres(nombres, largo_max: int = 65, trozos_max: int = 3) -> tuple[list[str], int]:
+    """Reparte los nombres en trozos de texto «a;b;c» de a lo sumo `largo_max` caracteres (lo que cabe en un mensaje a RAPID, que tiene 80 con
+    el prefijo) y como mucho `trozos_max` trozos. Devuelve los trozos y cuántos nombres no han cabido."""
+    trozos: list[str] = []
+    actual = ""
+    omitidos = 0
+    for n in nombres:
+        if len(n) > largo_max:
+            omitidos += 1
+            continue
+        candidato = n if not actual else actual + ";" + n
+        if len(candidato) <= largo_max:
+            actual = candidato
+        elif len(trozos) + 1 < trozos_max:
+            trozos.append(actual)
+            actual = n
+        else:
+            omitidos += 1
+    if actual:
+        trozos.append(actual)
+    return trozos, omitidos
+
+
 class Carpeta:
-    """Imágenes guardadas, una a una. Si junto a `foto.png` hay `foto.npy` (o `foto_prof.png` de 16 bits), es su profundidad en mm."""
+    """Imágenes guardadas, una a una. Si junto a `foto.png` hay `foto.npy` (o `foto_prof.png` de 16 bits), es su profundidad en mm.
+
+    `siguiente()` gasta la imagen (es la que usa el ciclo); `ver()` enseña la actual sin gastarla (la vista previa)."""
 
     def __init__(self, ruta):
+        self.ruta = Path(ruta)
         self.ficheros = listar_imagenes(ruta)
         if not self.ficheros:
             raise ValueError(f"no hay imágenes en {ruta} ({', '.join(EXTENSIONES)})")
         self._i = 0
+        self._cache: tuple[int, Fotograma] | None = None
+
+    @property
+    def n(self) -> int:
+        """Imágenes de la carpeta."""
+        return len(self.ficheros)
+
+    @property
+    def indice(self) -> int:
+        """Imagen actual, de 0 a n (n = ya no quedan)."""
+        return self._i
+
+    @property
+    def nombre(self) -> str:
+        return self.ruta.name if self.ruta.is_dir() else self.ruta.parent.name
+
+    def _cargar(self, i: int) -> Fotograma:
+        if self._cache is None or self._cache[0] != i:
+            self._cache = (i, cargar_fotograma(self.ficheros[i]))
+        return self._cache[1]
+
+    def ver(self) -> Fotograma | None:
+        return None if self._i >= len(self.ficheros) else self._cargar(self._i)
 
     def siguiente(self) -> Fotograma | None:
         if self._i >= len(self.ficheros):
             return None
-        f = self.ficheros[self._i]
+        fot = self._cargar(self._i)
         self._i += 1
-        return cargar_fotograma(f)
+        return fot
 
 
 def cargar_fotograma(fichero: Path) -> Fotograma:

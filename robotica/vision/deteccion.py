@@ -230,25 +230,44 @@ def elegir(detecciones: list[Deteccion], centro_nominal=None) -> Deteccion | Non
     return min(detecciones, key=lambda d: float(np.linalg.norm(np.asarray(d.centro) - n)))
 
 
+def extremos_hilo(d: Deteccion) -> np.ndarray:
+    """Píxeles (2 x 2) de los extremos del «hilo» de la caja: la recta que va del punto medio de un lado corto al del otro lado corto,
+    pasando por el centro, es decir, a lo largo del eje largo (el del giro) y de extremo a extremo. Se calcula en la tapa, en la base,
+    y se pasa a la imagen con la misma homografía que las esquinas."""
+    a = np.radians(d.giro_deg)
+    eje = np.array([np.cos(a), np.sin(a)]) * d.largo / 2.0
+    c = np.asarray(d.centro, dtype=float)
+    extremos = [np.array([c[0] - eje[0], c[1] - eje[1], d.z_tapa]), np.array([c[0] + eje[0], c[1] + eje[1], d.z_tapa])]
+    return np.vstack([_pix(d, e) for e in extremos])
+
+
+def centro_px(d: Deteccion) -> np.ndarray:
+    """Píxel donde se ve el centro de la tapa de la caja."""
+    return _pix(d, np.array([d.centro[0], d.centro[1], d.z_tapa]))
+
+
 def dibujar(bgr: np.ndarray, detecciones: list[Deteccion], elegida: Deteccion | None = None) -> np.ndarray:
-    """Copia de la imagen con cada caja marcada: contorno, centro, eje del lado largo y sus medidas."""
+    """Copia de la imagen con cada caja marcada, como la ve el programa: el contorno (amarillo la elegida, verde las demás, rojo si está
+    cortada por el borde), el hilo de extremo a extremo por el centro, el centro (punto verde con sus coordenadas en mm, como en el trabajo
+    de Robótica Industrial) y las medidas."""
     img = bgr.copy()
     for d in detecciones:
         color = (0, 0, 255) if d.recortada else ((0, 255, 255) if d is elegida else (0, 220, 0))
         pts = np.round(d.esquinas_px).astype(np.int32)
         cv2.polylines(img, [pts], True, color, 2, cv2.LINE_AA)
-        centro = tuple(int(round(v)) for v in pts.mean(axis=0))
-        cv2.drawMarker(img, centro, color, cv2.MARKER_CROSS, 18, 2)
-        a = np.radians(d.giro_deg)
-        # el eje del lado largo en la imagen: de la tapa al punto medio de su lado largo
-        eje_base = np.array([np.cos(a), np.sin(a)]) * d.largo / 2
-        extremo = np.array([d.centro[0] + eje_base[0], d.centro[1] + eje_base[1], d.z_tapa])
-        centro3 = np.array([d.centro[0], d.centro[1], d.z_tapa])
-        a_px = np.round(np.vstack([_pix(d, centro3), _pix(d, extremo)])).astype(int)
-        cv2.arrowedLine(img, tuple(int(v) for v in a_px[0]), tuple(int(v) for v in a_px[1]), color, 2, cv2.LINE_AA, tipLength=0.25)
-        texto = f"{d.largo:.0f}x{d.ancho:.0f}x{d.alto:.0f} giro {d.giro_deg:.0f}"
-        cv2.putText(img, texto, (centro[0] + 12, centro[1] - 12), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 3, cv2.LINE_AA)
-        cv2.putText(img, texto, (centro[0] + 12, centro[1] - 12), cv2.FONT_HERSHEY_SIMPLEX, 0.6, color, 1, cv2.LINE_AA)
+        a, b = (tuple(int(round(v)) for v in p) for p in extremos_hilo(d))
+        cv2.line(img, a, b, color, 2, cv2.LINE_AA)
+        for extremo in (a, b):
+            cv2.circle(img, extremo, 5, color, -1, cv2.LINE_AA)
+        centro = tuple(int(round(v)) for v in centro_px(d))
+        cv2.circle(img, centro, 8, (0, 0, 0), -1, cv2.LINE_AA)
+        cv2.circle(img, centro, 6, (0, 255, 0), -1, cv2.LINE_AA)
+        medidas = f"{d.largo:.0f}x{d.ancho:.0f}x{d.alto:.0f} giro {d.giro_deg:.0f}"
+        coordenadas = f"{d.centro[0]:.0f},{d.centro[1]:.0f} mm"
+        for k, texto in enumerate((medidas, coordenadas)):
+            pos = (centro[0] + 14, centro[1] - 12 + 24 * k)
+            cv2.putText(img, texto, pos, cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 3, cv2.LINE_AA)
+            cv2.putText(img, texto, pos, cv2.FONT_HERSHEY_SIMPLEX, 0.6, color if k == 0 else (0, 255, 0), 1, cv2.LINE_AA)
     return img
 
 

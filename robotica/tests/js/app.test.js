@@ -609,7 +609,7 @@ test('la pestana Parametros tiene sus secciones y el limite del EGM ya no esta e
         assert.equal(app.$('vista-tanda').hidden, true);
         assert.equal(app.$('vista-mesa').hidden, true);
         assert.deepEqual(Array.from(app.$('param-nav').querySelectorAll('button')).map((b) => b.textContent),
-            ['Recogida', 'Pinza y agarre', 'Tiempos', 'Movimiento y seguridad']);
+            ['Recogida', 'Cámara', 'Pinza y agarre', 'Tiempos', 'Movimiento y seguridad']);
         // una seccion cada vez
         assert.equal(app.$('psec-recogida').hidden, false);
         assert.equal(app.$('psec-pinza').hidden, true);
@@ -910,5 +910,57 @@ test('si el controlador no deja usar ficheros, la app lo dice con el motivo', as
         app.pulsar('par-cargar');
         await hasta(() => /No encuentro \$HOME\/parametros\/x\.csv/.test(app.texto('par-estado')) && /sin permiso/.test(app.texto('par-estado')), 'error al cargar');
         assert.equal(app.$('par-estado').className, 'param-estado error');
+    } finally { app.cerrar(); }
+});
+
+test('la carpeta de fotos se elige con botones entre las que da el PC, se ve el numero de fotos y Valores por defecto la deja en la camara de la celda', async () => {
+    const dicho = [];
+    const app = await abrir({valores: {modoSimulacion: 'FALSE', camaraLista1: '"juego_a;juego_b"', camaraLista2: '"celda"'},
+        camara: (carpeta) => { dicho.push(carpeta); return carpeta === 'celda' ? {fotos: 3, estado: 'ok'} : {fotos: 0, estado: 'no existe'}; }});
+    try {
+        app.sim.play();
+        await hasta(() => app.texto('banner-titulo') === 'Listo para empezar', 'fase 1');
+        app.pulsar('tab-parametros');
+        app.pulsar('pnav-camara');
+        assert.equal(app.$('psec-camara').hidden, false);
+        // los botones salen de la lista del PC: la camara de la celda y tres carpetas
+        const botones = () => Array.from(app.$('pcar-camaraCarpeta').querySelectorAll('button')).map((b) => b.textContent);
+        assert.deepEqual(botones(), ['Cámara de la celda', 'juego_a', 'juego_b', 'celda']);
+        assert.equal(app.$('par-camaraCarpeta-0').classList.contains('activo'), true);
+        assert.equal(app.texto('plect-camaraFotos'), '—');
+        // elegir una: se escribe en la PERS y, cuando el PC responde, se ve cuantas fotos tiene
+        app.pulsar('par-camaraCarpeta-3');
+        await hasta(() => app.sim.valor('camaraCarpeta') === '"celda"', 'carpeta escrita en RAPID');
+        await hasta(() => app.texto('plect-camaraFotos') === '3 fotos', 'el PC cuenta las fotos');
+        assert.equal(app.texto('plect-camaraEstado'), 'ok');
+        assert.equal(app.$('par-camaraCarpeta-3').classList.contains('activo'), true);
+        assert.equal(app.$('par-camaraCarpeta-0').classList.contains('activo'), false);
+        app.pulsar('par-camaraCarpeta-1');
+        await hasta(() => app.texto('plect-camaraEstado') === 'no existe', 'estado de una carpeta que el PC no abre');
+        assert.deepEqual(dicho, ['celda', 'juego_a']);
+        // Valores por defecto: la carpeta vuelve a la camara de la celda (aunque no sea numerica)
+        app.pulsar('par-defecto');
+        await hasta(() => app.popup().length > 0, 'popup de valores por defecto');
+        assert.match(app.popup().join(' '), /valores por defecto del módulo en \d+ ajustes/);
+        app.pulsarPopup('OK');
+        await hasta(() => app.sim.valor('camaraCarpeta') === '""', 'carpeta vuelta a la camara de la celda');
+        await hasta(() => app.$('par-camaraCarpeta-0').classList.contains('activo'), 'boton de la camara de la celda activo');
+        assert.deepEqual(app.errores, []);
+    } finally { app.cerrar(); }
+});
+
+test('en simulacion los botones de la carpeta de fotos estan apagados y la app no escribe nada', async () => {
+    const app = await abrir({valores: {camaraLista1: '"juego_a"'}});
+    try {
+        app.sim.play();
+        await hasta(() => app.texto('banner-titulo') === 'Listo para empezar', 'fase 1');
+        app.pulsar('tab-parametros');
+        app.pulsar('pnav-camara');
+        assert.equal(app.$('par-camaraCarpeta-1').disabled, true);
+        assert.match(app.texto('pnota-camaraCarpeta'), /Solo en Real/);
+        app.pulsar('par-camaraCarpeta-1');
+        await dormir(120);
+        assert.equal(app.sim.valor('camaraCarpeta'), '""');
+        assert.deepEqual(app.errores, []);
     } finally { app.cerrar(); }
 });

@@ -532,6 +532,12 @@
                             grupo.appendChild(b);
                         });
                         caja.appendChild(grupo);
+                    } else if (tipo === 'carpeta') {
+                        // los botones se hacen al pintar: la lista de carpetas la da el PC y puede cambiar
+                        const grupo = document.createElement('div');
+                        grupo.className = 'segmentos';
+                        grupo.id = 'pcar-' + it.clave;
+                        caja.appendChild(grupo);
                     } else {
                         const lectura = document.createElement('div');
                         lectura.id = 'plect-' + it.clave;
@@ -583,10 +589,39 @@
                         clase('par-' + it.clave + '-' + op.valor, 'activo', it.valor === op.valor);
                         $('par-' + it.clave + '-' + op.valor).disabled = !it.activo;
                     });
+                } else if (it.tipo === 'carpeta') {
+                    pintarCarpetas(it);
                 } else {
-                    poner('plect-' + it.clave, it.valor + ' ' + it.unidad);
+                    poner('plect-' + it.clave, it.texto !== null && it.texto !== undefined ? it.texto : it.valor + ' ' + it.unidad);
                 }
             });
+        });
+    }
+
+    // Botones de la carpeta de fotos: una por cada opcion que da el PC. Se rehacen solo si cambia la lista (cambia con el PC, no al elegir).
+    let firmaCarpetas = null;
+
+    function pintarCarpetas(it) {
+        const grupo = $('pcar-' + it.clave);
+        const firma = it.opciones.map(function (op) { return op.valor + '\u0001' + op.texto; }).join('\u0002');
+        if (firma !== firmaCarpetas) {
+            firmaCarpetas = firma;
+            while (grupo.firstChild) { grupo.removeChild(grupo.firstChild); }
+            it.opciones.forEach(function (op, indice) {
+                const b = document.createElement('button');
+                b.type = 'button';
+                b.id = 'par-' + it.clave + '-' + indice;
+                b.className = 'segmento';
+                b.textContent = op.texto;
+                b.addEventListener('click', function () {
+                    if (parametroActivo(it.clave)) { ajustar(it.clave, op.valor); }
+                });
+                grupo.appendChild(b);
+            });
+        }
+        it.opciones.forEach(function (op, indice) {
+            clase('par-' + it.clave + '-' + indice, 'activo', it.valor === op.valor);
+            $('par-' + it.clave + '-' + indice).disabled = !it.activo;
         });
     }
 
@@ -656,6 +691,9 @@
     function ponerValoresPorDefecto() {
         if (!ajustesEditables()) { return; }
         const r = L.cambiosHacia(estado, L.valoresPorDefecto());
+        if (estado.camaraCarpeta !== '') {   // la carpeta de fotos es texto: no va en el CSV, pero "por defecto" es la camara de la celda
+            r.cambios.push({clave: 'camaraCarpeta', nombre: 'Fotos de la cámara', unidad: '', antes: estado.camaraCarpeta, ahora: '', protegido: false});
+        }
         if (r.cambios.length === 0) { estadoAjustes('Todos los ajustes ya tienen su valor por defecto.', 'ok'); return; }
         const protegidos = r.cambios.filter(function (c) { return c.protegido; });
         const lineas = ['Se pondrán los valores por defecto del módulo en ' + r.cambios.length + ' ajustes (los que has modificado), incluidos la zona de la mesa y la caja de referencia.'];

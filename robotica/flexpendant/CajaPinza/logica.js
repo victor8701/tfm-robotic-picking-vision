@@ -94,6 +94,12 @@
         seguroX:             {tipo: 'num',    clave: 'seguroX', escribe: true},
         seguroY:             {tipo: 'num',    clave: 'seguroY', escribe: true},
         seguroZ:             {tipo: 'num',    clave: 'seguroZ', escribe: true},
+        camaraCarpeta:     {tipo: 'string', clave: 'camaraCarpeta', escribe: true},
+        camaraLista1:      {tipo: 'string', clave: 'camaraLista1'},
+        camaraLista2:      {tipo: 'string', clave: 'camaraLista2'},
+        camaraLista3:      {tipo: 'string', clave: 'camaraLista3'},
+        camaraFotos:       {tipo: 'num',    clave: 'camaraFotos'},
+        camaraEstado:      {tipo: 'string', clave: 'camaraEstado'},
         hmiCaja:           {tipo: 'string', clave: 'caja'}
     });
 
@@ -153,6 +159,18 @@
                 {clave: 'zCinta', nombre: 'Altura de la cinta', unidad: 'mm', min: -500, max: 1500, protegido: true,
                     advertencia: 'Con la altura de la cinta mal medida, la pinza baja de más o de menos al agarrar.',
                     ayuda: 'z de la superficie de la cinta, desde la base del robot.'}
+            ]},
+        {id: 'camara', titulo: 'Cámara',
+            ayuda: 'Fotos de ensayo: en vez de la cámara, el PC lee las fotos de una carpeta suya (ensayo en casa). Solo en Real.',
+            items: [
+                {clave: 'camaraCarpeta', tipo: 'carpeta', nombre: 'Fotos de la cámara', solo: 'real',
+                    ayuda: 'La lista la da el PC: carpetas con fotos y su calibración. «Cámara de la celda» es la de la configuración del PC.'},
+                {clave: 'camaraFotos', tipo: 'lectura', nombre: 'Fotos en la carpeta',
+                    texto: function (e) { return e.camaraEstado === '' ? '—' : e.camaraFotos + ' fotos'; },
+                    ayuda: 'Las cuenta el PC al abrir la carpeta. Solo se muestra.'},
+                {clave: 'camaraEstado', tipo: 'lectura', nombre: 'Estado de la carpeta',
+                    texto: function (e) { return e.camaraEstado === '' ? 'el PC aún no ha dicho nada' : e.camaraEstado; },
+                    ayuda: 'Lo que dice el PC al abrirla: ok, no existe, sin calibración... Solo se muestra.'}
             ]},
         {id: 'pinza', titulo: 'Pinza y agarre',
             ayuda: 'Cómo agarra la pinza. h es la altura del punto de agarre sobre la base de la caja.',
@@ -241,10 +259,11 @@
     }
 
     // ---- Ajustes de puesta en marcha: valores por defecto y fichero CSV ----
-    // Los que se reponen, se guardan y se cargan: todo lo de la ventana Parametros (menos lo de solo lectura), la zona de
+    // Los que se reponen, se guardan y se cargan: todo lo de la ventana Parametros (menos lo de solo lectura y la carpeta de fotos, que es
+    // texto), la zona de
     // la mesa y la caja de referencia. No entran los de cada tanda (cajas, modo, giro, boton, mensajes).
     const AJUSTES = Object.freeze(PARAMETROS.reduce(function (todos, s) {
-        return todos.concat(s.items.filter(function (it) { return it.tipo !== 'lectura'; }).map(function (it) {
+        return todos.concat(s.items.filter(function (it) { return it.tipo !== 'lectura' && it.tipo !== 'carpeta'; }).map(function (it) {
             return {clave: it.clave, nombre: it.nombre, unidad: it.unidad || '', tipo: it.tipo || 'num', min: it.min, max: it.max,
                 opciones: it.opciones || null, protegido: !!it.protegido, seccion: s.titulo};
         }));
@@ -413,7 +432,9 @@
             giroPinza: 0, agarreModo: 0, agarrePorcentaje: 50, agarreHundimiento: 30, agarreMinimo: 10, solapeMinimo: 10,
             aperturaPinza: 0, grosorDedo: 0, tcpZ: 147, margenAproximacion: 65,
             tAntesAgarrar: 0, tAgarre: 0, tSuelta: 0, tMaxPinza: 3, tMaxCaja: 40, tiempoConv: 2.5,
-            velocidad: 100, zMinima: 0, seguroX: 600, seguroY: -6.5, seguroZ: 543
+            velocidad: 100, zMinima: 0, seguroX: 600, seguroY: -6.5, seguroZ: 543,
+            // Camara de ensayo: la carpeta de fotos que elige la app, la lista de carpetas que da el PC y lo que el PC dice de la elegida
+            camaraCarpeta: '', camaraLista1: '', camaraLista2: '', camaraLista3: '', camaraFotos: 0, camaraEstado: ''
         };
     }
 
@@ -440,6 +461,22 @@
         return s < 60 ? 'hace ' + s + ' s' : 'hace ' + Math.floor(s / 60) + ' min';
     }
 
+    // Carpetas de fotos que ofrece el PC: los nombres que dejo en camaraLista1..3, separados por ';'.
+    function carpetasDe(e) {
+        return [e.camaraLista1, e.camaraLista2, e.camaraLista3].join(';').split(';')
+            .map(function (n) { return n.trim(); }).filter(function (n) { return n !== ''; });
+    }
+
+    // Opciones de la carpeta de fotos: la camara de la celda ('') y las carpetas de la lista (la elegida, aunque ya no este en la lista).
+    function opcionesCarpeta(e) {
+        const nombres = carpetasDe(e);
+        const opciones = [{valor: '', texto: 'Cámara de la celda'}].concat(nombres.map(function (n) { return {valor: n, texto: n}; }));
+        if (e.camaraCarpeta !== '' && nombres.indexOf(e.camaraCarpeta) < 0) {
+            opciones.push({valor: e.camaraCarpeta, texto: e.camaraCarpeta + ' (no está en la lista)'});
+        }
+        return opciones;
+    }
+
     // La ventana Parametros: cada ajuste con su valor, si se puede cambiar ahora y por que no.
     function vistaParametros(e, editable) {
         const sim = e.modoSimulacion;
@@ -453,8 +490,12 @@
                     else if (it.depende && e[it.depende.clave] !== it.depende.valor) { nota = 'Solo con ' + it.depende.texto + '.'; aplica = false; }
                     else if (it.notaSim && sim) { nota = it.notaSim; }
                     const tipo = it.tipo || 'num';
+                    const opciones = tipo === 'carpeta' ? opcionesCarpeta(e) : (it.opciones || null);
+                    if (tipo === 'carpeta' && opciones.length === 1 && nota === '') {
+                        nota = 'El PC aún no ha dado la lista de carpetas: ¿está en marcha, en Real y con camara.raiz_carpetas en su configuración?';
+                    }
                     return {clave: it.clave, tipo: tipo, nombre: it.nombre, unidad: it.unidad || '', valor: e[it.clave], min: it.min, max: it.max,
-                        opciones: it.opciones || null, ayuda: it.ayuda, protegido: !!it.protegido, nota: nota,
+                        opciones: opciones, texto: it.texto ? it.texto(e) : null, ayuda: it.ayuda, protegido: !!it.protegido, nota: nota,
                         activo: tipo !== 'lectura' && editable && aplica};
                 })};
             })
@@ -1080,6 +1121,6 @@
         PARAMETROS: PARAMETROS, CAMPOS_PARAMETROS: CAMPOS_PARAMETROS, textoConfirmacion: textoConfirmacion,
         limitesDeEstado: limitesDeEstado, alturaAgarre: alturaAgarre,
         AJUSTES: AJUSTES, valoresPorDefecto: valoresPorDefecto, cambiosHacia: cambiosHacia, aCsv: aCsv, desdeCsv: desdeCsv,
-        nombreFicheroValido: nombreFicheroValido
+        nombreFicheroValido: nombreFicheroValido, carpetasDe: carpetasDe, opcionesCarpeta: opcionesCarpeta
     };
 }));

@@ -540,7 +540,7 @@ test('los ajustes de puesta en marcha tienen por defecto los de RAPID', () => {
 
 test('la ventana Parametros reparte los ajustes en secciones y dice por que alguno no se puede cambiar', () => {
     const v = L.calcularVista(estado({fase: F.ESPERA_INICIAR})).parametros;
-    assert.deepEqual(v.secciones.map((s) => s.id), ['recogida', 'pinza', 'tiempos', 'movimiento']);
+    assert.deepEqual(v.secciones.map((s) => s.id), ['recogida', 'camara', 'pinza', 'tiempos', 'movimiento']);
     const item = (clave) => v.secciones.flatMap((s) => s.items).find((i) => i.clave === clave);
     // en simulacion, la camara y la recogida en Y no cuentan; X si, con aviso de que la estacion manda
     assert.equal(item('recogidaModo').activo, false);
@@ -723,4 +723,52 @@ test('el nombre del fichero se valida: sin ruta, sin tildes ni puntos y sin .csv
     }
     assert.match(L.nombreFicheroValido('a/b').motivo, /letras, números/);
     assert.equal(L.nombreFicheroValido('x'.repeat(40)).ok, true);
+});
+
+test('la carpeta de fotos se elige entre las que da el PC (camaraLista1..3) y la camara de la celda es la primera', () => {
+    assert.deepEqual(L.carpetasDe(estado({})), []);
+    assert.deepEqual(L.opcionesCarpeta(estado({})), [{valor: '', texto: 'Cámara de la celda'}]);
+    const e = estado({camaraLista1: 'juego_a; juego_b', camaraLista2: '', camaraLista3: 'celda;;casa '});
+    assert.deepEqual(L.carpetasDe(e), ['juego_a', 'juego_b', 'celda', 'casa']);
+    assert.deepEqual(L.opcionesCarpeta(e).map((o) => o.valor), ['', 'juego_a', 'juego_b', 'celda', 'casa']);
+    // la elegida se sigue viendo aunque el PC ya no la ofrezca
+    const viejo = L.opcionesCarpeta(Object.assign(e, {camaraCarpeta: 'borrada'}));
+    assert.deepEqual(viejo[viejo.length - 1], {valor: 'borrada', texto: 'borrada (no está en la lista)'});
+});
+
+test('la seccion Camara: solo se elige en Real y con la tanda parada, avisa si el PC no ha dado la lista y cuenta las fotos', () => {
+    const item = (v, clave) => v.secciones.flatMap((s) => s.items).find((i) => i.clave === clave);
+    const sim = L.calcularVista(estado({fase: F.ESPERA_INICIAR, camaraLista1: 'juego_a;juego_b'})).parametros;
+    assert.equal(item(sim, 'camaraCarpeta').tipo, 'carpeta');
+    assert.equal(item(sim, 'camaraCarpeta').activo, false);                      // en simulacion no hay camara
+    assert.match(item(sim, 'camaraCarpeta').nota, /Solo en Real/);
+    const real = L.calcularVista(estado({fase: F.ESPERA_INICIAR, modoSimulacion: false, camaraLista1: 'juego_a;juego_b'})).parametros;
+    assert.equal(item(real, 'camaraCarpeta').activo, true);
+    assert.equal(item(real, 'camaraCarpeta').opciones.length, 3);
+    assert.equal(item(real, 'camaraCarpeta').nota, '');
+    const enMarcha = L.calcularVista(estado({fase: F.CINTA, modoSimulacion: false, camaraLista1: 'juego_a'})).parametros;
+    assert.equal(item(enMarcha, 'camaraCarpeta').activo, false);                 // con la tanda en marcha, bloqueada
+    const sinLista = L.calcularVista(estado({fase: F.ESPERA_INICIAR, modoSimulacion: false})).parametros;
+    assert.match(item(sinLista, 'camaraCarpeta').nota, /aún no ha dado la lista/);
+    // lo que dice el PC: antes de saber nada, guion; despues, el numero de fotos y el estado
+    assert.equal(item(real, 'camaraFotos').texto, '—');
+    assert.equal(item(real, 'camaraEstado').texto, 'el PC aún no ha dicho nada');
+    const dicho = L.calcularVista(estado({fase: F.ESPERA_INICIAR, modoSimulacion: false, camaraFotos: 3, camaraEstado: 'ok'})).parametros;
+    assert.equal(item(dicho, 'camaraFotos').texto, '3 fotos');
+    assert.equal(item(dicho, 'camaraEstado').texto, 'ok');
+    assert.equal(item(dicho, 'camaraFotos').activo, false);                      // solo lectura
+});
+
+test('la carpeta de fotos es texto: no entra en los ajustes del CSV ni en los valores por defecto numericos', () => {
+    for (const clave of ['camaraCarpeta', 'camaraFotos', 'camaraEstado', 'camaraLista1']) {
+        assert.equal(L.AJUSTES.some((a) => a.clave === clave), false, clave);
+        assert.equal(Object.prototype.hasOwnProperty.call(L.valoresPorDefecto(), clave), false, clave);
+    }
+    assert.doesNotMatch(L.aCsv(estado({camaraCarpeta: 'juego_a'})), /camara(Carpeta|Fotos|Estado|Lista)/);
+    const r = L.desdeCsv('camaraCarpeta;juego_a;;x\r\nrecogidaX;650;;x\r\n', estado({}));
+    assert.deepEqual(r.ignorados.map((i) => i.texto), ['camaraCarpeta']);        // el CSV no puede elegir carpeta
+    assert.equal(r.cambios.length, 1);
+    // las PERS de la camara estan en la tabla de variables: la carpeta la escribe la app; la lista y lo que dice el PC, no
+    assert.equal(L.VARIABLES.camaraCarpeta.escribe, true);
+    for (const c of ['camaraLista1', 'camaraLista2', 'camaraLista3', 'camaraFotos', 'camaraEstado']) { assert.ok(!L.VARIABLES[c].escribe, c); }
 });

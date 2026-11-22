@@ -85,7 +85,9 @@ class Config:
     velocidad: float = 100.0
     z_minima: float = 0.0
     # Percepcion por camara (solo real): calibracion (camara.json de calibracion.camara), origen de las imagenes, alto de la caja si no se mide
-    # con profundidad, modo de deteccion y parametros. Ver docs/vision.md. None = sin camara configurada.
+    # con profundidad, modo de deteccion y parametros. Ver docs/vision.md. None = sin camara configurada. Dos claves mas: visor (true = ventana
+    # en tiempo real con lo que ve la camara y lo que considera la caja, vision/visor.py) y raiz_carpetas (carpeta con subcarpetas de fotos de
+    # ensayo, cada una con su camara.json: la app deja elegir una de ellas, vision.proveedores.listar_carpetas).
     camara: dict | None = None
 
 
@@ -94,7 +96,7 @@ def _resolver_camara(cam: dict | None, base: Path) -> dict | None:
     if cam is None:
         return None
     cam = json.loads(json.dumps(cam))   # copia
-    for clave in ("calibracion", "fondo"):
+    for clave in ("calibracion", "fondo", "raiz_carpetas"):
         if cam.get(clave) and not Path(cam[clave]).is_absolute():
             cam[clave] = str(base / cam[clave])
     origen = cam.get("origen") or {}

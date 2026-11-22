@@ -311,6 +311,35 @@ $py = "C:\Program Files\Python311\python.exe"
 
 En la app: **Real**, pestaña **Parámetros → Recogida → Posición de la caja = Cámara** (solo en Real), `recogidaX/Y` en el punto donde espera la pinza, la zona permitida ±X ±Y, la altura de la cinta igual que la `--z` de la calibración y, en **Tiempos**, el máximo esperando a la cámara. Con **Fija**, el PC usa siempre `recogidaX/Y` y de la cámara solo toma las medidas y el giro. El PC y la app tienen que estar en el mismo modo. Después se arranca como en el paso 8 (puente, PC, Play; el PC con `celda\config_celda_windows.json`). Si lanzas la celda por ROS 2 (variante del paso 8), la cámara también puede venir de un driver de ROS: en `celda/config_celda.json` pon `"origen": {"tipo": "ros"}` (topics por defecto `/camera/color/image_raw` y `/camera/aligned_depth_to_color/image_raw`; con la RealSense, `ros2 launch realsense2_camera rs_launch.py align_depth.enable:=true` en otra terminal de Linux antes del `ros2 launch` de la celda). Si la cámara no ve una caja entera a tiempo o la ve fuera de la zona, el PC se para con un aviso: no se mueve.
 
+**Primera prueba del modo Real en casa (sin cámara ni celda).** El PC lee fotos de ejemplo (`ejemplos_vision/celda`, una por caja) en vez de una cámara, y el robot virtual de RobotStudio va donde las ve. Hay una configuración hecha, `celda/config_celda_real_casa.json` (modo Real, 3 cajas, cámara de carpeta), para no tocar la de simulación. Con ROS 2, como en el paso 8:
+
+1. **Fotos de ejemplo** (solo si no existe la carpeta `ejemplos_vision/celda`). **Linux (WSL2):**
+```
+cd ~/repos/tfm-robotica-bimanual/robotica && python3 -m vision.generar_ejemplos ejemplos_vision
+```
+2. **Puente** (Windows, PowerShell), igual que siempre (paso 8, punto e).
+3. **Celda en modo Real.** **Linux (WSL2)**, el mismo `ros2 launch` del paso 8 (g) pero con otro `config`:
+```
+cd ~/ros2_ws && source /opt/ros/humble/setup.bash && source install/setup.bash && export PYTHONPATH=$HOME/repos/tfm-robotica-bimanual/robotica:$PYTHONPATH && ros2 launch robotica_bimanual celda_real.launch.py config:=$HOME/repos/tfm-robotica-bimanual/robotica/celda/config_celda_real_casa.json host:=$(ip route show default | awk '{print $3}')
+```
+4. **RobotStudio:** Reset y Play. **En la app:** pestaña Parámetros → **Valores por defecto** (recogida **Fija** en 700 y 0, altura de la cinta 220; con **Cámara**, la misma X e Y y zona ±50). Pestaña Tanda: modo **Real**, **3** cajas, **INICIAR TANDA**, y **CAJA EN POSICIÓN** en cada caja.
+
+**Elegir la carpeta de fotos desde la app y ver lo que ve el PC (22-nov).** Con `config_celda_real_casa.json` (lleva `"visor": true` y `"raiz_carpetas"`):
+- **En el PC se abre la ventana «Vision de la celda»** (como la del trabajo de Robótica Industrial): la foto que ve la cámara, el **contorno** de lo que el programa considera la caja, un **punto verde en el centro** con sus coordenadas en mm y el **hilo**, una línea de extremo a extremo de un lado corto al otro por el centro (a lo largo del eje largo), más las medidas. Arriba, la carpeta, «foto i de N» y el estado: **VISTA PREVIA** (la foto que se usará para la siguiente caja, sin gastarla) y, 3 s después de medir cada caja, **CAJA k: MEDIDA**. Con la tecla `q` o cerrando la ventana, el ciclo sigue sin ella. En Ubuntu se abre con WSLg (si no hay pantalla lo avisa y sigue sin ventana).
+- **En la app**, pestaña Parámetros → **Cámara** (solo en Real, antes de pulsar INICIAR): botones con **Cámara de la celda** y las carpetas que da el PC (hoy `celda` y `celda_zapatos`, las que tienen `camara.json`); al pulsar una, en 1–2 s la app dice **«N fotos»** y el estado, y la ventana del PC pasa a esa carpeta. **Valores por defecto** vuelve a la cámara de la celda. `celda_zapatos` son tres fotos de cajas alargadas (330 × 190 × 120 y 300 × 180 × 100, giros 0°, 35° y −60°) para ver bien el hilo.
+- Solo salen carpetas con su propio `camara.json` (la calibración de esa cámara). Tus fotos reales (`planta_real_prueba`) no salen hasta calibrarlas (Prueba 7 de `docs/vision.md`) y poner el `camara.json` en su carpeta.
+
+*Para actualizar (módulo, app y ejemplos):*
+1. **Fotos de ejemplo** (crea `celda_zapatos`). **Linux (WSL2):**
+```
+cd ~/repos/tfm-robotica-bimanual/robotica && python3 -m vision.generar_ejemplos ejemplos_vision
+```
+2. **Módulo de RAPID:** el `MOD_CajaPinza.mod` del escritorio ya es el nuevo (copia anterior: `.antes_camara`). Recárgalo en `T_ROB1` y `T_COM` (paso 5): los ajustes vuelven a los del módulo.
+3. **App:** ya están copiados `app.js`, `logica.js` y `demo-rws.js` nuevos en `Desktop\TFM_RAPID\WebApps\CajaPinza` y en la carpeta `HOME\WebApps\CajaPinza` del controlador virtual (copias: `.antes_camara`). Recarga la app en el navegador del controlador; si sigue la antigua, reinicia el controlador (Restart) y vuelve a abrirla.
+4. Lanza la celda con el `ros2 launch` de arriba (con `config_celda_real_casa.json`).
+
+**Qué debes ver:** en la terminal del launch, `Celda: caja 1 de 3 (199.995 x 139.561 x 120 mm, giro 0 grados)`, luego la 2 (200 × 140, giro −45°) y la 3 (160 × 100 × 90, giro 60°), con su `Pinza: cerrar -> cerrada`; el robot va al punto de la caja y la deja en la mesa. El 3D no muestra cajas (en Real no se mueve `CajaGrande`): la pinza agarra aire. Con una cuarta caja, el PC se para con `La cámara no ve ninguna caja entera` porque no quedan fotos. Ensayado el 22-nov sin RobotStudio (puente y RAPID falsos): las 3 cajas se miden, caben en la mesa y todos los puntos están dentro del espacio del puente. *Sin probar:* con RobotStudio.
+
 *Sin probar:* la cámara y las cajas reales, la RealSense (`pyrealsense2`), `--interactivo` y el ciclo completo en Real con la cámara conectada. Solo se ha probado con imágenes sintéticas.
 
 ## 3. Cómo funciona

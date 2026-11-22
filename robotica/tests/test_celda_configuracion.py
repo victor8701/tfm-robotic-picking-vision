@@ -393,3 +393,13 @@ def test_socket_rapid_via_solo_admite_puente_o_pc(tmp_path):
     assert cargar(con({"via": "puente", "espera_conexion_s": 5})).rapid_via == "puente"   # el puente decide ip y puerto
     with pytest.raises(ValueError, match="'puente' o 'pc'"):
         cargar(con({"via": "udp", "espera_conexion_s": 5}))
+
+
+def test_la_configuracion_de_la_prueba_en_casa_del_modo_real_carga_y_apunta_a_los_ejemplos():
+    """celda/config_celda_real_casa.json (vision.md, Prueba 10): modo Real con las fotos de ejemplo como camara."""
+    cfg = cargar(RAIZ / "celda" / "config_celda_real_casa.json")
+    assert cfg.modo_simulacion is False and cfg.rapid_via == "puente"
+    assert cfg.camara["origen"]["tipo"] == "carpeta" and cfg.camara["modo"] == "profundidad"
+    ejemplos = RAIZ / "ejemplos_vision" / "celda"
+    if ejemplos.exists():   # ejemplos_vision/ no esta en git: se genera con vision.generar_ejemplos
+        assert Path(cfg.camara["calibracion"]).is_file() and Path(cfg.camara["origen"]["ruta"]).is_dir()

@@ -7,6 +7,8 @@ Crea en esa carpeta:
                    distintos en cada una, con la profundidad (.npy) de cada foto en `casa_prof/`
   fondo.png        la misma escena sin cajas (para --modo fondo)
   celda/           fotos de una cámara fija sobre la cinta de la celda (base del robot) y `camara.json` con su calibración
+  celda_zapatos/   lo mismo con cajas alargadas, de zapatos (330 x 190 x 120 mm, y 300 x 180 x 100) en tres posiciones: para ver el «hilo» de
+                   lado corto a lado corto y para elegir entre dos carpetas en la app (con la misma cámara, así que repite `camara.json`)
   calibracion/     12 fotos del tablero (`fotos_tablero/`) y una foto de la cinta con el tablero tendido (`cinta.png`), de la misma
                    cámara que `celda/camara.json`, y `toques.txt` con los `--toca` y `--valida` que se darían al tocar las esquinas con el
                    TCP (ya entre comillas, para PowerShell): para ensayar el programa de calibración sin cámara ni robot (la cámara debe salir en x 690, y 5, z 870)
@@ -77,7 +79,8 @@ def _calibracion(carpeta: Path) -> None:
 
 def generar(carpeta: Path) -> None:
     casa, prof, celda = carpeta / "casa", carpeta / "casa_prof", carpeta / "celda"
-    for d in (casa, prof, celda):
+    zapatos = carpeta / "celda_zapatos"
+    for d in (casa, prof, celda, zapatos):
         d.mkdir(parents=True, exist_ok=True)
     verdad = []
     # En casa: el tablero (esquina (0, 0) en el origen) y la caja sobre la misma mesa, cámara a 800 mm
@@ -101,6 +104,14 @@ def generar(carpeta: Path) -> None:
         cv2.imwrite(str(celda / f"{nombre}.png"), escena(cam_c, [caja], z_plano=220.0, ruido=2.0, semilla=n))
         np.save(celda / f"{nombre}.npy", profundidad(cam_c, [caja], z_plano=220.0))
         verdad.append([f"celda/{nombre}.png", l, a, h, g, c[0], c[1]])
+    ModeloCamara(cam_c.K, cam_c.dist, cam_c.T_base_cam, cam_c.tam, {"origen": "ejemplo sintetico"}).guardar(zapatos / "camara.json")
+    cajas_zapatos = [(330.0, 190.0, 120.0, 0.0, (700.0, 0.0)), (330.0, 190.0, 120.0, 35.0, (705.0, 5.0)), (300.0, 180.0, 100.0, -60.0, (695.0, -5.0))]
+    for n, (l, a, h, g, c) in enumerate(cajas_zapatos, start=1):
+        caja = CajaSintetica(l, a, h, g, c)
+        nombre = f"zapatos_{n:02d}"
+        cv2.imwrite(str(zapatos / f"{nombre}.png"), escena(cam_c, [caja], z_plano=220.0, ruido=2.0, semilla=10 + n))
+        np.save(zapatos / f"{nombre}.npy", profundidad(cam_c, [caja], z_plano=220.0))
+        verdad.append([f"celda_zapatos/{nombre}.png", l, a, h, g, c[0], c[1]])
     _calibracion(carpeta)
     with open(carpeta / "verdad.csv", "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh, delimiter=";")
@@ -113,7 +124,7 @@ def main(argv=None) -> int:
     ap.add_argument("carpeta", nargs="?", default="ejemplos_vision")
     args = ap.parse_args(argv)
     generar(Path(args.carpeta))
-    print(f"ejemplos en {args.carpeta}/ (casa/, fondo.png, celda/, calibracion/ y verdad.csv); mira la cabecera de vision/generar_ejemplos.py para probarlos")
+    print(f"ejemplos en {args.carpeta}/ (casa/, fondo.png, celda/, celda_zapatos/, calibracion/ y verdad.csv); mira la cabecera de vision/generar_ejemplos.py para probarlos")
     return 0
 
 

@@ -292,6 +292,8 @@ python3 -m calibracion.camara extrinsecos foto_cinta.png --intrinsecos intrinsec
 
 **Qué haces:** en vez de una cámara de verdad, el PC lee fotos de una carpeta (las de ejemplo de `celda/`), una por cada caja.
 
+**Ya hay una configuración hecha:** `celda/config_celda_real_casa.json` (modo Real, 3 cajas y las fotos de ejemplo como cámara). Con ROS 2 se usa sin editar nada: los comandos, en el manual de RobotStudio, paso 11, «Primera prueba del modo Real en casa». Lo de abajo es la forma manual, con el ciclo de Python de Windows.
+
 **Pasos:**
 1. Abre `\\wsl.localhost\Ubuntu-22.04\home\ubuntu22\repos\tfm-robotica-bimanual\robotica\celda\config_celda_windows.json` y pon `"modo_simulacion": false` y esta sección `camara` (las rutas son relativas a esa carpeta `celda\`):
 ```json
@@ -303,6 +305,8 @@ python3 -m calibracion.camara extrinsecos foto_cinta.png --intrinsecos intrinsec
 ```
 2. En la app del FlexPendant: **Real**, 3 cajas, y en la pestaña **Parámetros → Recogida**: Posición de la caja = **Cámara**, `recogidaX` = 700, `recogidaY` = 0, zona permitida ±50 y ±50, y `zCinta` = 220.
 3. Arranca como en el Paso 8 (puente, PC, Play) y pulsa **CAJA EN POSICIÓN** en cada caja.
+
+**Ventana del PC y carpeta desde la app:** con `"visor": true` se abre una ventana en tiempo real con la foto, el contorno de la caja, el centro (punto verde con sus coordenadas) y el hilo de lado corto a lado corto por el centro; con `"raiz_carpetas"` la app deja elegir la carpeta de fotos (manual de RobotStudio, paso 11). La imagen anotada de `probar_en_casa` lleva ahora el mismo hilo y el mismo punto verde.
 
 **Qué tienes que ver:** el PC escribe `Celda: caja 1 de 3 (` con las medidas de la caja (200 × 140 × 120 mm, con algún decimal de más) y su giro, y el robot va al punto de la caja; la 2 y la 3 con sus propias medidas (200 × 140 con giro de −45°, y 160 × 100 × 90 con giro de 60°).
 

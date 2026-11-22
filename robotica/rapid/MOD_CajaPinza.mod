@@ -18,7 +18,8 @@ MODULE MOD_CajaPinza
     !                      definida en EIO.cfg y se pone a 0 al empezar.
     !
     ! Protocolo por socket: sin separadores, un mensaje por turno (el PC espera la respuesta).
-    !   PC -> RAPID: cerrar, abrir, fin_caja, fin_programa, lote, mesa, recogida, agarre, celda, giro:<grados>
+    !   PC -> RAPID: cerrar, abrir, fin_caja, fin_programa, lote, mesa, recogida, agarre, celda, giro:<grados>,
+    !                camara, camara_lista:<k>:<nombres>, camara_info:<n>:<estado>
     !   RAPID -> PC: cerrada, abierta, fin_ok, fallo_pinza, fallo_egm, lote:<n>:<sim|real>,
     !                mesa:<x0>:<y0>:<largo>:<ancho>:<z>:<hueco>:<egmMaxPos>:<alcanceMax>, giro_ok, giro_mal,
     !                recogida:<modo>:<x>:<y>:<tolX>:<tolY>:<offX>:<offY>:<offGiro>:<tMaxCamara>,
@@ -124,6 +125,16 @@ MODULE MOD_CajaPinza
     PERS bool hmiMensajes := FALSE;
     ! Medidas de la caja en curso (simulacion), para la app.
     PERS string hmiCaja := "";
+
+    ! ---- Camara de ensayo (solo Real): carpeta de fotos que lee el PC en vez de la camara ----
+    ! La app elige la carpeta de una lista que da el PC (camaraLista1..3: nombres separados por ';'); el PC la abre, cuenta las fotos y
+    ! avisa (camaraFotos y camaraEstado). "" = la camara de la configuracion del PC. Las escribe la app (camaraCarpeta) y T_COM (el resto).
+    PERS string camaraCarpeta := "";
+    PERS string camaraLista1 := "";
+    PERS string camaraLista2 := "";
+    PERS string camaraLista3 := "";
+    PERS num camaraFotos := 0;
+    PERS string camaraEstado := "";
 
     ! ---- Mesa de deposito (la ajusta la app; el PC la pide con 'mesa') ----
     ! Zona de la mesa donde se dejan las cajas, en mm respecto a la base del robot: (mesaX0, mesaY0) es la
@@ -509,6 +520,9 @@ MODULE MOD_CajaPinza
         VAR string textoMesa;
         VAR string textoAjustes;
         VAR num esperaPinza;
+        VAR string textoCamara;
+        VAR num posCamara;
+        VAR num fotosLeidas;
 
         hmiPcConectado := FALSE;
         SocketCreate sock;
@@ -607,6 +621,13 @@ MODULE MOD_CajaPinza
                 textoAjustes := textoAjustes + ":" + NumToStr(seguroX, 1) + ":" + NumToStr(seguroY, 1) + ":" + NumToStr(seguroZ, 1);
                 textoAjustes := textoAjustes + ":" + NumToStr(velocidad, 1) + ":" + NumToStr(zMinima, 1);
                 SocketSend sock \Str:=textoAjustes;
+            ELSEIF orden = "camara" THEN
+                ! La carpeta de fotos que ha elegido la app ("" = la camara de la configuracion del PC).
+                IF StrLen(camaraCarpeta) > 70 THEN
+                    SocketSend sock \Str:="camara:" + StrPart(camaraCarpeta, 1, 70);
+                ELSE
+                    SocketSend sock \Str:="camara:" + camaraCarpeta;
+                ENDIF
             ELSEIF StrLen(orden) > 5 THEN
                 ! giro:<grados>. El PC cuenta el giro de la caja que ha leido (en simulacion, del CSV).
                 ! El signo se trata aparte para no depender de como StrToVal lee los negativos.
@@ -623,6 +644,47 @@ MODULE MOD_CajaPinza
                         SocketSend sock \Str:="giro_ok";
                     ELSE
                         SocketSend sock \Str:="giro_mal";
+                    ENDIF
+                ENDIF
+                ! Avisos del PC sobre la camara de ensayo. Siempre se contesta (si no, el PC espera hasta agotar su tiempo).
+                IF StrLen(orden) > 12 THEN
+                    IF StrPart(orden, 1, 12) = "camara_info:" THEN
+                        ! camara_info:<fotos>:<estado>
+                        posCamara := StrFind(orden, 13, ":");
+                        IF posCamara > 13 AND posCamara <= StrLen(orden) THEN
+                            IF StrToVal(StrPart(orden, 13, posCamara - 13), fotosLeidas) THEN
+                                camaraFotos := fotosLeidas;
+                                IF posCamara < StrLen(orden) THEN
+                                    camaraEstado := StrPart(orden, posCamara + 1, StrLen(orden) - posCamara);
+                                ELSE
+                                    camaraEstado := "";
+                                ENDIF
+                                SocketSend sock \Str:="camara_ok";
+                            ELSE
+                                SocketSend sock \Str:="camara_mal";
+                            ENDIF
+                        ELSE
+                            SocketSend sock \Str:="camara_mal";
+                        ENDIF
+                    ELSEIF StrLen(orden) >= 15 AND StrPart(orden, 1, 13) = "camara_lista:" THEN
+                        ! camara_lista:<k>:<nombres separados por ;>, con k = 1, 2 o 3 (la lista puede venir vacia)
+                        IF StrLen(orden) > 15 THEN
+                            textoCamara := StrPart(orden, 16, StrLen(orden) - 15);
+                        ELSE
+                            textoCamara := "";
+                        ENDIF
+                        IF StrPart(orden, 14, 1) = "1" THEN
+                            camaraLista1 := textoCamara;
+                            SocketSend sock \Str:="camara_ok";
+                        ELSEIF StrPart(orden, 14, 1) = "2" THEN
+                            camaraLista2 := textoCamara;
+                            SocketSend sock \Str:="camara_ok";
+                        ELSEIF StrPart(orden, 14, 1) = "3" THEN
+                            camaraLista3 := textoCamara;
+                            SocketSend sock \Str:="camara_ok";
+                        ELSE
+                            SocketSend sock \Str:="camara_mal";
+                        ENDIF
                     ENDIF
                 ENDIF
             ENDIF

@@ -157,7 +157,10 @@ def test_una_foto_sin_tablero_o_sin_caja_se_avisa_y_da_codigo_1(ejemplos, tmp_pa
 
 def test_el_generador_deja_las_fotos_la_profundidad_el_fondo_y_la_verdad(ejemplos):
     assert len(list((ejemplos / "casa").glob("*.png"))) == 5 and len(list((ejemplos / "casa").glob("*.npy"))) == 5
-    assert (ejemplos / "fondo.png").is_file() and (ejemplos / "celda" / "camara.json").is_file() and len(_verdad(ejemplos)) == 8
+    assert (ejemplos / "fondo.png").is_file() and (ejemplos / "celda" / "camara.json").is_file() and len(_verdad(ejemplos)) == 11
+    zapatos = ejemplos / "celda_zapatos"                                  # para elegir carpeta en la app y ver el hilo en cajas alargadas
+    assert len(list(zapatos.glob("*.png"))) == 3 and (zapatos / "camara.json").is_file()
+    assert (zapatos / "camara.json").read_text(encoding="utf-8") == (ejemplos / "celda" / "camara.json").read_text(encoding="utf-8")
     cal = ejemplos / "calibracion"
     assert len(list((cal / "fotos_tablero").glob("*.png"))) == 12 and (cal / "cinta.png").is_file()
     toques = (cal / "toques.txt").read_text(encoding="utf-8").split()

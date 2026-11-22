@@ -29,6 +29,7 @@ from .config import GIRO_PUENTE_RAD_S, VELOCIDAD_PUENTE_MM_S, Config, cargar  # 
 from .percepcion import centro_parada, crear_fuente  # noqa: E402
 from .planificacion import (  # noqa: E402
     Mesa, NoAgarrable, Reparto, SinSitio, Tramo, a_brida, altura_agarre, envolver_giro, planificar, validar_puntos)
+from vision.visor import crear_visor, ejecutar_con_visor  # noqa: E402
 from .rapid_puente import RapidPorPuente  # noqa: E402
 from .socket_rapid import ServidorRapid  # noqa: E402
 
@@ -42,6 +43,10 @@ class Celda:
     ESPERA_EGM_PARADO_S = 3.0
     # Respuesta de RAPID a cerrar, abrir y fin_caja (la mas larga, fin_caja, tarda como mucho tiempoConv + 10 s).
     ESPERA_RESPUESTA_S = 40.0
+    # Mientras espera el arranque de la tanda, cada cuanto se pregunta a RAPID la carpeta de fotos que ha elegido la app y cada cuanto se le
+    # vuelve a dar la lista de carpetas del PC.
+    ESPERA_CAMARA_S = 1.0
+    ESPERA_LISTA_CAMARA_S = 30.0
 
     def __init__(self, cfg: Config, fuente, puente, rapid: ServidorRapid):
         self.cfg = cfg
@@ -53,6 +58,11 @@ class Celda:
         self._reparto: Reparto | None = None   # donde va cada caja en la mesa (cajas de medidas distintas)
         # Funcion opcional que recibe un dict por cada hecho (inicio, caja, pinza, fin): el nodo de ROS 2 lo publica en /celda/estado.
         self.informar = None
+        # Carpeta de fotos de ensayo (camara.raiz_carpetas): la elige la app, la lista la da el PC. None = aun no se ha preguntado.
+        self._camara_ok = True
+        self._camara_carpeta: str | None = None
+        self._camara_t = 0.0
+        self._camara_lista_t: float | None = None
 
     def _informar(self, **datos) -> None:
         if self.informar is not None:
@@ -285,7 +295,72 @@ class Celda:
                 base = ciclos
             elif ciclos > base + 5:
                 return e
+            self._sincronizar_camara()
             time.sleep(self.cfg.periodo_s)
+
+    # ---------------------------------------------------------------- carpeta de fotos de ensayo (la elige la app)
+    def _camara_activa(self) -> bool:
+        """Solo en Real, con camara.raiz_carpetas, con una fuente que sepa cambiar de carpeta y antes de que empiece la tanda (despues, la app ya
+        no deja cambiar los ajustes)."""
+        return (self._camara_ok and self._n_rapid is None and not self.cfg.modo_simulacion
+                and bool((self.cfg.camara or {}).get("raiz_carpetas")) and hasattr(self.fuente, "usar_carpeta"))
+
+    def _sincronizar_camara(self) -> None:
+        """Mientras el PC espera a que arranque la tanda: da a la app la lista de carpetas de fotos (camara_lista), pregunta cual ha elegido
+        (camara), la abre y le dice cuantas fotos tiene (camara_info). Un RAPID sin estos mensajes (modulo antiguo) lo desactiva con un aviso."""
+        if not self._camara_activa():
+            return
+        ahora = time.monotonic()
+        if ahora - self._camara_t < self.ESPERA_CAMARA_S:
+            return
+        self._camara_t = ahora
+        try:
+            if self._camara_lista_t is None or ahora - self._camara_lista_t >= self.ESPERA_LISTA_CAMARA_S:
+                self._camara_lista_t = ahora
+                self._dar_lista_de_carpetas()
+            r = self._preguntar("camara")
+            if not r.startswith("camara:"):
+                raise RuntimeError(f"RAPID respondio {r!r} a 'camara'")
+            carpeta = r[len("camara:"):].strip()
+            if carpeta != self._camara_carpeta:
+                self._abrir_carpeta(carpeta)
+        except RuntimeError as e:
+            self._camara_ok = False
+            print(f"Celda: sin carpeta de fotos desde la app ({e})")
+
+    def _raiz_carpetas(self) -> Path:
+        return Path(self.cfg.camara["raiz_carpetas"])
+
+    def _dar_lista_de_carpetas(self) -> None:
+        from vision.proveedores import listar_carpetas, trocear_nombres
+        nombres = listar_carpetas(self._raiz_carpetas())
+        trozos, omitidos = trocear_nombres(nombres)
+        if omitidos and self._camara_carpeta is None:
+            print(f"Celda: {omitidos} carpetas de fotos no caben en la lista de la app (3 mensajes de 65 caracteres)")
+        for k in (1, 2, 3):
+            r = self._preguntar(f"camara_lista:{k}:{trozos[k - 1] if k <= len(trozos) else ''}")
+            if r != "camara_ok":
+                raise RuntimeError(f"RAPID respondio {r!r} a la lista de carpetas")
+
+    def _abrir_carpeta(self, carpeta: str) -> None:
+        """Pone la carpeta que ha elegido la app ('' = la camara de la configuracion) y le cuenta cuantas fotos tiene."""
+        from vision.proveedores import listar_carpetas
+        if carpeta == "":
+            self.fuente.restaurar_origen()
+            n, estado = self.fuente.n_imagenes() or 0, "camara de la celda"
+        elif carpeta not in listar_carpetas(self._raiz_carpetas()):
+            n, estado = 0, "no esta en la lista"
+        else:
+            try:
+                n, estado = self.fuente.usar_carpeta(self._raiz_carpetas() / carpeta), "ok"
+            except ValueError as e:
+                n, estado = 0, str(e).replace("\n", " ")[:55]
+        self._camara_carpeta = carpeta
+        self._informar(evento="camara", carpeta=carpeta, fotos=n, estado=estado)
+        print(f"Celda: camara = {carpeta or 'la de la configuracion'} ({n} fotos, {estado})")
+        r = self._preguntar(f"camara_info:{n}:{estado}")
+        if r != "camara_ok":
+            raise RuntimeError(f"RAPID respondio {r!r} a camara_info")
 
     def _seguir(self, tramo: Tramo) -> None:
         """Lleva el robot por cada punto del tramo. Avanza cuando la brida real esta dentro de tolerancia.
@@ -366,13 +441,20 @@ def main(argv: list[str]) -> None:
         return
     cfg = cargar(argv[1])
     fuente = crear_fuente(cfg)
+    visor = crear_visor(fuente, cfg)   # ventana en tiempo real si camara.visor = true (el ciclo pasa a un hilo; la ventana, al principal)
     puente = ClientePuente(cfg.puente_host, cfg.puente_puerto, timeout_s=2.0)
     rapid = crear_rapid(cfg)
     print(f"Esperando {donde_espera_rapid(cfg)}...")
-    try:
+
+    def ciclo():
         rapid.esperar_cliente()
         Celda(cfg, fuente, puente, rapid).ejecutar()
         print("Celda: todas las cajas recogidas.")
+    try:
+        if visor is None:
+            ciclo()
+        else:
+            ejecutar_con_visor(ciclo, visor)
     finally:
         rapid.cerrar()
         puente.cerrar()
