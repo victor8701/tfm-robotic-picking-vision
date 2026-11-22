@@ -188,7 +188,7 @@ class FuenteCamara:
             return "sin camara"
         if hasattr(p, "nombre") and hasattr(p, "n"):
             return f"carpeta {p.nombre}"
-        return type(p).__name__.lower()
+        return {"CamaraOpenCV": "camara USB", "RealSense": "RealSense", "ProveedorRos": "camara por ROS"}.get(type(p).__name__, type(p).__name__.lower())
 
     def n_imagenes(self) -> int | None:
         """Imagenes de la carpeta (None si la camara no es una carpeta). No es total(): total() sigue sin fin conocido."""

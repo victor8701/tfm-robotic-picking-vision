@@ -925,7 +925,7 @@ test('la carpeta de fotos se elige con botones entre las que da el PC, se ve el 
         assert.equal(app.$('psec-camara').hidden, false);
         // los botones salen de la lista del PC: la camara de la celda y tres carpetas
         const botones = () => Array.from(app.$('pcar-camaraCarpeta').querySelectorAll('button')).map((b) => b.textContent);
-        assert.deepEqual(botones(), ['Cámara de la celda', 'juego_a', 'juego_b', 'celda']);
+        assert.deepEqual(botones(), ['La del PC (su configuración)', 'juego_a', 'juego_b', 'celda']);
         assert.equal(app.$('par-camaraCarpeta-0').classList.contains('activo'), true);
         assert.equal(app.texto('plect-camaraFotos'), '—');
         // elegir una: se escribe en la PERS y, cuando el PC responde, se ve cuantas fotos tiene

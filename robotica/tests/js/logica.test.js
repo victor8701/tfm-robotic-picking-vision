@@ -725,9 +725,9 @@ test('el nombre del fichero se valida: sin ruta, sin tildes ni puntos y sin .csv
     assert.equal(L.nombreFicheroValido('x'.repeat(40)).ok, true);
 });
 
-test('la carpeta de fotos se elige entre las que da el PC (camaraLista1..3) y la camara de la celda es la primera', () => {
+test('la carpeta de fotos se elige entre las que da el PC (camaraLista1..3) y «la del PC» es la primera', () => {
     assert.deepEqual(L.carpetasDe(estado({})), []);
-    assert.deepEqual(L.opcionesCarpeta(estado({})), [{valor: '', texto: 'Cámara de la celda'}]);
+    assert.deepEqual(L.opcionesCarpeta(estado({})), [{valor: '', texto: 'La del PC (su configuración)'}]);
     const e = estado({camaraLista1: 'juego_a; juego_b', camaraLista2: '', camaraLista3: 'celda;;casa '});
     assert.deepEqual(L.carpetasDe(e), ['juego_a', 'juego_b', 'celda', 'casa']);
     assert.deepEqual(L.opcionesCarpeta(e).map((o) => o.valor), ['', 'juego_a', 'juego_b', 'celda', 'casa']);
@@ -753,6 +753,8 @@ test('la seccion Camara: solo se elige en Real y con la tanda parada, avisa si e
     // lo que dice el PC: antes de saber nada, guion; despues, el numero de fotos y el estado
     assert.equal(item(real, 'camaraFotos').texto, '—');
     assert.equal(item(real, 'camaraEstado').texto, 'el PC aún no ha dicho nada');
+    const vivo = L.calcularVista(estado({fase: F.ESPERA_INICIAR, modoSimulacion: false, camaraFotos: 0, camaraEstado: 'en vivo: camara USB'})).parametros;
+    assert.equal(item(vivo, 'camaraFotos').texto, 'cámara en vivo');            // una camara de verdad no tiene fotos que contar
     const dicho = L.calcularVista(estado({fase: F.ESPERA_INICIAR, modoSimulacion: false, camaraFotos: 3, camaraEstado: 'ok'})).parametros;
     assert.equal(item(dicho, 'camaraFotos').texto, '3 fotos');
     assert.equal(item(dicho, 'camaraEstado').texto, 'ok');

@@ -164,10 +164,10 @@
             ayuda: 'Fotos de ensayo: en vez de la cámara, el PC lee las fotos de una carpeta suya (ensayo en casa). Solo en Real.',
             items: [
                 {clave: 'camaraCarpeta', tipo: 'carpeta', nombre: 'Fotos de la cámara', solo: 'real',
-                    ayuda: 'La lista la da el PC: carpetas con fotos y su calibración. «Cámara de la celda» es la de la configuración del PC.'},
+                    ayuda: 'La lista la da el PC: carpetas con fotos y su calibración. «La del PC» es la que tenga la configuración del PC (una cámara o una carpeta de fotos), y el estado dice cuál es.'},
                 {clave: 'camaraFotos', tipo: 'lectura', nombre: 'Fotos en la carpeta',
-                    texto: function (e) { return e.camaraEstado === '' ? '—' : e.camaraFotos + ' fotos'; },
-                    ayuda: 'Las cuenta el PC al abrir la carpeta. Solo se muestra.'},
+                    texto: function (e) { return e.camaraEstado === '' ? '—' : (/^en vivo/.test(e.camaraEstado) ? 'cámara en vivo' : e.camaraFotos + ' fotos'); },
+                    ayuda: 'Las cuenta el PC al abrir la carpeta (una cámara en vivo no tiene fotos). Solo se muestra.'},
                 {clave: 'camaraEstado', tipo: 'lectura', nombre: 'Estado de la carpeta',
                     texto: function (e) { return e.camaraEstado === '' ? 'el PC aún no ha dicho nada' : e.camaraEstado; },
                     ayuda: 'Lo que dice el PC al abrirla: ok, no existe, sin calibración... Solo se muestra.'}
@@ -470,7 +470,7 @@
     // Opciones de la carpeta de fotos: la camara de la celda ('') y las carpetas de la lista (la elegida, aunque ya no este en la lista).
     function opcionesCarpeta(e) {
         const nombres = carpetasDe(e);
-        const opciones = [{valor: '', texto: 'Cámara de la celda'}].concat(nombres.map(function (n) { return {valor: n, texto: n}; }));
+        const opciones = [{valor: '', texto: 'La del PC (su configuración)'}].concat(nombres.map(function (n) { return {valor: n, texto: n}; }));
         if (e.camaraCarpeta !== '' && nombres.indexOf(e.camaraCarpeta) < 0) {
             opciones.push({valor: e.camaraCarpeta, texto: e.camaraCarpeta + ' (no está en la lista)'});
         }

@@ -706,13 +706,13 @@ def test_la_carpeta_elegida_en_la_app_se_abre_y_se_le_dice_cuantas_fotos_tiene(t
     assert _giros(mensajes) == ["giro:0.0", "giro:15.0"]                         # las dos cajas son de juego_b (juego_a solo tiene una)
 
 
-def test_si_la_app_vuelve_a_la_camara_de_la_celda_el_pc_vuelve_a_su_origen(tmp_path, juegos):
+def test_si_la_app_vuelve_a_la_del_pc_el_pc_vuelve_a_su_origen(tmp_path, juegos):
     puente = PuenteFalso()
     cfg = _cfg(tmp_path, puente, modo_simulacion=False, camara={"raiz_carpetas": str(juegos)})
     camara = {"carpetas": ["juego_b", ""], "infos": 2}
     mensajes, errores, excepcion = _ejecutar(cfg, puente, _fuente_de(juegos), 1, modo="real", n_lote=1, ajustes=_ajustes_camara(), camara=camara)
     assert excepcion is None and errores == []
-    assert camara["info"] == [(2, "ok"), (1, "camara de la celda")]
+    assert camara["info"] == [(2, "ok"), (1, "la de la configuracion: carpeta juego_a")]
     assert _giros(mensajes) == ["giro:0.0"]                                      # otra vez juego_a, de una sola foto
 
 
@@ -746,3 +746,20 @@ def test_en_simulacion_o_sin_raiz_de_carpetas_el_pc_no_toca_la_camara(tmp_path, 
     assert not Celda(_cfg(tmp_path, puente, modo_simulacion=False, camara={"visor": True}), fuente, None, None)._camara_activa()
     assert not Celda(_cfg(tmp_path, puente, modo_simulacion=False), fuente, None, None)._camara_activa()
     puente.cerrar()
+
+
+def test_si_la_camara_de_la_configuracion_es_en_vivo_el_pc_lo_dice_en_vez_de_contar_fotos(tmp_path, juegos):
+    """Con una camara de verdad (sin fotos que contar), al volver a la del PC el aviso es «en vivo: ...» y 0 fotos."""
+    from celda.percepcion import FuenteCamara
+    from test_celda_percepcion import Z_CINTA, _cam
+
+    class CamaraEnVivo:
+        def siguiente(self):
+            return None
+    CamaraEnVivo.__name__ = "CamaraOpenCV"
+    puente = PuenteFalso()
+    cfg = _cfg(tmp_path, puente, modo_simulacion=False, camara={"raiz_carpetas": str(juegos)})
+    fuente = FuenteCamara(CamaraEnVivo(), _cam(), Z_CINTA, params={"modo": "profundidad"}, tiempo_max_s=0.3, pausa_s=0.01)
+    camara = {"carpetas": ["juego_b", ""], "infos": 2}
+    _ejecutar(cfg, puente, fuente, 1, modo="real", n_lote=1, ajustes=_ajustes_camara(), camara=camara)
+    assert camara["info"] == [(2, "ok"), (0, "en vivo: camara USB")]

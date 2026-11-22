@@ -347,7 +347,10 @@ class Celda:
         from vision.proveedores import listar_carpetas
         if carpeta == "":
             self.fuente.restaurar_origen()
-            n, estado = self.fuente.n_imagenes() or 0, "camara de la celda"
+            n = self.fuente.n_imagenes()
+            # lo que dice la configuracion del PC: puede ser una carpeta de fotos o una camara en vivo (que no tiene «fotos»)
+            estado = ("en vivo: " if n is None else "la de la configuracion: ") + self.fuente.origen()
+            n = n or 0
         elif carpeta not in listar_carpetas(self._raiz_carpetas()):
             n, estado = 0, "no esta en la lista"
         else:
@@ -358,7 +361,7 @@ class Celda:
         self._camara_carpeta = carpeta
         self._informar(evento="camara", carpeta=carpeta, fotos=n, estado=estado)
         print(f"Celda: camara = {carpeta or 'la de la configuracion'} ({n} fotos, {estado})")
-        r = self._preguntar(f"camara_info:{n}:{estado}")
+        r = self._preguntar(f"camara_info:{n}:{estado[:55]}")
         if r != "camara_ok":
             raise RuntimeError(f"RAPID respondio {r!r} a camara_info")
 
