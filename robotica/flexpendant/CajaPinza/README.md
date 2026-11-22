@@ -56,7 +56,7 @@ Solo se ha probado contra el RAPID simulado (`demo-rws.js`) y con las librerías
 
 ## Cámara de ensayo: elegir la carpeta de fotos
 En Real y con `camara.raiz_carpetas` en la configuración del PC, la sección **Cámara** de Parámetros deja elegir de qué carpeta del PC lee las fotos (en vez de la cámara). La app no ve el disco del PC: todo va por RAPID.
-- El PC, mientras espera a que arranque la tanda, da a RAPID la lista de carpetas (las subcarpetas de `raiz_carpetas` con fotos y su `camara.json`) con `camara_lista:<k>:<nombres separados por ;>` → PERS `camaraLista1..3` (unas 10–12 carpetas con nombres cortos). La app las muestra como botones, con **La del PC (su configuración)** (la que tenga la configuración del PC: una cámara o una carpeta de ejemplo) la primera.
+- El PC, mientras espera a que arranque la tanda, da a RAPID la lista de carpetas (las subcarpetas de `raiz_carpetas` con fotos y su `camara.json`) con `camara_lista:<k>:<nombres separados por ;>` → PERS `camaraLista1..3` (unas 10–12 carpetas con nombres cortos). La app las muestra como botones, con **La del PC** (la que tenga la configuración del PC: una cámara o una carpeta de ejemplo) la primera.
 - Al pulsar una, la app escribe `camaraCarpeta`. El PC la pregunta cada segundo (`camara`), abre la carpeta y avisa con `camara_info:<fotos>:<estado>` → `camaraFotos` y `camaraEstado`, que la app muestra («3 fotos», «ok» / «no esta en la lista» / «no tiene camara.json...»).
 - Solo en Real y antes de la tanda: durante la tanda los ajustes están bloqueados.
 - Si el módulo de RAPID es antiguo (no contesta a estos mensajes), el PC lo avisa y sigue con su cámara.

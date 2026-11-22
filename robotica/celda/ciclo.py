@@ -10,6 +10,7 @@ marca el ritmo de envio del objetivo, que el puente necesita al menos cada 0,1 s
 """
 from __future__ import annotations
 
+import json
 import sys
 import time
 from dataclasses import replace
@@ -438,11 +439,42 @@ def donde_espera_rapid(cfg: Config) -> str:
             else f"a RAPID en {cfg.rapid_ip}:{cfg.rapid_puerto}")
 
 
+USO = ("uso: python -m celda.ciclo celda/config_celda.json [--indice N]\n"
+       "  --indice N  cámara USB que abre (anula camara.origen.indice del JSON): 0 suele ser la del portátil y 1, la webcam externa;\n"
+       "              vision.ver_camara --listar --ver enseña cuál es cuál")
+
+
+def aplicar_indice_de_camara(cfg: Config, indice: int | None) -> Config:
+    """La configuración con otra cámara USB, si se pide (--indice). Solo vale con un origen 'opencv'."""
+    if indice is None:
+        return cfg
+    origen = ((cfg.camara or {}).get("origen") or {})
+    if cfg.modo_simulacion or origen.get("tipo") != "opencv":
+        raise ValueError("--indice solo vale en modo Real con una cámara USB (camara.origen.tipo = opencv)")
+    if indice < 0:
+        raise ValueError("--indice es el número de la cámara: 0, 1, 2...")
+    camara = json.loads(json.dumps(cfg.camara))
+    camara["origen"]["indice"] = int(indice)
+    return replace(cfg, camara=camara)
+
+
 def main(argv: list[str]) -> None:
-    if len(argv) != 2:
-        print("uso: python -m celda.ciclo celda/config_celda.json")
+    args = argv[1:]
+    indice = None
+    if "--indice" in args:
+        i = args.index("--indice")
+        try:
+            indice = int(args[i + 1])
+        except (IndexError, ValueError):
+            print("--indice necesita el número de la cámara (0, 1, 2...)\n" + USO)
+            return
+        args = args[:i] + args[i + 2:]
+    if len(args) != 1:
+        print(USO)
         return
-    cfg = cargar(argv[1])
+    cfg = aplicar_indice_de_camara(cargar(args[0]), indice)
+    if indice is not None:
+        print(f"Cámara USB: índice {indice}")
     fuente = crear_fuente(cfg)
     visor = crear_visor(fuente, cfg)   # ventana en tiempo real si camara.visor = true (el ciclo pasa a un hilo; la ventana, al principal)
     puente = ClientePuente(cfg.puente_host, cfg.puente_puerto, timeout_s=2.0)

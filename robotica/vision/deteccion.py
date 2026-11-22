@@ -246,6 +246,15 @@ def centro_px(d: Deteccion) -> np.ndarray:
     return _pix(d, np.array([d.centro[0], d.centro[1], d.z_tapa]))
 
 
+def ordenar(detecciones: list[Deteccion], centro_nominal=None) -> list[Deteccion]:
+    """Las cajas de la mejor a la peor, con el mismo criterio que `elegir` (la más cercana al punto de recogida o, sin punto, la mayor); las
+    cortadas por el borde de la imagen, al final."""
+    if centro_nominal is None:
+        return sorted(detecciones, key=lambda d: (d.recortada, -d.area_px))
+    n = np.asarray(centro_nominal, dtype=float)
+    return sorted(detecciones, key=lambda d: (d.recortada, float(np.linalg.norm(np.asarray(d.centro) - n))))
+
+
 def dibujar(bgr: np.ndarray, detecciones: list[Deteccion], elegida: Deteccion | None = None) -> np.ndarray:
     """Copia de la imagen con cada caja marcada, como la ve el programa: el contorno (amarillo la elegida, verde las demás, rojo si está
     cortada por el borde), el hilo de extremo a extremo por el centro, el centro (punto verde con sus coordenadas en mm, como en el trabajo

@@ -763,3 +763,80 @@ def test_si_la_camara_de_la_configuracion_es_en_vivo_el_pc_lo_dice_en_vez_de_con
     camara = {"carpetas": ["juego_b", ""], "infos": 2}
     _ejecutar(cfg, puente, fuente, 1, modo="real", n_lote=1, ajustes=_ajustes_camara(), camara=camara)
     assert camara["info"] == [(2, "ok"), (0, "en vivo: camara USB")]
+
+
+def test_con_la_calibracion_de_la_webcam_el_pc_va_a_donde_esta_la_caja_en_la_imagen(tmp_path):
+    """celda/camara_webcam.json (la que lleva config_celda_real_webcam.json) centra la imagen en la recogida (700, 0): una caja desplazada de ese punto
+    en la imagen es una caja desplazada en el robot, y el PC va a ella (modo Camara y zona permitida de la app) con las medidas de la caja."""
+    from pathlib import Path
+
+    from celda.percepcion import FuenteCamara
+    from vision.camara import ModeloCamara
+    from vision.escena import CajaSintetica, escena
+    from vision.proveedores import Fotograma
+    modelo = ModeloCamara.cargar(Path(__file__).resolve().parents[1] / "celda" / "camara_webcam.json")
+    caja = CajaSintetica(220.0, 140.0, 120.0, 30.0, (745.0, 38.0))               # 45 mm a la derecha y 38 mm arriba del centro de la imagen
+    foto = Fotograma(escena(modelo, [caja], z_plano=220.0), None, "webcam")
+    fuente = FuenteCamara(_ListaFotogramas([foto] * 50), modelo, 220.0, alto_mm=120.0, params={"modo": "color"}, tiempo_max_s=1.0, pausa_s=0.01)
+    puente = PuenteFalso()
+    cfg = _cfg(tmp_path, puente, modo_simulacion=False)
+    ajustes = _ajustes(recogida="recogida:1:700.0:0.0:150.0:150.0:0.0:0.0:0.0:1.0", celda="celda:220.0:150.0:147.0:600.0:-6.5:740.0:100.0:0.0")
+    mensajes, errores, excepcion = _ejecutar(cfg, puente, fuente, 1, modo="real", n_lote=1, ajustes=ajustes)
+    assert excepcion is None and errores == []
+    assert puente.objetivos[0] == pytest.approx((745.0, 38.0, 600.0 + 147.0), abs=2.0)    # el punto seguro sobre la caja que ve la webcam
+    assert float([m for m in mensajes if m.startswith("giro:")][0].split(":")[1]) == pytest.approx(30.0, abs=1.5)
+    # con la zona permitida de 30 mm (la de Fija es 50), esa caja ya esta fuera: el PC se para y no se mueve
+    puente2 = PuenteFalso()
+    cfg2 = _cfg(tmp_path, puente2, modo_simulacion=False)
+    ajustes2 = _ajustes(recogida="recogida:1:700.0:0.0:30.0:30.0:0.0:0.0:0.0:1.0", celda="celda:220.0:150.0:147.0:600.0:-6.5:740.0:100.0:0.0")
+    fuente2 = FuenteCamara(_ListaFotogramas([foto] * 50), modelo, 220.0, alto_mm=120.0, params={"modo": "color"}, tiempo_max_s=1.0, pausa_s=0.01)
+    _, _, excepcion2 = _ejecutar(cfg2, puente2, fuente2, 1, modo="real", n_lote=1, ajustes=ajustes2)
+    assert isinstance(excepcion2, RuntimeError) and "fuera de la zona permitida" in str(excepcion2)
+    assert puente2.objetivos == []
+
+
+# ---------------------------------------------------------------- --indice: que camara USB abre el ciclo
+def test_indice_cambia_la_camara_usb_de_la_configuracion_sin_tocar_el_json(tmp_path):
+    import json as _json
+    from pathlib import Path
+
+    from celda.ciclo import aplicar_indice_de_camara
+    from celda.config import cargar
+    cfg = cargar(Path(__file__).resolve().parents[1] / "celda" / "config_celda_real_webcam.json")
+    assert cfg.camara["origen"]["tipo"] == "opencv" and cfg.camara["origen"]["indice"] == 1       # la webcam externa
+    assert aplicar_indice_de_camara(cfg, None) is cfg
+    otra = aplicar_indice_de_camara(cfg, 0)                                                         # la del portatil
+    assert otra.camara["origen"]["indice"] == 0 and cfg.camara["origen"]["indice"] == 1             # la original no cambia
+    assert otra.camara["origen"]["tam"] == cfg.camara["origen"]["tam"] and otra.camara["calibracion"] == cfg.camara["calibracion"]
+    with pytest.raises(ValueError, match="0, 1, 2"):
+        aplicar_indice_de_camara(cfg, -1)
+    sim = cargar(Path(__file__).resolve().parents[1] / "celda" / "config_celda.json")
+    with pytest.raises(ValueError, match="solo vale en modo Real con una cámara USB"):
+        aplicar_indice_de_camara(sim, 1)
+    carpeta = cargar(Path(__file__).resolve().parents[1] / "celda" / "config_celda_real_casa.json")
+    with pytest.raises(ValueError, match="solo vale en modo Real con una cámara USB"):
+        aplicar_indice_de_camara(carpeta, 1)
+    assert _json is not None
+
+
+def test_main_valida_el_indice_y_el_uso(capsys):
+    from celda.ciclo import main
+    main(["ciclo"])
+    assert "uso: python -m celda.ciclo" in capsys.readouterr().out
+    main(["ciclo", "celda/config_celda.json", "--indice"])
+    assert "--indice necesita el número" in capsys.readouterr().out
+    main(["ciclo", "celda/config_celda.json", "--indice", "uno"])
+    assert "--indice necesita el número" in capsys.readouterr().out
+
+
+def test_la_ventana_dice_que_camara_usb_es(tmp_path):
+    from celda.percepcion import FuenteCamara
+
+    class CamaraOpenCV:                    # el visor la reconoce por el nombre de la clase
+        indice = 1
+
+        def siguiente(self):
+            return None
+    assert FuenteCamara(CamaraOpenCV()).origen() == "camara USB 1"
+    del CamaraOpenCV.indice
+    assert FuenteCamara(CamaraOpenCV()).origen() == "camara USB"

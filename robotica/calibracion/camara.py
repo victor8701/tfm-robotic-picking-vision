@@ -88,8 +88,7 @@ class InformeIntrinsecos:
 
 def calibrar_intrinsecos(imagenes: dict[str, np.ndarray], tablero: Tablero) -> InformeIntrinsecos:
     """Calibra K y la distorsión con fotos del tablero (nombre -> imagen BGR). Las fotos sin tablero se descartan y se dicen."""
-    objp = np.hstack([tablero.puntos_plano(), np.zeros((tablero.n_esquinas, 1))]).astype(np.float32)
-    objetos, imgs, nombres, descartadas = [], [], [], []
+    esquinas, descartadas = {}, []
     tam = None
     for nombre, bgr in imagenes.items():
         t = (bgr.shape[1], bgr.shape[0])
@@ -99,10 +98,18 @@ def calibrar_intrinsecos(imagenes: dict[str, np.ndarray], tablero: Tablero) -> I
         esq = detectar_esquinas(bgr, tablero)
         if esq is None:
             descartadas.append(nombre)
-            continue
-        objetos.append(objp)
-        imgs.append(esq.astype(np.float32).reshape(-1, 1, 2))
-        nombres.append(nombre)
+        else:
+            esquinas[nombre] = esq
+    return calibrar_intrinsecos_con_esquinas(esquinas, tam, tablero, descartadas)
+
+
+def calibrar_intrinsecos_con_esquinas(esquinas: dict[str, np.ndarray], tam: tuple[int, int], tablero: Tablero, descartadas=()) -> InformeIntrinsecos:
+    """Lo mismo con las esquinas ya detectadas en cada foto (nombre -> (N, 2) píxeles): así el asistente no repite la detección."""
+    descartadas = list(descartadas)
+    objp = np.hstack([tablero.puntos_plano(), np.zeros((tablero.n_esquinas, 1))]).astype(np.float32)
+    nombres = list(esquinas)
+    objetos = [objp] * len(nombres)
+    imgs = [np.asarray(esquinas[n], dtype=np.float32).reshape(-1, 1, 2) for n in nombres]
     if len(objetos) < MIN_IMAGENES_INTRINSECOS:
         raise ValueError(f"solo veo el tablero en {len(objetos)} fotos y hacen falta al menos {MIN_IMAGENES_INTRINSECOS} "
                          f"(sin tablero: {', '.join(descartadas) or 'ninguna'})")

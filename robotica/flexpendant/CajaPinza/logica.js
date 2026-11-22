@@ -470,7 +470,7 @@
     // Opciones de la carpeta de fotos: la camara de la celda ('') y las carpetas de la lista (la elegida, aunque ya no este en la lista).
     function opcionesCarpeta(e) {
         const nombres = carpetasDe(e);
-        const opciones = [{valor: '', texto: 'La del PC (su configuración)'}].concat(nombres.map(function (n) { return {valor: n, texto: n}; }));
+        const opciones = [{valor: '', texto: 'La del PC'}].concat(nombres.map(function (n) { return {valor: n, texto: n}; }));
         if (e.camaraCarpeta !== '' && nombres.indexOf(e.camaraCarpeta) < 0) {
             opciones.push({valor: e.camaraCarpeta, texto: e.camaraCarpeta + ' (no está en la lista)'});
         }

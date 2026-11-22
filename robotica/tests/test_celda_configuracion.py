@@ -403,3 +403,17 @@ def test_la_configuracion_de_la_prueba_en_casa_del_modo_real_carga_y_apunta_a_lo
     ejemplos = RAIZ / "ejemplos_vision" / "celda"
     if ejemplos.exists():   # ejemplos_vision/ no esta en git: se genera con vision.generar_ejemplos
         assert Path(cfg.camara["calibracion"]).is_file() and Path(cfg.camara["origen"]["ruta"]).is_dir()
+
+
+def test_la_configuracion_de_la_webcam_carga_y_su_calibracion_aproximada_existe():
+    """celda/config_celda_real_webcam.json: el ciclo de Python de Windows con la webcam (opencv) y una camara cenital aproximada."""
+    from vision.camara import ModeloCamara
+    cfg = cargar(RAIZ / "celda" / "config_celda_real_webcam.json")
+    assert cfg.modo_simulacion is False and cfg.rapid_via == "puente"
+    assert cfg.camara["origen"]["tipo"] == "opencv" and cfg.camara["modo"] == "color" and cfg.camara["alto_mm"] > 0 and cfg.camara["visor"] is True
+    assert "raiz_carpetas" not in cfg.camara                                    # no hay carpetas de fotos que elegir con una camara en vivo
+    modelo = ModeloCamara.cargar(cfg.camara["calibracion"])
+    assert modelo.tam == tuple(cfg.camara["origen"]["tam"]) and modelo.posicion[2] == 820.0     # 600 mm sobre la cinta (z = 220)
+    assert tuple(modelo.posicion[:2]) == tuple(cfg.centro_recogida) == (700.0, 0.0)             # el centro de la imagen es la recogida
+    assert cfg.camara["cajas"] == 1
+    assert modelo.info["origen"].startswith("cenital aproximada")

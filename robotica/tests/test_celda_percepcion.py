@@ -271,7 +271,7 @@ def test_usar_carpeta_cambia_de_fotos_y_de_calibracion_y_restaurar_vuelve(tmp_pa
 def test_el_ciclo_y_la_vista_previa_desde_hilos_distintos_no_se_pisan(tmp_path):
     import threading
     from vision.proveedores import Carpeta
-    f = FuenteCamara(Carpeta(_carpeta_con_fotos(tmp_path / "juego", n=6)), _cam(), Z_CINTA, params={"modo": "profundidad"}, tiempo_max_s=2.0, pausa_s=0.01)
+    f = FuenteCamara(Carpeta(_carpeta_con_fotos(tmp_path / "juego", n=6)), _cam(), Z_CINTA, params={"modo": "profundidad"}, tiempo_max_s=10.0, pausa_s=0.01)
     parar, fallos = threading.Event(), []
 
     def previa():

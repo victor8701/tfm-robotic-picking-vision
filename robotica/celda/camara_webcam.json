@@ -1,0 +1,54 @@
+{
+  "formato": "camara-celda-1",
+  "tam": [
+    1280,
+    720
+  ],
+  "K": [
+    [
+      1065.1388687043316,
+      0.0,
+      640.0
+    ],
+    [
+      0.0,
+      1065.1388687043316,
+      360.0
+    ],
+    [
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "dist": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "T_base_cam": {
+    "t": [
+      700.0,
+      0.0,
+      820.0
+    ],
+    "q": [
+      0.0,
+      1.0,
+      0.0,
+      0.0
+    ]
+  },
+  "info": {
+    "origen": "cenital aproximada (vision.ver_camara)",
+    "altura_sobre_la_cinta_mm": 600.0,
+    "z_cinta_mm": 220.0,
+    "fov_horizontal_deg": 62.0,
+    "centro_de_la_imagen_en_la_base_mm": [
+      700.0,
+      0.0
+    ]
+  }
+}

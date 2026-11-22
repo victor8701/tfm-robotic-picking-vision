@@ -115,6 +115,8 @@ class FuenteCamara:
         self._cache_vista = None
         # Aviso opcional tras medir cada caja: al_medir(fotograma, detecciones, elegida, i). Nunca para el ciclo.
         self.al_medir = None
+        # Cuantas cajas identifica la vista previa en cada imagen (las mejores segun el criterio de elegir): normalmente 1; None = todas.
+        self.max_cajas: int | None = None
 
     @classmethod
     def desde_config(cls, cfg, proveedor=None) -> "FuenteCamara":
@@ -140,8 +142,10 @@ class FuenteCamara:
             if fondo is None:
                 raise ValueError(f"camara.fondo: no puedo leer {c['fondo']}")
         modelo = ModeloCamara.cargar(c["calibracion"])   # antes que abrir la camara: si falta la calibracion, que lo diga primero
-        return cls(proveedor if proveedor is not None else abrir_proveedor(c.get("origen") or {}), modelo, cfg.z_cinta,
-                   None if c.get("alto_mm") is None else float(c["alto_mm"]), params, fondo, cfg.centro_recogida, cfg.t_max_camara)
+        fuente = cls(proveedor if proveedor is not None else abrir_proveedor(c.get("origen") or {}), modelo, cfg.z_cinta,
+                     None if c.get("alto_mm") is None else float(c["alto_mm"]), params, fondo, cfg.centro_recogida, cfg.t_max_camara)
+        fuente.max_cajas = int(c.get("cajas", 1)) if c.get("cajas") != "todas" else None   # la vista previa identifica 1 caja salvo que se pida otra cosa
+        return fuente
 
     def configurar(self, cfg) -> None:
         """Pone lo que RAPID dice (la app del FlexPendant): altura de la cinta, punto de recogida y espera maxima a la camara."""
@@ -188,7 +192,9 @@ class FuenteCamara:
             return "sin camara"
         if hasattr(p, "nombre") and hasattr(p, "n"):
             return f"carpeta {p.nombre}"
-        return {"CamaraOpenCV": "camara USB", "RealSense": "RealSense", "ProveedorRos": "camara por ROS"}.get(type(p).__name__, type(p).__name__.lower())
+        nombre = {"CamaraOpenCV": "camara USB", "RealSense": "RealSense", "ProveedorRos": "camara por ROS"}.get(type(p).__name__, type(p).__name__.lower())
+        indice = getattr(p, "indice", None)
+        return nombre if indice is None else f"{nombre} {indice}"
 
     def n_imagenes(self) -> int | None:
         """Imagenes de la carpeta (None si la camara no es una carpeta). No es total(): total() sigue sin fin conocido."""
@@ -199,7 +205,7 @@ class FuenteCamara:
         camara, el ultimo fotograma). None si no hay proveedor. Se llama desde el hilo del visor."""
         if self.proveedor is None:
             return None
-        from vision.deteccion import detectar_cajas, elegir
+        from vision.deteccion import detectar_cajas, elegir, ordenar
         with self._cerrojo:
             p, modelo = self.proveedor, self.modelo
             ver = getattr(p, "ver", None)
@@ -207,13 +213,15 @@ class FuenteCamara:
             fot = ver() if carpeta else p.siguiente()
             n, indice = (getattr(p, "n", None), getattr(p, "indice", None))
             origen = self.origen()
-            clave = (id(p), id(modelo), fot.nombre if fot is not None else None, self.z_cinta, self.alto_mm, self.centro_nominal)
+            clave = (id(p), id(modelo), fot.nombre if fot is not None else None, self.z_cinta, self.alto_mm, self.centro_nominal, self.max_cajas)
             if carpeta and self._cache_vista is not None and self._cache_vista[0] == clave:
                 return self._cache_vista[1]
         if fot is None:
             return Vista(None, [], None, origen, None if n is None else n, n)
         dets = detectar_cajas(fot.bgr, modelo, self.z_cinta, self.alto_mm, self.params, self.fondo, fot.profundidad)
         elegida = elegir([d for d in dets if not d.recortada], self.centro_nominal)
+        if self.max_cajas is not None:   # solo las N mejores (normalmente 1): lo demas en la imagen es ruido o cajas que no se cogen ahora
+            dets = ordenar(dets, self.centro_nominal)[:max(1, int(self.max_cajas))]
         vista = Vista(fot, dets, elegida, origen, None if indice is None else indice + 1, n)
         if carpeta:
             self._cache_vista = (clave, vista)

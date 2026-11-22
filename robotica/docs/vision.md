@@ -11,6 +11,8 @@ Hay dos programas que usarás:
 | Programa | Para qué |
 |---|---|
 | `vision.probar_en_casa` | Mide las cajas de unas fotos y dibuja el resultado. Es el que más vas a usar. |
+| `vision.ver_camara` | Abre tu webcam y enseña en vivo lo que el programa identifica (contorno, centro e hilo de la caja), sin robot. Prueba 11. |
+| `calibracion.app_camara` | **Asistente con ventana para calibrar la cámara** paso a paso (tablero, fotos, posición, prueba y guardar). Prueba 12. |
 | `calibracion.camara` | Calibra la cámara (le dice al programa dónde está y cómo es su objetivo). |
 
 Y uno de ayuda: `vision.generar_ejemplos`, que fabrica fotos falsas con respuesta conocida para comprobar que todo funciona.
@@ -56,6 +58,8 @@ explorer.exe resultados_vision
 | **8. Pruebas automáticas** | Comprobar que no se ha roto nada | Nada | 3 min |
 | **9. En el laboratorio** | La calibración de verdad, con el robot | Cámara montada, robot | 1–2 h |
 | **10. Ciclo completo con cámara** | El PC lee la cámara y mueve el robot | RobotStudio (avanzada) | 1 h |
+| **11. Ver tu webcam en vivo** | Ver lo que ve la cámara y lo que identifica (contorno, centro, hilo), sin robot | Webcam, Windows | 5 min |
+| **12. Calibrar tu cámara con el asistente** | Medidas y posiciones reales en el robot, con una ventana que te guía | Tablero impreso, regla, webcam fija, Windows | 20 min |
 
 ---
 
@@ -311,6 +315,58 @@ python3 -m calibracion.camara extrinsecos foto_cinta.png --intrinsecos intrinsec
 **Qué tienes que ver:** el PC escribe `Celda: caja 1 de 3 (` con las medidas de la caja (200 × 140 × 120 mm, con algún decimal de más) y su giro, y el robot va al punto de la caja; la 2 y la 3 con sus propias medidas (200 × 140 con giro de −45°, y 160 × 100 × 90 con giro de 60°).
 
 **Si no sale:** el PC se para con un mensaje claro. «La cámara no ve ninguna caja entera» = no hay más fotos en la carpeta o la caja no se detecta; «fuera de la zona permitida» = la caja está lejos de `recogidaX/Y`. Más mensajes en el apartado 5. Con una cámara de verdad, el `origen` es `{"tipo": "realsense"}` (necesita `pip install pyrealsense2`) o `{"tipo": "opencv", "indice": 0}` (cámara USB, sin profundidad: entonces hay que dar el `alto_mm` de las cajas y usar `"modo": "color"`). **La RealSense está sin probar.**
+
+---
+
+## Prueba 11. Ver tu webcam en vivo
+**Qué haces:** abres la webcam del PC y ves en una ventana, en tiempo real, lo que ve y lo que el programa considera la caja: el contorno, el centro (punto verde con sus coordenadas en mm), el **hilo** (una línea de un lado corto al otro, por el centro) y las medidas. No hace falta robot, RAPID ni la app. Es el paso previo a usar la cámara en la celda.
+
+**Dónde:** en **Windows** (WSL2 no ve las cámaras USB). **Windows (PowerShell)**, desde la carpeta `robotica`:
+```
+cd \\wsl.localhost\Ubuntu-22.04\home\ubuntu22\repos\tfm-robotica-bimanual\robotica
+```
+1. Mira qué cámaras hay y cuál es cuál. Dice las que ve Windows y los índices que abren, y con `--ver` abre una ventana con la imagen de cada una (se cierra con cualquier tecla). Una cámara con infrarrojos (Windows Hello) sale como dos índices: una en color y otra en blanco y negro:
+```
+& "C:\Program Files\Python311\python.exe" -m vision.ver_camara --listar --ver
+```
+**Portátil con webcam externa:** el índice 0 suele ser la cámara frontal del portátil (y el 1, su infrarroja). Si la webcam externa **no sale** (en «Windows tiene conectadas» solo aparece la del portátil, p. ej. `USB2.0 HD IR UVC WebCam (x2)`), Windows no la ve: conéctala por USB (mejor directa al PC, sin hub), espera unos segundos y repite; debe salir otro índice (2, 3...). Con ese número: `--indice <número>`.
+2. Ábrela (pon el `--indice` de la webcam que quieras, el que salió en el paso 1; `--alto` es el alto de tu caja en mm, porque una webcam no mide profundidad):
+```
+& "C:\Program Files\Python311\python.exe" -m vision.ver_camara --indice 0 --alto 120
+```
+**Qué tienes que ver:** la imagen de la cámara con una banda arriba («camara USB | VISTA PREVIA | SIN CALIBRAR: mm aproximados»). Pon una caja de cartón marrón sobre una superficie lisa, mirando la cámara desde arriba: debe salir su contorno amarillo, el punto verde en el centro y el hilo de extremo a extremo por el centro. Se sale con la tecla `q` o cerrando la ventana.
+
+**Cuántas cajas identifica:** `--cajas N` (1 por defecto) limita a las N mejores (la mayor o, en la celda, la más cercana al punto de recogida); lo demás de la imagen, que suele ser ruido, no se marca. Con `--cajas 3` salen hasta tres.
+
+**Sin calibrar:** se supone una cámara mirando hacia abajo a `--altura` mm (600 por defecto) de la mesa y `--fov` grados de campo de visión (62). Contorno, centro e hilo valen; los **mm son aproximados** (ajusta `--altura` a la tuya). Para medir de verdad hay que calibrarla (Prueba 7) y darla con `--calibracion camara.json --z <altura de la superficie>`.
+
+**Si no sale:**
+- «no puedo abrir la cámara»: otro programa la usa (Teams, Zoom, la app Cámara), Windows no deja a las aplicaciones de escritorio usarla (Configuración → Privacidad → Cámara) o el índice no es el bueno (`--listar`). Con `--api dshow` o `--api msmf` se prueba el otro backend de Windows.
+- «no veo ninguna caja entera» en rojo: la caja está cortada por el borde de la imagen o el color no es el del cartón marrón (el rango de color se ajusta como en la Prueba 5).
+
+**Usarla en la celda (ciclo de Python de Windows, sin ROS 2):** `celda/config_celda_real_webcam.json` trae la webcam, el modo color, el alto de la caja (`alto_mm`) y el visor, con una calibración aproximada `celda/camara_webcam.json` (cámara a 600 mm de la cinta). La cámara se elige al lanzar la celda con `--indice N` (0 = la del portátil, 1 = la webcam externa; los números de `--listar --ver`). Para ajustarla a tu altura: `... -m vision.ver_camara --altura 700 --guardar-calibracion celda\camara_webcam.json --z 220 --centro 700,0`. Esa cámara aproximada centra la imagen en la recogida (700, 0) del robot: una caja bajo el centro de la imagen es una caja en la recogida y, al moverla en la imagen, el robot va a ese punto (con la escala aproximada). En la app, recogida en modo **Cámara** con una zona permitida que cubra lo que muevas la caja. Cada caja se coge una a una (la pones y pulsas CAJA EN POSICIÓN). Los pasos, en el manual de RobotStudio, paso 11.
+
+---
+
+## Prueba 12. Calibrar tu cámara con el asistente (ventana)
+**Qué haces:** calibras la webcam con una ventana que te guía paso a paso y deja el `camara.json` que usa la celda: con él, las medidas y las posiciones salen **reales** (en mm del robot) y no aproximadas. Necesitas el tablero impreso, una regla y la webcam FIJA donde va a trabajar. No hace falta el robot: en casa decides qué punto del robot es el centro del tablero.
+
+**Dónde:** en **Windows** (la ventana usa Tkinter, que ya trae tu Python). **Windows (PowerShell)**, desde la carpeta `robotica` (`--indice` es el número de tu webcam, el de `--listar --ver`; la ventana también tiene el botón «¿Cuál es cuál?»):
+```
+cd \\wsl.localhost\Ubuntu-22.04\home\ubuntu22\repos\tfm-robotica-bimanual\robotica
+```
+```
+& "C:\Program Files\Python311\python.exe" -m calibracion.app_camara --indice 1 --tam 1280x720 --salida celda\camara_webcam.json
+```
+Se abre una ventana con la cámara en vivo a la izquierda y cuatro pestañas a la derecha:
+1. **Tablero:** pulsa «Guardar tablero para imprimir…», imprímelo **al 100 %** (sin «ajustar a la página») y pégalo en algo plano y rígido. **Mide con la regla el lado de un cuadro** de tu impresión y escríbelo (en mm) en «Cuadro»; pulsa «Aplicar el tablero».
+2. **Cámara (intrínsecos):** con el tablero entero en la imagen, guarda **unas 15 fotos** (Espacio o el botón; o marca «Automático» y se guarda sola cada vez que el tablero se queda quieto), **moviéndolo e inclinándolo** (como una hoja medio levantada) y llevándolo a los bordes y a las esquinas. El contador te dice cuántas llevas, cuántas zonas de la imagen cubres y qué falta. Pulsa «Calcular los intrínsecos»: debe salir **«muy bien»** (error por debajo de 0,5 píxeles) o «aceptable»; si no, repite con más fotos y más variadas. (Atajos: «Usar los intrínsecos de un camara.json anterior…» si solo has movido la cámara, o el campo de visión si no quieres hacer fotos, menos preciso.)
+3. **Posición:** **no muevas la cámara a partir de aquí.** Tiende el tablero **plano** sobre la superficie donde irán las cajas, entero en la imagen. En casa deja «En casa» con el **centro del tablero en 700, 0** (la recogida), giro 0 (derecho en la imagen) y altura z = 220 (la de la cinta en RobotStudio), y pulsa «Calcular la posición de la cámara». Sale dónde está la cámara y el error de validación: **OBJETIVO** (< 2 mm) o ACEPTABLE (< 5 mm); con REPETIR, revisa que el tablero esté bien tendido y entero. Con el robot, en vez de eso, se tocan esquinas con el TCP y se escriben («columna,fila:x,y», una por línea).
+4. **Probar y guardar:** pon una caja en esa superficie: debe salir su contorno, el centro con sus coordenadas en el robot, el hilo y las medidas (pon su alto en «Alto de la caja»). Pincha en la imagen para ver las coordenadas de ese punto. Si es lo que esperas, **«Guardar la calibración»**: queda en `celda\camara_webcam.json`, que es el que usa `config_celda_real_webcam.json`.
+
+**Después:** ya no es una cámara «aproximada»: la caja medida tiene tamaño y posición reales en el robot. En la app del FlexPendant, recogida en modo **Cámara** (zona permitida de 50 a 150 mm) y la celda con `... -m celda.ciclo celda\config_celda_real_webcam.json --indice 1`. Para verla antes: `... -m vision.ver_camara --indice 1 --calibracion celda\camara_webcam.json --z 220 --alto 120`.
+
+**Si no sale:** «no puedo abrir la cámara» (otro programa la usa, índice equivocado: «¿Cuál es cuál?»); «no veo el tablero entero» (que salga completo, sin brillos ni reflejos, enfocado y con buena luz); la resolución de la ventana tiene que ser la de la celda (`origen.tam` del JSON).
 
 ---
 

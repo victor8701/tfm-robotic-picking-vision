@@ -49,8 +49,10 @@ def _donde(vista) -> str:
 
 
 class Visor:
-    def __init__(self, fuente, hz: float = 5.0, titulo: str = "Vision de la celda", mostrar: bool = True, reloj=time.monotonic):
+    def __init__(self, fuente, hz: float = 5.0, titulo: str = "Vision de la celda", mostrar: bool = True, reloj=time.monotonic,
+                 aviso: str = ""):
         self.fuente = fuente
+        self.aviso = aviso              # texto que se añade a la banda de la vista previa (p. ej. «SIN CALIBRAR: mm aproximados»)
         self.titulo = titulo
         self.mostrar = mostrar          # False: sin ventana (pruebas y equipos sin pantalla)
         self.sin_pantalla = False
@@ -103,9 +105,10 @@ class Visor:
         if vista.fotograma is None:
             return _con_banda(_lienzo("no quedan fotos"), _donde(vista) + "  |  sin mas fotos", ROJO)
         img = dibujar(vista.fotograma.bgr, vista.detecciones, vista.elegida)
+        extra = f"  |  {self.aviso}" if self.aviso else ""
         if vista.elegida is None:
-            return _con_banda(img, _donde(vista) + "  |  VISTA PREVIA: no veo ninguna caja entera", ROJO)
-        return _con_banda(img, _donde(vista) + "  |  VISTA PREVIA", BLANCO)
+            return _con_banda(img, _donde(vista) + "  |  VISTA PREVIA: no veo ninguna caja entera" + extra, ROJO)
+        return _con_banda(img, _donde(vista) + "  |  VISTA PREVIA" + extra, BLANCO)
 
     # ---------------------------------------------------------------- resultado de cada caja (lo llama FuenteCamara.leer)
     def al_medir(self, fotograma, detecciones, elegida, i: int) -> None:

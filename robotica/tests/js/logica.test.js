@@ -727,7 +727,7 @@ test('el nombre del fichero se valida: sin ruta, sin tildes ni puntos y sin .csv
 
 test('la carpeta de fotos se elige entre las que da el PC (camaraLista1..3) y «la del PC» es la primera', () => {
     assert.deepEqual(L.carpetasDe(estado({})), []);
-    assert.deepEqual(L.opcionesCarpeta(estado({})), [{valor: '', texto: 'La del PC (su configuración)'}]);
+    assert.deepEqual(L.opcionesCarpeta(estado({})), [{valor: '', texto: 'La del PC'}]);
     const e = estado({camaraLista1: 'juego_a; juego_b', camaraLista2: '', camaraLista3: 'celda;;casa '});
     assert.deepEqual(L.carpetasDe(e), ['juego_a', 'juego_b', 'celda', 'casa']);
     assert.deepEqual(L.opcionesCarpeta(e).map((o) => o.valor), ['', 'juego_a', 'juego_b', 'celda', 'casa']);

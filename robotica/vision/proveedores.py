@@ -5,6 +5,7 @@ color y en milímetros (0 = sin medida).
 """
 from __future__ import annotations
 
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -133,8 +134,10 @@ def cargar_fotograma(fichero: Path) -> Fotograma:
 class CamaraOpenCV:
     """Una cámara USB (o la de un portátil) con OpenCV. Sin profundidad."""
 
-    def __init__(self, indice: int = 0, tam: tuple[int, int] | None = None):
-        self._cap = cv2.VideoCapture(indice)
+    def __init__(self, indice: int = 0, tam: tuple[int, int] | None = None, api: int | None = None):
+        """api: backend de OpenCV (p. ej. cv2.CAP_DSHOW en Windows); None = el de por defecto."""
+        self.indice = indice
+        self._cap = cv2.VideoCapture(indice) if api is None else cv2.VideoCapture(indice, api)
         if not self._cap.isOpened():
             raise ValueError(f"no puedo abrir la cámara {indice}")
         if tam is not None:
@@ -178,6 +181,24 @@ class RealSense:
         self._pipe.stop()
 
 
+def abrir_camara_usb(indice: int = 0, tam: tuple[int, int] | None = None, api=None) -> "CamaraOpenCV":
+    """Una cámara USB. api: 'dshow' o 'msmf' (o el número de backend de OpenCV); sin api, el de por defecto y, en Windows, si no abre, DirectShow
+    (algunas webcams solo abren con uno de los dos)."""
+    if isinstance(api, str):
+        nombres = {"dshow": cv2.CAP_DSHOW, "msmf": cv2.CAP_MSMF, "auto": None}
+        if api.lower() not in nombres:
+            raise ValueError(f"camara.origen.api desconocido: {api!r} (dshow, msmf o auto)")
+        api = nombres[api.lower()]
+    apis = [api] if api is not None else [None] + ([cv2.CAP_DSHOW] if sys.platform == "win32" else [])
+    ultimo = None
+    for a in apis:
+        try:
+            return CamaraOpenCV(indice, tam, a)
+        except ValueError as e:
+            ultimo = e
+    raise ultimo
+
+
 def abrir_proveedor(cfg: dict):
     """Proveedor a partir de la sección 'origen' de la configuración: {"tipo": "carpeta"|"opencv"|"realsense", ...}."""
     tipo = cfg.get("tipo")
@@ -185,7 +206,7 @@ def abrir_proveedor(cfg: dict):
         return Carpeta(cfg["ruta"])
     if tipo == "opencv":
         tam = cfg.get("tam")
-        return CamaraOpenCV(int(cfg.get("indice", 0)), None if tam is None else (int(tam[0]), int(tam[1])))
+        return abrir_camara_usb(int(cfg.get("indice", 0)), None if tam is None else (int(tam[0]), int(tam[1])), cfg.get("api"))
     if tipo == "realsense":
         tam = cfg.get("tam", [1280, 720])
         return RealSense((int(tam[0]), int(tam[1])), int(cfg.get("fps", 15)))
