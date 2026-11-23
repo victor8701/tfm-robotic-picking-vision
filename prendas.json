@@ -160178,5 +160178,4877 @@
     ]
    }
   ]
+ },
+ "ig_18152222875570822": {
+  "n_personas": 1,
+  "prendas": []
+ },
+ "ig_18103602245644462": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.978,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     199.7,
+     402.8,
+     412.0,
+     918.7
+    ]
+   },
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.872,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     203.0,
+     170.9,
+     498.9,
+     409.6
+    ]
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.467,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     409.4,
+     704.0,
+     490.2,
+     776.7
+    ]
+   }
+  ]
+ },
+ "ig_18112651603884733": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.249,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     251.7,
+     303.1,
+     462.1,
+     569.9
+    ]
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.982,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     404.8,
+     732.7,
+     474.6,
+     947.7
+    ]
+   },
+   {
+    "tipo": "Short",
+    "p_tipo": 0.709,
+    "cat": "ropa_inferior",
+    "deteccion": "shorts",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     278.7,
+     489.5,
+     424.7,
+     578.7
+    ]
+   }
+  ]
+ },
+ "ig_18031110947697232": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.943,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "navy",
+    "visible": true,
+    "caja": [
+     203.2,
+     151.8,
+     509.9,
+     789.6
+    ]
+   },
+   {
+    "tipo": "Sudadera",
+    "p_tipo": 0.319,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "navy",
+    "visible": true,
+    "caja": [
+     131.0,
+     0.5,
+     445.5,
+     355.8
+    ]
+   },
+   {
+    "tipo": "Zapatos de tacón",
+    "p_tipo": 0.342,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "rojo",
+    "visible": true,
+    "caja": [
+     34.3,
+     498.2,
+     193.8,
+     662.0
+    ]
+   }
+  ]
+ },
+ "ig_18095039819269169": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.407,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     106.5,
+     871.9,
+     156.7,
+     929.3
+    ]
+   },
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.547,
+    "cat": "ropa_inferior",
+    "deteccion": "pants (grounding)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     78.8,
+     704.3,
+     174.5,
+     878.5
+    ]
+   },
+   {
+    "tipo": "Sudadera",
+    "p_tipo": 0.402,
+    "cat": "ropa_superior",
+    "deteccion": "shirt (grounding)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     40.7,
+     503.4,
+     269.9,
+     722.0
+    ]
+   }
+  ]
+ },
+ "ig_17925859947453164": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Sudadera",
+    "p_tipo": 0.442,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     0.6,
+     118.7,
+     337.9,
+     403.6
+    ]
+   }
+  ]
+ },
+ "ig_18027234716942027": {
+  "n_personas": 3,
+  "prendas": [
+   {
+    "tipo": "Abrigo",
+    "p_tipo": 0.275,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     0.6,
+     310.2,
+     289.6,
+     612.0
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.967,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "beige",
+    "visible": true,
+    "caja": [
+     25.2,
+     573.9,
+     209.9,
+     1021.9
+    ]
+   },
+   {
+    "tipo": "Zapatos planos de vestir",
+    "p_tipo": 0.96,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     159.8,
+     860.7,
+     206.5,
+     928.3
+    ]
+   }
+  ]
+ },
+ "ig_18081589496424440": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.942,
+    "cat": "cuerpo_entero",
+    "deteccion": "sling_dress",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     349.4,
+     339.6,
+     512.0,
+     772.6
+    ]
+   },
+   {
+    "tipo": "Zapatos planos de vestir",
+    "p_tipo": 0.844,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": false,
+    "caja": [
+     395.9,
+     907.8,
+     498.0,
+     1022.5
+    ]
+   }
+  ]
+ },
+ "ig_18180994885448781": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Plumas",
+    "p_tipo": 0.385,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     163.2,
+     315.7,
+     405.3,
+     632.5
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.98,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "beige",
+    "visible": true,
+    "caja": [
+     197.0,
+     517.5,
+     353.2,
+     974.1
+    ]
+   }
+  ]
+ },
+ "ig_18420602446085031": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.29,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     124.3,
+     11.3,
+     625.3,
+     454.6
+    ]
+   },
+   {
+    "tipo": "Short",
+    "p_tipo": 0.806,
+    "cat": "ropa_inferior",
+    "deteccion": "shorts",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     162.3,
+     451.6,
+     519.5,
+     717.9
+    ]
+   }
+  ]
+ },
+ "ig_17988086481093928": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.819,
+    "cat": "cuerpo_entero",
+    "deteccion": "long_sleeved_dress",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     245.4,
+     164.3,
+     650.4,
+     811.8
+    ]
+   },
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.817,
+    "cat": "ropa_inferior",
+    "deteccion": "skirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     264.1,
+     392.9,
+     644.7,
+     917.7
+    ]
+   },
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.443,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     322.1,
+     163.9,
+     508.5,
+     478.0
+    ]
+   },
+   {
+    "tipo": "Zapatos de tacón",
+    "p_tipo": 0.779,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     230.8,
+     833.0,
+     334.5,
+     925.2
+    ]
+   }
+  ]
+ },
+ "ig_18024505598946492": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.608,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     23.7,
+     198.1,
+     576.0,
+     1021.3
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.43,
+    "cat": "ropa_inferior",
+    "deteccion": "pants (grounding)",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     38.6,
+     493.1,
+     461.3,
+     1022.5
+    ]
+   }
+  ]
+ },
+ "ig_18115683134335603": {
+  "n_personas": 2,
+  "prendas": []
+ },
+ "ig_17872222422661500": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.591,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     100.2,
+     429.2,
+     420.3,
+     741.6
+    ]
+   },
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.563,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "verde",
+    "visible": true,
+    "caja": [
+     100.7,
+     428.9,
+     420.5,
+     741.3
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.807,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     141.8,
+     699.5,
+     402.4,
+     1023.4
+    ]
+   }
+  ]
+ },
+ "ig_18222885733344572": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.84,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     252.1,
+     593.4,
+     340.5,
+     861.9
+    ]
+   },
+   {
+    "tipo": "Polo",
+    "p_tipo": 0.428,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     229.2,
+     461.8,
+     359.6,
+     607.8
+    ]
+   }
+  ]
+ },
+ "ig_18132612157830856": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camiseta manga corta",
+    "p_tipo": 0.448,
+    "cat": "ropa_superior",
+    "deteccion": "vest",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     135.9,
+     357.3,
+     394.3,
+     665.9
+    ]
+   },
+   {
+    "tipo": "Short",
+    "p_tipo": 0.986,
+    "cat": "ropa_inferior",
+    "deteccion": "shorts",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     169.0,
+     657.2,
+     418.0,
+     946.6
+    ]
+   }
+  ]
+ },
+ "ig_17944374492384009": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Americana",
+    "p_tipo": 0.245,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     34.7,
+     497.5,
+     574.0,
+     1023.2
+    ]
+   }
+  ]
+ },
+ "ig_17942363694393958": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.236,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     0.5,
+     157.5,
+     576.0,
+     1022.5
+    ]
+   },
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.599,
+    "cat": "ropa_inferior",
+    "deteccion": "shorts",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     58.2,
+     610.3,
+     457.4,
+     924.4
+    ]
+   }
+  ]
+ },
+ "ig_18100838564441164": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.956,
+    "cat": "cuerpo_entero",
+    "deteccion": "sling_dress",
+    "color": "verde",
+    "visible": true,
+    "caja": [
+     177.9,
+     293.6,
+     394.7,
+     949.4
+    ]
+   },
+   {
+    "tipo": "Zapatos planos de vestir",
+    "p_tipo": 0.509,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "camel",
+    "visible": false,
+    "caja": [
+     190.9,
+     927.2,
+     322.3,
+     1022.5
+    ]
+   }
+  ]
+ },
+ "ig_18028722413879236": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Abrigo",
+    "p_tipo": 0.593,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     221.6,
+     264.1,
+     575.5,
+     859.7
+    ]
+   },
+   {
+    "tipo": "Mono",
+    "p_tipo": 0.766,
+    "cat": "cuerpo_entero",
+    "deteccion": "long_sleeved_dress",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     224.1,
+     265.6,
+     574.8,
+     860.1
+    ]
+   }
+  ]
+ },
+ "ig_18108312941341257": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Sudadera",
+    "p_tipo": 0.403,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     2.1,
+     419.4,
+     574.9,
+     1023.1
+    ]
+   }
+  ]
+ },
+ "ig_18056650541812473": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Short",
+    "p_tipo": 0.611,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     343.5,
+     504.2,
+     403.0,
+     655.4
+    ]
+   }
+  ]
+ },
+ "ig_18340977922273485": {
+  "n_personas": 3,
+  "prendas": [
+   {
+    "tipo": "Abrigo",
+    "p_tipo": 0.912,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     18.9,
+     563.8,
+     109.3,
+     799.8
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.799,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     31.0,
+     700.0,
+     102.6,
+     869.4
+    ]
+   },
+   {
+    "tipo": "Zapatos planos de vestir",
+    "p_tipo": 0.72,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     31.4,
+     817.7,
+     108.0,
+     875.0
+    ]
+   }
+  ]
+ },
+ "ig_18084798239382435": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.308,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "beige",
+    "visible": true,
+    "caja": [
+     56.4,
+     20.6,
+     398.2,
+     567.9
+    ]
+   },
+   {
+    "tipo": "Zapatillas deportivas",
+    "p_tipo": 0.705,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "rojo",
+    "visible": true,
+    "caja": [
+     172.5,
+     880.1,
+     510.6,
+     979.5
+    ]
+   }
+  ]
+ },
+ "ig_18228091285336656": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Camiseta manga corta",
+    "p_tipo": 0.42,
+    "cat": "ropa_superior",
+    "deteccion": "short_sleeved_shirt",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     2.7,
+     490.5,
+     575.4,
+     1022.8
+    ]
+   }
+  ]
+ },
+ "ig_18134126260771829": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.735,
+    "cat": "cuerpo_entero",
+    "deteccion": "vest_dress",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     179.2,
+     255.0,
+     368.7,
+     869.2
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.537,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     178.1,
+     422.2,
+     366.7,
+     873.2
+    ]
+   },
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.256,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     167.4,
+     251.0,
+     441.6,
+     548.7
+    ]
+   },
+   {
+    "tipo": "Sandalias",
+    "p_tipo": 0.88,
+    "cat": "calzado",
+    "deteccion": "footwear (x5)",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     252.0,
+     863.7,
+     347.0,
+     978.4
+    ]
+   }
+  ]
+ },
+ "ig_17921044608533603": {
+  "n_personas": 1,
+  "prendas": []
+ },
+ "ig_18352720717285053": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.804,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     296.3,
+     579.7,
+     404.1,
+     865.1
+    ]
+   },
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.309,
+    "cat": "ropa_superior",
+    "deteccion": "vest",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     266.5,
+     473.2,
+     373.8,
+     599.4
+    ]
+   },
+   {
+    "tipo": "Sandalias",
+    "p_tipo": 0.442,
+    "cat": "calzado",
+    "deteccion": "footwear (x3)",
+    "color": "amarillo",
+    "visible": true,
+    "caja": [
+     320.0,
+     854.5,
+     397.2,
+     924.2
+    ]
+   }
+  ]
+ },
+ "ig_18090311408299701": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Abrigo",
+    "p_tipo": 0.454,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "rosa",
+    "visible": true,
+    "caja": [
+     165.9,
+     266.8,
+     463.2,
+     957.9
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.727,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     229.1,
+     526.1,
+     388.7,
+     989.7
+    ]
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.349,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "azul",
+    "visible": false,
+    "caja": [
+     266.3,
+     975.4,
+     370.7,
+     1022.5
+    ]
+   }
+  ]
+ },
+ "ig_18070454228617041": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Jersey",
+    "p_tipo": 0.911,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "navy",
+    "visible": true,
+    "caja": [
+     66.8,
+     78.3,
+     768.0,
+     930.6
+    ]
+   },
+   {
+    "tipo": "Short",
+    "p_tipo": 0.537,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     194.4,
+     763.0,
+     666.8,
+     1023.3
+    ]
+   }
+  ]
+ },
+ "ig_18156413389539669": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.971,
+    "cat": "cuerpo_entero",
+    "deteccion": "long_sleeved_dress",
+    "color": "lavanda",
+    "visible": true,
+    "caja": [
+     66.1,
+     545.6,
+     502.6,
+     1023.3
+    ]
+   }
+  ]
+ },
+ "ig_18065412317538196": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.89,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     124.6,
+     564.5,
+     376.0,
+     855.7
+    ]
+   },
+   {
+    "tipo": "Zapatos planos de vestir",
+    "p_tipo": 0.417,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     212.4,
+     791.0,
+     302.0,
+     923.1
+    ]
+   },
+   {
+    "tipo": "Jersey",
+    "p_tipo": 0.322,
+    "cat": "ropa_superior",
+    "deteccion": "shirt (grounding)",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     178.3,
+     420.6,
+     431.9,
+     687.0
+    ]
+   }
+  ]
+ },
+ "ig_18047413004821068": {
+  "n_personas": 1,
+  "prendas": []
+ },
+ "ig_17953958235300959": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.494,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     2.8,
+     370.4,
+     576.0,
+     1021.1
+    ]
+   }
+  ]
+ },
+ "ig_18134920204688727": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.228,
+    "cat": "ropa_superior",
+    "deteccion": "short_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     16.3,
+     497.6,
+     332.8,
+     890.0
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.981,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     68.6,
+     733.9,
+     476.4,
+     1023.9
+    ]
+   }
+  ]
+ },
+ "pr_db4d34180f": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.898,
+    "cat": "cuerpo_entero",
+    "deteccion": "vest_dress",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     221.3,
+     199.1,
+     418.8,
+     839.7
+    ]
+   }
+  ]
+ },
+ "pr_f869d2e640": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.937,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     215.7,
+     374.4,
+     301.8,
+     562.1
+    ]
+   },
+   {
+    "tipo": "Americana",
+    "p_tipo": 0.63,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     212.5,
+     291.8,
+     309.5,
+     430.8
+    ]
+   },
+   {
+    "tipo": "Zapatos planos de vestir",
+    "p_tipo": 0.56,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     207.7,
+     548.8,
+     303.7,
+     598.1
+    ]
+   },
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.601,
+    "cat": "ropa_superior",
+    "deteccion": "shirt (grounding)",
+    "color": "rosa",
+    "visible": true,
+    "caja": [
+     251.4,
+     288.7,
+     298.6,
+     380.7
+    ]
+   }
+  ]
+ },
+ "pr_ff9aead0b9": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.657,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "verde",
+    "visible": true,
+    "caja": [
+     0.0,
+     4.1,
+     971.4,
+     736.0
+    ]
+   }
+  ]
+ },
+ "pr_8ac933000a": {
+  "n_personas": 3,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.227,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     372.0,
+     206.8,
+     748.0,
+     575.3
+    ]
+   },
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.696,
+    "cat": "ropa_inferior",
+    "deteccion": "pants (grounding)",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     366.6,
+     200.1,
+     748.9,
+     575.4
+    ]
+   }
+  ]
+ },
+ "tw_2124850454261637394_3": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.347,
+    "cat": "ropa_superior",
+    "deteccion": "shirt (grounding)",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     0.4,
+     636.4,
+     817.8,
+     1022.5
+    ]
+   }
+  ]
+ },
+ "ig_18118412606017488": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Mono",
+    "p_tipo": 0.797,
+    "cat": "cuerpo_entero",
+    "deteccion": "sling_dress",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     190.9,
+     300.9,
+     382.2,
+     791.2
+    ]
+   },
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.25,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     171.2,
+     291.2,
+     431.2,
+     570.6
+    ]
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.471,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     157.5,
+     750.1,
+     328.6,
+     874.0
+    ]
+   }
+  ]
+ },
+ "ig_17950569933070979": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.991,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     218.2,
+     586.5,
+     379.3,
+     923.0
+    ]
+   },
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.672,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     193.1,
+     394.5,
+     388.3,
+     640.9
+    ]
+   },
+   {
+    "tipo": "Zapatos planos de vestir",
+    "p_tipo": 0.961,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     245.1,
+     892.4,
+     393.7,
+     937.5
+    ]
+   }
+  ]
+ },
+ "ig_18174557272462747": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.961,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "rojo",
+    "visible": true,
+    "caja": [
+     249.1,
+     408.1,
+     485.4,
+     939.3
+    ]
+   },
+   {
+    "tipo": "Plumas",
+    "p_tipo": 0.785,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "navy",
+    "visible": true,
+    "caja": [
+     239.9,
+     170.2,
+     513.8,
+     540.6
+    ]
+   },
+   {
+    "tipo": "Zapatillas casual/lifestyle",
+    "p_tipo": 0.486,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     224.6,
+     859.6,
+     475.8,
+     968.2
+    ]
+   }
+  ]
+ },
+ "ig_18655285909062911": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Short",
+    "p_tipo": 0.648,
+    "cat": "ropa_inferior",
+    "deteccion": "shorts",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     111.2,
+     641.1,
+     576.4,
+     827.5
+    ]
+   },
+   {
+    "tipo": "Short",
+    "p_tipo": 0.456,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "azul",
+    "visible": false,
+    "caja": [
+     187.6,
+     850.7,
+     549.7,
+     1023.2
+    ]
+   }
+  ]
+ },
+ "ig_18115068707625775": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.802,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     298.8,
+     633.9,
+     476.7,
+     1023.2
+    ]
+   },
+   {
+    "tipo": "Camiseta de tirantes",
+    "p_tipo": 0.574,
+    "cat": "ropa_superior",
+    "deteccion": "short_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     366.0,
+     459.6,
+     492.6,
+     639.5
+    ]
+   }
+  ]
+ },
+ "ig_18120736249968189": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Abrigo",
+    "p_tipo": 0.574,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     274.2,
+     410.4,
+     473.8,
+     682.8
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.675,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     308.9,
+     617.9,
+     440.3,
+     891.5
+    ]
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.765,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     320.0,
+     869.9,
+     454.0,
+     964.1
+    ]
+   }
+  ]
+ },
+ "ig_18120213697959833": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Legging/Malla",
+    "p_tipo": 0.405,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     135.4,
+     173.6,
+     511.5,
+     878.8
+    ]
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.963,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     138.0,
+     266.8,
+     514.1,
+     883.2
+    ]
+   }
+  ]
+ },
+ "ig_18172327594497838": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.996,
+    "cat": "calzado",
+    "deteccion": "footwear (x6)",
+    "color": "dorado",
+    "visible": true,
+    "caja": [
+     201.9,
+     704.0,
+     575.1,
+     877.1
+    ]
+   }
+  ]
+ },
+ "ig_17914829085549471": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.424,
+    "cat": "ropa_superior",
+    "deteccion": "short_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     39.9,
+     389.6,
+     574.1,
+     1022.3
+    ]
+   }
+  ]
+ },
+ "ig_18635331706014985": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.37,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     157.4,
+     101.4,
+     575.4,
+     617.8
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.942,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     258.0,
+     492.5,
+     568.1,
+     1022.8
+    ]
+   }
+  ]
+ },
+ "ig_18090611393298674": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.71,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     128.1,
+     329.3,
+     574.8,
+     838.3
+    ]
+   },
+   {
+    "tipo": "Short",
+    "p_tipo": 0.859,
+    "cat": "ropa_inferior",
+    "deteccion": "shorts",
+    "color": "beige",
+    "visible": true,
+    "caja": [
+     325.4,
+     804.1,
+     576.0,
+     1023.3
+    ]
+   }
+  ]
+ },
+ "ig_18000454485031526": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Short",
+    "p_tipo": 0.675,
+    "cat": "ropa_inferior",
+    "deteccion": "pants (grounding)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     17.6,
+     650.6,
+     575.1,
+     1022.9
+    ]
+   }
+  ]
+ },
+ "ig_18123341879074723": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.834,
+    "cat": "cuerpo_entero",
+    "deteccion": "long_sleeved_dress",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     158.2,
+     298.4,
+     400.2,
+     754.4
+    ]
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.945,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "negro",
+    "visible": false,
+    "caja": [
+     260.1,
+     853.5,
+     348.8,
+     1022.5
+    ]
+   }
+  ]
+ },
+ "ig_18144896545617423": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.966,
+    "cat": "cuerpo_entero",
+    "deteccion": "sling_dress",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     180.8,
+     278.3,
+     397.9,
+     1016.0
+    ]
+   },
+   {
+    "tipo": "Chaleco sin mangas",
+    "p_tipo": 0.514,
+    "cat": "ropa_superior",
+    "deteccion": "sling",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     193.8,
+     289.0,
+     374.3,
+     503.0
+    ]
+   },
+   {
+    "tipo": "Zapatos planos de vestir",
+    "p_tipo": 0.702,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "camel",
+    "visible": false,
+    "caja": [
+     195.6,
+     939.5,
+     316.5,
+     1022.5
+    ]
+   }
+  ]
+ },
+ "ig_17921415603448368": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.299,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     136.9,
+     379.6,
+     310.9,
+     624.0
+    ]
+   },
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.865,
+    "cat": "ropa_inferior",
+    "deteccion": "skirt",
+    "color": "navy",
+    "visible": true,
+    "caja": [
+     120.1,
+     559.9,
+     270.9,
+     815.8
+    ]
+   },
+   {
+    "tipo": "Zapatillas casual/lifestyle",
+    "p_tipo": 0.56,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     155.2,
+     807.4,
+     261.8,
+     859.6
+    ]
+   }
+  ]
+ },
+ "ig_18646240369019892": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.948,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     107.7,
+     527.4,
+     284.2,
+     917.5
+    ]
+   },
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.432,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     35.8,
+     338.8,
+     302.2,
+     563.9
+    ]
+   }
+  ]
+ },
+ "ig_18170838670473331": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Jersey",
+    "p_tipo": 0.57,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     1.8,
+     19.8,
+     574.5,
+     882.7
+    ]
+   }
+  ]
+ },
+ "ig_17879399478634867": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.732,
+    "cat": "cuerpo_entero",
+    "deteccion": "sling_dress",
+    "color": "verde",
+    "visible": true,
+    "caja": [
+     204.0,
+     255.8,
+     498.8,
+     1022.3
+    ]
+   }
+  ]
+ },
+ "ig_18076914224729431": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Americana",
+    "p_tipo": 0.393,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "navy",
+    "visible": true,
+    "caja": [
+     205.8,
+     322.3,
+     447.9,
+     656.4
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.919,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "navy",
+    "visible": true,
+    "caja": [
+     198.5,
+     582.6,
+     391.8,
+     963.7
+    ]
+   },
+   {
+    "tipo": "Zapatos planos de vestir",
+    "p_tipo": 0.97,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     154.0,
+     936.4,
+     363.3,
+     1018.4
+    ]
+   }
+  ]
+ },
+ "ig_18120089252024064": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Mono",
+    "p_tipo": 0.88,
+    "cat": "cuerpo_entero",
+    "deteccion": "long_sleeved_dress",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     95.6,
+     281.0,
+     524.4,
+     894.3
+    ]
+   }
+  ]
+ },
+ "ig_18112555912915993": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Mono",
+    "p_tipo": 0.602,
+    "cat": "cuerpo_entero",
+    "deteccion": "sling_dress",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     291.4,
+     161.2,
+     477.5,
+     871.7
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.789,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     296.1,
+     354.6,
+     472.6,
+     867.5
+    ]
+   }
+  ]
+ },
+ "ig_18058752848653938": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.588,
+    "cat": "ropa_superior",
+    "deteccion": "short_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     77.2,
+     627.2,
+     437.0,
+     810.3
+    ]
+   }
+  ]
+ },
+ "ig_17954813475326758": {
+  "n_personas": 3,
+  "prendas": [
+   {
+    "tipo": "Americana",
+    "p_tipo": 0.364,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     136.7,
+     484.8,
+     421.7,
+     880.2
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.591,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     143.0,
+     801.2,
+     418.3,
+     1023.5
+    ]
+   }
+  ]
+ },
+ "ig_17872112184647044": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Abrigo",
+    "p_tipo": 0.629,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     1.9,
+     387.5,
+     420.0,
+     919.1
+    ]
+   }
+  ]
+ },
+ "ig_18139821073628457": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.694,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "lavanda",
+    "visible": true,
+    "caja": [
+     3.2,
+     247.6,
+     559.2,
+     693.8
+    ]
+   }
+  ]
+ },
+ "ig_18099919358423523": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.577,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     0.6,
+     201.9,
+     373.9,
+     574.8
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.879,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     131.1,
+     476.0,
+     339.3,
+     969.5
+    ]
+   },
+   {
+    "tipo": "Zapatos planos de vestir",
+    "p_tipo": 0.483,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "camel",
+    "visible": false,
+    "caja": [
+     205.3,
+     832.0,
+     374.7,
+     1022.5
+    ]
+   }
+  ]
+ },
+ "ig_18039367340894424": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.465,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     3.7,
+     340.6,
+     575.0,
+     1022.3
+    ]
+   }
+  ]
+ },
+ "ig_18131861683841737": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Abrigo",
+    "p_tipo": 0.53,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     3.6,
+     344.0,
+     574.1,
+     1020.9
+    ]
+   }
+  ]
+ },
+ "pr_dafeb07f9d": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.978,
+    "cat": "cuerpo_entero",
+    "deteccion": "sling_dress",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     243.3,
+     321.9,
+     582.5,
+     957.2
+    ]
+   }
+  ]
+ },
+ "pr_f1289a33e3": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.987,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "rojo",
+    "visible": true,
+    "caja": [
+     143.3,
+     362.2,
+     283.2,
+     774.2
+    ]
+   },
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.728,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     93.4,
+     161.2,
+     332.6,
+     379.4
+    ]
+   }
+  ]
+ },
+ "pr_fabb6c1548": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.445,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "verde",
+    "visible": true,
+    "caja": [
+     0.0,
+     374.0,
+     772.2,
+     1022.4
+    ]
+   }
+  ]
+ },
+ "pr_7bb0f7d749": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.254,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     120.6,
+     370.0,
+     435.9,
+     684.6
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.78,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     167.7,
+     562.8,
+     401.5,
+     947.8
+    ]
+   },
+   {
+    "tipo": "Sandalias",
+    "p_tipo": 0.788,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": false,
+    "caja": [
+     226.4,
+     858.6,
+     488.6,
+     1022.5
+    ]
+   }
+  ]
+ },
+ "tw_2124850454261637394_1": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.321,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "rosa",
+    "visible": true,
+    "caja": [
+     5.2,
+     691.8,
+     809.3,
+     1021.6
+    ]
+   },
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.277,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "rosa",
+    "visible": true,
+    "caja": [
+     3.2,
+     695.8,
+     806.9,
+     1022.3
+    ]
+   }
+  ]
+ },
+ "ig_18131623573889521": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Sudadera",
+    "p_tipo": 0.791,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "navy",
+    "visible": true,
+    "caja": [
+     381.4,
+     302.5,
+     633.3,
+     710.4
+    ]
+   },
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.228,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "navy",
+    "visible": true,
+    "caja": [
+     123.8,
+     333.8,
+     325.6,
+     702.7
+    ]
+   },
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.528,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     0.4,
+     342.1,
+     74.4,
+     603.8
+    ]
+   }
+  ]
+ },
+ "ig_17995350888110466": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Abrigo",
+    "p_tipo": 0.988,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     196.0,
+     328.2,
+     390.0,
+     705.3
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.953,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     237.6,
+     537.6,
+     370.6,
+     853.1
+    ]
+   },
+   {
+    "tipo": "Zapatos planos de vestir",
+    "p_tipo": 0.928,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     250.3,
+     825.9,
+     390.2,
+     866.8
+    ]
+   }
+  ]
+ },
+ "ig_17983906484914310": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.698,
+    "cat": "cuerpo_entero",
+    "deteccion": "short_sleeved_dress",
+    "color": "amarillo",
+    "visible": true,
+    "caja": [
+     2.0,
+     1.2,
+     289.7,
+     373.3
+    ]
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.928,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     211.7,
+     652.8,
+     464.0,
+     867.8
+    ]
+   }
+  ]
+ },
+ "ig_17937609138413207": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Mono",
+    "p_tipo": 0.683,
+    "cat": "cuerpo_entero",
+    "deteccion": "long_sleeved_dress",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     187.7,
+     516.6,
+     314.6,
+     718.5
+    ]
+   },
+   {
+    "tipo": "Americana",
+    "p_tipo": 0.589,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     188.1,
+     517.2,
+     314.5,
+     718.5
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.882,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     203.8,
+     653.0,
+     303.7,
+     847.8
+    ]
+   }
+  ]
+ },
+ "ig_17976753693144344": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.696,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     222.7,
+     516.1,
+     417.6,
+     874.1
+    ]
+   },
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.559,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     147.8,
+     290.0,
+     385.7,
+     568.1
+    ]
+   },
+   {
+    "tipo": "Zapatos de tacón",
+    "p_tipo": 0.577,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     260.8,
+     859.6,
+     444.2,
+     935.4
+    ]
+   }
+  ]
+ },
+ "ig_17994243468114043": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Sudadera",
+    "p_tipo": 0.646,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     2.7,
+     87.6,
+     575.9,
+     919.1
+    ]
+   }
+  ]
+ },
+ "ig_17952531432345234": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Jersey",
+    "p_tipo": 0.769,
+    "cat": "ropa_superior",
+    "deteccion": "shirt (grounding)",
+    "color": "beige",
+    "visible": true,
+    "caja": [
+     82.7,
+     612.9,
+     526.2,
+     968.2
+    ]
+   }
+  ]
+ },
+ "ig_17888325915686277": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.353,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     1.0,
+     367.0,
+     509.9,
+     851.4
+    ]
+   }
+  ]
+ },
+ "ig_18099267905564136": {
+  "n_personas": 3,
+  "prendas": [
+   {
+    "tipo": "Camiseta manga corta",
+    "p_tipo": 0.762,
+    "cat": "ropa_superior",
+    "deteccion": "short_sleeved_shirt",
+    "color": "verde",
+    "visible": true,
+    "caja": [
+     205.2,
+     488.7,
+     349.2,
+     678.6
+    ]
+   },
+   {
+    "tipo": "Short",
+    "p_tipo": 0.987,
+    "cat": "ropa_inferior",
+    "deteccion": "shorts",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     210.2,
+     647.7,
+     338.7,
+     751.2
+    ]
+   }
+  ]
+ },
+ "ig_18126958099682066": {
+  "n_personas": 3,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.673,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "beige",
+    "visible": true,
+    "caja": [
+     179.7,
+     435.5,
+     421.1,
+     726.8
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.878,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     225.6,
+     664.9,
+     382.7,
+     1023.6
+    ]
+   }
+  ]
+ },
+ "ig_17956846401256377": {
+  "n_personas": 1,
+  "prendas": []
+ },
+ "ig_17954643222053556": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.88,
+    "cat": "cuerpo_entero",
+    "deteccion": "long_sleeved_dress",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     105.2,
+     66.4,
+     488.2,
+     1022.4
+    ]
+   }
+  ]
+ },
+ "ig_17921145111530477": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.909,
+    "cat": "ropa_inferior",
+    "deteccion": "skirt",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     151.7,
+     620.1,
+     382.9,
+     1020.1
+    ]
+   },
+   {
+    "tipo": "Camiseta manga corta",
+    "p_tipo": 0.584,
+    "cat": "ropa_superior",
+    "deteccion": "short_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     158.8,
+     366.0,
+     450.5,
+     669.3
+    ]
+   }
+  ]
+ },
+ "ig_18096247571171044": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.629,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     4.1,
+     475.2,
+     558.0,
+     1024.0
+    ]
+   },
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.48,
+    "cat": "ropa_inferior",
+    "deteccion": "shorts",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     68.9,
+     813.5,
+     474.2,
+     1023.3
+    ]
+   }
+  ]
+ },
+ "ig_18127138045918598": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Abrigo",
+    "p_tipo": 0.991,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     159.6,
+     467.5,
+     390.8,
+     948.6
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.716,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     215.5,
+     751.6,
+     386.0,
+     1023.6
+    ]
+   }
+  ]
+ },
+ "ig_17917592883541404": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.766,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     11.3,
+     0.5,
+     578.0,
+     527.7
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.997,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     148.2,
+     431.0,
+     456.2,
+     1011.4
+    ]
+   },
+   {
+    "tipo": "Zapatos planos de vestir",
+    "p_tipo": 0.63,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     273.1,
+     903.7,
+     319.9,
+     972.3
+    ]
+   }
+  ]
+ },
+ "ig_18168796942483935": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Sudadera",
+    "p_tipo": 0.193,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     3.5,
+     391.8,
+     576.0,
+     1024.0
+    ]
+   }
+  ]
+ },
+ "ig_17984839500129836": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.247,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     163.8,
+     320.3,
+     401.7,
+     551.3
+    ]
+   },
+   {
+    "tipo": "Legging/Malla",
+    "p_tipo": 0.493,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     206.5,
+     488.8,
+     359.7,
+     816.1
+    ]
+   },
+   {
+    "tipo": "Zapatillas casual/lifestyle",
+    "p_tipo": 0.923,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     180.0,
+     811.5,
+     328.6,
+     876.0
+    ]
+   }
+  ]
+ },
+ "ig_18017382158985382": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Mono",
+    "p_tipo": 0.732,
+    "cat": "cuerpo_entero",
+    "deteccion": "long_sleeved_dress",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     102.9,
+     174.7,
+     638.8,
+     992.9
+    ]
+   }
+  ]
+ },
+ "ig_18133014088774368": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.927,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     61.1,
+     507.2,
+     434.0,
+     1021.1
+    ]
+   },
+   {
+    "tipo": "Short",
+    "p_tipo": 0.521,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": false,
+    "caja": [
+     100.1,
+     918.4,
+     407.1,
+     1023.4
+    ]
+   }
+  ]
+ },
+ "ig_18183870127426865": {
+  "n_personas": 3,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.851,
+    "cat": "ropa_inferior",
+    "deteccion": "pants (grounding)",
+    "color": "amarillo",
+    "visible": true,
+    "caja": [
+     75.1,
+     808.8,
+     378.5,
+     1023.2
+    ]
+   }
+  ]
+ },
+ "ig_17921680395459973": {
+  "n_personas": 2,
+  "prendas": []
+ },
+ "pr_d8ab8eef4e": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaleco sin mangas",
+    "p_tipo": 0.701,
+    "cat": "ropa_superior",
+    "deteccion": "sling",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     190.3,
+     313.6,
+     449.3,
+     745.8
+    ]
+   },
+   {
+    "tipo": "Legging/Malla",
+    "p_tipo": 0.59,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     178.0,
+     659.6,
+     456.3,
+     959.5
+    ]
+   }
+  ]
+ },
+ "pr_e598329cea": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.397,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     120.3,
+     194.1,
+     775.0,
+     774.1
+    ]
+   }
+  ]
+ },
+ "pr_e264a28154": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Polo",
+    "p_tipo": 0.47,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "navy",
+    "visible": true,
+    "caja": [
+     2.7,
+     106.8,
+     1016.0,
+     573.5
+    ]
+   }
+  ]
+ },
+ "pr_4ed5c2b731": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.713,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     254.0,
+     157.3,
+     548.6,
+     551.8
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.961,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     278.6,
+     401.2,
+     574.6,
+     774.5
+    ]
+   }
+  ]
+ },
+ "ig_18050236034824295": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Abrigo",
+    "p_tipo": 0.903,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     52.5,
+     249.5,
+     575.8,
+     1023.4
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.618,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     215.5,
+     787.8,
+     530.4,
+     1023.7
+    ]
+   }
+  ]
+ },
+ "ig_17916974019490414": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.391,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     263.7,
+     138.9,
+     508.3,
+     516.5
+    ]
+   },
+   {
+    "tipo": "Short",
+    "p_tipo": 0.55,
+    "cat": "ropa_inferior",
+    "deteccion": "skirt",
+    "color": "verde",
+    "visible": true,
+    "caja": [
+     197.0,
+     436.3,
+     457.9,
+     677.7
+    ]
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.281,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "negro",
+    "visible": false,
+    "caja": [
+     277.9,
+     882.2,
+     344.2,
+     1022.5
+    ]
+   }
+  ]
+ },
+ "ig_18212082208317527": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.502,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     102.7,
+     335.3,
+     414.8,
+     733.2
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.804,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     149.7,
+     641.1,
+     357.3,
+     1023.3
+    ]
+   }
+  ]
+ },
+ "ig_18111398645186358": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.936,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     143.1,
+     372.2,
+     459.9,
+     859.6
+    ]
+   }
+  ]
+ },
+ "ig_17886276513506103": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.433,
+    "cat": "ropa_superior",
+    "deteccion": "shirt (grounding)",
+    "color": "dorado",
+    "visible": true,
+    "caja": [
+     5.8,
+     733.7,
+     1017.7,
+     1022.5
+    ]
+   }
+  ]
+ },
+ "ig_18628195807065499": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.558,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     47.4,
+     179.7,
+     299.3,
+     404.6
+    ]
+   }
+  ]
+ },
+ "ig_17906686188606778": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.626,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     134.5,
+     186.2,
+     437.0,
+     687.4
+    ]
+   },
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.71,
+    "cat": "cuerpo_entero",
+    "deteccion": "long_sleeved_dress",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     134.0,
+     185.3,
+     436.3,
+     682.1
+    ]
+   },
+   {
+    "tipo": "Legging/Malla",
+    "p_tipo": 0.699,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     168.8,
+     477.6,
+     426.5,
+     902.9
+    ]
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.852,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     156.4,
+     660.0,
+     285.4,
+     1013.2
+    ]
+   }
+  ]
+ },
+ "ig_17916661416515350": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camiseta manga corta",
+    "p_tipo": 0.358,
+    "cat": "ropa_superior",
+    "deteccion": "short_sleeved_shirt",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     3.2,
+     653.2,
+     526.3,
+     1018.5
+    ]
+   }
+  ]
+ },
+ "ig_18079882055723644": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.41,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     2.4,
+     461.3,
+     537.8,
+     1023.0
+    ]
+   }
+  ]
+ },
+ "ig_17938087440405113": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Sudadera",
+    "p_tipo": 0.643,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "rosa",
+    "visible": true,
+    "caja": [
+     142.3,
+     406.6,
+     465.4,
+     757.3
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.518,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     192.4,
+     694.7,
+     446.2,
+     1023.7
+    ]
+   }
+  ]
+ },
+ "ig_17972816772178379": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.914,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     154.9,
+     250.8,
+     420.3,
+     562.5
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.648,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     152.5,
+     475.8,
+     334.2,
+     857.3
+    ]
+   },
+   {
+    "tipo": "Zapatillas casual/lifestyle",
+    "p_tipo": 0.379,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "rojo",
+    "visible": true,
+    "caja": [
+     113.6,
+     839.2,
+     313.6,
+     897.5
+    ]
+   }
+  ]
+ },
+ "ig_18105556043011474": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.871,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     111.0,
+     513.8,
+     265.9,
+     872.9
+    ]
+   },
+   {
+    "tipo": "Jersey",
+    "p_tipo": 0.711,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     55.5,
+     323.2,
+     247.5,
+     564.8
+    ]
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.469,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     238.2,
+     826.9,
+     302.1,
+     879.1
+    ]
+   }
+  ]
+ },
+ "ig_18017907995972352": {
+  "n_personas": 3,
+  "prendas": [
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.387,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     81.6,
+     617.1,
+     283.0,
+     949.8
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.477,
+    "cat": "ropa_inferior",
+    "deteccion": "skirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     97.1,
+     802.1,
+     241.1,
+     965.2
+    ]
+   }
+  ]
+ },
+ "ig_18095952821251111": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.94,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     138.9,
+     627.8,
+     287.1,
+     1022.9
+    ]
+   },
+   {
+    "tipo": "Camiseta manga corta",
+    "p_tipo": 0.338,
+    "cat": "ropa_superior",
+    "deteccion": "short_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     100.1,
+     421.0,
+     323.6,
+     664.4
+    ]
+   }
+  ]
+ },
+ "ig_17975427831160741": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.952,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     1.5,
+     41.5,
+     574.7,
+     1021.5
+    ]
+   }
+  ]
+ },
+ "pr_d1b3b8aed4": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.946,
+    "cat": "cuerpo_entero",
+    "deteccion": "vest_dress",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     130.7,
+     287.7,
+     503.9,
+     959.1
+    ]
+   }
+  ]
+ },
+ "pr_d0ac1b5c9f": {
+  "n_personas": 3,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.875,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "beige",
+    "visible": true,
+    "caja": [
+     598.2,
+     380.1,
+     774.2,
+     600.1
+    ]
+   },
+   {
+    "tipo": "Top",
+    "p_tipo": 0.977,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "amarillo",
+    "visible": true,
+    "caja": [
+     779.3,
+     221.8,
+     935.0,
+     404.9
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.906,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     151.0,
+     403.3,
+     280.2,
+     586.3
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.942,
+    "cat": "ropa_inferior",
+    "deteccion": "shorts",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     780.1,
+     386.4,
+     920.7,
+     529.5
+    ]
+   },
+   {
+    "tipo": "Top",
+    "p_tipo": 0.884,
+    "cat": "ropa_superior",
+    "deteccion": "vest",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     646.7,
+     280.3,
+     727.7,
+     358.5
+    ]
+   }
+  ]
+ },
+ "pr_e235b4df1d": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.608,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "verde",
+    "visible": true,
+    "caja": [
+     199.3,
+     293.4,
+     864.7,
+     817.9
+    ]
+   },
+   {
+    "tipo": "Short",
+    "p_tipo": 0.624,
+    "cat": "ropa_inferior",
+    "deteccion": "pants (grounding)",
+    "color": "verde",
+    "visible": true,
+    "caja": [
+     195.5,
+     306.7,
+     869.1,
+     817.8
+    ]
+   }
+  ]
+ },
+ "pr_374b14e3a1": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.765,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     196.1,
+     171.9,
+     487.7,
+     848.0
+    ]
+   },
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.245,
+    "cat": "ropa_superior",
+    "deteccion": "shirt (grounding)",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     192.3,
+     172.5,
+     490.7,
+     851.5
+    ]
+   }
+  ]
+ },
+ "ig_18122941697067682": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.982,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     197.1,
+     555.4,
+     421.0,
+     938.0
+    ]
+   },
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.784,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     156.0,
+     338.9,
+     429.7,
+     596.6
+    ]
+   },
+   {
+    "tipo": "Zapatos planos de vestir",
+    "p_tipo": 0.843,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     205.1,
+     890.4,
+     431.3,
+     951.8
+    ]
+   }
+  ]
+ },
+ "ig_18143714032619539": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.909,
+    "cat": "cuerpo_entero",
+    "deteccion": "vest_dress",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     168.3,
+     415.2,
+     461.7,
+     1023.5
+    ]
+   }
+  ]
+ },
+ "ig_18124587172951301": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.955,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     204.9,
+     571.9,
+     397.4,
+     1023.3
+    ]
+   },
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.629,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "beige",
+    "visible": true,
+    "caja": [
+     186.3,
+     336.1,
+     424.9,
+     611.9
+    ]
+   },
+   {
+    "tipo": "Zapatos planos de vestir",
+    "p_tipo": 0.97,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "negro",
+    "visible": false,
+    "caja": [
+     359.7,
+     942.6,
+     411.0,
+     1022.5
+    ]
+   }
+  ]
+ },
+ "ig_18118052249020908": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.897,
+    "cat": "cuerpo_entero",
+    "deteccion": "sling_dress",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     90.7,
+     241.8,
+     335.3,
+     577.4
+    ]
+   },
+   {
+    "tipo": "Zapatos de tacón",
+    "p_tipo": 0.445,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     139.3,
+     669.2,
+     227.0,
+     896.5
+    ]
+   }
+  ]
+ },
+ "ig_18158920729471714": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.635,
+    "cat": "ropa_inferior",
+    "deteccion": "pants (grounding)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     117.8,
+     622.6,
+     539.9,
+     1022.9
+    ]
+   }
+  ]
+ },
+ "ig_17918586222259670": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camiseta de tirantes",
+    "p_tipo": 0.799,
+    "cat": "ropa_superior",
+    "deteccion": "sling",
+    "color": "rosa",
+    "visible": true,
+    "caja": [
+     2.0,
+     718.7,
+     538.5,
+     1023.3
+    ]
+   }
+  ]
+ },
+ "ig_18112238750145210": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.506,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "beige",
+    "visible": true,
+    "caja": [
+     97.8,
+     146.6,
+     575.4,
+     873.0
+    ]
+   },
+   {
+    "tipo": "Short",
+    "p_tipo": 0.637,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     109.3,
+     744.9,
+     485.2,
+     1022.9
+    ]
+   }
+  ]
+ },
+ "ig_18091900433285685": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.838,
+    "cat": "cuerpo_entero",
+    "deteccion": "vest_dress",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     334.2,
+     206.7,
+     525.2,
+     981.8
+    ]
+   }
+  ]
+ },
+ "ig_18127206439914171": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.315,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "naranja",
+    "visible": true,
+    "caja": [
+     380.8,
+     471.9,
+     472.6,
+     572.0
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.894,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     393.9,
+     546.9,
+     450.7,
+     678.8
+    ]
+   }
+  ]
+ },
+ "pr_68f9eafe8e": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.91,
+    "cat": "cuerpo_entero",
+    "deteccion": "vest_dress",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     238.3,
+     188.1,
+     420.6,
+     883.1
+    ]
+   }
+  ]
+ },
+ "pr_a411e18fa9": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Mono",
+    "p_tipo": 0.996,
+    "cat": "cuerpo_entero",
+    "deteccion": "long_sleeved_dress",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     33.0,
+     92.4,
+     552.1,
+     636.1
+    ]
+   },
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.425,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     221.9,
+     88.7,
+     442.6,
+     279.6
+    ]
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.928,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     7.4,
+     411.8,
+     133.4,
+     544.3
+    ]
+   }
+  ]
+ },
+ "pr_de50d50b32": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.437,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     7.4,
+     1.9,
+     824.5,
+     574.8
+    ]
+   }
+  ]
+ },
+ "pr_1f32cfeeae": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.259,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     266.3,
+     178.4,
+     532.6,
+     728.1
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.94,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     304.7,
+     446.4,
+     443.7,
+     931.3
+    ]
+   },
+   {
+    "tipo": "Sandalias",
+    "p_tipo": 0.587,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     324.2,
+     776.7,
+     476.6,
+     970.2
+    ]
+   }
+  ]
+ },
+ "ig_18135145369779458": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.594,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "lavanda",
+    "visible": true,
+    "caja": [
+     66.6,
+     237.5,
+     480.3,
+     776.5
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.965,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     146.4,
+     654.0,
+     409.2,
+     1023.3
+    ]
+   }
+  ]
+ },
+ "ig_18094842590692733": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Plumas",
+    "p_tipo": 0.685,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     1.1,
+     54.6,
+     574.8,
+     865.0
+    ]
+   }
+  ]
+ },
+ "ig_18077192084780726": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.816,
+    "cat": "cuerpo_entero",
+    "deteccion": "long_sleeved_dress",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     122.1,
+     194.0,
+     467.6,
+     1021.7
+    ]
+   }
+  ]
+ },
+ "ig_18108220010201822": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.383,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     274.6,
+     334.2,
+     518.9,
+     544.5
+    ]
+   },
+   {
+    "tipo": "Camiseta manga larga",
+    "p_tipo": 0.352,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     274.2,
+     334.7,
+     518.3,
+     545.2
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.813,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     302.6,
+     511.2,
+     411.4,
+     789.3
+    ]
+   },
+   {
+    "tipo": "Botas",
+    "p_tipo": 0.884,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     302.1,
+     769.5,
+     420.8,
+     845.3
+    ]
+   }
+  ]
+ },
+ "ig_17956704324320852": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.776,
+    "cat": "cuerpo_entero",
+    "deteccion": "vest_dress",
+    "color": "navy",
+    "visible": true,
+    "caja": [
+     118.7,
+     333.5,
+     561.6,
+     1023.0
+    ]
+   },
+   {
+    "tipo": "Chaleco sin mangas",
+    "p_tipo": 0.385,
+    "cat": "ropa_superior",
+    "deteccion": "vest",
+    "color": "navy",
+    "visible": true,
+    "caja": [
+     237.5,
+     326.4,
+     555.9,
+     812.8
+    ]
+   },
+   {
+    "tipo": "Legging/Malla",
+    "p_tipo": 0.553,
+    "cat": "ropa_inferior",
+    "deteccion": "skirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     115.9,
+     743.2,
+     561.0,
+     1023.4
+    ]
+   }
+  ]
+ },
+ "pr_63f3d12868": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Plumas",
+    "p_tipo": 0.313,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "verde",
+    "visible": true,
+    "caja": [
+     153.3,
+     269.8,
+     508.4,
+     756.1
+    ]
+   },
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.741,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     186.2,
+     469.1,
+     437.2,
+     955.7
+    ]
+   },
+   {
+    "tipo": "Top",
+    "p_tipo": 0.957,
+    "cat": "ropa_superior",
+    "deteccion": "sling",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     288.7,
+     323.2,
+     420.8,
+     407.1
+    ]
+   }
+  ]
+ },
+ "pr_9535338fad": {
+  "n_personas": 2,
+  "prendas": [
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.79,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     409.9,
+     116.8,
+     701.1,
+     381.4
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.516,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "azul",
+    "visible": true,
+    "caja": [
+     498.9,
+     364.2,
+     644.2,
+     574.4
+    ]
+   }
+  ]
+ },
+ "pr_d4c9076c4a": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Plumas",
+    "p_tipo": 0.678,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     168.4,
+     71.7,
+     857.6,
+     573.6
+    ]
+   }
+  ]
+ },
+ "pr_0d6c80e6c2": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Zapatos planos de vestir",
+    "p_tipo": 0.675,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     55.0,
+     583.2,
+     627.3,
+     868.9
+    ]
+   },
+   {
+    "tipo": "Americana",
+    "p_tipo": 0.799,
+    "cat": "ropa_superior",
+    "deteccion": "shirt (grounding)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     55.7,
+     581.1,
+     628.0,
+     867.8
+    ]
+   }
+  ]
+ },
+ "ig_17947039458380012": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.917,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     186.4,
+     482.0,
+     386.0,
+     989.6
+    ]
+   },
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.379,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     156.1,
+     230.7,
+     443.3,
+     551.2
+    ]
+   },
+   {
+    "tipo": "Zapatos planos de vestir",
+    "p_tipo": 0.92,
+    "cat": "calzado",
+    "deteccion": "footwear (x2)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     243.8,
+     878.1,
+     351.1,
+     1005.1
+    ]
+   }
+  ]
+ },
+ "ig_18127655659933209": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.81,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     106.4,
+     394.8,
+     511.2,
+     1024.0
+    ]
+   },
+   {
+    "tipo": "Camisa",
+    "p_tipo": 0.236,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     286.2,
+     158.6,
+     552.3,
+     467.8
+    ]
+   }
+  ]
+ },
+ "pr_51ef7fab3c": {
+  "n_personas": 3,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.978,
+    "cat": "cuerpo_entero",
+    "deteccion": "vest_dress",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     782.8,
+     198.9,
+     1016.7,
+     681.5
+    ]
+   }
+  ]
+ },
+ "pr_91575457f7": {
+  "n_personas": 3,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.374,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     208.0,
+     272.1,
+     427.6,
+     639.1
+    ]
+   }
+  ]
+ },
+ "pr_d4212e22e5": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Plumas",
+    "p_tipo": 0.74,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "verde",
+    "visible": true,
+    "caja": [
+     1.0,
+     0.3,
+     1021.3,
+     576.0
+    ]
+   }
+  ]
+ },
+ "ig_17919148482494628": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Abrigo",
+    "p_tipo": 0.714,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     8.7,
+     267.2,
+     537.1,
+     1024.0
+    ]
+   },
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.5,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     85.9,
+     783.4,
+     388.6,
+     1023.8
+    ]
+   }
+  ]
+ },
+ "ig_18121080206470589": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.957,
+    "cat": "cuerpo_entero",
+    "deteccion": "vest_dress",
+    "color": "gris",
+    "visible": true,
+    "caja": [
+     399.9,
+     313.3,
+     731.1,
+     1023.8
+    ]
+   },
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.812,
+    "cat": "cuerpo_entero",
+    "deteccion": "vest_dress",
+    "color": "rojo",
+    "visible": true,
+    "caja": [
+     123.0,
+     292.2,
+     427.0,
+     1022.1
+    ]
+   }
+  ]
+ },
+ "pr_51af3a90cf": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.674,
+    "cat": "cuerpo_entero",
+    "deteccion": "sling_dress",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     230.3,
+     224.7,
+     414.1,
+     858.6
+    ]
+   }
+  ]
+ },
+ "pr_d102fe14b2": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.448,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "verde",
+    "visible": true,
+    "caja": [
+     169.4,
+     230.8,
+     673.0,
+     923.6
+    ]
+   },
+   {
+    "tipo": "Pantalón",
+    "p_tipo": 0.664,
+    "cat": "ropa_inferior",
+    "deteccion": "shorts",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     224.3,
+     786.8,
+     598.7,
+     1023.5
+    ]
+   }
+  ]
+ },
+ "pr_34c48799f6": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Mono",
+    "p_tipo": 0.827,
+    "cat": "cuerpo_entero",
+    "deteccion": "vest_dress",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     189.8,
+     286.1,
+     470.8,
+     957.8
+    ]
+   }
+  ]
+ },
+ "pr_cc88d358f9": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Polo",
+    "p_tipo": 0.588,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "blanco",
+    "visible": true,
+    "caja": [
+     18.5,
+     35.3,
+     991.0,
+     573.0
+    ]
+   }
+  ]
+ },
+ "pr_2226b35917": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Falda",
+    "p_tipo": 0.676,
+    "cat": "ropa_inferior",
+    "deteccion": "skirt",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     169.8,
+     505.4,
+     460.3,
+     913.6
+    ]
+   },
+   {
+    "tipo": "Sandalias",
+    "p_tipo": 0.893,
+    "cat": "calzado",
+    "deteccion": "footwear (x1)",
+    "color": "negro",
+    "visible": true,
+    "caja": [
+     359.4,
+     808.0,
+     413.8,
+     929.8
+    ]
+   }
+  ]
+ },
+ "pr_b99a266b98": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Short",
+    "p_tipo": 0.636,
+    "cat": "ropa_inferior",
+    "deteccion": "trousers",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     77.4,
+     1.5,
+     816.4,
+     754.1
+    ]
+   }
+  ]
+ },
+ "pr_054a9bf94b": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Vestido",
+    "p_tipo": 0.945,
+    "cat": "cuerpo_entero",
+    "deteccion": "vest_dress",
+    "color": "dorado",
+    "visible": true,
+    "caja": [
+     137.2,
+     334.0,
+     440.2,
+     958.8
+    ]
+   }
+  ]
+ },
+ "pr_920cc57553": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Abrigo",
+    "p_tipo": 0.49,
+    "cat": "abrigo",
+    "deteccion": "long_sleeved_outwear",
+    "color": "camel",
+    "visible": true,
+    "caja": [
+     222.0,
+     15.2,
+     792.1,
+     575.6
+    ]
+   }
+  ]
+ },
+ "pr_280f405438": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Plumas",
+    "p_tipo": 0.398,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "verde",
+    "visible": true,
+    "caja": [
+     161.1,
+     0.2,
+     868.7,
+     817.2
+    ]
+   }
+  ]
+ },
+ "pr_07f9c4d941": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Chaqueta",
+    "p_tipo": 0.563,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "verde",
+    "visible": true,
+    "caja": [
+     21.4,
+     3.0,
+     1021.5,
+     814.2
+    ]
+   }
+  ]
+ },
+ "pr_0612dd27a7": {
+  "n_personas": 1,
+  "prendas": [
+   {
+    "tipo": "Plumas",
+    "p_tipo": 0.505,
+    "cat": "ropa_superior",
+    "deteccion": "long_sleeved_shirt",
+    "color": "verde",
+    "visible": true,
+    "caja": [
+     170.1,
+     0.5,
+     888.5,
+     816.0
+    ]
+   }
+  ]
  }
 }
