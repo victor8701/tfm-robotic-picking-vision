@@ -311,7 +311,8 @@ $py = "C:\Program Files\Python311\python.exe"
 
 En la app: **Real**, pestaña **Parámetros → Recogida → Posición de la caja = Cámara** (solo en Real), `recogidaX/Y` en el punto donde espera la pinza, la zona permitida ±X ±Y, la altura de la cinta igual que la `--z` de la calibración y, en **Tiempos**, el máximo esperando a la cámara. Con **Fija**, el PC usa siempre `recogidaX/Y` y de la cámara solo toma las medidas y el giro. El PC y la app tienen que estar en el mismo modo. Después se arranca como en el paso 8 (puente, PC, Play; el PC con `celda\config_celda_windows.json`). Si lanzas la celda por ROS 2 (variante del paso 8), la cámara también puede venir de un driver de ROS: en `celda/config_celda.json` pon `"origen": {"tipo": "ros"}` (topics por defecto `/camera/color/image_raw` y `/camera/aligned_depth_to_color/image_raw`; con la RealSense, `ros2 launch realsense2_camera rs_launch.py align_depth.enable:=true` en otra terminal de Linux antes del `ros2 launch` de la celda). Si la cámara no ve una caja entera a tiempo o la ve fuera de la zona, el PC se para con un aviso: no se mueve.
 
-**Primera prueba del modo Real en casa (sin cámara ni celda).** El PC lee fotos de ejemplo (`ejemplos_vision/celda`, una por caja) en vez de una cámara, y el robot virtual de RobotStudio va donde las ve. Hay una configuración hecha, `celda/config_celda_real_casa.json` (modo Real, 3 cajas, cámara de carpeta), para no tocar la de simulación. Con ROS 2, como en el paso 8:
+#### 11.1 Modo Real en casa con fotos de ejemplo (ROS 2)
+El PC lee fotos de ejemplo (`ejemplos_vision/celda`, una por caja) en vez de una cámara, y el robot virtual de RobotStudio va donde las ve. Hay una configuración hecha, `celda/config_celda_real_casa.json` (modo Real, 3 cajas, cámara de carpeta, ventana en vivo), para no tocar la de simulación. Con ROS 2, como en el paso 8:
 
 1. **Fotos de ejemplo** (solo si no existe la carpeta `ejemplos_vision/celda`). **Linux (WSL2):**
 ```
@@ -324,60 +325,79 @@ cd ~/ros2_ws && source /opt/ros/humble/setup.bash && source install/setup.bash &
 ```
 4. **RobotStudio:** Reset y Play. **En la app:** pestaña Parámetros → **Valores por defecto** (recogida **Fija** en 700 y 0, altura de la cinta 220; con **Cámara**, la misma X e Y y zona ±50). Pestaña Tanda: modo **Real**, **3** cajas, **INICIAR TANDA**, y **CAJA EN POSICIÓN** en cada caja.
 
-**Elegir la carpeta de fotos desde la app y ver lo que ve el PC (22-nov).** Con `config_celda_real_casa.json` (lleva `"visor": true` y `"raiz_carpetas"`):
-- **En el PC se abre la ventana «Vision de la celda»** (como la del trabajo de Robótica Industrial): la foto que ve la cámara, el **contorno** de lo que el programa considera la caja, un **punto verde en el centro** con sus coordenadas en mm y el **hilo**, una línea de extremo a extremo de un lado corto al otro por el centro (a lo largo del eje largo), más las medidas. Arriba, la carpeta, «foto i de N» y el estado: **VISTA PREVIA** (la foto que se usará para la siguiente caja, sin gastarla) y, 3 s después de medir cada caja, **CAJA k: MEDIDA**. Con la tecla `q` o cerrando la ventana, el ciclo sigue sin ella. En Ubuntu se abre con WSLg (si no hay pantalla lo avisa y sigue sin ventana).
+**Qué debes ver:** en la terminal del launch, `Celda: caja 1 de 3 (199.995 x 139.561 x 120 mm, giro 0 grados)`, luego la 2 (200 × 140, giro −45°) y la 3 (160 × 100 × 90, giro 60°), con su `Pinza: cerrar -> cerrada`; el robot va al punto de la caja y la deja en la mesa. El 3D no muestra cajas (en Real no se mueve `CajaGrande`): la pinza agarra aire. Con una cuarta caja, el PC se para con `La cámara no ve ninguna caja entera` porque no quedan fotos.
+
+#### 11.2 Elegir la carpeta de fotos desde la app y ver lo que ve el PC
+Con `config_celda_real_casa.json` (lleva `"visor": true` y `"raiz_carpetas"`):
+- **En el PC se abre la ventana «Vision de la celda»** (como la del trabajo de Robótica Industrial): la foto que ve la cámara, el **contorno** de lo que el programa considera la caja, un **punto verde en el centro** con sus coordenadas en mm y el **hilo**, una línea de extremo a extremo de un lado corto al otro por el centro (a lo largo del eje largo), más las medidas. Arriba, la carpeta o cámara, «foto i de N» y el estado: **VISTA PREVIA** (la foto que se usará para la siguiente caja, sin gastarla) y, 3 s después de medir cada caja, **CAJA k: MEDIDA**. Con la tecla `q` o cerrando la ventana, el ciclo sigue sin ella. En Ubuntu se abre con WSLg (si no hay pantalla lo avisa y sigue sin ventana).
 - **En la app**, pestaña Parámetros → **Cámara** (solo en Real, antes de pulsar INICIAR): botones con **La del PC** y las carpetas que da el PC (hoy `celda` y `celda_zapatos`, las que tienen `camara.json`); al pulsar una, en 1–2 s la app dice **«N fotos»** y el estado, y la ventana del PC pasa a esa carpeta. **La del PC** es la cámara que tenga la configuración del PC: en `config_celda_real_casa.json` es la carpeta de ejemplo `celda` (por eso se ven fotos y no una cámara), y el estado lo dice («la de la configuración: carpeta celda»). Con una cámara de verdad (`origen` `opencv`, `realsense` o `ros`) sale «cámara en vivo». **Valores por defecto** vuelve a ella. `celda_zapatos` son tres fotos de cajas alargadas (330 × 190 × 120 y 300 × 180 × 100, giros 0°, 35° y −60°) para ver bien el hilo.
-- Solo salen carpetas con su propio `camara.json` (la calibración de esa cámara). Tus fotos reales (`planta_real_prueba`) no salen hasta calibrarlas (Prueba 7 de `docs/vision.md`) y poner el `camara.json` en su carpeta.
+- Solo salen carpetas con su propio `camara.json` (la calibración de esa cámara). Tus fotos reales (`planta_real_prueba`) no salen hasta calibrarlas (11.3) y poner el `camara.json` en su carpeta.
 
-**RobotStudio coge cajas por la webcam (23-nov).** WSL2 no abre cámaras USB, así que con la webcam la celda se lanza con el **ciclo de Python de Windows** (sin ROS 2). Antes comprueba la webcam sola (`docs/vision.md`, Prueba 11: `python -m vision.ver_camara --listar --ver`) y apunta su `indice`.
-
-*Cómo funciona:* cada caja se coge **una a una**. Pones una caja delante de la webcam, pulsas **CAJA EN POSICIÓN** y el PC mira la cámara en ese momento, mide esa caja (largo, ancho, giro y dónde está) y el robot de RobotStudio va a ese punto, la coge y la deja en la mesa. Se repite tantas veces como pongas en **Tanda → Cajas** de la app (1 por defecto). La calibración de la webcam, `celda/camara_webcam.json`, es **aproximada** y centra la imagen en el punto de recogida (700, 0): una caja bajo el centro de la imagen es una caja en (700, 0); si la mueves a la derecha en la imagen, el robot va a +x, y si la subes en la imagen, a +y. Las medidas y la escala son aproximadas; para medir de verdad hay que calibrar (Prueba 7 de `docs/vision.md`).
-
-*Calibración real (recomendada):* en vez de la aproximada de abajo, calibra tu webcam con el **asistente con ventana** (`docs/vision.md`, Prueba 12): tablero impreso, ~15 fotos, el tablero tendido con su centro en la recogida (700, 0), y «Guardar la calibración» en `celda\camara_webcam.json`. **Windows (PowerShell)**, en la carpeta `robotica`:
-```
-& "C:\Program Files\Python311\python.exe" -m calibracion.app_camara --indice 1 --tam 1280x720 --salida celda\camara_webcam.json
-```
-Con ella, las medidas y las posiciones son reales y puedes usar la recogida en modo **Cámara** con una zona permitida más pequeña. Si prefieres no calibrar, la aproximada:
-
-*Preparación (una vez):*
-1. **Ajusta la calibración a tu webcam** si no está a 600 mm de la mesa. Mide la distancia de la webcam a la superficie donde pones la caja y regenera el fichero. **Windows (PowerShell)**:
+#### 11.3 Tu webcam: verla, elegir la cámara y calibrarla (Windows, sin ROS 2)
+WSL2 no abre cámaras USB: todo esto va con el Python de **Windows**. En todos los comandos de Windows, antes: **Windows (PowerShell)**
 ```
 cd \\wsl.localhost\Ubuntu-22.04\home\ubuntu22\repos\tfm-robotica-bimanual\robotica
 ```
+a) **Qué cámaras hay y cuál es cuál.** Dice las cámaras que ve Windows y los índices que abren, y abre una ventana con la imagen de cada una y su número (cualquier tecla la cierra). Un portátil con webcam externa suele dar: **0** = la del portátil, **1** = su infrarroja o la externa (míralo en las imágenes). Si la externa no sale, conéctala por USB (directa al PC), espera unos segundos y repite.
 ```
-& "C:\Program Files\Python311\python.exe" -m vision.ver_camara --indice 0 --altura 700 --fov 62 --alto 120 --guardar-calibracion celda\camara_webcam.json --z 220 --centro 700,0
+& "C:\Program Files\Python311\python.exe" -m vision.ver_camara --listar --ver
 ```
-(`--indice` es el de tu webcam, `--altura` la distancia en mm, `--fov` su campo de visión horizontal (62 es normal en una webcam) y `--alto` el alto de tu caja. Se cierra con `q`.) Con la webcam a 600 mm ve unos 720 × 400 mm de superficie. Pon también `indice` y `alto_mm` en `celda/config_celda_real_webcam.json` (`origen` y `camara`).
+b) **Ver la webcam en vivo** con lo que identifica (contorno, centro e hilo), sin robot. `--indice` es el número de tu webcam, `--alto` el alto de tu caja en mm (una webcam no mide profundidad), `--cajas` cuántas identifica a la vez (1 por defecto). Se sale con `q`. Sin calibrar pone «SIN CALIBRAR» en la banda: contorno, centro e hilo valen, los mm son aproximados.
+```
+& "C:\Program Files\Python311\python.exe" -m vision.ver_camara --indice 1 --alto 120
+```
+c) **Calibrarla con el asistente (recomendado).** Una ventana con la cámara en vivo y cuatro pestañas: 1 **Tablero** (guardar el tablero para imprimir al 100 %, medir un cuadro con una regla y escribir su lado en mm); 2 **Cámara** (unas 15 fotos del tablero moviéndolo e inclinándolo, a mano con Espacio o en «Automático»; «Calcular» debe dar «muy bien», error < 0,5 px); 3 **Posición** (la cámara ya FIJA y el tablero plano sobre la superficie de las cajas: en casa, centro del tablero en 700, 0, giro 0, altura 220; «Calcular» debe dar OBJETIVO < 2 mm o ACEPTABLE < 5 mm); 4 **Probar y guardar** (pon una caja: contorno, centro con coordenadas en el robot e hilo; pincha para ver las coordenadas de un punto; «Guardar la calibración»). Detalles y problemas típicos: `docs/vision.md`, Prueba 12.
+```
+& "C:\Program Files\Python311\python.exe" -m calibracion.app_camara --indice 1 --tam 1280x720 --salida celda\camara_webcam.json
+```
+   Sin calibrar, hay una **cámara aproximada** (la imagen centrada en la recogida; medidas y escala aproximadas): se regenera con la altura de tu webcam sobre la mesa (`--altura`, mm), su campo de visión (`--fov`, 62° es normal) y el alto de tu caja:
+```
+& "C:\Program Files\Python311\python.exe" -m vision.ver_camara --indice 1 --altura 700 --fov 62 --alto 120 --guardar-calibracion celda\camara_webcam.json --z 220 --centro 700,0
+```
+
+#### 11.4 RobotStudio coge cajas por la webcam
+Cada caja se coge **una a una**: pones una caja delante de la webcam, pulsas **CAJA EN POSICIÓN** y el PC mira la cámara en ese momento, mide esa caja (largo, ancho, giro y dónde está) y el robot de RobotStudio va a ese punto, la coge y la deja en la mesa. Se repite tantas veces como pongas en **Tanda → Cajas** de la app (1 por defecto). La calibración `celda\camara_webcam.json` centra la imagen en la recogida (700, 0): una caja bajo el centro de la imagen es una caja en (700, 0); si la mueves a la derecha en la imagen, el robot va a +x, y si la subes, a +y. Con la calibración del asistente (11.3 c) las medidas y posiciones son reales; con la aproximada, aproximadas. `camara.cajas` del JSON (1) limita cuántas cajas identifica la ventana a la vez.
+
+*Preparación (una vez):*
+1. Calibra la webcam (11.3 c) o regenera la aproximada (11.3 c, segundo comando). En `celda/config_celda_real_webcam.json` pon `origen.indice` (tu webcam), `origen.tam` (igual que el de la calibración) y `camara.alto_mm` (el alto de tu caja).
 2. **Puente** (Windows, PowerShell), como siempre. Si su `ip_control` no es `172.27.48.1`, pon esa IP en `puente.host` del JSON anterior.
 
 *Cada vez:*
 1. **RobotStudio:** Reset y Play (con el módulo ya recargado, paso 5).
-2. **App:** pestaña Parámetros → **Valores por defecto**; luego **Recogida**: *Posición de la caja* = **Cámara**, recogida X = 700, Y = 0 y la **zona permitida ± X / ± Y** = lo que dejes moverse la caja (por ejemplo 150: el robot solo va si la caja está a menos de 150 mm del centro de la imagen; si no, se para con un aviso y no se mueve). Pestaña Tanda: modo **Real** y **Cajas** = las que vayas a coger (1).
-3. **Celda con la webcam.** **Windows (PowerShell)**, en la carpeta `robotica` de arriba:
+2. **App:** pestaña Parámetros → **Valores por defecto**; luego **Recogida**: *Posición de la caja* = **Cámara**, recogida X = 700, Y = 0 y la **zona permitida ± X / ± Y** = lo que dejes moverse la caja (con la calibración real, 50; con la aproximada, 150: el robot solo va si la caja está dentro; si no, se para con un aviso y no se mueve). Pestaña Tanda: modo **Real** y **Cajas** = las que vayas a coger (1).
+3. **Celda con la webcam.** **Windows (PowerShell)**, en la carpeta `robotica` (sale `Cámara USB: índice N` y se abre la ventana con la webcam en vivo y la caja que identifica):
 ```
 & "C:\Program Files\Python311\python.exe" -m celda.ciclo celda\config_celda_real_webcam.json
 ```
-   **Qué cámara abre:** la del JSON (`indice` 1: la webcam externa). Para elegirla al lanzar, sin tocar el JSON, añade `--indice`: `--indice 0` es la del portátil y `--indice 1` la webcam (los números que salen en `vision.ver_camara --listar --ver`):
+   La cámara es la de `origen.indice` del JSON; para elegirla al lanzar, sin tocar el JSON, `--indice`: **0** la del portátil, **1** la webcam (los números de 11.3 a):
 ```
 & "C:\Program Files\Python311\python.exe" -m celda.ciclo celda\config_celda_real_webcam.json --indice 0
 ```
-   En la terminal sale `Cámara USB: índice N` y en la banda de la ventana «camara USB N». Se abre la ventana con la webcam en vivo y la caja que identifica (contorno, centro con sus coordenadas en el robot, hilo y medidas); `camara.cajas` del JSON (1) limita cuántas identifica a la vez.
 4. **App:** **INICIAR TANDA**. Pon la caja delante de la webcam, **entera** en la imagen, y pulsa **CAJA EN POSICIÓN**. El PC dice en su terminal `Celda: caja 1 de N (...)` con las medidas y el robot va a donde está. Para la siguiente, cambia la caja de sitio y repite.
 
-Si abre la cámara del portátil o la de infrarrojos y no tu webcam, lánzalo con `--indice <el que dio --listar --ver>` (o cambia `indice` en `origen` del JSON; añade `"api": "dshow"` si no abre). Si el PC se para con `fuera de la zona permitida`, la caja está lejos del centro de la imagen: acércala o sube la zona permitida. Si dice `no ve ninguna caja entera`, la caja está cortada por el borde de la imagen o su color no es el del cartón marrón (Prueba 5 de `docs/vision.md`). *Sin probar con RobotStudio.*
+*Si falla:* abre la cámara del portátil o la de infrarrojos y no tu webcam → `--indice` con el número que dio 11.3 a (o `"api": "dshow"` en `origen` si no abre). `fuera de la zona permitida` → la caja está lejos del centro de la imagen: acércala o sube la zona permitida. `no ve ninguna caja entera` → la caja está cortada por el borde de la imagen o su color no es el del cartón marrón (Prueba 5 de `docs/vision.md`). *Sin probar con RobotStudio.*
 
-*Para actualizar (módulo, app y ejemplos):*
+#### 11.5 Actualizar el módulo, la app y los ejemplos
 1. **Fotos de ejemplo** (crea `celda_zapatos`). **Linux (WSL2):**
 ```
 cd ~/repos/tfm-robotica-bimanual/robotica && python3 -m vision.generar_ejemplos ejemplos_vision
 ```
 2. **Módulo de RAPID:** el `MOD_CajaPinza.mod` del escritorio ya es el nuevo (copia anterior: `.antes_camara`). Recárgalo en `T_ROB1` y `T_COM` (paso 5): los ajustes vuelven a los del módulo.
 3. **App:** ya están copiados `app.js`, `logica.js` y `demo-rws.js` nuevos en `Desktop\TFM_RAPID\WebApps\CajaPinza` y en la carpeta `HOME\WebApps\CajaPinza` del controlador virtual (copias: `.antes_camara`). Recarga la app en el navegador del controlador; si sigue la antigua, reinicia el controlador (Restart) y vuelve a abrirla.
-4. Lanza la celda con el `ros2 launch` de arriba (con `config_celda_real_casa.json`).
 
-**Qué debes ver:** en la terminal del launch, `Celda: caja 1 de 3 (199.995 x 139.561 x 120 mm, giro 0 grados)`, luego la 2 (200 × 140, giro −45°) y la 3 (160 × 100 × 90, giro 60°), con su `Pinza: cerrar -> cerrada`; el robot va al punto de la caja y la deja en la mesa. El 3D no muestra cajas (en Real no se mueve `CajaGrande`): la pinza agarra aire. Con una cuarta caja, el PC se para con `La cámara no ve ninguna caja entera` porque no quedan fotos. Ensayado el 22-nov sin RobotStudio (puente y RAPID falsos): las 3 cajas se miden, caben en la mesa y todos los puntos están dentro del espacio del puente. *Sin probar:* con RobotStudio.
+#### 11.6 Resumen de comandos de la cámara
+| Qué | Dónde | Comando |
+|---|---|---|
+| Ver qué cámaras hay | Windows (PowerShell), carpeta `robotica` | `& "C:\Program Files\Python311\python.exe" -m vision.ver_camara --listar --ver` |
+| Ver la webcam en vivo | Windows | `& "C:\Program Files\Python311\python.exe" -m vision.ver_camara --indice 1 --alto 120` |
+| Calibrarla (ventana) | Windows | `& "C:\Program Files\Python311\python.exe" -m calibracion.app_camara --indice 1 --tam 1280x720 --salida celda\camara_webcam.json` |
+| Calibración aproximada | Windows | `& "C:\Program Files\Python311\python.exe" -m vision.ver_camara --indice 1 --altura 700 --fov 62 --alto 120 --guardar-calibracion celda\camara_webcam.json --z 220 --centro 700,0` |
+| Celda con la webcam | Windows | `& "C:\Program Files\Python311\python.exe" -m celda.ciclo celda\config_celda_real_webcam.json --indice 1` |
+| Celda con fotos de ejemplo (ROS 2) | Linux (WSL2) | el `ros2 launch` de 11.1 con `config_celda_real_casa.json` |
+| Fotos de ejemplo | Linux (WSL2) | `python3 -m vision.generar_ejemplos ejemplos_vision` |
+| Medir fotos (sin celda) | Linux (WSL2) | `python3 -m vision.probar_en_casa ejemplos_vision/celda --calibracion ejemplos_vision/celda/camara.json --z 220` |
 
-*Sin probar:* la cámara y las cajas reales, la RealSense (`pyrealsense2`), `--interactivo` y el ciclo completo en Real con la cámara conectada. Solo se ha probado con imágenes sintéticas.
+*Sin probar:* la cámara y las cajas reales con RobotStudio, la RealSense (`pyrealsense2`), `--interactivo` y el ciclo completo en Real con la cámara conectada. Solo se ha probado con imágenes sintéticas y cámaras falsas.
 
 ## 3. Cómo funciona
 
