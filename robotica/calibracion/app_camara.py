@@ -2,6 +2,7 @@
 
     python -m calibracion.app_camara                       (Windows: & "C:\\Program Files\\Python311\\python.exe" -m calibracion.app_camara --indice 1)
     python -m calibracion.app_camara --indice 1 --salida celda/camara_webcam.json
+    python -m calibracion.app_camara --url https://MI-SERVICIO.onrender.com/c/MI-CLAVE   (el móvil como cámara: la dirección que abre el teléfono)
 
 Cuatro pestañas:
   1 Tablero      el tablero de ajedrez que se imprime (columnas, filas y lado del cuadro medido con una regla).
@@ -138,7 +139,7 @@ def parsear_toques(texto: str) -> tuple[list[Toque], list[Toque]]:
 
 class App(tk.Tk):
     def __init__(self, proveedor=None, indice: int = 0, tam: tuple[int, int] | None = (1280, 720), salida: str = "celda/camara_webcam.json",
-                 columnas: int = 9, filas: int = 6, cuadro_mm: float = 25.0, pausa_captura_s: float = 0.0):
+                 columnas: int = 9, filas: int = 6, cuadro_mm: float = 25.0, pausa_captura_s: float = 0.0, url: str = ""):
         super().__init__()
         self.title("Calibración de la cámara")
         self.asistente = Asistente(columnas, filas, cuadro_mm)
@@ -159,21 +160,25 @@ class App(tk.Tk):
         self._escala = 1.0
         self._vista_tam = (1, 1)
         self._mensaje = tk.StringVar(value="")
-        self._construir(indice, salida)
-        self._abrir(proveedor, indice)
+        self._construir(indice, salida, url)
+        self._abrir(proveedor, indice, url)
         self.protocol("WM_DELETE_WINDOW", self.cerrar)
         self.bind("<space>", lambda e: self._guardar_foto() if self._pestana() == 1 else None)
         self.after(TICK_MS, self._tick)
 
     # ---------------------------------------------------------------- ventana
-    def _construir(self, indice: int, salida: str) -> None:
+    def _construir(self, indice: int, salida: str, url: str = "") -> None:
         sup = ttk.Frame(self)
         sup.pack(fill="x", padx=8, pady=(8, 0))
         ttk.Label(sup, text="Cámara (índice):").pack(side="left")
         self.v_indice = tk.IntVar(value=indice)
         ttk.Spinbox(sup, from_=0, to=9, width=4, textvariable=self.v_indice).pack(side="left", padx=4)
-        ttk.Button(sup, text="Abrir", command=lambda: self._abrir(None, self.v_indice.get())).pack(side="left")
+        ttk.Button(sup, text="Abrir", command=lambda: self._abrir(None, self.v_indice.get(), "")).pack(side="left")
         ttk.Button(sup, text="¿Cuál es cuál?", command=self._cual_es_cual).pack(side="left", padx=8)
+        ttk.Label(sup, text="o URL del móvil:").pack(side="left", padx=(8, 0))
+        self.v_url = tk.StringVar(value=url)
+        ttk.Entry(sup, textvariable=self.v_url, width=30).pack(side="left", padx=4)
+        ttk.Button(sup, text="Abrir URL", command=lambda: self._abrir(None, self.v_indice.get(), self.v_url.get().strip())).pack(side="left")
         self.l_resolucion = ttk.Label(sup, text="")
         self.l_resolucion.pack(side="left", padx=8)
 
@@ -311,18 +316,22 @@ class App(tk.Tk):
             al_acabar(resultado, error)
 
     # ---------------------------------------------------------------- cámara
-    def _abrir(self, proveedor, indice: int) -> None:
+    def _abrir(self, proveedor, indice: int, url: str = "") -> None:
         if self.captura is not None:
             self.captura.cerrar()
             self.captura = None
+        if proveedor is None and url:
+            self.decir("Conectando con la cámara del móvil…")
+            self.update_idletasks()
         try:
             if proveedor is None:
-                proveedor = abrir_camara_usb(int(indice), self._tam_pedido)
+                proveedor = abrir_camara_usb(int(indice), self._tam_pedido, None, url or None)
             self.captura = Captura(proveedor, self._pausa_captura)
         except ValueError as e:
-            self.decir(f"{e}. Prueba otro índice (¿Cuál es cuál?), cierra los programas que usen la cámara y mira el permiso de cámara de Windows.", True)
+            ayuda = "" if url else ". Prueba otro índice (¿Cuál es cuál?), cierra los programas que usen la cámara y mira el permiso de cámara de Windows."
+            self.decir(f"{e}{ayuda}", True)
             return
-        self.decir(f"Cámara {indice} abierta.")
+        self.decir(f"Cámara del móvil ({url}) abierta." if url else f"Cámara {indice} abierta.")
 
     def _cual_es_cual(self) -> None:
         """Una ventana con la imagen de cada cámara y su número (cierra la actual un momento)."""
@@ -629,6 +638,7 @@ def _tam(texto: str) -> tuple[int, int]:
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--indice", type=int, default=0, help="cámara que se abre al empezar (se cambia en la ventana)")
+    ap.add_argument("--url", default="", help="en vez de una cámara USB, el móvil: la página propia (https://servidor/c/clave) o el vídeo de una app (la URL que dé)")
     ap.add_argument("--tam", type=_tam, default=(1280, 720), help="resolución pedida a la cámara (la misma que usará la celda)")
     ap.add_argument("--salida", default="celda/camara_webcam.json", help="dónde se guarda el camara.json")
     ap.add_argument("--columnas", type=int, default=9)
@@ -636,7 +646,7 @@ def main(argv=None) -> int:
     ap.add_argument("--cuadro", type=float, default=25.0, help="lado del cuadro del tablero en mm (el que mides en tu impresión)")
     args = ap.parse_args(argv)
     try:
-        app = App(None, args.indice, args.tam, args.salida, args.columnas, args.filas, args.cuadro)
+        app = App(None, args.indice, args.tam, args.salida, args.columnas, args.filas, args.cuadro, url=args.url)
     except tk.TclError as e:
         print(f"No puedo abrir la ventana: {e}")
         return 2

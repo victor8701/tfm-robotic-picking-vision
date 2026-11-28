@@ -340,6 +340,8 @@ cd \\wsl.localhost\Ubuntu-22.04\home\ubuntu22\repos\tfm-robotica-bimanual\roboti
 
 **Sin calibrar:** se supone una cámara mirando hacia abajo a `--altura` mm (600 por defecto) de la mesa y `--fov` grados de campo de visión (62). Contorno, centro e hilo valen; los **mm son aproximados** (ajusta `--altura` a la tuya). Para medir de verdad hay que calibrarla (Prueba 7) y darla con `--calibracion camara.json --z <altura de la superficie>`.
 
+**El móvil como cámara:** en vez de `--indice`, `--url` con la dirección de la página propia (`movil_camara`, alojada en Render: `https://celda-camara.onrender.com/c/TU-CLAVE`, la misma que se abre en el teléfono; no se instala nada), o `--url http://IP:puerto/video` con la de una aplicación como «IP Webcam» (Android), o una aplicación que cree una webcam virtual (DroidCam, Iriun, Camo, EpocCam) y se usa con su `--indice`. Móvil fijo y la misma resolución al calibrar y al usar. Los pasos, en el manual de RobotStudio, 11.3 d.
+
 **Si no sale:**
 - «no puedo abrir la cámara»: otro programa la usa (Teams, Zoom, la app Cámara), Windows no deja a las aplicaciones de escritorio usarla (Configuración → Privacidad → Cámara) o el índice no es el bueno (`--listar`). Con `--api dshow` o `--api msmf` se prueba el otro backend de Windows.
 - «no veo ninguna caja entera» en rojo: la caja está cortada por el borde de la imagen o el color no es el del cartón marrón (el rango de color se ajusta como en la Prueba 5).

@@ -16,6 +16,7 @@ caja que ve la cámara (hasta unos mm si la caja no está justo bajo ella); con 
 """
 from __future__ import annotations
 
+import threading
 from dataclasses import dataclass
 
 import cv2
@@ -87,6 +88,7 @@ def _limpiar(m: np.ndarray, p: dict) -> np.ndarray:
 
 
 _cache_rayos: dict = {}
+_cerrojo_rayos = threading.Lock()
 
 
 def alturas_de_profundidad(profundidad_mm: np.ndarray, modelo: ModeloCamara) -> np.ndarray:
@@ -97,15 +99,18 @@ def alturas_de_profundidad(profundidad_mm: np.ndarray, modelo: ModeloCamara) -> 
         raise ValueError(f"la profundidad mide {ancho}x{alto} y la calibración es de {modelo.tam[0]}x{modelo.tam[1]}: "
                          "tiene que estar alineada con la imagen de color")
     clave = (modelo.K.tobytes(), modelo.dist.tobytes(), ancho, alto, modelo.T_base_cam.matriz()[2].tobytes())
-    if clave not in _cache_rayos:
-        u, v = np.meshgrid(np.arange(ancho), np.arange(alto))
-        px = np.stack([u.ravel(), v.ravel()], axis=1).astype(np.float64).reshape(-1, 1, 2)
-        n = cv2.undistortPoints(px, modelo.K, modelo.dist).reshape(-1, 2)
-        fila_z = modelo.T_base_cam.matriz()[2, :3]
-        _cache_rayos.clear()
-        _cache_rayos[clave] = (n @ fila_z[:2] + fila_z[2]).reshape(alto, ancho)
+    with _cerrojo_rayos:   # el ciclo y el visor miden desde hilos distintos: la cache no se toca a la vez
+        rayos = _cache_rayos.get(clave)
+        if rayos is None:
+            u, v = np.meshgrid(np.arange(ancho), np.arange(alto))
+            px = np.stack([u.ravel(), v.ravel()], axis=1).astype(np.float64).reshape(-1, 1, 2)
+            n = cv2.undistortPoints(px, modelo.K, modelo.dist).reshape(-1, 2)
+            fila_z = modelo.T_base_cam.matriz()[2, :3]
+            rayos = (n @ fila_z[:2] + fila_z[2]).reshape(alto, ancho)
+            _cache_rayos.clear()
+            _cache_rayos[clave] = rayos
     d = profundidad_mm.astype(np.float64)
-    z = d * _cache_rayos[clave] + modelo.posicion[2]
+    z = d * rayos + modelo.posicion[2]
     z[d <= 0] = np.nan
     return z
 

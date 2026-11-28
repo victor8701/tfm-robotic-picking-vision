@@ -1,0 +1,1 @@
+# La página del móvil como cámara solo usa la librería estándar de Python: no hay nada que instalar.

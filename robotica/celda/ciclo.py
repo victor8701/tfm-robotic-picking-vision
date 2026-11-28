@@ -439,41 +439,56 @@ def donde_espera_rapid(cfg: Config) -> str:
             else f"a RAPID en {cfg.rapid_ip}:{cfg.rapid_puerto}")
 
 
-USO = ("uso: python -m celda.ciclo celda/config_celda.json [--indice N]\n"
+USO = ("uso: python -m celda.ciclo celda/config_celda.json [--indice N | --url URL]\n"
        "  --indice N  cámara USB que abre (anula camara.origen.indice del JSON): 0 suele ser la del portátil y 1, la webcam externa;\n"
-       "              vision.ver_camara --listar --ver enseña cuál es cuál")
+       "              vision.ver_camara --listar --ver enseña cuál es cuál\n"
+       "  --url URL   en vez de una cámara USB, el móvil: la página propia (https://servidor/c/clave, la misma que abre el teléfono) o el vídeo de\n"
+       "              una aplicación (http://IP:puerto/video)")
 
 
-def aplicar_indice_de_camara(cfg: Config, indice: int | None) -> Config:
-    """La configuración con otra cámara USB, si se pide (--indice). Solo vale con un origen 'opencv'."""
-    if indice is None:
+def aplicar_indice_de_camara(cfg: Config, indice: int | None, url: str | None = None) -> Config:
+    """La configuración con otra cámara, si se pide: una USB (--indice) o la del móvil por red (--url). Solo vale con un origen 'opencv'."""
+    if indice is None and not url:
         return cfg
     origen = ((cfg.camara or {}).get("origen") or {})
     if cfg.modo_simulacion or origen.get("tipo") != "opencv":
-        raise ValueError("--indice solo vale en modo Real con una cámara USB (camara.origen.tipo = opencv)")
-    if indice < 0:
+        raise ValueError("--indice y --url solo valen en modo Real con una cámara USB o de móvil (camara.origen.tipo = opencv)")
+    if indice is not None and indice < 0:
         raise ValueError("--indice es el número de la cámara: 0, 1, 2...")
     camara = json.loads(json.dumps(cfg.camara))
-    camara["origen"]["indice"] = int(indice)
+    if url:
+        camara["origen"]["url"] = url
+    else:
+        camara["origen"]["indice"] = int(indice)
+        camara["origen"].pop("url", None)
     return replace(cfg, camara=camara)
 
 
 def main(argv: list[str]) -> None:
     args = argv[1:]
-    indice = None
-    if "--indice" in args:
-        i = args.index("--indice")
-        try:
-            indice = int(args[i + 1])
-        except (IndexError, ValueError):
-            print("--indice necesita el número de la cámara (0, 1, 2...)\n" + USO)
-            return
-        args = args[:i] + args[i + 2:]
-    if len(args) != 1:
+    indice, url = None, None
+    for opcion in ("--indice", "--url"):
+        if opcion in args:
+            i = args.index(opcion)
+            try:
+                valor = args[i + 1]
+                if opcion == "--indice":
+                    indice = int(valor)
+                else:
+                    url = valor
+                    if valor.startswith("--"):
+                        raise ValueError
+            except (IndexError, ValueError):
+                print(f"{opcion} necesita su valor ({'el número de la cámara: 0, 1, 2...' if opcion == '--indice' else 'la dirección de la cámara del móvil'})\n" + USO)
+                return
+            args = args[:i] + args[i + 2:]
+    if len(args) != 1 or (indice is not None and url):
         print(USO)
         return
-    cfg = aplicar_indice_de_camara(cargar(args[0]), indice)
-    if indice is not None:
+    cfg = aplicar_indice_de_camara(cargar(args[0]), indice, url)
+    if url:
+        print(f"Cámara del móvil: {url}")
+    elif indice is not None:
         print(f"Cámara USB: índice {indice}")
     fuente = crear_fuente(cfg)
     visor = crear_visor(fuente, cfg)   # ventana en tiempo real si camara.visor = true (el ciclo pasa a un hilo; la ventana, al principal)

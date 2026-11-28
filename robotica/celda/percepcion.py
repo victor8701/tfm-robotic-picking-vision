@@ -89,6 +89,14 @@ class Vista:
     total: int | None = None
 
 
+def _comprobar_resolucion(bgr, modelo) -> None:
+    """La calibracion vale para la resolucion con la que se hizo: con otra, las medidas y las posiciones saldrian mal sin avisar."""
+    alto, ancho = bgr.shape[:2]
+    if (ancho, alto) != tuple(modelo.tam):
+        raise RuntimeError(f"la imagen mide {ancho}x{alto} y la calibracion de la camara es de {modelo.tam[0]}x{modelo.tam[1]}: la camara tiene que dar la "
+                           "misma resolucion con la que se calibro (o calibra otra vez con esta)")
+
+
 class FuenteCamara:
     """La caja que ve la camara, medida en la base del robot (vision.deteccion): largo, ancho, alto, giro y centro.
 
@@ -164,7 +172,14 @@ class FuenteCamara:
                 proveedor, modelo = self.proveedor, self.modelo
                 fot = proveedor.siguiente()
             if fot is None:
-                raise RuntimeError("la camara no tiene mas imagenes (carpeta agotada o camara cerrada)")
+                motivo = getattr(proveedor, "motivo", None)   # una camara por red dice por que no hay imagen, y puede ser pasajero
+                if motivo is None:
+                    raise RuntimeError("la camara no tiene mas imagenes (carpeta agotada o camara cerrada)")
+                if time.monotonic() >= limite:
+                    raise RuntimeError(f"la camara no da imagen: {motivo}")
+                time.sleep(self.pausa_s)
+                continue
+            _comprobar_resolucion(fot.bgr, modelo)
             dets = detectar_cajas(fot.bgr, modelo, self.z_cinta, self.alto_mm, self.params, self.fondo, fot.profundidad)
             enteras = [d for d in dets if not d.recortada]
             recortada = recortada or (bool(dets) and not enteras)
@@ -193,6 +208,8 @@ class FuenteCamara:
         if hasattr(p, "nombre") and hasattr(p, "n"):
             return f"carpeta {p.nombre}"
         nombre = {"CamaraOpenCV": "camara USB", "RealSense": "RealSense", "ProveedorRos": "camara por ROS"}.get(type(p).__name__, type(p).__name__.lower())
+        if getattr(p, "url", None):
+            return "camara del movil (URL)"
         indice = getattr(p, "indice", None)
         return nombre if indice is None else f"{nombre} {indice}"
 
@@ -218,6 +235,7 @@ class FuenteCamara:
                 return self._cache_vista[1]
         if fot is None:
             return Vista(None, [], None, origen, None if n is None else n, n)
+        _comprobar_resolucion(fot.bgr, modelo)
         dets = detectar_cajas(fot.bgr, modelo, self.z_cinta, self.alto_mm, self.params, self.fondo, fot.profundidad)
         elegida = elegir([d for d in dets if not d.recortada], self.centro_nominal)
         if self.max_cajas is not None:   # solo las N mejores (normalmente 1): lo demas en la imagen es ruido o cajas que no se cogen ahora

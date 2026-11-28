@@ -8,6 +8,9 @@ Uso (en Windows, desde la carpeta robotica):
     python -m vision.ver_camara --listar                           qué cámaras abren y a qué resolución, y las que ve Windows
     python -m vision.ver_camara --listar --ver                     además, una ventana con la imagen de cada una para saber cuál es cuál
     python -m vision.ver_camara --indice 0 --alto 120              la cámara 0, con cajas de 120 mm de alto
+    python -m vision.ver_camara --url https://MI-SERVICIO.onrender.com/c/MI-CLAVE --alto 120
+                                                                   la cámara de un móvil por la página propia (movil_camara): la misma dirección
+                                                                   que se abre en el teléfono. También vale el vídeo de una app («IP Webcam»...)
     python -m vision.ver_camara --altura 700 --fov 62 --alto 120   con la altura de la cámara sobre la mesa y su campo de visión
     python -m vision.ver_camara --cajas 3                          identifica hasta 3 cajas a la vez (por defecto, 1: la mejor)
     python -m vision.ver_camara --calibracion camara.json --z 220  con la calibración de la celda (medidas reales en la base del robot)
@@ -91,11 +94,14 @@ def mosaico_de_camaras(indices, abrir=None, lado: tuple[int, int] = (320, 240)) 
     return np.hstack(miniaturas) if miniaturas else np.zeros((lado[1], lado[0], 3), np.uint8)
 
 
-def abrir_camara(indice: int, tam: tuple[int, int] | None, api=None):
-    """La cámara `indice`. En Windows, si el backend por defecto no la abre, se prueba DirectShow (`api` fuerza uno: dshow o msmf)."""
+def abrir_camara(indice: int, tam: tuple[int, int] | None, api=None, url: str | None = None):
+    """La cámara `indice` o, con `url`, la del móvil por red. En Windows, si el backend por defecto no abre la cámara, se prueba DirectShow (`api` fuerza
+    uno: dshow o msmf)."""
     try:
-        return abrir_camara_usb(indice, tam, api)
+        return abrir_camara_usb(indice, tam, api, url)
     except ValueError as e:
+        if url:
+            raise
         raise ValueError(f"{e}. Prueba otro --indice (mira --listar), cierra los programas que usen la cámara (Teams, Zoom, la app Cámara) y "
                          "mira que Windows deje a las aplicaciones de escritorio usarla (Configuración, Privacidad, Cámara).") from None
 
@@ -104,10 +110,10 @@ def construir_fuente(proveedor, args):
     """La FuenteCamara para ver la cámara y si va sin calibrar. Lee un fotograma para saber el tamaño de la imagen."""
     from celda.percepcion import FuenteCamara
     fot = None
-    for _ in range(DESCARTAR_FOTOGRAMAS):
+    for _ in range(getattr(proveedor, "descartar", DESCARTAR_FOTOGRAMAS)):
         fot = proveedor.siguiente()
     if fot is None:
-        raise ValueError("la cámara no da imágenes")
+        raise ValueError(getattr(proveedor, "motivo", None) or "la cámara no da imágenes")
     alto, ancho = fot.bgr.shape[:2]
     params = {"modo": args.modo}
     fondo = None
@@ -161,6 +167,7 @@ def main(argv=None, proveedor=None) -> int:
     ap.add_argument("--listar", action="store_true", help="probar los índices de cámara y decir cuáles abren")
     ap.add_argument("--ver", action="store_true", help="con --listar: una ventana con la imagen de cada cámara que abre (para saber cuál es cuál)")
     ap.add_argument("--indice", type=int, default=0, help="índice de la cámara (0 por defecto)")
+    ap.add_argument("--url", help="en vez de una cámara USB, el móvil: la página propia (https://servidor/c/clave) o el vídeo de una app (http://IP:puerto/video, rtsp://...)")
     ap.add_argument("--api", choices=("auto", "dshow", "msmf"), default="auto", help="backend de OpenCV de la cámara (en Windows, si no abre, prueba dshow)")
     ap.add_argument("--tam", type=_tam, default=None, help="resolución pedida a la cámara, p. ej. 1280x720")
     ap.add_argument("--alto", type=float, default=100.0, help="alto de las cajas en mm (una webcam no mide profundidad)")
@@ -204,7 +211,7 @@ def main(argv=None, proveedor=None) -> int:
     propio = proveedor is None
     try:
         if propio:
-            proveedor = abrir_camara(args.indice, args.tam, None if args.api == "auto" else args.api)
+            proveedor = abrir_camara(args.indice, args.tam, None if args.api == "auto" else args.api, args.url)
         fuente, sin_calibrar = construir_fuente(proveedor, args)
     except ValueError as e:
         print(f"error: {e}")

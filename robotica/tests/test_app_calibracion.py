@@ -204,7 +204,7 @@ def test_cerrar_para_la_camara_y_destruye_la_ventana(app):
 
 def test_una_camara_que_no_abre_lo_dice_y_la_ventana_sigue(tmp_path, monkeypatch):
     import calibracion.app_camara as A
-    def no_abre(indice, tam, api=None):
+    def no_abre(indice, tam, api=None, url=None):
         raise ValueError(f"no puedo abrir la cámara {indice}")
     monkeypatch.setattr(A, "abrir_camara_usb", no_abre)
     a = A.App(None, indice=3, tam=None, salida=str(tmp_path / "c.json"))
@@ -237,3 +237,22 @@ def test_los_intrinsecos_se_cargan_de_un_camara_json_desde_la_ventana(app, tmp_p
     assert app.asistente.K is not None and "de vieja.json" in app.l_resultado_int.cget("text")
     app._cargar_intrinsecos(str(tmp_path / "no_existe.json"))
     assert "no puedo leer" in app._mensaje.get()
+
+
+def test_se_abre_la_camara_del_movil_por_url_desde_la_ventana(app, monkeypatch):
+    import calibracion.app_camara as A
+    pedidas = []
+
+    def abre(indice, tam, api=None, url=None):
+        pedidas.append((indice, url))
+        if url and "malo" in url:
+            raise ValueError("no puedo abrir la URL " + url + ": ¿el móvil y el PC están en la misma Wi-Fi?")
+        return CamaraFalsa(app.camara_falsa.bgr)
+    monkeypatch.setattr(A, "abrir_camara_usb", abre)
+    app.v_url.set("http://192.168.1.50:8080/video")
+    app._abrir(None, 0, app.v_url.get().strip())
+    assert pedidas[-1] == (0, "http://192.168.1.50:8080/video") and "del móvil" in app._mensaje.get() and app.captura is not None
+    app._abrir(None, 1, "")
+    assert pedidas[-1] == (1, None) and "Cámara 1 abierta" in app._mensaje.get()          # el botón Abrir vuelve a la cámara por número
+    app._abrir(None, 0, "http://malo/video")
+    assert "misma Wi-Fi" in app._mensaje.get() and "Prueba otro índice" not in app._mensaje.get() and app.captura is None

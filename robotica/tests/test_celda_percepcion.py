@@ -288,3 +288,42 @@ def test_el_ciclo_y_la_vista_previa_desde_hilos_distintos_no_se_pisan(tmp_path):
         parar.set()
         hilo.join(5.0)
     assert fallos == [] and largos == pytest.approx([200.0, 190.0, 180.0, 170.0, 160.0, 150.0], abs=2.0)
+
+
+def test_con_otra_resolucion_que_la_de_la_calibracion_no_se_mide_en_silencio(tmp_path):
+    """Una imagen de 640x480 con una calibracion de 960x720 daria cajas de dos tercios de su tamano: tiene que parar y decirlo."""
+    from vision.proveedores import Carpeta
+    carpeta = _carpeta_con_fotos(tmp_path / "juego", n=2)
+    chica = Fotograma(cv2.resize(cv2.imread(str(carpeta / "foto_01.png")), (640, 480)), None, "chica")
+    fuente = FuenteCamara(_Lista([chica] * 20), _cam(), Z_CINTA, params={"modo": "color"}, alto_mm=120.0, tiempo_max_s=0.3, pausa_s=0.01)
+    with pytest.raises(RuntimeError, match="la imagen mide 640x480 y la calibracion de la camara es de 960x720"):
+        fuente.leer(0)
+    fuente2 = FuenteCamara(Carpeta(carpeta), _cam(), Z_CINTA, params={"modo": "profundidad"}, tiempo_max_s=0.3, pausa_s=0.01)
+    assert fuente2.vista_previa().elegida is not None                                  # con su resolucion, bien
+    fuente2.proveedor = _Lista([chica])
+    with pytest.raises(RuntimeError, match="misma resolucion"):
+        fuente2.vista_previa()
+
+
+class _PorRed(_Lista):
+    """Como una camara por red: a veces no llega imagen y dice por que."""
+
+    motivo = "el movil no envia fotos"
+
+    def siguiente(self):
+        f = super().siguiente()
+        return None if f == "corte" else f
+
+
+def test_un_corte_pasajero_de_la_camara_por_red_no_para_la_celda():
+    foto = _foto([CajaSintetica(200.0, 140.0, 100.0, 25.0, (700.0, 20.0))])
+    fuente = _fuente(["corte", foto])
+    fuente.proveedor = _PorRed(["corte", foto])
+    assert fuente.leer(0).largo == pytest.approx(200.0, abs=6)
+
+
+def test_si_la_camara_por_red_no_vuelve_dice_por_que():
+    fuente = _fuente([], tiempo_max_s=0.1)
+    fuente.proveedor = _PorRed([])
+    with pytest.raises(RuntimeError, match="la camara no da imagen: el movil no envia fotos"):
+        fuente.leer(0)

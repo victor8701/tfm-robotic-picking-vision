@@ -67,6 +67,7 @@ puente_egm/    puente EGM en C# (.NET 8), una sesión por controlador
 mock/          controlador EGM simulado para probar sin robot
 vision/        esquinas y pose de la caja
 calibracion/   homografía con validación y mano-ojo
+movil_camara/  el móvil como cámara: página para el teléfono y su servidor (Render); manual, 11.3 d
 ros2/          paquete robotica_bimanual (nodos, launch)
 rapid/         módulos RAPID (no probados)
 simulacion/    celda.json (placeholders) y conversor CSV a RAPID

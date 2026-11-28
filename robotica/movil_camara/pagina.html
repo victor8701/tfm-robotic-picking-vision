@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="referrer" content="no-referrer">
+<title>Cámara de la celda</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: #111; color: #eee; font: 16px/1.35 system-ui, sans-serif; }
+  body { display: flex; flex-direction: column; height: 100vh; height: 100dvh; }
+  video { flex: 1; width: 100%; min-height: 0; object-fit: contain; background: #000; }
+  #barra { display: flex; gap: 12px; align-items: center; padding: 10px max(12px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)); }
+  button { font: inherit; font-weight: 600; padding: 10px 16px; border: 0; border-radius: 8px; background: #2d6cdf; color: #fff; }
+  #estado { flex: 1; }
+  .bien { color: #6ee787; }
+  .aviso { color: #ffd166; }
+  .mal { color: #ff8a80; }
+</style>
+</head>
+<body>
+<video id="video" playsinline muted autoplay></video>
+<div id="barra">
+  <button id="boton" type="button">Encender la cámara</button>
+  <div id="estado" role="status">Pon el móvil en horizontal, fijo y mirando a las cajas.</div>
+</div>
+<script>
+"use strict";
+const ANCHO = 1280;          // las fotos salen siempre de 1280 de ancho: la calibración de la cámara vale para un tamaño
+const CALIDAD = 0.8;
+const PAUSA_CON_PC = 200;    // ms entre fotos cuando el PC está mirando
+const PAUSA_SIN_PC = 2000;   // y cuando no, para gastar pocos datos
+
+const base = location.pathname.replace(/\/+$/, "");
+const video = document.getElementById("video");
+const boton = document.getElementById("boton");
+const estado = document.getElementById("estado");
+const lienzo = document.createElement("canvas");
+let flujo = null;
+let sesion = 0;              // cambia al apagar o encender: un envío antiguo no sigue
+let candado = null;
+
+const pausa = (ms) => new Promise((r) => setTimeout(r, ms));
+
+function decir(texto, clase = "") {
+  estado.textContent = texto;
+  estado.className = clase;
+}
+
+async function mantenerPantalla() {
+  try { candado = (await navigator.wakeLock?.request("screen")) ?? null; } catch { candado = null; }
+}
+
+async function encender() {
+  if (!navigator.mediaDevices?.getUserMedia) {
+    decir("Este navegador no deja usar la cámara. Abre la dirección con https:// en Chrome o Safari.", "mal");
+    return;
+  }
+  const mia = ++sesion;
+  boton.disabled = true;
+  decir("Pidiendo la cámara…");
+  try {
+    flujo = await navigator.mediaDevices.getUserMedia({
+      audio: false,
+      video: { facingMode: { ideal: "environment" }, width: { ideal: 1280 }, height: { ideal: 720 } },
+    });
+    video.srcObject = flujo;
+    await video.play();
+  } catch (e) {
+    apagar();
+    decir(e.name === "NotAllowedError"
+      ? "Sin permiso de cámara: permítela para esta página (junto a la dirección) y pulsa otra vez."
+      : `No puedo abrir la cámara (${e.name}). Cierra otras aplicaciones que la usen y pulsa otra vez.`, "mal");
+    return;
+  } finally {
+    boton.disabled = false;
+  }
+  boton.textContent = "Apagar";
+  mantenerPantalla();
+  enviar(mia);
+}
+
+function apagar() {
+  sesion++;
+  flujo?.getTracks().forEach((t) => t.stop());
+  flujo = null;
+  video.srcObject = null;
+  candado?.release().catch(() => {});
+  candado = null;
+  boton.textContent = "Encender la cámara";
+  decir("Cámara apagada.");
+}
+
+async function enviar(mia) {
+  let enviadas = 0;
+  let instante = -1;
+  let paradas = 0;
+  while (mia === sesion) {
+    const pista = flujo.getVideoTracks()[0];
+    if (pista.readyState === "ended") {
+      apagar();
+      decir("El teléfono ha cortado la cámara: enciéndela otra vez.", "mal");
+      return;
+    }
+    if (document.hidden || pista.muted || !video.videoWidth) { await pausa(300); continue; }
+    if (video.videoHeight > video.videoWidth) {
+      decir("Gira el móvil: tiene que estar en horizontal (si la imagen no gira, quita el bloqueo de rotación).", "aviso");
+      await pausa(500);
+      continue;
+    }
+    if (video.currentTime === instante) {          // la imagen no ha cambiado: una foto parada no se envía como nueva
+      if (++paradas > 30) decir("La imagen de la cámara está parada: apaga y enciende.", "mal");
+      await pausa(100);
+      continue;
+    }
+    instante = video.currentTime;
+    paradas = 0;
+    lienzo.width = ANCHO;
+    lienzo.height = Math.round((video.videoHeight * ANCHO) / video.videoWidth);
+    lienzo.getContext("2d").drawImage(video, 0, 0, lienzo.width, lienzo.height);
+    const foto = await new Promise((r) => lienzo.toBlob(r, "image/jpeg", CALIDAD));
+    const corte = new AbortController();
+    const reloj = setTimeout(() => corte.abort(), 15000);
+    let espera = PAUSA_SIN_PC;
+    try {
+      const r = await fetch(`${base}/foto`, { method: "POST", body: foto, headers: { "Content-Type": "image/jpeg" }, cache: "no-store", signal: corte.signal });
+      if (!r.ok) throw new Error(`el servidor contesta ${r.status}`);
+      const dato = await r.json();
+      if (mia !== sesion) return;
+      enviadas++;
+      decir(`${dato.pc ? "El PC está mirando" : "Enviando; el PC todavía no mira"} · ${lienzo.width}×${lienzo.height} · ${enviadas} fotos`,
+        dato.pc ? "bien" : "aviso");
+      if (dato.pc) espera = PAUSA_CON_PC;
+    } catch (e) {
+      if (mia !== sesion) return;
+      decir(`Sin conexión con el servidor (${e.message}). Reintentando…`, "mal");
+    } finally {
+      clearTimeout(reloj);
+    }
+    await pausa(espera);
+  }
+}
+
+boton.addEventListener("click", () => (flujo ? apagar() : encender()));
+document.addEventListener("visibilitychange", () => { if (!document.hidden && flujo) mantenerPantalla(); });
+encender();
+</script>
+</body>
+</html>

@@ -811,10 +811,10 @@ def test_indice_cambia_la_camara_usb_de_la_configuracion_sin_tocar_el_json(tmp_p
     with pytest.raises(ValueError, match="0, 1, 2"):
         aplicar_indice_de_camara(cfg, -1)
     sim = cargar(Path(__file__).resolve().parents[1] / "celda" / "config_celda.json")
-    with pytest.raises(ValueError, match="solo vale en modo Real con una cámara USB"):
+    with pytest.raises(ValueError, match="solo valen en modo Real con una cámara USB o de móvil"):
         aplicar_indice_de_camara(sim, 1)
     carpeta = cargar(Path(__file__).resolve().parents[1] / "celda" / "config_celda_real_casa.json")
-    with pytest.raises(ValueError, match="solo vale en modo Real con una cámara USB"):
+    with pytest.raises(ValueError, match="solo valen en modo Real con una cámara USB o de móvil"):
         aplicar_indice_de_camara(carpeta, 1)
     assert _json is not None
 
@@ -824,9 +824,9 @@ def test_main_valida_el_indice_y_el_uso(capsys):
     main(["ciclo"])
     assert "uso: python -m celda.ciclo" in capsys.readouterr().out
     main(["ciclo", "celda/config_celda.json", "--indice"])
-    assert "--indice necesita el número" in capsys.readouterr().out
+    assert "--indice necesita su valor" in capsys.readouterr().out
     main(["ciclo", "celda/config_celda.json", "--indice", "uno"])
-    assert "--indice necesita el número" in capsys.readouterr().out
+    assert "--indice necesita su valor" in capsys.readouterr().out
 
 
 def test_la_ventana_dice_que_camara_usb_es(tmp_path):
@@ -840,3 +840,20 @@ def test_la_ventana_dice_que_camara_usb_es(tmp_path):
     assert FuenteCamara(CamaraOpenCV()).origen() == "camara USB 1"
     del CamaraOpenCV.indice
     assert FuenteCamara(CamaraOpenCV()).origen() == "camara USB"
+
+
+def test_url_pone_la_camara_del_movil_y_se_excluye_con_indice(tmp_path, capsys):
+    from pathlib import Path
+
+    from celda.ciclo import aplicar_indice_de_camara, main
+    from celda.config import cargar
+    cfg = cargar(Path(__file__).resolve().parents[1] / "celda" / "config_celda_real_webcam.json")
+    movil = aplicar_indice_de_camara(cfg, None, "http://192.168.1.50:8080/video")
+    assert movil.camara["origen"]["url"] == "http://192.168.1.50:8080/video" and "url" not in cfg.camara["origen"]
+    assert movil.camara["origen"]["indice"] == 1                                       # el resto del origen no cambia
+    volver = aplicar_indice_de_camara(movil, 0)                                         # y --indice quita la URL
+    assert volver.camara["origen"]["indice"] == 0 and "url" not in volver.camara["origen"]
+    main(["ciclo", "celda/config_celda_real_webcam.json", "--url"])
+    assert "--url necesita su valor" in capsys.readouterr().out
+    main(["ciclo", "celda/config_celda_real_webcam.json", "--indice", "1", "--url", "http://x/video"])
+    assert "uso: python -m celda.ciclo" in capsys.readouterr().out                      # las dos a la vez: no

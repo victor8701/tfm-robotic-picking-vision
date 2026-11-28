@@ -1,5 +1,6 @@
 """vision.ver_camara: ver la camara en vivo sin robot. Con una camara falsa (fotogramas sinteticos) y sin abrir ventanas."""
 import argparse
+import time
 
 import cv2
 import numpy as np
@@ -316,3 +317,107 @@ def test_el_centro_y_el_tamano_de_la_cajas_se_validan():
     assert _centro("700,0") == (700.0, 0.0) and _centro("650;-20") == (650.0, -20.0)
     with pytest.raises(argparse.ArgumentTypeError, match="x,y"):
         _centro("700")
+
+
+# ---------------------------------------------------------------- el movil por URL
+class CapturaDeRed:
+    """cv2.VideoCapture falso de un video por red: da fotogramas numerados lo mas rapido que puede (el numero va en el pixel 0)."""
+    abiertas = []
+
+    def __init__(self, fuente, api=None):
+        self.fuente, self.api, self.n, self.cerrada = fuente, api, 0, False
+        self.abre = "malo" not in str(fuente)
+        CapturaDeRed.abiertas.append((fuente, api))
+
+    def isOpened(self):
+        return self.abre
+
+    def set(self, *a):
+        pass
+
+    def read(self):
+        if self.cerrada:
+            return False, None
+        time.sleep(0.002)
+        self.n += 1
+        img = np.zeros((48, 64, 3), np.uint8)
+        img[0, 0] = (self.n % 250, self.n // 250 % 250, 0)
+        return True, img
+
+    def release(self):
+        self.cerrada = True
+
+
+def _numero(fot):
+    return int(fot.bgr[0, 0, 0]) + 250 * int(fot.bgr[0, 0, 1])
+
+
+def test_una_url_abre_el_video_con_ffmpeg_y_da_siempre_el_fotograma_mas_reciente(monkeypatch):
+    import vision.proveedores as P
+    CapturaDeRed.abiertas.clear()
+    monkeypatch.setattr(cv2, "VideoCapture", CapturaDeRed)
+    cam = P.abrir_camara_usb(url="http://192.168.1.50:8080/video")
+    try:
+        assert CapturaDeRed.abiertas == [("http://192.168.1.50:8080/video", cv2.CAP_FFMPEG)] and cam.url and cam.indice is None
+        primero = cam.siguiente()
+        time.sleep(0.3)                                           # el programa tarda: el video sigue llegando (centenares de fotogramas)
+        despues = cam.siguiente()
+        assert _numero(despues) > _numero(primero) + 20           # el siguiente es uno reciente, no el que estaba en el bufer
+        assert _numero(cam.siguiente()) > _numero(despues)        # y cada llamada da uno nuevo
+    finally:
+        cam.cerrar()
+    assert not cam._hilo.is_alive()
+
+
+def test_si_el_video_se_corta_o_se_queda_parado_siguiente_no_da_imagenes_viejas(monkeypatch):
+    import vision.proveedores as P
+
+    class Corta(CapturaDeRed):
+        def read(self):
+            time.sleep(0.002)
+            self.n += 1
+            return (True, np.zeros((8, 8, 3), np.uint8)) if self.n < 3 else (False, None)
+    monkeypatch.setattr(cv2, "VideoCapture", Corta)
+    cam = P.CamaraOpenCV("http://x/video")
+    try:
+        inicio = time.monotonic()
+        vistos, f = 0, None
+        for _ in range(4):
+            f = cam.siguiente()
+            if f is None:
+                break
+            vistos += 1
+        assert 1 <= vistos <= 2 and f is None                               # los (dos) fotogramas que llegaron y luego nada: no repite el ultimo como nuevo
+        assert cam.siguiente() is None
+        assert time.monotonic() - inicio < 10.0
+    finally:
+        cam.cerrar()
+
+
+def test_una_url_que_no_abre_dice_que_mirar_y_en_el_origen_se_lee_la_url(monkeypatch):
+    import vision.proveedores as P
+    monkeypatch.setattr(cv2, "VideoCapture", CapturaDeRed)
+    with pytest.raises(ValueError, match="no puedo abrir la URL http://malo/video.*misma Wi-Fi"):
+        P.abrir_camara_usb(url="http://malo/video")
+    with pytest.raises(ValueError, match="misma Wi-Fi"):
+        abrir_camara(0, None, None, "http://malo/video")
+    cam = P.abrir_proveedor({"tipo": "opencv", "url": "http://192.168.1.50:8080/video", "indice": 1})   # la URL manda sobre el indice
+    try:
+        assert cam.url == "http://192.168.1.50:8080/video"
+        from celda.percepcion import FuenteCamara
+        assert FuenteCamara(cam).origen() == "camara del movil (URL)"
+    finally:
+        cam.cerrar()
+
+
+def test_ver_camara_con_url_pide_la_camara_del_movil(monkeypatch, capsys):
+    import vision.ver_camara as V
+    pedidas = []
+    camara = CamaraFalsa()
+
+    def abre(indice, tam, api=None, url=None):
+        pedidas.append(url)
+        return camara
+    monkeypatch.setattr(V, "abrir_camara_usb", abre)
+    assert V.main(["--sin-ventana", "--segundos", "0.2", "--url", "http://192.168.1.50:8080/video"]) == 0
+    assert pedidas == ["http://192.168.1.50:8080/video"] and camara.cerrada is True

@@ -261,3 +261,26 @@ def test_la_imagen_anotada_lleva_el_hilo_y_el_centro_en_verde():
     a, b = extremos_hilo(d)
     medio = ((a + b) / 2 + centro_px(d)) / 2
     assert np.any(anotada[int(medio[1]) - 1:int(medio[1]) + 2, int(medio[0]) - 1:int(medio[0]) + 2] != img[int(medio[1]) - 1:int(medio[1]) + 2, int(medio[0]) - 1:int(medio[0]) + 2])
+
+
+def test_la_cache_de_rayos_de_la_profundidad_aguanta_varios_hilos_con_calibraciones_distintas():
+    """El ciclo y el visor miden a la vez: con la cache sin proteger, un hilo vaciaba la cache mientras otro la leia (KeyError)."""
+    import threading
+    from vision.deteccion import alturas_de_profundidad
+    modelos = [camara_cenital(tam=(160, 120), altura_mm=500.0 + 50 * k) for k in range(3)]
+    prof = np.full((120, 160), 400.0, np.float32)
+    errores = []
+
+    def trabajo(k):
+        try:
+            for i in range(150):
+                z = alturas_de_profundidad(prof, modelos[(k + i) % 3])
+                assert z.shape == (120, 160)
+        except Exception as e:   # noqa: BLE001
+            errores.append(repr(e))
+    hilos = [threading.Thread(target=trabajo, args=(k,)) for k in range(6)]
+    for h in hilos:
+        h.start()
+    for h in hilos:
+        h.join(30.0)
+    assert errores == []

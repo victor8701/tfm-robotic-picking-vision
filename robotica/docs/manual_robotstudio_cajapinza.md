@@ -355,6 +355,55 @@ c) **Calibrarla con el asistente (recomendado).** Una ventana con la cámara en 
 & "C:\Program Files\Python311\python.exe" -m vision.ver_camara --indice 1 --altura 700 --fov 62 --alto 120 --guardar-calibracion celda\camara_webcam.json --z 220 --centro 700,0
 ```
 
+d) **El móvil como cámara** (en vez de la webcam). Vale para ver, calibrar y coger cajas, igual que la webcam. De cualquiera de las tres formas: el móvil **FIJO** (trípode, soporte o apoyado en algo estable) mirando hacia abajo a la superficie de las cajas, y el mismo zoom y la misma resolución todo el tiempo (**1280×720** va bien).
+
+**d.1) La página propia, en Render (no instalas nada; vale Android y iPhone; móvil y PC solo necesitan internet).** Abres una dirección en el navegador del móvil, que va enviando fotos; el PC las pide a esa misma dirección. El código está en `robotica/movil_camara/` (tiene que estar subido a GitHub, rama `robotica-un-robot`).
+
+*Una sola vez, en https://dashboard.render.com:* **New → Web Service** → el repositorio `tfm-robotic-picking-vision` y rellena:
+
+| Campo | Valor |
+|---|---|
+| Name | `celda-camara` (o el que quieras) |
+| Language | Python 3 |
+| Branch | `robotica-un-robot` |
+| Region | Frankfurt |
+| Root Directory | `robotica/movil_camara` |
+| Build Command | `pip install -r requirements.txt` |
+| Start Command | `python servidor.py` |
+| Instance Type | **Free** |
+| Environment Variables | `CLAVE` = una clave tuya de 8 o más letras y números, sin espacios (es lo que impide que otros vean la cámara: no la pongas fácil ni la escribas en el repositorio) |
+
+Pulsa **Deploy Web Service**. Arriba sale la dirección del servicio, por ejemplo `https://celda-camara.onrender.com` (si el nombre estaba cogido, lleva unas letras de más). La tuya, para el móvil y para el PC, es esa dirección más `/c/` más tu clave: `https://celda-camara.onrender.com/c/TU-CLAVE`.
+
+*Cada vez:*
+1. **Móvil:** abre la dirección en Chrome o Safari, permite la cámara y ponlo **en horizontal**, fijo. Abajo pone «Enviando; el PC todavía no mira». Deja la página delante y la pantalla encendida (mejor enchufado y con Wi-Fi: gasta datos).
+2. **PC:** los mismos comandos que con la webcam, cambiando `--indice N` por `--url` y **tu** dirección. En el móvil pasa a poner «El PC está mirando». **Windows (PowerShell)**, en la carpeta `robotica`:
+```
+& "C:\Program Files\Python311\python.exe" -m vision.ver_camara --url https://celda-camara.onrender.com/c/TU-CLAVE --alto 120
+```
+```
+& "C:\Program Files\Python311\python.exe" -m calibracion.app_camara --url https://celda-camara.onrender.com/c/TU-CLAVE --salida celda\camara_webcam.json
+```
+```
+& "C:\Program Files\Python311\python.exe" -m celda.ciclo celda\config_celda_real_webcam.json --url https://celda-camara.onrender.com/c/TU-CLAVE
+```
+3. Al acabar, cierra la ventana del PC y la página del móvil.
+
+*Ojo con lo gratis de Render:*
+- **5 GB de bajada al mes**, compartidos con tus otros servicios gratis (el panel de ingesta). Con el PC mirando se baja como mucho una foto por segundo, del orden de 0,3 a 0,7 GB por hora. Si se agota y no hay tarjeta puesta, Render **para todos los servicios gratis** hasta el mes siguiente. Para sesiones largas, usa d.2 o d.3.
+- Sin visitas durante 15 minutos se duerme: la primera vez tarda **alrededor de un minuto** en abrirse (ábrela primero en el móvil).
+- Las fotos pasan por el servidor de Render. Solo guarda la última, en memoria.
+
+*Si falla:* `no reconoce ... CLAVE` → la dirección del PC no es la misma que la del móvil, o la clave no es la de Render. `el móvil no está enviando fotos` → la página no está delante, la cámara está apagada, el móvil en vertical o la pantalla bloqueada. `la imagen mide AxB y la calibracion ... CxD` → ese `camara.json` es de otra cámara o resolución: calibra con el móvil (segundo comando). *Probada en el PC con un navegador y una cámara simulada; sin probar en Render ni con un móvil.*
+
+**d.2) Con una aplicación que crea una webcam virtual en el PC** (Android e iPhone: DroidCam, Iriun Webcam, Camo, EpocCam...): instalas la aplicación en el móvil y su programa en Windows, los conectas (misma Wi-Fi o USB) y en el PC aparece **una cámara más**. Se ve en `... --listar --ver` con su número y se usa como cualquier cámara, con `--indice N` (11.3 a). Apaga en la aplicación el zoom digital, la estabilización y el HDR si deja.
+
+**d.3) Por URL de una aplicación, sin programa en el PC** (Android, «IP Webcam» o parecida; misma Wi-Fi): pulsa «Iniciar servidor» y la aplicación enseña una dirección, por ejemplo `http://192.168.1.50:8080`; el vídeo está en `http://192.168.1.50:8080/video`. **Antes de nada, ábrela en el navegador del PC**: si ves la cámara, funcionará. Después, los comandos de d.1 con `--url http://192.168.1.50:8080/video`.
+- Por red el vídeo llega con un retraso de unas décimas de segundo: el programa usa siempre el fotograma más reciente y, si el vídeo se para, no mide con una imagen vieja.
+- **Si no abre:** `no puedo abrir la URL`: ¿móvil y PC en la misma Wi-Fi (no en la de invitados)? ¿la aplicación del móvil está en marcha y con la pantalla encendida? ¿la dirección lleva `http://`, el puerto y `/video`? El cortafuegos de Windows no suele molestar (la conexión sale del PC).
+
+**Resolución (d.1 y d.3):** la decide el móvil (no `origen.tam`); la página manda siempre 1280 de ancho. La calibración vale **para esa resolución y con el móvil en el mismo sitio y la misma posición**: si cambian, calibra otra vez. En el asistente también hay un recuadro «o URL del móvil» arriba.
+
 #### 11.4 RobotStudio coge cajas por la webcam
 Cada caja se coge **una a una**: pones una caja delante de la webcam, pulsas **CAJA EN POSICIÓN** y el PC mira la cámara en ese momento, mide esa caja (largo, ancho, giro y dónde está) y el robot de RobotStudio va a ese punto, la coge y la deja en la mesa. Se repite tantas veces como pongas en **Tanda → Cajas** de la app (1 por defecto). La calibración `celda\camara_webcam.json` centra la imagen en la recogida (700, 0): una caja bajo el centro de la imagen es una caja en (700, 0); si la mueves a la derecha en la imagen, el robot va a +x, y si la subes, a +y. Con la calibración del asistente (11.3 c) las medidas y posiciones son reales; con la aproximada, aproximadas. `camara.cajas` del JSON (1) limita cuántas cajas identifica la ventana a la vez.
 
@@ -393,6 +442,8 @@ cd ~/repos/tfm-robotica-bimanual/robotica && python3 -m vision.generar_ejemplos 
 | Calibrarla (ventana) | Windows | `& "C:\Program Files\Python311\python.exe" -m calibracion.app_camara --indice 1 --tam 1280x720 --salida celda\camara_webcam.json` |
 | Calibración aproximada | Windows | `& "C:\Program Files\Python311\python.exe" -m vision.ver_camara --indice 1 --altura 700 --fov 62 --alto 120 --guardar-calibracion celda\camara_webcam.json --z 220 --centro 700,0` |
 | Celda con la webcam | Windows | `& "C:\Program Files\Python311\python.exe" -m celda.ciclo celda\config_celda_real_webcam.json --indice 1` |
+| Ver la cámara del móvil (11.3 d) | Windows | `& "C:\Program Files\Python311\python.exe" -m vision.ver_camara --url https://celda-camara.onrender.com/c/TU-CLAVE --alto 120` |
+| Celda con el móvil | Windows | `& "C:\Program Files\Python311\python.exe" -m celda.ciclo celda\config_celda_real_webcam.json --url https://celda-camara.onrender.com/c/TU-CLAVE` |
 | Celda con fotos de ejemplo (ROS 2) | Linux (WSL2) | el `ros2 launch` de 11.1 con `config_celda_real_casa.json` |
 | Fotos de ejemplo | Linux (WSL2) | `python3 -m vision.generar_ejemplos ejemplos_vision` |
 | Medir fotos (sin celda) | Linux (WSL2) | `python3 -m vision.probar_en_casa ejemplos_vision/celda --calibracion ejemplos_vision/celda/camara.json --z 220` |
