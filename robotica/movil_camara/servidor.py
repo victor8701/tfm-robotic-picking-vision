@@ -19,13 +19,14 @@ import threading
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import parse_qs, urlsplit
+from urllib.parse import parse_qs, unquote, urlsplit
 
 MAX_BYTES = 3_000_000        # una foto de 1280x720 en JPEG pesa 0,1 o 0,2 MB
 ESPERA_MAX_S = 20.0
 PC_ACTIVO_S = 15.0           # si el PC ha pedido una foto hace menos de esto, el móvil envía todo lo rápido que puede
 FOTOS_NUEVAS = 2             # la primera que llega tras la petición pudo hacerse antes de ella; la segunda ya es seguro posterior
-CLAVE_VALIDA = re.compile(r"[A-Za-z0-9_-]{8,64}")
+CLAVE_VALIDA = re.compile(r"[!-~]{8,64}")       # letras sin tilde, números y signos; sin espacios
+NO_VALEN = set("/?#%\\'\"")                    # romperían la dirección, o las comillas al escribirla en el PC
 PAGINA = Path(__file__).with_name("pagina.html")
 
 
@@ -92,7 +93,7 @@ class Manejador(BaseHTTPRequestHandler):
         """(recurso, consulta) si la dirección es /c/<clave>[/recurso] con la clave buena; None si no."""
         partes = urlsplit(self.path)
         trozos = partes.path.strip("/").split("/")
-        if len(trozos) not in (2, 3) or trozos[0] != "c" or not hmac.compare_digest(trozos[1].encode(), self.server.clave.encode()):
+        if len(trozos) not in (2, 3) or trozos[0] != "c" or not hmac.compare_digest(unquote(trozos[1]).encode(), self.server.clave.encode()):
             return None
         return (trozos[2] if len(trozos) == 3 else ""), parse_qs(partes.query)
 
@@ -152,8 +153,8 @@ class Servidor(ThreadingHTTPServer):
     daemon_threads = True
 
     def __init__(self, direccion, clave: str):
-        if not CLAVE_VALIDA.fullmatch(clave or ""):
-            raise ValueError("falta la variable de entorno CLAVE o no vale: de 8 a 64 caracteres entre letras sin tilde, números, - y _")
+        if not CLAVE_VALIDA.fullmatch(clave or "") or NO_VALEN & set(clave):
+            raise ValueError("falta la variable de entorno CLAVE o no vale: de 8 a 64 caracteres, sin espacios, tildes ni / ? # % \\ ' \"")
         super().__init__(direccion, Manejador)
         self.clave = clave
         self.buzon = Buzon()
@@ -166,7 +167,7 @@ class Servidor(ThreadingHTTPServer):
 def main(entorno=os.environ) -> int:
     puerto = int(entorno.get("PORT", "8000"))
     try:
-        servidor = Servidor(("0.0.0.0", puerto), entorno.get("CLAVE", ""))
+        servidor = Servidor(("0.0.0.0", puerto), entorno.get("CLAVE", "").strip())
     except ValueError as e:
         print(f"error: {e}", file=sys.stderr, flush=True)
         return 2

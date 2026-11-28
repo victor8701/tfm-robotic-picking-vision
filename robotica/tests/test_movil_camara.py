@@ -77,7 +77,8 @@ class Movil:
 
 
 # ---------------------------------------------------------------- servidor
-@pytest.mark.parametrize("clave", ["", "corta", "con espacio y larga", "con/barra/larga"])
+@pytest.mark.parametrize("clave", ["", "corta", "con espacio y larga", "con/barra/larga", "con#almohadilla", "con?pregunta", "con%porciento",
+                                   "con'comilla-larga", 'con"comillas-dobles', "con\\barra-inversa", "con-eñe-larga"])
 def test_sin_una_clave_larga_no_arranca(clave):
     with pytest.raises(ValueError, match="CLAVE"):
         S.Servidor(("127.0.0.1", 0), clave)
@@ -97,6 +98,24 @@ def test_la_pagina_solo_sale_con_la_clave(servidor):
     for ruta in ("/c/otra-clave-larga", "/c/otra-clave-larga/ultima", f"/c/{CLAVE}/nada", "/c", f"/x/{CLAVE}"):
         codigo, cuerpo = _pedir(base + ruta)
         assert codigo == 404 and CLAVE.encode() not in cuerpo
+
+
+def test_la_clave_puede_llevar_signos():
+    clave = "Prueba$&!12.+"
+    s = S.Servidor(("127.0.0.1", 0), clave)
+    threading.Thread(target=s.serve_forever, args=(0.05,), daemon=True).start()
+    try:
+        base = f"http://127.0.0.1:{s.server_address[1]}/c/"
+        for escrita in (clave, "Prueba%24%26%2112.%2B"):          # tal cual o como la codifique el navegador
+            assert _pedir(base + escrita)[0] == 200
+        assert _pedir(base + "Prueba")[0] == 404
+        with Movil(base + clave):
+            cam = P.abrir_camara_usb(url=base + clave)
+            assert cam.siguiente() is not None
+            cam.cerrar()
+    finally:
+        s.shutdown()
+        s.server_close()
 
 
 def test_solo_acepta_fotos_jpeg_con_la_clave(servidor):
@@ -159,10 +178,10 @@ def test_abrir_con_la_direccion_de_la_pagina_usa_la_camara_del_movil(servidor):
 
 def test_no_baja_mas_de_una_foto_por_intervalo(servidor):
     with Movil(_url(servidor)):
-        cam = P.CamaraMovil(_url(servidor), intervalo_s=0.4)
         t = time.monotonic()
+        cam = P.CamaraMovil(_url(servidor), intervalo_s=0.4)             # abrir ya pide una foto: con estas dos, tres peticiones
         assert cam.siguiente() is not None and cam.siguiente() is not None
-        assert time.monotonic() - t >= 0.75
+        assert time.monotonic() - t >= 0.8
         cam.cerrar()
 
 

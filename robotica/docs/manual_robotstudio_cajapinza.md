@@ -371,21 +371,21 @@ d) **El móvil como cámara** (en vez de la webcam). Vale para ver, calibrar y c
 | Build Command | `pip install -r requirements.txt` |
 | Start Command | `python servidor.py` |
 | Instance Type | **Free** |
-| Environment Variables | `CLAVE` = una clave tuya de 8 o más letras y números, sin espacios (es lo que impide que otros vean la cámara: no la pongas fácil ni la escribas en el repositorio) |
+| Environment Variables | `CLAVE` = una clave tuya de 8 a 64 caracteres, sin espacios, tildes ni `/ ? # % \\ ' "` (es lo que impide que otros vean la cámara: no la pongas fácil, no reutilices la de otra cuenta ni la escribas en el repositorio) |
 
 Pulsa **Deploy Web Service**. Arriba sale la dirección del servicio, por ejemplo `https://celda-camara.onrender.com` (si el nombre estaba cogido, lleva unas letras de más). La tuya, para el móvil y para el PC, es esa dirección más `/c/` más tu clave: `https://celda-camara.onrender.com/c/TU-CLAVE`.
 
 *Cada vez:*
 1. **Móvil:** abre la dirección en Chrome o Safari, permite la cámara y ponlo **en horizontal**, fijo. Abajo pone «Enviando; el PC todavía no mira». Deja la página delante y la pantalla encendida (mejor enchufado y con Wi-Fi: gasta datos).
-2. **PC:** los mismos comandos que con la webcam, cambiando `--indice N` por `--url` y **tu** dirección. En el móvil pasa a poner «El PC está mirando». **Windows (PowerShell)**, en la carpeta `robotica`:
+2. **PC:** los mismos comandos que con la webcam, cambiando `--indice N` por `--url` y **tu** dirección, **entre comillas simples** (si la clave lleva `$` o `&`, sin ellas PowerShell la cambia). En el móvil pasa a poner «El PC está mirando». **Windows (PowerShell)**, en la carpeta `robotica`:
 ```
-& "C:\Program Files\Python311\python.exe" -m vision.ver_camara --url https://celda-camara.onrender.com/c/TU-CLAVE --alto 120
-```
-```
-& "C:\Program Files\Python311\python.exe" -m calibracion.app_camara --url https://celda-camara.onrender.com/c/TU-CLAVE --salida celda\camara_webcam.json
+& "C:\Program Files\Python311\python.exe" -m vision.ver_camara --url 'https://celda-camara.onrender.com/c/TU-CLAVE' --alto 120
 ```
 ```
-& "C:\Program Files\Python311\python.exe" -m celda.ciclo celda\config_celda_real_webcam.json --url https://celda-camara.onrender.com/c/TU-CLAVE
+& "C:\Program Files\Python311\python.exe" -m calibracion.app_camara --url 'https://celda-camara.onrender.com/c/TU-CLAVE' --salida celda\camara_webcam.json
+```
+```
+& "C:\Program Files\Python311\python.exe" -m celda.ciclo celda\config_celda_real_webcam.json --url 'https://celda-camara.onrender.com/c/TU-CLAVE'
 ```
 3. Al acabar, cierra la ventana del PC y la página del móvil.
 
@@ -442,8 +442,8 @@ cd ~/repos/tfm-robotica-bimanual/robotica && python3 -m vision.generar_ejemplos 
 | Calibrarla (ventana) | Windows | `& "C:\Program Files\Python311\python.exe" -m calibracion.app_camara --indice 1 --tam 1280x720 --salida celda\camara_webcam.json` |
 | Calibración aproximada | Windows | `& "C:\Program Files\Python311\python.exe" -m vision.ver_camara --indice 1 --altura 700 --fov 62 --alto 120 --guardar-calibracion celda\camara_webcam.json --z 220 --centro 700,0` |
 | Celda con la webcam | Windows | `& "C:\Program Files\Python311\python.exe" -m celda.ciclo celda\config_celda_real_webcam.json --indice 1` |
-| Ver la cámara del móvil (11.3 d) | Windows | `& "C:\Program Files\Python311\python.exe" -m vision.ver_camara --url https://celda-camara.onrender.com/c/TU-CLAVE --alto 120` |
-| Celda con el móvil | Windows | `& "C:\Program Files\Python311\python.exe" -m celda.ciclo celda\config_celda_real_webcam.json --url https://celda-camara.onrender.com/c/TU-CLAVE` |
+| Ver la cámara del móvil (11.3 d) | Windows | `& "C:\Program Files\Python311\python.exe" -m vision.ver_camara --url 'https://celda-camara.onrender.com/c/TU-CLAVE' --alto 120` |
+| Celda con el móvil | Windows | `& "C:\Program Files\Python311\python.exe" -m celda.ciclo celda\config_celda_real_webcam.json --url 'https://celda-camara.onrender.com/c/TU-CLAVE'` |
 | Celda con fotos de ejemplo (ROS 2) | Linux (WSL2) | el `ros2 launch` de 11.1 con `config_celda_real_casa.json` |
 | Fotos de ejemplo | Linux (WSL2) | `python3 -m vision.generar_ejemplos ejemplos_vision` |
 | Medir fotos (sin celda) | Linux (WSL2) | `python3 -m vision.probar_en_casa ejemplos_vision/celda --calibracion ejemplos_vision/celda/camara.json --z 220` |
